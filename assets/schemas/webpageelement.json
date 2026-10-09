@@ -1,0 +1,6 @@
+{
+    "@type": "WebPageElement",
+    "@id": "{{URL}}",
+    "url": "{{URL}}",
+    "name": "{{TITLE}}"
+}

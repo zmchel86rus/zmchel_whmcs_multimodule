@@ -1,0 +1,17 @@
+{
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "{{TITLE}}",
+    "description": "{{DESCRIPTION}}",
+    "url": "{{URL}}",
+    "image": "{{IMAGE}}",
+    "jobTitle": "{{JOB_TITLE}}",
+    "worksFor": {
+        "@type": "Organization",
+        "name": "{{SITE_NAME}}",
+        "url": "{{SITE_URL}}"
+    },
+    "email": "{{EMAIL}}",
+    "telephone": "{{PHONE}}",
+    "sameAs": ["{{SOCIAL_URL}}"]
+}

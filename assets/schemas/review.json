@@ -1,0 +1,26 @@
+{
+    "@context": "https://schema.org",
+    "@type": "Review",
+    "name": "{{TITLE}}",
+    "description": "{{DESCRIPTION}}",
+    "url": "{{URL}}",
+    "image": "{{IMAGE}}",
+    "inLanguage": "{{LANG_BCP47}}",
+    "datePublished": "{{DATE_PUBLISHED}}",
+    "author": {
+        "@type": "Person",
+        "name": "{{AUTHOR_NAME}}"
+    },
+    "itemReviewed": {
+        "@type": "Thing",
+        "name": "{{REVIEWED_ITEM_NAME}}",
+        "url": "{{REVIEWED_ITEM_URL}}"
+    },
+    "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "{{RATING_VALUE}}",
+        "bestRating": "{{RATING_BEST}}",
+        "worstRating": "{{RATING_WORST}}"
+    },
+    "reviewBody": "{{REVIEW_BODY}}"
+}

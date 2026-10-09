@@ -1,0 +1,15 @@
+{
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "{{TITLE}}",
+    "description": "{{DESCRIPTION}}",
+    "url": "{{URL}}",
+    "image": "{{IMAGE}}",
+    "inLanguage": "{{LANG_BCP47}}",
+    "isPartOf": {
+        "@type": "WebSite",
+        "@id": "{{WEBSITE_ID}}",
+        "name": "{{SITE_NAME}}",
+        "url": "{{SITE_URL}}"
+    }
+}

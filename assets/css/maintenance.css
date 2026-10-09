@@ -1,0 +1,7 @@
+html { min-height: 100%; background: #f3f6fb; color: #25334b; font: 16px/1.6 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+body { min-height: 100vh; margin: 0; display: grid; place-items: center; background: radial-gradient(ellipse at top, #e5edff, transparent 65%); }
+.zm-pb-maintenance { box-sizing: border-box; width: min(600px, calc(100% - 32px)); padding: clamp(28px, 6vw, 56px); margin: 32px 0; border: 1px solid #e2e8f3; border-radius: 24px; background: #fff; box-shadow: 0 20px 70px #23395b12; }
+.zm-pb-maintenance-company { margin-bottom: 28px; font-weight: 650; overflow-wrap: anywhere; }
+.zm-pb-maintenance-label { display: inline-block; padding: 5px 12px; border-radius: 20px; color: #315ecc; background: #edf2ff; font-size: 14px; }
+.zm-pb-maintenance h1 { margin: 18px 0 12px; font-size: clamp(26px, 5vw, 36px); line-height: 1.2; }
+.zm-pb-maintenance p { margin: 0; color: #617089; }

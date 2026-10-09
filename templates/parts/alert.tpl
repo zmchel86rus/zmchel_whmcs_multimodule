@@ -1,0 +1,1 @@
+<div class="alert alert-{$alertType}" style="margin-top:15px;">{$alertMessage}</div>
