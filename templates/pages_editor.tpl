@@ -26,7 +26,7 @@ const page_editor_tools = {$pages_editor_translates->page_editor|json_encode nof
 <div id="zm-pagebuilder" class="panel panel-default pages-editor">
     <div class="panel-heading">
         <button type="button" id="zm-pb-whmcs-sidebar-toggle" class="btn btn-default btn-sm pull-right" aria-pressed="false">{$grapes_translates.sidebar_hide|escape:'html'}</button>
-        <h3 class="panel-title">{$module_translates->pages_editor->title} - {$other_translates->editing} «{$page_data->main->name}»</h3>
+        <h3 class="panel-title">{$module_translates->pages_editor->title} - {$other_translates->editing} «{$page_data->main->name|escape:'html'}»</h3>
     </div>
     <div class="panel-body">
         {if $alertHtml}{$alertHtml}{/if}
@@ -198,7 +198,7 @@ const page_editor_tools = {$pages_editor_translates->page_editor|json_encode nof
                                     <div class="form-group-btn sticky">
                                         <button type="submit" class="btn btn-success mar-r-1">{$other_translates->save}</button>
                                         <button type="reset" class="btn btn-danger mar-r-1">{$other_translates->cancel}</button>
-                                        <a class="btn btn-primary" href="{if isset($canonical_link) && ! empty($canonical_link) }{$canonical_link}{else}{$main_host_url}{$module_langs[$lang_name]['code']|lower}/{$page_data->main->slug|escape}{/if}" target="_blank">{$other_translates->goto}</a>
+                                        <a class="btn btn-primary" href="{if isset($canonical_link) && ! empty($canonical_link) }{$canonical_link|escape:'html'}{else}{$main_host_url}{$module_langs[$lang_name]['code']|lower}/{$page_data->main->slug|escape}{/if}" target="_blank">{$other_translates->goto}</a>
                                     </div>
                                 </form>
                             </div>
@@ -447,12 +447,12 @@ const page_editor_tools = {$pages_editor_translates->page_editor|json_encode nof
                                 class="form-control" 
                                 id="edit_sitemap[url]" 
                                 name="edit_sitemap[url]" 
-                                value="{if isset($page_data->sitemap->url) && ! empty($page_data->sitemap->url) }{$page_data->sitemap->url}{else}{$main_host_url}{$page_data->main->slug|escape}{/if}" readonly>
+                                value="{if isset($page_data->sitemap->url) && ! empty($page_data->sitemap->url) }{$page_data->sitemap->url|escape:'html'}{else}{$main_host_url}{$page_data->main->slug|escape}{/if}" readonly>
                             <span class="description">{$pages_editor_translates->page_sitemap_url->description|escape:'html'}</span>
                         </div>
                         *}
                         <input type="hidden" id="edit_sitemap[url]" name="edit_sitemap[url]" 
-                            value="{if isset($page_data->sitemap->url) && ! empty($page_data->sitemap->url) }{$page_data->sitemap->url}{else}{$main_host_url}{$page_data->main->slug|escape}{/if}" readonly>
+                            value="{if isset($page_data->sitemap->url) && ! empty($page_data->sitemap->url) }{$page_data->sitemap->url|escape:'html'}{else}{$main_host_url}{$page_data->main->slug|escape}{/if}" readonly>
 
                         <div class="form-group-btn sticky">
                             <button type="submit" class="btn btn-success mr-8px" {if !$can_edit_sitemap}disabled{/if}>{$other_translates->save}</button>
@@ -471,7 +471,7 @@ const page_editor_tools = {$pages_editor_translates->page_editor|json_encode nof
         <div class="pd-l-2 pd-r-2">
             <button id="submit_all_forms" class="btn btn-success mar-r-1">{$other_translates->save_all}</button>
             <button id="reset_all_forms" class="btn btn-danger mar-r-1">{$other_translates->cancel_all}</button>
-            <a class="btn btn-primary" href="{if isset($page_data->sitemap->url) && ! empty($page_data->sitemap->url) }{$page_data->sitemap->url}{else}{$main_host_url}{$page_data->main->slug|escape}{/if}" target="_blank">{$other_translates->goto}</a>
+            <a class="btn btn-primary" href="{if isset($page_data->sitemap->url) && ! empty($page_data->sitemap->url) }{$page_data->sitemap->url|escape:'html'}{else}{$main_host_url}{$page_data->main->slug|escape}{/if}" target="_blank">{$other_translates->goto}</a>
         </div>
     </div>
 </div>

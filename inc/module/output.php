@@ -18,10 +18,15 @@ function zmchel_whmcs_multimodule_output($vars){
         $subpage = $_POST["subpage"] ?? "";
     }
 
-    $method_action = zm_pb_stlc($method_action);
-    $subpage = zm_pb_stlc($subpage);
+    $method_action = is_string($method_action) ? zm_pb_stlc($method_action) : '';
+    $subpage = is_string($subpage) ? zm_pb_stlc($subpage) : '';
 
     if( empty($subpage) ) {redir("module=".ZM_PB_NAME."&subpage=".ZM_PB_SUBPAGES[0]);exit;}
+    if (!in_array($subpage, ZM_PB_SUBPAGES, true)
+        && !($request_method === 'GET' && $subpage === 'readme.md')) {
+        http_response_code(404);
+        return;
+    }
 
     $smarty = new Smarty();
     $smarty->setTemplateDir( ZM_PB_TEMPLATESDIR );

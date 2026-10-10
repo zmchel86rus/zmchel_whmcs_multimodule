@@ -2,7 +2,7 @@
 if (!defined("ZM_PB_VER")) die('Direct access not allowed');
 use Illuminate\Database\Capsule\Manager as Capsule;
 
-if ($request_method === 'POST') {
+if ($request_method !== 'GET') {
 	if( ! isset($_POST['zm_pb_forms_nonce']) || empty($_POST['zm_pb_forms_nonce']) ) die(json_encode(['status'=>'error', 'title'=> ZM_PB_ADMINLANG->other->error,'message'=> ZM_PB_ADMINLANG->other->error_token ]));
 	if( ! zm_pb_check_token( ZM_PB_FORMS_PRENONCE , $_POST['zm_pb_forms_nonce'], ZM_PB_NONCE_SALT) ) die(json_encode(['status'=>'error', 'title'=> ZM_PB_ADMINLANG->other->error,'message'=> ZM_PB_ADMINLANG->other->error_token ]));
 
@@ -503,9 +503,27 @@ if( $subpage === 'module_db' ){
 
         if ( $method_action === 'module_db_action' && $request_method != 'GET' ) {
             $selectedItems = isset($_POST['selected_items']) && is_array($_POST['selected_items']) ? $_POST['selected_items'] : [];
-            $dbAction = zm_pb_stlc($_POST['db_action']);
+            $dbAction = is_string($_POST['db_action'] ?? null) ? zm_pb_stlc($_POST['db_action']) : '';
             $successCount = 0;
             $errors = [];
+
+			foreach ($selectedItems as $itemKey) {
+				if (!is_string($itemKey)) {
+					$errors[] = ZM_PB_ADMINLANG->other->invalid_input;
+					break;
+				}
+				$parts = explode(':', $itemKey);
+				if (count($parts) === 2 && $parts[0] === 'table' && isset($tableDefinitions[$parts[1]])) continue;
+				if (count($parts) === 3 && $parts[0] === 'column'
+					&& isset($requiredColumnsByTable[$parts[1]])
+					&& in_array($parts[2], $requiredColumnsByTable[$parts[1]], true)) continue;
+				$errors[] = ZM_PB_ADMINLANG->other->invalid_input;
+				break;
+			}
+			if ($errors) {
+				exit(json_encode(['status' => 'danger', 'title' => ZM_PB_ADMINLANG->other->error,
+					'message' => $errors[0]]));
+			}
 
 			if($dbAction === 'delete') Capsule::statement('SET FOREIGN_KEY_CHECKS=0');
 

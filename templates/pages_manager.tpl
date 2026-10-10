@@ -104,14 +104,14 @@
                         <tr>
                             {if isset($view_trash) }
                             <td>
-                                {$page->name}
+                                {$page->name|escape:'html'}
                             </td>
                             {else}
                             <td class="hover-div">
-                                {$page->name}
+                                {$page->name|escape:'html'}
                                 <div class="d-flex gap-02 mar-t-1">
                                     {if $page->status !== 'canceled'}
-                                    <a class="btn btn-link w-fit pd-0" href="/{$page->slug}" target="_blank">
+                                    <a class="btn btn-link w-fit pd-0" href="/{$page->slug|escape:'html'}" target="_blank">
                                         {$other_translates->visit}
                                     </a>
                                     {/if}
