@@ -158,6 +158,8 @@ return (object)[
         'language'=>'Language', 'rule'=>'Rule', 'status'=>'Status', 'action'=>'Action',
         'present'=>'Present', 'missing'=>'Missing', 'check'=>'Check rules', 'install'=>'Add or update rules',
         'installed'=>'Rules added.', 'all_installed'=>'All rules are installed.',
+        'remove_all'=>'Remove all rules from .htaccess', 'remove_confirm'=>'Remove the entire module rules block from .htaccess?',
+        'removed'=>'The module rules block was removed from .htaccess.',
         'needs_update'=>'The rules block differs from the current settings. Update the rules.',
         'not_installed'=>'Rules have not been added yet.',
         'custom'=>'Custom rule', 'add_custom'=>'Add custom rule', 'delete'=>'Delete',

@@ -161,6 +161,49 @@ function zm_pb_rewrite_status($rules) {
     ];
 }
 
+function zm_pb_rewrite_without_module_blocks($contents) {
+    foreach ([
+        ['# BEGIN ZM PageBuilder language routes', '# END ZM PageBuilder language routes'],
+        ['# BEGIN ZM PageBuilder language homepages', '# END ZM PageBuilder language homepages'],
+    ] as $markers) {
+        [$begin, $end] = $markers;
+        $beginPattern = '/^' . preg_quote($begin, '/') . '\r?$/m';
+        $endPattern = '/^' . preg_quote($end, '/') . '\r?$/m';
+        while (true) {
+            $hasBegin = preg_match($beginPattern, $contents, $beginMatch, PREG_OFFSET_CAPTURE);
+            $hasEnd = preg_match($endPattern, $contents, $endMatch, PREG_OFFSET_CAPTURE);
+            if (!$hasBegin && !$hasEnd) break;
+            if (!$hasBegin || !$hasEnd || $endMatch[0][1] < $beginMatch[0][1]) {
+                throw new RuntimeException('markers_incomplete');
+            }
+            $start = $beginMatch[0][1];
+            $finish = $endMatch[0][1] + strlen($endMatch[0][0]);
+            if (preg_match($beginPattern, $contents, $nextBegin, PREG_OFFSET_CAPTURE, $start + strlen($beginMatch[0][0]))
+                && $nextBegin[0][1] < $finish) {
+                throw new RuntimeException('markers_incomplete');
+            }
+            $newline = substr($contents, $finish, 2) === "\r\n" ? "\r\n" : "\n";
+            if (substr($contents, $finish, strlen($newline)) === $newline) $finish += strlen($newline);
+            if (substr($contents, $finish, strlen($newline)) === $newline) $finish += strlen($newline);
+            $contents = substr($contents, 0, $start) . substr($contents, $finish);
+        }
+    }
+    return $contents;
+}
+
+function zm_pb_uninject_htaccess_rules() {
+    $path = ROOTDIR . '/.htaccess';
+    if (!is_file($path)) return false;
+    $contents = @file_get_contents($path);
+    if ($contents === false) throw new RuntimeException('htaccess_read_failed');
+    $updated = zm_pb_rewrite_without_module_blocks($contents);
+    if ($updated === $contents) return false;
+    if (@file_put_contents($path, $updated, LOCK_EX) !== strlen($updated)) {
+        throw new RuntimeException('htaccess_write_failed');
+    }
+    return true;
+}
+
 function zm_pb_rewrite_install($rules) {
     $path = ROOTDIR . '/.htaccess';
     $contents = is_file($path) ? @file_get_contents($path) : '';
@@ -169,23 +212,7 @@ function zm_pb_rewrite_install($rules) {
 
     $newline = strpos($contents, "\r\n") !== false ? "\r\n" : "\n";
     $block = str_replace("\n", $newline, zm_pb_rewrite_block($rules));
-    foreach ([
-        ['# BEGIN ZM PageBuilder language routes', '# END ZM PageBuilder language routes'],
-        ['# BEGIN ZM PageBuilder language homepages', '# END ZM PageBuilder language homepages'],
-    ] as $markers) {
-        [$begin, $end] = $markers;
-        if (substr_count($contents, $begin) !== substr_count($contents, $end)) {
-            throw new RuntimeException('markers_incomplete');
-        }
-        while (($start = strpos($contents, $begin)) !== false) {
-            $finish = strpos($contents, $end, $start + strlen($begin));
-            if ($finish === false) throw new RuntimeException('markers_incomplete');
-            $finish += strlen($end);
-            if (substr($contents, $finish, strlen($newline)) === $newline) $finish += strlen($newline);
-            if (substr($contents, $finish, strlen($newline)) === $newline) $finish += strlen($newline);
-            $contents = substr($contents, 0, $start) . substr($contents, $finish);
-        }
-    }
+    $contents = zm_pb_rewrite_without_module_blocks($contents);
     $updated = $block . ($contents !== '' ? $newline : '') . $contents;
     if ($updated === $original) return false;
     if (@file_put_contents($path, $updated, LOCK_EX) !== strlen($updated)) {

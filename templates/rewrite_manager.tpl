@@ -61,6 +61,17 @@
                 <input type="hidden" name="zm_pb_secure_nonce" value="{$zm_pb_secure_nonce}">
                 <button type="submit" class="btn btn-primary">{$rewrite_manager_translates->install}</button>
             </form>
+            {if $rewrite_status.has_markers}
+                <form method="POST" action="addonmodules.php" style="display:inline-block"
+                      data-confirm="{$rewrite_manager_translates->remove_confirm|escape}">
+                    <input type="hidden" name="module" value="{$addonName|escape}">
+                    <input type="hidden" name="subpage" value="rewrite_manager">
+                    <input type="hidden" name="action" value="remove_rules">
+                    <input type="hidden" name="zm_pb_forms_nonce" value="{$zm_pb_forms_nonce}">
+                    <input type="hidden" name="zm_pb_secure_nonce" value="{$zm_pb_secure_nonce}">
+                    <button type="submit" class="btn btn-danger">{$rewrite_manager_translates->remove_all|escape}</button>
+                </form>
+            {/if}
 
             <h4>{$rewrite_manager_translates->add_custom}</h4>
             <form id="rewrite_custom_rule_form" method="POST" action="addonmodules.php">

@@ -567,7 +567,7 @@ if ($subpage === 'menu_manager') {
     }
 } elseif ($subpage === 'rewrite_manager') {
     header('Content-Type: application/json; charset=utf-8');
-    if (!in_array($method_action, ['install_rules', 'add_rule', 'delete_rule'], true)) {
+    if (!in_array($method_action, ['install_rules', 'remove_rules', 'add_rule', 'delete_rule'], true)) {
         exit(json_encode(['status'=>'error', 'title'=>ZM_PB_ADMINLANG->other->error, 'message'=>ZM_PB_ADMINLANG->other->unknown_action]));
     }
     if (!isset($_POST['zm_pb_secure_nonce']) ||
@@ -591,6 +591,9 @@ if ($subpage === 'menu_manager') {
             if (!is_string($id)) throw new InvalidArgumentException('invalid_rule');
             zm_pb_rewrite_delete_custom_rule($id);
             $message = ZM_PB_ADMINLANG->rewrite_manager->rule_deleted;
+        } elseif ($method_action === 'remove_rules') {
+            zm_pb_uninject_htaccess_rules();
+            $message = ZM_PB_ADMINLANG->rewrite_manager->removed;
         } else {
             zm_pb_rewrite_install(zm_pb_rewrite_rules());
             $message = ZM_PB_ADMINLANG->rewrite_manager->installed;

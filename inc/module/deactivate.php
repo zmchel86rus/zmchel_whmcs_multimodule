@@ -5,6 +5,13 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 function zmchel_whmcs_multimodule_deactivate(){
     $life = ZM_PB_ADMINLANG->module->lifecycle;
     $output_text_result = ZM_PB_ADMINLANG->module->main->title . ' ' . ZM_PB_ADMINLANG->module->deact . ":\n";
+    require_once ZM_PB_LIBDIR . 'rewrite_manager.php';
+    try {
+        zm_pb_uninject_htaccess_rules();
+    } catch (Throwable $error) {
+        $key = $error->getMessage();
+        return ['status' => 'error', 'description' => ZM_PB_ADMINLANG->rewrite_manager->$key ?? $key];
+    }
     $delete_tables = Capsule::table("tbladdonmodules")->where("module", ZM_PB_NAME)->where("setting", "db_action")->value("value");
     if ($delete_tables) {
 
@@ -88,10 +95,6 @@ function zmchel_whmcs_multimodule_deactivate(){
 
         Capsule::statement("SET FOREIGN_KEY_CHECKS=1");
     }
-
-    $rewrites_uninject_result = zm_pb_uninject_htaccess_rules(ZM_PB_NAME);
-    if ($rewrites_uninject_result !== true) $output_text_result .= $rewrites_uninject_result;
-    
 
     return array("status" => "success", "description" => $output_text_result);
 }

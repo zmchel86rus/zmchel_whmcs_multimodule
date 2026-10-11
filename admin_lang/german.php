@@ -158,6 +158,8 @@ return (object)[
         'language'=>'Sprache', 'rule'=>'Regel', 'status'=>'Status', 'action'=>'Aktion',
         'present'=>'Vorhanden', 'missing'=>'Fehlt', 'check'=>'Regeln prüfen', 'install'=>'Regeln hinzufügen oder aktualisieren',
         'installed'=>'Regeln hinzugefügt.', 'all_installed'=>'Alle Regeln sind installiert.',
+        'remove_all'=>'Alle Regeln aus .htaccess entfernen', 'remove_confirm'=>'Den gesamten Regelblock des Moduls aus .htaccess entfernen?',
+        'removed'=>'Der Regelblock des Moduls wurde aus .htaccess entfernt.',
         'needs_update'=>'Der Regelblock weicht von den aktuellen Einstellungen ab. Aktualisieren Sie die Regeln.',
         'not_installed'=>'Regeln wurden noch nicht hinzugefügt.',
         'custom'=>'Eigene Regel', 'add_custom'=>'Eigene Regel hinzufügen', 'delete'=>'Löschen',
