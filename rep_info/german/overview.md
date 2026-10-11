@@ -2,6 +2,8 @@
 
 **Erzeugen Sie vor der Verwendung unbedingt eigene Salt-Werte und tragen Sie diese in `module_init.php` ein: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` und `ZM_PB_NONCE_SALT`.** Das Modul wurde für **WHMCS 8.13.1** entwickelt und getestet; **Apache wird vollständig unterstützt (100 %)**. Es kann auch mit Nginx funktionieren; die Sprachführung auf der Startseite sollte dort gesondert geprüft und gegebenenfalls eingerichtet werden.
 
+**PHP-Anforderung:** Version 7.4 oder höher.
+
 **ZMChel WHMCS Multimodule ist kostenlos.** Damit lassen sich Website-Inhalte im WHMCS-Administrationsbereich verwalten: mit visuellem Seiten- und Blockeditor, mehrsprachigen Inhalten, Menüs, Mediathek, SEO-Metadaten, XML-Sitemaps, Weiterleitungen, Rewrite-Regeln sowie Import und Export. Die [Anleitung](instruction.md) beschreibt die Bedienung.
 
 ## Geplante Weiterentwicklung
@@ -16,6 +18,8 @@
 - Einen vollständigen, stärker optimierten SEO-Manager nach dem Vorbild von Yoast SEO für WordPress entwickeln.
 - Mehrsprachige Sitemap-Erzeugung und eine HTML-Sitemap-Seite ergänzen.
 - Nutzungsstatistiken zum Seitenmanager hinzufügen.
+- Einen Optimierungsmanager für die Minifizierung von JS, CSS und HTML, einen vom Modul erzeugten Ganzseiten-Cache sowie die Optimierung der Datenbanktabellen des Moduls und von WHMCS ergänzen.
+- Ein zuverlässiges Update-System für das Modul entwickeln.
 
 Dies sind **Pläne für die Zukunft, kein verbindlicher Fahrplan**.
 

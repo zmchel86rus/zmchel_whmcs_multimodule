@@ -4,6 +4,8 @@
 
 **Before use:** generate unique salts and put them in `module_init.php` (`ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT`, `ZM_PB_NONCE_SALT`). The module was developed and tested on **WHMCS 8.13.1** and has **full Apache support (100%)**. It can also work with Nginx, but language routing on the home page may need additional configuration and testing.
 
+**PHP requirement:** 7.4 or newer.
+
 ## Instructions / Инструкции
 
 | Language | Instructions |

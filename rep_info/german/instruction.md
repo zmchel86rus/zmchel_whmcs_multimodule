@@ -2,6 +2,8 @@
 
 **Erzeugen Sie vor der Verwendung unbedingt eigene Salt-Werte und tragen Sie diese in `module_init.php` ein: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` und `ZM_PB_NONCE_SALT`.** Das Modul wurde mit **WHMCS 8.13.1** entwickelt und getestet; **Apache wird vollständig unterstützt (100 %)**. Unter Nginx kann es ebenfalls funktionieren; prüfen Sie dort besonders die Sprachführung der Startseite.
 
+**PHP-Anforderung:** Version 7.4 oder höher.
+
 Diese Anleitung richtet sich an Mitarbeiter, die Website-Inhalte über WHMCS pflegen. Texte, Bilder und Menüs lassen sich ohne Programmierung bearbeiten. Exportieren Sie vor Änderungen an URLs, Weiterleitungen, Serverregeln oder Code die Einstellungen: solche Änderungen können veröffentlichte Seiten beeinflussen.
 
 ## 1. Orientierung

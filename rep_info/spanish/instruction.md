@@ -2,6 +2,8 @@
 
 **Antes de usar el módulo, genere valores salt únicos e introdúzcalos en `module_init.php`: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` y `ZM_PB_NONCE_SALT`.** El módulo se desarrolló y probó con **WHMCS 8.13.1** y ofrece **compatibilidad completa con Apache (100 %)**. También puede funcionar con Nginx, pero compruebe por separado el enrutamiento por idioma de la página de inicio.
 
+**Requisito de PHP:** versión 7.4 o posterior.
+
 Esta guía es para el personal que administra el contenido del sitio desde WHMCS. El trabajo cotidiano con textos, imágenes y menús no requiere programación. Antes de cambiar direcciones, redirecciones, reglas del servidor o código, exporte los ajustes: esos cambios pueden afectar a páginas publicadas.
 
 ## 1. Orientación

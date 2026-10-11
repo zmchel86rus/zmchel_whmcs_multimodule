@@ -52,7 +52,7 @@ if (!defined("ZM_PB_ALLOWED_CONSTS_CHANGE")) define('ZM_PB_ALLOWED_CONSTS_CHANGE
 ### INFO CONSTS ###
 if (!defined("ZM_PB_SUPERADM_ID")) define('ZM_PB_SUPERADM_ID', 1 );
 if (!defined("ZM_PB_FREFIX")) define('ZM_PB_FREFIX', "ZM_PB_" );
-if (!defined("ZM_PB_VER")) define('ZM_PB_VER', "0.0.0" );
+if (!defined("ZM_PB_VER")) define('ZM_PB_VER', "1.0.0" );
 if (!defined("ZM_PB_NAME")) define('ZM_PB_NAME', basename(__DIR__) );
 ### INFO CONSTS ###
 
