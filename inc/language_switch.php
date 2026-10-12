@@ -113,7 +113,7 @@ function zm_pb_clean_amp_query($query)
 /** Repair a malformed language link before WHMCS reads and saves the language. */
 function zm_pb_language_query_repair_target($uri)
 {
-    if (!ZM_PB_ENABLE_LANG_ROUTE || !ZM_PB_PRETTY_URLS) return null;
+    if (!ZM_PB_ENABLE_LANG_ROUTE) return null;
     $parts = parse_url($uri);
     if ($parts === false || isset($parts['host']) || isset($parts['scheme'])
         || empty($parts['path']) || $parts['path'][0] !== '/') return null;
@@ -131,7 +131,7 @@ function zm_pb_language_query_repair_target($uri)
 /** Build a local URL after WHMCS has processed an explicit language selection. */
 function zm_pb_language_switch_target($uri, array $query)
 {
-    if (!ZM_PB_ENABLE_LANG_ROUTE || !ZM_PB_PRETTY_URLS || !is_string($query['language'] ?? null)) return null;
+    if (!ZM_PB_ENABLE_LANG_ROUTE || !is_string($query['language'] ?? null)) return null;
     $language = strtolower($query['language']);
     if (!isset(ZM_PB_LANGS[$language])) return null;
     $code = ZM_PB_LANGS[$language]['code_lower'] ?? '';

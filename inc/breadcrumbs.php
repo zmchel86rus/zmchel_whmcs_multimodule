@@ -1,5 +1,6 @@
 <?php
 if (!defined('ZM_PB_VER')) die('Direct access not allowed');
+require_once __DIR__ . '/route_guard.php';
 
 function zm_pb_breadcrumb_label($settings)
 {
@@ -35,7 +36,7 @@ function zm_pb_breadcrumb_source($link)
 
 function zm_pb_breadcrumb_home_url($language)
 {
-    if (ZM_PB_ENABLE_LANG_ROUTE && ZM_PB_PRETTY_URLS && $language !== ZM_PB_DEFLANG && isset(ZM_PB_LANGS[$language])) {
+    if (ZM_PB_ENABLE_LANG_ROUTE && $language !== ZM_PB_DEFLANG && isset(ZM_PB_LANGS[$language])) {
         return ZM_PB_FULLHOST . ZM_PB_LANGS[$language]['code_lower'] . '/';
     }
     return ZM_PB_FULLHOST . (ZM_PB_MAINSYSTEM_PRETTY_URLS ? '' : 'index.php');
@@ -79,9 +80,10 @@ function zm_pb_update_breadcrumbs(array $breadcrumbs, array $replacements, $lang
         if (!is_array($item)) continue;
         $source = zm_pb_breadcrumb_source($item['link'] ?? '');
         if ($source === null && count($breadcrumbs) === 1 && ($context['source'] ?? null) === 'index') $source = 'index';
-        if ($source !== null && isset($replacements[$source])) {
-            $breadcrumbs[$key]['label'] = $replacements[$source];
-            if ($source === 'index' && ($item['link'] ?? '') !== '') $breadcrumbs[$key]['link'] = zm_pb_breadcrumb_home_url($language);
+        if ($source !== null && isset($replacements[$source])) $breadcrumbs[$key]['label'] = $replacements[$source];
+        if ($source === 'index' && ($item['link'] ?? '') !== ''
+            && (ZM_PB_ENABLE_LANG_ROUTE || isset($replacements[$source]))) {
+            $breadcrumbs[$key]['link'] = zm_pb_breadcrumb_home_url($language);
         }
     }
     if ($settings && $breadcrumbs) {
@@ -98,8 +100,9 @@ function zm_pb_client_breadcrumbs(array $vars)
     $context = $GLOBALS['zm_pb_breadcrumb_context'] ?? [];
     $language = strtolower((string) ($context['lang'] ?? $vars['language'] ?? $_SESSION['Language'] ?? ZM_PB_DEFLANG));
     $request = zm_pb_parse_request();
-    if (ZM_PB_ENABLE_LANG_ROUTE && !empty($request['lang'])) {
-        foreach (ZM_PB_LANGS as $name => $info) if ($info['code_lower'] === $request['lang']) { $language = $name; break; }
+    if (ZM_PB_ENABLE_LANG_ROUTE && !zm_pb_route_uses_user_language($request)) {
+        $language = ZM_PB_DEFLANG;
+        foreach (ZM_PB_LANGS as $name => $info) if ($info['code_lower'] === ($request['lang'] ?? '')) { $language = $name; break; }
     }
     if (!isset(ZM_PB_LANGS[$language])) $language = ZM_PB_DEFLANG;
     $breadcrumbs = zm_pb_update_breadcrumbs($vars['breadcrumb'], zm_pb_breadcrumb_overrides($language), $language, $context);

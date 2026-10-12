@@ -9,6 +9,22 @@ function zm_pb_is_public_lot_route($slug)
         && !preg_match('~\.(?:php|html?|asp|aspx|jsp|cgi|xml|txt|json|css|js|ico|pdf|svg|png|jpe?g|webp|gif|woff2?|ttf|eot)$~iD', $slug);
 }
 
+/** A public page can share its slug with a PHP entry point without using the profile language. */
+function zm_pb_is_public_page_route($slug)
+{
+    static $cache = [];
+    $slug = strtolower(trim((string) $slug, '/'));
+    $slug = preg_replace('~/page/[1-9][0-9]{0,8}$~D', '', $slug);
+    if (!ZM_PB_ENABLE_LANG_ROUTE || $slug === '' || strpos($slug, '/') !== false
+        || !preg_match('/^[a-z0-9-]+$/D', $slug)) return false;
+    if (!function_exists('zm_pb_has_table') || !zm_pb_has_table('zm_pb_pages')) return false;
+    if (!array_key_exists($slug, $cache)) {
+        $cache[$slug] = \Illuminate\Database\Capsule\Manager::table('zm_pb_pages')
+            ->where('slug', $slug)->where('status', 'publish')->where('type', '!=', 'system')->exists();
+    }
+    return $cache[$slug];
+}
+
 /** Native endpoints and their children belong to WHMCS, not page overrides. */
 function zm_pb_route_uses_user_language(array $request)
 {
@@ -24,8 +40,9 @@ function zm_pb_route_uses_user_language(array $request)
     if (zm_pb_is_native_route($slug)) return true;
     // Include routed storefront pages and children of native PHP entry points.
     $root = explode('/', $slug, 2)[0];
-    return $root === 'store' || (preg_match('/^[a-z0-9_-]+$/D', $root)
-        && is_file(ROOTDIR . '/' . $root . '.php'));
+    if ($root === 'store') return true;
+    if (!preg_match('/^[a-z0-9_-]+$/D', $root) || !is_file(ROOTDIR . '/' . $root . '.php')) return false;
+    return !zm_pb_is_public_page_route($slug);
 }
 
 function zm_pb_is_native_route($slug)

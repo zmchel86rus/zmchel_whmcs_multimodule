@@ -28,11 +28,12 @@ if (!empty($request['lang']) && empty($request['slug']) && ($_GET['rp'] ?? null)
 // Do not render an override or force the previous URL language on this request.
 if (defined('ZMPB_LANGUAGE_SWITCH_PENDING')) return;
 
-// Apply the language from the URL to this response without changing the client profile.
+// Apply the public URL language to this response without changing the client profile.
 require_once ZM_PB_INCDIR . 'route_guard.php';
-if (!empty($request['lang']) && !zm_pb_route_uses_user_language($request)) {
+if (ZM_PB_ENABLE_LANG_ROUTE && !zm_pb_route_uses_user_language($request)) {
+    $routeLanguage = $request['lang'] ?: (ZM_PB_LANGS[ZM_PB_DEFLANG]['code_lower'] ?? '');
     foreach (ZM_PB_LANGS as $languageName => $languageInfo) {
-        if ($languageInfo['code_lower'] !== $request['lang']) continue;
+        if ($languageInfo['code_lower'] !== $routeLanguage) continue;
         if (!defined('USER_LANG')) define('USER_LANG', $languageName);
         $languageFile = ROOTDIR . '/lang/' . $languageName . '.php';
         if (is_file($languageFile)) {
