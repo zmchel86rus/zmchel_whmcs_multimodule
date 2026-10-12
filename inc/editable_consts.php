@@ -17,7 +17,6 @@ if (!defined("ZM_PB_SEPARATOR")) define('ZM_PB_SEPARATOR', '-' );
 
 if (!defined("ZM_PB_CUSTOM_HEADER")) define('ZM_PB_CUSTOM_HEADER', false );
 if (!defined("ZM_PB_CUSTOM_FOOTER")) define('ZM_PB_CUSTOM_FOOTER', false );
-if (!defined('ZM_PB_SYSTEM_MAIL_FROM')) define('ZM_PB_SYSTEM_MAIL_FROM', 'noreply@301domains.com');
 
 if (!defined("ZM_PB_ENABLE_LANG_ROUTE")) define('ZM_PB_ENABLE_LANG_ROUTE', true );
 if (!defined("ZM_PB_ENABLE_LOGS")) define('ZM_PB_ENABLE_LOGS', false );

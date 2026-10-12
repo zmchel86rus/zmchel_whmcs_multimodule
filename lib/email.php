@@ -48,9 +48,7 @@ class ZM_PB_Email
             $providerName = (string) $provider->getLoadedModule();
             if (strcasecmp($providerName, 'PhpMail') === 0) self::checkPhpMail();
 
-            $from = $systemMessage
-                ? ZM_PB_SYSTEM_MAIL_FROM
-                : (($config['SystemEmailsFromEmail'] ?? '') ?: ($config['Email'] ?? ''));
+            $from = ($config['SystemEmailsFromEmail'] ?? '') ?: ($config['Email'] ?? '');
             if (!filter_var($from, FILTER_VALIDATE_EMAIL)) throw new RuntimeException('The sender email is missing or invalid.');
             $mail = $systemMessage ? new ZM_PB_SystemMailMessage() : new \WHMCS\Mail\Message();
             $mail->setFromEmail($from);
