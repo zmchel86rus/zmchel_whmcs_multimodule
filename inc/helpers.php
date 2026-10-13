@@ -291,7 +291,8 @@ if (!function_exists('zm_pb_resolve_page_settings')) {
             }
 
             // Requested language version missing -> redirect to default lang version (URL without prefix)
-            $targetUrl = ZM_PB_FULLHOST . $pageData['page']->slug . '/';
+            require_once __DIR__ . '/page_urls.php';
+            $targetUrl = zm_pb_module_page_url($pageData['page']->slug);
             header('Location: ' . $targetUrl, true, 302);
             exit;
         }
@@ -366,9 +367,15 @@ if (!function_exists('zm_pb_parse_request')) {
             $uri = substr($uri, strlen($basePath));
         }
 
-        if (isset($_GET['m'], $_GET['slug']) && $_GET['m'] === ZM_PB_NAME) $result['slug'] = preg_replace('/[^a-z0-9\-]/i', '', $_GET['slug']);
-        if (isset($_GET['m'], $_GET['lang']) && $_GET['m'] === ZM_PB_NAME) $result['lang'] = preg_replace('/[^a-z0-9\-]/i', '', $_GET['lang']);
-        if (isset($_GET['m'], $_GET['slug']) && $_GET['m'] === ZM_PB_NAME) {
+        $moduleSlug = $_GET['slug'] ?? ($_GET['amp;slug'] ?? null);
+        $moduleLang = $_GET['lang'] ?? ($_GET['amp;lang'] ?? null);
+        if (($_GET['m'] ?? null) === ZM_PB_NAME && is_string($moduleSlug)) {
+            $result['slug'] = preg_replace('/[^a-z0-9\-]/i', '', $moduleSlug);
+        }
+        if (($_GET['m'] ?? null) === ZM_PB_NAME && is_string($moduleLang)) {
+            $result['lang'] = preg_replace('/[^a-z0-9\-]/i', '', $moduleLang);
+        }
+        if (($_GET['m'] ?? null) === ZM_PB_NAME && is_string($moduleSlug)) {
             $parsed = $result;
             return $parsed;
         }

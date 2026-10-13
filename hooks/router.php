@@ -11,6 +11,19 @@ $request = zm_pb_parse_request();
 if (!ZM_PB_ENABLE_LANG_ROUTE && !empty($request['lang'])) return;
 
 $publicUri = $_SERVER['ZM_PB_ORIGINAL_REQUEST_URI'] ?? ($_SERVER['REQUEST_URI'] ?? '');
+if (($_GET['m'] ?? null) === ZM_PB_NAME && !isset($_GET['slug'])
+    && isset($_GET['amp;slug']) && is_string($_GET['amp;slug'])) {
+    $query = $_GET;
+    $query['slug'] = $query['amp;slug'];
+    unset($query['amp;slug']);
+    if (isset($query['amp;lang']) && !isset($query['lang'])) $query['lang'] = $query['amp;lang'];
+    unset($query['amp;lang']);
+    $path = parse_url($publicUri, PHP_URL_PATH);
+    if (is_string($path) && strpos($path, '/') === 0) {
+        header('Location: ' . $path . '?' . http_build_query($query, '', '&', PHP_QUERY_RFC3986), true, 301);
+        exit;
+    }
+}
 $requestPath = parse_url($publicUri, PHP_URL_PATH);
 if (preg_match('/^\/admin\//i', $requestPath)) return;
 if ((!empty($_GET['rp']) && $_GET['rp'] !== '/' && empty($request['lang']) && empty($request['page'])
@@ -98,6 +111,26 @@ if ($system_page === null) {
     // Unknown URLs may be valid WHMCS or other module routes. Only claim pages
     // that actually exist in this module; WHMCS handles everything else.
     if (!zm_pb_has_table('zm_pb_pages') || !Capsule::table('zm_pb_pages')->where('slug', $request['slug'])->exists()) return;
+}
+
+// Keep module pages on query URLs when their pretty URLs are disabled.
+if (!ZM_PB_PRETTY_URLS && !isset($_GET['m']) && !$hasLanguageSelection
+    && ($system_page === null || ($system_page !== 'index' && $override_type === 'full'))) {
+    $canonicalSlug = $system_page === null ? $requested_slug : $override_target;
+    if ($canonicalSlug !== '') {
+        require_once ZM_PB_INCDIR . 'page_urls.php';
+        $language = ZM_PB_DEFLANG;
+        foreach (ZM_PB_LANGS as $languageName => $languageInfo) {
+            if ($languageInfo['code_ISO639_1'] === ($request['lang'] ?? '')) $language = $languageName;
+        }
+        $target = zm_pb_module_page_url($canonicalSlug, $language);
+        $query = $_GET;
+        foreach (['rp', 'm', 'slug', 'lang'] as $reserved) unset($query[$reserved]);
+        if (isset($request['page'])) $query['page'] = $request['page'];
+        if ($query) $target .= '&' . http_build_query($query, '', '&', PHP_QUERY_RFC3986);
+        header('Location: ' . $target, true, 301);
+        exit;
+    }
 }
 
 if( ZM_PB_CUSTOM_HEADER || ZM_PB_CUSTOM_FOOTER ){

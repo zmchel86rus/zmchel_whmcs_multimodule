@@ -7,6 +7,7 @@ if (!defined('ZM_PB_VER')) die('Direct access not allowed');
  * ******************************************************************** */
 if (!defined('ZMPB_BUILD_PAGE')) die('#ERROR-BUILD-PAGE #1');
 require_once ZM_PB_INCDIR . 'breadcrumbs.php';
+require_once ZM_PB_INCDIR . 'page_urls.php';
 
 use WHMCS\ClientArea;
 
@@ -27,7 +28,7 @@ $meta_only = $override_type === 'meta_only';
 $enable_partial_with_meta = in_array($override_type,['partial_before_meta','partial_after_meta']);
 
 if( !ZM_PB_ENABLE_LANG_ROUTE && !empty($lang) ){
-    $targetUrl = ZM_PB_FULLHOST . $public_path;
+    $targetUrl = ZM_PB_PRETTY_URLS ? ZM_PB_FULLHOST . $public_path : zm_pb_module_page_url($slug);
     header('Location: ' . $targetUrl, true, 302);
     exit;
 }
@@ -98,6 +99,9 @@ if (!$page_settings_data) {
 }
 
 if ( !in_array($override_type,ZM_PB_ACCEPTED_OVERRIDES) ) return;
+$public_url = ZM_PB_PRETTY_URLS
+    ? ZM_PB_FULLHOST . $full_slug
+    : zm_pb_module_page_url($slug, $page_settings_data->lang);
 // Schema context and partial content use these settings, so expand them first.
 if (is_object($page_settings_data->settings ?? null)) {
     foreach ($page_settings_data->settings as $key => $meta_val) {
@@ -113,7 +117,7 @@ require_once ZM_PB_LIBDIR . 'schema.php';
 $schemaValues = [
     'TITLE' => (string) ($page_settings_data->settings->meta_title ?? ''),
     'DESCRIPTION' => (string) ($page_settings_data->settings->meta_description ?? ''),
-    'URL' => ZM_PB_FULLHOST . $full_slug,
+    'URL' => $public_url,
     'IMAGE' => (string) ($page_settings_data->settings->meta_image ?? ''),
     'LANG_BCP47' => ZM_PB_LANGS[$page_settings_data->lang]['locale_BCP47'] ?? '',
     'SITE_NAME' => (string) ($GLOBALS['CONFIG']['CompanyName'] ?? ''),
@@ -262,7 +266,7 @@ if ($meta_only) {
 }
 
 if( $override_type === 'full' || $meta_only || $enable_partial_with_meta ){
-    add_hook('ClientAreaHeadOutput', 1, function($vars) use ($page_settings_data,$supported_langs,$langs_route,$page_langs,$default_lang,$public_path,$full_host,$full_slug,$page_lang,$meta_only) {
+    add_hook('ClientAreaHeadOutput', 1, function($vars) use ($page_settings_data,$supported_langs,$langs_route,$page_langs,$default_lang,$public_path,$full_host,$public_url,$slug,$page_lang,$meta_only) {
         $seo = $page_settings_data->settings;
 
         if( is_null($seo) ) return;
@@ -297,11 +301,14 @@ if( $override_type === 'full' || $meta_only || $enable_partial_with_meta ){
         }
         
         if (!empty($seo->meta_canonical)) {
-            if ( defined('ZMPB_PAGE_OVERRIDE_MAIN') ) $html .= '<link rel="canonical" href="' . htmlspecialchars($full_host) . ($page_lang !== $default_lang ? $isset_lang['code_ISO639_1'].'/' : '') . '" />' . "\n";
-            else $html .= '<link rel="canonical" href="' . htmlspecialchars($seo->meta_canonical) . '" />' . "\n";
+            if (!ZM_PB_PRETTY_URLS) $canonical = $public_url;
+            elseif (defined('ZMPB_PAGE_OVERRIDE_MAIN')) $canonical = $full_host . ($page_lang !== $default_lang ? $isset_lang['code_ISO639_1'].'/' : '');
+            else $canonical = $seo->meta_canonical;
+            $html .= '<link rel="canonical" href="' . htmlspecialchars($canonical, ENT_QUOTES, 'UTF-8') . '" />' . "\n";
         }
 
-        $alt_links = '<link rel="alternate" hreflang="x-default" href="' . htmlspecialchars($full_host.$public_path, ENT_QUOTES, 'UTF-8') . '" />' . "\n";
+        $default_url = ZM_PB_PRETTY_URLS ? $full_host . $public_path : zm_pb_module_page_url($slug, $default_lang);
+        $alt_links = '<link rel="alternate" hreflang="x-default" href="' . htmlspecialchars($default_url, ENT_QUOTES, 'UTF-8') . '" />' . "\n";
         $alt_meta = '';
         
         foreach ($page_langs as $lang_name) {
@@ -309,6 +316,7 @@ if( $override_type === 'full' || $meta_only || $enable_partial_with_meta ){
             $lang_sub_locale = $supported_langs[$lang_name]['locale'];
             $url = $full_host.$lang_sub_code.'/'.$public_path;
             if( $lang_name === $default_lang || !$langs_route) $url = $full_host.$public_path;
+            if (!ZM_PB_PRETTY_URLS) $url = zm_pb_module_page_url($slug, $lang_name);
 
             $alt_links .= '<link rel="alternate" hreflang="'.$lang_sub_code.'" href="' . htmlspecialchars($url, ENT_QUOTES, 'UTF-8') . '" />' . "\n";
             $alt_meta .= '<meta property="'.($lang_name === $page_lang ? 'og:locale' : 'og:locale:alternate').'" content="'.htmlspecialchars($lang_sub_locale, ENT_QUOTES, 'UTF-8').'" />' . "\n";
@@ -353,7 +361,7 @@ if( $override_type === 'full' || $meta_only || $enable_partial_with_meta ){
             if( !empty($seo->meta_og_description) ) $html .= '<meta property="og:description" content="' . htmlspecialchars($seo->meta_og_description) . '" />' . "\n";
             else $html .= '<meta property="og:description" content="' . htmlspecialchars($seo->meta_description) . '" />' . "\n";
 
-            $html .= '<meta property="og:url" content="' . htmlspecialchars($full_host . $full_slug, ENT_QUOTES, 'UTF-8') . '" />' . "\n";
+            $html .= '<meta property="og:url" content="' . htmlspecialchars($public_url, ENT_QUOTES, 'UTF-8') . '" />' . "\n";
 
             if( !empty($seo->meta_og_image) ) $html .= '<meta property="og:image" content="' . htmlspecialchars($seo->meta_og_image) . '" />' . "\n";
             else $html .= '<meta property="og:image" content="' . htmlspecialchars($seo->meta_image) . '" />' . "\n";
@@ -384,7 +392,7 @@ if( $override_type === 'full' || $meta_only || $enable_partial_with_meta ){
             if ($seo->meta_schema === 'organization') $html .= zm_pb_schema_jsonld(zm_pb_schema_organization($page_lang));
             // FAQPage is emitted from visible question/answer blocks, with their real mainEntity.
             elseif (!in_array($seo->meta_schema, ['faqpage', 'website'], true)) $html .= zm_pb_schema_jsonld(zm_pb_schema_template($seo->meta_schema, [
-                'TITLE' => $seo->meta_title, 'DESCRIPTION' => $seo->meta_description, 'URL' => $full_host . $full_slug,
+                'TITLE' => $seo->meta_title, 'DESCRIPTION' => $seo->meta_description, 'URL' => $public_url,
                 'IMAGE' => $seo->meta_image, 'LANG_BCP47' => $lang_localeBCP47,
                 'SITE_NAME' => $GLOBALS['CONFIG']['CompanyName'] ?? '', 'SITE_URL' => $GLOBALS['CONFIG']['SystemURL'] ?? '',
                 'ORGANIZATION_LOGO' => $GLOBALS['CONFIG']['LogoURL'] ?? '',

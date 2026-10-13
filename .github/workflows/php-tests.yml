@@ -25,3 +25,9 @@ jobs:
           php -l lib/media_manager.php
           php tests/contact_schema.php
           php tests/images.php
+
+      - name: Check page URLs
+        if: matrix.php != '7.4'
+        run: |
+          php tests/page_urls.php
+          php tests/page_urls.php --pretty

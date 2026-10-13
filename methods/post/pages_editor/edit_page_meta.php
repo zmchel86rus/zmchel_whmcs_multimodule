@@ -2,6 +2,7 @@
 if (!defined('ZM_PB_VER')) die('Direct access not allowed');
 
 use Illuminate\Database\Capsule\Manager as Capsule;
+require_once ZM_PB_INCDIR . 'page_urls.php';
 
         try {
             $page_id = (int) ($_POST['page_id'] ?? 0);
@@ -16,8 +17,7 @@ use Illuminate\Database\Capsule\Manager as Capsule;
                     ->where('id', $page_id)
                     ->value('slug');
 
-                if( isset(ZM_PB_LANGS[$lang]) && $lang !== ZM_PB_DEFLANG ) $canonical = zm_pb_stlc(ZM_PB_LANGS[$lang]['code']) . '/' . $canonical;
-                $canonical = ZM_PB_FULLHOST . $canonical . '/';
+                $canonical = zm_pb_module_page_url($canonical, $lang);
 
                 $settings = [
                     'enable_breadcrumb' => filter_var($data['enable_breadcrumb'] ?? false,FILTER_VALIDATE_BOOLEAN),

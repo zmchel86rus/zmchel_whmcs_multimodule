@@ -1,5 +1,6 @@
 <?php
 if (!defined('ZM_PB_VER')) die('Direct access not allowed');
+require_once __DIR__ . '/page_urls.php';
 
 function zm_pb_sitemap_text()
 {
@@ -97,6 +98,7 @@ function zm_pb_sitemap_overrides($configuration)
 
 function zm_pb_sitemap_url($slug, $language, $source = null, $custom = '')
 {
+    if (!ZM_PB_PRETTY_URLS) return zm_pb_module_page_url($slug, $language);
     $base = rtrim(ZM_PB_FULLHOST, '/') . '/';
     $prefix = ZM_PB_ENABLE_LANG_ROUTE && $language !== ZM_PB_DEFLANG ? (ZM_PB_LANGS[$language]['code_ISO639_1'] ?? '') : '';
     if ($source !== null) {
@@ -134,10 +136,8 @@ function zm_pb_sitemap_url($slug, $language, $source = null, $custom = '')
         return $base . (ZM_PB_PRETTY_URLS && $prefix !== '' ? $prefix . '/' : '') . $customPath
             . ($query ? '?' . http_build_query($query, '', '&', PHP_QUERY_RFC3986) : '');
     }
-    if (ZM_PB_PRETTY_URLS) return $base . ($prefix !== '' ? $prefix . '/' : '')
+    return $base . ($prefix !== '' ? $prefix . '/' : '')
         . implode('/', array_map('rawurlencode', explode('/', $path))) . '/';
-    return $base . 'index.php?m=' . rawurlencode(ZM_PB_NAME) . '&slug=' . rawurlencode($path)
-        . ($prefix !== '' ? '&lang=' . rawurlencode($prefix) : '');
 }
 
 function zm_pb_sitemap_status()

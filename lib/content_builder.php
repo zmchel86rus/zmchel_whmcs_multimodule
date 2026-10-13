@@ -382,6 +382,16 @@ class ZM_PB_ContentBuilder
                 }
                 $child->removeAttribute('data-zm-pb-localize-link');
             }
+            if (defined('ZM_PB_PRETTY_URLS') && !ZM_PB_PRETTY_URLS) {
+                require_once __DIR__ . '/content_links.php';
+                $language = $this->context['lang'] ?? ZM_PB_DEFLANG;
+                if (strtolower($child->tagName) === 'a' && $child->hasAttribute('href')) {
+                    $child->setAttribute('href', ZM_PB_ContentLinks::localize($child->getAttribute('href'), $language));
+                } elseif ($child->hasAttribute('data-zm-pb-button')
+                    && $child->getAttribute('data-zm-pb-action') === 'link') {
+                    $child->setAttribute('data-zm-pb-href', ZM_PB_ContentLinks::localize($child->getAttribute('data-zm-pb-href'), $language));
+                }
+            }
             if (in_array(strtolower($child->tagName), ['a', 'button'], true)
                 && trim($child->getAttribute('aria-label')) === '' && trim($child->textContent) === ''
                 && trim($child->getAttribute('title')) !== '') {

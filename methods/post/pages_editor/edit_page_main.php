@@ -2,6 +2,7 @@
 if (!defined('ZM_PB_VER')) die('Direct access not allowed');
 
 use Illuminate\Database\Capsule\Manager as Capsule;
+require_once ZM_PB_INCDIR . 'page_urls.php';
 
         try {
             $page_id = (int) ($_POST['page_id'] ?? 0);
@@ -81,9 +82,7 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 
             if($change_canonical !== $slug){
                 foreach ($langs as $lang) {
-                    $new_canonical = $slug;
-                    if( isset(ZM_PB_LANGS[$lang]) && $lang !== ZM_PB_DEFLANG ) $new_canonical = zm_pb_stlc(ZM_PB_LANGS[$lang]['code']) . '/' . $new_canonical;
-                    $new_canonical = ZM_PB_FULLHOST . $new_canonical. '/';
+                    $new_canonical = zm_pb_module_page_url($slug, $lang);
 
                     $exists = Capsule::table('zm_pb_pages_settings')
                         ->where('page_id', $page_id)
@@ -117,7 +116,7 @@ use Illuminate\Database\Capsule\Manager as Capsule;
                 Capsule::table('zm_pb_sitemap')->insert([
                     'page_id' => $page_id,
                     'active' => true,
-                    'url'=> ZM_PB_FULLHOST . $slug,
+                    'url'=> zm_pb_module_page_url($slug),
                     'sitemap_type' => $type === 'post' ? 'post' : 'page',
                     'created_at' => date('Y-m-d H:i:s'),
                     'updated_at' => date('Y-m-d H:i:s'),
@@ -126,7 +125,7 @@ use Illuminate\Database\Capsule\Manager as Capsule;
                 Capsule::table('zm_pb_sitemap')->where('page_id', $page_id)->update([
                     'page_id' => $page_id,
                     'active' => true,
-                    'url'=> ZM_PB_FULLHOST . $slug,
+                    'url'=> zm_pb_module_page_url($slug),
                     'sitemap_type' => $type === 'post' ? 'post' : 'page',
                     'created_at' => date('Y-m-d H:i:s'),
                     'updated_at' => date('Y-m-d H:i:s'),

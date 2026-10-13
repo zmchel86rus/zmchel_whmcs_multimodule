@@ -2,6 +2,7 @@
 if (!defined('ZM_PB_VER')) die('Direct access not allowed');
 
 use Illuminate\Database\Capsule\Manager as Capsule;
+require_once ZM_PB_INCDIR . 'menu_manager.php';
 
     if( empty($method_action) ){
 
@@ -36,6 +37,17 @@ use Illuminate\Database\Capsule\Manager as Capsule;
             'settings'=>$settings,
             'sitemap'=>$sitemap
         ];
+        $overrideSources = ZM_PB_ENABLE_PAGE_OVERRIDES ? zm_pb_menu_override_sources() : [];
+        $pageVisitUrls = [];
+        if ($main) {
+            foreach ((array) $main->langs as $language) {
+                if (isset(ZM_PB_LANGS[$language])) {
+                    $pageVisitUrls[$language] = zm_pb_menu_page_url($main, $language, $overrideSources);
+                }
+            }
+            $pageVisitUrls[ZM_PB_DEFLANG] = zm_pb_menu_page_url($main, ZM_PB_DEFLANG, $overrideSources);
+        }
+        $smarty->assign('page_visit_urls', $pageVisitUrls);
 
         if( ZM_PB_ENABLE_PAGE_OVERRIDES ){
             $settings = Capsule::table('zm_pb_module_settings')

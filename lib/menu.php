@@ -53,7 +53,12 @@ class ZM_PB_Menu
 
     public static function localizeUrl($url, $language)
     {
-        if (!zm_pb_menu_safe_url($url) || !ZM_PB_ENABLE_LANG_ROUTE || !ZM_PB_PRETTY_URLS || $url === '' || $url[0] === '#') return $url;
+        if (!zm_pb_menu_safe_url($url) || $url === '' || $url[0] === '#') return $url;
+        if (!ZM_PB_PRETTY_URLS) {
+            require_once __DIR__ . '/content_links.php';
+            return ZM_PB_ContentLinks::localize($url, $language);
+        }
+        if (!ZM_PB_ENABLE_LANG_ROUTE) return $url;
         $parts = parse_url($url);
         $site = parse_url(ZM_PB_FULLHOST);
         if (isset($parts['scheme']) && !in_array(strtolower($parts['scheme']), ['http', 'https'], true)) return $url;

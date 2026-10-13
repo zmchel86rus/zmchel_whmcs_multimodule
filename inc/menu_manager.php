@@ -1,6 +1,7 @@
 <?php
 if (!defined('ZM_PB_VER')) die('Direct access not allowed');
 use Illuminate\Database\Capsule\Manager as Capsule;
+require_once __DIR__ . '/page_urls.php';
 
 function zm_pb_menu_text()
 {
@@ -73,16 +74,13 @@ function zm_pb_menu_page_url($page, $language = null, $overrideSources = null)
     $base = rtrim(ZM_PB_FULLHOST, '/');
     $prefix = ZM_PB_ENABLE_LANG_ROUTE && $language !== ZM_PB_DEFLANG ? (ZM_PB_LANGS[$language]['code_ISO639_1'] ?? '') : '';
     if ($overrideSources === null) $overrideSources = zm_pb_menu_override_sources();
-    if (isset($overrideSources[$slug])) {
+    if (ZM_PB_PRETTY_URLS && isset($overrideSources[$slug])) {
         $source = $overrideSources[$slug];
         $path = $source === 'index' ? (ZM_PB_MAINSYSTEM_PRETTY_URLS ? '' : 'index.php')
             : $source . (ZM_PB_MAINSYSTEM_PRETTY_URLS ? '/' : '.php');
         return $base . '/' . (ZM_PB_PRETTY_URLS && $prefix !== '' ? $prefix . '/' : '') . $path;
     }
-    if (ZM_PB_PRETTY_URLS) return $base . '/' . ($prefix !== '' ? $prefix . '/' : '') . $slug;
-    $url = $base . '/index.php?m=' . rawurlencode(ZM_PB_NAME) . '&slug=' . rawurlencode($slug);
-    if ($prefix !== '') $url .= '&lang=' . rawurlencode($prefix);
-    return $url;
+    return zm_pb_module_page_url($slug, $language);
 }
 
 function zm_pb_menu_page_label($page, $settings = null)

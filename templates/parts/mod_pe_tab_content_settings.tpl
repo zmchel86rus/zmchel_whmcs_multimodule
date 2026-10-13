@@ -14,7 +14,6 @@
                         {if isset($page_data) && isset($page_data->main->langs) && is_array($page_data->main->langs)}
                             {foreach from=$page_data->main->langs item=lang_name name=lang_data}
                             <div role="tabpanel" class="tab-pane {if $smarty.foreach.lang_data.first}active{/if}" id="tab_{$lang_name}">
-                                {assign var="canonical_link" value=$page_data->settings[$lang_name]->settings['meta_canonical']}
                                
                                 <h3>{$pages_editor_translates->page_headers->content} - "{$module_translates->supported_langs->translate->$lang_name}"</h3>
                                 <form id="form_content_{$lang_name}" method="POST" action="addonmodules.php?module={$addonName}&subpage={$subpage}" data-form-order="2">
@@ -51,7 +50,7 @@
                                     <div class="form-group-btn sticky">
                                         <button type="submit" class="btn btn-success mar-r-1">{$other_translates->save}</button>
                                         <button type="reset" class="btn btn-danger mar-r-1">{$other_translates->cancel}</button>
-                                        <a class="btn btn-primary" href="{if isset($canonical_link) && ! empty($canonical_link) }{$canonical_link|escape:'html'}{else}{$main_host_url}{$module_langs[$lang_name]['code']|lower}/{$page_data->main->slug|escape}{/if}" target="_blank">{$other_translates->goto}</a>
+                                        <a class="btn btn-primary" href="{$page_visit_urls[$lang_name]|escape:'html'}" target="_blank">{$other_translates->goto}</a>
                                     </div>
                                 </form>
                             </div>

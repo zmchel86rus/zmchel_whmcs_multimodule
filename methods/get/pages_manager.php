@@ -2,6 +2,7 @@
 if (!defined('ZM_PB_VER')) die('Direct access not allowed');
 
 use Illuminate\Database\Capsule\Manager as Capsule;
+require_once ZM_PB_INCDIR . 'menu_manager.php';
 
     if (empty($method_action) || $method_action === 'view_trash') {
         $viewTrash = $method_action === 'view_trash';
@@ -39,9 +40,11 @@ use Illuminate\Database\Capsule\Manager as Capsule;
             $total = (int) $query->count();
             $lastPage = max(1, (int) ceil($total / $perPage));
             $pageNumber = min(max(1, (int) $getFilter('page')), $lastPage);
+            $overrideSources = ZM_PB_ENABLE_PAGE_OVERRIDES ? zm_pb_menu_override_sources() : [];
             $pages = $query->orderByDesc('id')->offset(($pageNumber - 1) * $perPage)->limit($perPage)->get()
-                ->map(function ($page) {
+                ->map(function ($page) use ($overrideSources) {
                     $page->langs = $page->langs ? (json_decode($page->langs, true) ?: []) : [];
+                    $page->visit_url = zm_pb_menu_page_url($page, ZM_PB_DEFLANG, $overrideSources);
                     return $page;
                 });
             $pages_trashed = Capsule::table('zm_pb_pages')

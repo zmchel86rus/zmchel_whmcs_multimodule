@@ -48,6 +48,10 @@
             });
         });
     });
+    document.querySelectorAll('.zm-pb-menu-item a[href], .zm-pb-footer-links a[href], .zm-pb-sidebar-menu a[href]').forEach(function(link) {
+        var href = link.getAttribute('href');
+        if (href && href.indexOf('&amp;') !== -1) link.setAttribute('href', href.replace(/&amp;/g, '&'));
+    });
     if (menus.primary_navbar) {
         var overflow = document.querySelector('#nav > .collapsable-dropdown');
         var overflowList = overflow && overflow.querySelector('.collapsable-dropdown-menu');

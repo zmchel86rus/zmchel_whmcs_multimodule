@@ -1,6 +1,7 @@
 <?php
 if (!defined('ZM_PB_VER')) die('Direct access not allowed');
 require_once dirname(__DIR__) . '/inc/route_guard.php';
+require_once dirname(__DIR__) . '/inc/page_urls.php';
 
 /** Localize explicit content links without changing external or WHMCS system URLs. */
 class ZM_PB_ContentLinks
@@ -13,7 +14,7 @@ class ZM_PB_ContentLinks
         if (!class_exists('Illuminate\\Database\\Capsule\\Manager')) return false;
         try {
             $cache[$slug] = \Illuminate\Database\Capsule\Manager::table('zm_pb_pages')
-                ->where('slug', $slug)->where('status', 'publish')->exists();
+                ->where('slug', $slug)->where('status', 'publish')->where('type', '!=', 'system')->exists();
         } catch (Throwable $error) {
             // Routing must keep working even while module tables are being repaired.
         }
@@ -22,10 +23,9 @@ class ZM_PB_ContentLinks
 
     public static function localize($url, $language)
     {
-        if (!is_string($url) || $url === '' || !defined('ZM_PB_ENABLE_LANG_ROUTE')
-            || !ZM_PB_ENABLE_LANG_ROUTE || !defined('ZM_PB_PRETTY_URLS') || !ZM_PB_PRETTY_URLS
-            || !isset(ZM_PB_LANGS[$language]) || $url[0] === '#' || $url[0] === '?'
-            || strpos($url, '//') === 0) return $url;
+        if (!is_string($url) || $url === '' || !defined('ZM_PB_PRETTY_URLS')
+            || $url[0] === '#' || $url[0] === '?' || strpos($url, '//') === 0) return $url;
+        if (!isset(ZM_PB_LANGS[$language])) $language = ZM_PB_DEFLANG;
 
         $parts = parse_url($url);
         $site = parse_url(ZM_PB_FULLHOST);
@@ -49,6 +49,20 @@ class ZM_PB_ContentLinks
                 break;
             }
         }
+
+        if (!ZM_PB_PRETTY_URLS) {
+            $slug = trim($path, '/');
+            if (!preg_match('/^[a-z0-9-]+$/iD', $slug) || !self::isPublishedPage($slug)) return $url;
+            $result = zm_pb_module_page_url($slug, $language);
+            if (isset($parts['query']) && $parts['query'] !== '') {
+                parse_str($parts['query'], $query);
+                foreach (['m', 'slug', 'lang', 'rp'] as $reserved) unset($query[$reserved]);
+                if ($query) $result .= '&' . http_build_query($query, '', '&', PHP_QUERY_RFC3986);
+            }
+            if (isset($parts['fragment'])) $result .= '#' . $parts['fragment'];
+            return $result;
+        }
+        if (!defined('ZM_PB_ENABLE_LANG_ROUTE') || !ZM_PB_ENABLE_LANG_ROUTE) return $url;
 
         if ($path !== '') {
             $root = strtolower(explode('/', $path, 2)[0]);
