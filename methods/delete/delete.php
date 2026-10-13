@@ -13,44 +13,19 @@ use Illuminate\Database\Capsule\Manager as Capsule;
         if( ! $page_exists_to_delete ) die(json_encode(['status'=>'error', 'title'=> $GLOBALS['ZM_PB_ADMINLANG']->other->error,'message'=> sprintf($GLOBALS['ZM_PB_ADMINLANG']->pages_manager->delete_errors->not_found, $id) ]));
 
         try {
-            $page_exists = Capsule::table('zm_pb_sitemap')
-            ->where('page_id', $id)
-            ->exists();
-
-            if ($page_exists) {
-                Capsule::table('zm_pb_pages')->where('page_id', $id)->delete();
-            }
-        } catch (Exception $e) {
+            Capsule::connection()->transaction(function () use ($id) {
+                Capsule::table('zm_pb_sitemap')->where('page_id', $id)->delete();
+                Capsule::table('zm_pb_pages_settings')->where('page_id', $id)->delete();
+                Capsule::table('zm_pb_pages_revisions')->where('page_id', $id)->delete();
+                if (!Capsule::table('zm_pb_pages')->where('id', $id)->where('status', 'canceled')->delete()) {
+                    throw new RuntimeException('Page is no longer in the trash');
+                }
+            });
+        } catch (Throwable $e) {
            exit( json_encode([
                 'status'=>'error',
                 'title'=> $GLOBALS['ZM_PB_ADMINLANG']->other->error ,
                 'message' => sprintf($GLOBALS['ZM_PB_ADMINLANG']->pages_manager->delete_errors->operation_failed, 6, $e->getMessage()),
-            ]) );
-        }
-
-        try {
-            $page_exists = Capsule::table('zm_pb_pages_settings')
-            ->where('page_id', $id)
-            ->exists();
-
-            if ($page_exists) {
-                Capsule::table('zm_pb_pages_settings')->where('id', $id)->delete();
-            }
-        } catch (Exception $e) {
-           exit( json_encode([
-                'status'=>'error',
-                'title'=> $GLOBALS['ZM_PB_ADMINLANG']->other->error ,
-                'message' => sprintf($GLOBALS['ZM_PB_ADMINLANG']->pages_manager->delete_errors->operation_failed, 7, $e->getMessage()),
-            ]) );
-        }
-
-        try {
-            Capsule::table('zm_pb_pages')->where('id', $id)->delete();
-        } catch (Exception $e) {
-           exit( json_encode([
-                'status'=>'error',
-                'title'=> $GLOBALS['ZM_PB_ADMINLANG']->other->error ,
-                'message' => sprintf($GLOBALS['ZM_PB_ADMINLANG']->pages_manager->delete_errors->operation_failed, 8, $e->getMessage()),
             ]) );
         }
 

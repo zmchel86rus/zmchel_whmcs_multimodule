@@ -363,13 +363,7 @@ if (!function_exists('zm_pb_parse_request')) {
         $publicUri = $_SERVER['ZM_PB_ORIGINAL_REQUEST_URI'] ?? ($_SERVER['REQUEST_URI'] ?? '');
         $uri = parse_url($publicUri, PHP_URL_PATH) ?: '';
         $basePath = parse_url(ZM_PB_FULLHOST, PHP_URL_PATH) ?: '';
-        $routePath = is_string($_GET['rp'] ?? null) ? parse_url($_GET['rp'], PHP_URL_PATH) : null;
-        if (strcasecmp($uri, rtrim($basePath, '/') . '/index.php') === 0
-            && is_string($routePath) && strpos($routePath, '/') === 0
-            && strpos($routePath, '//') !== 0) {
-            // Some rewrites expose the internal index.php URL to PHP.
-            $uri = $routePath;
-        } elseif ($basePath !== '' && strpos($uri, $basePath) === 0) {
+        if ($basePath !== '' && strpos($uri, $basePath) === 0) {
             $uri = substr($uri, strlen($basePath));
         }
 
