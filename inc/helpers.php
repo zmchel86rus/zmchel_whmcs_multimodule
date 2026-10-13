@@ -293,6 +293,8 @@ if (!function_exists('zm_pb_resolve_page_settings')) {
             // Requested language version missing -> redirect to default lang version (URL without prefix)
             require_once __DIR__ . '/page_urls.php';
             $targetUrl = zm_pb_module_page_url($pageData['page']->slug);
+            if (zm_pb_is_self_redirect($targetUrl)) return null;
+            header('X-ZM-PB-Redirect-Source: missing-language');
             header('Location: ' . $targetUrl, true, 302);
             exit;
         }

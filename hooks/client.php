@@ -6,11 +6,13 @@ if (php_sapi_name() !== 'cli' && !defined('ADMINAREA')) {
     add_hook('ClientAreaPage', 1001, 'zm_pb_client_breadcrumbs');
     require_once ZM_PB_INCDIR . 'language_switch.php';
     require_once ZM_PB_INCDIR . 'url_redirects.php';
+    require_once ZM_PB_INCDIR . 'page_urls.php';
     if (in_array($_SERVER['REQUEST_METHOD'] ?? '', ['GET', 'HEAD'], true)) {
         $escapedTarget = zm_pb_escaped_query_redirect_target(
             $_SERVER['ZM_PB_ORIGINAL_REQUEST_URI'] ?? ($_SERVER['REQUEST_URI'] ?? '')
         );
-        if ($escapedTarget !== null) {
+        if ($escapedTarget !== null && !zm_pb_is_self_redirect($escapedTarget)) {
+            header('X-ZM-PB-Redirect-Source: escaped-query');
             header('Location: ' . $escapedTarget, true, 302);
             exit;
         }
@@ -58,15 +60,22 @@ if (php_sapi_name() !== 'cli' && !defined('ADMINAREA')) {
     $homeTarget = in_array($_SERVER['REQUEST_METHOD'] ?? '', ['GET', 'HEAD'], true)
         ? zm_pb_language_home_target($switchUri, $_GET) : null;
     if ($switchTarget !== null) {
+        if (zm_pb_is_self_redirect($switchTarget)) $switchTarget = null;
+    }
+    if ($repairTarget !== null && zm_pb_is_self_redirect($repairTarget)) $repairTarget = null;
+    if ($homeTarget !== null && zm_pb_is_self_redirect($homeTarget)) $homeTarget = null;
+    if ($switchTarget !== null) {
         define('ZMPB_LANGUAGE_SWITCH_PENDING', true);
         // Hook loading is too early: let WHMCS handle language= first.
         add_hook('ClientAreaPage', 1000, function () use ($switchTarget) {
             header('Cache-Control: no-store, private');
+            header('X-ZM-PB-Redirect-Source: language-switch');
             header('Location: ' . $switchTarget, true, 302);
             exit;
         });
     } elseif ($repairTarget !== null) {
         header('Cache-Control: no-store, private');
+        header('X-ZM-PB-Redirect-Source: language-repair');
         header('Location: ' . $repairTarget, true, 302);
         exit;
     } elseif ($defaultLanguageTarget !== null) {
@@ -75,6 +84,7 @@ if (php_sapi_name() !== 'cli' && !defined('ADMINAREA')) {
     } elseif ($homeTarget !== null) {
         // A preference depends on the session: do not cache a permanent redirect.
         header('Cache-Control: no-store, private');
+        header('X-ZM-PB-Redirect-Source: language-home');
         header('Location: ' . $homeTarget, true, 302);
         exit;
     } elseif ($indexTarget !== null) {

@@ -57,6 +57,22 @@ function expect_url($actual, $expected)
 
 $page = (object) ['slug' => 'closedauctions'];
 $base = 'https://example.test/billing/';
+$_SERVER['REQUEST_URI'] = '/billing/index.php?m=zmchel_whmcs_multimodule&amp;slug=mybids';
+$_SERVER['THE_REQUEST'] = 'GET /billing/?m=zmchel_whmcs_multimodule&slug=mybids HTTP/1.1';
+if (!zm_pb_is_self_redirect($base . '?m=zmchel_whmcs_multimodule&slug=mybids')) {
+    throw new RuntimeException('Browser URL self-redirect was not detected');
+}
+if (zm_pb_is_self_redirect($base . '?m=zmchel_whmcs_multimodule&slug=closedauctions')) {
+    throw new RuntimeException('Different module page was treated as a self-redirect');
+}
+$_SERVER['THE_REQUEST'] = 'GET /?m=zmchel_whmcs_multimodule&slug=mybids HTTP/1.1';
+if (!zm_pb_is_self_redirect('https://example.test/?m=zmchel_whmcs_multimodule&slug=mybids')) {
+    throw new RuntimeException('Root URL self-redirect was not detected');
+}
+if (zm_pb_is_self_redirect('http://example.test/?m=zmchel_whmcs_multimodule&slug=mybids')) {
+    throw new RuntimeException('Protocol change was treated as a self-redirect');
+}
+unset($_SERVER['REQUEST_URI'], $_SERVER['THE_REQUEST']);
 expect_url(zm_pb_escaped_query_redirect_target('/billing/?m=zmchel_whmcs_multimodule&amp;slug=closedauctions&amp;lang=ru'),
     '/billing/?m=zmchel_whmcs_multimodule&slug=closedauctions&lang=ru');
 expect_url(zm_pb_escaped_query_redirect_target('/billing/?m=another_module&amp;slug=closedauctions'), null);
