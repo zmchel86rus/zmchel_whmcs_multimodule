@@ -2,7 +2,7 @@
 if (!defined('ZM_PB_VER')) die('Direct access not allowed');
 
 function zm_pb_transfer_text() {
-    return ZM_PB_ADMINLANG->transfer ?? (require ZM_PB_ALANGDIR . 'english.php')->transfer;
+    return $GLOBALS['ZM_PB_ADMINLANG']->transfer ?? (require ZM_PB_ALANGDIR . 'english.php')->transfer;
 }
 
 function zm_pb_transfer_error($key, ...$details) {

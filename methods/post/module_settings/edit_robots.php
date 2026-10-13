@@ -11,10 +11,10 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 
             exit( json_encode([
                 'status'=> ($result ? 'success' : 'error'),
-                'title'=>  ($result ? ZM_PB_ADMINLANG->other->success : ZM_PB_ADMINLANG->other->error ),
+                'title'=>  ($result ? $GLOBALS['ZM_PB_ADMINLANG']->other->success : $GLOBALS['ZM_PB_ADMINLANG']->other->error ),
                 'message' => $result,
             ]) );
 
         } catch (Exception $e) {
-            exit( json_encode(['status'=>'error', 'title'=> ZM_PB_ADMINLANG->other->error,'message'=>ZM_PB_ADMINLANG->other->db_operation_error .': ' . $e->getMessage()]) );
+            exit( json_encode(['status'=>'error', 'title'=> $GLOBALS['ZM_PB_ADMINLANG']->other->error,'message'=>$GLOBALS['ZM_PB_ADMINLANG']->other->db_operation_error .': ' . $e->getMessage()]) );
         }

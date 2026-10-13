@@ -3,11 +3,11 @@ if (!defined('ZM_PB_VER')) die('Direct access not allowed');
 use Illuminate\Database\Capsule\Manager as Capsule;
 
 if ($request_method !== 'GET') {
-	if( ! isset($_POST['zm_pb_forms_nonce']) || empty($_POST['zm_pb_forms_nonce']) ) die(json_encode(['status'=>'error', 'title'=> ZM_PB_ADMINLANG->other->error,'message'=> ZM_PB_ADMINLANG->other->error_token ]));
-	if( ! zm_pb_check_token( ZM_PB_FORMS_PRENONCE , $_POST['zm_pb_forms_nonce'], ZM_PB_NONCE_SALT) ) die(json_encode(['status'=>'error', 'title'=> ZM_PB_ADMINLANG->other->error,'message'=> ZM_PB_ADMINLANG->other->error_token ]));
+	if( ! isset($_POST['zm_pb_forms_nonce']) || empty($_POST['zm_pb_forms_nonce']) ) die(json_encode(['status'=>'error', 'title'=> $GLOBALS['ZM_PB_ADMINLANG']->other->error,'message'=> $GLOBALS['ZM_PB_ADMINLANG']->other->error_token ]));
+	if( ! zm_pb_check_token( ZM_PB_FORMS_PRENONCE , $_POST['zm_pb_forms_nonce'], ZM_PB_NONCE_SALT) ) die(json_encode(['status'=>'error', 'title'=> $GLOBALS['ZM_PB_ADMINLANG']->other->error,'message'=> $GLOBALS['ZM_PB_ADMINLANG']->other->error_token ]));
 
-	if( ! isset($_POST['zm_pb_admin_nonce']) || empty($_POST['zm_pb_admin_nonce'])) die(json_encode(['status'=>'error', 'title'=> ZM_PB_ADMINLANG->other->error,'message'=> ZM_PB_ADMINLANG->other->error_token ]));
-	if( ! zm_pb_check_token( ZM_PB_ADMIN_PRENONCE , $_POST['zm_pb_admin_nonce'], ZM_PB_ADMIN_SALT) ) die(json_encode(['status'=>'error', 'title'=> ZM_PB_ADMINLANG->other->error,'message'=> ZM_PB_ADMINLANG->other->error_token ]));
+	if( ! isset($_POST['zm_pb_admin_nonce']) || empty($_POST['zm_pb_admin_nonce'])) die(json_encode(['status'=>'error', 'title'=> $GLOBALS['ZM_PB_ADMINLANG']->other->error,'message'=> $GLOBALS['ZM_PB_ADMINLANG']->other->error_token ]));
+	if( ! zm_pb_check_token( ZM_PB_ADMIN_PRENONCE , $_POST['zm_pb_admin_nonce'], ZM_PB_ADMIN_SALT) ) die(json_encode(['status'=>'error', 'title'=> $GLOBALS['ZM_PB_ADMINLANG']->other->error,'message'=> $GLOBALS['ZM_PB_ADMINLANG']->other->error_token ]));
 }
 
 if( $subpage === 'module_db' ){
@@ -16,7 +16,7 @@ if( $subpage === 'module_db' ){
 
     if (!$isSuperAdmin && ZM_PB_CHECK_SUPERADM) {
 		
-        $alertMessage = ZM_PB_ADMINLANG->module->alerts->access_denied;
+        $alertMessage = $GLOBALS['ZM_PB_ADMINLANG']->module->alerts->access_denied;
         $alertType = 'danger';
         $smarty->assign('alertType', $alertType );
         $smarty->assign('alertMessage', $alertMessage);
@@ -509,7 +509,7 @@ if( $subpage === 'module_db' ){
 
 			foreach ($selectedItems as $itemKey) {
 				if (!is_string($itemKey)) {
-					$errors[] = ZM_PB_ADMINLANG->other->invalid_input;
+					$errors[] = $GLOBALS['ZM_PB_ADMINLANG']->other->invalid_input;
 					break;
 				}
 				$parts = explode(':', $itemKey);
@@ -517,11 +517,11 @@ if( $subpage === 'module_db' ){
 				if (count($parts) === 3 && $parts[0] === 'column'
 					&& isset($requiredColumnsByTable[$parts[1]])
 					&& in_array($parts[2], $requiredColumnsByTable[$parts[1]], true)) continue;
-				$errors[] = ZM_PB_ADMINLANG->other->invalid_input;
+				$errors[] = $GLOBALS['ZM_PB_ADMINLANG']->other->invalid_input;
 				break;
 			}
 			if ($errors) {
-				exit(json_encode(['status' => 'danger', 'title' => ZM_PB_ADMINLANG->other->error,
+				exit(json_encode(['status' => 'danger', 'title' => $GLOBALS['ZM_PB_ADMINLANG']->other->error,
 					'message' => $errors[0]]));
 			}
 
@@ -588,13 +588,13 @@ if( $subpage === 'module_db' ){
 
             if (!empty($errors)) {
                 $alertType = 'danger';
-                $alertMessage = ZM_PB_ADMINLANG->module->module_db->alerts->db_operation_error[0] . ': ' . $successCount . ZM_PB_ADMINLANG->module->module_db->alerts->db_operation_error[1] . ': ' . implode(' | ', $errors);
+                $alertMessage = $GLOBALS['ZM_PB_ADMINLANG']->module->module_db->alerts->db_operation_error[0] . ': ' . $successCount . $GLOBALS['ZM_PB_ADMINLANG']->module->module_db->alerts->db_operation_error[1] . ': ' . implode(' | ', $errors);
             } else {
                 $alertType = 'success';
-                $alertMessage = ZM_PB_ADMINLANG->module->module_db->alerts->db_operation_success . ': ' . $successCount;
+                $alertMessage = $GLOBALS['ZM_PB_ADMINLANG']->module->module_db->alerts->db_operation_success . ': ' . $successCount;
             }
 
-			exit( json_encode(['status'=>$alertType, 'title'=> ZM_PB_ADMINLANG->other->success,'message'=> $alertMessage ]) );
+			exit( json_encode(['status'=>$alertType, 'title'=> $GLOBALS['ZM_PB_ADMINLANG']->other->success,'message'=> $alertMessage ]) );
         }
 
 

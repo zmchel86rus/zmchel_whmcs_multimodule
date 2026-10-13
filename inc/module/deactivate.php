@@ -3,14 +3,14 @@ if (!defined('ZM_PB_VER')) die('Direct access not allowed');
 use Illuminate\Database\Capsule\Manager as Capsule;
 
 function zmchel_whmcs_multimodule_deactivate(){
-    $life = ZM_PB_ADMINLANG->module->lifecycle;
-    $output_text_result = ZM_PB_ADMINLANG->module->main->title . ' ' . ZM_PB_ADMINLANG->module->deact . ":\n";
+    $life = $GLOBALS['ZM_PB_ADMINLANG']->module->lifecycle;
+    $output_text_result = $GLOBALS['ZM_PB_ADMINLANG']->module->main->title . ' ' . $GLOBALS['ZM_PB_ADMINLANG']->module->deact . ":\n";
     require_once ZM_PB_LIBDIR . 'rewrite_manager.php';
     try {
         zm_pb_uninject_htaccess_rules();
     } catch (Throwable $error) {
         $key = $error->getMessage();
-        return ['status' => 'error', 'description' => ZM_PB_ADMINLANG->rewrite_manager->$key ?? $key];
+        return ['status' => 'error', 'description' => $GLOBALS['ZM_PB_ADMINLANG']->rewrite_manager->$key ?? $key];
     }
     $delete_tables = Capsule::table('tbladdonmodules')->where('module', ZM_PB_NAME)->where('setting', 'db_action')->value('value');
     if ($delete_tables) {

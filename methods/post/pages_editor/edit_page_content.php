@@ -5,7 +5,7 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 
         try {
             $page_id = (int) ($_POST['page_id'] ?? 0);
-            if( empty($page_id) ) exit( json_encode(['status'=>'error', 'title'=> ZM_PB_ADMINLANG->other->error,'message'=>ZM_PB_ADMINLANG->pages_manager->content_errors->page_id_required]) );
+            if( empty($page_id) ) exit( json_encode(['status'=>'error', 'title'=> $GLOBALS['ZM_PB_ADMINLANG']->other->error,'message'=>$GLOBALS['ZM_PB_ADMINLANG']->pages_manager->content_errors->page_id_required]) );
 
             $content_data = $_POST['edit_content'] ?? [];
             $now = date('Y-m-d H:i:s');
@@ -43,11 +43,11 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 
             exit( json_encode([
                 'status'=>'success',
-                'title'=> ZM_PB_ADMINLANG->other->success ,
-                'message' => ZM_PB_ADMINLANG->pages_manager->page_update->success->title . ' ' . ZM_PB_ADMINLANG->pages_manager->page_update->success->success_content,
+                'title'=> $GLOBALS['ZM_PB_ADMINLANG']->other->success ,
+                'message' => $GLOBALS['ZM_PB_ADMINLANG']->pages_manager->page_update->success->title . ' ' . $GLOBALS['ZM_PB_ADMINLANG']->pages_manager->page_update->success->success_content,
                 'contents' => $savedContent,
             ]) );
 
         } catch (Exception $e) {
-            exit( json_encode(['status'=>'error', 'title'=> ZM_PB_ADMINLANG->other->error,'message'=>ZM_PB_ADMINLANG->other->db_operation_error .': ' . $e->getMessage()]) );
+            exit( json_encode(['status'=>'error', 'title'=> $GLOBALS['ZM_PB_ADMINLANG']->other->error,'message'=>$GLOBALS['ZM_PB_ADMINLANG']->other->db_operation_error .': ' . $e->getMessage()]) );
         }

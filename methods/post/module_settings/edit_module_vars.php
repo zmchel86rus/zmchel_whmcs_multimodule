@@ -6,11 +6,11 @@ use Illuminate\Database\Capsule\Manager as Capsule;
         
         $pre_editable_vars = $_POST['editable_vars'] ?? null;
 
-        if (!is_array($pre_editable_vars)) exit(json_encode(['status'  => 'error', 'title'   => ZM_PB_ADMINLANG->other->error, 'message' => ZM_PB_ADMINLANG->other->invalid_input]));
+        if (!is_array($pre_editable_vars)) exit(json_encode(['status'  => 'error', 'title'   => $GLOBALS['ZM_PB_ADMINLANG']->other->error, 'message' => $GLOBALS['ZM_PB_ADMINLANG']->other->invalid_input]));
         if (array_key_exists('auto_redirect_days', $pre_editable_vars)
             && filter_var($pre_editable_vars['auto_redirect_days'], FILTER_VALIDATE_INT, ['options' => ['min_range' => 0, 'max_range' => 36500]]) === false) {
             require_once ZM_PB_INCDIR . 'redirects_manager.php';
-            exit(json_encode(['status' => 'error', 'title' => ZM_PB_ADMINLANG->other->error, 'message' => zm_pb_redirects_text()->errors->invalid_days]));
+            exit(json_encode(['status' => 'error', 'title' => $GLOBALS['ZM_PB_ADMINLANG']->other->error, 'message' => zm_pb_redirects_text()->errors->invalid_days]));
         }
         
 

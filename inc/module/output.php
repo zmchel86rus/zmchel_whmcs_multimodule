@@ -32,20 +32,20 @@ function zmchel_whmcs_multimodule_output($vars){
     $smarty->setTemplateDir( ZM_PB_TEMPLATESDIR );
     $smarty->setCompileDir(ROOTDIR . '/templates_c/'.ZM_PB_NAME.'/');
 
-    if($subpage != 'media_manager') $smarty->assign( 'media_manager_translates', ZM_PB_ADMINLANG->media_manager);
+    if($subpage != 'media_manager') $smarty->assign( 'media_manager_translates', $GLOBALS['ZM_PB_ADMINLANG']->media_manager);
 
     if ($subpage === 'pages_editor') {
-        $smarty->assign('pages_editor_translates', ZM_PB_ADMINLANG->pages_manager);
+        $smarty->assign('pages_editor_translates', $GLOBALS['ZM_PB_ADMINLANG']->pages_manager);
     } elseif ($subpage === 'sitemap_manager') {
-        $smarty->assign('sitemap_translates', ZM_PB_ADMINLANG->pages_manager);
+        $smarty->assign('sitemap_translates', $GLOBALS['ZM_PB_ADMINLANG']->pages_manager);
     } elseif ($subpage === 'menu_manager') {
-        $smarty->assign($subpage . '_translates', ZM_PB_ADMINLANG->$subpage);
-        $smarty->assign('pages_manager_translates', ZM_PB_ADMINLANG->pages_manager);
-    } elseif (isset(ZM_PB_ADMINLANG->$subpage)) {
-        $smarty->assign($subpage . '_translates', ZM_PB_ADMINLANG->$subpage);
+        $smarty->assign($subpage . '_translates', $GLOBALS['ZM_PB_ADMINLANG']->$subpage);
+        $smarty->assign('pages_manager_translates', $GLOBALS['ZM_PB_ADMINLANG']->pages_manager);
+    } elseif (isset($GLOBALS['ZM_PB_ADMINLANG']->$subpage)) {
+        $smarty->assign($subpage . '_translates', $GLOBALS['ZM_PB_ADMINLANG']->$subpage);
     }
-    $smarty->assign('other_translates', ZM_PB_ADMINLANG->other);
-    $smarty->assign('module_translates', ZM_PB_ADMINLANG->module);
+    $smarty->assign('other_translates', $GLOBALS['ZM_PB_ADMINLANG']->other);
+    $smarty->assign('module_translates', $GLOBALS['ZM_PB_ADMINLANG']->module);
     $smarty->assign('module_subpages', ZM_PB_SUBPAGES);
     $smarty->assign('module_langs', ZM_PB_LANGS);
     $smarty->assign('addonName', ZM_PB_NAME);

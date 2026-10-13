@@ -7,7 +7,7 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 
 if (!function_exists('zm_pb_media_manager_error')) {
     function zm_pb_media_manager_error($message) {
-        return ['status' => 'error', 'title' => (ZM_PB_ADMINLANG)->other->error, 'message' => $message];
+        return ['status' => 'error', 'title' => ($GLOBALS['ZM_PB_ADMINLANG'])->other->error, 'message' => $message];
     }
 }
 
@@ -183,40 +183,40 @@ if (!function_exists('zm_pb_media_manager_action')) {
                     return zm_pb_media_manager_optimize_attachment((int) $media_id);
                 } catch (Throwable $error) {
                     error_log('zmchel WHMCS Multimodule image optimization: ' . $error->getMessage());
-                    return zm_pb_media_manager_error((ZM_PB_ADMINLANG)->media_manager->optimization_failed);
+                    return zm_pb_media_manager_error(($GLOBALS['ZM_PB_ADMINLANG'])->media_manager->optimization_failed);
                 }
             case 'media_manager_image_save':
-                if (empty($media_id)) return ['status'=>'error','title'=> (ZM_PB_ADMINLANG)->other->error ,'message' => (ZM_PB_ADMINLANG)->media_manager->missing_id ];
+                if (empty($media_id)) return ['status'=>'error','title'=> ($GLOBALS['ZM_PB_ADMINLANG'])->other->error ,'message' => ($GLOBALS['ZM_PB_ADMINLANG'])->media_manager->missing_id ];
                 
                 $update = [];
                 foreach ($updatableFields as $field) {
                     if (array_key_exists($field, $data)) $update[$field] = $data[$field];
                 }
 
-                if (empty($update)) return ['status'=>'error','title'=> (ZM_PB_ADMINLANG)->other->error ,'message' => (ZM_PB_ADMINLANG)->other->nothing_update ];
+                if (empty($update)) return ['status'=>'error','title'=> ($GLOBALS['ZM_PB_ADMINLANG'])->other->error ,'message' => ($GLOBALS['ZM_PB_ADMINLANG'])->other->nothing_update ];
                 
                 $update['updated_at'] = date('Y-m-d H:i:s');
                 $affected = Capsule::table('zm_pb_attachments')
                     ->where('id', (int) $media_id)
                     ->update($update);
 
-                if (!$affected) return ['status'=>'error','title'=> (ZM_PB_ADMINLANG)->other->error ,'message' => '' ];
+                if (!$affected) return ['status'=>'error','title'=> ($GLOBALS['ZM_PB_ADMINLANG'])->other->error ,'message' => '' ];
 
                 $attachment = Capsule::table('zm_pb_attachments')
                     ->where('id', (int) $media_id)
                     ->first();
 
-                return ['status'=>'success','title'=> (ZM_PB_ADMINLANG)->other->success ,'message' => '' ];
+                return ['status'=>'success','title'=> ($GLOBALS['ZM_PB_ADMINLANG'])->other->success ,'message' => '' ];
 
             case 'delete':
-                if (empty($media_id)) return ['status'=>'error','title'=> (ZM_PB_ADMINLANG)->other->error ,'message' => (ZM_PB_ADMINLANG)->media_manager->missing_id ];
+                if (empty($media_id)) return ['status'=>'error','title'=> ($GLOBALS['ZM_PB_ADMINLANG'])->other->error ,'message' => ($GLOBALS['ZM_PB_ADMINLANG'])->media_manager->missing_id ];
                 
 
                 $attachment = Capsule::table('zm_pb_attachments')
                     ->where('id', (int) $media_id)
                     ->first();
 
-                if (!$attachment) return ['status'=>'error','title'=> (ZM_PB_ADMINLANG)->other->error ,'message' => (ZM_PB_ADMINLANG)->other->no_found ];
+                if (!$attachment) return ['status'=>'error','title'=> ($GLOBALS['ZM_PB_ADMINLANG'])->other->error ,'message' => ($GLOBALS['ZM_PB_ADMINLANG'])->other->no_found ];
                 
 
                 $baseDir = rtrim(ZM_PB_MAINSYSTEM_ATTACHMENTS_DIR, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR;
@@ -253,9 +253,9 @@ if (!function_exists('zm_pb_media_manager_action')) {
                     ->where('id', (int) $media_id)
                     ->delete();
 
-                return ['status'=>'success','title'=> (ZM_PB_ADMINLANG)->other->success ,'message' => '' ];
+                return ['status'=>'success','title'=> ($GLOBALS['ZM_PB_ADMINLANG'])->other->success ,'message' => '' ];
             default:
-                return ['status'=>'error','title'=> (ZM_PB_ADMINLANG)->other->error ,'message' => (ZM_PB_ADMINLANG)->other->unknown_action ];
+                return ['status'=>'error','title'=> ($GLOBALS['ZM_PB_ADMINLANG'])->other->error ,'message' => ($GLOBALS['ZM_PB_ADMINLANG'])->other->unknown_action ];
         }
     }
 }
@@ -339,14 +339,14 @@ if (!function_exists('zm_pb_media_manager_optimize_image')) {
 
 if (!function_exists('zm_pb_media_manager_optimize_attachment')) {
     function zm_pb_media_manager_optimize_attachment($id) {
-        $text = (ZM_PB_ADMINLANG)->media_manager;
+        $text = ($GLOBALS['ZM_PB_ADMINLANG'])->media_manager;
         $error = function ($message) { return zm_pb_media_manager_error($message); };
         if ($id < 1) return $error($text->optimization_failed);
         if (!Capsule::schema()->hasColumn('zm_pb_attachments', 'optimization_attempted')) {
             return $error($text->optimization_needs_db_fix);
         }
         $attachment = Capsule::table('zm_pb_attachments')->where('id', $id)->first();
-        if (!$attachment) return $error((ZM_PB_ADMINLANG)->other->no_found);
+        if (!$attachment) return $error(($GLOBALS['ZM_PB_ADMINLANG'])->other->no_found);
         $extension = strtolower(pathinfo((string) $attachment->filename, PATHINFO_EXTENSION));
         if (!in_array($extension, ['jpg', 'jpeg', 'png', 'webp'], true)) return $error($text->optimization_unsupported);
         $filename = (string) $attachment->filename;
@@ -415,7 +415,7 @@ if (!function_exists('zm_pb_media_manager_optimize_attachment')) {
         ]);
         $attachment = Capsule::table('zm_pb_attachments')->where('id', $id)->first();
         return [
-            'status' => 'success', 'title' => (ZM_PB_ADMINLANG)->other->success,
+            'status' => 'success', 'title' => ($GLOBALS['ZM_PB_ADMINLANG'])->other->success,
             'message' => $text->optimization_done,
             'file' => zm_pb_media_manager_file_data($attachment),
             'bytes_before' => $before, 'bytes_after' => $after,

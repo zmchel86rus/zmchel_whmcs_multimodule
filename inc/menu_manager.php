@@ -5,7 +5,7 @@ require_once __DIR__ . '/page_urls.php';
 
 function zm_pb_menu_text()
 {
-    if (isset(ZM_PB_ADMINLANG->menu_manager)) return ZM_PB_ADMINLANG->menu_manager;
+    if (isset($GLOBALS['ZM_PB_ADMINLANG']->menu_manager)) return $GLOBALS['ZM_PB_ADMINLANG']->menu_manager;
     $fallback = require ZM_PB_ALANGDIR . 'english.php';
     return $fallback->menu_manager;
 }

@@ -13,7 +13,7 @@ define('ZM_PB_PRETTY_URLS', !in_array('--plain', $argv, true)); define('ZM_PB_MA
 define('ZM_PB_ENABLE_REDIRECTS_MANAGER', !in_array('--disabled', $argv, true));
 define('ZM_PB_AUTO_REDIRECTS', !in_array('--auto-off', $argv, true)); define('ZM_PB_AUTO_REDIRECT_DAYS', 14);
 define('ZM_PB_MAINSYSTEM_DEFAULT_PAGES', ['index', 'contact']); define('ZM_PB_ACCEPTED_OVERRIDES', ['full', 'meta_only', 'partial_after']);
-define('ZM_PB_ADMINLANG', require ZM_PB_ALANGDIR . 'russian.php');
+$GLOBALS['ZM_PB_ADMINLANG'] = require ZM_PB_ALANGDIR . 'russian.php';
 $capsule = new Capsule(); $capsule->addConnection(['driver' => 'sqlite', 'database' => ':memory:']); $capsule->setAsGlobal();
 require $module . 'inc/helpers.php';
 require $module . 'lib/redirects.php';

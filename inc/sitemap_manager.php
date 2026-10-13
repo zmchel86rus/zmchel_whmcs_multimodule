@@ -4,7 +4,7 @@ require_once __DIR__ . '/page_urls.php';
 
 function zm_pb_sitemap_text()
 {
-    if (isset(ZM_PB_ADMINLANG->sitemap_manager)) return ZM_PB_ADMINLANG->sitemap_manager;
+    if (isset($GLOBALS['ZM_PB_ADMINLANG']->sitemap_manager)) return $GLOBALS['ZM_PB_ADMINLANG']->sitemap_manager;
     $language = require ZM_PB_ALANGDIR . 'english.php';
     return $language->sitemap_manager;
 }

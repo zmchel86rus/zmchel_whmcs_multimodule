@@ -33,7 +33,7 @@ define('ZM_PB_LANGS', [
     'german' => ['code_lower' => 'de', 'code_ISO639_1' => 'de'],
     'ukranian' => ['code_lower' => 'uk', 'code_ISO639_1' => 'uk'],
 ]);
-define('ZM_PB_ADMINLANG', require $module . 'admin_lang/russian.php');
+$GLOBALS['ZM_PB_ADMINLANG'] = require $module . 'admin_lang/russian.php';
 require $module . 'inc/helpers.php';
 require ZM_PB_LIBDIR . 'sitemap.php';
 $capsule = new Capsule(); $capsule->addConnection(['driver' => 'sqlite', 'database' => ':memory:', 'prefix' => '']); $capsule->setAsGlobal();
@@ -197,7 +197,7 @@ try {
         check(!(glob(ROOTDIR . '/.zmpb-*') ?: []), 'Staged XML or backup files leaked');
         $smarty = new Smarty(); $smarty->setTemplateDir($module . 'templates/');
         mkdir(ROOTDIR . '/compiled'); $smarty->setCompileDir(ROOTDIR . '/compiled');
-        $language = ZM_PB_ADMINLANG;
+        $language = $GLOBALS['ZM_PB_ADMINLANG'];
         $smarty->assign(['module_translates' => $language->module, 'sitemap_translates' => $language->pages_manager,
             'sitemap_manager_translates' => $language->sitemap_manager, 'other_translates' => $language->other,
             'module_subpages' => ['sitemap_manager'], 'menuName' => 'sitemap_manager', 'addonName' => ZM_PB_NAME,

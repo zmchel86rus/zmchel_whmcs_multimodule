@@ -207,7 +207,7 @@ if ($meta_only) {
     $ca = new ClientArea();
 
     if ( $is_admin) {
-        $translates = ZM_PB_ADMINLANG;
+        $translates = $GLOBALS['ZM_PB_ADMINLANG'];
         $module_name = ZM_PB_NAME;
         
         add_hook('ClientAreaHeadOutput', 1, function() use ($translates,$page,$module_name,$full_host) {

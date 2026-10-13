@@ -14,7 +14,7 @@ use Illuminate\Database\Capsule\Manager as Capsule;
             $smarty->assign('menu_data', $menuData);
             $smarty->assign('menu_editor_json', json_encode(['items' => $menuData['items'], 'pages' => $menuData['pages'],
                 'languages' => array_keys(ZM_PB_LANGS),
-                'languageLabels' => (array) (ZM_PB_ADMINLANG->module->supported_langs->translate ?? []),
+                'languageLabels' => (array) ($GLOBALS['ZM_PB_ADMINLANG']->module->supported_langs->translate ?? []),
                 'text' => $menuText], JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT));
         } catch (Throwable $error) {
             $smarty->assign('menu_ready', false);

@@ -163,11 +163,12 @@ if ($adminlang === 'ukrainian') $adminlang = 'ukranian'; // Existing language fi
 
 ### SUP MODULE LANGS CONSTS ###
 if (!defined('ZM_PB_LANGS')) define('ZM_PB_LANGS', ( require_once ZM_PB_ROOTDIR.'supported_langs.php') );
-if (!defined('ZM_PB_ADMINLANG') && defined('ZM_PB_ALANGDIR')){
+if (!isset($GLOBALS['ZM_PB_ADMINLANG']) && defined('ZM_PB_ALANGDIR')){
     $admin_lang_file = ZM_PB_ALANGDIR . $adminlang.'.php';
     if( !file_exists($admin_lang_file) ) $admin_lang_file = ZM_PB_ALANGDIR . 'english.php';
     $admin_lang_data = require $admin_lang_file;
-    define('ZM_PB_ADMINLANG', $admin_lang_data);
+    $GLOBALS['ZM_PB_ADMINLANG'] = $admin_lang_data;
+    if (PHP_VERSION_ID >= 80000 && !defined('ZM_PB_ADMINLANG')) define('ZM_PB_ADMINLANG', $admin_lang_data);
 }
 if (!defined('ZM_PB_ADMINLANGNAME')) define('ZM_PB_ADMINLANGNAME', $adminlang );
 ### SUP MODULE LANGS CONSTS ###

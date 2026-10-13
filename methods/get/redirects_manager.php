@@ -8,7 +8,7 @@ use Illuminate\Database\Capsule\Manager as Capsule;
     $smarty->assign('redirects_text', $text);
     $smarty->assign('redirects_ready', false);
     try {
-        if (ZM_PB_CHECK_SUPERADM && !zm_pb_check_super_admin()) throw new RuntimeException(ZM_PB_ADMINLANG->module->alerts->access_denied);
+        if (ZM_PB_CHECK_SUPERADM && !zm_pb_check_super_admin()) throw new RuntimeException($GLOBALS['ZM_PB_ADMINLANG']->module->alerts->access_denied);
         if (!zm_pb_has_table('zm_pb_redirects')) throw new RuntimeException('missing_table');
         $count = Capsule::table('zm_pb_redirects')->count();
         $lastPage = max(1, (int) ceil($count / 50));

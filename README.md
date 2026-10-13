@@ -2,9 +2,9 @@
 
 **ZMChel WHMCS Multimodule** is a free add-on for WHMCS. It combines a visual page builder with multilingual pages, menus, a media library, SEO fields, XML sitemaps, redirects and rewrite management. It is intended for site owners who want to manage content from the WHMCS admin area.
 
-**Before use:** generate unique salts and put them in `module_init.php` (`ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT`, `ZM_PB_NONCE_SALT`). The module was developed and tested on **WHMCS 8.13.1** and has **full Apache support (100%)**. It can also work with Nginx, but language routing on the home page may need additional configuration and testing.
+**Before use:** generate unique salts and put them in `module_init.php` (`ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT`, `ZM_PB_NONCE_SALT`). The module was developed and tested on **WHMCS 8.13.1–8.13.7** and has **full Apache support (100%)**. It can also work with Nginx, but language routing on the home page may need additional configuration and testing.
 
-**PHP requirement:** 7.4 or newer.
+**PHP compatibility checked:** 7.4, 8.0, 8.1, 8.2, 8.3, 8.4, and 8.5. All PHP files passed syntax checks on each version; standalone tests were also run.
 
 ## Instructions / Инструкции
 

@@ -3,8 +3,8 @@ if (!defined('ZM_PB_VER')) die('Direct access not allowed');
 use Illuminate\Database\Capsule\Manager as Capsule;
 
 function zmchel_whmcs_multimodule_activate(){
-    $life = ZM_PB_ADMINLANG->module->lifecycle;
-    $output_text_result = ZM_PB_ADMINLANG->module->main->title . ' ' . ZM_PB_ADMINLANG->module->act . ":\n";
+    $life = $GLOBALS['ZM_PB_ADMINLANG']->module->lifecycle;
+    $output_text_result = $GLOBALS['ZM_PB_ADMINLANG']->module->main->title . ' ' . $GLOBALS['ZM_PB_ADMINLANG']->module->act . ":\n";
 
     try {
         if ( zm_pb_has_table('zm_pb_module_settings') ) {

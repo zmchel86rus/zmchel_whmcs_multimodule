@@ -11,7 +11,7 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 
     if (!$isSuperAdmin && ZM_PB_CHECK_SUPERADM) {
 		
-        $alertMessage = ZM_PB_ADMINLANG->module->alerts->access_denied;
+        $alertMessage = $GLOBALS['ZM_PB_ADMINLANG']->module->alerts->access_denied;
         $alertType = 'danger';
         $smarty->assign('alertType', $alertType );
         $smarty->assign('alertMessage', $alertMessage);

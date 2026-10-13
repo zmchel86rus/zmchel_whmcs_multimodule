@@ -6,7 +6,7 @@ require_once ZM_PB_INCDIR . 'page_urls.php';
 
         try {
             $page_id = (int) ($_POST['page_id'] ?? 0);
-            if( empty($page_id) ) exit( json_encode(['status'=>'error', 'title'=> ZM_PB_ADMINLANG->other->error,'message'=>ZM_PB_ADMINLANG->pages_manager->content_errors->page_id_required]) );
+            if( empty($page_id) ) exit( json_encode(['status'=>'error', 'title'=> $GLOBALS['ZM_PB_ADMINLANG']->other->error,'message'=>$GLOBALS['ZM_PB_ADMINLANG']->pages_manager->content_errors->page_id_required]) );
 
             $name = trim($_POST['edit_main']['name'] ?? '');
             $slug = trim($_POST['edit_main']['slug'] ?? '');
@@ -21,7 +21,7 @@ require_once ZM_PB_INCDIR . 'page_urls.php';
         
             if( ! isset($langs[$default_sys_lang]) ) $langs[]= $default_sys_lang;
 
-            if( empty($name) || empty($slug) ) exit( json_encode(['status'=>'error', 'title'=> ZM_PB_ADMINLANG->other->error,'message'=>ZM_PB_ADMINLANG->pages_manager->content_errors->name_slug_required]) );
+            if( empty($name) || empty($slug) ) exit( json_encode(['status'=>'error', 'title'=> $GLOBALS['ZM_PB_ADMINLANG']->other->error,'message'=>$GLOBALS['ZM_PB_ADMINLANG']->pages_manager->content_errors->name_slug_required]) );
 
             $exists = Capsule::table('zm_pb_pages')
                 ->where('slug', $slug)
@@ -29,11 +29,11 @@ require_once ZM_PB_INCDIR . 'page_urls.php';
                 ->where('id', '!=', $page_id)
                 ->exists();
 
-            if ($exists) exit( json_encode(['status'=>'error_duplicate', 'title'=> ZM_PB_ADMINLANG->other->error,'message'=> ZM_PB_ADMINLANG->pages_manager->page_create->error_duplicate ]));
+            if ($exists) exit( json_encode(['status'=>'error_duplicate', 'title'=> $GLOBALS['ZM_PB_ADMINLANG']->other->error,'message'=> $GLOBALS['ZM_PB_ADMINLANG']->pages_manager->page_create->error_duplicate ]));
 
             Capsule::connection()->beginTransaction();
             $current_page = Capsule::table('zm_pb_pages')->where('id', $page_id)->lockForUpdate()->first();
-            if (!$current_page) throw new RuntimeException(ZM_PB_ADMINLANG->pages_manager->page_sitemap_noshow->no_found);
+            if (!$current_page) throw new RuntimeException($GLOBALS['ZM_PB_ADMINLANG']->pages_manager->page_sitemap_noshow->no_found);
             require_once ZM_PB_LIBDIR . 'redirects.php';
             zm_pb_redirect_page_change($current_page, $slug, $status);
             $old_langs = json_decode($current_page->langs, true) ?: [];
@@ -142,8 +142,8 @@ require_once ZM_PB_INCDIR . 'page_urls.php';
             Capsule::connection()->commit();
             exit( json_encode([
                 'status'=>'success',
-                'title'=> ZM_PB_ADMINLANG->other->success ,
-                'message' => ZM_PB_ADMINLANG->pages_manager->page_update->success->title . ' ' . ZM_PB_ADMINLANG->pages_manager->page_update->success->success_main,
+                'title'=> $GLOBALS['ZM_PB_ADMINLANG']->other->success ,
+                'message' => $GLOBALS['ZM_PB_ADMINLANG']->pages_manager->page_update->success->title . ' ' . $GLOBALS['ZM_PB_ADMINLANG']->pages_manager->page_update->success->success_main,
             ]) );
 
         } catch (Throwable $e) {
@@ -151,6 +151,6 @@ require_once ZM_PB_INCDIR . 'page_urls.php';
             require_once ZM_PB_INCDIR . 'redirects_manager.php';
             $key = $e->getMessage();
             $text = zm_pb_redirects_text();
-            exit(json_encode(['status' => 'error', 'title' => ZM_PB_ADMINLANG->other->error,
-                'message' => $text->errors->$key ?? (ZM_PB_ADMINLANG->other->db_operation_error . ': ' . $key)]));
+            exit(json_encode(['status' => 'error', 'title' => $GLOBALS['ZM_PB_ADMINLANG']->other->error,
+                'message' => $text->errors->$key ?? ($GLOBALS['ZM_PB_ADMINLANG']->other->db_operation_error . ': ' . $key)]));
         }

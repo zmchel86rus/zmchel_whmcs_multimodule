@@ -65,7 +65,7 @@ require_once ZM_PB_INCDIR . 'menu_manager.php';
                 if( in_array($main->slug,$page_overrides['to']) ) {
                     $index = array_search($main->slug, $page_overrides['to'], true);
                     $override_from = $page_overrides['from'][$index];
-                    $message = ZM_PB_ADMINLANG->module->alerts->it_is_override_page . ZM_PB_ADMINLANG->pages_manager->page_overrides->translate->$override_from;
+                    $message = $GLOBALS['ZM_PB_ADMINLANG']->module->alerts->it_is_override_page . $GLOBALS['ZM_PB_ADMINLANG']->pages_manager->page_overrides->translate->$override_from;
 
                     if($override_from === 'index') $smarty->assign('override_main_page', true);
 

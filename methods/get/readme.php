@@ -16,7 +16,7 @@ use Illuminate\Database\Capsule\Manager as Capsule;
     $markdown = is_readable($readmePath) ? file_get_contents($readmePath) : false;
     if ($markdown === false) {
         $smarty->assign('alertType', 'danger');
-        $smarty->assign('alertMessage', (ZM_PB_ADMINLANG)->module->instruction_error);
+        $smarty->assign('alertMessage', ($GLOBALS['ZM_PB_ADMINLANG'])->module->instruction_error);
         $smarty->assign('alertHtml', $smarty->fetch(ZM_PB_TEMPLATESPARTSDIR . 'alert.tpl'));
     } else {
         if (!class_exists(\Michelf\MarkdownExtra::class)) {

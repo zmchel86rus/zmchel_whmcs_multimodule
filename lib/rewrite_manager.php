@@ -13,7 +13,7 @@ function zm_pb_rewrite_rules() {
     foreach (zm_pb_rewrite_custom_rules() as $rule) {
         $directive = zm_pb_rewrite_custom_directive($rule);
         $rules[] = [
-            'language' => ZM_PB_ADMINLANG->rewrite_manager->custom,
+            'language' => $GLOBALS['ZM_PB_ADMINLANG']->rewrite_manager->custom,
             'paths' => [$rule['pattern']],
             'directives' => [$directive],
             'custom_id' => hash('sha256', $directive),

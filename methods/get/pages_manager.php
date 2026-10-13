@@ -21,9 +21,9 @@ require_once ZM_PB_INCDIR . 'menu_manager.php';
             ];
             $filters['name'] = function_exists('mb_substr')
                 ? mb_substr($filters['name'], 0, 128, 'UTF-8') : substr($filters['name'], 0, 128);
-            $authOptions = (array) ZM_PB_ADMINLANG->pages_manager->page_auth_type->translate;
-            $typeOptions = (array) ZM_PB_ADMINLANG->pages_manager->page_type->translate;
-            $statusOptions = (array) ZM_PB_ADMINLANG->pages_manager->page_status->translate;
+            $authOptions = (array) $GLOBALS['ZM_PB_ADMINLANG']->pages_manager->page_auth_type->translate;
+            $typeOptions = (array) $GLOBALS['ZM_PB_ADMINLANG']->pages_manager->page_type->translate;
+            $statusOptions = (array) $GLOBALS['ZM_PB_ADMINLANG']->pages_manager->page_status->translate;
             foreach (['auth' => $authOptions, 'type' => $typeOptions, 'status' => $statusOptions, 'lang' => ZM_PB_LANGS] as $key => $options) {
                 if ($filters[$key] !== '' && !array_key_exists($filters[$key], $options)) $filters[$key] = '';
             }
@@ -104,12 +104,12 @@ require_once ZM_PB_INCDIR . 'menu_manager.php';
         } catch (Exception $e) {
             $pageLoadFailed = true;
             $smarty->assign('alertType', 'danger' );
-            $smarty->assign('alertMessage', ZM_PB_ADMINLANG->other->db_operation_error .': ' . $e->getMessage() );
+            $smarty->assign('alertMessage', $GLOBALS['ZM_PB_ADMINLANG']->other->db_operation_error .': ' . $e->getMessage() );
             $smarty->assign('alertHtml', $smarty->fetch( ZM_PB_TEMPLATESPARTSDIR .'alert.tpl' ) );
         }
         if ($viewTrash && !$pageLoadFailed) {
             $smarty->assign('alertType', 'danger');
-            $smarty->assign('alertMessage', ZM_PB_ADMINLANG->module->trash->description);
+            $smarty->assign('alertMessage', $GLOBALS['ZM_PB_ADMINLANG']->module->trash->description);
             $smarty->assign('alertHtml', $smarty->fetch(ZM_PB_TEMPLATESPARTSDIR . 'alert.tpl'));
         }
     }

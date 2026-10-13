@@ -2,7 +2,7 @@
 if (!defined('ZM_PB_VER')) die('Direct access not allowed');
  
 function zmchel_whmcs_multimodule_config($vars = NULL){
-    $module_translates = ZM_PB_ADMINLANG->module;
+    $module_translates = $GLOBALS['ZM_PB_ADMINLANG']->module;
 
     $config = array(
         'name' => $module_translates->main->title,

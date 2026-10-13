@@ -1,8 +1,8 @@
 # Anleitung für ZMChel WHMCS Multimodule
 
-**Erzeugen Sie vor der Verwendung unbedingt eigene Salt-Werte und tragen Sie diese in `module_init.php` ein: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` und `ZM_PB_NONCE_SALT`.** Das Modul wurde mit **WHMCS 8.13.1** entwickelt und getestet; **Apache wird vollständig unterstützt (100 %)**. Unter Nginx kann es ebenfalls funktionieren; prüfen Sie dort besonders die Sprachführung der Startseite.
+**Erzeugen Sie vor der Verwendung unbedingt eigene Salt-Werte und tragen Sie diese in `module_init.php` ein: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` und `ZM_PB_NONCE_SALT`.** Das Modul wurde mit **WHMCS 8.13.1–8.13.7** entwickelt und getestet; **Apache wird vollständig unterstützt (100 %)**. Unter Nginx kann es ebenfalls funktionieren; prüfen Sie dort besonders die Sprachführung der Startseite.
 
-**PHP-Anforderung:** Version 7.4 oder höher.
+**Geprüfte PHP-Versionen:** 7.4, 8.0, 8.1, 8.2, 8.3, 8.4 und 8.5. Alle PHP-Dateien haben die Syntaxprüfung mit jeder Version bestanden; zusätzlich wurden eigenständige Tests ausgeführt.
 
 Diese Anleitung richtet sich an Mitarbeiter, die Website-Inhalte über WHMCS pflegen. Texte, Bilder und Menüs lassen sich ohne Programmierung bearbeiten. Exportieren Sie vor Änderungen an URLs, Weiterleitungen, Serverregeln oder Code die Einstellungen: solche Änderungen können veröffentlichte Seiten beeinflussen.
 

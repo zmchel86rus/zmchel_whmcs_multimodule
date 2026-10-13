@@ -2,7 +2,7 @@
 if (!defined('ZM_PB_VER')) die('Direct access not allowed');
 
 function zm_pb_redirects_text() {
-    if (isset(ZM_PB_ADMINLANG->redirects_manager)) return ZM_PB_ADMINLANG->redirects_manager;
+    if (isset($GLOBALS['ZM_PB_ADMINLANG']->redirects_manager)) return $GLOBALS['ZM_PB_ADMINLANG']->redirects_manager;
     $language = require ZM_PB_ALANGDIR . 'english.php';
     return $language->redirects_manager;
 }

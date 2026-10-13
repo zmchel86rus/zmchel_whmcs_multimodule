@@ -23,7 +23,7 @@ use Illuminate\Database\Capsule\Manager as Capsule;
             ->where('auth_type', $auth_type)
             ->exists();
 
-        if ($exists) die(json_encode(['status'=>'error_duplicate', 'title'=> ZM_PB_ADMINLANG->other->error,'message'=> ZM_PB_ADMINLANG->pages_manager->page_create->error_duplicate ]));
+        if ($exists) die(json_encode(['status'=>'error_duplicate', 'title'=> $GLOBALS['ZM_PB_ADMINLANG']->other->error,'message'=> $GLOBALS['ZM_PB_ADMINLANG']->pages_manager->page_create->error_duplicate ]));
         
 
         try {
@@ -54,13 +54,13 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 
             exit( json_encode([
                 'status'=>'success',
-                'title'=> ZM_PB_ADMINLANG->other->success ,
-                'message' => ZM_PB_ADMINLANG->pages_manager->page_create->success,
+                'title'=> $GLOBALS['ZM_PB_ADMINLANG']->other->success ,
+                'message' => $GLOBALS['ZM_PB_ADMINLANG']->pages_manager->page_create->success,
                 'page_id' => $pageId
             ]) );
 
         } catch (Exception $e) {
-            exit( json_encode(['status'=>'error', 'title'=> ZM_PB_ADMINLANG->other->error,'message'=>ZM_PB_ADMINLANG->other->db_operation_error .': ' . $e->getMessage()]) );
+            exit( json_encode(['status'=>'error', 'title'=> $GLOBALS['ZM_PB_ADMINLANG']->other->error,'message'=>$GLOBALS['ZM_PB_ADMINLANG']->other->db_operation_error .': ' . $e->getMessage()]) );
         }
     } elseif ($method_action === 'page_overrides') {
 
@@ -86,7 +86,7 @@ use Illuminate\Database\Capsule\Manager as Capsule;
             }
             $encoded = json_encode($page_overrides, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
             if ($encoded === false) {
-                throw new \RuntimeException(sprintf(ZM_PB_ADMINLANG->pages_manager->page_overrides->encode_error, json_last_error_msg()));
+                throw new \RuntimeException(sprintf($GLOBALS['ZM_PB_ADMINLANG']->pages_manager->page_overrides->encode_error, json_last_error_msg()));
             }
 
             Capsule::connection()->transaction(function () use ($encoded) {
@@ -102,16 +102,16 @@ use Illuminate\Database\Capsule\Manager as Capsule;
         } catch (Exception $e) {
             exit(json_encode([
                 'status'  => 'error',
-                'title'   => ZM_PB_ADMINLANG->other->error,
-                'message' => ZM_PB_ADMINLANG->other->db_operation_error . ': ' . $e->getMessage(),
+                'title'   => $GLOBALS['ZM_PB_ADMINLANG']->other->error,
+                'message' => $GLOBALS['ZM_PB_ADMINLANG']->other->db_operation_error . ': ' . $e->getMessage(),
             ]));
         }
 
         exit(json_encode([
             'status'  => 'success',
-            'title'   => ZM_PB_ADMINLANG->other->success,
-            'message' => ZM_PB_ADMINLANG->other->updated,
+            'title'   => $GLOBALS['ZM_PB_ADMINLANG']->other->success,
+            'message' => $GLOBALS['ZM_PB_ADMINLANG']->other->updated,
         ]));
     }
 
-    exit( json_encode(['status'=>'error', 'title'=>ZM_PB_ADMINLANG->other->error,'message'=>ZM_PB_ADMINLANG->other->unknown_action]) );
+    exit( json_encode(['status'=>'error', 'title'=>$GLOBALS['ZM_PB_ADMINLANG']->other->error,'message'=>$GLOBALS['ZM_PB_ADMINLANG']->other->unknown_action]) );

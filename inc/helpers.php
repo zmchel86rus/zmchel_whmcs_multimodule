@@ -88,7 +88,7 @@ if (!function_exists('zm_pb_update_consts_in_file')) {
 
     function zm_pb_update_consts_in_file(array $constants_with_value, bool $requireAll = false): array {
 
-        if( !defined('ZMPB_EDIT_CONSTS') ) return ['status'=>'error', 'title'=> ZM_PB_ADMINLANG->other->error,'message'=>ZM_PB_ADMINLANG->other->invalid_action];
+        if( !defined('ZMPB_EDIT_CONSTS') ) return ['status'=>'error', 'title'=> $GLOBALS['ZM_PB_ADMINLANG']->other->error,'message'=>$GLOBALS['ZM_PB_ADMINLANG']->other->invalid_action];
         
 
         $result = [];
@@ -161,10 +161,10 @@ if (!function_exists('zm_pb_update_consts_in_file')) {
         }
 
         if ($requireAll && in_array(false, $result, true)) {
-            return ['status' => 'error', 'title' => ZM_PB_ADMINLANG->other->error,
+            return ['status' => 'error', 'title' => $GLOBALS['ZM_PB_ADMINLANG']->other->error,
                 'message' => 'Unable to update constants: ' . implode(', ', array_keys(array_filter($result, function ($saved) { return !$saved; })))];
         }
-        if (!$changed) return ['status'=>'error', 'title'=> ZM_PB_ADMINLANG->other->error,'message'=>ZM_PB_ADMINLANG->other->update_with_arror];
+        if (!$changed) return ['status'=>'error', 'title'=> $GLOBALS['ZM_PB_ADMINLANG']->other->error,'message'=>$GLOBALS['ZM_PB_ADMINLANG']->other->update_with_arror];
 
         $contents = $before . $block . $after;
 
@@ -186,7 +186,7 @@ if (!function_exists('zm_pb_update_consts_in_file')) {
             @opcache_invalidate($file, true);
         }
 
-        return ['status'=>'success','title'=> ZM_PB_ADMINLANG->other->success ,'message' => ''];
+        return ['status'=>'success','title'=> $GLOBALS['ZM_PB_ADMINLANG']->other->success ,'message' => ''];
     }
 }
 
@@ -467,7 +467,7 @@ if (!function_exists('zm_pb_check_token')) {
 
 if (!function_exists('zm_pb_content_error')) {
     function zm_pb_content_error($key, ...$details) {
-        $template = defined('ZM_PB_ADMINLANG') ? (ZM_PB_ADMINLANG->pages_manager->content_errors->$key ?? $key) : $key;
+        $template = isset($GLOBALS['ZM_PB_ADMINLANG']) ? ($GLOBALS['ZM_PB_ADMINLANG']->pages_manager->content_errors->$key ?? $key) : $key;
         return $details ? sprintf($template, ...$details) : $template;
     }
 }

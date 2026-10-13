@@ -10,7 +10,7 @@ use Illuminate\Database\Capsule\Manager as Capsule;
             $sections = zm_pb_transfer_sections($_POST['transfer_sections'] ?? []);
             if ($method_action === 'export_module') {
                 $json = ZM_PB_Transfer::export($sections);
-                exit(json_encode(['status' => 'success', 'title' => ZM_PB_ADMINLANG->other->success, 'message' => $text->exported,
+                exit(json_encode(['status' => 'success', 'title' => $GLOBALS['ZM_PB_ADMINLANG']->other->success, 'message' => $text->exported,
                     'download' => ['filename' => 'zmchel-whmcs-multimodule-' . gmdate('Ymd-His') . '.json', 'content' => $json]], JSON_THROW_ON_ERROR));
             }
             $file = $_FILES['transfer_file'] ?? null;
@@ -20,7 +20,7 @@ use Illuminate\Database\Capsule\Manager as Capsule;
             }
             $counts = ZM_PB_Transfer::import(file_get_contents($file['tmp_name']), $sections);
             $labels = array_map(function ($key) use ($text) { return $text->sections[$key]; }, array_keys($counts));
-            exit(json_encode(['status' => 'success', 'title' => ZM_PB_ADMINLANG->other->success, 'message' => $text->imported . implode('; ', $labels)]));
+            exit(json_encode(['status' => 'success', 'title' => $GLOBALS['ZM_PB_ADMINLANG']->other->success, 'message' => $text->imported . implode('; ', $labels)]));
         } catch (Throwable $error) {
-            exit(json_encode(['status' => 'error', 'title' => ZM_PB_ADMINLANG->other->error, 'message' => $error->getMessage()]));
+            exit(json_encode(['status' => 'error', 'title' => $GLOBALS['ZM_PB_ADMINLANG']->other->error, 'message' => $error->getMessage()]));
         }

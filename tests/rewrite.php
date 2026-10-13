@@ -5,7 +5,7 @@ $directory = sys_get_temp_dir() . '/zm-pb-rewrite-test-' . bin2hex(random_bytes(
 if (!mkdir($directory, 0700)) throw new RuntimeException('Unable to create test directory');
 define('ROOTDIR', $directory);
 define('ZM_PB_INCDIR', $directory . '/');
-define('ZM_PB_ADMINLANG', (object) ['rewrite_manager' => (object) ['custom' => 'Custom']]);
+$GLOBALS['ZM_PB_ADMINLANG'] = (object) ['rewrite_manager' => (object) ['custom' => 'Custom']];
 define('ZM_PB_ENABLE_LANG_ROUTE', !in_array('--routes-off', $argv, true));
 define('ZM_PB_LANGS', require dirname(__DIR__) . '/supported_langs.php');
 define('ZM_PB_DEFLANG', 'english');

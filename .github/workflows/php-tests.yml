@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php: ['7.4', '8.1']
+        php: ['7.4', '8.0', '8.1', '8.2', '8.3', '8.4', '8.5']
 
     steps:
       - uses: actions/checkout@v6
@@ -19,15 +19,17 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
 
-      - name: Check syntax and run standalone tests
+      - name: Check syntax of every PHP file
         run: |
-          php -l module_init.php
-          php -l lib/media_manager.php
+          while IFS= read -r -d '' file; do
+            php -l "$file" >/dev/null
+          done < <(git ls-files -z '*.php')
+
+      - name: Run standalone tests
+        run: |
           php tests/contact_schema.php
           php tests/images.php
-
-      - name: Check page URLs
-        if: matrix.php != '7.4'
-        run: |
           php tests/page_urls.php
           php tests/page_urls.php --pretty
+          php tests/content_links.php
+          php tests/table_of_contents.php

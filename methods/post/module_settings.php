@@ -5,11 +5,11 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 
     header('Content-Type: application/json');
 
-    if( ! isset($_POST['zm_pb_secure_nonce']) || empty($_POST['zm_pb_secure_nonce'])) die(json_encode(['status'=>'error', 'title'=> ZM_PB_ADMINLANG->other->error,'message'=> ZM_PB_ADMINLANG->other->error_token ]));
-	if( ! zm_pb_check_token( ZM_PB_SECURE_PRENONCE , $_POST['zm_pb_secure_nonce'], ZM_PB_SECURE_SALT) ) die(json_encode(['status'=>'error', 'title'=> ZM_PB_ADMINLANG->other->error,'message'=> ZM_PB_ADMINLANG->other->error_token ]));
+    if( ! isset($_POST['zm_pb_secure_nonce']) || empty($_POST['zm_pb_secure_nonce'])) die(json_encode(['status'=>'error', 'title'=> $GLOBALS['ZM_PB_ADMINLANG']->other->error,'message'=> $GLOBALS['ZM_PB_ADMINLANG']->other->error_token ]));
+	if( ! zm_pb_check_token( ZM_PB_SECURE_PRENONCE , $_POST['zm_pb_secure_nonce'], ZM_PB_SECURE_SALT) ) die(json_encode(['status'=>'error', 'title'=> $GLOBALS['ZM_PB_ADMINLANG']->other->error,'message'=> $GLOBALS['ZM_PB_ADMINLANG']->other->error_token ]));
 
     $isSuperAdmin = zm_pb_check_super_admin();
-    if (!$isSuperAdmin) exit( json_encode(['status'=>'error', 'title'=>ZM_PB_ADMINLANG->other->error,'message'=>ZM_PB_ADMINLANG->module->alerts->access_denied]) );
+    if (!$isSuperAdmin) exit( json_encode(['status'=>'error', 'title'=>$GLOBALS['ZM_PB_ADMINLANG']->other->error,'message'=>$GLOBALS['ZM_PB_ADMINLANG']->module->alerts->access_denied]) );
 
     
     if (in_array($method_action, ['export_module', 'import_module'], true)) {
@@ -24,4 +24,4 @@ use Illuminate\Database\Capsule\Manager as Capsule;
         require __DIR__ . '/module_settings/edit_robots.php';
     }
 
-    exit( json_encode(['status'=>'error', 'title'=>ZM_PB_ADMINLANG->other->error,'message'=>ZM_PB_ADMINLANG->other->unknown_action]) );
+    exit( json_encode(['status'=>'error', 'title'=>$GLOBALS['ZM_PB_ADMINLANG']->other->error,'message'=>$GLOBALS['ZM_PB_ADMINLANG']->other->unknown_action]) );

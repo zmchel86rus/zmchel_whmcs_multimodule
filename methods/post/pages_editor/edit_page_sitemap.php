@@ -5,13 +5,13 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 
         try {
             $page_id = (int) ($_POST['page_id'] ?? 0);
-            if( empty($page_id) ) exit( json_encode(['status'=>'error', 'title'=> ZM_PB_ADMINLANG->other->error,'message'=>ZM_PB_ADMINLANG->pages_manager->content_errors->page_id_required]) );
+            if( empty($page_id) ) exit( json_encode(['status'=>'error', 'title'=> $GLOBALS['ZM_PB_ADMINLANG']->other->error,'message'=>$GLOBALS['ZM_PB_ADMINLANG']->pages_manager->content_errors->page_id_required]) );
 
             // Only published, non-system pages belong in the sitemap.
             $page = Capsule::table('zm_pb_pages')->where('id', $page_id)->first();
-            if( !$page ) exit( json_encode(['status'=>'error', 'title'=> ZM_PB_ADMINLANG->other->error,'message'=>ZM_PB_ADMINLANG->pages_manager->page_sitemap_noshow->no_found]) );
-            if( $page->type === 'system' ) exit( json_encode(['status'=>'error', 'title'=> ZM_PB_ADMINLANG->other->error,'message'=>ZM_PB_ADMINLANG->pages_manager->page_sitemap_noshow->type]) );
-            if( $page->status !== 'publish' ) exit( json_encode(['status'=>'error', 'title'=> ZM_PB_ADMINLANG->other->error,'message'=>ZM_PB_ADMINLANG->pages_manager->page_sitemap_noshow->no_publish]) );
+            if( !$page ) exit( json_encode(['status'=>'error', 'title'=> $GLOBALS['ZM_PB_ADMINLANG']->other->error,'message'=>$GLOBALS['ZM_PB_ADMINLANG']->pages_manager->page_sitemap_noshow->no_found]) );
+            if( $page->type === 'system' ) exit( json_encode(['status'=>'error', 'title'=> $GLOBALS['ZM_PB_ADMINLANG']->other->error,'message'=>$GLOBALS['ZM_PB_ADMINLANG']->pages_manager->page_sitemap_noshow->type]) );
+            if( $page->status !== 'publish' ) exit( json_encode(['status'=>'error', 'title'=> $GLOBALS['ZM_PB_ADMINLANG']->other->error,'message'=>$GLOBALS['ZM_PB_ADMINLANG']->pages_manager->page_sitemap_noshow->no_publish]) );
 
             $edit_sitemap = $_POST['edit_sitemap'];
 
@@ -56,11 +56,11 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 
             exit( json_encode([
                 'status'=>'success',
-                'title'=> ZM_PB_ADMINLANG->other->success ,
-                'message' => ZM_PB_ADMINLANG->pages_manager->page_update->success->title . ' ' . ZM_PB_ADMINLANG->pages_manager->page_update->success->success_sitemap,
+                'title'=> $GLOBALS['ZM_PB_ADMINLANG']->other->success ,
+                'message' => $GLOBALS['ZM_PB_ADMINLANG']->pages_manager->page_update->success->title . ' ' . $GLOBALS['ZM_PB_ADMINLANG']->pages_manager->page_update->success->success_sitemap,
             ]) );
 
         } catch (Exception $e) {
-            exit( json_encode(['status'=>'error', 'title'=> ZM_PB_ADMINLANG->other->error,'message'=>ZM_PB_ADMINLANG->other->db_operation_error .': ' . $e->getMessage()]) );
+            exit( json_encode(['status'=>'error', 'title'=> $GLOBALS['ZM_PB_ADMINLANG']->other->error,'message'=>$GLOBALS['ZM_PB_ADMINLANG']->other->db_operation_error .': ' . $e->getMessage()]) );
         }
         

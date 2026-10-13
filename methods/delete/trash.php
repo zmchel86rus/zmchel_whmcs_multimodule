@@ -21,8 +21,8 @@ use Illuminate\Database\Capsule\Manager as Capsule;
         } catch (Exception $e) {
            exit( json_encode([
                 'status'=>'error',
-                'title'=> ZM_PB_ADMINLANG->other->error ,
-                'message' => sprintf(ZM_PB_ADMINLANG->pages_manager->delete_errors->operation_failed, 3, $e->getMessage()),
+                'title'=> $GLOBALS['ZM_PB_ADMINLANG']->other->error ,
+                'message' => sprintf($GLOBALS['ZM_PB_ADMINLANG']->pages_manager->delete_errors->operation_failed, 3, $e->getMessage()),
             ]) );
         }
 
@@ -42,14 +42,14 @@ use Illuminate\Database\Capsule\Manager as Capsule;
         } catch (Exception $e) {
            exit( json_encode([
                 'status'=>'error',
-                'title'=> ZM_PB_ADMINLANG->other->error ,
-                'message' => sprintf(ZM_PB_ADMINLANG->pages_manager->delete_errors->operation_failed, 4, $e->getMessage()),
+                'title'=> $GLOBALS['ZM_PB_ADMINLANG']->other->error ,
+                'message' => sprintf($GLOBALS['ZM_PB_ADMINLANG']->pages_manager->delete_errors->operation_failed, 4, $e->getMessage()),
             ]) );
         }
 
         exit( json_encode([
             'status'=>'success',
-            'title'=> ZM_PB_ADMINLANG->other->success ,
-            'message' => ZM_PB_ADMINLANG->other->page . " #ID {$id} " . ZM_PB_ADMINLANG->pages_manager->page_status->translate->canceled,
+            'title'=> $GLOBALS['ZM_PB_ADMINLANG']->other->success ,
+            'message' => $GLOBALS['ZM_PB_ADMINLANG']->other->page . " #ID {$id} " . $GLOBALS['ZM_PB_ADMINLANG']->pages_manager->page_status->translate->canceled,
         ]) );
     }

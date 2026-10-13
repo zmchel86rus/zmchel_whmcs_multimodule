@@ -4,7 +4,7 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 
 function zm_pb_footer_error($key, ...$details)
 {
-    $template = defined('ZM_PB_ADMINLANG') ? (ZM_PB_ADMINLANG->menu_manager->errors->$key ?? $key) : $key;
+    $template = isset($GLOBALS['ZM_PB_ADMINLANG']) ? ($GLOBALS['ZM_PB_ADMINLANG']->menu_manager->errors->$key ?? $key) : $key;
     return $details ? sprintf($template, ...$details) : $template;
 }
 

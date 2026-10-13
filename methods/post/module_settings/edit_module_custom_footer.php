@@ -10,7 +10,7 @@ use Illuminate\Database\Capsule\Manager as Capsule;
                 FILTER_VALIDATE_BOOLEAN
             );
 
-            if ( is_null($custom_footer_input) ) exit(json_encode(['status'  => 'error', 'title'   => ZM_PB_ADMINLANG->other->error, 'message' => ZM_PB_ADMINLANG->other->invalid_input]));
+            if ( is_null($custom_footer_input) ) exit(json_encode(['status'  => 'error', 'title'   => $GLOBALS['ZM_PB_ADMINLANG']->other->error, 'message' => $GLOBALS['ZM_PB_ADMINLANG']->other->invalid_input]));
 
             if( !defined('ZMPB_EDIT_CONSTS') ) define('ZMPB_EDIT_CONSTS',true);
             if( empty($custom_footer_input) ) $custom_footer_enable = false;
@@ -29,10 +29,10 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 
             exit( json_encode([
                 'status'=>'success',
-                'title'=> ZM_PB_ADMINLANG->other->success ,
-                'message' => ($result ? '' : ZM_PB_ADMINLANG->other->nothing_update),
+                'title'=> $GLOBALS['ZM_PB_ADMINLANG']->other->success ,
+                'message' => ($result ? '' : $GLOBALS['ZM_PB_ADMINLANG']->other->nothing_update),
             ]) );
 
         } catch (Exception $e) {
-            exit( json_encode(['status'=>'error', 'title'=> ZM_PB_ADMINLANG->other->error,'message'=>ZM_PB_ADMINLANG->other->db_operation_error .': ' . $e->getMessage()]) );
+            exit( json_encode(['status'=>'error', 'title'=> $GLOBALS['ZM_PB_ADMINLANG']->other->error,'message'=>$GLOBALS['ZM_PB_ADMINLANG']->other->db_operation_error .': ' . $e->getMessage()]) );
         }

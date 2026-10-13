@@ -15,4 +15,4 @@ use Illuminate\Database\Capsule\Manager as Capsule;
         require __DIR__ . '/pages_editor/edit_page_sitemap.php';
     }
 
-    exit( json_encode(['status'=>'error', 'title'=>ZM_PB_ADMINLANG->other->error,'message'=>ZM_PB_ADMINLANG->other->unknown_action]) );
+    exit( json_encode(['status'=>'error', 'title'=>$GLOBALS['ZM_PB_ADMINLANG']->other->error,'message'=>$GLOBALS['ZM_PB_ADMINLANG']->other->unknown_action]) );
