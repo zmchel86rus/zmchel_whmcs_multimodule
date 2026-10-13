@@ -14,6 +14,23 @@ function zm_pb_escaped_query_redirect_target($uri)
     return ($parts['path'] ?? '/') . '?' . $clean;
 }
 
+/** Repair escaped module parameters in this request without redirecting the browser. */
+function zm_pb_repair_escaped_query_request($uri)
+{
+    $target = zm_pb_escaped_query_redirect_target($uri);
+    if ($target === null) return false;
+    $query = parse_url($target, PHP_URL_QUERY);
+    if (!is_string($query)) return false;
+    parse_str($query, $parameters);
+    foreach ($_GET as $key => $value) unset($_REQUEST[$key]);
+    $_GET = $parameters;
+    foreach ($parameters as $key => $value) $_REQUEST[$key] = $value;
+    $_SERVER['ZM_PB_ORIGINAL_REQUEST_URI'] = $target;
+    $_SERVER['REQUEST_URI'] = $target;
+    $_SERVER['QUERY_STRING'] = $query;
+    return true;
+}
+
 /** Collapse repeated slashes in an origin-form request before parse_url sees // as a host. */
 function zm_pb_slash_redirect_target($uri)
 {

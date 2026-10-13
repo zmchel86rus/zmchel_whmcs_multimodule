@@ -76,6 +76,19 @@ unset($_SERVER['REQUEST_URI'], $_SERVER['THE_REQUEST']);
 expect_url(zm_pb_escaped_query_redirect_target('/billing/?m=zmchel_whmcs_multimodule&amp;slug=closedauctions&amp;lang=ru'),
     '/billing/?m=zmchel_whmcs_multimodule&slug=closedauctions&lang=ru');
 expect_url(zm_pb_escaped_query_redirect_target('/billing/?m=another_module&amp;slug=closedauctions'), null);
+$_GET = ['m' => ZM_PB_NAME, 'amp;slug' => 'closedauctions', 'amp;lang' => 'ru'];
+$_REQUEST = $_GET;
+$_SERVER['REQUEST_URI'] = '/billing/?m=zmchel_whmcs_multimodule&amp;slug=closedauctions&amp;lang=ru';
+if (!zm_pb_repair_escaped_query_request($_SERVER['REQUEST_URI'])) {
+    throw new RuntimeException('Escaped module query was not repaired');
+}
+expect_url($_GET['slug'] ?? null, 'closedauctions');
+expect_url($_GET['lang'] ?? null, 'ru');
+expect_url($_SERVER['REQUEST_URI'], '/billing/?m=zmchel_whmcs_multimodule&slug=closedauctions&lang=ru');
+if (isset($_GET['amp;slug']) || isset($_REQUEST['amp;slug'])) {
+    throw new RuntimeException('Escaped query key survived repair');
+}
+unset($_GET, $_REQUEST, $_SERVER['REQUEST_URI'], $_SERVER['ZM_PB_ORIGINAL_REQUEST_URI'], $_SERVER['QUERY_STRING']);
 if (ZM_PB_PRETTY_URLS) {
     expect_url(zm_pb_menu_page_url($page, 'russian', []), $base . 'ru/closedauctions/');
     expect_url(zm_pb_menu_page_url($page, 'english', ['closedauctions' => 'contact']), $base . 'contact/');

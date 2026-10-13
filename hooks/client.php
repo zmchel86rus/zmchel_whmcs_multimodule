@@ -8,14 +8,9 @@ if (php_sapi_name() !== 'cli' && !defined('ADMINAREA')) {
     require_once ZM_PB_INCDIR . 'url_redirects.php';
     require_once ZM_PB_INCDIR . 'page_urls.php';
     if (in_array($_SERVER['REQUEST_METHOD'] ?? '', ['GET', 'HEAD'], true)) {
-        $escapedTarget = zm_pb_escaped_query_redirect_target(
+        zm_pb_repair_escaped_query_request(
             $_SERVER['ZM_PB_ORIGINAL_REQUEST_URI'] ?? ($_SERVER['REQUEST_URI'] ?? '')
         );
-        if ($escapedTarget !== null && !zm_pb_is_self_redirect($escapedTarget)) {
-            header('X-ZM-PB-Redirect-Source: escaped-query');
-            header('Location: ' . $escapedTarget, true, 302);
-            exit;
-        }
     }
     if (in_array($_SERVER['REQUEST_METHOD'] ?? '', ['GET', 'HEAD'], true)) {
         $slashTarget = zm_pb_slash_redirect_target(
