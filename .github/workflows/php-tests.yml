@@ -31,5 +31,7 @@ jobs:
           php tests/images.php
           php tests/page_urls.php
           php tests/page_urls.php --pretty
+          php tests/rewrite.php
+          php tests/rewrite.php --routes-off
           php tests/content_links.php
           php tests/table_of_contents.php

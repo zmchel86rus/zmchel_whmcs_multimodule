@@ -26,9 +26,7 @@ if (($_GET['m'] ?? null) === ZM_PB_NAME && !isset($_GET['slug'])
 }
 $requestPath = parse_url($publicUri, PHP_URL_PATH);
 if (preg_match('/^\/admin\//i', $requestPath)) return;
-if ((!empty($_GET['rp']) && $_GET['rp'] !== '/' && empty($request['lang']) && empty($request['page'])
-        && (!is_string($_GET['rp']) || trim($_GET['rp'], '/') !== trim($request['slug'], '/'))) ||
-    (isset($_GET['m']) && $_GET['m'] !== ZM_PB_NAME)) return;
+if (isset($_GET['m']) && $_GET['m'] !== ZM_PB_NAME) return;
 
 if (!empty($request['lang']) && empty($request['slug']) && ($_GET['rp'] ?? null) === '/') {
     $_SERVER['ZM_PB_ORIGINAL_REQUEST_URI'] = $publicUri;

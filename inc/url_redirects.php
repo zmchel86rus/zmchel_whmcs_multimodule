@@ -74,8 +74,9 @@ function zm_pb_index_redirect_target($uri)
     if ($parts === false || isset($parts['host']) || isset($parts['scheme'])) return null;
     $path = $parts['path'] ?? '';
     $base = rtrim(parse_url(ZM_PB_FULLHOST, PHP_URL_PATH) ?: '', '/');
-    if ($path === '' || $path[0] !== '/' || ($base !== '' && strpos($path, $base . '/') !== 0)) return null;
-    if (!preg_match('~/index\.php$~iD', $path)) return null;
+    if (strcasecmp($path, $base . '/index.php') !== 0) return null;
+    // index.php?rp= is WHMCS's own route entry point, not a homepage URL.
+    if (isset($parts['query']) && preg_match('/(?:^|&)rp=/i', $parts['query'])) return null;
     $target = substr($path, 0, -strlen('index.php'));
     return $target . (isset($parts['query']) && $parts['query'] !== '' ? '?' . $parts['query'] : '');
 }

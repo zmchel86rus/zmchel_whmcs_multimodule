@@ -1,6 +1,7 @@
 <?php
 /** Isolated rewrite-manager persistence test; writes only to a temporary directory. */
 define('ZM_PB_VER', 'test');
+define('ZM_PB_NAME', 'zmchel_whmcs_multimodule');
 $directory = sys_get_temp_dir() . '/zm-pb-rewrite-test-' . bin2hex(random_bytes(6));
 if (!mkdir($directory, 0700)) throw new RuntimeException('Unable to create test directory');
 define('ROOTDIR', $directory);
@@ -14,6 +15,14 @@ define('ZM_PB_PRETTY_URLS', true);
 define('ZM_PB_MAINSYSTEM_PRETTY_URLS', true);
 require dirname(__DIR__) . '/inc/language_switch.php';
 require dirname(__DIR__) . '/inc/url_redirects.php';
+require dirname(__DIR__) . '/inc/helpers.php';
+
+$_SERVER['REQUEST_URI'] = '/billing/index.php?rp=/ru/samplepage/';
+$_GET = ['rp' => '/ru/samplepage/'];
+if (zm_pb_parse_request() !== ['lang' => 'ru', 'slug' => 'samplepage']) {
+    throw new RuntimeException('Internally rewritten page route was not parsed');
+}
+unset($_SERVER['REQUEST_URI'], $_GET);
 
 try {
     if (zm_pb_slash_redirect_target('//billing/contact.php?count=25') !== '/billing/contact.php?count=25'
@@ -23,7 +32,10 @@ try {
             !== '/billing/ru/contact.php?next=https%3A%2F%2Fexample.test%2Fa%2Fb'
         || zm_pb_slash_redirect_target('/billing/contact.php?next=a//b') !== null
         || zm_pb_slash_redirect_target('/elsewhere//contact.php') !== null
-        || zm_pb_index_redirect_target(zm_pb_slash_redirect_target('/billing//index.php')) !== '/billing/') {
+        || zm_pb_index_redirect_target(zm_pb_slash_redirect_target('/billing//index.php')) !== '/billing/'
+        || zm_pb_index_redirect_target('/billing/samplepage/index.php') !== null
+        || zm_pb_index_redirect_target('/billing/index.php?rp=/samplepage/') !== null
+        || zm_pb_index_redirect_target('/billing/samplepage/login.php') !== null) {
         throw new RuntimeException('Repeated slash canonical target is wrong');
     }
     if (zm_pb_clean_amp_query('count=50&amp;language=german') !== 'count=50&language=german'
