@@ -66,7 +66,7 @@ The manager produces several image sizes. **Optimize image** is available for up
 
 In **Menu Manager**, create a menu and enter its name. Add pages or articles from the left, or use a **Custom link** for an external URL, system page or column heading. Drag items into order and nested levels. Edit each item's text, language labels, target tab, visibility, CSS classes and other attributes. For custom links, choose whether to add the current page language to the URL; leave `/clientarea.php` and routes without language variants unchanged.
 
-Enable the menu, choose whether it **adds to** or **replaces** native WHMCS navigation, and set desktop/mobile visibility. Assign a main or secondary navbar/sidebar or the footer; only one menu can occupy a location. Save and check desktop and mobile views. In the footer, top-level items become columns and nested items become links; use `#` for a heading without navigation. Enable the corresponding output area in module settings. If menu tables are missing, repair them in **Module database**. See [menu details](../../docs/menus.md).
+Enable the menu, choose whether it **adds to** or **replaces** native WHMCS navigation, and set desktop/mobile visibility. Assign a main or secondary navbar/sidebar or the footer; only one menu can occupy a location. Save and check desktop and mobile views. In the footer, top-level items become columns and nested items become links; use `#` for a heading without navigation. Enable the corresponding output area in module settings. If menu tables are missing, repair them in **Module database**. See [menu details](docs/menus.md).
 
 ## 9. Contact form
 
@@ -76,25 +76,25 @@ Add separate **Consent** fields for separate agreements. Each has its own text a
 
 ## 10. Lists, filters and pagination
 
-Connect a **Pagination** block to the specific list block it controls, such as a Smarty list. Set its data source, default count, visible button count, `/page/N/` or `?page=N` URL mode, optional 10/25/50/100/250 count selector and indexing behavior for later pages. The selector can sit beside pagination or elsewhere. Server-side count is limited to 10–250. Add **Filters** for text, range or date search; there is no separate Search block. Connect filters to the same list. Save and check page 2 for changed results and clean URLs. See [pagination details](../../docs/pagination.md).
+Connect a **Pagination** block to the specific list block it controls, such as a Smarty list. Set its data source, default count, visible button count, `/page/N/` or `?page=N` URL mode, optional 10/25/50/100/250 count selector and indexing behavior for later pages. The selector can sit beside pagination or elsewhere. Server-side count is limited to 10–250. Add **Filters** for text, range or date search; there is no separate Search block. Connect filters to the same list. Save and check page 2 for changed results and clean URLs. See [pagination details](docs/pagination.md).
 
 ## 11. Smarty, CSS and JavaScript
 
-Enable **Use Smarty variables** before adding a Smarty block. Select the block, open its code editor, choose a collected variable and save. Availability depends on the page and when other modules create variables. Only the permitted template syntax is accepted; PHP, SQL and direct database access are forbidden. A simple output is `{$pageTitle|escape}`. Check arrays and collections as guest and client, and never print a whole object containing personal data. See [Smarty details](../../docs/smarty.md).
+Enable **Use Smarty variables** before adding a Smarty block. Select the block, open its code editor, choose a collected variable and save. Availability depends on the page and when other modules create variables. Only the permitted template syntax is accepted; PHP, SQL and direct database access are forbidden. A simple output is `{$pageTitle|escape}`. Check arrays and collections as guest and client, and never print a whole object containing personal data. See [Smarty details](docs/smarty.md).
 
 **Custom CSS** and **Custom JS** blocks belong to the page; check them on mobile and in other languages. Site-wide header/footer code is in module settings and should be edited by staff familiar with HTML, CSS and JavaScript.
 
 ## 12. Sitemap, redirects and rewrite rules
 
-Enable sitemap generation and set its frequency in **Module settings**. In **Sitemap**, inspect the last run and planned URLs, click **Generate sitemaps**, then open `sitemap_index.xml` and its child files. Automatic generation follows WHMCS cron. The index can include other root sitemap files. Overrides use their public URLs, and unpublished language variants should be absent. See [sitemap details](../../docs/sitemaps.md).
+Enable sitemap generation and set its frequency in **Module settings**. In **Sitemap**, inspect the last run and planned URLs, click **Generate sitemaps**, then open `sitemap_index.xml` and its child files. Automatic generation follows WHMCS cron. The index can include other root sitemap files. Overrides use their public URLs, and unpublished language variants should be absent. See [sitemap details](docs/sitemaps.md).
 
-In **Redirect Manager**, enter a source such as `/old-page/` and destination such as `/new-page/`. Choose `301` for a permanent move or `302` for a temporary one, keep it active, save and test the old URL. Automatic redirects after slug changes have their own enable switch and minimum page-age setting. See [redirect details](../../docs/redirects.md).
+In **Redirect Manager**, enter a source such as `/old-page/` and destination such as `/new-page/`. Choose `301` for a permanent move or `302` for a temporary one, keep it active, save and test the old URL. Automatic redirects after slug changes have their own enable switch and minimum page-age setting. See [redirect details](docs/redirects.md).
 
 In **Rewrite Manager**, click **Check rules** and then **Add or update rules** to write `.htaccess`. For a custom rule, enter URL pattern, destination and flags, then apply rules again. Apache reads `.htaccess`; Nginx requires equivalent server configuration. Incorrect rules can affect the whole site.
 
 ## 13. Settings, import and maintenance
 
-**Module settings** include pretty URLs, language routing, overrides, menu areas, maintenance mode, Smarty, redirect behavior, sitemap timing, header/footer code, `robots.txt`, and import/export. Export before major changes: choose all or selected sections and download the JSON file. It can include pages and translations, menus, settings, redirects, rewrite rules and media; it does not replace a full WHMCS backup or include accounts, secrets, page revisions or theme files. See [transfer details](../../docs/transfer.md).
+**Module settings** include pretty URLs, language routing, overrides, menu areas, maintenance mode, Smarty, redirect behavior, sitemap timing, header/footer code, `robots.txt`, and import/export. Export before major changes: choose all or selected sections and download the JSON file. It can include pages and translations, menus, settings, redirects, rewrite rules and media; it does not replace a full WHMCS backup or include accounts, secrets, page revisions or theme files. See [transfer details](docs/transfer.md).
 
 To import, choose a JSON file and sections, click **Import** and confirm. Matching existing records can be updated. Check pages, menus and media afterward; apply imported rewrite rules separately and regenerate the sitemap. The **Module database** tab checks required tables and columns and can repair missing ones. Maintenance mode closes public module pages to regular visitors while an administrator continues working; test it in a signed-out browser window.
 
@@ -110,10 +110,10 @@ When reporting a problem, include the public URL, page name/number, language, ac
 
 ### More documentation
 
-- [Menus](../../docs/menus.md)
-- [Smarty and collected variables](../../docs/smarty.md)
-- [Pagination and filters](../../docs/pagination.md)
-- [Sitemaps](../../docs/sitemaps.md)
-- [Redirects](../../docs/redirects.md)
-- [Schema.org structured data](../../docs/structured-data.md)
-- [Import and export](../../docs/transfer.md)
+- [Menus](docs/menus.md)
+- [Smarty and collected variables](docs/smarty.md)
+- [Pagination and filters](docs/pagination.md)
+- [Sitemaps](docs/sitemaps.md)
+- [Redirects](docs/redirects.md)
+- [Schema.org structured data](docs/structured-data.md)
+- [Import and export](docs/transfer.md)

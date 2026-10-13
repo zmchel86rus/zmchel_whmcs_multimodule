@@ -65,7 +65,7 @@ Der Manager erzeugt mehrere Bildgrößen. Bereits hochgeladene Bilder können Si
 
 Erstellen Sie im **Menümanager** ein Menü mit Namen. Fügen Sie Seiten oder Artikel hinzu; **Benutzerdefinierter Link** eignet sich für externe URLs, Systemseiten und Spaltenüberschriften. Ziehen Sie Einträge für Reihenfolge und Verschachtelung. In den Eintragseinstellungen ändern Sie Text, andere Sprachen, neues Fenster, Sichtbarkeit, CSS-Klassen und weitere Attribute. Bei eigenen Links wählen Sie, ob die aktuelle Sprache in die URL übernommen wird; `/clientarea.php` und Routen ohne Sprachversion bleiben unverändert.
 
-Aktivieren Sie das Menü, wählen Sie **Ergänzen** oder **Ersetzen** der WHMCS-Navigation sowie Desktop/Mobil-Sichtbarkeit. Weisen Sie Haupt- oder Zusatz-Navigation, Seitenleiste oder Fußzeile zu; je Position ist nur ein Menü möglich. Speichern und testen Sie beide Bildschirmgrößen. In der Fußzeile werden Einträge oberster Ebene zu Spalten und verschachtelte Einträge zu Links; `#` kann eine nicht verlinkte Überschrift kennzeichnen. Aktivieren Sie die Ausgabe der Position auch in den Moduleinstellungen. Fehlende Menütabellen reparieren Sie unter **Moduldatenbank**. Einzelheiten: [Menüs](../../docs/menus.md).
+Aktivieren Sie das Menü, wählen Sie **Ergänzen** oder **Ersetzen** der WHMCS-Navigation sowie Desktop/Mobil-Sichtbarkeit. Weisen Sie Haupt- oder Zusatz-Navigation, Seitenleiste oder Fußzeile zu; je Position ist nur ein Menü möglich. Speichern und testen Sie beide Bildschirmgrößen. In der Fußzeile werden Einträge oberster Ebene zu Spalten und verschachtelte Einträge zu Links; `#` kann eine nicht verlinkte Überschrift kennzeichnen. Aktivieren Sie die Ausgabe der Position auch in den Moduleinstellungen. Fehlende Menütabellen reparieren Sie unter **Moduldatenbank**. Einzelheiten: [Menüs](docs/menus.md).
 
 ## 9. Kontaktformular
 
@@ -75,25 +75,25 @@ Für mehrere Einwilligungen verwenden Sie getrennte **Einwilligung**-Felder mit 
 
 ## 10. Listen, Filter und Paginierung
 
-Verbinden Sie den **Paginierung**-Block mit dem richtigen Listenblock, etwa einer Smarty-Liste. Stellen Sie Datenquelle, Standardanzahl, sichtbare Schaltflächen, `/page/N/` oder `?page=N`, die optionale Auswahl 10/25/50/100/250 und Indexierung späterer Seiten ein. Der Server begrenzt `count` auf 10–250. Der Auswahlschalter kann neben den Seitenzahlen oder anderswo stehen. **Filter** bieten Text-, Bereichs- und Datumssuche; einen eigenen Suchblock gibt es nicht. Verbinden Sie Filter mit derselben Liste. Prüfen Sie auf Seite 2 geänderte Ergebnisse und saubere URLs. Einzelheiten: [Paginierung](../../docs/pagination.md).
+Verbinden Sie den **Paginierung**-Block mit dem richtigen Listenblock, etwa einer Smarty-Liste. Stellen Sie Datenquelle, Standardanzahl, sichtbare Schaltflächen, `/page/N/` oder `?page=N`, die optionale Auswahl 10/25/50/100/250 und Indexierung späterer Seiten ein. Der Server begrenzt `count` auf 10–250. Der Auswahlschalter kann neben den Seitenzahlen oder anderswo stehen. **Filter** bieten Text-, Bereichs- und Datumssuche; einen eigenen Suchblock gibt es nicht. Verbinden Sie Filter mit derselben Liste. Prüfen Sie auf Seite 2 geänderte Ergebnisse und saubere URLs. Einzelheiten: [Paginierung](docs/pagination.md).
 
 ## 11. Smarty, CSS und JavaScript
 
-Aktivieren Sie **Smarty-Variablen verwenden**, bevor Sie einen Smarty-Block einsetzen. Wählen Sie im Codeeditor eine erfasste Variable und speichern Sie. Ob sie verfügbar ist, hängt von der Seite und dem Zeitpunkt anderer Module ab. Erlaubt ist nur die vorgesehene Template-Syntax; PHP, SQL und direkter Datenbankzugriff sind untersagt. Ein einfaches Beispiel ist `{$pageTitle|escape}`. Testen Sie als Gast und Kunde und geben Sie keine ganzen Objekte mit personenbezogenen Daten aus. Einzelheiten: [Smarty](../../docs/smarty.md).
+Aktivieren Sie **Smarty-Variablen verwenden**, bevor Sie einen Smarty-Block einsetzen. Wählen Sie im Codeeditor eine erfasste Variable und speichern Sie. Ob sie verfügbar ist, hängt von der Seite und dem Zeitpunkt anderer Module ab. Erlaubt ist nur die vorgesehene Template-Syntax; PHP, SQL und direkter Datenbankzugriff sind untersagt. Ein einfaches Beispiel ist `{$pageTitle|escape}`. Testen Sie als Gast und Kunde und geben Sie keine ganzen Objekte mit personenbezogenen Daten aus. Einzelheiten: [Smarty](docs/smarty.md).
 
 **Custom CSS** und **Custom JS** gelten für die jeweilige Seite; prüfen Sie Mobilansicht und Sprachen. Globaler Code für Kopf und Fuß steht in den Moduleinstellungen und sollte nur von Personen mit HTML/CSS/JavaScript-Kenntnissen geändert werden.
 
 ## 12. Sitemap, Weiterleitungen und Rewrite-Regeln
 
-Aktivieren Sie die Sitemap-Erzeugung und wählen Sie die Häufigkeit in den Moduleinstellungen. Im Reiter **Sitemap** prüfen Sie den letzten Lauf und geplante URLs und klicken auf **Sitemaps erzeugen**. Öffnen Sie `sitemap_index.xml` und die Unterdateien. Automatische Läufe hängen vom WHMCS-Cron ab. Der Index kann andere Sitemap-Dateien im Website-Stammverzeichnis enthalten. Überschreibungen verwenden öffentliche Adressen; unveröffentlichte Sprachfassungen gehören nicht hinein. Einzelheiten: [Sitemaps](../../docs/sitemaps.md).
+Aktivieren Sie die Sitemap-Erzeugung und wählen Sie die Häufigkeit in den Moduleinstellungen. Im Reiter **Sitemap** prüfen Sie den letzten Lauf und geplante URLs und klicken auf **Sitemaps erzeugen**. Öffnen Sie `sitemap_index.xml` und die Unterdateien. Automatische Läufe hängen vom WHMCS-Cron ab. Der Index kann andere Sitemap-Dateien im Website-Stammverzeichnis enthalten. Überschreibungen verwenden öffentliche Adressen; unveröffentlichte Sprachfassungen gehören nicht hinein. Einzelheiten: [Sitemaps](docs/sitemaps.md).
 
-Im **Weiterleitungsmanager** geben Sie Quelle `/old-page/` und Ziel `/new-page/` ein, wählen `301` für dauerhaft oder `302` für vorübergehend, aktivieren, speichern und testen die alte URL. Automatische Weiterleitungen nach Slug-Änderungen haben einen eigenen Schalter und ein Mindestalter. Einzelheiten: [Weiterleitungen](../../docs/redirects.md).
+Im **Weiterleitungsmanager** geben Sie Quelle `/old-page/` und Ziel `/new-page/` ein, wählen `301` für dauerhaft oder `302` für vorübergehend, aktivieren, speichern und testen die alte URL. Automatische Weiterleitungen nach Slug-Änderungen haben einen eigenen Schalter und ein Mindestalter. Einzelheiten: [Weiterleitungen](docs/redirects.md).
 
 Im **Rewrite-Manager** prüfen Sie die Regeln und klicken dann **Regeln hinzufügen oder aktualisieren**, damit `.htaccess` geschrieben wird. Bei eigenen Regeln geben Sie URL-Muster, Ziel und Flags ein und wenden die Regeln erneut an. `.htaccess` gilt für Apache; Nginx benötigt entsprechende Serverregeln. Fehlerhafte Regeln können die ganze Website betreffen.
 
 ## 13. Einstellungen, Import und Wartung
 
-Die **Moduleinstellungen** umfassen lesbare URLs, Sprachrouting, Überschreibungen, Menüpositionen, Wartungsmodus, Smarty, Weiterleitungen, Sitemap-Zeitplan, Kopf-/Fußcode, `robots.txt` sowie Import/Export. Exportieren Sie vor größeren Änderungen alle oder ausgewählte Bereiche als JSON. Der Export kann Seiten und Übersetzungen, Menüs, Einstellungen, Weiterleitungen, Rewrite-Regeln und Medien enthalten. Er ist kein vollständiges WHMCS-Backup und enthält keine Konten, Geheimnisse, Seitenrevisionen oder Theme-Dateien. Einzelheiten: [Import/Export](../../docs/transfer.md).
+Die **Moduleinstellungen** umfassen lesbare URLs, Sprachrouting, Überschreibungen, Menüpositionen, Wartungsmodus, Smarty, Weiterleitungen, Sitemap-Zeitplan, Kopf-/Fußcode, `robots.txt` sowie Import/Export. Exportieren Sie vor größeren Änderungen alle oder ausgewählte Bereiche als JSON. Der Export kann Seiten und Übersetzungen, Menüs, Einstellungen, Weiterleitungen, Rewrite-Regeln und Medien enthalten. Er ist kein vollständiges WHMCS-Backup und enthält keine Konten, Geheimnisse, Seitenrevisionen oder Theme-Dateien. Einzelheiten: [Import/Export](docs/transfer.md).
 
 Zum Importieren wählen Sie JSON-Datei und Bereiche, klicken auf **Importieren** und bestätigen. Passende bestehende Datensätze können aktualisiert werden. Kontrollieren Sie danach Seiten, Menüs und Medien; importierte Rewrite-Regeln müssen separat angewendet und die Sitemap neu erzeugt werden. Die **Moduldatenbank** zeigt und repariert fehlende Tabellen oder Spalten. Der Wartungsmodus sperrt öffentliche Modulseiten für normale Besucher; testen Sie ihn in einem Browser ohne Anmeldung.
 
@@ -109,10 +109,10 @@ Für Fehlermeldungen senden Sie öffentliche URL, Seitenname/-nummer, Sprache, H
 
 ### Weitere Unterlagen
 
-- [Menüs](../../docs/menus.md)
-- [Smarty und erfasste Variablen](../../docs/smarty.md)
-- [Paginierung und Filter](../../docs/pagination.md)
-- [Sitemaps](../../docs/sitemaps.md)
-- [Weiterleitungen](../../docs/redirects.md)
-- [Schema.org-Strukturdaten](../../docs/structured-data.md)
-- [Import und Export](../../docs/transfer.md)
+- [Menüs](docs/menus.md)
+- [Smarty und erfasste Variablen](docs/smarty.md)
+- [Paginierung und Filter](docs/pagination.md)
+- [Sitemaps](docs/sitemaps.md)
+- [Weiterleitungen](docs/redirects.md)
+- [Schema.org-Strukturdaten](docs/structured-data.md)
+- [Import und Export](docs/transfer.md)

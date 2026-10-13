@@ -19,13 +19,7 @@
 
 ```sh
 php modules/addons/zmchel_whmcs_multimodule/tests/transfer.php
-php modules/addons/domain_auction/tests/sitemap_hook.php
 ```
 
 Тесты используют временные каталоги и SQLite, без подключения к рабочей БД.
 
-## Sitemap аукциона
-
-`crons/generate_sitemaps.php` перенесён в `includes/hooks/generate_sitemaps.php`. Генератор подключается автоматически WHMCS и выполняется по `DailyCronJob`. Старую отдельную cron-команду для этого файла нужно удалить. Штатный cron WHMCS продолжает работать.
-
-Хук не выводит текст и не завершает процесс через exit. Результат/ошибки записываются в Activity Log. Сохраняются 5000 доменов на файл, `daily`, приоритет `0.7` и чужие записи общего sitemap_index. Модульный генератор страниц/статей сохраняет свой график в `AfterCronJob`.

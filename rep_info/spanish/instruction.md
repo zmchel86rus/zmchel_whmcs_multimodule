@@ -65,7 +65,7 @@ El gestor crea varios tamaños de imagen. Puede usar **Optimizar imagen** inclus
 
 En **Gestor de menús**, cree uno y asígnele un nombre. Añada páginas o artículos; use **Enlace personalizado** para URL externas, páginas del sistema o títulos de columnas. Arrastre los elementos para ordenar y anidar. En cada elemento puede cambiar texto, etiquetas de otros idiomas, pestaña de destino, visibilidad, clases CSS y atributos. Para enlaces propios, elija si se añade el idioma actual; `/clientarea.php` y rutas sin traducción deben conservar su URL.
 
-Active el menú, decida si **complementa** o **sustituye** la navegación WHMCS, y elija visibilidad de escritorio/móvil. Asígnelo a barras superiores/laterales principales o secundarias, o al pie; solo puede haber un menú por ubicación. Guarde y pruebe ambas pantallas. En el pie, los elementos principales son columnas y los anidados son enlaces; `#` sirve para un encabezado sin destino. Active también la ubicación en los ajustes del módulo. Si faltan tablas, repárelas en **Base de datos del módulo**. Más información: [menús](../../docs/menus.md).
+Active el menú, decida si **complementa** o **sustituye** la navegación WHMCS, y elija visibilidad de escritorio/móvil. Asígnelo a barras superiores/laterales principales o secundarias, o al pie; solo puede haber un menú por ubicación. Guarde y pruebe ambas pantallas. En el pie, los elementos principales son columnas y los anidados son enlaces; `#` sirve para un encabezado sin destino. Active también la ubicación en los ajustes del módulo. Si faltan tablas, repárelas en **Base de datos del módulo**. Más información: [menús](docs/menus.md).
 
 ## 9. Formulario de contacto
 
@@ -75,25 +75,25 @@ Para varios consentimientos, cree campos **Consentimiento** separados, cada uno 
 
 ## 10. Listas, filtros y paginación
 
-Vincule el bloque **Paginación** a la lista concreta, por ejemplo una lista Smarty. Configure fuente de datos, cantidad predeterminada, botones visibles, URL `/page/N/` o `?page=N`, selector opcional 10/25/50/100/250 e indexación de páginas posteriores. El servidor limita `count` a 10–250. El selector puede situarse junto a los botones o en otra parte. **Filtros** ofrece búsqueda por texto, rango y fecha; no existe bloque independiente de búsqueda. Vincule filtros a la misma lista. Compruebe que la página 2 cambia resultados y conserva URL limpias. Más información: [paginación](../../docs/pagination.md).
+Vincule el bloque **Paginación** a la lista concreta, por ejemplo una lista Smarty. Configure fuente de datos, cantidad predeterminada, botones visibles, URL `/page/N/` o `?page=N`, selector opcional 10/25/50/100/250 e indexación de páginas posteriores. El servidor limita `count` a 10–250. El selector puede situarse junto a los botones o en otra parte. **Filtros** ofrece búsqueda por texto, rango y fecha; no existe bloque independiente de búsqueda. Vincule filtros a la misma lista. Compruebe que la página 2 cambia resultados y conserva URL limpias. Más información: [paginación](docs/pagination.md).
 
 ## 11. Smarty, CSS y JavaScript
 
-Active **Uso de variables Smarty** antes de añadir un bloque Smarty. En su editor de código, elija una variable recopilada y guarde. La disponibilidad depende de la página y del momento en que otros módulos crean variables. Solo se permite la sintaxis de plantilla prevista: PHP, SQL y acceso directo a la base de datos están prohibidos. Ejemplo: `{$pageTitle|escape}`. Compruebe el resultado como invitado y cliente y no imprima objetos completos con datos personales. Más información: [Smarty](../../docs/smarty.md).
+Active **Uso de variables Smarty** antes de añadir un bloque Smarty. En su editor de código, elija una variable recopilada y guarde. La disponibilidad depende de la página y del momento en que otros módulos crean variables. Solo se permite la sintaxis de plantilla prevista: PHP, SQL y acceso directo a la base de datos están prohibidos. Ejemplo: `{$pageTitle|escape}`. Compruebe el resultado como invitado y cliente y no imprima objetos completos con datos personales. Más información: [Smarty](docs/smarty.md).
 
 **Custom CSS** y **Custom JS** afectan a la página: pruebe móvil y otros idiomas. El código global de cabecera/pie está en los ajustes del módulo y debe editarlo alguien que conozca HTML, CSS y JavaScript.
 
 ## 12. Mapa del sitio, redirecciones y rewrite
 
-Active la generación de mapas y configure la frecuencia en **Ajustes del módulo**. En **Mapa del sitio**, revise la última ejecución y las URL previstas, pulse **Generar mapas del sitio** y abra `sitemap_index.xml` y sus archivos. La generación automática depende del cron de WHMCS. El índice puede incluir otros mapas en la raíz del sitio. Las sustituciones usan URL públicas y los idiomas no publicados no deben aparecer. Más información: [mapas del sitio](../../docs/sitemaps.md).
+Active la generación de mapas y configure la frecuencia en **Ajustes del módulo**. En **Mapa del sitio**, revise la última ejecución y las URL previstas, pulse **Generar mapas del sitio** y abra `sitemap_index.xml` y sus archivos. La generación automática depende del cron de WHMCS. El índice puede incluir otros mapas en la raíz del sitio. Las sustituciones usan URL públicas y los idiomas no publicados no deben aparecer. Más información: [mapas del sitio](docs/sitemaps.md).
 
-En **Gestor de redirecciones**, indique origen `/old-page/` y destino `/new-page/`, seleccione `301` si el cambio es permanente o `302` si es temporal, active, guarde y pruebe la URL antigua. La creación automática tras cambiar un slug tiene interruptor y antigüedad mínima propios. Más información: [redirecciones](../../docs/redirects.md).
+En **Gestor de redirecciones**, indique origen `/old-page/` y destino `/new-page/`, seleccione `301` si el cambio es permanente o `302` si es temporal, active, guarde y pruebe la URL antigua. La creación automática tras cambiar un slug tiene interruptor y antigüedad mínima propios. Más información: [redirecciones](docs/redirects.md).
 
 En **Gestor rewrite**, pulse **Comprobar reglas** y después **Añadir o actualizar reglas** para escribir `.htaccess`. En reglas personalizadas, indique patrón de URL, destino y flags, y vuelva a aplicar. Apache usa `.htaccess`; Nginx requiere reglas equivalentes del servidor. Una regla errónea puede afectar a todo el sitio.
 
 ## 13. Ajustes, importación y mantenimiento
 
-Los **Ajustes del módulo** incluyen URL legibles, rutas de idiomas, sustituciones, posiciones de menús, modo de mantenimiento, Smarty, redirecciones, frecuencia del mapa, código de cabecera/pie, `robots.txt` e importación/exportación. Antes de cambios importantes, exporte todas o algunas secciones a JSON. Puede incluir páginas y traducciones, menús, ajustes, redirecciones, reglas y archivos multimedia. No sustituye una copia completa de WHMCS ni incluye cuentas, secretos, revisiones de páginas o temas. Más información: [importación y exportación](../../docs/transfer.md).
+Los **Ajustes del módulo** incluyen URL legibles, rutas de idiomas, sustituciones, posiciones de menús, modo de mantenimiento, Smarty, redirecciones, frecuencia del mapa, código de cabecera/pie, `robots.txt` e importación/exportación. Antes de cambios importantes, exporte todas o algunas secciones a JSON. Puede incluir páginas y traducciones, menús, ajustes, redirecciones, reglas y archivos multimedia. No sustituye una copia completa de WHMCS ni incluye cuentas, secretos, revisiones de páginas o temas. Más información: [importación y exportación](docs/transfer.md).
 
 Para importar, elija el JSON y las secciones, pulse **Importar** y confirme. Pueden actualizarse registros coincidentes. Compruebe después páginas, menús y medios; aplique por separado las reglas importadas y regenere el mapa. **Base de datos del módulo** comprueba y repara tablas/columnas ausentes. El mantenimiento cierra las páginas públicas del módulo a visitantes normales; pruébelo en una ventana sin sesión.
 
@@ -109,10 +109,10 @@ Al comunicar un error, incluya URL pública, nombre/número de página, idioma, 
 
 ### Documentación adicional
 
-- [Menús](../../docs/menus.md)
-- [Smarty y variables recopiladas](../../docs/smarty.md)
-- [Paginación y filtros](../../docs/pagination.md)
-- [Mapas del sitio](../../docs/sitemaps.md)
-- [Redirecciones](../../docs/redirects.md)
-- [Datos estructurados Schema.org](../../docs/structured-data.md)
-- [Importación y exportación](../../docs/transfer.md)
+- [Menús](docs/menus.md)
+- [Smarty y variables recopiladas](docs/smarty.md)
+- [Paginación y filtros](docs/pagination.md)
+- [Mapas del sitio](docs/sitemaps.md)
+- [Redirecciones](docs/redirects.md)
+- [Datos estructurados Schema.org](docs/structured-data.md)
+- [Importación y exportación](docs/transfer.md)

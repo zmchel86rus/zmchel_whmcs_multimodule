@@ -5,16 +5,18 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 
     $smarty->assign('readme_html', '');
     $doc = isset($_GET['doc']) && is_string($_GET['doc']) ? $_GET['doc'] : '';
-    $isAdditionalDoc = preg_match('/^[a-z0-9-]+$/D', $doc) && is_file(ZM_PB_ROOTDIR . 'docs/' . $doc . '.md');
     $readmeLanguage = array_key_exists(ZM_PB_ADMINLANGNAME, ZM_PB_LANGS) ? ZM_PB_ADMINLANGNAME : 'english';
-    $readmePath = $isAdditionalDoc ? ZM_PB_ROOTDIR . 'docs/' . $doc . '.md' : ZM_PB_ROOTDIR . 'rep_info/' . $readmeLanguage . '/instruction.md';
-    if (!$isAdditionalDoc && !is_readable($readmePath)) {
-        $readmePath = ZM_PB_ROOTDIR . 'rep_info/english/instruction.md';
+    $availableDocs = ['menus', 'pagination', 'redirects', 'sitemaps', 'smarty', 'structured-data', 'transfer'];
+    $isAdditionalDoc = in_array($doc, $availableDocs, true);
+    $relativePath = $isAdditionalDoc ? 'docs/' . $doc . '.md' : 'instruction.md';
+    $readmePath = ZM_PB_ROOTDIR . 'rep_info/' . $readmeLanguage . '/' . $relativePath;
+    if (!is_readable($readmePath)) {
+        $readmePath = ZM_PB_ROOTDIR . 'rep_info/english/' . $relativePath;
     }
     $markdown = is_readable($readmePath) ? file_get_contents($readmePath) : false;
     if ($markdown === false) {
         $smarty->assign('alertType', 'danger');
-        $smarty->assign('alertMessage', ZM_PB_ADMINLANG->module->instruction_error);
+        $smarty->assign('alertMessage', (ZM_PB_ADMINLANG)->module->instruction_error);
         $smarty->assign('alertHtml', $smarty->fetch(ZM_PB_TEMPLATESPARTSDIR . 'alert.tpl'));
     } else {
         if (!class_exists(\Michelf\MarkdownExtra::class)) {
@@ -29,7 +31,7 @@ use Illuminate\Database\Capsule\Manager as Capsule;
             return trim(preg_replace('/[\s-]+/u', '-', $slug), '-');
         };
         $parser->url_filter_func = static function ($url) {
-            if (preg_match('~^(?:\.\./\.\./)?docs/([a-z0-9-]+)\.md$~D', $url, $matches)) {
+            if (preg_match('~^docs/([a-z0-9-]+)\.md$~D', $url, $matches)) {
                 return 'addonmodules.php?module=' . rawurlencode(ZM_PB_NAME) . '&subpage=README.md&doc=' . rawurlencode($matches[1]);
             }
             return preg_match('~^(?:#[^\s]*|https?://[^\s]+)$~iD', $url) ? $url : '#';

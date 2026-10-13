@@ -41,7 +41,6 @@
 php modules/addons/zmchel_whmcs_multimodule/tests/pagination.php
 php modules/addons/zmchel_whmcs_multimodule/tests/pagination.php query
 php modules/addons/zmchel_whmcs_multimodule/tests/smarty_blocks.php
-php modules/addons/domain_auction/tests/client_page_data.php
 ```
 
 Тесты не подключаются к базе данных и не меняют настройки WHMCS.
