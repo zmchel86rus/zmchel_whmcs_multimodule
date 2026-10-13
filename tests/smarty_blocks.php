@@ -11,7 +11,6 @@ $testDir = sys_get_temp_dir() . '/zm-pb-catalog-test-' . bin2hex(random_bytes(6)
 define('ZM_PB_RESOURCESDIR', $testDir);
 if (!defined('WHMCS')) define('WHMCS', true);
 if (!defined('ROOTDIR')) define('ROOTDIR', dirname(__DIR__, 4));
-if (!defined('AUCTION_LANGDIR')) define('AUCTION_LANGDIR', ROOTDIR . '/modules/addons/domain_auction/lang/');
 if (!defined('ZM_PB_LANGS')) define('ZM_PB_LANGS', [
     'english' => ['locale_BCP47' => 'en-US'],
     'russian' => ['locale_BCP47' => 'ru-RU'],
@@ -81,26 +80,15 @@ try {
     };
     $englishCatalog = $loadLanguage('english');
     $russianCatalog = $loadLanguage('russian');
-    $loadAuctionLanguage = function ($language) {
-        $_ADDONLANG = [];
-        require AUCTION_LANGDIR . $language . '.php';
-        return $_ADDONLANG;
-    };
-    $englishAuction = $loadAuctionLanguage('english');
-    $russianAuction = $loadAuctionLanguage('russian');
     $russianAccount = htmlspecialchars($russianCatalog['account'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8', false);
-    $russianAuctionTitle = htmlspecialchars($russianAuction['sites_open'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8', false);
     check($englishCatalog['account'] !== $russianCatalog['account'], 'Language fixture must differ');
-    check($englishAuction['sites_open'] !== $russianAuction['sites_open'], 'Auction language fixture must differ');
     check(ZM_PB_SmartyBlocks::render('{lang key="account"}', ['LANG' => $englishCatalog], 'russian') === $russianAccount,
         'Smarty lang used the profile language instead of the page language');
-    check(ZM_PB_SmartyBlocks::render('{$Lang.sites_open}', ['Lang' => $englishAuction], 'russian') === $russianAuctionTitle,
-        'Smarty addon variable used the profile language instead of the page language');
-    $formatted = '{if $auction_sites|@count > 0}{foreach from=$auction_sites item=v}'
-        . '${$v.my_max_bid|string_format:"%.0f"} {$v.bid_increment|default:10}'
+    $formatted = '{if $archive_rows|@count > 0}{foreach from=$archive_rows item=v}'
+        . '${$v.price|string_format:"%.0f"} {$v.step|default:10}'
         . '{/foreach}{/if}';
     ZM_PB_SmartyBlocks::validate($formatted);
-    check(ZM_PB_SmartyBlocks::render($formatted, ['auction_sites' => [['my_max_bid' => 1234.5]]]) === '$1234 10',
+    check(ZM_PB_SmartyBlocks::render($formatted, ['archive_rows' => [['price' => 1234.5]]]) === '$1234 10',
         'Formatting or default modifier failed');
     $invalid = ['{php}echo 1;{/php}', '{include file="x"}', '{fetch file="http://x"}', '{$smarty.template_object}',
         '{$smarty.session.uid}', '{$obj->query("select 1")}', '{Capsule::table("x")}', '{system("whoami")}',
@@ -123,10 +111,10 @@ try {
     $archiveRows[0]->domain_name = 'first.example';
     $archiveRows[15000] = clone $archiveRow;
     $archiveRows[15000]->domain_name = 'last.example';
-    $archiveCode = '{$auction_sites|count}|{foreach $auction_sites as $lot}{$lot.domain_name};{/foreach}|{$after_archive}';
+    $archiveCode = '{$archive_rows|count}|{foreach $archive_rows as $record}{$record.domain_name};{/foreach}|{$after_archive}';
     $archiveOutput = ZM_PB_SmartyBlocks::render($archiveCode, [
         'unrelated_list' => array_fill(0, 21000, 'unrelated'),
-        'auction_sites' => new LoadedDomains($archiveRows),
+        'archive_rows' => new LoadedDomains($archiveRows),
         'after_archive' => 'tail',
     ]);
     check($archiveOutput === '15001|first.example;' . str_repeat('middle.example;', 14999) . 'last.example;|tail',
@@ -146,7 +134,6 @@ try {
     $html = '<section><h2>Before</h2><div data-zm-pb-smarty="' . htmlspecialchars($expression, ENT_QUOTES) . '"></div><h2>After</h2></section>';
     $html .= '<div data-zm-pb-auth="auth"><div data-zm-pb-smarty="{$secret}"></div></div>';
     $html .= '<div data-zm-pb-smarty="{lang key=&quot;account&quot;}"></div>';
-    $html .= '<div data-zm-pb-smarty="{$Lang.sites_open}"></div>';
     $_SESSION = [];
     ob_start();
     $bufferLevel = ob_get_level();
@@ -158,7 +145,6 @@ try {
     foreach ($hooks['ClientAreaPage'] as $callbacks) foreach ($callbacks as $callback) check($callback([]) === [], 'Page hook must not output content');
     $GLOBALS['smarty']->assign('registered_domains', new LoadedDomains([['domain' => '<late.example>']]));
     $GLOBALS['smarty']->assign('LANG', $englishCatalog);
-    $GLOBALS['smarty']->assign('Lang', $englishAuction);
     ksort($hooks['ClientAreaFooterOutput']);
     foreach ($hooks['ClientAreaFooterOutput'] as $callbacks) foreach ($callbacks as $callback) $callback([]);
     $GLOBALS['smarty']->assign('builder_content', $built);
@@ -168,7 +154,6 @@ try {
     check(strpos($rendered, 'ZM_PB_SMARTY_') === false, 'Deferred placeholder leaked');
     check(strpos($rendered, 'data-zm-pb-auth') === false, 'Denied authorization block survived');
     check(strpos($rendered, $russianAccount) !== false, 'Queued Smarty lang used the profile language');
-    check(strpos($rendered, $russianAuctionTitle) !== false, 'Queued Smarty addon language used the profile language');
     // Use the same emitter that rejected the response in WHMCS, without mocking its assertions.
     $response = new Laminas\Diactoros\Response\HtmlResponse($rendered);
     check((new Laminas\HttpHandlerRunner\Emitter\SapiEmitter())->emit($response), 'Laminas rejected the rendered response');

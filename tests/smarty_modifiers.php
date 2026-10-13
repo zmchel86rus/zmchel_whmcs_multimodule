@@ -12,11 +12,11 @@ if (!mkdir($directory, 0700) || !mkdir($directory . '/templates_c', 0700)) {
 $previous = getcwd();
 try {
     chdir($directory);
-    $code = '{if $auction_sites|@count > 0}{foreach from=$auction_sites item=v}'
-        . '${$v.my_max_bid|string_format:"%.0f"} {$v.bid_increment|default:10}'
+    $code = '{if $items|@count > 0}{foreach from=$items item=v}'
+        . '${$v.price|string_format:"%.0f"} {$v.step|default:10}'
         . '{/foreach}{/if}';
     ZM_PB_SmartyBlocks::validate($code);
-    $actual = ZM_PB_SmartyBlocks::render($code, ['auction_sites' => [['my_max_bid' => 1234.5]]]);
+    $actual = ZM_PB_SmartyBlocks::render($code, ['items' => [['price' => 1234.5]]]);
     if ($actual !== '$1234 10') throw new RuntimeException('Formatting failed: ' . $actual);
     $section = '{section name=col loop=3}x{sectionelse}empty{/section}';
     ZM_PB_SmartyBlocks::validate($section);

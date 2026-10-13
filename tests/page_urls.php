@@ -16,7 +16,7 @@ class PageUrlTestQuery
 
     public function exists()
     {
-        return in_array($this->slug, ['closedauctions', 'contact'], true)
+        return in_array($this->slug, ['samplepage', 'contact'], true)
             && $this->status === 'publish' && $this->type === ['!=', 'system'];
     }
 }
@@ -55,63 +55,47 @@ function expect_url($actual, $expected)
     if ($actual !== $expected) throw new RuntimeException("Expected $expected, got $actual");
 }
 
-$page = (object) ['slug' => 'closedauctions'];
+$page = (object) ['slug' => 'samplepage'];
 $base = 'https://example.test/billing/';
-$_SERVER['REQUEST_URI'] = '/billing/index.php?m=zmchel_whmcs_multimodule&amp;slug=mybids';
-$_SERVER['THE_REQUEST'] = 'GET /billing/?m=zmchel_whmcs_multimodule&slug=mybids HTTP/1.1';
-if (!zm_pb_is_self_redirect($base . '?m=zmchel_whmcs_multimodule&slug=mybids')) {
-    throw new RuntimeException('Browser URL self-redirect was not detected');
-}
-if (zm_pb_is_self_redirect($base . '?m=zmchel_whmcs_multimodule&slug=closedauctions')) {
-    throw new RuntimeException('Different module page was treated as a self-redirect');
-}
-$_SERVER['THE_REQUEST'] = 'GET /?m=zmchel_whmcs_multimodule&slug=mybids HTTP/1.1';
-if (!zm_pb_is_self_redirect('https://example.test/?m=zmchel_whmcs_multimodule&slug=mybids')) {
-    throw new RuntimeException('Root URL self-redirect was not detected');
-}
-if (zm_pb_is_self_redirect('http://example.test/?m=zmchel_whmcs_multimodule&slug=mybids')) {
-    throw new RuntimeException('Protocol change was treated as a self-redirect');
-}
-unset($_SERVER['REQUEST_URI'], $_SERVER['THE_REQUEST']);
-expect_url(zm_pb_escaped_query_redirect_target('/billing/?m=zmchel_whmcs_multimodule&amp;slug=closedauctions&amp;lang=ru'),
-    '/billing/?m=zmchel_whmcs_multimodule&slug=closedauctions&lang=ru');
-expect_url(zm_pb_escaped_query_redirect_target('/billing/?m=another_module&amp;slug=closedauctions'), null);
-$_GET = ['m' => ZM_PB_NAME, 'amp;slug' => 'closedauctions', 'amp;lang' => 'ru'];
+expect_url(zm_pb_escaped_query_redirect_target('/billing/?m=zmchel_whmcs_multimodule&amp;slug=samplepage&amp;lang=ru'),
+    '/billing/?m=zmchel_whmcs_multimodule&slug=samplepage&lang=ru');
+expect_url(zm_pb_escaped_query_redirect_target('/billing/?m=another_module&amp;slug=samplepage'), null);
+$_GET = ['m' => ZM_PB_NAME, 'amp;slug' => 'samplepage', 'amp;lang' => 'ru'];
 $_REQUEST = $_GET;
-$_SERVER['REQUEST_URI'] = '/billing/?m=zmchel_whmcs_multimodule&amp;slug=closedauctions&amp;lang=ru';
+$_SERVER['REQUEST_URI'] = '/billing/?m=zmchel_whmcs_multimodule&amp;slug=samplepage&amp;lang=ru';
 if (!zm_pb_repair_escaped_query_request($_SERVER['REQUEST_URI'])) {
     throw new RuntimeException('Escaped module query was not repaired');
 }
-expect_url($_GET['slug'] ?? null, 'closedauctions');
+expect_url($_GET['slug'] ?? null, 'samplepage');
 expect_url($_GET['lang'] ?? null, 'ru');
-expect_url($_SERVER['REQUEST_URI'], '/billing/?m=zmchel_whmcs_multimodule&slug=closedauctions&lang=ru');
+expect_url($_SERVER['REQUEST_URI'], '/billing/?m=zmchel_whmcs_multimodule&slug=samplepage&lang=ru');
 if (isset($_GET['amp;slug']) || isset($_REQUEST['amp;slug'])) {
     throw new RuntimeException('Escaped query key survived repair');
 }
 unset($_GET, $_REQUEST, $_SERVER['REQUEST_URI'], $_SERVER['ZM_PB_ORIGINAL_REQUEST_URI'], $_SERVER['QUERY_STRING']);
 if (ZM_PB_PRETTY_URLS) {
-    expect_url(zm_pb_menu_page_url($page, 'russian', []), $base . 'ru/closedauctions/');
-    expect_url(zm_pb_menu_page_url($page, 'english', ['closedauctions' => 'contact']), $base . 'contact/');
-    expect_url(zm_pb_sitemap_url('closedauctions', 'russian'), $base . 'ru/closedauctions/');
-    expect_url(ZM_PB_ContentLinks::localize('/billing/closedauctions/', 'russian'), '/billing/ru/closedauctions/');
+    expect_url(zm_pb_menu_page_url($page, 'russian', []), $base . 'ru/samplepage/');
+    expect_url(zm_pb_menu_page_url($page, 'english', ['samplepage' => 'contact']), $base . 'contact/');
+    expect_url(zm_pb_sitemap_url('samplepage', 'russian'), $base . 'ru/samplepage/');
+    expect_url(ZM_PB_ContentLinks::localize('/billing/samplepage/', 'russian'), '/billing/ru/samplepage/');
 } else {
-    $plain = $base . '?m=zmchel_whmcs_multimodule&slug=closedauctions';
+    $plain = $base . '?m=zmchel_whmcs_multimodule&slug=samplepage';
     expect_url(zm_pb_menu_page_url($page, 'english', []), $plain);
     expect_url(zm_pb_menu_page_url($page, 'russian', []), $plain . '&lang=ru');
-    expect_url(zm_pb_menu_page_url($page, 'english', ['closedauctions' => 'contact']), $plain);
-    expect_url(zm_pb_sitemap_url('closedauctions', 'russian', 'contact'), $plain . '&lang=ru');
-    expect_url(ZM_PB_ContentLinks::localize('/billing/closedauctions/', 'english'), $plain);
-    expect_url(ZM_PB_ContentLinks::localize($base . 'closedauctions/?sort=recent#results', 'russian'),
+    expect_url(zm_pb_menu_page_url($page, 'english', ['samplepage' => 'contact']), $plain);
+    expect_url(zm_pb_sitemap_url('samplepage', 'russian', 'contact'), $plain . '&lang=ru');
+    expect_url(ZM_PB_ContentLinks::localize('/billing/samplepage/', 'english'), $plain);
+    expect_url(ZM_PB_ContentLinks::localize($base . 'samplepage/?sort=recent#results', 'russian'),
         $plain . '&lang=ru&sort=recent#results');
     expect_url(ZM_PB_ContentLinks::localize('/billing/contact/', 'english'),
         $base . '?m=zmchel_whmcs_multimodule&slug=contact');
-    expect_url(ZM_PB_ContentLinks::localize('/billing/index.php?m=zmchel_whmcs_multimodule&slug=closedauctions', 'russian'),
+    expect_url(ZM_PB_ContentLinks::localize('/billing/index.php?m=zmchel_whmcs_multimodule&slug=samplepage', 'russian'),
         $plain . '&lang=ru');
     expect_url(ZM_PB_ContentLinks::localize('/billing/clientarea.php', 'english'), '/billing/clientarea.php');
-    expect_url(ZM_PB_ContentLinks::localize('https://elsewhere.test/closedauctions/', 'english'),
-        'https://elsewhere.test/closedauctions/');
+    expect_url(ZM_PB_ContentLinks::localize('https://elsewhere.test/samplepage/', 'english'),
+        'https://elsewhere.test/samplepage/');
     $markup = ZM_PB_ContentBuilder::build(json_encode(['format' => 'grapesjs',
-        'html' => '<a href="/billing/closedauctions/">Page</a><a href="https://elsewhere.test/">External</a>']),
+        'html' => '<a href="/billing/samplepage/">Page</a><a href="https://elsewhere.test/">External</a>']),
         'mixed', ['lang' => 'russian', 'schema_enabled' => false]);
     $document = new DOMDocument();
     $document->loadHTML($markup);

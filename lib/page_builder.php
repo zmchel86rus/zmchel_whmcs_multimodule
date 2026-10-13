@@ -29,16 +29,14 @@ $enable_partial_with_meta = in_array($override_type,['partial_before_meta','part
 
 if( !ZM_PB_ENABLE_LANG_ROUTE && !empty($lang) ){
     $targetUrl = ZM_PB_PRETTY_URLS ? ZM_PB_FULLHOST . $public_path : zm_pb_module_page_url($slug);
-    if (!zm_pb_is_self_redirect($targetUrl)) {
-        header('X-ZM-PB-Redirect-Source: language-disabled');
-        header('Location: ' . $targetUrl, true, 302);
-        exit;
-    }
+    header('Location: ' . $targetUrl, true, 302);
+    exit;
 }
 
 $pageData = zm_pb_load_page_by_slug($slug);
 
-$is_admin = !empty($_SESSION['adminid']);
+$currentUser = new \WHMCS\Authentication\CurrentUser();
+$is_admin = $currentUser->isAuthenticatedAdmin();
 
 global $_LANG;
  
@@ -59,21 +57,17 @@ if ( !$pageData || ($pageData['page']->status !== 'publish' || $pageData['page']
 
 $page = $pageData['page'];
 $authType = $page->auth_type;
-$clientLoggedIn = !empty($_SESSION['uid']);
-$adminPreview = $is_admin && !isset($request['override_from']);
+$clientLoggedIn = $currentUser->client() !== null;
+$adminPreview = $is_admin;
 
 if ( $authType === 'auth' && !$clientLoggedIn && !$adminPreview ) {
     if (isset($request['override_from'])) return;
-    header('X-ZM-PB-Redirect-Source: login-required');
     redir('link=' . rawurlencode($full_slug), (ZM_PB_MAINSYSTEM_PRETTY_URLS ? '/login' : '/login.php'));
     exit;
 } elseif ( $authType === 'noauth' && $clientLoggedIn && !$adminPreview ) {
     if (isset($request['override_from']) || $public_slug === 'index') return;
-    if (!zm_pb_is_self_redirect(ZM_PB_FULLHOST)) {
-        header('X-ZM-PB-Redirect-Source: guest-only');
-        header('Location: ' . ZM_PB_FULLHOST, true, 302);
-        exit;
-    }
+    header('Location: ' . ZM_PB_FULLHOST, true, 302);
+    exit;
 }
 
 $settings_request = $request;

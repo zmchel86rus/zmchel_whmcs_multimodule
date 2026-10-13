@@ -22,9 +22,9 @@ function registerPager($target, array $attrs = []) {
     return ZM_PB_Pagination::register($nav);
 }
 
-$_SERVER['REQUEST_URI'] = '/ru/closedauctions/?sort=-domain_rank&filter=foo%26bar';
+$_SERVER['REQUEST_URI'] = '/ru/articles/?sort=-domain_rank&filter=foo%26bar';
 $_GET = ['page' => '2', 'count' => '100', 'sort' => '-domain_rank'];
-$id = registerPager('archive', ['variable' => '$auction_sites', 'duplicate' => '1']);
+$id = registerPager('archive', ['variable' => '$article_rows', 'duplicate' => '1']);
 $rows = [];
 for ($i = 0; $i < 15001; $i++) $rows[] = (object) ['domain_name' => sprintf('domain-%05d.test', $i), 'domain_rank' => $i];
 
@@ -46,12 +46,12 @@ class PageQuery {
     }
 }
 $query = new PageQuery($rows);
-$page = ZM_PB_Pagination::query('auction_sites', $query, ['domain_rank' => 'domain_rank']);
+$page = ZM_PB_Pagination::query('article_rows', $query, ['domain_rank' => 'domain_rank']);
 check($query->log->count === 15001 && $query->log->window === [100, 100], 'SQL page/total incorrect');
 check($query->limit === 20 && $query->offset === 7, 'Provider mutated the original query');
 check($query->log->orders === [['domain_rank', 'desc'], ['domain_name', 'asc']], 'Sort or stable tie breaker missing');
-$context = ZM_PB_Pagination::variables($id, ['auction_sites' => $page]);
-check(count($context['auction_sites']) === 100 && $context['zm_pagination']['pages'] === 151, 'Provider results paginated twice');
+$context = ZM_PB_Pagination::variables($id, ['article_rows' => $page]);
+check(count($context['article_rows']) === 100 && $context['zm_pagination']['pages'] === 151, 'Provider results paginated twice');
 $url = ZM_PB_Pagination::url($id, 3);
 check(strpos($url, ZM_PB_PRETTY_URLS ? '/page/3/' : 'page=3') !== false, 'Automatic URL format incorrect');
 check(strpos($url, 'sort=-domain_rank') !== false && strpos($url, 'filter=foo%26bar') !== false, 'Query filters lost or double encoded');
@@ -62,7 +62,7 @@ check(strpos($nav, 'zm-pb-page-status') === false, 'Page status must be hidden b
 foreach (['500' => 250, '100000' => 250, '999999999999999999999999' => 250, '1' => 10, '0' => 10, '-5' => 10] as $input => $expected) {
     $_GET['count'] = (string) $input;
     $bounded = new PageQuery($rows);
-    $boundedRows = ZM_PB_Pagination::query('auction_sites', $bounded);
+    $boundedRows = ZM_PB_Pagination::query('article_rows', $bounded);
     check($bounded->log->window[1] === $expected && count($boundedRows) === $expected, 'Unbounded SQL count: ' . $input);
 }
 $_GET['count'] = ['invalid'];
@@ -73,12 +73,12 @@ $_GET['count'] = '100';
 foreach (['configs', 'results'] as $name) {
     $property = new ReflectionProperty(ZM_PB_Pagination::class, $name); $property->setAccessible(true); $property->setValue(null, []);
 }
-$code = '{foreach from=$auction_sites item=v}<div class="record">{$v.domain_name}</div>{/foreach}';
-$navHtml = '<nav data-zm-pb-pagination="1" data-zm-pb-page-target="archive" data-zm-pb-page-variable="auction_sites" data-zm-pb-page-count="100" data-zm-pb-page-duplicate="1"></nav>';
+$code = '{foreach from=$article_rows item=v}<div class="record">{$v.domain_name}</div>{/foreach}';
+$navHtml = '<nav data-zm-pb-pagination="1" data-zm-pb-page-target="archive" data-zm-pb-page-variable="article_rows" data-zm-pb-page-count="100" data-zm-pb-page-duplicate="1"></nav>';
 $smartyHtml = '<div id="archive" data-zm-pb-smarty="' . htmlspecialchars($code, ENT_QUOTES) . '"></div>';
 $built = ZM_PB_ContentBuilder::build(json_encode(['format' => 'grapesjs', 'html' => $navHtml . $smartyHtml]), 'mixed', ['schema_enabled' => false]);
 $GLOBALS['smarty'] = new Smarty();
-$GLOBALS['smarty']->assign('auction_sites', new Illuminate\Support\Collection($rows));
+$GLOBALS['smarty']->assign('article_rows', new Illuminate\Support\Collection($rows));
 foreach ($hooks['ClientAreaPage'] as $callbacks) foreach ($callbacks as $callback) $callback([]);
 foreach ($hooks['ClientAreaFooterOutput'] as $callbacks) foreach ($callbacks as $callback) $callback([]);
 $GLOBALS['smarty']->assign('built', $built);
@@ -110,7 +110,7 @@ foreach (['query', 'path'] as $mode) {
         $property = new ReflectionProperty(ZM_PB_Pagination::class, $name); $property->setAccessible(true); $property->setValue(null, []);
     }
     $id = registerPager('switch', ['url-mode' => $mode]);
-    $_SERVER['REQUEST_URI'] = '/ru/closedauctions/page/2/?sort=domain_name&page=8';
+    $_SERVER['REQUEST_URI'] = '/ru/articles/page/2/?sort=domain_name&page=8';
     $url = ZM_PB_Pagination::url($id, 3);
     check($mode === 'query' ? strpos($url, '/page/') === false && strpos($url, 'page=3') !== false
         : strpos($url, '/page/3/') !== false && strpos($url, 'page=') === false, 'Block URL override failed: ' . $mode);
@@ -139,10 +139,10 @@ check(strpos(ZM_PB_Pagination::render($id, [], 'count'), 'data-zm-page-count') !
 $crumbs = [['label'=>'Home', 'link'=>'/'], ['label'=>'Archive', 'link'=>'']];
 $pagedCrumbs = ZM_PB_Pagination::breadcrumbs($crumbs);
 check($pagedCrumbs[1]['label'] === 'Archive — Страница 2' && ZM_PB_Pagination::breadcrumbs($pagedCrumbs) === $pagedCrumbs, 'Pagination breadcrumb missing or duplicated');
-$source = '<html><head><title>Archive</title><meta name="description" content="Domains &amp; auctions"><link rel="canonical" href="https://example.test/"><meta name="robots" content="index, nofollow"></head><body></body></html>';
+$source = '<html><head><title>Archive</title><meta name="description" content="Articles &amp; guides"><link rel="canonical" href="https://example.test/"><meta name="robots" content="index, nofollow"></head><body></body></html>';
 $seo = ZM_PB_Pagination::seo($source);
 check(strpos($seo, 'Страница 2</title>') !== false && strpos($seo, 'noindex, nofollow') !== false, 'Page title or robots incorrect');
-check(strpos($seo, 'content="Domains &amp; auctions — Страница 2"') !== false, 'Page description missing or double escaped');
+check(strpos($seo, 'content="Articles &amp; guides — Страница 2"') !== false, 'Page description missing or double escaped');
 check(substr_count($seo, 'rel="canonical"') === 1 && strpos($seo, 'href="https://example.test/ru/list/') !== false, 'Canonical not replaced');
 check(ZM_PB_Pagination::seo($seo) === $seo, 'SEO applied twice');
 $_GET['page'] = '1';
@@ -157,13 +157,13 @@ foreach ([ZM_PB_Pagination::class => ['configs', 'results'], ZM_PB_SmartyBlocks:
     }
 }
 $_GET = ['page' => '2', 'count' => '100000'];
-$_SERVER['REQUEST_URI'] = '/ru/closedauctions/?page=2&count=100000&zone=com';
+$_SERVER['REQUEST_URI'] = '/ru/articles/?page=2&count=100000&zone=com';
 $layout = '<section id="selector-position"><div id="count-part" class="zm-pb-page-count-block" style="margin-left:auto" data-zm-pb-page-count-control="1" data-zm-pb-page-owner="pager-layout"></div></section>'
     . $smartyHtml
-    . '<div id="pager-layout" class="zm-pb-pagination-layout" data-zm-pb-pagination="1" data-zm-pb-page-layout="1" data-zm-pb-page-target="archive" data-zm-pb-page-variable="auction_sites" data-zm-pb-page-count-select="1" data-zm-pb-page-duplicate="1">'
+    . '<div id="pager-layout" class="zm-pb-pagination-layout" data-zm-pb-pagination="1" data-zm-pb-page-layout="1" data-zm-pb-page-target="archive" data-zm-pb-page-variable="article_rows" data-zm-pb-page-count-select="1" data-zm-pb-page-duplicate="1">'
     . '<div id="buttons-part" class="zm-pb-pagination-buttons" data-zm-pb-page-buttons="1" data-zm-pb-page-owner="pager-layout"></div></div>';
 $built = ZM_PB_ContentBuilder::build(json_encode(['format'=>'grapesjs', 'html'=>$layout]), 'mixed', ['schema_enabled'=>false]);
-$GLOBALS['smarty']->assign('auction_sites', new Illuminate\Support\Collection($rows));
+$GLOBALS['smarty']->assign('article_rows', new Illuminate\Support\Collection($rows));
 foreach ($hooks['ClientAreaFooterOutput'] as $callbacks) foreach ($callbacks as $callback) $callback([]);
 $GLOBALS['smarty']->assign('built', $built);
 $rendered = $GLOBALS['smarty']->fetch('eval:{$built}');

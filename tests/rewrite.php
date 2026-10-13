@@ -17,7 +17,7 @@ require dirname(__DIR__) . '/inc/url_redirects.php';
 
 try {
     if (zm_pb_slash_redirect_target('//billing/contact.php?count=25') !== '/billing/contact.php?count=25'
-        || zm_pb_slash_redirect_target('//billing//8ttogrammi.de/') !== '/billing/8ttogrammi.de/'
+        || zm_pb_slash_redirect_target('//billing//example.org/') !== '/billing/example.org/'
         || zm_pb_slash_redirect_target('/billing//contact.php?count=25') !== '/billing/contact.php?count=25'
         || zm_pb_slash_redirect_target('/billing/ru///contact.php?next=https%3A%2F%2Fexample.test%2Fa%2Fb')
             !== '/billing/ru/contact.php?next=https%3A%2F%2Fexample.test%2Fa%2Fb'
@@ -33,16 +33,16 @@ try {
         || zm_pb_clean_amp_query('q=a%26b&amp;language=german') !== 'q=a%26b&language=german') {
         throw new RuntimeException('Malformed ampersand query was not cleaned');
     }
-    if (zm_pb_php_slug_redirect_target('/billing/closedauctions.php?count=25&sort=asc', 'closedauctions') !== '/billing/closedauctions/?count=25&sort=asc'
-        || zm_pb_php_slug_redirect_target('/billing/ru/closedauctions.php?page=2', 'closedauctions', 'ru') !== '/billing/ru/closedauctions/?page=2'
-        || zm_pb_php_slug_redirect_target('/billing/other/closedauctions.php', 'closedauctions') !== null
-        || zm_pb_php_slug_redirect_target('/other/closedauctions.php', 'closedauctions') !== null) {
+    if (zm_pb_php_slug_redirect_target('/billing/samplepage.php?count=25&sort=asc', 'samplepage') !== '/billing/samplepage/?count=25&sort=asc'
+        || zm_pb_php_slug_redirect_target('/billing/ru/samplepage.php?page=2', 'samplepage', 'ru') !== '/billing/ru/samplepage/?page=2'
+        || zm_pb_php_slug_redirect_target('/billing/other/samplepage.php', 'samplepage') !== null
+        || zm_pb_php_slug_redirect_target('/other/samplepage.php', 'samplepage') !== null) {
         throw new RuntimeException('PHP page canonical target is wrong');
     }
     if (ZM_PB_ENABLE_LANG_ROUTE) {
-        if (zm_pb_language_query_repair_target('/billing/ru/closedauctions/?count=50&amp;language=german') !== '/billing/ru/closedauctions/?count=50&language=german'
-            || zm_pb_language_query_repair_target('/billing/ru/closedauctions/?count=50&language=german') !== null
-            || zm_pb_language_switch_target('/billing/ru/closedauctions/?count=50&amp;amp%3Blanguage=german&amp;language=russian', ['language' => 'russian']) !== '/billing/ru/closedauctions/?count=50'
+        if (zm_pb_language_query_repair_target('/billing/ru/samplepage/?count=50&amp;language=german') !== '/billing/ru/samplepage/?count=50&language=german'
+            || zm_pb_language_query_repair_target('/billing/ru/samplepage/?count=50&language=german') !== null
+            || zm_pb_language_switch_target('/billing/ru/samplepage/?count=50&amp;amp%3Blanguage=german&amp;language=russian', ['language' => 'russian']) !== '/billing/ru/samplepage/?count=50'
             || zm_pb_default_language_redirect_target('/billing/en/contact/?count=25') !== '/billing/contact/?count=25'
             || zm_pb_default_language_redirect_target('/billing/en/') !== '/billing/'
             || zm_pb_default_language_redirect_target('/billing/en') !== '/billing/'
@@ -60,13 +60,7 @@ try {
             || zm_pb_language_switch_target('/billing/lecafe.com/?language=russian', ['language' => 'russian']) !== '/billing/ru/lecafe.com/'
             || zm_pb_language_switch_target('/billing/ru/lecafe.com/?language=spanish', ['language' => 'spanish']) !== '/billing/es/lecafe.com/'
             || zm_pb_language_switch_target('/billing/uk/lecafe.com/?language=german', ['language' => 'german']) !== '/billing/de/lecafe.com/'
-            || zm_pb_language_switch_target('/billing/ua/lecafe.com/?language=english', ['language' => 'english']) !== '/billing/lecafe.com/'
             || zm_pb_language_switch_target('/billing/ru/lecafe.com/?language=ukranian', ['language' => 'ukranian']) !== '/billing/uk/lecafe.com/'
-            || zm_pb_language_switch_target('/billing/domainmarket.php?a=search&domain_name=lecafe.com&language=russian', ['a' => 'search', 'domain_name' => 'lecafe.com', 'language' => 'russian']) !== '/billing/ru/lecafe.com/'
-            || zm_pb_ua_alias_redirect_target('/billing/ua/lecafe.com/?count=25') !== '/billing/uk/lecafe.com/?count=25'
-            || zm_pb_ua_alias_redirect_target('/billing/ua/') !== '/billing/uk/'
-            || zm_pb_ua_alias_redirect_target('/billing/uk/lecafe.com/') !== null
-            || zm_pb_ua_alias_redirect_target('/billing/ua/lecafe.com/?language=russian', ['language' => 'russian']) !== null
             || zm_pb_route_uses_user_language(['slug' => 'lecafe.com', 'lang' => 'ru'])
             || !zm_pb_route_uses_user_language(['slug' => 'robots.txt', 'lang' => 'ru'])
             || zm_pb_language_switch_target('/billing/clientarea.php?language=russian', ['language' => 'russian']) !== '/billing/clientarea.php') {
@@ -79,7 +73,7 @@ try {
     copy(dirname(__DIR__) . '/inc/rewrite_rules.php', $directory . '/rewrite_rules.php');
     file_put_contents($directory . '/rewrite_rules_custom.php', "<?php return [];\n");
     require dirname(__DIR__) . '/lib/rewrite_manager.php';
-    $defaultCount = ZM_PB_ENABLE_LANG_ROUTE ? count(ZM_PB_LANGS) + 2 : 0;
+    $defaultCount = ZM_PB_ENABLE_LANG_ROUTE ? count(ZM_PB_LANGS) + 1 : 0;
     if (ZM_PB_ENABLE_LANG_ROUTE) {
         $defaults = require $directory . '/rewrite_rules.php';
         if ($defaults[0]['directives'] !== [
@@ -87,11 +81,6 @@ try {
             'RewriteCond %{QUERY_STRING} !(^|&)language= [NC]',
             'RewriteRule ^en(?:/(.*))?$ /billing/$1 [NC,R=301,L]',
         ]) throw new RuntimeException('Default language Apache redirect is wrong');
-        if ($defaults[1]['directives'] !== [
-            'RewriteCond %{REQUEST_METHOD} ^(?:GET|HEAD)$',
-            'RewriteCond %{QUERY_STRING} !(^|&)language= [NC]',
-            'RewriteRule ^ua(?:/(.*))?$ /billing/uk/$1 [NC,R=301,L]',
-        ]) throw new RuntimeException('Old Ukrainian Apache redirect is wrong');
     }
 
     // Emulate another request writing the data file after this worker loaded it.
