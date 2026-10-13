@@ -36,7 +36,8 @@ if( !ZM_PB_ENABLE_LANG_ROUTE && !empty($lang) ){
 $pageData = zm_pb_load_page_by_slug($slug);
 
 $currentUser = new \WHMCS\Authentication\CurrentUser();
-$is_admin = $currentUser->isAuthenticatedAdmin();
+// WHMCS also exposes the admin session ID on requests outside the admin area.
+$is_admin = $currentUser->isAuthenticatedAdmin() || !empty($_SESSION['adminid']);
 
 global $_LANG;
  
@@ -62,7 +63,8 @@ $adminPreview = $is_admin;
 
 if ( $authType === 'auth' && !$clientLoggedIn && !$adminPreview ) {
     if (isset($request['override_from'])) return;
-    redir('link=' . rawurlencode($full_slug), (ZM_PB_MAINSYSTEM_PRETTY_URLS ? '/login' : '/login.php'));
+    $loginUrl = rtrim(ZM_PB_FULLHOST, '/') . '/' . (ZM_PB_MAINSYSTEM_PRETTY_URLS ? 'login' : 'login.php');
+    header('Location: ' . $loginUrl . '?link=' . rawurlencode($full_slug), true, 302);
     exit;
 } elseif ( $authType === 'noauth' && $clientLoggedIn && !$adminPreview ) {
     if (isset($request['override_from']) || $public_slug === 'index') return;
