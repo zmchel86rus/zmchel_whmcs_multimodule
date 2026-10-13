@@ -1,5 +1,5 @@
 <?php
-if (!defined("ZM_PB_VER")) die('Direct access not allowed');
+if (!defined('ZM_PB_VER')) die('Direct access not allowed');
 use Illuminate\Database\Capsule\Manager as Capsule;
 
 function zmchel_whmcs_multimodule_deactivate(){
@@ -12,10 +12,10 @@ function zmchel_whmcs_multimodule_deactivate(){
         $key = $error->getMessage();
         return ['status' => 'error', 'description' => ZM_PB_ADMINLANG->rewrite_manager->$key ?? $key];
     }
-    $delete_tables = Capsule::table("tbladdonmodules")->where("module", ZM_PB_NAME)->where("setting", "db_action")->value("value");
+    $delete_tables = Capsule::table('tbladdonmodules')->where('module', ZM_PB_NAME)->where('setting', 'db_action')->value('value');
     if ($delete_tables) {
 
-        Capsule::statement("SET FOREIGN_KEY_CHECKS=0");
+        Capsule::statement('SET FOREIGN_KEY_CHECKS=0');
         foreach (['zm_pb_menu_locations', 'zm_pb_menu_items', 'zm_pb_menus'] as $tableName) {
             try {
                 Capsule::schema()->dropIfExists($tableName);
@@ -24,8 +24,8 @@ function zmchel_whmcs_multimodule_deactivate(){
         }
 
         try {
-            if ( zm_pb_has_table("zm_pb_module_settings") ) {
-                Capsule::schema()->dropIfExists("zm_pb_module_settings");
+            if ( zm_pb_has_table('zm_pb_module_settings') ) {
+                Capsule::schema()->dropIfExists('zm_pb_module_settings');
                 $output_text_result .= sprintf($life->table_deleted, 'zm_pb_module_settings') . "\n";
             }
                 
@@ -34,8 +34,8 @@ function zmchel_whmcs_multimodule_deactivate(){
         }
 		
 		try {
-            if ( zm_pb_has_table("zm_pb_pages") ) {
-                Capsule::schema()->dropIfExists("zm_pb_pages");
+            if ( zm_pb_has_table('zm_pb_pages') ) {
+                Capsule::schema()->dropIfExists('zm_pb_pages');
                 $output_text_result .= sprintf($life->table_deleted, 'zm_pb_pages') . "\n";
             }
                 
@@ -44,8 +44,8 @@ function zmchel_whmcs_multimodule_deactivate(){
         }
 		
 		try {
-            if ( zm_pb_has_table("zm_pb_pages_settings") ) {
-                Capsule::schema()->dropIfExists("zm_pb_pages_settings");
+            if ( zm_pb_has_table('zm_pb_pages_settings') ) {
+                Capsule::schema()->dropIfExists('zm_pb_pages_settings');
                 $output_text_result .= sprintf($life->table_deleted, 'zm_pb_pages_settings') . "\n";
             }
                 
@@ -54,8 +54,8 @@ function zmchel_whmcs_multimodule_deactivate(){
         }
 		
 		try {
-            if ( zm_pb_has_table("zm_pb_pages_revisions") ) {
-                Capsule::schema()->dropIfExists("zm_pb_pages_revisions");
+            if ( zm_pb_has_table('zm_pb_pages_revisions') ) {
+                Capsule::schema()->dropIfExists('zm_pb_pages_revisions');
                 $output_text_result .= sprintf($life->table_deleted, 'zm_pb_pages_revisions') . "\n";
             }
                 
@@ -64,8 +64,8 @@ function zmchel_whmcs_multimodule_deactivate(){
         }
 		
 		try {
-            if ( zm_pb_has_table("zm_pb_sitemap") ) {
-                Capsule::schema()->dropIfExists("zm_pb_sitemap");
+            if ( zm_pb_has_table('zm_pb_sitemap') ) {
+                Capsule::schema()->dropIfExists('zm_pb_sitemap');
                 $output_text_result .= sprintf($life->table_deleted, 'zm_pb_sitemap') . "\n";
             }
                 
@@ -74,8 +74,8 @@ function zmchel_whmcs_multimodule_deactivate(){
         }
 		
 		try {
-            if ( zm_pb_has_table("zm_pb_attachments") ) {
-                Capsule::schema()->dropIfExists("zm_pb_attachments");
+            if ( zm_pb_has_table('zm_pb_attachments') ) {
+                Capsule::schema()->dropIfExists('zm_pb_attachments');
                 $output_text_result .= sprintf($life->table_deleted, 'zm_pb_attachments') . "\n";
             }
                 
@@ -84,8 +84,8 @@ function zmchel_whmcs_multimodule_deactivate(){
         }
 		
 		try {
-            if ( zm_pb_has_table("zm_pb_redirects") ) {
-                Capsule::schema()->dropIfExists("zm_pb_redirects");
+            if ( zm_pb_has_table('zm_pb_redirects') ) {
+                Capsule::schema()->dropIfExists('zm_pb_redirects');
                 $output_text_result .= sprintf($life->table_deleted, 'zm_pb_redirects') . "\n";
             }
                 
@@ -93,8 +93,8 @@ function zmchel_whmcs_multimodule_deactivate(){
             $output_text_result .= sprintf($life->table_delete_error, 'zm_pb_redirects', $e->getMessage()) . "\n";
         }
 
-        Capsule::statement("SET FOREIGN_KEY_CHECKS=1");
+        Capsule::statement('SET FOREIGN_KEY_CHECKS=1');
     }
 
-    return array("status" => "success", "description" => $output_text_result);
+    return array('status' => 'success', 'description' => $output_text_result);
 }

@@ -1,5 +1,5 @@
 <?php 
-if (!defined("ZM_PB_VER")) die('Direct access not allowed');
+if (!defined('ZM_PB_VER')) die('Direct access not allowed');
 use Illuminate\Database\Capsule\Manager as Capsule;
 
 if ($request_method !== 'GET') {
@@ -26,7 +26,7 @@ if( $subpage === 'module_db' ){
 
 		$tableDefinitions = [
 			'zm_pb_module_settings' => function () {
-				Capsule::schema()->create("zm_pb_module_settings", function ($table) {
+				Capsule::schema()->create('zm_pb_module_settings', function ($table) {
 					$table->increments('id');
 					$table->enum('type', ['required', 'global_module', 'local_module', 'client', 'custom'])->default('custom');
 					$table->string('setting_name', 128)->unique();
@@ -68,7 +68,7 @@ if( $subpage === 'module_db' ){
 				]);
 			},
 			'zm_pb_pages' => function () {
-				Capsule::schema()->create("zm_pb_pages", function ($table) {
+				Capsule::schema()->create('zm_pb_pages', function ($table) {
 					$table->increments('id');
 					$table->string('name', 128);
 					$table->string('slug', 128);
@@ -83,7 +83,7 @@ if( $subpage === 'module_db' ){
 				});
 			},
 			'zm_pb_pages_settings' => function () {
-				Capsule::schema()->create("zm_pb_pages_settings", function ($table) {
+				Capsule::schema()->create('zm_pb_pages_settings', function ($table) {
 					$table->increments('id');
 					$table->unsignedInteger('page_id');
 					$table->string('lang', 16)->nullable();
@@ -98,7 +98,7 @@ if( $subpage === 'module_db' ){
 				});
 			},
 			'zm_pb_pages_revisions' => function () {
-				Capsule::schema()->create("zm_pb_pages_revisions", function ($table) {
+				Capsule::schema()->create('zm_pb_pages_revisions', function ($table) {
 					$table->increments('id');
 					$table->unsignedInteger('page_id');
 					$table->json('page_main')->nullable();
@@ -111,7 +111,7 @@ if( $subpage === 'module_db' ){
 				});
 			},
 			'zm_pb_sitemap' => function () {
-				Capsule::schema()->create("zm_pb_sitemap", function ($table) {
+				Capsule::schema()->create('zm_pb_sitemap', function ($table) {
 					$table->increments('id');
 					$table->unsignedInteger('page_id');
 					$table->boolean('active')->default(true);
@@ -127,7 +127,7 @@ if( $subpage === 'module_db' ){
 				});
 			},
 			'zm_pb_attachments' => function () {
-				Capsule::schema()->create("zm_pb_attachments", function ($table) {
+				Capsule::schema()->create('zm_pb_attachments', function ($table) {
 					$table->increments('id');
 					$table->string('name', 128)->nullable();
 					$table->string('filename', 128)->unique()->nullable();
@@ -147,7 +147,7 @@ if( $subpage === 'module_db' ){
 				});
 			},
 			'zm_pb_redirects' => function () {
-				Capsule::schema()->create("zm_pb_redirects", function ($table) {
+				Capsule::schema()->create('zm_pb_redirects', function ($table) {
 					$table->increments('id');
 					$table->boolean('active')->default(true);
 					$table->string('from', 128);

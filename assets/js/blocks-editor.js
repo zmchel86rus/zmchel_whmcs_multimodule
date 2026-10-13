@@ -19,7 +19,7 @@ var BlockEditor = {
         });
 
         $('a[data-toggle="tab"]').on('shown.bs.tab', function() {
-            var $active = $('#tab_content_page_settings.active .tab-pane.active .block-editor-content');
+            var $active = $('#mod_pe_tab_content_settings.active .tab-pane.active .block-editor-content');
             if ($active.length) self.ensure($active.data('lang'));
         });
 
@@ -65,7 +65,7 @@ var BlockEditor = {
         });
 
         // The content tab is initially hidden in WHMCS. Initialize only when visible.
-        var $active = $('#tab_content_page_settings.active .tab-pane.active .block-editor-content');
+        var $active = $('#mod_pe_tab_content_settings.active .tab-pane.active .block-editor-content');
         if ($active.length) self.ensure($active.data('lang'));
     },
 

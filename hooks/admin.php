@@ -1,5 +1,5 @@
 <?php
-if (!defined("WHMCS")) die('Direct access not allowed');
+if (!defined('WHMCS')) die('Direct access not allowed');
 
 add_hook('AdminAreaFooterOutput', 10, function($vars) {
     $output = '';

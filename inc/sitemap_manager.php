@@ -98,7 +98,7 @@ function zm_pb_sitemap_overrides($configuration)
 function zm_pb_sitemap_url($slug, $language, $source = null, $custom = '')
 {
     $base = rtrim(ZM_PB_FULLHOST, '/') . '/';
-    $prefix = ZM_PB_ENABLE_LANG_ROUTE && $language !== ZM_PB_DEFLANG ? (ZM_PB_LANGS[$language]['code_lower'] ?? '') : '';
+    $prefix = ZM_PB_ENABLE_LANG_ROUTE && $language !== ZM_PB_DEFLANG ? (ZM_PB_LANGS[$language]['code_ISO639_1'] ?? '') : '';
     if ($source !== null) {
         $path = $source === 'index' ? (ZM_PB_MAINSYSTEM_PRETTY_URLS ? '' : 'index.php')
             : $source . (ZM_PB_MAINSYSTEM_PRETTY_URLS ? '/' : '.php');
@@ -121,7 +121,7 @@ function zm_pb_sitemap_url($slug, $language, $source = null, $custom = '')
             $customPath = substr($customPath, strlen($basePath));
         }
         foreach (ZM_PB_LANGS as $info) {
-            $code = $info['code_lower'];
+            $code = $info['code_ISO639_1'];
             if ($customPath === $code || strpos($customPath, $code . '/') === 0) {
                 $customPath = ltrim(substr($customPath, strlen($code)), '/'); break;
             }

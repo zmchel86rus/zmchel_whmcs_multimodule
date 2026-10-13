@@ -23,7 +23,7 @@ function zm_pb_breadcrumb_source($link)
     $path = trim($path, '/');
     if (ZM_PB_ENABLE_LANG_ROUTE) {
         $segments = explode('/', $path, 2);
-        foreach (ZM_PB_LANGS as $info) if ($segments[0] === $info['code_lower']) { $path = $segments[1] ?? ''; break; }
+        foreach (ZM_PB_LANGS as $info) if ($segments[0] === $info['code_ISO639_1']) { $path = $segments[1] ?? ''; break; }
     }
     $path = preg_replace('/\.php$/i', '', $path);
     if ($path === '' || $path === 'index') {
@@ -37,7 +37,7 @@ function zm_pb_breadcrumb_source($link)
 function zm_pb_breadcrumb_home_url($language)
 {
     if (ZM_PB_ENABLE_LANG_ROUTE && $language !== ZM_PB_DEFLANG && isset(ZM_PB_LANGS[$language])) {
-        return ZM_PB_FULLHOST . ZM_PB_LANGS[$language]['code_lower'] . '/';
+        return ZM_PB_FULLHOST . ZM_PB_LANGS[$language]['code_ISO639_1'] . '/';
     }
     return ZM_PB_FULLHOST . (ZM_PB_MAINSYSTEM_PRETTY_URLS ? '' : 'index.php');
 }
@@ -102,7 +102,7 @@ function zm_pb_client_breadcrumbs(array $vars)
     $request = zm_pb_parse_request();
     if (ZM_PB_ENABLE_LANG_ROUTE && !zm_pb_route_uses_user_language($request)) {
         $language = ZM_PB_DEFLANG;
-        foreach (ZM_PB_LANGS as $name => $info) if ($info['code_lower'] === ($request['lang'] ?? '')) { $language = $name; break; }
+        foreach (ZM_PB_LANGS as $name => $info) if ($info['code_ISO639_1'] === ($request['lang'] ?? '')) { $language = $name; break; }
     }
     if (!isset(ZM_PB_LANGS[$language])) $language = ZM_PB_DEFLANG;
     $breadcrumbs = zm_pb_update_breadcrumbs($vars['breadcrumb'], zm_pb_breadcrumb_overrides($language), $language, $context);

@@ -31,9 +31,9 @@ if (defined('ZMPB_LANGUAGE_SWITCH_PENDING')) return;
 // Apply the public URL language to this response without changing the client profile.
 require_once ZM_PB_INCDIR . 'route_guard.php';
 if (ZM_PB_ENABLE_LANG_ROUTE && !zm_pb_route_uses_user_language($request)) {
-    $routeLanguage = $request['lang'] ?: (ZM_PB_LANGS[ZM_PB_DEFLANG]['code_lower'] ?? '');
+    $routeLanguage = $request['lang'] ?: (ZM_PB_LANGS[ZM_PB_DEFLANG]['code_ISO639_1'] ?? '');
     foreach (ZM_PB_LANGS as $languageName => $languageInfo) {
-        if ($languageInfo['code_lower'] !== $routeLanguage) continue;
+        if ($languageInfo['code_ISO639_1'] !== $routeLanguage) continue;
         if (!defined('USER_LANG')) define('USER_LANG', $languageName);
         $languageFile = ROOTDIR . '/lang/' . $languageName . '.php';
         if (is_file($languageFile)) {
@@ -142,7 +142,7 @@ if (isset($request['page']) && $system_page !== null) {
     $_SERVER['REQUEST_URI'] = '/index.php?' . $_SERVER['QUERY_STRING'];
 }
 
-if ( !defined("ZMPB_BUILD_PAGE") ) {
+if ( !defined('ZMPB_BUILD_PAGE') ) {
     define('ZMPB_BUILD_PAGE', true );
     require_once ZM_PB_PAGE_BUILDER_FILE;
 }

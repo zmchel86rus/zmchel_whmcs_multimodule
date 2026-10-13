@@ -1,5 +1,5 @@
 <?php
-if (!defined("WHMCS")) die('Direct access not allowed');
+if (!defined('WHMCS')) die('Direct access not allowed');
 
 if (zm_pb_maintenance_required()) {
     if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'HEAD') echo zm_pb_maintenance_response();
@@ -34,7 +34,7 @@ function zm_pb_maintenance_response()
     if ($base !== '' && strpos($path, $base . '/') === 0) $path = substr($path, strlen($base));
     if (ZM_PB_ENABLE_LANG_ROUTE) {
         $prefix = explode('/', ltrim($path, '/'), 2)[0];
-        foreach (ZM_PB_LANGS as $name => $info) if ($prefix === $info['code_lower']) { $language = $name; break; }
+        foreach (ZM_PB_LANGS as $name => $info) if ($prefix === $info['code_ISO639_1']) { $language = $name; break; }
     }
     $messages = require ZM_PB_INCDIR . 'maintenance_lang.php';
     $text = $messages[$language] ?? $messages['english'];

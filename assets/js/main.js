@@ -1,4 +1,4 @@
-if (['#tab_redirects_settings', '#tab_transfer'].includes(window.location.hash)) {
+if (['#mod_ss_tab_redirects', '#mod_ss_tab_transfer'].includes(window.location.hash)) {
     $('#zm-pagebuilder a').filter(function () { return this.getAttribute('href') === window.location.hash; }).tab('show');
 }
 
@@ -93,7 +93,7 @@ $('#zm-pagebuilder form').filter(function () {
                 }
                 jQuery.growl.notice({ title: response.title, message: response.message })
                 if (formData.get('subpage') === 'module_settings' && formData.get('action') === 'import_module') {
-                    window.location.hash = 'tab_transfer';
+                    window.location.hash = 'mod_ss_tab_transfer';
                     window.location.reload();
                     return;
                 }

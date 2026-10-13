@@ -23,7 +23,7 @@ function zm_pb_default_language_redirect_target($uri, array $query = [])
         // An explicit switch must reach WHMCS so it can save the preference.
         if (strcasecmp((string) $name, 'language') === 0) return null;
     }
-    $code = ZM_PB_LANGS[ZM_PB_DEFLANG]['code_lower'] ?? '';
+    $code = ZM_PB_LANGS[ZM_PB_DEFLANG]['code_ISO639_1'] ?? '';
     if (!preg_match('/^[a-z]{2,3}$/D', $code)) return null;
     $parts = parse_url($uri);
     if ($parts === false || isset($parts['host']) || isset($parts['scheme'])) return null;
@@ -34,23 +34,6 @@ function zm_pb_default_language_redirect_target($uri, array $query = [])
     if (!preg_match('~^/' . preg_quote($code, '~') . '(?=/|$)~i', $relative, $match)) return null;
     $suffix = substr($relative, strlen($match[0]));
     $target = $base . '/' . ltrim($suffix, '/');
-    return $target . (isset($parts['query']) && $parts['query'] !== '' ? '?' . $parts['query'] : '');
-}
-
-/** Redirect old /ua/ links to the configured Ukrainian /uk/ route. */
-function zm_pb_ua_alias_redirect_target($uri, array $query = [])
-{
-    if (!ZM_PB_ENABLE_LANG_ROUTE || !isset(ZM_PB_LANGS['ukranian'])
-        || (ZM_PB_LANGS['ukranian']['code_lower'] ?? '') !== 'uk' || isset($query['language'])) return null;
-    $parts = parse_url($uri);
-    if ($parts === false || isset($parts['scheme']) || isset($parts['host'])) return null;
-    $path = $parts['path'] ?? '';
-    $base = rtrim(parse_url(ZM_PB_FULLHOST, PHP_URL_PATH) ?: '', '/');
-    if ($base !== '' && $path !== $base && strpos($path, $base . '/') !== 0) return null;
-    $relative = substr($path, strlen($base));
-    if (!preg_match('~^/ua(?=/|$)~i', $relative)) return null;
-    $suffix = substr($relative, 3);
-    $target = $base . '/uk' . ($suffix === '' ? '/' : $suffix);
     return $target . (isset($parts['query']) && $parts['query'] !== '' ? '?' . $parts['query'] : '');
 }
 
@@ -69,7 +52,7 @@ function zm_pb_language_home_target($uri, array $query = [])
 
     $language = zm_pb_preferred_language();
     if ($language === strtolower(ZM_PB_DEFLANG) || !isset(ZM_PB_LANGS[$language])) return null;
-    $code = ZM_PB_LANGS[$language]['code_lower'] ?? '';
+    $code = ZM_PB_LANGS[$language]['code_ISO639_1'] ?? '';
     if (!preg_match('/^[a-z]{2,3}$/D', $code)) return null;
     return $base . '/' . $code . '/' . (isset($parts['query']) && $parts['query'] !== '' ? '?' . $parts['query'] : '');
 }
@@ -134,7 +117,7 @@ function zm_pb_language_switch_target($uri, array $query)
     if (!ZM_PB_ENABLE_LANG_ROUTE || !is_string($query['language'] ?? null)) return null;
     $language = strtolower($query['language']);
     if (!isset(ZM_PB_LANGS[$language])) return null;
-    $code = ZM_PB_LANGS[$language]['code_lower'] ?? '';
+    $code = ZM_PB_LANGS[$language]['code_ISO639_1'] ?? '';
     if (!preg_match('/^[a-z]{2,3}$/D', $code)) return null;
     $parts = parse_url($uri);
     if ($parts === false || isset($parts['host'], $parts['scheme']) || empty($parts['path']) || $parts['path'][0] !== '/') return null;
@@ -147,13 +130,10 @@ function zm_pb_language_switch_target($uri, array $query)
     $path = ltrim($path, '/');
     $segments = explode('/', $path, 2);
     foreach (ZM_PB_LANGS as $info) {
-        if (strcasecmp($segments[0], $info['code_lower'] ?? '') === 0) {
+        if (strcasecmp($segments[0], $info['code_ISO639_1'] ?? '') === 0) {
             $path = $segments[1] ?? '';
             break;
         }
-    }
-    if ((ZM_PB_LANGS['ukranian']['code_lower'] ?? '') === 'uk' && preg_match('~^ua(?:/|$)~i', $path)) {
-        $path = ltrim(substr($path, 2), '/');
     }
     // Never turn a language selection on an endpoint into a public page route.
     if (preg_match('~^(?:admin|api|assets|modules|includes|vendor|crons|oauth)(?:/|$)~i', $path)) return null;

@@ -1,5 +1,5 @@
 <?php
-if (!defined("WHMCS")) die('Direct access not allowed');
+if (!defined('WHMCS')) die('Direct access not allowed');
 
 if (php_sapi_name() !== 'cli' && !defined('ADMINAREA')) {
     require_once ZM_PB_INCDIR . 'breadcrumbs.php';
@@ -25,7 +25,7 @@ if (php_sapi_name() !== 'cli' && !defined('ADMINAREA')) {
                 $candidate = strtolower($phpSlug[1]);
                 $languageCodes = [''];
                 if (ZM_PB_ENABLE_LANG_ROUTE) {
-                    foreach (ZM_PB_LANGS as $languageInfo) $languageCodes[] = $languageInfo['code_lower'];
+                    foreach (ZM_PB_LANGS as $languageInfo) $languageCodes[] = $languageInfo['code_ISO639_1'];
                 }
                 foreach ($languageCodes as $languageCode) {
                     $prettyTarget = zm_pb_php_slug_redirect_target($slashTarget, $candidate, $languageCode);
@@ -46,8 +46,6 @@ if (php_sapi_name() !== 'cli' && !defined('ADMINAREA')) {
         ? zm_pb_language_query_repair_target($switchUri) : null;
     $defaultLanguageTarget = in_array($_SERVER['REQUEST_METHOD'] ?? '', ['GET', 'HEAD'], true)
         ? zm_pb_default_language_redirect_target($switchUri, $_GET) : null;
-    $uaAliasTarget = in_array($_SERVER['REQUEST_METHOD'] ?? '', ['GET', 'HEAD'], true)
-        ? zm_pb_ua_alias_redirect_target($switchUri, $_GET) : null;
     $homeTarget = in_array($_SERVER['REQUEST_METHOD'] ?? '', ['GET', 'HEAD'], true)
         ? zm_pb_language_home_target($switchUri, $_GET) : null;
     if ($switchTarget !== null) {
@@ -65,9 +63,6 @@ if (php_sapi_name() !== 'cli' && !defined('ADMINAREA')) {
     } elseif ($defaultLanguageTarget !== null) {
         header('Location: ' . $defaultLanguageTarget, true, 301);
         exit;
-    } elseif ($uaAliasTarget !== null) {
-        header('Location: ' . $uaAliasTarget, true, 301);
-        exit;
     } elseif ($homeTarget !== null) {
         // A preference depends on the session: do not cache a permanent redirect.
         header('Cache-Control: no-store, private');
@@ -79,5 +74,5 @@ if (php_sapi_name() !== 'cli' && !defined('ADMINAREA')) {
         header('Location: ' . $indexTarget, true, $status);
         exit;
     }
-    unset($switchUri, $switchTarget, $repairTarget, $defaultLanguageTarget, $uaAliasTarget, $homeTarget, $indexTarget);
+    unset($switchUri, $switchTarget, $repairTarget, $defaultLanguageTarget, $homeTarget, $indexTarget);
 }

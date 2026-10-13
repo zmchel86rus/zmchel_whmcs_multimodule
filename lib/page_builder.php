@@ -1,9 +1,11 @@
 <?php
-if (!defined("ZM_PB_VER")) die('Direct access not allowed');
+if (!defined('ZM_PB_VER')) die('Direct access not allowed');
 /* * ********************************************************************
  * Page Builder Main file
+ * 
+ * @var $request = array [slug,lang] - Declared in hooks/route.php
  * ******************************************************************** */
-if (!defined("ZMPB_BUILD_PAGE")) die("#ERROR-BUILD-PAGE #1");
+if (!defined('ZMPB_BUILD_PAGE')) die('#ERROR-BUILD-PAGE #1');
 require_once ZM_PB_INCDIR . 'breadcrumbs.php';
 
 use WHMCS\ClientArea;
@@ -12,11 +14,11 @@ $slug = $request['slug'] ?? '';
 $lang = $request['lang'] ?? '';
 $public_slug = $request['override_from'] ?? $slug;
 $public_path = $request['override_path'] ?? ($public_slug === 'index' ? '' : $public_slug . '/');
-$full_slug = ( !empty($lang) && ZM_PB_ENABLE_LANG_ROUTE ? "$lang/" : "") . $public_path;
+$full_slug = ( !empty($lang) && ZM_PB_ENABLE_LANG_ROUTE ? $lang.'/' : '') . $public_path;
 $breadcrumb_language = ZM_PB_DEFLANG;
 if (ZM_PB_ENABLE_LANG_ROUTE) {
     foreach (ZM_PB_LANGS as $language_name => $language_info) {
-        if (($language_info['code_lower'] ?? '') === $lang) { $breadcrumb_language = $language_name; break; }
+        if (($language_info['code_ISO639_1'] ?? '') === $lang) { $breadcrumb_language = $language_name; break; }
     }
 }
 $breadcrumb_home = zm_pb_breadcrumb_home_url($breadcrumb_language);
@@ -47,9 +49,6 @@ if ( !$pageData || ($pageData['page']->status !== 'publish' || $pageData['page']
     $ca->initPage();
     $ca->output();
 
-    //perf301Mark('PB_route_E');
-    //perf301Flush();
-
     exit;
 }
 
@@ -73,7 +72,7 @@ $settings_request = $request;
 if (isset($request['override_from']) && $lang !== '') {
     $requested_language = null;
     foreach (ZM_PB_LANGS as $language_name => $language_data) {
-        if ($language_data['code_lower'] === $lang) {
+        if ($language_data['code_ISO639_1'] === $lang) {
             $requested_language = $language_name;
             break;
         }
@@ -94,9 +93,6 @@ if (!$page_settings_data) {
     $ca->addToBreadCrumb('', '404');
     $ca->initPage();
     $ca->output();
-
-    //perf301Mark('PB_route_E');
-    //perf301Flush();
 
     exit;
 }
@@ -222,7 +218,7 @@ if ($meta_only) {
             $translates->pages_manager->page_status->title . ': ' .
             htmlspecialchars($statusLabel . $typeLabel) . 
             ' | ' . 
-            " <a href=\"".$full_host."admin/addonmodules.php?module=".$module_name."&subpage=pages_editor&page_id=".$page->id."\">".$translates->pages_manager->edit_page->title."</a> " .
+            ' <a href="'.$full_host.'admin/addonmodules.php?module='.$module_name.'&subpage=pages_editor&page_id='.$page->id.'">'.$translates->pages_manager->edit_page->title.'</a> ' .
             ' </div></div>';
         });
     }
@@ -235,7 +231,7 @@ if ($meta_only) {
 
     if( $page_settings_data->settings->enable_breadcrumb ){
 
-        if ( defined("ZMPB_PAGE_OVERRIDE_MAIN") ){
+        if ( defined('ZMPB_PAGE_OVERRIDE_MAIN') ){
             $ca->addToBreadCrumb('', $breadcrumb);
         }
         else {
@@ -258,7 +254,7 @@ if ($meta_only) {
 
     $ca->assign('default_lang_code', $supported_langs[$default_lang]['code_ISO639_1']);
     $ca->assign('lang_code', $current_lang['code_ISO639_1']);
-    $ca->assign('lang_route_code', $current_lang['code_lower']);
+    $ca->assign('lang_route_code', $current_lang['code_ISO639_1']);
     $ca->assign('lang_locale', $current_lang['locale']);
     $ca->assign('lang_localeBCP47', $current_lang['locale_BCP47']);
     if (!empty(ZM_PB_SITE_FAVICON)) $ca->assign('custom_favicon_isset', true);
@@ -276,7 +272,7 @@ if( $override_type === 'full' || $meta_only || $enable_partial_with_meta ){
         $lang_code = $isset_lang['code_ISO639_1'];
         $lang_localeBCP47 = $isset_lang['locale_BCP47'];
 
-        $attr_lang = "lang=\"{$lang_code}\"";
+        $attr_lang = 'lang="'.$lang_code.'"';
 
         $html = '';
 
@@ -301,7 +297,7 @@ if( $override_type === 'full' || $meta_only || $enable_partial_with_meta ){
         }
         
         if (!empty($seo->meta_canonical)) {
-            if ( defined("ZMPB_PAGE_OVERRIDE_MAIN") ) $html .= '<link rel="canonical" href="' . htmlspecialchars($full_host) . ($page_lang !== $default_lang ? $isset_lang['code_lower'].'/' : '') . '" />' . "\n";
+            if ( defined('ZMPB_PAGE_OVERRIDE_MAIN') ) $html .= '<link rel="canonical" href="' . htmlspecialchars($full_host) . ($page_lang !== $default_lang ? $isset_lang['code_ISO639_1'].'/' : '') . '" />' . "\n";
             else $html .= '<link rel="canonical" href="' . htmlspecialchars($seo->meta_canonical) . '" />' . "\n";
         }
 
@@ -310,10 +306,9 @@ if( $override_type === 'full' || $meta_only || $enable_partial_with_meta ){
         
         foreach ($page_langs as $lang_name) {
             $lang_sub_code = $supported_langs[$lang_name]['code_ISO639_1'];
-            $lang_route_code = $supported_langs[$lang_name]['code_lower'];
             $lang_sub_locale = $supported_langs[$lang_name]['locale'];
-            $url = "{$full_host}{$lang_route_code}/{$public_path}";
-            if( $lang_name === $default_lang || !$langs_route) $url = "{$full_host}{$public_path}";
+            $url = $full_host.$lang_sub_code.'/'.$public_path;
+            if( $lang_name === $default_lang || !$langs_route) $url = $full_host.$public_path;
 
             $alt_links .= '<link rel="alternate" hreflang="'.$lang_sub_code.'" href="' . htmlspecialchars($url, ENT_QUOTES, 'UTF-8') . '" />' . "\n";
             $alt_meta .= '<meta property="'.($lang_name === $page_lang ? 'og:locale' : 'og:locale:alternate').'" content="'.htmlspecialchars($lang_sub_locale, ENT_QUOTES, 'UTF-8').'" />' . "\n";
@@ -327,19 +322,19 @@ if( $override_type === 'full' || $meta_only || $enable_partial_with_meta ){
 
         switch ($seo->meta_robots) {
             case 'i-f':
-                $html .= "<meta name=\"robots\" content=\"index, follow\">\n";
+                $html .= '<meta name="robots" content="index, follow">'."\n";
                 break;
 
             case 'n-f':
-                $html .= "<meta name=\"robots\" content=\"noindex, follow\">\n";
+                $html .= '<meta name="robots" content="noindex, follow">'."\n";
                 break;
 
             case 'i-n':
-                $html .= "<meta name=\"robots\" content=\"index, nofollow\">\n";
+                $html .= '<meta name="robots" content="index, nofollow">'."\n";
                 break;
 
             case 'n-n':
-                $html .= "<meta name=\"robots\" content=\"noindex, nofollow\">\n";
+                $html .= '<meta name="robots" content="noindex, nofollow">'."\n";
                 break;
 
             default:
@@ -402,12 +397,7 @@ if( $override_type === 'full' || $meta_only || $enable_partial_with_meta ){
     });
 }
 
-
-
 if ( $meta_only || $enable_partial_with_meta ) return;
-
-//perf301Mark('PB_route_E');
-//perf301Flush();
 
 $ca->initPage();
 $ca->output();

@@ -17,7 +17,7 @@ function zm_pb_redirect_override_target($url, array $overrides) {
     // A matching native slug is already a public destination, not an alias.
     if (in_array($request['slug'], $sources, true)) return null;
     $language = ZM_PB_DEFLANG;
-    foreach (ZM_PB_LANGS as $name => $info) if ($info['code_lower'] === $request['lang']) $language = $name;
+    foreach (ZM_PB_LANGS as $name => $info) if ($info['code_ISO639_1'] === $request['lang']) $language = $name;
     $target = zm_pb_sitemap_url($request['slug'], $language, $sources[0]);
     return zm_pb_redirect_url($target) === zm_pb_redirect_url($url) ? null : $target;
 }

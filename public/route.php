@@ -5,7 +5,7 @@ $path = parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH) ?: '';
 $segments = explode('/', trim($path, '/'), 2);
 $languages = require dirname(__DIR__) . '/supported_langs.php';
 foreach ($languages as $info) {
-    if ($info['code_lower'] !== ($segments[0] ?? '')) continue;
+    if ($info['code_ISO639_1'] !== ($segments[0] ?? '')) continue;
     $route = '/' . ($segments[1] ?? '');
     $_GET['rp'] = $route;
     $query = $_SERVER['QUERY_STRING'] ?? '';

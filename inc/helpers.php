@@ -1,5 +1,5 @@
 <?php
-if (!defined("ZM_PB_VER")) die('Direct access not allowed');
+if (!defined('ZM_PB_VER')) die('Direct access not allowed');
 use Illuminate\Database\Capsule\Manager as Capsule;
 
 if (!function_exists('perf301Mark')) {
@@ -277,7 +277,7 @@ if (!function_exists('zm_pb_resolve_page_settings')) {
         // Map of url lang codes => internal lang names
         $langCodes = [];
         foreach (ZM_PB_LANGS as $langName => $langInfo) {
-            $langCodes[$langInfo['code_lower']] = $langName;
+            $langCodes[$langInfo['code_ISO639_1']] = $langName;
         }
 
         $allSettings = $pageData['settings'];
@@ -380,7 +380,7 @@ if (!function_exists('zm_pb_parse_request')) {
             // Map of url lang codes => internal lang names
             $langCodes = [];
             foreach (ZM_PB_LANGS as $langName => $langInfo) {
-                $langCodes[$langInfo['code_lower']] = $langName;
+                $langCodes[$langInfo['code_ISO639_1']] = $langName;
             }
 
             // First segment might be a language code
@@ -554,7 +554,7 @@ if (!function_exists('zm_pb_save_grapes_content')) {
     }
 }
 if (!function_exists('zm_pb_transtaliteration')) {
-    function zm_pb_transtaliteration($name,$type="file") {
+    function zm_pb_transtaliteration($name,$type='file') {
         
         $transliteration_map_letters = [
             'а' => 'a', 'б' => 'b', 'в' => 'v', 'г' => 'g', 'д' => 'd',
