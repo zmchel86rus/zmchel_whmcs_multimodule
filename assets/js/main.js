@@ -286,6 +286,10 @@ $('#zm-pagebuilder .image-wrapper-input.with_preview').on('change', function (e)
     showImage(url, true);
 });
 
+$('#zm-pagebuilder .reset-site-favicon').on('click', function () {
+    $(this).closest('.image-wrapper').find('input.image-wrapper-input.with_preview').val('').trigger('change');
+});
+
 $('#zm-pagebuilder #reset_all_forms').on('click', function() {
     if (confirm(translate_texts.you_sure)) {
         $('#zm-pagebuilder form').each(function(){ this.reset(); })

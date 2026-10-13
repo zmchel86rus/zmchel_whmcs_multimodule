@@ -455,6 +455,7 @@ return (object)[
         'update_with_arror' => 'Beim Aktualisieren ist ein Fehler aufgetreten.',
         'cancel' => 'Abbrechen',
         'cancel_all' => 'Alle abbrechen',
+        'reset' => 'Zurücksetzen',
         'all_canceled' => 'Alles erfolgreich abgebrochen',
         'edit' => 'Bearbeiten',
         'editing' => 'Bearbeitung',

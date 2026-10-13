@@ -96,6 +96,7 @@ const translate_texts = {
                                 data-preview="preview_site_favicon_image_main,preview_site_favicon_image_2,preview_site_favicon_image_3"
                                 value="{$con_data['value']|default:''|escape:'html'}">
                             <button type="button" class="btn btn-default open-media-manager mar-t-1 mar-b-1">{$media_manager_translates->select}</button>
+                            <button type="button" class="btn btn-default reset-site-favicon mar-t-1 mar-b-1" aria-controls="editable_vars[site_favicon]">{$other_translates->reset|escape:'html'}</button>
                             <div class="browser-preview d-flex gap-1">
                                 <div id="preview_site_favicon_image_main" class="browser-preview__favicon_main">{if $con_data['value']}<img src="{$con_data['value']|escape}" alt="Alternative name for Favicon not supported" class="img-favicon" onerror="this.style.display='none';">{/if}</div>
                                 <div class="browser-preview__chrome">

@@ -455,6 +455,7 @@ return (object)[
         'update_with_arror' => 'Se produjo un error al actualizar.',
         'cancel' => 'Cancelar',
         'cancel_all' => 'Cancelar todo',
+        'reset' => 'Restablecer',
         'all_canceled' => 'Todo se canceló correctamente',
         'edit' => 'Editar',
         'editing' => 'Edición',

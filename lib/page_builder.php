@@ -4,6 +4,7 @@ if (!defined("ZM_PB_VER")) die('Direct access not allowed');
  * Page Builder Main file
  * ******************************************************************** */
 if (!defined("ZMPB_BUILD_PAGE")) die("#ERROR-BUILD-PAGE #1");
+require_once ZM_PB_INCDIR . 'breadcrumbs.php';
 
 use WHMCS\ClientArea;
 
@@ -12,6 +13,13 @@ $lang = $request['lang'] ?? '';
 $public_slug = $request['override_from'] ?? $slug;
 $public_path = $request['override_path'] ?? ($public_slug === 'index' ? '' : $public_slug . '/');
 $full_slug = ( !empty($lang) && ZM_PB_ENABLE_LANG_ROUTE ? "$lang/" : "") . $public_path;
+$breadcrumb_language = ZM_PB_DEFLANG;
+if (ZM_PB_ENABLE_LANG_ROUTE) {
+    foreach (ZM_PB_LANGS as $language_name => $language_info) {
+        if (($language_info['code_lower'] ?? '') === $lang) { $breadcrumb_language = $language_name; break; }
+    }
+}
+$breadcrumb_home = zm_pb_breadcrumb_home_url($breadcrumb_language);
 $override_type = defined('ZMPB_PAGE_OVERRIDE_TYPE') ? ZMPB_PAGE_OVERRIDE_TYPE : 'full';
 $meta_only = $override_type === 'meta_only';
 $enable_partial_with_meta = in_array($override_type,['partial_before_meta','partial_after_meta']);
@@ -34,7 +42,7 @@ if ( !$pageData || ($pageData['page']->status !== 'publish' || $pageData['page']
     http_response_code(404);
     $ca->setPageTitle('404 ' . (!empty($_LANG['errorPage']['404']['title']) ? ' - ' . $_LANG['errorPage']['404']['title'] : ''));
     $ca->setTemplate('error/page-not-found');
-    $ca->addToBreadCrumb( (ZM_PB_MAINSYSTEM_PRETTY_URLS ? '/' : 'index.php'), $_LANG['hometitle'] ?? 'Home');
+    $ca->addToBreadCrumb($breadcrumb_home, $_LANG['hometitle'] ?? 'Home');
     $ca->addToBreadCrumb('', '404');
     $ca->initPage();
     $ca->output();
@@ -82,7 +90,7 @@ if (!$page_settings_data) {
     http_response_code(404);
     $ca->setPageTitle('404 ' . (!empty($_LANG['errorPage']['404']['title']) ? ' - ' . $_LANG['errorPage']['404']['title'] : ''));
     $ca->setTemplate('error/page-not-found');
-    $ca->addToBreadCrumb( (ZM_PB_MAINSYSTEM_PRETTY_URLS ? '/' : 'index.php'), $_LANG['hometitle'] ?? 'Home');
+    $ca->addToBreadCrumb($breadcrumb_home, $_LANG['hometitle'] ?? 'Home');
     $ca->addToBreadCrumb('', '404');
     $ca->initPage();
     $ca->output();
@@ -231,7 +239,7 @@ if ($meta_only) {
             $ca->addToBreadCrumb('', $breadcrumb);
         }
         else {
-            $ca->addToBreadCrumb( (ZM_PB_MAINSYSTEM_PRETTY_URLS ? '/' : 'index.php'), $_LANG['hometitle'] ?? 'Home');
+            $ca->addToBreadCrumb($breadcrumb_home, $_LANG['hometitle'] ?? 'Home');
             $ca->addToBreadCrumb('', $breadcrumb);
         }
     }
