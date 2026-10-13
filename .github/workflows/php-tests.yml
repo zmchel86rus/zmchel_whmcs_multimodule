@@ -1,0 +1,26 @@
+name: PHP tests
+
+on: [push, pull_request]
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: ['7.4', '8.1']
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+
+      - name: Check syntax and run standalone tests
+        run: |
+          php -l module_init.php
+          php tests/contact_schema.php
+          php tests/images.php
