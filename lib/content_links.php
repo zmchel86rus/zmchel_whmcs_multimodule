@@ -42,6 +42,12 @@ class ZM_PB_ContentLinks
             $path = substr($path, strlen($base));
         }
         $path = ltrim($path, '/');
+        if (!ZM_PB_PRETTY_URLS && $path === 'index.php' && isset($parts['query'])) {
+            parse_str($parts['query'], $moduleQuery);
+            if (($moduleQuery['m'] ?? null) === ZM_PB_NAME && is_string($moduleQuery['slug'] ?? null)) {
+                $path = trim($moduleQuery['slug'], '/');
+            }
+        }
         foreach (ZM_PB_LANGS as $info) {
             $code = $info['code_ISO639_1'];
             if ($path === $code || strpos($path, $code . '/') === 0) {

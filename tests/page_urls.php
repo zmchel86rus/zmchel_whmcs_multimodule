@@ -46,6 +46,7 @@ define('ZM_PB_PRETTY_URLS', in_array('--pretty', $argv, true));
 define('ZM_PB_LANGS', require dirname(__DIR__) . '/supported_langs.php');
 require dirname(__DIR__) . '/inc/menu_manager.php';
 require dirname(__DIR__) . '/inc/sitemap_manager.php';
+require dirname(__DIR__) . '/inc/url_redirects.php';
 require dirname(__DIR__) . '/lib/content_links.php';
 require dirname(__DIR__) . '/lib/content_builder.php';
 
@@ -56,13 +57,16 @@ function expect_url($actual, $expected)
 
 $page = (object) ['slug' => 'closedauctions'];
 $base = 'https://example.test/billing/';
+expect_url(zm_pb_escaped_query_redirect_target('/billing/?m=zmchel_whmcs_multimodule&amp;slug=closedauctions&amp;lang=ru'),
+    '/billing/?m=zmchel_whmcs_multimodule&slug=closedauctions&lang=ru');
+expect_url(zm_pb_escaped_query_redirect_target('/billing/?m=another_module&amp;slug=closedauctions'), null);
 if (ZM_PB_PRETTY_URLS) {
     expect_url(zm_pb_menu_page_url($page, 'russian', []), $base . 'ru/closedauctions/');
     expect_url(zm_pb_menu_page_url($page, 'english', ['closedauctions' => 'contact']), $base . 'contact/');
     expect_url(zm_pb_sitemap_url('closedauctions', 'russian'), $base . 'ru/closedauctions/');
     expect_url(ZM_PB_ContentLinks::localize('/billing/closedauctions/', 'russian'), '/billing/ru/closedauctions/');
 } else {
-    $plain = $base . 'index.php?m=zmchel_whmcs_multimodule&slug=closedauctions';
+    $plain = $base . '?m=zmchel_whmcs_multimodule&slug=closedauctions';
     expect_url(zm_pb_menu_page_url($page, 'english', []), $plain);
     expect_url(zm_pb_menu_page_url($page, 'russian', []), $plain . '&lang=ru');
     expect_url(zm_pb_menu_page_url($page, 'english', ['closedauctions' => 'contact']), $plain);
@@ -71,7 +75,9 @@ if (ZM_PB_PRETTY_URLS) {
     expect_url(ZM_PB_ContentLinks::localize($base . 'closedauctions/?sort=recent#results', 'russian'),
         $plain . '&lang=ru&sort=recent#results');
     expect_url(ZM_PB_ContentLinks::localize('/billing/contact/', 'english'),
-        $base . 'index.php?m=zmchel_whmcs_multimodule&slug=contact');
+        $base . '?m=zmchel_whmcs_multimodule&slug=contact');
+    expect_url(ZM_PB_ContentLinks::localize('/billing/index.php?m=zmchel_whmcs_multimodule&slug=closedauctions', 'russian'),
+        $plain . '&lang=ru');
     expect_url(ZM_PB_ContentLinks::localize('/billing/clientarea.php', 'english'), '/billing/clientarea.php');
     expect_url(ZM_PB_ContentLinks::localize('https://elsewhere.test/closedauctions/', 'english'),
         'https://elsewhere.test/closedauctions/');

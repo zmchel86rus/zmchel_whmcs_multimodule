@@ -1,5 +1,26 @@
 (function() {
     'use strict';
+    function repairHref(link) {
+        if (!link || !link.getAttribute) return;
+        var href = link.getAttribute('href');
+        if (!href || href.indexOf('&amp;') === -1) return;
+        if (!link.closest('.zm-pb-menu-item, .zm-pb-footer-menu, .zm-pb-sidebar-menu') && href.indexOf('?m=') === -1) return;
+        var clean = href.replace(/&amp;(?=[a-z0-9_-]+=)/gi, '&');
+        if (clean !== href) link.setAttribute('href', clean);
+    }
+    document.querySelectorAll('a[href]').forEach(repairHref);
+    document.addEventListener('click', function(event) { repairHref(event.target.closest && event.target.closest('a[href]')); }, true);
+    document.addEventListener('auxclick', function(event) { repairHref(event.target.closest && event.target.closest('a[href]')); }, true);
+    new MutationObserver(function(changes) {
+        changes.forEach(function(change) {
+            if (change.type === 'attributes') repairHref(change.target);
+            else change.addedNodes.forEach(function(node) {
+                if (node.nodeType !== 1) return;
+                if (node.matches('a[href]')) repairHref(node);
+                node.querySelectorAll('a[href]').forEach(repairHref);
+            });
+        });
+    }).observe(document.body, { subtree: true, childList: true, attributes: true, attributeFilter: ['href'] });
     var data = document.getElementById('zm-pb-menu-data');
     if (!data) return;
     var menus = JSON.parse(data.textContent), toggles = [];
@@ -47,10 +68,6 @@
                 decorate(li, item, menu.prefix + index + '_', true);
             });
         });
-    });
-    document.querySelectorAll('.zm-pb-menu-item a[href], .zm-pb-footer-links a[href], .zm-pb-sidebar-menu a[href]').forEach(function(link) {
-        var href = link.getAttribute('href');
-        if (href && href.indexOf('&amp;') !== -1) link.setAttribute('href', href.replace(/&amp;/g, '&'));
     });
     if (menus.primary_navbar) {
         var overflow = document.querySelector('#nav > .collapsable-dropdown');

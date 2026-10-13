@@ -23,7 +23,7 @@ On WHMCS system routes outside `ZM_PB_MAINSYSTEM_DEFAULT_PAGES`, such as `client
 
 For a custom link, **Link URL language** can leave the supplied URL unchanged, for example `/clientarea.php`; its label can still be translated. By default the URL is localized. This option is stored in `zm_pb_menu_items.localize_url` and included in menu exports. On an existing installation, add the column through **Module database**; the menu manager does not change the schema itself.
 
-Page items store the default-language link. At output time the URL is recalculated from the current slug, pretty URL settings, language routing and published translations. The default language has no prefix. Plain URLs use `index.php?m=zmchel_whmcs_multimodule&slug=...&lang=...` without changing the profile language. If a translation is missing, the published default translation is used.
+Page items store the default-language link. At output time the URL is recalculated from the current slug, pretty URL settings, language routing and published translations. The default language has no prefix. Plain URLs use `?m=zmchel_whmcs_multimodule&slug=...&lang=...` without changing the profile language. If a translation is missing, the published default translation is used.
 
 An empty page-item label uses its translated breadcrumb or meta title, then the page name. An explicit label overrides it; a translated label takes precedence when available. External URLs, `mailto:`, `tel:`, anchors and system assets receive no language prefix.
 

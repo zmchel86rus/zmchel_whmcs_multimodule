@@ -9,6 +9,7 @@ function add_hook($name, $priority, $callback) { $GLOBALS['testHooks'][$name][$p
 $testRoot = sys_get_temp_dir() . '/zmpb-sitemap-test-' . bin2hex(random_bytes(6));
 mkdir($testRoot . '/inc', 0755, true);
 copy($module . 'inc/sitemap_manager.php', $testRoot . '/inc/sitemap_manager.php');
+copy($module . 'inc/page_urls.php', $testRoot . '/inc/page_urls.php');
 copy($module . 'inc/redirects_manager.php', $testRoot . '/inc/redirects_manager.php');
 file_put_contents($testRoot . '/inc/editable_consts.php', "<?php\n### EDITABLE CONSTS ###\nif (!defined('ZM_PB_SITEMAP_LASTUPD')) define('ZM_PB_SITEMAP_LASTUPD', '');\n### EDITABLE CONSTS ###\n");
 define('WHMCS', true); define('ZM_PB_VER', 'test'); define('ZM_PB_SUPERADM_ID', 1);
@@ -132,7 +133,7 @@ try {
             check(in_array(ZM_PB_FULLHOST . 'contact' . (ZM_PB_MAINSYSTEM_PRETTY_URLS ? '/' : '.php'), $urls, true), 'Second override of same target missing');
         } else { check(in_array(zm_pb_sitemap_url('homepage-layout', 'english'), $urls, true), 'Disabled overrides still replaced URLs'); }
         check(in_array(ZM_PB_FULLHOST . 'offer?a=1&b=2', $urls, true), 'Custom URL lost');
-        check(in_array(ZM_PB_PRETTY_URLS ? ZM_PB_FULLHOST . 'docs/installation/' : ZM_PB_FULLHOST . 'index.php?m=zmchel_whmcs_multimodule&slug=docs%2Finstallation', $urls, true), 'Nested slug URL is invalid');
+        check(in_array(ZM_PB_PRETTY_URLS ? ZM_PB_FULLHOST . 'docs/installation/' : ZM_PB_FULLHOST . '?m=zmchel_whmcs_multimodule&slug=docs%2Finstallation', $urls, true), 'Nested slug URL is invalid');
         $hasRussian = (bool) array_filter($urls, function ($url) { return strpos($url, '/ru/') !== false || strpos($url, '&lang=ru') !== false; });
         check($hasRussian === ZM_PB_ENABLE_LANG_ROUTE, 'Language route setting ignored');
         $foreignXml = '<?xml version="1.0"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://example.test/billing/</loc></url></urlset>';

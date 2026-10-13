@@ -7,6 +7,15 @@ if (php_sapi_name() !== 'cli' && !defined('ADMINAREA')) {
     require_once ZM_PB_INCDIR . 'language_switch.php';
     require_once ZM_PB_INCDIR . 'url_redirects.php';
     if (in_array($_SERVER['REQUEST_METHOD'] ?? '', ['GET', 'HEAD'], true)) {
+        $escapedTarget = zm_pb_escaped_query_redirect_target(
+            $_SERVER['ZM_PB_ORIGINAL_REQUEST_URI'] ?? ($_SERVER['REQUEST_URI'] ?? '')
+        );
+        if ($escapedTarget !== null) {
+            header('Location: ' . $escapedTarget, true, 302);
+            exit;
+        }
+    }
+    if (in_array($_SERVER['REQUEST_METHOD'] ?? '', ['GET', 'HEAD'], true)) {
         $slashTarget = zm_pb_slash_redirect_target(
             $_SERVER['ZM_PB_ORIGINAL_REQUEST_URI'] ?? ($_SERVER['REQUEST_URI'] ?? '')
         );

@@ -1,6 +1,19 @@
 <?php
 if (!defined('ZM_PB_VER')) die('Direct access not allowed');
 
+/** Repair query separators double-escaped by a WHMCS menu template. */
+function zm_pb_escaped_query_redirect_target($uri)
+{
+    if (!is_string($uri) || $uri === '' || $uri[0] !== '/') return null;
+    $parts = parse_url($uri);
+    if ($parts === false || isset($parts['host']) || isset($parts['scheme']) || empty($parts['query'])) return null;
+    $query = $parts['query'];
+    if (!preg_match('/(?:^|&)m=' . preg_quote(rawurlencode(ZM_PB_NAME), '/') . '(?:&|$)/', $query)) return null;
+    $clean = preg_replace('/&amp(?:;|%3B)(?=[a-z0-9_-]+=)/i', '&', $query);
+    if ($clean === $query) return null;
+    return ($parts['path'] ?? '/') . '?' . $clean;
+}
+
 /** Collapse repeated slashes in an origin-form request before parse_url sees // as a host. */
 function zm_pb_slash_redirect_target($uri)
 {

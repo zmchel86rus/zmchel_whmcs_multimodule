@@ -15,6 +15,6 @@ function zm_pb_module_page_url($slug, $language = null)
             . implode('/', array_map('rawurlencode', explode('/', $slug))) . '/';
     }
 
-    return $base . 'index.php?m=' . rawurlencode(ZM_PB_NAME) . '&slug=' . rawurlencode($slug)
+    return $base . '?m=' . rawurlencode(ZM_PB_NAME) . '&slug=' . rawurlencode($slug)
         . ($code !== '' ? '&lang=' . rawurlencode($code) : '');
 }

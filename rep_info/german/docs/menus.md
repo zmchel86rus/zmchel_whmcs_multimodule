@@ -23,7 +23,7 @@ Auf WHMCS-Systemrouten außerhalb von `ZM_PB_MAINSYSTEM_DEFAULT_PAGES`, etwa `cl
 
 Bei eigenen Links kann **Sprache der Link-URL** die Adresse unverändert lassen, beispielsweise `/clientarea.php`; die Beschriftung bleibt übersetzbar. Die Option steht in `zm_pb_menu_items.localize_url` und wird exportiert. Bei älteren Installationen muss die Spalte über **Moduldatenbank** ergänzt werden.
 
-Seitenlinks werden beim Ausgeben aus aktuellem Slug, URL-Einstellungen und veröffentlichten Übersetzungen berechnet. Die Standardsprache hat kein Präfix. Einfache URLs verwenden `index.php?m=zmchel_whmcs_multimodule&slug=...&lang=...`, ohne die Profilsprache zu ändern. Fehlt eine Übersetzung, wird die veröffentlichte Standardübersetzung verwendet. Leere Beschriftungen stammen aus übersetztem Breadcrumb oder Meta-Titel, danach aus dem Seitennamen. Externe URLs, `mailto:`, `tel:`, Anker und Systemdateien erhalten kein Sprachpräfix.
+Seitenlinks werden beim Ausgeben aus aktuellem Slug, URL-Einstellungen und veröffentlichten Übersetzungen berechnet. Die Standardsprache hat kein Präfix. Einfache URLs verwenden `?m=zmchel_whmcs_multimodule&slug=...&lang=...`, ohne die Profilsprache zu ändern. Fehlt eine Übersetzung, wird die veröffentlichte Standardübersetzung verwendet. Leere Beschriftungen stammen aus übersetztem Breadcrumb oder Meta-Titel, danach aus dem Seitennamen. Externe URLs, `mailto:`, `tel:`, Anker und Systemdateien erhalten kein Sprachpräfix.
 
 Entwürfe, gelöschte und für den Besucher gesperrte Seiten werden ausgeblendet. Ein verborgener Elternpunkt verbirgt seinen Zweig. Unsichere URL-Schemata und HTML in Beschriftungen werden serverseitig abgelehnt.
 

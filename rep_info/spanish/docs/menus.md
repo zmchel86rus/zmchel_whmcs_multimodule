@@ -23,7 +23,7 @@ En rutas del sistema fuera de `ZM_PB_MAINSYSTEM_DEFAULT_PAGES`, como `clientarea
 
 Para un enlace personalizado, **Idioma de la URL** permite conservar una dirección como `/clientarea.php` sin modificarla, aunque el texto siga traducido. La opción se guarda en `zm_pb_menu_items.localize_url` y se incluye en la exportación. En instalaciones anteriores hay que añadir la columna desde **Base de datos del módulo**.
 
-Las URL de páginas se recalculan al mostrar el menú según slug, URL amigables, rutas de idioma y traducciones publicadas. El idioma principal no lleva prefijo. Las URL simples usan `index.php?m=zmchel_whmcs_multimodule&slug=...&lang=...` sin cambiar el idioma del perfil. Si falta una traducción se usa la publicada del idioma principal. Un texto vacío toma el breadcrumb o título meta traducido y después el nombre de página. URL externas, `mailto:`, `tel:`, anclas y recursos del sistema no reciben prefijo.
+Las URL de páginas se recalculan al mostrar el menú según slug, URL amigables, rutas de idioma y traducciones publicadas. El idioma principal no lleva prefijo. Las URL simples usan `?m=zmchel_whmcs_multimodule&slug=...&lang=...` sin cambiar el idioma del perfil. Si falta una traducción se usa la publicada del idioma principal. Un texto vacío toma el breadcrumb o título meta traducido y después el nombre de página. URL externas, `mailto:`, `tel:`, anclas y recursos del sistema no reciben prefijo.
 
 No se muestran borradores, páginas eliminadas ni páginas sin acceso para el visitante. Ocultar un padre oculta su rama. El servidor rechaza esquemas de URL peligrosos y HTML en los textos.
 
