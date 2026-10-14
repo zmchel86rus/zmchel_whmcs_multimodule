@@ -205,3 +205,32 @@ var _default = exports.default = {
     }
   }
 };
+// Additional GrapesJS labels used by the editor.
+exports.default.styleManager.properties = Object.assign(exports.default.styleManager.properties || {}, {
+  "margin-top-sub": "Superior",
+  "margin-right-sub": "Derecha",
+  "margin-bottom-sub": "Inferior",
+  "margin-left-sub": "Izquierda",
+  "padding-top-sub": "Superior",
+  "padding-right-sub": "Derecha",
+  "padding-bottom-sub": "Inferior",
+  "padding-left-sub": "Izquierda",
+  "border-width-sub": "Ancho",
+  "border-style-sub": "Estilo",
+  "border-color-sub": "Color",
+  "border-top-left-radius-sub": "Superior Izquierda",
+  "border-top-right-radius-sub": "Superior Derecha",
+  "border-bottom-right-radius-sub": "Inferior Derecha",
+  "border-bottom-left-radius-sub": "Inferior Izquierda",
+  "transition-property-sub": "Propiedad",
+  "transition-duration-sub": "Duración",
+  "transition-timing-function-sub": "Tiempo",
+  "background-image-sub": "Imagen",
+  "background-repeat-sub": "Repetición",
+  "background-position-sub": "Posición",
+  "background-attachment-sub": "Fijación",
+  "background-size-sub": "Tamaño"
+});
+exports.default.storageManager = Object.assign(exports.default.storageManager || {}, {
+  "recover": "¿Quieres recuperar los cambios no guardados?"
+});

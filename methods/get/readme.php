@@ -31,7 +31,7 @@ use Illuminate\Database\Capsule\Manager as Capsule;
             return trim(preg_replace('/[\s-]+/u', '-', $slug), '-');
         };
         $parser->url_filter_func = static function ($url) {
-            if (preg_match('~^docs/([a-z0-9-]+)\.md$~D', $url, $matches)) {
+            if (preg_match('~^(?:\.\./english/)?docs/([a-z0-9-]+)\.md$~D', $url, $matches)) {
                 return 'addonmodules.php?module=' . rawurlencode(ZM_PB_NAME) . '&subpage=README.md&doc=' . rawurlencode($matches[1]);
             }
             return preg_match('~^(?:#[^\s]*|https?://[^\s]+)$~iD', $url) ? $url : '#';

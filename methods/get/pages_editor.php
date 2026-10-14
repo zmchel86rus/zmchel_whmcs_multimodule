@@ -85,21 +85,42 @@ require_once ZM_PB_INCDIR . 'menu_manager.php';
         $smarty->assign('page_data', $page_data);
         $smarty->assign('mediamanager_modal', $smarty->fetch( ZM_PB_TEMPLATESPARTSDIR .'modal_mediamanager.tpl' ) );
 
-        $grapesLang = in_array(ZM_PB_ADMINLANGNAME, array_keys(ZM_PB_LANGS), true) ? ZM_PB_ADMINLANGNAME : 'english';
+        $grapesLang = is_file(ZM_PB_ASSETSDIR . 'grapesjs/langs/' . ZM_PB_ADMINLANGNAME . '.json') ? ZM_PB_ADMINLANGNAME : 'english';
         $grapesLocale = ZM_PB_LANGS[$grapesLang]['code_ISO639_1'];
         $grapesText = json_decode(file_get_contents(ZM_PB_ASSETSDIR.'grapesjs/langs/'.$grapesLang.'.json'), true);
         $smarty->assign('grapes_translates', $grapesText);
-        $grapesCore = file_get_contents(ZM_PB_ASSETSDIR.'grapesjs/langs/core/'.$grapesLocale.'.js');
+        $grapesCoreCode = $grapesLang === 'portuguese-br' ? 'br' : $grapesLocale;
+        $grapesCoreLocale = is_file(ZM_PB_ASSETSDIR . 'grapesjs/langs/core/' . $grapesCoreCode . '.js') ? $grapesCoreCode : 'en';
+        $grapesCore = file_get_contents(ZM_PB_ASSETSDIR.'grapesjs/langs/core/'.$grapesCoreLocale.'.js');
         $editorAssetUrl = function ($path) {
             return ZM_PB_ASSETSURL.$path.'?v='.filemtime(ZM_PB_ASSETSDIR.$path);
         };
-        $tinyMcePacks = ['ru' => 'russian.js', 'de' => 'de.js', 'es' => 'es.js', 'uk' => 'uk.js'];
-        $tinyMceLanguage = isset($tinyMcePacks[$grapesLocale]) ? $grapesLocale : 'en';
+        $tinyMcePacks = [
+            'russian' => ['ru', 'ru.js'],
+            'german' => ['de', 'de.js'],
+            'ukranian' => ['uk', 'uk.js'],
+            'spanish' => ['es', 'es.js'],
+            'french' => ['fr-FR', 'fr.js'],
+            'portuguese-pt' => ['pt-PT', 'pt.js'],
+            'portuguese-br' => ['pt-BR', 'br.js'],
+            'italian' => ['it-IT', 'it.js'],
+            'croatian' => ['hr', 'hr.js'],
+            'czech' => ['cs', 'cs.js'],
+            'estonian' => ['et', 'et.js'],
+            'norwegian' => ['nb-NO', 'nb.js'],
+            'swedish' => ['sv-SE', 'sv.js'],
+            'turkish' => ['tr', 'tr.js'],
+            'hungarian' => ['hu-HU', 'hu.js'],
+        ];
+        $tinyMceChoice = $tinyMcePacks[$grapesLang] ?? ['en', null];
+        $tinyMceLanguage = $tinyMceChoice[1] !== null && is_file(ZM_PB_ASSETSDIR . 'tinymce/langs/' . $tinyMceChoice[1])
+            ? $tinyMceChoice[0]
+            : 'en';
         $tinyMcePack = $tinyMceLanguage !== 'en'
-            ? '<script src="'.htmlspecialchars($editorAssetUrl('tinymce/langs/'.$tinyMcePacks[$tinyMceLanguage]), ENT_QUOTES, 'UTF-8').'"></script>'
+            ? '<script src="'.htmlspecialchars($editorAssetUrl('tinymce/langs/'.$tinyMceChoice[1]), ENT_QUOTES, 'UTF-8').'"></script>'
             : '';
         $grapesConfig = [
-            'locale' => $grapesLocale,
+            'locale' => $grapesCoreLocale,
             'useSmarty' => defined('ZM_PB_USE_COLLECT_VARS') && ZM_PB_USE_COLLECT_VARS === true,
             'contentCssUrl' => $editorAssetUrl('css/content.css'),
             'grapesEditorCssUrl' => $editorAssetUrl('css/grapes-editor.css'),
