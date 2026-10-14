@@ -87,7 +87,7 @@ const page_editor_tools = {$pages_editor_translates->page_editor|json_encode nof
         <div class="pd-l-2 pd-r-2">
             <button id="submit_all_forms" class="btn btn-success mar-r-1">{$other_translates->save_all}</button>
             <button id="reset_all_forms" class="btn btn-danger mar-r-1">{$other_translates->cancel_all}</button>
-            <a class="btn btn-primary" href="{$page_visit_urls[$main_default_lang]|escape:'html'}" target="_blank">{$other_translates->goto}</a>
+            {if $default_lang_supported && isset($page_visit_urls[$main_default_lang])}<a class="btn btn-primary" href="{$page_visit_urls[$main_default_lang]|escape:'html'}" target="_blank">{$other_translates->goto}</a>{/if}
         </div>
     </div>
 </div>

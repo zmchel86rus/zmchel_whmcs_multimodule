@@ -18,8 +18,17 @@ require_once ZM_PB_INCDIR . 'page_urls.php';
                 : [];
 
             $default_sys_lang = zm_pb_stlc(ZM_PB_DEFLANG);
-        
-            if( ! isset($langs[$default_sys_lang]) ) $langs[]= $default_sys_lang;
+            if (!isset(ZM_PB_LANGS[$default_sys_lang])) {
+                exit(json_encode(['status'=>'error', 'title'=>$GLOBALS['ZM_PB_ADMINLANG']->other->error,
+                    'message'=>sprintf($GLOBALS['ZM_PB_ADMINLANG']->pages_manager->page_langs->unsupported_default_language, $default_sys_lang)]));
+            }
+            foreach ($langs as $lang) {
+                if (!isset(ZM_PB_LANGS[$lang])) {
+                    exit(json_encode(['status'=>'error', 'title'=>$GLOBALS['ZM_PB_ADMINLANG']->other->error,
+                        'message'=>sprintf($GLOBALS['ZM_PB_ADMINLANG']->pages_manager->page_langs->unsupported_language, $lang)]));
+                }
+            }
+            if (!in_array($default_sys_lang, $langs, true)) $langs[] = $default_sys_lang;
 
             if( empty($name) || empty($slug) ) exit( json_encode(['status'=>'error', 'title'=> $GLOBALS['ZM_PB_ADMINLANG']->other->error,'message'=>$GLOBALS['ZM_PB_ADMINLANG']->pages_manager->content_errors->name_slug_required]) );
 

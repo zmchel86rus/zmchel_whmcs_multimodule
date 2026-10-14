@@ -55,6 +55,12 @@ function zmchel_whmcs_multimodule_output($vars){
     
     $smarty->assign('main_host_url', ZM_PB_FULLHOST);
     $smarty->assign('main_default_lang', ZM_PB_DEFLANG);
+    $default_lang_supported = isset(ZM_PB_LANGS[ZM_PB_DEFLANG]);
+    $smarty->assign('default_lang_supported', $default_lang_supported);
+    $smarty->assign('default_lang_warning', $default_lang_supported ? '' : sprintf(
+        $GLOBALS['ZM_PB_ADMINLANG']->pages_manager->page_langs->unsupported_default_language,
+        ZM_PB_DEFLANG
+    ));
     
     $smarty->assign('zm_pb_admin_nonce', zm_pb_generate_token( ZM_PB_ADMIN_PRENONCE , ZM_PB_ADMIN_SALT) );
     $smarty->assign('zm_pb_forms_nonce', zm_pb_generate_token( ZM_PB_FORMS_PRENONCE , ZM_PB_NONCE_SALT) );

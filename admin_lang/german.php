@@ -288,7 +288,7 @@ return (object)[
         'page_status' => (object)['title'=>'Seitenstatus','description'=>'','translate'=>(object)['draft'=>'Entwurf','publish'=>"Veröffentlicht",'delayed'=>"Geplant",'canceled'=>"Im Papierkorb"]],
         'page_type' => (object)['title'=>'Seitentyp','description'=>'Systemseiten erscheinen nicht in der Sitemap und sind für normale Benutzer nicht verfügbar.','translate'=>(object)['page'=>"Seite",'post'=>"Artikel",'system'=>'Systemseite']],
         'page_create' => (object)['error'=>'Beim Erstellen der Seite ist ein Fehler aufgetreten.','error_duplicate'=>'Die Seite benötigt einen eindeutigen Slug und/oder Zugriffstyp.','success'=>'Seite erfolgreich erstellt.'],
-        'page_langs' => (object)['title'=>'Seitensprachen','description'=>'Die Standardsprache wird unabhängig von Ihrer Auswahl immer hinzugefügt.','default_language'=>'System-Standardsprache'],
+        'page_langs' => (object)['title'=>'Seitensprachen','description'=>'Die Standardsprache wird unabhängig von Ihrer Auswahl immer hinzugefügt.','default_language'=>'System-Standardsprache','unsupported_default_language'=>'Die WHMCS-Standardsprache (%s) wird von diesem Modul nicht unterstützt. Fügen Sie sie in supported_langs.php hinzu oder ändern Sie die WHMCS-Standardsprache, bevor Sie Seiten speichern.','unsupported_language'=>'Nicht unterstützte Seitensprache: %s'],
         'page_headers' => (object)[
             'main'=>'Allgemeine Einstellungen',
             'content'=>'Inhaltseinstellungen',

@@ -8,6 +8,12 @@ use Illuminate\Database\Capsule\Manager as Capsule;
             if( empty($page_id) ) exit( json_encode(['status'=>'error', 'title'=> $GLOBALS['ZM_PB_ADMINLANG']->other->error,'message'=>$GLOBALS['ZM_PB_ADMINLANG']->pages_manager->content_errors->page_id_required]) );
 
             $content_data = $_POST['edit_content'] ?? [];
+            foreach (array_keys($content_data) as $lang) {
+                if (!isset(ZM_PB_LANGS[$lang])) {
+                    exit(json_encode(['status'=>'error', 'title'=>$GLOBALS['ZM_PB_ADMINLANG']->other->error,
+                        'message'=>sprintf($GLOBALS['ZM_PB_ADMINLANG']->pages_manager->page_langs->unsupported_language, $lang)]));
+                }
+            }
             $now = date('Y-m-d H:i:s');
             $savedContent = [];
 

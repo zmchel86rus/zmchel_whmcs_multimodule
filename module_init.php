@@ -165,7 +165,10 @@ if ($adminlang === 'ukrainian') $adminlang = 'ukranian'; // Existing language fi
 if (!defined('ZM_PB_LANGS')) define('ZM_PB_LANGS', ( require_once ZM_PB_ROOTDIR.'supported_langs.php') );
 if (!isset($GLOBALS['ZM_PB_ADMINLANG']) && defined('ZM_PB_ALANGDIR')){
     $admin_lang_file = ZM_PB_ALANGDIR . $adminlang.'.php';
-    if( !file_exists($admin_lang_file) ) $admin_lang_file = ZM_PB_ALANGDIR . 'english.php';
+    if( !file_exists($admin_lang_file) ){ 
+        $admin_lang_file = ZM_PB_ALANGDIR . 'english.php';
+        $adminlang = 'english';
+    }
     $admin_lang_data = require $admin_lang_file;
     $GLOBALS['ZM_PB_ADMINLANG'] = $admin_lang_data;
     if (PHP_VERSION_ID >= 80000 && !defined('ZM_PB_ADMINLANG')) define('ZM_PB_ADMINLANG', $admin_lang_data);

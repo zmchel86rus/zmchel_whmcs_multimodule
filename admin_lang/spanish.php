@@ -288,7 +288,7 @@ return (object)[
         'page_status' => (object)['title'=>'Estado de la página','description'=>'','translate'=>(object)['draft'=>'Borrador','publish'=>"Publicada",'delayed'=>"Programada",'canceled'=>"En la papelera"]],
         'page_type' => (object)['title'=>'Tipo de página','description'=>'Las páginas del sistema no aparecen en el sitemap y no están disponibles para usuarios normales.','translate'=>(object)['page'=>"Página",'post'=>"Artículo",'system'=>'Página del sistema']],
         'page_create' => (object)['error'=>'Se produjo un error al crear la página.','error_duplicate'=>'La página necesita un slug y/o un tipo de acceso únicos.','success'=>'Página creada correctamente.'],
-        'page_langs' => (object)['title'=>'Idiomas de la página','description'=>'El idioma predeterminado siempre se incluye, independientemente de la selección.','default_language'=>'Idioma predeterminado del sistema'],
+        'page_langs' => (object)['title'=>'Idiomas de la página','description'=>'El idioma predeterminado siempre se incluye, independientemente de la selección.','default_language'=>'Idioma predeterminado del sistema','unsupported_default_language'=>'El idioma predeterminado de WHMCS (%s) no es compatible con este módulo. Añádalo a supported_langs.php o cambie el idioma predeterminado de WHMCS antes de guardar páginas.','unsupported_language'=>'Idioma de página no admitido: %s'],
         'page_headers' => (object)[
             'main'=>'Ajustes generales',
             'content'=>'Ajustes de contenido',

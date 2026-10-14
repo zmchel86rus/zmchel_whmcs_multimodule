@@ -288,7 +288,7 @@ return (object)[
         'page_status' => (object)['title'=>'Page status','description'=>'','translate'=>(object)['draft'=>'Draft','publish'=>"Published",'delayed'=>"Scheduled",'canceled'=>"In Trash"]],
         'page_type' => (object)['title'=>'Page type','description'=>'System pages are excluded from the sitemap and are not available to regular users.','translate'=>(object)['page'=>"Page",'post'=>"Article",'system'=>'System page']],
         'page_create' => (object)['error'=>'An error occurred while creating the page.','error_duplicate'=>'The page needs a unique slug and/or access type.','success'=>'Page created successfully.'],
-        'page_langs' => (object)['title'=>'Page languages','description'=>'The default language is always included regardless of your selection.','default_language'=>'System default language'],
+        'page_langs' => (object)['title'=>'Page languages','description'=>'The default language is always included regardless of your selection.','default_language'=>'System default language','unsupported_default_language'=>'The WHMCS default language (%s) is not supported by this module. Add it to supported_langs.php or change the WHMCS default language before saving pages.','unsupported_language'=>'Unsupported page language: %s'],
         'page_headers' => (object)[
             'main'=>'Main settings',
             'content'=>'Content settings',

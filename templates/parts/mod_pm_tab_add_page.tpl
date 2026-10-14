@@ -1,4 +1,5 @@
                     <form id="create_page_form" method="POST" action="addonmodules.php">
+                        {if !$default_lang_supported}<div class="alert alert-warning" role="alert">{$default_lang_warning|escape:'html'}</div>{/if}
                         <input type="hidden" name="module" value="{$addonName}">
                         <input type="hidden" name="subpage" value="{$subpage}">
                         <input type="hidden" name="zm_pb_forms_nonce" value="{$zm_pb_forms_nonce}">
@@ -47,12 +48,12 @@
                                 {/if}
                             {/foreach}
                             </div>
-                            <span class="description d-block">{$pages_manager_translates->page_langs->default_language}: {$module_langs[$main_default_lang]['name']} ({$module_translates->supported_langs->translate->$main_default_lang})</span>
+                            {if $default_lang_supported}<span class="description d-block">{$pages_manager_translates->page_langs->default_language}: {$module_langs[$main_default_lang]['name']} ({$module_translates->supported_langs->translate->$main_default_lang})</span>{/if}
                             <span class="description d-block">{$pages_manager_translates->page_langs->description|escape:'html'}</span>
                         </div>
                         
                         <div class="form-group-btn mar-t-6 sticky">            
-                            <button type="submit" class="btn btn-success mar-r-1">{$other_translates->save}</button>
+                            <button type="submit" class="btn btn-success mar-r-1"{if !$default_lang_supported} disabled{/if}>{$other_translates->save}</button>
                             <button type="reset" class="btn btn-danger">{$other_translates->cancel}</button>
                         </div>
                     </form>

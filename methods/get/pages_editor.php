@@ -15,7 +15,11 @@ require_once ZM_PB_INCDIR . 'menu_manager.php';
             ->where('id', $page_id)
             ->first();
 
-        if ($main && $main->langs) $main->langs = json_decode($main->langs, true);
+        if ($main && $main->langs) {
+            $main->langs = array_values(array_filter((array) json_decode($main->langs, true), function ($language) {
+                return is_string($language) && isset(ZM_PB_LANGS[$language]);
+            }));
+        }
 
 
         $pre_settings = Capsule::table('zm_pb_pages_settings')
@@ -45,7 +49,9 @@ require_once ZM_PB_INCDIR . 'menu_manager.php';
                     $pageVisitUrls[$language] = zm_pb_menu_page_url($main, $language, $overrideSources);
                 }
             }
-            $pageVisitUrls[ZM_PB_DEFLANG] = zm_pb_menu_page_url($main, ZM_PB_DEFLANG, $overrideSources);
+            if (isset(ZM_PB_LANGS[ZM_PB_DEFLANG])) {
+                $pageVisitUrls[ZM_PB_DEFLANG] = zm_pb_menu_page_url($main, ZM_PB_DEFLANG, $overrideSources);
+            }
         }
         $smarty->assign('page_visit_urls', $pageVisitUrls);
 
