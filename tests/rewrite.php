@@ -76,9 +76,9 @@ try {
     copy(dirname(__DIR__) . '/inc/rewrite_rules.php', $directory . '/rewrite_rules.php');
     file_put_contents($directory . '/rewrite_rules_custom.php', "<?php return [];\n");
     require dirname(__DIR__) . '/lib/rewrite_manager.php';
-    $defaultCount = ZM_PB_ENABLE_LANG_ROUTE ? count(ZM_PB_LANGS) + 1 : 0;
+    $defaults = require $directory . '/rewrite_rules.php';
+    $defaultCount = count($defaults);
     if (ZM_PB_ENABLE_LANG_ROUTE) {
-        $defaults = require $directory . '/rewrite_rules.php';
         if ($defaults[0]['directives'] !== [
             'RewriteCond %{REQUEST_METHOD} ^(?:GET|HEAD)$',
             'RewriteCond %{QUERY_STRING} !(^|&)language= [NC]',
@@ -98,8 +98,12 @@ try {
         throw new RuntimeException('Existing rules are missing from the listing');
     }
     $combined = zm_pb_rewrite_rules();
-    if (count($combined) !== 3 + $defaultCount || !isset($combined[0]['custom_id'])
-        || $combined[0]['directives'] !== [zm_pb_rewrite_custom_directive($existing[0])]) {
+    if (count($combined) !== 3 + $defaultCount
+        || array_slice($combined, 3) !== $defaults
+        || count(array_filter(array_slice($combined, 0, 3), function ($rule, $index) use ($existing) {
+            return isset($rule['custom_id'])
+                && $rule['directives'] === [zm_pb_rewrite_custom_directive($existing[$index])];
+        }, ARRAY_FILTER_USE_BOTH)) !== 3) {
         throw new RuntimeException('Default rules overwrote or reordered custom rules');
     }
     $duplicateRejected = false;
