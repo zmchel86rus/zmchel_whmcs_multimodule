@@ -67,7 +67,3 @@ The module is free. If it helps your site, you can support its development. Wall
 | Litecoin (LTC) | `LYtWMEk2wuxCCKBFiRasazGZbFsBWHkxWM` |
 | Ethereum (ETH) | `0x20DF9883AA016E5387280827328667806C0562B1` |
 | Dogecoin (DOGE) | `DEvhmmtp2p9QyyPRazndxFvuLgptR5Tr3p` |
-
-## Distribution / Распространение
-
-This free module is distributed through this GitHub repository and is not listed on WHMCS Marketplace. A Marketplace listing is not planned for this project. (Special thanks to WHMCS Marketplace policies.)
