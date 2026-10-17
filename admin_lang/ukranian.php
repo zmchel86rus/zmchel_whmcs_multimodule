@@ -1,5 +1,5 @@
 <?php
-/* Ukrainian (uk) */
+/* Українська (uk_UA) */
 
 return (object)[
     'transfer' => (object)[
@@ -102,7 +102,12 @@ return (object)[
             ],
         ],
         'module_logs' => (object)['title'=>'Журнали модуля','description'=>''],
-        'supported_langs' => (object)['title'=>'Підтримувані мови','description'=>'','translate'=>(object)['english'=>'Англійська','russian'=>"Російська",'german'=>"Німецька",'spanish'=>"Іспанська",'ukranian'=>"Українська",
+        'supported_langs' => (object)['title'=>'Підтримувані мови','description'=>'','translate'=>(object)[
+            'english'=>'Англійська',
+            'russian'=>'Російська',
+            'german'=>'Німецька',
+            'spanish'=>'Іспанська',
+            'ukranian'=>'Українська',
             'french' => 'Французька',
             'portuguese-pt' => 'Португальська (Португалія)',
             'portuguese-br' => 'Португальська (Бразилія)',
@@ -113,7 +118,20 @@ return (object)[
             'norwegian' => 'Норвезька',
             'swedish' => 'Шведська',
             'turkish' => 'Турецька',
-            'hungarian' => 'Угорська'
+            'hungarian' => 'Угорська',
+            'dutch' => 'Нідерландська',
+            'danish' => 'Данська',
+            'macedonian' => 'Македонська',
+            'romanian' => 'Румунська',
+            'catalan' => 'Каталанська',
+            'finnish' => 'Фінська',
+            'polish' => 'Польська',
+            'bulgarian' => 'Болгарська',
+            'serbian' => 'Сербська',
+            'lithuanian' => 'Литовська',
+            'latvian' => 'Латиська',
+            'slovenian' => 'Словенська',
+            'slovak' => 'Словацька'
         ]],
         'alerts'=> (object)[
             'access_denied'=>'Доступ заборонено. Ця сторінка модуля доступна лише суперадміністратору (ID ' . ZM_PB_SUPERADM_ID . ').',

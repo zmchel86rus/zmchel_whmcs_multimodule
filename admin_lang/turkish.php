@@ -1,4 +1,6 @@
 <?php
+/* Türkçe (tr_TR) */
+
 return (object)[
     'transfer' => (object)[
         'title' => 'İçe / dışa aktarma', 'export' => 'Dışa aktar', 'import' => 'İçe aktar', 'all' => 'Tüm bölümler',
@@ -99,7 +101,12 @@ return (object)[
             ],
         ],
         'module_logs' => (object)['title'=>'Modül günlükleri','description'=>''],
-        'supported_langs' => (object)['title'=>'Desteklenen diller','description'=>'','translate'=>(object)['english'=>'İngilizce','russian'=>"Rusça",'german'=>"Almanca",'spanish'=>"İspanyolca",'ukranian'=>"Ukraynaca",
+        'supported_langs' => (object)['title'=>'Desteklenen diller','description'=>'','translate'=>(object)[
+            'english'=>'İngilizce',
+            'russian'=>'Rusça',
+            'german'=>'Almanca',
+            'spanish'=>'İspanyolca',
+            'ukranian'=>'Ukraynaca',
             'french' => 'Fransızca',
             'portuguese-pt' => 'Portekizce (Portekiz)',
             'portuguese-br' => 'Portekizce (Brezilya)',
@@ -110,7 +117,20 @@ return (object)[
             'norwegian' => 'Norveççe',
             'swedish' => 'İsveççe',
             'turkish' => 'Türkçe',
-            'hungarian' => 'Macarca'
+            'hungarian' => 'Macarca',
+            'dutch' => 'Hollandaca',
+            'danish' => 'Danca',
+            'macedonian' => 'Makedonca',
+            'romanian' => 'Romence',
+            'catalan' => 'Katalanca',
+            'finnish' => 'Fince',
+            'polish' => 'Lehçe',
+            'bulgarian' => 'Bulgarca',
+            'serbian' => 'Sırpça',
+            'lithuanian' => 'Litvanca',
+            'latvian' => 'Letonca',
+            'slovenian' => 'Slovence',
+            'slovak' => 'Slovakça'
         ]],
         'alerts'=> (object)[
             'access_denied'=>'Erişim reddedildi. Bu modül sayfasına yalnızca Süper Yönetici (ID ' . ZM_PB_SUPERADM_ID . ') erişebilir.',

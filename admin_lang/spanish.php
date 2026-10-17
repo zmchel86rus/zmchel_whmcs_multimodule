@@ -1,5 +1,5 @@
 <?php
-/* Spanish (es) */
+/* Español (es_ES) */
 
 return (object)[
     'transfer' => (object)[
@@ -102,7 +102,12 @@ return (object)[
             ],
         ],
         'module_logs' => (object)['title'=>'Registros del módulo','description'=>''],
-        'supported_langs' => (object)['title'=>'Idiomas compatibles','description'=>'','translate'=>(object)['english'=>'Inglés','russian'=>"Ruso",'german'=>"Alemán",'spanish'=>"Español",'ukranian'=>"Ucraniano",
+        'supported_langs' => (object)['title'=>'Idiomas compatibles','description'=>'','translate'=>(object)[
+            'english'=>'Inglés',
+            'russian'=>'Ruso',
+            'german'=>'Alemán',
+            'spanish'=>'Español',
+            'ukranian'=>'Ucraniano',
             'french' => 'Francés',
             'portuguese-pt' => 'Portugués (Portugal)',
             'portuguese-br' => 'Portugués (Brasil)',
@@ -113,7 +118,20 @@ return (object)[
             'norwegian' => 'Noruego',
             'swedish' => 'Sueco',
             'turkish' => 'Turco',
-            'hungarian' => 'Húngaro'
+            'hungarian' => 'Húngaro',
+            'dutch' => 'Neerlandés',
+            'danish' => 'Danés',
+            'macedonian' => 'Macedonio',
+            'romanian' => 'Rumano',
+            'catalan' => 'Catalán',
+            'finnish' => 'Finés',
+            'polish' => 'Polaco',
+            'bulgarian' => 'Búlgaro',
+            'serbian' => 'Serbio',
+            'lithuanian' => 'Lituano',
+            'latvian' => 'Letón',
+            'slovenian' => 'Esloveno',
+            'slovak' => 'Eslovaco'
         ]],
         'alerts'=> (object)[
             'access_denied'=>'Acceso denegado. Esta página del módulo solo está disponible para el superadministrador (ID ' . ZM_PB_SUPERADM_ID . ').',

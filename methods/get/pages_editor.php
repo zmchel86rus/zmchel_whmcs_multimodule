@@ -86,10 +86,11 @@ require_once ZM_PB_INCDIR . 'menu_manager.php';
         $smarty->assign('mediamanager_modal', $smarty->fetch( ZM_PB_TEMPLATESPARTSDIR .'modal_mediamanager.tpl' ) );
 
         $grapesLang = is_file(ZM_PB_ASSETSDIR . 'grapesjs/langs/' . ZM_PB_ADMINLANGNAME . '.json') ? ZM_PB_ADMINLANGNAME : 'english';
-        $grapesLocale = ZM_PB_LANGS[$grapesLang]['code_ISO639_1'];
+        $grapesClientLang = $grapesLang === 'english' ? 'english' : ZM_PB_ADMIN_CLIENT_LANGNAME;
+        $grapesLocale = ZM_PB_LANGS[$grapesClientLang]['code_ISO639_1'];
         $grapesText = json_decode(file_get_contents(ZM_PB_ASSETSDIR.'grapesjs/langs/'.$grapesLang.'.json'), true);
         $smarty->assign('grapes_translates', $grapesText);
-        $grapesCoreCode = $grapesLang === 'portuguese-br' ? 'br' : $grapesLocale;
+        $grapesCoreCode = $grapesClientLang === 'portuguese-br' ? 'br' : $grapesLocale;
         $grapesCoreLocale = is_file(ZM_PB_ASSETSDIR . 'grapesjs/langs/core/' . $grapesCoreCode . '.js') ? $grapesCoreCode : 'en';
         $grapesCore = file_get_contents(ZM_PB_ASSETSDIR.'grapesjs/langs/core/'.$grapesCoreLocale.'.js');
         $editorAssetUrl = function ($path) {
@@ -111,8 +112,21 @@ require_once ZM_PB_INCDIR . 'menu_manager.php';
             'swedish' => ['sv-SE', 'sv.js'],
             'turkish' => ['tr', 'tr.js'],
             'hungarian' => ['hu-HU', 'hu.js'],
+            'dutch' => ['nl-NL', 'nl.js'],
+            'danish' => ['da-DK', 'da.js'],
+            'macedonian' => ['mk-MK', 'mk.js'],
+            'romanian' => ['ro-RO', 'ro.js'],
+            'catalan' => ['ca-ES', 'ca.js'],
+            'finnish' => ['fi-FI', 'fi.js'],
+            'polish' => ['pl-PL', 'pl.js'],
+            'bulgarian' => ['bg-BG', 'bg.js'],
+            'serbian' => ['sr-RS', 'sr.js'],
+            'lithuanian' => ['lt-LT', 'lt.js'],
+            'latvian' => ['lv-LV', 'lv.js'],
+            'slovenian' => ['sl-SI', 'sl.js'],
+            'slovak' => ['sk-SK', 'sk.js'],
         ];
-        $tinyMceChoice = $tinyMcePacks[$grapesLang] ?? ['en', null];
+        $tinyMceChoice = $tinyMcePacks[$grapesClientLang] ?? ['en', null];
         $tinyMceLanguage = $tinyMceChoice[1] !== null && is_file(ZM_PB_ASSETSDIR . 'tinymce/langs/' . $tinyMceChoice[1])
             ? $tinyMceChoice[0]
             : 'en';

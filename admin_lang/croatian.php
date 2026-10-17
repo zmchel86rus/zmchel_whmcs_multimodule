@@ -1,4 +1,6 @@
 <?php
+/* Hrvatski (hr_HR) */
+
 return (object)[
     'transfer' => (object)[
         'title' => 'Uvoz / izvoz', 'export' => 'Izvoz', 'import' => 'Uvoz', 'all' => 'Svi odjeljci',
@@ -99,7 +101,12 @@ return (object)[
             ],
         ],
         'module_logs' => (object)['title'=>'Zapisnici modula','description'=>''],
-        'supported_langs' => (object)['title'=>'Podržani jezici','description'=>'','translate'=>(object)['english'=>'Engleski','russian'=>"Ruski",'german'=>"Njemački",'spanish'=>"Španjolski",'ukranian'=>"Ukrajinski",
+        'supported_langs' => (object)['title'=>'Podržani jezici','description'=>'','translate'=>(object)[
+            'english'=>'Engleski',
+            'russian'=>'Ruski',
+            'german'=>'Njemački',
+            'spanish'=>'Španjolski',
+            'ukranian'=>'Ukrajinski',
             'french' => 'Francuski',
             'portuguese-pt' => 'Portugalski (Portugal)',
             'portuguese-br' => 'Portugalski (Brazil)',
@@ -110,7 +117,20 @@ return (object)[
             'norwegian' => 'Norveški',
             'swedish' => 'Švedski',
             'turkish' => 'Turski',
-            'hungarian' => 'Mađarski'
+            'hungarian' => 'Mađarski',
+            'dutch' => 'Nizozemski',
+            'danish' => 'Danski',
+            'macedonian' => 'Makedonski',
+            'romanian' => 'Rumunjski',
+            'catalan' => 'Katalonski',
+            'finnish' => 'Finski',
+            'polish' => 'Poljski',
+            'bulgarian' => 'Bugarski',
+            'serbian' => 'Srpski',
+            'lithuanian' => 'Litavski',
+            'latvian' => 'Latvijski',
+            'slovenian' => 'Slovenski',
+            'slovak' => 'Slovački'
         ]],
         'alerts'=> (object)[
             'access_denied'=>'Pristup odbijen. Ova stranica modula dostupna je samo glavnom administratoru (ID ' . ZM_PB_SUPERADM_ID . ').',

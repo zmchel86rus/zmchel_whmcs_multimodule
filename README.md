@@ -26,6 +26,19 @@
 | Svenska | [Instruktioner](rep_info/swedish/instruction.md) |
 | Türkçe | [Talimatlar](rep_info/turkish/instruction.md) |
 | Magyar | [Útmutató](rep_info/hungarian/instruction.md) |
+| Nederlands | [Handleiding](rep_info/dutch/instruction.md) |
+| Dansk | [Vejledning](rep_info/danish/instruction.md) |
+| Македонски | [Упатство](rep_info/macedonian/instruction.md) |
+| Română | [Instrucțiuni](rep_info/romanian/instruction.md) |
+| Català | [Instruccions](rep_info/catalan/instruction.md) |
+| Suomi | [Ohjeet](rep_info/finnish/instruction.md) |
+| Polski | [Instrukcja](rep_info/polish/instruction.md) |
+| Български | [Инструкции](rep_info/bulgarian/instruction.md) |
+| Српски | [Упутство](rep_info/serbian/instruction.md) |
+| Lietuvių | [Instrukcija](rep_info/lithuanian/instruction.md) |
+| Latviešu | [Instrukcija](rep_info/latvian/instruction.md) |
+| Slovenščina | [Navodila](rep_info/slovenian/instruction.md) |
+| Slovenčina | [Návod](rep_info/slovak/instruction.md) |
 
 ## Module overview / Общее описание
 
@@ -47,6 +60,19 @@
 | Svenska | [Översikt](rep_info/swedish/overview.md) |
 | Türkçe | [Genel bakış](rep_info/turkish/overview.md) |
 | Magyar | [Áttekintés](rep_info/hungarian/overview.md) |
+| Nederlands | [Overzicht](rep_info/dutch/overview.md) |
+| Dansk | [Oversigt](rep_info/danish/overview.md) |
+| Македонски | [Преглед](rep_info/macedonian/overview.md) |
+| Română | [Prezentare generală](rep_info/romanian/overview.md) |
+| Català | [Descripció general](rep_info/catalan/overview.md) |
+| Suomi | [Yleiskuvaus](rep_info/finnish/overview.md) |
+| Polski | [Opis](rep_info/polish/overview.md) |
+| Български | [Общ преглед](rep_info/bulgarian/overview.md) |
+| Српски | [Преглед](rep_info/serbian/overview.md) |
+| Lietuvių | [Apžvalga](rep_info/lithuanian/overview.md) |
+| Latviešu | [Pārskats](rep_info/latvian/overview.md) |
+| Slovenščina | [Pregled](rep_info/slovenian/overview.md) |
+| Slovenčina | [Prehľad](rep_info/slovak/overview.md) |
 
 ## Suggest an idea / Предложить идею
 

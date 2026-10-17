@@ -1,4 +1,6 @@
 <?php
+/* Norsk (bokmål) (nb_NO) */
+
 return (object)[
     'transfer' => (object)[
         'title' => 'Import / eksport', 'export' => 'Eksporter', 'import' => 'Importer', 'all' => 'Alle seksjoner',
@@ -99,7 +101,12 @@ return (object)[
             ],
         ],
         'module_logs' => (object)['title'=>'Modullogger','description'=>''],
-        'supported_langs' => (object)['title'=>'Støttede språk','description'=>'','translate'=>(object)['english'=>'Engelsk','russian'=>"Russisk",'german'=>"Tysk",'spanish'=>"Spansk",'ukranian'=>"Ukrainsk",
+        'supported_langs' => (object)['title'=>'Støttede språk','description'=>'','translate'=>(object)[
+            'english'=>'Engelsk',
+            'russian'=>'Russisk',
+            'german'=>'Tysk',
+            'spanish'=>'Spansk',
+            'ukranian'=>'Ukrainsk',
             'french' => 'Fransk',
             'portuguese-pt' => 'Portugisisk (Portugal)',
             'portuguese-br' => 'Portugisisk (Brasil)',
@@ -110,7 +117,20 @@ return (object)[
             'norwegian' => 'Norsk',
             'swedish' => 'Svensk',
             'turkish' => 'Tyrkisk',
-            'hungarian' => 'Ungarsk'
+            'hungarian' => 'Ungarsk',
+            'dutch' => 'Nederlandsk',
+            'danish' => 'Dansk',
+            'macedonian' => 'Makedonsk',
+            'romanian' => 'Rumensk',
+            'catalan' => 'Katalansk',
+            'finnish' => 'Finsk',
+            'polish' => 'Polsk',
+            'bulgarian' => 'Bulgarsk',
+            'serbian' => 'Serbisk',
+            'lithuanian' => 'Litauisk',
+            'latvian' => 'Latvisk',
+            'slovenian' => 'Slovensk',
+            'slovak' => 'Slovakisk'
         ]],
         'alerts'=> (object)[
             'access_denied'=>'Tilgang nektet. Denne modulsiden er bare tilgjengelig for superadministratoren (ID ' . ZM_PB_SUPERADM_ID . ').',

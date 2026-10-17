@@ -17,4 +17,20 @@ return [
     'swedish' => ['code'=>'SE','name'=>'Svenska','locale'=>'sv_SE','locale_BCP47'=>'sv-SE','code_ISO639_1'=>'sv'],
     'turkish' => ['code'=>'TR','name'=>'Türkçe','locale'=>'tr_TR','locale_BCP47'=>'tr-TR','code_ISO639_1'=>'tr'],
     'hungarian' => ['code'=>'HU','name'=>'Magyar','locale'=>'hu_HU','locale_BCP47'=>'hu-HU','code_ISO639_1'=>'hu'],
+
+    'dutch' => ['code'=>'NL','name'=>'Nederlands','locale'=>'nl_NL','locale_BCP47'=>'nl-NL','code_ISO639_1'=>'nl'],
+    'danish' => ['code'=>'DK','name'=>'Dansk','locale'=>'da_DK','locale_BCP47'=>'da-DK','code_ISO639_1'=>'da'],
+    'macedonian' => ['code'=>'MK','name'=>'Македонски','locale'=>'mk_MK','locale_BCP47'=>'mk-MK','code_ISO639_1'=>'mk'],
+    'romanian' => ['code'=>'RO','name'=>'Română','locale'=>'ro_RO','locale_BCP47'=>'ro-RO','code_ISO639_1'=>'ro'],
+    'catalan' => ['code'=>'ES','name'=>'Català','locale'=>'ca_ES','locale_BCP47'=>'ca-ES','code_ISO639_1'=>'ca'],
+    
+    // Not yet supported by WHMCS itself ( пока что :) )
+    'finnish' => ['code'=>'FI','name'=>'Suomi','locale'=>'fi_FI','locale_BCP47'=>'fi-FI','code_ISO639_1'=>'fi'],
+    'polish' => ['code'=>'PL','name'=>'Polski','locale'=>'pl_PL','locale_BCP47'=>'pl-PL','code_ISO639_1'=>'pl'],
+    'bulgarian' => ['code'=>'BG','name'=>'Български','locale'=>'bg_BG','locale_BCP47'=>'bg-BG','code_ISO639_1'=>'bg'],
+    'serbian' => ['code'=>'RS','name'=>'Српски','locale'=>'sr_RS','locale_BCP47'=>'sr-Cyrl-RS','code_ISO639_1'=>'sr'],
+    'lithuanian' => ['code'=>'LT','name'=>'Lietuvių','locale'=>'lt_LT','locale_BCP47'=>'lt-LT','code_ISO639_1'=>'lt'],
+    'latvian' => ['code'=>'LV','name'=>'Latviešu','locale'=>'lv_LV','locale_BCP47'=>'lv-LV','code_ISO639_1'=>'lv'],
+    'slovenian' => ['code'=>'SI','name'=>'Slovenščina','locale'=>'sl_SI','locale_BCP47'=>'sl-SI','code_ISO639_1'=>'sl'],
+    'slovak' => ['code'=>'SK','name'=>'Slovenčina','locale'=>'sk_SK','locale_BCP47'=>'sk-SK','code_ISO639_1'=>'sk'],
 ];

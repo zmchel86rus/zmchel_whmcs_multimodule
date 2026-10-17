@@ -5,7 +5,7 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 
     $smarty->assign('readme_html', '');
     $doc = isset($_GET['doc']) && is_string($_GET['doc']) ? $_GET['doc'] : '';
-    $readmeLanguage = array_key_exists(ZM_PB_ADMINLANGNAME, ZM_PB_LANGS) ? ZM_PB_ADMINLANGNAME : 'english';
+    $readmeLanguage = array_key_exists(ZM_PB_ADMIN_CLIENT_LANGNAME, ZM_PB_LANGS) ? ZM_PB_ADMIN_CLIENT_LANGNAME : 'english';
     $availableDocs = ['menus', 'pagination', 'redirects', 'sitemaps', 'smarty', 'structured-data', 'transfer'];
     $isAdditionalDoc = in_array($doc, $availableDocs, true);
     $relativePath = $isAdditionalDoc ? 'docs/' . $doc . '.md' : 'instruction.md';

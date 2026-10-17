@@ -1,4 +1,6 @@
 <?php
+/* Svenska (sv_SE) */
+
 return (object)[
     'transfer' => (object)[
         'title' => 'Import/export', 'export' => 'Exportera', 'import' => 'Importera', 'all' => 'Alla avsnitt',
@@ -99,7 +101,12 @@ return (object)[
             ],
         ],
         'module_logs' => (object)['title'=>'Modulloggar','description'=>''],
-        'supported_langs' => (object)['title'=>'Språk som stöds','description'=>'','translate'=>(object)['english'=>'Engelska','russian'=>"Ryska",'german'=>"Tyska",'spanish'=>"Spanska",'ukranian'=>"Ukrainska",
+        'supported_langs' => (object)['title'=>'Språk som stöds','description'=>'','translate'=>(object)[
+            'english'=>'Engelska',
+            'russian'=>'Ryska',
+            'german'=>'Tyska',
+            'spanish'=>'Spanska',
+            'ukranian'=>'Ukrainska',
             'french' => 'Franska',
             'portuguese-pt' => 'Portugisiska (Portugal)',
             'portuguese-br' => 'Portugisiska (Brasilien)',
@@ -110,7 +117,20 @@ return (object)[
             'norwegian' => 'Norska',
             'swedish' => 'Svenska',
             'turkish' => 'Turkiska',
-            'hungarian' => 'Ungerska'
+            'hungarian' => 'Ungerska',
+            'dutch' => 'Nederländska',
+            'danish' => 'Danska',
+            'macedonian' => 'Makedonska',
+            'romanian' => 'Rumänska',
+            'catalan' => 'Katalanska',
+            'finnish' => 'Finska',
+            'polish' => 'Polska',
+            'bulgarian' => 'Bulgariska',
+            'serbian' => 'Serbiska',
+            'lithuanian' => 'Litauiska',
+            'latvian' => 'Lettiska',
+            'slovenian' => 'Slovenska',
+            'slovak' => 'Slovakiska'
         ]],
         'alerts'=> (object)[
             'access_denied'=>'Åtkomst nekad. Den här modulsidan är endast tillgänglig för huvudadministratören (ID ' . ZM_PB_SUPERADM_ID . ').',

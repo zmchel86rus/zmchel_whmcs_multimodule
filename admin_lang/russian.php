@@ -1,5 +1,5 @@
 <?php
-/* Russian (ru) */
+/* Русский (ru_RU) */
  
 return (object)[
     'transfer' => (object)[
@@ -102,7 +102,12 @@ return (object)[
             ],
         ],
         'module_logs' => (object)['title'=>'Логирование модуля','description'=>''],
-        'supported_langs' => (object)['title'=>'Поддерживаемые языки','description'=>'','translate'=>(object)['english'=>'Английский','russian'=>"Русский",'german'=>"Немецкий",'spanish'=>"Испанский",'ukranian'=>"Украинский",
+        'supported_langs' => (object)['title'=>'Поддерживаемые языки','description'=>'','translate'=>(object)[
+            'english'=>'Английский',
+            'russian'=>'Русский',
+            'german'=>'Немецкий',
+            'spanish'=>'Испанский',
+            'ukranian'=>'Украинский',
             'french' => 'Французский',
             'portuguese-pt' => 'Португальский (Португалия)',
             'portuguese-br' => 'Португальский (Бразилия)',
@@ -113,7 +118,20 @@ return (object)[
             'norwegian' => 'Норвежский',
             'swedish' => 'Шведский',
             'turkish' => 'Турецкий',
-            'hungarian' => 'Венгерский'
+            'hungarian' => 'Венгерский',
+            'dutch' => 'Нидерландский',
+            'danish' => 'Датский',
+            'macedonian' => 'Македонский',
+            'romanian' => 'Румынский',
+            'catalan' => 'Каталанский',
+            'finnish' => 'Финский',
+            'polish' => 'Польский',
+            'bulgarian' => 'Болгарский',
+            'serbian' => 'Сербский',
+            'lithuanian' => 'Литовский',
+            'latvian' => 'Латышский',
+            'slovenian' => 'Словенский',
+            'slovak' => 'Словацкий'
         ]],
         'alerts'=> (object)[
             'access_denied'=>'Доступ запрещен. Данная страница модуля доступна только Супер Администратору (ID ' . ZM_PB_SUPERADM_ID . ').',

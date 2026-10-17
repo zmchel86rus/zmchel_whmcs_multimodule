@@ -1,4 +1,6 @@
 <?php
+/* Italiano (it_IT) */
+
 return (object)[
     'transfer' => (object)[
         'title' => 'Importazione / esportazione', 'export' => 'Esporta', 'import' => 'Importa', 'all' => 'Tutte le sezioni',
@@ -99,7 +101,12 @@ return (object)[
             ],
         ],
         'module_logs' => (object)['title'=>'Registri del modulo','description'=>''],
-        'supported_langs' => (object)['title'=>'Lingue supportate','description'=>'','translate'=>(object)['english'=>'Inglese','russian'=>"Russo",'german'=>"Tedesco",'spanish'=>"Spagnolo",'ukranian'=>"Ucraino",
+        'supported_langs' => (object)['title'=>'Lingue supportate','description'=>'','translate'=>(object)[
+            'english'=>'Inglese',
+            'russian'=>'Russo',
+            'german'=>'Tedesco',
+            'spanish'=>'Spagnolo',
+            'ukranian'=>'Ucraino',
             'french' => 'Francese',
             'portuguese-pt' => 'Portoghese (Portogallo)',
             'portuguese-br' => 'Portoghese (Brasile)',
@@ -110,7 +117,20 @@ return (object)[
             'norwegian' => 'Norvegese',
             'swedish' => 'Svedese',
             'turkish' => 'Turco',
-            'hungarian' => 'Ungherese'
+            'hungarian' => 'Ungherese',
+            'dutch' => 'Olandese',
+            'danish' => 'Danese',
+            'macedonian' => 'Macedone',
+            'romanian' => 'Romeno',
+            'catalan' => 'Catalano',
+            'finnish' => 'Finlandese',
+            'polish' => 'Polacco',
+            'bulgarian' => 'Bulgaro',
+            'serbian' => 'Serbo',
+            'lithuanian' => 'Lituano',
+            'latvian' => 'Lettone',
+            'slovenian' => 'Sloveno',
+            'slovak' => 'Slovacco'
         ]],
         'alerts'=> (object)[
             'access_denied'=>'Accesso negato. Questa pagina del modulo è disponibile solo per il Super Amministratore (ID ' . ZM_PB_SUPERADM_ID . ').',

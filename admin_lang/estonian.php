@@ -1,4 +1,6 @@
 <?php
+/* Eesti (et_EE) */
+
 return (object)[
     'transfer' => (object)[
         'title' => 'Import / eksport', 'export' => 'Ekspordi', 'import' => 'Impordi', 'all' => 'Kõik jaotised',
@@ -99,7 +101,12 @@ return (object)[
             ],
         ],
         'module_logs' => (object)['title'=>'Mooduli logid','description'=>''],
-        'supported_langs' => (object)['title'=>'Toetatud keeled','description'=>'','translate'=>(object)['english'=>'Inglise keel','russian'=>"Vene keel",'german'=>"Saksa keel",'spanish'=>"Hispaania keel",'ukranian'=>"Ukraina keel",
+        'supported_langs' => (object)['title'=>'Toetatud keeled','description'=>'','translate'=>(object)[
+            'english'=>'Inglise keel',
+            'russian'=>'Vene keel',
+            'german'=>'Saksa keel',
+            'spanish'=>'Hispaania keel',
+            'ukranian'=>'Ukraina keel',
             'french' => 'Prantsuse keel',
             'portuguese-pt' => 'Portugali keel (Portugal)',
             'portuguese-br' => 'Portugali keel (Brasiilia)',
@@ -110,7 +117,20 @@ return (object)[
             'norwegian' => 'Norra keel',
             'swedish' => 'Rootsi keel',
             'turkish' => 'Türgi keel',
-            'hungarian' => 'Ungari keel'
+            'hungarian' => 'Ungari keel',
+            'dutch' => 'Hollandi keel',
+            'danish' => 'Taani keel',
+            'macedonian' => 'Makedoonia keel',
+            'romanian' => 'Rumeenia keel',
+            'catalan' => 'Katalaani keel',
+            'finnish' => 'Soome keel',
+            'polish' => 'Poola keel',
+            'bulgarian' => 'Bulgaaria keel',
+            'serbian' => 'Serbia keel',
+            'lithuanian' => 'Leedu keel',
+            'latvian' => 'Läti keel',
+            'slovenian' => 'Sloveeni keel',
+            'slovak' => 'Slovaki keel'
         ]],
         'alerts'=> (object)[
             'access_denied'=>'Juurdepääs keelatud. See mooduli leht on saadaval ainult peaadministraatorile (ID ' . ZM_PB_SUPERADM_ID . ').',

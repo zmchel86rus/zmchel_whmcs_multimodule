@@ -1,5 +1,5 @@
 <?php
-/* English (en) */
+/* English (en_US) */
 
 return (object)[
     'transfer' => (object)[
@@ -102,7 +102,12 @@ return (object)[
             ],
         ],
         'module_logs' => (object)['title'=>'Module logs','description'=>''],
-        'supported_langs' => (object)['title'=>'Supported languages','description'=>'','translate'=>(object)['english'=>'English','russian'=>"Russian",'german'=>"German",'spanish'=>"Spanish",'ukranian'=>"Ukrainian",
+        'supported_langs' => (object)['title'=>'Supported languages','description'=>'','translate'=>(object)[
+            'english'=>'English',
+            'russian'=>'Russian',
+            'german'=>'German',
+            'spanish'=>'Spanish',
+            'ukranian'=>'Ukrainian',
             'french' => 'French',
             'portuguese-pt' => 'Portuguese (Portugal)',
             'portuguese-br' => 'Portuguese (Brazil)',
@@ -113,7 +118,20 @@ return (object)[
             'norwegian' => 'Norwegian',
             'swedish' => 'Swedish',
             'turkish' => 'Turkish',
-            'hungarian' => 'Hungarian'
+            'hungarian' => 'Hungarian',
+            'dutch' => 'Dutch',
+            'danish' => 'Danish',
+            'macedonian' => 'Macedonian',
+            'romanian' => 'Romanian',
+            'catalan' => 'Catalan',
+            'finnish' => 'Finnish',
+            'polish' => 'Polish',
+            'bulgarian' => 'Bulgarian',
+            'serbian' => 'Serbian',
+            'lithuanian' => 'Lithuanian',
+            'latvian' => 'Latvian',
+            'slovenian' => 'Slovenian',
+            'slovak' => 'Slovak'
         ]],
         'alerts'=> (object)[
             'access_denied'=>'Access denied. This module page is available only to the Super Administrator (ID ' . ZM_PB_SUPERADM_ID . ').',

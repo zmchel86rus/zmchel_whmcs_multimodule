@@ -1,4 +1,6 @@
 <?php
+/* Français (fr_FR) */
+
 return (object)[
     'transfer' => (object)[
         'title' => 'Importation / exportation', 'export' => 'Exporter', 'import' => 'Importer', 'all' => 'Toutes les sections',
@@ -99,7 +101,12 @@ return (object)[
             ],
         ],
         'module_logs' => (object)['title'=>'Journaux du module','description'=>''],
-        'supported_langs' => (object)['title'=>'Langues prises en charge','description'=>'','translate'=>(object)['english'=>'Anglais','russian'=>"Russe",'german'=>"Allemand",'spanish'=>"Espagnol",'ukranian'=>"Ukrainien",
+        'supported_langs' => (object)['title'=>'Langues prises en charge','description'=>'','translate'=>(object)[
+            'english'=>'Anglais',
+            'russian'=>'Russe',
+            'german'=>'Allemand',
+            'spanish'=>'Espagnol',
+            'ukranian'=>'Ukrainien',
             'french' => 'Français',
             'portuguese-pt' => 'Portugais (Portugal)',
             'portuguese-br' => 'Portugais (Brésil)',
@@ -110,7 +117,20 @@ return (object)[
             'norwegian' => 'Norvégien',
             'swedish' => 'Suédois',
             'turkish' => 'Turc',
-            'hungarian' => 'Hongrois'
+            'hungarian' => 'Hongrois',
+            'dutch' => 'Néerlandais',
+            'danish' => 'Danois',
+            'macedonian' => 'Macédonien',
+            'romanian' => 'Roumain',
+            'catalan' => 'Catalan',
+            'finnish' => 'Finnois',
+            'polish' => 'Polonais',
+            'bulgarian' => 'Bulgare',
+            'serbian' => 'Serbe',
+            'lithuanian' => 'Lituanien',
+            'latvian' => 'Letton',
+            'slovenian' => 'Slovène',
+            'slovak' => 'Slovaque'
         ]],
         'alerts'=> (object)[
             'access_denied'=>'Accès refusé. Cette page du module est réservée au superadministrateur (ID ' . ZM_PB_SUPERADM_ID . ').',

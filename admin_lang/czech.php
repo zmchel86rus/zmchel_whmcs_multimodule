@@ -1,4 +1,6 @@
 <?php
+/* Čeština (cs_CZ) */
+
 return (object)[
     'transfer' => (object)[
         'title' => 'Import / export', 'export' => 'Export', 'import' => 'Import', 'all' => 'Všechny sekce',
@@ -99,7 +101,12 @@ return (object)[
             ],
         ],
         'module_logs' => (object)['title'=>'Protokoly modulu','description'=>''],
-        'supported_langs' => (object)['title'=>'Podporované jazyky','description'=>'','translate'=>(object)['english'=>'Angličtina','russian'=>"Ruština",'german'=>"Němčina",'spanish'=>"Španělština",'ukranian'=>"Ukrajinština",
+        'supported_langs' => (object)['title'=>'Podporované jazyky','description'=>'','translate'=>(object)[
+            'english'=>'Angličtina',
+            'russian'=>'Ruština',
+            'german'=>'Němčina',
+            'spanish'=>'Španělština',
+            'ukranian'=>'Ukrajinština',
             'french' => 'Francouzština',
             'portuguese-pt' => 'Portugalština (Portugalsko)',
             'portuguese-br' => 'Portugalština (Brazílie)',
@@ -110,7 +117,20 @@ return (object)[
             'norwegian' => 'Norština',
             'swedish' => 'Švédština',
             'turkish' => 'Turečtina',
-            'hungarian' => 'Maďarština'
+            'hungarian' => 'Maďarština',
+            'dutch' => 'Nizozemština',
+            'danish' => 'Dánština',
+            'macedonian' => 'Makedonština',
+            'romanian' => 'Rumunština',
+            'catalan' => 'Katalánština',
+            'finnish' => 'Finština',
+            'polish' => 'Polština',
+            'bulgarian' => 'Bulharština',
+            'serbian' => 'Srbština',
+            'lithuanian' => 'Litevština',
+            'latvian' => 'Lotyština',
+            'slovenian' => 'Slovinština',
+            'slovak' => 'Slovenština'
         ]],
         'alerts'=> (object)[
             'access_denied'=>'Přístup odepřen. Tato stránka modulu je dostupná pouze hlavnímu administrátorovi (ID ' . ZM_PB_SUPERADM_ID . ').',

@@ -53,7 +53,7 @@ if (!defined('ZM_PB_ALLOWED_CONSTS_CHANGE')) define('ZM_PB_ALLOWED_CONSTS_CHANGE
 ### INFO CONSTS ###
 if (!defined('ZM_PB_SUPERADM_ID')) define('ZM_PB_SUPERADM_ID', 1 );
 if (!defined('ZM_PB_FREFIX')) define('ZM_PB_FREFIX', 'ZM_PB_' );
-if (!defined('ZM_PB_VER')) define('ZM_PB_VER', '1.0.0' );
+if (!defined('ZM_PB_VER')) define('ZM_PB_VER', '1.0.1' );
 if (!defined('ZM_PB_NAME')) define('ZM_PB_NAME', basename(__DIR__) );
 ### INFO CONSTS ###
 
@@ -159,7 +159,10 @@ if ($adminId) {
     $adminlang = $admin->language ?? ZM_PB_DEFLANG ?? 'english';
 }
 $adminlang = strtolower((string) $adminlang);
-if ($adminlang === 'ukrainian') $adminlang = 'ukranian'; // Existing language file and supported_langs.php key.
+// Existing language file and supported_langs.php key. - Oh, WHMCS...
+if ($adminlang === 'ukrainian') $adminlang = 'ukranian';
+if ($adminlang === 'portuguese-pt') $adminlang = 'portugues';
+if ($adminlang === 'portuguese-br') $adminlang = 'portugues-br';
 
 ### SUP MODULE LANGS CONSTS ###
 if (!defined('ZM_PB_LANGS')) define('ZM_PB_LANGS', ( require_once ZM_PB_ROOTDIR.'supported_langs.php') );
@@ -181,6 +184,11 @@ if (!isset($GLOBALS['ZM_PB_ADMINLANG']) && defined('ZM_PB_ALANGDIR')){
     if (PHP_VERSION_ID >= 80000 && !defined('ZM_PB_ADMINLANG')) define('ZM_PB_ADMINLANG', $admin_lang_data);
 }
 if (!defined('ZM_PB_ADMINLANGNAME')) define('ZM_PB_ADMINLANGNAME', $adminlang );
+$adminClientLanguage = [
+    'portugues' => 'portuguese-pt',
+    'portugues-br' => 'portuguese-br',
+][$adminlang] ?? $adminlang;
+if (!defined('ZM_PB_ADMIN_CLIENT_LANGNAME')) define('ZM_PB_ADMIN_CLIENT_LANGNAME', $adminClientLanguage);
 ### SUP MODULE LANGS CONSTS ###
 unset($adminId);
 

@@ -1,4 +1,6 @@
 <?php
+/* Magyar (hu_HU) */
+
 return (object)[
     'transfer' => (object)[
         'title' => 'Importálás / exportálás', 'export' => 'Exportálás', 'import' => 'Importálás', 'all' => 'Összes szakasz',
@@ -99,7 +101,12 @@ return (object)[
             ],
         ],
         'module_logs' => (object)['title'=>'Modulnaplók','description'=>''],
-        'supported_langs' => (object)['title'=>'Támogatott nyelvek','description'=>'','translate'=>(object)['english'=>'Angol','russian'=>"Orosz",'german'=>"Német",'spanish'=>"Spanyol",'ukranian'=>"Ukrán",
+        'supported_langs' => (object)['title'=>'Támogatott nyelvek','description'=>'','translate'=>(object)[
+            'english'=>'Angol',
+            'russian'=>'Orosz',
+            'german'=>'Német',
+            'spanish'=>'Spanyol',
+            'ukranian'=>'Ukrán',
             'french' => 'Francia',
             'portuguese-pt' => 'Portugál (Portugália)',
             'portuguese-br' => 'Portugál (Brazília)',
@@ -110,7 +117,20 @@ return (object)[
             'norwegian' => 'Norvég',
             'swedish' => 'Svéd',
             'turkish' => 'Török',
-            'hungarian' => 'Magyar'
+            'hungarian' => 'Magyar',
+            'dutch' => 'Holland',
+            'danish' => 'Dán',
+            'macedonian' => 'Macedón',
+            'romanian' => 'Román',
+            'catalan' => 'Katalán',
+            'finnish' => 'Finn',
+            'polish' => 'Lengyel',
+            'bulgarian' => 'Bolgár',
+            'serbian' => 'Szerb',
+            'lithuanian' => 'Litván',
+            'latvian' => 'Lett',
+            'slovenian' => 'Szlovén',
+            'slovak' => 'Szlovák'
         ]],
         'alerts'=> (object)[
             'access_denied'=>'Hozzáférés megtagadva. A modul ezen oldala csak a szuperadminisztrátor számára érhető el (ID ' . ZM_PB_SUPERADM_ID . ').',
