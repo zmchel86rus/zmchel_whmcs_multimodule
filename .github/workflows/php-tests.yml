@@ -33,5 +33,6 @@ jobs:
           php tests/page_urls.php --pretty
           php tests/rewrite.php
           php tests/rewrite.php --routes-off
+          php tests/smarty_admin_guard.php
           php tests/content_links.php
           php tests/table_of_contents.php

@@ -33,10 +33,11 @@ add_hook('AdminAreaFooterOutput', 10, function($vars) {
     return $output;
 });
 
-if (ZM_PB_COLLECT_VARS) {
+if (ZM_PB_COLLECT_VARS && !defined('ADMINAREA')) {
     require_once ZM_PB_LIBDIR . 'smarty_variables.php';
     foreach (['ClientAreaPage' => 9999, 'ClientAreaHeadOutput' => 9999, 'ClientAreaFooterOutput' => 9999] as $stage => $priority) {
         add_hook($stage, $priority, function ($vars) use ($stage, $priority) {
+            if (defined('ADMINAREA')) return;
             try {
                 $native = $GLOBALS['smarty'] ?? null;
                 $variables = $native instanceof Smarty ? $native->getTemplateVars() : [];

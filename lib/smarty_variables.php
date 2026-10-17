@@ -86,6 +86,7 @@ class ZM_PB_SmartyVariables
 
     public static function collect(array $variables, $stage)
     {
+        if (defined('ADMINAREA')) return;
         $theme = (string) ($variables['template'] ?? 'unknown');
         $source = (string) ($variables['templatefile'] ?? 'unknown');
         // Missing template identity at an early hook must not mix unrelated pages.
