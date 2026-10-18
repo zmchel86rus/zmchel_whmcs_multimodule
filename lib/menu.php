@@ -2,6 +2,7 @@
 if (!defined('ZM_PB_VER')) die('Direct access not allowed');
 use Illuminate\Database\Capsule\Manager as Capsule;
 require_once ZM_PB_INCDIR . 'menu_manager.php';
+require_once ZM_PB_INCDIR . 'route_guard.php';
 
 class ZM_PB_Menu
 {
@@ -76,7 +77,8 @@ class ZM_PB_Menu
         }
         // Assets, callbacks and control endpoints are not language routes.
         if (preg_match('~^(?:modules|assets|includes|vendor|api|oauth|crons)(?:/|$)~i', $path)) return $url;
-        $prefix = $language !== ZM_PB_DEFLANG ? (ZM_PB_LANGS[$language]['route_code'] ?? '') : '';
+        if ($path !== '' && zm_pb_route_uses_user_language(['slug' => $path, 'lang' => ''])) return $url;
+        $prefix = zm_pb_language_route_code($language);
         $result = rtrim(ZM_PB_FULLHOST, '/') . '/' . ($prefix !== '' ? $prefix . '/' : '') . $path;
         if (isset($parts['query'])) $result .= '?' . $parts['query'];
         if (isset($parts['fragment'])) $result .= '#' . $parts['fragment'];

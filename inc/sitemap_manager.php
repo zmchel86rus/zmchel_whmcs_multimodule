@@ -100,7 +100,7 @@ function zm_pb_sitemap_url($slug, $language, $source = null, $custom = '')
 {
     if (!ZM_PB_PRETTY_URLS) return zm_pb_module_page_url($slug, $language);
     $base = rtrim(ZM_PB_FULLHOST, '/') . '/';
-    $prefix = ZM_PB_ENABLE_LANG_ROUTE && $language !== ZM_PB_DEFLANG ? (ZM_PB_LANGS[$language]['route_code'] ?? '') : '';
+    $prefix = zm_pb_language_route_code($language);
     if ($source !== null) {
         $path = $source === 'index' ? (ZM_PB_MAINSYSTEM_PRETTY_URLS ? '' : 'index.php')
             : $source . (ZM_PB_MAINSYSTEM_PRETTY_URLS ? '/' : '.php');

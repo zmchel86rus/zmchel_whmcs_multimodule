@@ -1,6 +1,7 @@
 <?php
 if (!defined('ZM_PB_VER')) die('Direct access not allowed');
 require_once __DIR__ . '/route_guard.php';
+require_once __DIR__ . '/page_urls.php';
 
 function zm_pb_breadcrumb_label($settings)
 {
@@ -36,8 +37,9 @@ function zm_pb_breadcrumb_source($link)
 
 function zm_pb_breadcrumb_home_url($language)
 {
-    if (ZM_PB_ENABLE_LANG_ROUTE && $language !== ZM_PB_DEFLANG && isset(ZM_PB_LANGS[$language])) {
-        return ZM_PB_FULLHOST . ZM_PB_LANGS[$language]['route_code'] . '/';
+    $code = zm_pb_language_route_code($language);
+    if ($code !== '') {
+        return ZM_PB_FULLHOST . $code . '/';
     }
     return ZM_PB_FULLHOST . (ZM_PB_MAINSYSTEM_PRETTY_URLS ? '' : 'index.php');
 }

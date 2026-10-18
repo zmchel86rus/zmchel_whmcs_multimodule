@@ -113,6 +113,18 @@ if ($system_page === null) {
     if (!zm_pb_has_table('zm_pb_pages') || !Capsule::table('zm_pb_pages')->where('slug', $request['slug'])->exists()) return;
 }
 
+if (!$hasLanguageSelection && empty($request['lang']) && $system_page !== 'index'
+    && ($system_page === null || $override_target !== '')
+    && (ZM_PB_PRETTY_URLS || $system_page === null || $override_type === 'full')) {
+    require_once ZM_PB_INCDIR . 'page_urls.php';
+    $canonicalSlug = $system_page === null ? $request['slug'] : $override_target;
+    $target = zm_pb_default_language_page_redirect_target($publicUri, $canonicalSlug, $request['page'] ?? null);
+    if ($target !== null) {
+        header('Location: ' . $target, true, 301);
+        exit;
+    }
+}
+
 // Keep module pages on query URLs when their pretty URLs are disabled.
 if (!ZM_PB_PRETTY_URLS && !isset($_GET['m']) && !$hasLanguageSelection
     && ($system_page === null || ($system_page !== 'index' && $override_type === 'full'))) {

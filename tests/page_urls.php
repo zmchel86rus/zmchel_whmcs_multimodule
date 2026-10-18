@@ -40,6 +40,7 @@ define('ZM_PB_NAME', 'zmchel_whmcs_multimodule');
 define('ZM_PB_FULLHOST', 'https://example.test/billing/');
 define('ZM_PB_DEFLANG', 'english');
 define('ZM_PB_ENABLE_LANG_ROUTE', true);
+define('ZM_PB_ENABLE_DEFAULT_LANG_ROUTE', in_array('--default-route', $argv, true));
 define('ZM_PB_ENABLE_PAGE_OVERRIDES', true);
 define('ZM_PB_MAINSYSTEM_PRETTY_URLS', true);
 define('ZM_PB_PRETTY_URLS', in_array('--pretty', $argv, true));
@@ -63,6 +64,8 @@ function expect_url($actual, $expected)
 
 $page = (object) ['slug' => 'samplepage'];
 $base = 'https://example.test/billing/';
+$defaultPrefix = ZM_PB_ENABLE_DEFAULT_LANG_ROUTE ? 'en/' : '';
+$defaultQuery = ZM_PB_ENABLE_DEFAULT_LANG_ROUTE ? '&lang=en' : '';
 expect_url(zm_pb_escaped_query_redirect_target('/billing/?m=zmchel_whmcs_multimodule&amp;slug=samplepage&amp;lang=ru'),
     '/billing/?m=zmchel_whmcs_multimodule&slug=samplepage&lang=ru');
 expect_url(zm_pb_escaped_query_redirect_target('/billing/?m=another_module&amp;slug=samplepage'), null);
@@ -81,9 +84,12 @@ if (isset($_GET['amp;slug']) || isset($_REQUEST['amp;slug'])) {
 unset($_GET, $_REQUEST, $_SERVER['REQUEST_URI'], $_SERVER['ZM_PB_ORIGINAL_REQUEST_URI'], $_SERVER['QUERY_STRING']);
 if (ZM_PB_PRETTY_URLS) {
     expect_url(zm_pb_menu_page_url($page, 'russian', []), $base . 'ru/samplepage/');
-    expect_url(zm_pb_menu_page_url($page, 'english', ['samplepage' => 'contact']), $base . 'contact/');
+    expect_url(zm_pb_menu_page_url($page, 'english', ['samplepage' => 'contact']), $base . $defaultPrefix . 'contact/');
+    expect_url(zm_pb_module_page_url('samplepage', 'english'), $base . $defaultPrefix . 'samplepage/');
+    expect_url(zm_pb_sitemap_url('samplepage', 'english'), $base . $defaultPrefix . 'samplepage/');
     expect_url(zm_pb_sitemap_url('samplepage', 'russian'), $base . 'ru/samplepage/');
     expect_url(ZM_PB_ContentLinks::localize('/billing/samplepage/', 'russian'), '/billing/ru/samplepage/');
+    expect_url(ZM_PB_ContentLinks::localize('/billing/samplepage/', 'english'), '/billing/' . $defaultPrefix . 'samplepage/');
     expect_url(zm_pb_menu_page_url($page, 'portuguese-pt', []), $base . 'pt/samplepage/');
     expect_url(zm_pb_menu_page_url($page, 'portuguese-br', []), $base . 'pt-BR/samplepage/');
     expect_url(zm_pb_sitemap_url('samplepage', 'portuguese-pt'), $base . 'pt/samplepage/');
@@ -91,19 +97,20 @@ if (ZM_PB_PRETTY_URLS) {
     expect_url(ZM_PB_ContentLinks::localize('/billing/pt/samplepage/', 'portuguese-br'), '/billing/pt-BR/samplepage/');
 } else {
     $plain = $base . '?m=zmchel_whmcs_multimodule&slug=samplepage';
-    expect_url(zm_pb_menu_page_url($page, 'english', []), $plain);
+    expect_url(zm_pb_menu_page_url($page, 'english', []), $plain . $defaultQuery);
     expect_url(zm_pb_menu_page_url($page, 'russian', []), $plain . '&lang=ru');
     expect_url(zm_pb_menu_page_url($page, 'portuguese-pt', []), $plain . '&lang=pt');
     expect_url(zm_pb_menu_page_url($page, 'portuguese-br', []), $plain . '&lang=pt-BR');
     expect_url(zm_pb_sitemap_url('samplepage', 'portuguese-pt'), $plain . '&lang=pt');
     expect_url(zm_pb_sitemap_url('samplepage', 'portuguese-br'), $plain . '&lang=pt-BR');
-    expect_url(zm_pb_menu_page_url($page, 'english', ['samplepage' => 'contact']), $plain);
+    expect_url(zm_pb_menu_page_url($page, 'english', ['samplepage' => 'contact']), $plain . $defaultQuery);
+    expect_url(zm_pb_sitemap_url('samplepage', 'english'), $plain . $defaultQuery);
     expect_url(zm_pb_sitemap_url('samplepage', 'russian', 'contact'), $plain . '&lang=ru');
-    expect_url(ZM_PB_ContentLinks::localize('/billing/samplepage/', 'english'), $plain);
+    expect_url(ZM_PB_ContentLinks::localize('/billing/samplepage/', 'english'), $plain . $defaultQuery);
     expect_url(ZM_PB_ContentLinks::localize($base . 'samplepage/?sort=recent#results', 'russian'),
         $plain . '&lang=ru&sort=recent#results');
     expect_url(ZM_PB_ContentLinks::localize('/billing/contact/', 'english'),
-        $base . '?m=zmchel_whmcs_multimodule&slug=contact');
+        $base . '?m=zmchel_whmcs_multimodule&slug=contact' . $defaultQuery);
     expect_url(ZM_PB_ContentLinks::localize('/billing/index.php?m=zmchel_whmcs_multimodule&slug=samplepage', 'russian'),
         $plain . '&lang=ru');
     expect_url(ZM_PB_ContentLinks::localize('/billing/clientarea.php', 'english'), '/billing/clientarea.php');
@@ -117,6 +124,20 @@ if (ZM_PB_PRETTY_URLS) {
     $links = $document->getElementsByTagName('a');
     expect_url($links->item(0)->getAttribute('href'), $plain . '&lang=ru');
     expect_url($links->item(1)->getAttribute('href'), 'https://elsewhere.test/');
+}
+if (ZM_PB_ENABLE_DEFAULT_LANG_ROUTE) {
+    $expected = ZM_PB_PRETTY_URLS ? '/billing/en/samplepage/?sort=new' : $base . '?m=' . ZM_PB_NAME . '&slug=samplepage&lang=en&sort=new';
+    expect_url(zm_pb_default_language_page_redirect_target('/billing/samplepage/?sort=new', 'samplepage'), $expected);
+    $moduleQueryTarget = $base . (ZM_PB_PRETTY_URLS ? 'en/samplepage/?sort=new' : '?m=' . ZM_PB_NAME . '&slug=samplepage&lang=en&sort=new');
+    expect_url(zm_pb_default_language_page_redirect_target('/billing/?m=' . ZM_PB_NAME . '&slug=samplepage&sort=new', 'samplepage'), $moduleQueryTarget);
+    expect_url(zm_pb_default_language_page_redirect_target('/billing/en/samplepage/', 'samplepage'), null);
+    expect_url(zm_pb_default_language_page_redirect_target('/elsewhere/samplepage/', 'samplepage'), null);
+    $paginationTarget = ZM_PB_PRETTY_URLS
+        ? '/billing/en/samplepage/page/2/'
+        : $base . '?m=' . ZM_PB_NAME . '&slug=samplepage&lang=en&page=2';
+    expect_url(zm_pb_default_language_page_redirect_target('/billing/samplepage/page/2/', 'samplepage', 2), $paginationTarget);
+} else {
+    expect_url(zm_pb_default_language_page_redirect_target('/billing/samplepage/', 'samplepage'), null);
 }
 require dirname(__DIR__) . '/inc/helpers.php';
 $requestedLanguage = in_array('--br', $argv, true) ? 'portuguese-br' : 'portuguese-pt';
@@ -136,4 +157,10 @@ $pageData = ['page' => (object) ['slug' => 'samplepage'], 'settings' => [
     'portuguese-br' => (object) ['lang' => 'portuguese-br'],
 ]];
 expect_url(zm_pb_resolve_page_settings($pageData, $parsed)->lang, $requestedLanguage);
+if (ZM_PB_ENABLE_DEFAULT_LANG_ROUTE) {
+    $fallbackPage = ['page' => (object) ['slug' => 'samplepage'], 'settings' => [
+        'russian' => (object) ['lang' => 'russian'],
+    ]];
+    expect_url(zm_pb_resolve_page_settings($fallbackPage, ['lang' => 'en'])->lang, 'russian');
+}
 echo 'Page URL mode OK' . PHP_EOL;

@@ -79,7 +79,8 @@ class ZM_PB_ContentLinks
                     && !self::isPublishedPage($root))) return $url;
         }
 
-        $prefix = $language === ZM_PB_DEFLANG ? '' : ZM_PB_LANGS[$language]['route_code'] . '/';
+        $code = zm_pb_language_route_code($language);
+        $prefix = $code === '' ? '' : $code . '/';
         $result = $base . '/' . $prefix . $path;
         if (isset($parts['host'])) {
             $origin = ($parts['scheme'] ?? $site['scheme'] ?? 'https') . '://' . $parts['host'];

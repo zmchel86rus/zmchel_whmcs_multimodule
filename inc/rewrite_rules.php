@@ -7,7 +7,8 @@ if (!defined('ZM_PB_VER')) die('Direct access not allowed');
 $rules = [];
 if (!ZM_PB_ENABLE_LANG_ROUTE) return $rules;
 $defaultCode = ZM_PB_LANGS[ZM_PB_DEFLANG]['route_code'] ?? '';
-if (preg_match('/^[a-z]{2,3}(?:-[a-z0-9]{2,8})*$/iD', $defaultCode)) {
+if (!(defined('ZM_PB_ENABLE_DEFAULT_LANG_ROUTE') && ZM_PB_ENABLE_DEFAULT_LANG_ROUTE)
+    && preg_match('/^[a-z]{2,3}(?:-[a-z0-9]{2,8})*$/iD', $defaultCode)) {
     $base = rtrim(parse_url(ZM_PB_FULLHOST, PHP_URL_PATH) ?: '', '/');
     $rules[] = [
         'language' => ZM_PB_LANGS[ZM_PB_DEFLANG]['name'],

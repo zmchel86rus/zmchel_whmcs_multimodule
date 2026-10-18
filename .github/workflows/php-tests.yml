@@ -33,7 +33,10 @@ jobs:
           php tests/page_urls.php --br
           php tests/page_urls.php --pretty
           php tests/page_urls.php --pretty --br
+          php tests/page_urls.php --default-route
+          php tests/page_urls.php --pretty --default-route
           php tests/rewrite.php
+          php tests/rewrite.php --default-route
           php tests/rewrite.php --routes-off
           php tests/smarty_admin_guard.php
           php tests/content_links.php

@@ -8,6 +8,7 @@ define('ROOTDIR', $directory);
 define('ZM_PB_INCDIR', $directory . '/');
 $GLOBALS['ZM_PB_ADMINLANG'] = (object) ['rewrite_manager' => (object) ['custom' => 'Custom']];
 define('ZM_PB_ENABLE_LANG_ROUTE', !in_array('--routes-off', $argv, true));
+define('ZM_PB_ENABLE_DEFAULT_LANG_ROUTE', in_array('--default-route', $argv, true));
 define('ZM_PB_LANGS', require dirname(__DIR__) . '/supported_langs.php');
 define('ZM_PB_DEFLANG', 'english');
 define('ZM_PB_FULLHOST', 'https://example.test/billing/');
@@ -44,16 +45,28 @@ try {
         throw new RuntimeException('PHP page canonical target is wrong');
     }
     if (ZM_PB_ENABLE_LANG_ROUTE) {
+        if (ZM_PB_ENABLE_DEFAULT_LANG_ROUTE) {
+            if (zm_pb_default_language_redirect_target('/billing/en/contact/') !== null
+                || zm_pb_language_switch_target('/billing/contact/?language=english', ['language' => 'english']) !== '/billing/en/contact/'
+                || zm_pb_language_switch_target('/billing/?m=' . ZM_PB_NAME . '&slug=samplepage&language=english&sort=new',
+                    ['m' => ZM_PB_NAME, 'slug' => 'samplepage', 'language' => 'english'])
+                    !== 'https://example.test/billing/en/samplepage/?sort=new'
+                || zm_pb_language_home_target('/billing/', []) !== '/billing/en/'
+                || zm_pb_language_home_target('/billing/?m=' . ZM_PB_NAME . '&slug=samplepage', ['m' => ZM_PB_NAME, 'slug' => 'samplepage']) !== null) {
+                throw new RuntimeException('Prefixed default language target is wrong');
+            }
+        } elseif (zm_pb_default_language_redirect_target('/billing/en/contact/?count=25') !== '/billing/contact/?count=25'
+            || zm_pb_default_language_redirect_target('/billing/en/') !== '/billing/'
+            || zm_pb_default_language_redirect_target('/billing/en') !== '/billing/'
+            || zm_pb_language_switch_target('/billing/en/contact/?language=english&count=25', ['language' => 'english']) !== '/billing/contact/?count=25') {
+            throw new RuntimeException('Unprefixed default language target is wrong');
+        }
         if (zm_pb_language_query_repair_target('/billing/ru/samplepage/?count=50&amp;language=german') !== '/billing/ru/samplepage/?count=50&language=german'
             || zm_pb_language_query_repair_target('/billing/ru/samplepage/?count=50&language=german') !== null
             || zm_pb_language_switch_target('/billing/ru/samplepage/?count=50&amp;amp%3Blanguage=german&amp;language=russian', ['language' => 'russian']) !== '/billing/ru/samplepage/?count=50'
-            || zm_pb_default_language_redirect_target('/billing/en/contact/?count=25') !== '/billing/contact/?count=25'
-            || zm_pb_default_language_redirect_target('/billing/en/') !== '/billing/'
-            || zm_pb_default_language_redirect_target('/billing/en') !== '/billing/'
             || zm_pb_default_language_redirect_target('/billing/en/contact/', ['language' => 'German']) !== null
             || zm_pb_default_language_redirect_target('/billing/enough/') !== null
             || zm_pb_default_language_redirect_target('/elsewhere/en/contact/') !== null
-            || zm_pb_language_switch_target('/billing/en/contact/?language=english&count=25', ['language' => 'english']) !== '/billing/contact/?count=25'
             || zm_pb_language_switch_target('/billing/en/contact/?language=russian', ['language' => 'russian']) !== '/billing/ru/contact/'
             || zm_pb_language_switch_target('/billing/pt/contact/?language=portuguese-br', ['language' => 'portuguese-br']) !== '/billing/pt-BR/contact/'
             || zm_pb_language_switch_target('/billing/pt-BR/contact/?language=portuguese-pt', ['language' => 'portuguese-pt']) !== '/billing/pt/contact/'
@@ -92,7 +105,12 @@ try {
     $defaults = require $directory . '/rewrite_rules.php';
     $defaultCount = count($defaults);
     if (ZM_PB_ENABLE_LANG_ROUTE) {
-        if ($defaults[0]['directives'] !== [
+        if (ZM_PB_ENABLE_DEFAULT_LANG_ROUTE) {
+            $defaultRewrite = array_filter($defaults, function ($rule) {
+                return ($rule['directives'][0] ?? '') === 'RewriteRule ^en/?$ index.php?rp=/ [NC,QSA,L]';
+            });
+            if (count($defaultRewrite) !== 1) throw new RuntimeException('Default language rewrite rule is missing');
+        } elseif ($defaults[0]['directives'] !== [
             'RewriteCond %{REQUEST_METHOD} ^(?:GET|HEAD)$',
             'RewriteCond %{QUERY_STRING} !(^|&)language= [NC]',
             'RewriteRule ^en(?:/(.*))?$ /billing/$1 [NC,R=301,L]',

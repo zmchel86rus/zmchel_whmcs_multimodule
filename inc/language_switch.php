@@ -1,6 +1,7 @@
 <?php
 if (!defined('ZM_PB_VER')) die('Direct access not allowed');
 require_once __DIR__ . '/route_guard.php';
+require_once __DIR__ . '/page_urls.php';
 
 /** Read the WHMCS preference without changing it based on a URL prefix. */
 function zm_pb_preferred_language()
@@ -15,10 +16,11 @@ function zm_pb_preferred_language()
     return strtolower(ZM_PB_DEFLANG);
 }
 
-/** The configured default language always uses the unprefixed public URL. */
+/** Remove the default-language prefix when that route is disabled. */
 function zm_pb_default_language_redirect_target($uri, array $query = [])
 {
-    if (!ZM_PB_ENABLE_LANG_ROUTE || !isset(ZM_PB_LANGS[ZM_PB_DEFLANG])) return null;
+    if (!ZM_PB_ENABLE_LANG_ROUTE || zm_pb_language_route_code(ZM_PB_DEFLANG) !== '') return null;
+    if (!isset(ZM_PB_LANGS[ZM_PB_DEFLANG])) return null;
     foreach ($query as $name => $value) {
         // An explicit switch must reach WHMCS so it can save the preference.
         if (strcasecmp((string) $name, 'language') === 0) return null;
@@ -81,6 +83,7 @@ function zm_pb_language_route_case_target($uri)
 function zm_pb_language_home_target($uri, array $query = [])
 {
     if (!ZM_PB_ENABLE_LANG_ROUTE || !ZM_PB_PRETTY_URLS || array_key_exists('language', $query)) return null;
+    if (isset($query['m']) || isset($query['slug'])) return null;
     if (!empty($query['rp']) && $query['rp'] !== '/') return null;
     $parts = parse_url($uri);
     if ($parts === false || isset($parts['host']) || isset($parts['scheme'])) return null;
@@ -91,8 +94,8 @@ function zm_pb_language_home_target($uri, array $query = [])
     if (!in_array($path, $homePaths, true)) return null;
 
     $language = zm_pb_preferred_language();
-    if ($language === strtolower(ZM_PB_DEFLANG) || !isset(ZM_PB_LANGS[$language])) return null;
-    $code = ZM_PB_LANGS[$language]['route_code'] ?? '';
+    if (!isset(ZM_PB_LANGS[$language])) return null;
+    $code = zm_pb_language_route_code($language);
     if (!preg_match('/^[a-z]{2,3}(?:-[a-z0-9]{2,8})*$/iD', $code)) return null;
     return $base . '/' . $code . '/' . (isset($parts['query']) && $parts['query'] !== '' ? '?' . $parts['query'] : '');
 }
@@ -184,11 +187,21 @@ function zm_pb_language_switch_target($uri, array $query)
         $name = urldecode(explode('=', $parameter, 2)[0]);
         if (strcasecmp($name, 'language') !== 0) $parameters[] = $parameter;
     }
+    if (($query['m'] ?? null) === ZM_PB_NAME && is_string($query['slug'] ?? null)) {
+        $target = zm_pb_module_page_url($query['slug'], $language);
+        $extras = [];
+        foreach ($parameters as $parameter) {
+            $name = strtolower(urldecode(explode('=', $parameter, 2)[0]));
+            if (!in_array($name, ['m', 'slug', 'lang', 'rp'], true)) $extras[] = $parameter;
+        }
+        return $target . ($extras ? (strpos($target, '?') === false ? '?' : '&') . implode('&', $extras) : '');
+    }
     if (ZM_PB_MAINSYSTEM_PRETTY_URLS && preg_match('~(?:^|/)index\.php$~iD', $path)) $path = substr($path, 0, -strlen('index.php'));
     // A domain name is a public lot route, although its dot looks like a file extension.
     $lotRoute = zm_pb_is_public_lot_route($path);
-    // The default language has no prefix. Native WHMCS routes keep their URLs.
-    $prefix = $language === strtolower(ZM_PB_DEFLANG) ? '' : $code . '/';
+    // Native WHMCS routes keep their URLs; module pages use the configured language prefix.
+    $prefix = zm_pb_language_route_code($language);
+    $prefix = $prefix === '' ? '' : $prefix . '/';
     // An old direct lot link should switch to the same public lot URL as a pretty link.
     if (strcasecmp($path, 'domainmarket.php') === 0 && ($query['a'] ?? '') === 'search') {
         $lot = strtolower(trim((string) ($query['domain_name'] ?? $query['domain'] ?? '')));

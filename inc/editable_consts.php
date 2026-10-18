@@ -19,6 +19,7 @@ if (!defined('ZM_PB_CUSTOM_HEADER')) define('ZM_PB_CUSTOM_HEADER', false );
 if (!defined('ZM_PB_CUSTOM_FOOTER')) define('ZM_PB_CUSTOM_FOOTER', false );
 
 if (!defined('ZM_PB_ENABLE_LANG_ROUTE')) define('ZM_PB_ENABLE_LANG_ROUTE', true );
+if (!defined('ZM_PB_ENABLE_DEFAULT_LANG_ROUTE')) define('ZM_PB_ENABLE_DEFAULT_LANG_ROUTE', false );
 if (!defined('ZM_PB_ENABLE_LOGS')) define('ZM_PB_ENABLE_LOGS', false );
 if (!defined('ZM_PB_ENABLE_SITEMAP')) define('ZM_PB_ENABLE_SITEMAP', false );
 if (!defined('ZM_PB_ENABLE_PAGE_OVERRIDES')) define('ZM_PB_ENABLE_PAGE_OVERRIDES', false );

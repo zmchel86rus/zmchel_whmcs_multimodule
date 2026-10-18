@@ -305,12 +305,18 @@ if( $override_type === 'full' || $meta_only || $enable_partial_with_meta ){
         
         if (!empty($seo->meta_canonical)) {
             if (!ZM_PB_PRETTY_URLS) $canonical = $public_url;
-            elseif (defined('ZMPB_PAGE_OVERRIDE_MAIN')) $canonical = $full_host . ($page_lang !== $default_lang ? $isset_lang['route_code'].'/' : '');
+            elseif (defined('ZMPB_PAGE_OVERRIDE_MAIN')) {
+                $code = zm_pb_language_route_code($page_lang);
+                $canonical = $full_host . ($code !== '' ? $code . '/' : '');
+            }
             else $canonical = $seo->meta_canonical;
             $html .= '<link rel="canonical" href="' . htmlspecialchars($canonical, ENT_QUOTES, 'UTF-8') . '" />' . "\n";
         }
 
-        $default_url = ZM_PB_PRETTY_URLS ? $full_host . $public_path : zm_pb_module_page_url($slug, $default_lang);
+        $default_code = zm_pb_language_route_code($default_lang);
+        $default_url = ZM_PB_PRETTY_URLS
+            ? $full_host . ($default_code !== '' ? $default_code . '/' : '') . $public_path
+            : zm_pb_module_page_url($slug, $default_lang);
         $alt_links = '<link rel="alternate" hreflang="x-default" href="' . htmlspecialchars($default_url, ENT_QUOTES, 'UTF-8') . '" />' . "\n";
         $alt_meta = '';
         
@@ -319,7 +325,7 @@ if( $override_type === 'full' || $meta_only || $enable_partial_with_meta ){
             $lang_sub_localeBCP47 = $supported_langs[$lang_name]['locale_BCP47'];
             $lang_sub_locale = $supported_langs[$lang_name]['locale'];
             $url = $full_host.$lang_sub_code.'/'.$public_path;
-            if( $lang_name === $default_lang || !$langs_route) $url = $full_host.$public_path;
+            if (!$langs_route || ($lang_name === $default_lang && $default_code === '')) $url = $full_host.$public_path;
             if (!ZM_PB_PRETTY_URLS) $url = zm_pb_module_page_url($slug, $lang_name);
 
             $alt_links .= '<link rel="alternate" hreflang="'.$lang_sub_localeBCP47.'" href="' . htmlspecialchars($url, ENT_QUOTES, 'UTF-8') . '" />' . "\n";

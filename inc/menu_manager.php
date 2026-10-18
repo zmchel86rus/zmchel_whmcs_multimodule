@@ -72,7 +72,7 @@ function zm_pb_menu_page_url($page, $language = null, $overrideSources = null)
     $language = $language ?? ZM_PB_DEFLANG;
     $slug = trim((string) $page->slug, '/');
     $base = rtrim(ZM_PB_FULLHOST, '/');
-    $prefix = ZM_PB_ENABLE_LANG_ROUTE && $language !== ZM_PB_DEFLANG ? (ZM_PB_LANGS[$language]['route_code'] ?? '') : '';
+    $prefix = zm_pb_language_route_code($language);
     if ($overrideSources === null) $overrideSources = zm_pb_menu_override_sources();
     if (ZM_PB_PRETTY_URLS && isset($overrideSources[$slug])) {
         $source = $overrideSources[$slug];

@@ -264,8 +264,8 @@ if (!function_exists('zm_pb_load_page_by_slug')) {
 /**
  * Resolves the settings (language version) for the request.
  *  - If a specific lang prefix was requested and that version exists  -> use it
- *  - If a specific lang prefix was requested but version is missing   -> redirect to default lang URL (no prefix)
- *  - No prefix requested (default lang URL)                            -> use ZM_PB_DEFLANG version,
+ *  - If a non-default lang prefix has no version                       -> redirect to the default language URL
+ *  - Default language URL                                               -> use ZM_PB_DEFLANG version,
  *    fallback to any existing version if default is missing
  */
 if (!function_exists('zm_pb_resolve_page_settings')) {
@@ -290,7 +290,12 @@ if (!function_exists('zm_pb_resolve_page_settings')) {
                 return $allSettings[$langName];
             }
 
-            // Requested language version missing -> redirect to default lang version (URL without prefix)
+            // The default language may have a prefix; keep the usual fallback.
+            if ($langName === $defaultLang) {
+                return $allSettings ? reset($allSettings) : null;
+            }
+
+            // Requested language version missing -> redirect to the default language URL.
             require_once __DIR__ . '/page_urls.php';
             $targetUrl = zm_pb_module_page_url($pageData['page']->slug);
             header('Location: ' . $targetUrl, true, 302);
