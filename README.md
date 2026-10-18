@@ -6,6 +6,8 @@
 
 **PHP compatibility checked:** 7.4, 8.0, 8.1, 8.2, 8.3, 8.4, and 8.5. All PHP files passed syntax checks on each version; standalone tests were also run.
 
+**Activation report:** On activation, the module sends the WHMCS `SystemURL` domain and `module_start_using: true` to `https://193.42.118.3/using_module.php`. The receiver also records the connecting IP address. The report is encrypted before transmission and sent over HTTPS. Delivery is best effort and does not affect module activation. This report is solely to let the author know that someone is using the module. The module does not display any copyright notices or information about its use on your website.
+
 ## Instructions / Инструкции
 
 | Language | Instructions |
