@@ -44,9 +44,9 @@ if (defined('ZMPB_LANGUAGE_SWITCH_PENDING')) return;
 // Apply the public URL language to this response without changing the client profile.
 require_once ZM_PB_INCDIR . 'route_guard.php';
 if (ZM_PB_ENABLE_LANG_ROUTE && !zm_pb_route_uses_user_language($request)) {
-    $routeLanguage = $request['lang'] ?: (ZM_PB_LANGS[ZM_PB_DEFLANG]['code_ISO639_1'] ?? '');
+    $routeLanguage = $request['lang'] ?: (ZM_PB_LANGS[ZM_PB_DEFLANG]['route_code'] ?? '');
     foreach (ZM_PB_LANGS as $languageName => $languageInfo) {
-        if ($languageInfo['code_ISO639_1'] !== $routeLanguage) continue;
+        if ($languageInfo['route_code'] !== $routeLanguage) continue;
         if (!defined('USER_LANG')) define('USER_LANG', $languageName);
         $languageFile = ROOTDIR . '/lang/' . $languageName . '.php';
         if (is_file($languageFile)) {
@@ -121,7 +121,7 @@ if (!ZM_PB_PRETTY_URLS && !isset($_GET['m']) && !$hasLanguageSelection
         require_once ZM_PB_INCDIR . 'page_urls.php';
         $language = ZM_PB_DEFLANG;
         foreach (ZM_PB_LANGS as $languageName => $languageInfo) {
-            if ($languageInfo['code_ISO639_1'] === ($request['lang'] ?? '')) $language = $languageName;
+            if ($languageInfo['route_code'] === ($request['lang'] ?? '')) $language = $languageName;
         }
         $target = zm_pb_module_page_url($canonicalSlug, $language);
         $query = $_GET;

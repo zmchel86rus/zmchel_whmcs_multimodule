@@ -30,7 +30,9 @@ jobs:
           php tests/contact_schema.php
           php tests/images.php
           php tests/page_urls.php
+          php tests/page_urls.php --br
           php tests/page_urls.php --pretty
+          php tests/page_urls.php --pretty --br
           php tests/rewrite.php
           php tests/rewrite.php --routes-off
           php tests/smarty_admin_guard.php

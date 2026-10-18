@@ -8,7 +8,7 @@ function zm_pb_module_page_url($slug, $language = null)
     $language = isset(ZM_PB_LANGS[$language]) ? $language : ZM_PB_DEFLANG;
     $base = rtrim(ZM_PB_FULLHOST, '/') . '/';
     $code = ZM_PB_ENABLE_LANG_ROUTE && $language !== ZM_PB_DEFLANG
-        ? (ZM_PB_LANGS[$language]['code_ISO639_1'] ?? '') : '';
+        ? (ZM_PB_LANGS[$language]['route_code'] ?? '') : '';
 
     if (ZM_PB_PRETTY_URLS) {
         return $base . ($code !== '' ? $code . '/' : '')

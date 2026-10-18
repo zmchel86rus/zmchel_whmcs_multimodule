@@ -44,6 +44,12 @@ define('ZM_PB_ENABLE_PAGE_OVERRIDES', true);
 define('ZM_PB_MAINSYSTEM_PRETTY_URLS', true);
 define('ZM_PB_PRETTY_URLS', in_array('--pretty', $argv, true));
 define('ZM_PB_LANGS', require dirname(__DIR__) . '/supported_langs.php');
+$routeCodes = array_column(ZM_PB_LANGS, 'route_code');
+if (count($routeCodes) !== count(array_unique($routeCodes))
+    || ZM_PB_LANGS['portuguese-pt']['route_code'] !== 'pt'
+    || ZM_PB_LANGS['portuguese-br']['route_code'] !== ZM_PB_LANGS['portuguese-br']['locale_BCP47']) {
+    throw new RuntimeException('Language routes must be distinct, with Portuguese on /pt/ and Brazilian Portuguese on /pt-BR/');
+}
 require dirname(__DIR__) . '/inc/menu_manager.php';
 require dirname(__DIR__) . '/inc/sitemap_manager.php';
 require dirname(__DIR__) . '/inc/url_redirects.php';
@@ -78,10 +84,19 @@ if (ZM_PB_PRETTY_URLS) {
     expect_url(zm_pb_menu_page_url($page, 'english', ['samplepage' => 'contact']), $base . 'contact/');
     expect_url(zm_pb_sitemap_url('samplepage', 'russian'), $base . 'ru/samplepage/');
     expect_url(ZM_PB_ContentLinks::localize('/billing/samplepage/', 'russian'), '/billing/ru/samplepage/');
+    expect_url(zm_pb_menu_page_url($page, 'portuguese-pt', []), $base . 'pt/samplepage/');
+    expect_url(zm_pb_menu_page_url($page, 'portuguese-br', []), $base . 'pt-BR/samplepage/');
+    expect_url(zm_pb_sitemap_url('samplepage', 'portuguese-pt'), $base . 'pt/samplepage/');
+    expect_url(zm_pb_sitemap_url('samplepage', 'portuguese-br'), $base . 'pt-BR/samplepage/');
+    expect_url(ZM_PB_ContentLinks::localize('/billing/pt/samplepage/', 'portuguese-br'), '/billing/pt-BR/samplepage/');
 } else {
     $plain = $base . '?m=zmchel_whmcs_multimodule&slug=samplepage';
     expect_url(zm_pb_menu_page_url($page, 'english', []), $plain);
     expect_url(zm_pb_menu_page_url($page, 'russian', []), $plain . '&lang=ru');
+    expect_url(zm_pb_menu_page_url($page, 'portuguese-pt', []), $plain . '&lang=pt');
+    expect_url(zm_pb_menu_page_url($page, 'portuguese-br', []), $plain . '&lang=pt-BR');
+    expect_url(zm_pb_sitemap_url('samplepage', 'portuguese-pt'), $plain . '&lang=pt');
+    expect_url(zm_pb_sitemap_url('samplepage', 'portuguese-br'), $plain . '&lang=pt-BR');
     expect_url(zm_pb_menu_page_url($page, 'english', ['samplepage' => 'contact']), $plain);
     expect_url(zm_pb_sitemap_url('samplepage', 'russian', 'contact'), $plain . '&lang=ru');
     expect_url(ZM_PB_ContentLinks::localize('/billing/samplepage/', 'english'), $plain);
@@ -103,4 +118,22 @@ if (ZM_PB_PRETTY_URLS) {
     expect_url($links->item(0)->getAttribute('href'), $plain . '&lang=ru');
     expect_url($links->item(1)->getAttribute('href'), 'https://elsewhere.test/');
 }
+require dirname(__DIR__) . '/inc/helpers.php';
+$requestedLanguage = in_array('--br', $argv, true) ? 'portuguese-br' : 'portuguese-pt';
+$requestedCode = ZM_PB_LANGS[$requestedLanguage]['route_code'];
+if (ZM_PB_PRETTY_URLS) {
+    $_GET = [];
+    $_SERVER['REQUEST_URI'] = '/billing/' . $requestedCode . '/samplepage/';
+} else {
+    $_GET = ['m' => ZM_PB_NAME, 'slug' => 'samplepage', 'lang' => $requestedCode];
+    $_SERVER['REQUEST_URI'] = '/billing/?m=' . ZM_PB_NAME . '&slug=samplepage&lang=' . $requestedCode;
+}
+$parsed = zm_pb_parse_request();
+expect_url($parsed['lang'], $requestedCode);
+expect_url($parsed['slug'], 'samplepage');
+$pageData = ['page' => (object) ['slug' => 'samplepage'], 'settings' => [
+    'portuguese-pt' => (object) ['lang' => 'portuguese-pt'],
+    'portuguese-br' => (object) ['lang' => 'portuguese-br'],
+]];
+expect_url(zm_pb_resolve_page_settings($pageData, $parsed)->lang, $requestedLanguage);
 echo 'Page URL mode OK' . PHP_EOL;

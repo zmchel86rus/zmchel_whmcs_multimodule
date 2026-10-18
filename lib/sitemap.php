@@ -60,7 +60,8 @@ class ZM_PB_Sitemap
                     if ($language === ZM_PB_DEFLANG) $defaultUrl = $url;
                     // A fallback translation is not an English version just because its URL has no prefix.
                     $contentLanguage = $translation->lang;
-                    $code = ZM_PB_LANGS[$contentLanguage]['code_ISO639_1'] ?? '';
+                    $code = ZM_PB_LANGS[$contentLanguage]['locale_BCP47']
+                        ?? (ZM_PB_LANGS[$contentLanguage]['code_ISO639_1'] ?? '');
                     if ($code !== '') $alternates[$code] = $url;
                     $last = max(zm_pb_sitemap_timestamp($row->page_updated_at), zm_pb_sitemap_timestamp($row->page_created_at),
                         zm_pb_sitemap_timestamp($translation->updated_at ?? null), zm_pb_sitemap_timestamp($translation->created_at ?? null));

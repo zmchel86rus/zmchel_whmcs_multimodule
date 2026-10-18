@@ -43,7 +43,7 @@ class ZM_PB_Menu
         if ($responseLanguage !== null) return $responseLanguage;
         if (defined('USER_LANG') && isset(ZM_PB_LANGS[strtolower(USER_LANG)])) return strtolower(USER_LANG);
         $request = zm_pb_parse_request();
-        foreach (ZM_PB_LANGS as $name => $info) if ($info['code_ISO639_1'] === ($request['lang'] ?? '')) return $name;
+        foreach (ZM_PB_LANGS as $name => $info) if ($info['route_code'] === ($request['lang'] ?? '')) return $name;
         if (!ZM_PB_ENABLE_LANG_ROUTE) {
             $lang = strtolower((string) ($_SESSION['Language'] ?? ZM_PB_DEFLANG));
             if (isset(ZM_PB_LANGS[$lang])) return $lang;
@@ -71,12 +71,12 @@ class ZM_PB_Menu
         }
         $path = ltrim($path, '/');
         foreach (ZM_PB_LANGS as $info) {
-            $code = $info['code_ISO639_1'];
+            $code = $info['route_code'];
             if ($path === $code || strpos($path, $code . '/') === 0) { $path = ltrim(substr($path, strlen($code)), '/'); break; }
         }
         // Assets, callbacks and control endpoints are not language routes.
         if (preg_match('~^(?:modules|assets|includes|vendor|api|oauth|crons)(?:/|$)~i', $path)) return $url;
-        $prefix = $language !== ZM_PB_DEFLANG ? (ZM_PB_LANGS[$language]['code_ISO639_1'] ?? '') : '';
+        $prefix = $language !== ZM_PB_DEFLANG ? (ZM_PB_LANGS[$language]['route_code'] ?? '') : '';
         $result = rtrim(ZM_PB_FULLHOST, '/') . '/' . ($prefix !== '' ? $prefix . '/' : '') . $path;
         if (isset($parts['query'])) $result .= '?' . $parts['query'];
         if (isset($parts['fragment'])) $result .= '#' . $parts['fragment'];

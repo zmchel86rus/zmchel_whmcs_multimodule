@@ -1,5 +1,5 @@
 <?php 
-return [
+$langs = [
     'russian'=> ['code'=>'RU','name'=>'Русский','locale'=>'ru_RU','locale_BCP47'=>'ru-RU','code_ISO639_1'=>'ru'],
     'english'=> ['code'=>'EN','name'=>'English','locale'=>'en_US','locale_BCP47'=>'en-US','code_ISO639_1'=>'en'],
     'german'=> ['code'=>'DE','name'=>'Deutsch','locale'=>'de_DE','locale_BCP47'=>'de-DE','code_ISO639_1'=>'de'],
@@ -34,3 +34,14 @@ return [
     'slovenian' => ['code'=>'SI','name'=>'Slovenščina','locale'=>'sl_SI','locale_BCP47'=>'sl-SI','code_ISO639_1'=>'sl'],
     'slovak' => ['code'=>'SK','name'=>'Slovenčina','locale'=>'sk_SK','locale_BCP47'=>'sk-SK','code_ISO639_1'=>'sk'],
 ];
+
+// Keep the primary language on its ISO route; use the locale for regional variants.
+$codeCounts = array_count_values(array_column($langs, 'code_ISO639_1'));
+foreach ($langs as &$info) {
+    $code = $info['code_ISO639_1'];
+    $isVariant = $codeCounts[$code] > 1 && strcasecmp($info['code'], $code) !== 0;
+    $info['route_code'] = $isVariant ? $info['locale_BCP47'] : $code;
+}
+unset($info);
+
+return $langs;

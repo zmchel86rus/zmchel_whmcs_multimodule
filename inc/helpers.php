@@ -277,12 +277,12 @@ if (!function_exists('zm_pb_resolve_page_settings')) {
         // Map of url lang codes => internal lang names
         $langCodes = [];
         foreach (ZM_PB_LANGS as $langName => $langInfo) {
-            $langCodes[$langInfo['code_ISO639_1']] = $langName;
+            $langCodes[$langInfo['route_code']] = $langName;
         }
 
         $allSettings = $pageData['settings'];
 
-        if ($urlLang !== '') {
+        if ($urlLang !== '' && isset($langCodes[$urlLang])) {
             $langName = $langCodes[$urlLang];
 
             // Requested language version exists -> use it
@@ -374,6 +374,12 @@ if (!function_exists('zm_pb_parse_request')) {
         }
         if (($_GET['m'] ?? null) === ZM_PB_NAME && is_string($moduleLang)) {
             $result['lang'] = preg_replace('/[^a-z0-9\-]/i', '', $moduleLang);
+            foreach (ZM_PB_LANGS as $info) {
+                if (strcasecmp($result['lang'], $info['route_code']) === 0) {
+                    $result['lang'] = $info['route_code'];
+                    break;
+                }
+            }
         }
         if (($_GET['m'] ?? null) === ZM_PB_NAME && is_string($moduleSlug)) {
             $parsed = $result;
@@ -387,12 +393,12 @@ if (!function_exists('zm_pb_parse_request')) {
             // Map of url lang codes => internal lang names
             $langCodes = [];
             foreach (ZM_PB_LANGS as $langName => $langInfo) {
-                $langCodes[$langInfo['code_ISO639_1']] = $langName;
+                $langCodes[strtolower($langInfo['route_code'])] = $langName;
             }
 
             // First segment might be a language code
             if (!empty($segments) && isset($langCodes[zm_pb_stlc($segments[0])])) {
-                $result['lang'] = zm_pb_stlc($segments[0]);
+                $result['lang'] = ZM_PB_LANGS[$langCodes[zm_pb_stlc($segments[0])]]['route_code'];
                 array_shift($segments);
             }
 

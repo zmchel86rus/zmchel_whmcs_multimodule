@@ -1,6 +1,7 @@
 <?php
 /** Isolated rewrite-manager persistence test; writes only to a temporary directory. */
 define('ZM_PB_VER', 'test');
+define('ZM_PB_NAME', 'zmchel_whmcs_multimodule');
 $directory = sys_get_temp_dir() . '/zm-pb-rewrite-test-' . bin2hex(random_bytes(6));
 if (!mkdir($directory, 0700)) throw new RuntimeException('Unable to create test directory');
 define('ROOTDIR', $directory);
@@ -54,6 +55,18 @@ try {
             || zm_pb_default_language_redirect_target('/elsewhere/en/contact/') !== null
             || zm_pb_language_switch_target('/billing/en/contact/?language=english&count=25', ['language' => 'english']) !== '/billing/contact/?count=25'
             || zm_pb_language_switch_target('/billing/en/contact/?language=russian', ['language' => 'russian']) !== '/billing/ru/contact/'
+            || zm_pb_language_switch_target('/billing/pt/contact/?language=portuguese-br', ['language' => 'portuguese-br']) !== '/billing/pt-BR/contact/'
+            || zm_pb_language_switch_target('/billing/pt-BR/contact/?language=portuguese-pt', ['language' => 'portuguese-pt']) !== '/billing/pt/contact/'
+            || zm_pb_language_route_case_target('/billing/Pt-BR/contact/?page=2') !== '/billing/pt-BR/contact/?page=2'
+            || zm_pb_language_route_case_target('/billing/pt-br/contact/') !== '/billing/pt-BR/contact/'
+            || zm_pb_language_route_case_target('/billing/PT-br/contact/') !== '/billing/pt-BR/contact/'
+            || zm_pb_language_route_case_target('/billing/RU/contact/') !== '/billing/ru/contact/'
+            || zm_pb_language_route_case_target('/billing/pt-BR/contact/') !== null
+            || zm_pb_language_route_case_target('/billing/pt-br/contact/?language=portuguese-pt') !== null
+            || zm_pb_language_route_case_target('/billing/?m=zmchel_whmcs_multimodule&slug=samplepage&lang=pt-br&sort=new')
+                !== '/billing/?m=zmchel_whmcs_multimodule&slug=samplepage&lang=pt-BR&sort=new'
+            || zm_pb_language_route_case_target('/billing/?m=zmchel_whmcs_multimodule&slug=samplepage&lang=pt-BR') !== null
+            || zm_pb_language_route_case_target('/billing/clientarea.php?lang=pt-br') !== null
             || zm_pb_language_switch_target('/billing/login?language=russian', ['language' => 'russian']) !== '/billing/login'
             || zm_pb_language_switch_target('/billing/login?returnto=clientarea&language=german', ['language' => 'german']) !== '/billing/login?returnto=clientarea'
             || zm_pb_language_switch_target('/billing/ru/login?language=spanish', ['language' => 'spanish']) !== '/billing/login'
@@ -84,6 +97,13 @@ try {
             'RewriteCond %{QUERY_STRING} !(^|&)language= [NC]',
             'RewriteRule ^en(?:/(.*))?$ /billing/$1 [NC,R=301,L]',
         ]) throw new RuntimeException('Default language Apache redirect is wrong');
+        $portugueseRules = array_values(array_filter($defaults, function ($rule) {
+            return in_array($rule['directives'][0] ?? '', [
+                'RewriteRule ^pt/?$ index.php?rp=/ [NC,QSA,L]',
+                'RewriteRule ^pt-BR/?$ index.php?rp=/ [NC,QSA,L]',
+            ], true);
+        }));
+        if (count($portugueseRules) !== 2) throw new RuntimeException('Portuguese rewrite rules are missing');
     }
 
     // Emulate another request writing the data file after this worker loaded it.

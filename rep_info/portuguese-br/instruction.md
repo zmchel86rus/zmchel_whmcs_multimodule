@@ -16,7 +16,7 @@ Depois de salvar, abra a página e edite as **configurações principais**, o **
 
 Na guia Conteúdo, selecione um idioma e arraste blocos GrapesJS para a área de edição. Altere textos, imagens e opções do bloco selecionado e salve aquele idioma. Há seções, colunas, tabelas, FAQ, acordeões, formulários de contato, listas, paginação, áreas para visitantes/clientes e código personalizado. Copie a estrutura ou o conteúdo para outro idioma e traduza os textos antes de publicar.
 
-Com URLs amigáveis e roteamento por idioma, o idioma padrão usa `/contact/`; os demais usam um prefixo, como `/pt/contact/`. Nos blocos Link e Botão, ative a opção de incluir o idioma atual somente para páginas traduzidas do site. Deixe-a desligada para links externos, arquivos, `mailto:`, `tel:` e rotas WHMCS sem tradução. Teste os links em vários idiomas.
+Com URLs amigáveis e roteamento por idioma, o idioma padrão usa `/contact/`; os demais usam um prefixo, como `/pt/contact/` para português de Portugal e `/pt-BR/contact/` para português do Brasil. Nos blocos Link e Botão, ative a opção de incluir o idioma atual somente para páginas traduzidas do site. Deixe-a desligada para links externos, arquivos, `mailto:`, `tel:` e rotas WHMCS sem tradução. Teste os links em vários idiomas.
 
 ## SEO, mídia e menus
 

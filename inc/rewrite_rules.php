@@ -6,8 +6,8 @@ if (!defined('ZM_PB_VER')) die('Direct access not allowed');
 // run in ClientAreaPage, after WHMCS has saved the explicit language selection.
 $rules = [];
 if (!ZM_PB_ENABLE_LANG_ROUTE) return $rules;
-$defaultCode = ZM_PB_LANGS[ZM_PB_DEFLANG]['code_ISO639_1'] ?? '';
-if (preg_match('/^[a-z]{2,3}$/D', $defaultCode)) {
+$defaultCode = ZM_PB_LANGS[ZM_PB_DEFLANG]['route_code'] ?? '';
+if (preg_match('/^[a-z]{2,3}(?:-[a-z0-9]{2,8})*$/iD', $defaultCode)) {
     $base = rtrim(parse_url(ZM_PB_FULLHOST, PHP_URL_PATH) ?: '', '/');
     $rules[] = [
         'language' => ZM_PB_LANGS[ZM_PB_DEFLANG]['name'],
@@ -20,14 +20,14 @@ if (preg_match('/^[a-z]{2,3}$/D', $defaultCode)) {
     ];
 }
 foreach (ZM_PB_LANGS as $language => $info) {
-    $code = $info['code_ISO639_1'] ?? '';
-    if (!preg_match('/^[a-z]{2,3}$/', $code) || !preg_match('/^[a-z]+$/', $language)) continue;
+    $code = $info['route_code'] ?? '';
+    if (!preg_match('/^[a-z]{2,3}(?:-[a-z0-9]{2,8})*$/iD', $code)) continue;
     $rules[] = [
         'language' => $info['name'],
         'paths' => ['/' . $code . '/', '/' . $code . '/...'],
         'directives' => [
-            'RewriteRule ^' . $code . '/?$ index.php?rp=/ [QSA,L]',
-            'RewriteRule ^' . $code . '/(.+)$ index.php?rp=/$1 [QSA,L]',
+            'RewriteRule ^' . $code . '/?$ index.php?rp=/ [NC,QSA,L]',
+            'RewriteRule ^' . $code . '/(.+)$ index.php?rp=/$1 [NC,QSA,L]',
         ],
     ];
 }

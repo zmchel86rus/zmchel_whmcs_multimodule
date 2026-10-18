@@ -49,7 +49,7 @@ class ZM_PB_ContentLinks
             }
         }
         foreach (ZM_PB_LANGS as $info) {
-            $code = $info['code_ISO639_1'];
+            $code = $info['route_code'];
             if ($path === $code || strpos($path, $code . '/') === 0) {
                 $path = ltrim(substr($path, strlen($code)), '/');
                 break;
@@ -79,7 +79,7 @@ class ZM_PB_ContentLinks
                     && !self::isPublishedPage($root))) return $url;
         }
 
-        $prefix = $language === ZM_PB_DEFLANG ? '' : ZM_PB_LANGS[$language]['code_ISO639_1'] . '/';
+        $prefix = $language === ZM_PB_DEFLANG ? '' : ZM_PB_LANGS[$language]['route_code'] . '/';
         $result = $base . '/' . $prefix . $path;
         if (isset($parts['host'])) {
             $origin = ($parts['scheme'] ?? $site['scheme'] ?? 'https') . '://' . $parts['host'];

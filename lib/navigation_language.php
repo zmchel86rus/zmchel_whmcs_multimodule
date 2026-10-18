@@ -13,7 +13,7 @@ class ZM_PB_NavigationLanguage
         $request = zm_pb_parse_request();
         if (zm_pb_route_uses_user_language($request)) return zm_pb_preferred_language();
         foreach (ZM_PB_LANGS as $language => $info) {
-            if ($info['code_ISO639_1'] === ($request['lang'] ?? '')) return $language;
+            if ($info['route_code'] === ($request['lang'] ?? '')) return $language;
         }
         // Unprefixed pretty URLs use the default language. Native PHP URLs
         // without a language prefix continue to use WHMCS's own preference.
