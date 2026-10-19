@@ -459,6 +459,8 @@ return (object)[
         ],
     ],
     'other' => (object)[
+        'show'=> 'Näita',
+        'hide'=> 'Peida',
         'enable'  => 'Luba',
         'disable'  => 'Keela',
         'turn_on'  => 'Lülita sisse',

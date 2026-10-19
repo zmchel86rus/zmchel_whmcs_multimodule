@@ -459,6 +459,8 @@ return (object)[
         ],
     ],
     'other' => (object)[
+        'show'=> 'Zobrazit',
+        'hide'=> 'Skrýt',
         'enable'  => 'Povolit',
         'disable'  => 'Zakázat',
         'turn_on'  => 'Zapnout',

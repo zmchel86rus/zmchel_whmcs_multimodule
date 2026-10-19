@@ -462,6 +462,8 @@ return (object)[
         ],
     ],
     'other' => (object)[
+        'show'=> 'Rādīt',
+        'hide'=> 'Paslēpt',
         'enable'  => 'Atļaut',
         'disable'  => 'Aizliegt',
         'turn_on'  => 'Iespējot',

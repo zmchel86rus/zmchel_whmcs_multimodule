@@ -462,6 +462,8 @@ return (object)[
         ],
     ],
     'other' => (object)[
+        'show'=> 'Покажи',
+        'hide'=> 'Скрий',
         'enable'  => 'Разрешаване',
         'disable'  => 'Забраняване',
         'turn_on'  => 'Активиране',

@@ -2,7 +2,7 @@
     <div class="col-sm-12">
         <ul class="nav nav-tabs">
         {foreach $module_subpages as $subpage}
-            {if $subpage != 'pages_editor'}
+            {if ! in_array($subpage, ['pages_editor','sitemap_manager','module_db','module_settings'])}
                 <li class="{if $menuName == $subpage && !isset($view_trash) }active{/if}">
                     <a href="addonmodules.php?module={$addonName}&subpage={$subpage}">
                     {if $module_translates->$subpage}
@@ -14,9 +14,6 @@
                 </li>
             {/if}
         {/foreach}
-            <li class="{if $menuName == 'readme.md'}active{/if}">
-                <a href="addonmodules.php?module={$addonName|escape:'url'}&amp;subpage=README.md">{$module_translates->instruction|escape:'html'}</a>
-            </li>
         </ul>
     </div>
 </div>

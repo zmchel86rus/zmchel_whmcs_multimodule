@@ -462,6 +462,8 @@ return (object)[
         ],
     ],
     'other' => (object)[
+        'show'=> 'Afișează',
+        'hide'=> 'Ascunde',
         'enable'  => 'Permite',
         'disable'  => 'Interzice',
         'turn_on'  => 'Activează',

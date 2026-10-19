@@ -43,6 +43,23 @@
 #zm-pagebuilder .flex-w-90{flex:90%!important}
 
 
+#zm-pagebuilder .pos-sta {
+    position: static!important;
+}
+#zm-pagebuilder .pos-rel {
+    position: relative!important;
+}
+#zm-pagebuilder .pos-abs {
+    position: absolute!important;
+}
+#zm-pagebuilder .pos-sti {
+    position: sticky!important;
+}
+#zm-pagebuilder .pos-fix {
+    position: fixed!important;
+}
+
+
 #zm-pagebuilder .d-none {
     display: none!important;
 }
@@ -1071,3 +1088,7 @@
 }
 
 #growls{z-index:9999999999999}
+
+#zm-pagebuilder .extra-langs > span:before{content:var(--show-text);padding-right:2px;cursor:pointer}
+#zm-pagebuilder .extra-langs > span.collapsed:before{content:var(--hide-text);}
+

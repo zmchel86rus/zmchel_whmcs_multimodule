@@ -11,6 +11,12 @@ $('#zm-pagebuilder [name="transfer_sections[]"]').on('change', function () {
     $(this.form).find('[data-transfer-all]').prop('checked', selected === $choices.length).prop('indeterminate', selected > 0 && selected < $choices.length);
 });
 
+$('#zm-pagebuilder .extra-langs > span').on('click', function (e) {
+    const target = $(this).next('div').length ? $(this).next('div') : $(this).prev('div');
+    $(this).toggleClass('collapsed')
+    target.slideToggle();
+});
+
 $('#zm-pagebuilder form').filter(function () {
     return (this.getAttribute('method') || '').toLowerCase() === 'post';
 }).on('submit', function (e) {
@@ -142,7 +148,7 @@ $('#zm-pagebuilder form[method="DELETE"]').on('submit', function (e) {
     const $form = $(e.target);
     const formData = new FormData($form[0]);
 
-    if( ! formData.get('token') ) formData.append('token',csrfToken);
+    if (!formData.has('token') && typeof csrfToken !== 'undefined' && csrfToken) formData.append('token', csrfToken);
         
     $.ajax({
         url: $form.attr('action'),

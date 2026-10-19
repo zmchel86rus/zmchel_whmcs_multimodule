@@ -459,6 +459,8 @@ return (object)[
         ],
     ],
     'other' => (object)[
+        'show'=> 'Megjelenítés',
+        'hide'=> 'Elrejtés',
         'enable'  => 'Engedélyezés',
         'disable'  => 'Tiltás',
         'turn_on'  => 'Bekapcsolás',

@@ -462,6 +462,8 @@ return (object)[
         ],
     ],
     'other' => (object)[
+        'show'=> 'Vis',
+        'hide'=> 'Skjul',
         'enable'  => 'Tillad',
         'disable'  => 'Afvis',
         'turn_on'  => 'Aktivér',

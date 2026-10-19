@@ -1,5 +1,5 @@
             {if isset($pages_list) && $pages_list->count() > 0}
-                <table id="pages_list_table" class="table table-bordered table-striped">
+                <table id="pages_list_table" class="table table-bordered table-striped" style="--show-text:'{$other_translates->show}';--hide-text:'{$other_translates->hide}';">
                     {if ! isset($view_trash) }
                     <thead>
                         <tr>
@@ -55,12 +55,29 @@
                             <td>{$pages_manager_translates->page_auth_type->translate->{$page->auth_type}}</td>
                             <td>{$pages_manager_translates->page_type->translate->{$page->type}}</td>
                             <td>
-                            {foreach from=$page->langs item=lang_name}
-                                <element-with-flag>
-                                    <i class="country-flags {$module_langs[$lang_name]['code']|lower}"></i>
-                                    {$module_langs[$lang_name]['icon']} {$module_translates->supported_langs->translate->$lang_name}
-                                </element-with-flag>
-                            {/foreach}
+                                {foreach from=$page->langs item=lang_name}
+                                    {if $lang_name@index < 5}
+                                        <element-with-flag>
+                                            <i class="country-flags {$module_langs[$lang_name]['code']|lower}"></i>
+                                            {$module_langs[$lang_name]['icon']} {$module_translates->supported_langs->translate->$lang_name}
+                                        </element-with-flag>
+                                    {/if}
+                                {/foreach}
+                                {if $page->langs|@count > 5}
+                                <div class="extra-langs">
+                                    <div class="extra-langs" style="display:none;">
+                                        {foreach from=$page->langs item=lang_name}
+                                            {if $lang_name@index >= 5}
+                                                <element-with-flag>
+                                                    <i class="country-flags {$module_langs[$lang_name]['code']|lower}"></i>
+                                                    {$module_langs[$lang_name]['icon']} {$module_translates->supported_langs->translate->$lang_name}
+                                                </element-with-flag>
+                                            {/if}
+                                        {/foreach}
+                                    </div>
+                                    <span onclick="$(this).prev().slideToggle();$(this).toggleClass('collapsed');">({$page->langs|@count-5})</span>
+                                </div>
+                                {/if}
                             </td>
                             <td>
                             {if $page->created_at < $page->updated_at }
