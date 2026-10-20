@@ -24,4 +24,6 @@ if ($subpage === 'menu_manager') {
     require __DIR__ . '/post/rewrite_manager.php';
 } elseif ($subpage === 'module_settings') {
     require __DIR__ . '/post/module_settings.php';
+} elseif ($subpage === 'langs_manager') {
+    require __DIR__ . '/post/langs_manager.php';
 }

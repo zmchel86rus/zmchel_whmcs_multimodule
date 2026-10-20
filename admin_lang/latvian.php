@@ -461,6 +461,23 @@ return (object)[
             'img_err_novalid'=>'Nederīgs multivides fails.'
         ],
     ],
+    'langs_manager' => (object)[
+        'sections'=>'Sadaļas',
+        'languages'=>'Valodas',
+        'translations'=>'Tulkojumi',
+        'disabled'=>'Atspējotas',
+        'available'=>'Pieejamas pievienošanai',
+        'no_languages'=>'Valodu faili nav atrasti.',
+        'disabled_editable'=>'Šī valoda ir atspējota, taču tās tulkojumus joprojām var rediģēt.',
+        'reference'=>'Atsauces valoda',
+        'save_one'=>'Katra poga Saglabāt saglabā tikai vienu tulkojumu.',
+        'key'=>'Atslēga',
+        'reference_value'=>'Sākotnējais teksts',
+        'translation'=>'Tulkojums',
+        'new_translation'=>'Jauns tulkojums',
+        'inside'=>'Sadaļā',
+        'select_language'=>'Vispirms izvēlieties valodu.',
+    ],
     'other' => (object)[
         'show'=> 'Rādīt',
         'hide'=> 'Paslēpt',

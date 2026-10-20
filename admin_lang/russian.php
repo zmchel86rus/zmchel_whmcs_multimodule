@@ -461,6 +461,14 @@ return (object)[
             'img_err_novalid'=>'Невалидный медиафайл'
         ],
     ],
+    'langs_manager' => (object)[
+        'sections'=>'Разделы', 'languages'=>'Языки', 'translations'=>'Переводы',
+        'disabled'=>'Отключено', 'available'=>'Можно добавить', 'no_languages'=>'Языковые файлы не найдены.',
+        'disabled_editable'=>'Язык отключён, но его переводы по-прежнему можно редактировать.',
+        'reference'=>'Язык для сравнения', 'save_one'=>'Каждая кнопка сохраняет только один перевод.',
+        'key'=>'Ключ', 'reference_value'=>'Оригинал', 'translation'=>'Перевод',
+        'new_translation'=>'Новый перевод', 'inside'=>'В разделе', 'select_language'=>'Сначала выберите язык.',
+    ],
     'other' => (object)[
         'show'=> 'Показать',
         'hide'=> 'Скрыть',

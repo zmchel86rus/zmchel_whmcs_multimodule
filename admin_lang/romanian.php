@@ -461,6 +461,23 @@ return (object)[
             'img_err_novalid'=>'Fișier media nevalid.'
         ],
     ],
+    'langs_manager' => (object)[
+        'sections'=>'Secțiuni',
+        'languages'=>'Limbi',
+        'translations'=>'Traduceri',
+        'disabled'=>'Dezactivate',
+        'available'=>'Disponibile pentru adăugare',
+        'no_languages'=>'Nu au fost găsite fișiere de limbă.',
+        'disabled_editable'=>'Această limbă este dezactivată, dar traducerile ei pot fi editate în continuare.',
+        'reference'=>'Limbă de referință',
+        'save_one'=>'Fiecare buton Salvează salvează o singură traducere.',
+        'key'=>'Cheie',
+        'reference_value'=>'Text sursă',
+        'translation'=>'Traducere',
+        'new_translation'=>'Traducere nouă',
+        'inside'=>'În',
+        'select_language'=>'Selectați mai întâi o limbă.',
+    ],
     'other' => (object)[
         'show'=> 'Afișează',
         'hide'=> 'Ascunde',

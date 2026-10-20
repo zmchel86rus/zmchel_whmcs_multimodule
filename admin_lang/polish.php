@@ -461,6 +461,23 @@ return (object)[
             'img_err_novalid'=>'Nieprawidłowy plik multimedialny.'
         ],
     ],
+    'langs_manager' => (object)[
+        'sections'=>'Sekcje',
+        'languages'=>'Języki',
+        'translations'=>'Tłumaczenia',
+        'disabled'=>'Wyłączone',
+        'available'=>'Dostępne do dodania',
+        'no_languages'=>'Nie znaleziono plików językowych.',
+        'disabled_editable'=>'Ten język jest wyłączony, ale nadal można edytować jego tłumaczenia.',
+        'reference'=>'Język odniesienia',
+        'save_one'=>'Każdy przycisk Zapisz zapisuje tylko jedno tłumaczenie.',
+        'key'=>'Klucz',
+        'reference_value'=>'Tekst źródłowy',
+        'translation'=>'Tłumaczenie',
+        'new_translation'=>'Nowe tłumaczenie',
+        'inside'=>'W sekcji',
+        'select_language'=>'Najpierw wybierz język.',
+    ],
     'other' => (object)[
         'show'=> 'Pokaż',
         'hide'=> 'Ukryj',

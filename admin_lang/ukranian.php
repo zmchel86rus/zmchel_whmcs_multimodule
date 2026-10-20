@@ -461,6 +461,23 @@ return (object)[
             'img_err_novalid'=>'Некоректний медіафайл.'
         ],
     ],
+    'langs_manager' => (object)[
+        'sections'=>'Розділи',
+        'languages'=>'Мови',
+        'translations'=>'Переклади',
+        'disabled'=>'Вимкнені',
+        'available'=>'Можна додати',
+        'no_languages'=>'Мовні файли не знайдено.',
+        'disabled_editable'=>'Цю мову вимкнено, але її переклади можна й далі редагувати.',
+        'reference'=>'Мова для порівняння',
+        'save_one'=>'Кожна кнопка Зберегти зберігає лише один переклад.',
+        'key'=>'Ключ',
+        'reference_value'=>'Оригінал',
+        'translation'=>'Переклад',
+        'new_translation'=>'Новий переклад',
+        'inside'=>'У розділі',
+        'select_language'=>'Спочатку виберіть мову.',
+    ],
     'other' => (object)[
         'show'=> 'Показати',
         'hide'=> 'Приховати',

@@ -461,6 +461,23 @@ return (object)[
             'img_err_novalid'=>'Ongeldig mediabestand.'
         ],
     ],
+    'langs_manager' => (object)[
+        'sections'=>'Secties',
+        'languages'=>'Talen',
+        'translations'=>'Vertalingen',
+        'disabled'=>'Uitgeschakeld',
+        'available'=>'Beschikbaar om toe te voegen',
+        'no_languages'=>'Geen taalbestanden gevonden.',
+        'disabled_editable'=>'Deze taal is uitgeschakeld, maar de vertalingen kunnen nog worden bewerkt.',
+        'reference'=>'Referentietaal',
+        'save_one'=>'Elke knop Opslaan slaat één vertaling op.',
+        'key'=>'Sleutel',
+        'reference_value'=>'Brontekst',
+        'translation'=>'Vertaling',
+        'new_translation'=>'Nieuwe vertaling',
+        'inside'=>'Onder',
+        'select_language'=>'Selecteer eerst een taal.',
+    ],
     'other' => (object)[
         'show'=> 'Tonen',
         'hide'=> 'Verbergen',

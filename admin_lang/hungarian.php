@@ -458,6 +458,23 @@ return (object)[
             'img_err_novalid'=>'Érvénytelen médiafájl.'
         ],
     ],
+    'langs_manager' => (object)[
+        'sections'=>'Szakaszok',
+        'languages'=>'Nyelvek',
+        'translations'=>'Fordítások',
+        'disabled'=>'Letiltva',
+        'available'=>'Hozzáadható',
+        'no_languages'=>'Nem találhatók nyelvi fájlok.',
+        'disabled_editable'=>'Ez a nyelv le van tiltva, de a fordításai továbbra is szerkeszthetők.',
+        'reference'=>'Viszonyítási nyelv',
+        'save_one'=>'Minden Mentés gomb csak egy fordítást ment.',
+        'key'=>'Kulcs',
+        'reference_value'=>'Eredeti szöveg',
+        'translation'=>'Fordítás',
+        'new_translation'=>'Új fordítás',
+        'inside'=>'Itt',
+        'select_language'=>'Előbb válasszon nyelvet.',
+    ],
     'other' => (object)[
         'show'=> 'Megjelenítés',
         'hide'=> 'Elrejtés',

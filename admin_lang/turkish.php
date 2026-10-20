@@ -458,6 +458,23 @@ return (object)[
             'img_err_novalid'=>'Geçersiz medya dosyası.'
         ],
     ],
+    'langs_manager' => (object)[
+        'sections'=>'Bölümler',
+        'languages'=>'Diller',
+        'translations'=>'Çeviriler',
+        'disabled'=>'Devre dışı',
+        'available'=>'Eklenebilir',
+        'no_languages'=>'Dil dosyası bulunamadı.',
+        'disabled_editable'=>'Bu dil devre dışı, ancak çevirileri düzenlenebilir.',
+        'reference'=>'Referans dili',
+        'save_one'=>'Her Kaydet düğmesi yalnızca bir çeviriyi kaydeder.',
+        'key'=>'Anahtar',
+        'reference_value'=>'Kaynak metin',
+        'translation'=>'Çeviri',
+        'new_translation'=>'Yeni çeviri',
+        'inside'=>'İçinde',
+        'select_language'=>'Önce bir dil seçin.',
+    ],
     'other' => (object)[
         'show'=> 'Göster',
         'hide'=> 'Gizle',

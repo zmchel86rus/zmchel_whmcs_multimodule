@@ -461,6 +461,23 @@ return (object)[
             'img_err_novalid'=>'Virheellinen mediatiedosto.'
         ],
     ],
+    'langs_manager' => (object)[
+        'sections'=>'Osiot',
+        'languages'=>'Kielet',
+        'translations'=>'Käännökset',
+        'disabled'=>'Poissa käytöstä',
+        'available'=>'Lisättävissä',
+        'no_languages'=>'Kielitiedostoja ei löytynyt.',
+        'disabled_editable'=>'Tämä kieli on pois käytöstä, mutta sen käännöksiä voi edelleen muokata.',
+        'reference'=>'Vertailukieli',
+        'save_one'=>'Jokainen Tallenna-painike tallentaa vain yhden käännöksen.',
+        'key'=>'Avain',
+        'reference_value'=>'Alkuperäinen teksti',
+        'translation'=>'Käännös',
+        'new_translation'=>'Uusi käännös',
+        'inside'=>'Osiossa',
+        'select_language'=>'Valitse ensin kieli.',
+    ],
     'other' => (object)[
         'show'=> 'Näytä',
         'hide'=> 'Piilota',

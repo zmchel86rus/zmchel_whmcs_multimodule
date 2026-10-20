@@ -461,6 +461,23 @@ return (object)[
             'img_err_novalid'=>'Fitxer multimèdia no vàlid.'
         ],
     ],
+    'langs_manager' => (object)[
+        'sections'=>'Seccions',
+        'languages'=>'Idiomes',
+        'translations'=>'Traduccions',
+        'disabled'=>'Desactivats',
+        'available'=>'Disponibles per afegir',
+        'no_languages'=>'No s\'han trobat fitxers d\'idioma.',
+        'disabled_editable'=>'Aquest idioma està desactivat, però les traduccions es poden editar.',
+        'reference'=>'Idioma de referència',
+        'save_one'=>'Cada botó «Desa» desa una sola traducció.',
+        'key'=>'Clau',
+        'reference_value'=>'Text original',
+        'translation'=>'Traducció',
+        'new_translation'=>'Traducció nova',
+        'inside'=>'Dins de',
+        'select_language'=>'Tria primer un idioma.',
+    ],
     'other' => (object)[
         'show'=> 'Mostra',
         'hide'=> 'Amaga',

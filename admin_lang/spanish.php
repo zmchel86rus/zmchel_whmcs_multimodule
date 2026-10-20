@@ -461,6 +461,23 @@ return (object)[
             'img_err_novalid'=>'Archivo multimedia no válido.'
         ],
     ],
+    'langs_manager' => (object)[
+        'sections'=>'Secciones',
+        'languages'=>'Idiomas',
+        'translations'=>'Traducciones',
+        'disabled'=>'Desactivados',
+        'available'=>'Disponibles para añadir',
+        'no_languages'=>'No se encontraron archivos de idioma.',
+        'disabled_editable'=>'Este idioma está desactivado, pero sus traducciones se pueden seguir editando.',
+        'reference'=>'Idioma de referencia',
+        'save_one'=>'Cada botón Guardar guarda una sola traducción.',
+        'key'=>'Clave',
+        'reference_value'=>'Texto original',
+        'translation'=>'Traducción',
+        'new_translation'=>'Nueva traducción',
+        'inside'=>'En',
+        'select_language'=>'Selecciona primero un idioma.',
+    ],
     'other' => (object)[
         'show'=> 'Mostrar',
         'hide'=> 'Ocultar',

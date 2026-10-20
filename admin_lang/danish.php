@@ -461,6 +461,23 @@ return (object)[
             'img_err_novalid'=>'Ugyldig mediefil.'
         ],
     ],
+    'langs_manager' => (object)[
+        'sections'=>'Sektioner',
+        'languages'=>'Sprog',
+        'translations'=>'Oversættelser',
+        'disabled'=>'Deaktiverede',
+        'available'=>'Kan tilføjes',
+        'no_languages'=>'Ingen sprogfiler fundet.',
+        'disabled_editable'=>'Dette sprog er deaktiveret, men oversættelserne kan stadig redigeres.',
+        'reference'=>'Referencesprog',
+        'save_one'=>'Hver Gem-knap gemmer kun én oversættelse.',
+        'key'=>'Nøgle',
+        'reference_value'=>'Originaltekst',
+        'translation'=>'Oversættelse',
+        'new_translation'=>'Ny oversættelse',
+        'inside'=>'Under',
+        'select_language'=>'Vælg først et sprog.',
+    ],
     'other' => (object)[
         'show'=> 'Vis',
         'hide'=> 'Skjul',

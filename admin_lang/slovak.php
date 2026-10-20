@@ -461,6 +461,23 @@ return (object)[
             'img_err_novalid'=>'Neplatný mediálny súbor.'
         ],
     ],
+    'langs_manager' => (object)[
+        'sections'=>'Sekcie',
+        'languages'=>'Jazyky',
+        'translations'=>'Preklady',
+        'disabled'=>'Vypnuté',
+        'available'=>'Možno pridať',
+        'no_languages'=>'Nenašli sa jazykové súbory.',
+        'disabled_editable'=>'Tento jazyk je vypnutý, ale jeho preklady možno stále upravovať.',
+        'reference'=>'Referenčný jazyk',
+        'save_one'=>'Každé tlačidlo Uložiť uloží iba jeden preklad.',
+        'key'=>'Kľúč',
+        'reference_value'=>'Pôvodný text',
+        'translation'=>'Preklad',
+        'new_translation'=>'Nový preklad',
+        'inside'=>'V sekcii',
+        'select_language'=>'Najprv vyberte jazyk.',
+    ],
     'other' => (object)[
         'show'=> 'Zobraziť',
         'hide'=> 'Skryť',

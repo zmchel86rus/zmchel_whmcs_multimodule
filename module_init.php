@@ -36,6 +36,7 @@ if (!defined('ZM_PB_ALLOWED_CONSTS_CHANGE')) define('ZM_PB_ALLOWED_CONSTS_CHANGE
 
     'ZM_PB_ENABLE_PAGE_OVERRIDES',
     'ZM_PB_ENABLE_LANG_ROUTE',
+    'ZM_PB_ENABLE_DEFAULT_LANG_ROUTE',
     'ZM_PB_ENABLE_SITEMAP',
     'ZM_PB_ENABLE_REDIRECTS_MANAGER',
     'ZM_PB_ENABLE_MAINNAV',
@@ -123,7 +124,7 @@ if (!defined('ZM_PB_FULLHOST')) define('ZM_PB_FULLHOST', rtrim(strtolower($CONFI
 ### SUP MODULE CONSTS ###
 if (!defined('ZM_PB_ACCEPTED_METHODS')) define('ZM_PB_ACCEPTED_METHODS', ['GET','POST','DELETE'] );
 if (!defined('ZM_PB_ACCEPTED_OVERRIDES')) define('ZM_PB_ACCEPTED_OVERRIDES', ['full','partial_before','partial_after','meta_only','partial_before_meta','partial_after_meta'] );
-if (!defined('ZM_PB_SUBPAGES')) define('ZM_PB_SUBPAGES', ['pages_manager','pages_editor','sitemap_manager','media_manager','menu_manager','rewrite_manager','redirects_manager','module_db','module_settings',/*'module_logs','code_editor','langs_editor',*/] );
+if (!defined('ZM_PB_SUBPAGES')) define('ZM_PB_SUBPAGES', ['pages_manager','pages_editor','media_manager','menu_manager','rewrite_manager','redirects_manager','langs_manager','sitemap_manager','module_db','module_settings',/*'module_logs','code_editor',*/] );
 if (!defined('ZM_PB_PAGE_BLOCK_EDITOR_TOOLS')) define('ZM_PB_PAGE_BLOCK_EDITOR_TOOLS', ['auth_zone', 'not_auth_zone', 'mixed_auth_zone', 'tinymce', 'paragraph', 'image', 'video', 'link', 'button', 'map', 'divider', 'spacer', 'flex', 'grid', 'carousel', 'custom_js', 'custom_css', 'smarty_variable']);
 ### SUP MODULE CONSTS ###
 
@@ -159,6 +160,7 @@ if ($adminId) {
     $adminlang = $admin->language ?? ZM_PB_DEFLANG ?? 'english';
 }
 $adminlang = strtolower((string) $adminlang);
+if (!preg_match('/^[a-z0-9_-]+$/D', $adminlang)) $adminlang = 'english';
 // Existing language file and supported_langs.php key. - Oh, WHMCS...
 if ($adminlang === 'ukrainian') $adminlang = 'ukranian';
 if ($adminlang === 'portuguese-pt') $adminlang = 'portugues';
@@ -166,6 +168,7 @@ if ($adminlang === 'portuguese-br') $adminlang = 'portugues-br';
 
 ### SUP MODULE LANGS CONSTS ###
 if (!defined('ZM_PB_LANGS')) define('ZM_PB_LANGS', ( require_once ZM_PB_ROOTDIR.'supported_langs.php') );
+require_once ZM_PB_INCDIR . 'language_manager.php';
 if (!isset($GLOBALS['ZM_PB_ADMINLANG']) && defined('ZM_PB_ALANGDIR')){
     $admin_lang_file = ZM_PB_ALANGDIR . $adminlang.'.php';
     if( !file_exists($admin_lang_file) ){
@@ -174,7 +177,7 @@ if (!isset($GLOBALS['ZM_PB_ADMINLANG']) && defined('ZM_PB_ALANGDIR')){
     } elseif (filesize($admin_lang_file) === 0) {
         $admin_lang_file = ZM_PB_ALANGDIR . 'english.php';
     }
-    $admin_lang_data = require $admin_lang_file;
+    $admin_lang_data = zm_pb_lm_own($adminlang);
     foreach (ZM_PB_LANGS as $languageKey => $languageInfo) {
         if (!isset($admin_lang_data->module->supported_langs->translate->$languageKey)) {
             $admin_lang_data->module->supported_langs->translate->$languageKey = $languageInfo['name'];

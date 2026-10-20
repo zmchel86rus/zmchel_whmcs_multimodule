@@ -458,6 +458,23 @@ return (object)[
             'img_err_novalid'=>'Ficheiro multimédia inválido.'
         ],
     ],
+    'langs_manager' => (object)[
+        'sections'=>'Secções',
+        'languages'=>'Idiomas',
+        'translations'=>'Traduções',
+        'disabled'=>'Desativados',
+        'available'=>'Disponíveis para adicionar',
+        'no_languages'=>'Não foram encontrados ficheiros de idioma.',
+        'disabled_editable'=>'Este idioma está desativado, mas as traduções continuam editáveis.',
+        'reference'=>'Idioma de referência',
+        'save_one'=>'Cada botão Guardar guarda apenas uma tradução.',
+        'key'=>'Chave',
+        'reference_value'=>'Texto original',
+        'translation'=>'Tradução',
+        'new_translation'=>'Nova tradução',
+        'inside'=>'Em',
+        'select_language'=>'Escolha primeiro um idioma.',
+    ],
     'other' => (object)[
         'show'=> 'Mostrar',
         'hide'=> 'Ocultar',

@@ -11,4 +11,5 @@ require_once ZM_PB_HOOKSDIR.'redirects.php';
 require_once ZM_PB_HOOKSDIR.'navigation_language.php';
 require_once ZM_PB_HOOKSDIR.'menu.php';
 require_once ZM_PB_HOOKSDIR.'sitemap.php';
+require_once ZM_PB_HOOKSDIR.'language_manager.php';
 require_once ZM_PB_HOOKSDIR.'router.php';

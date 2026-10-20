@@ -458,6 +458,23 @@ return (object)[
             'img_err_novalid'=>'Vigane meediafail.'
         ],
     ],
+    'langs_manager' => (object)[
+        'sections'=>'Jaotised',
+        'languages'=>'Keeled',
+        'translations'=>'Tõlked',
+        'disabled'=>'Keelatud',
+        'available'=>'Saadaval lisamiseks',
+        'no_languages'=>'Keelefaile ei leitud.',
+        'disabled_editable'=>'See keel on keelatud, kuid selle tõlkeid saab endiselt muuta.',
+        'reference'=>'Võrdluskeel',
+        'save_one'=>'Iga Salvesta nupp salvestab ainult ühe tõlke.',
+        'key'=>'Võti',
+        'reference_value'=>'Algtekst',
+        'translation'=>'Tõlge',
+        'new_translation'=>'Uus tõlge',
+        'inside'=>'Jaotises',
+        'select_language'=>'Valige esmalt keel.',
+    ],
     'other' => (object)[
         'show'=> 'Näita',
         'hide'=> 'Peida',

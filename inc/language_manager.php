@@ -1,0 +1,436 @@
+<?php
+if (!defined('ZM_PB_VER')) die('Direct access not allowed');
+
+/** The editor only accepts directories discovered here, never a path from a request. */
+function zm_pb_lm_sections(): array
+{
+    $adminDir = defined('ADMIN_PATH') ? ADMIN_PATH : dirname($_SERVER['SCRIPT_FILENAME'] ?? '');
+    if (!is_dir($adminDir . '/lang') && !empty($GLOBALS['customadminpath']) &&
+        is_string($GLOBALS['customadminpath']))
+        $adminDir = ROOTDIR . '/' . trim($GLOBALS['customadminpath'], '/\\');
+    if (!is_dir($adminDir . '/lang')) $adminDir = ROOTDIR . '/admin';
+    $sections = [
+        'whmcs_client' => ['title' => 'WHMCS — client', 'directory' => ROOTDIR . '/lang', 'kind' => 'client', 'variable' => '$_LANG'],
+        'whmcs_admin' => ['title' => 'WHMCS — admin', 'directory' => $adminDir . '/lang', 'kind' => 'admin', 'variable' => '$_ADMINLANG'],
+        'module_self' => ['title' => 'zmchel WHMCS Multimodule — admin', 'directory' => ZM_PB_ALANGDIR, 'kind' => 'self', 'variable' => ''],
+    ];
+    $modulesDir = ROOTDIR . '/modules';
+    if (!is_dir($modulesDir)) return $sections;
+    $modulesRoot = realpath($modulesDir);
+    foreach (scandir($modulesDir) ?: [] as $group) {
+        if (!preg_match('/^[a-zA-Z0-9_-]+$/D', $group) || !is_dir($modulesDir . '/' . $group)) continue;
+        foreach (scandir($modulesDir . '/' . $group) ?: [] as $module) {
+            if (!preg_match('/^[a-zA-Z0-9_-]+$/D', $module)) continue;
+            $base = $modulesDir . '/' . $group . '/' . $module;
+            $resolved = realpath($base);
+            if (!$resolved || strpos($resolved, $modulesRoot . DIRECTORY_SEPARATOR) !== 0 ||
+                $resolved === realpath(ZM_PB_ROOTDIR)) continue;
+            foreach (['lang' => 'client', 'admin_lang' => 'admin'] as $folder => $kind) {
+                $langDir = realpath($base . '/' . $folder);
+                if (!$langDir || strpos($langDir, $resolved . DIRECTORY_SEPARATOR) !== 0) continue;
+                $id = 'module:' . $group . ':' . $module . ':' . $folder;
+                $sections[$id] = ['title' => $module . ' — ' . $folder, 'directory' => $langDir,
+                    'kind' => 'module', 'variable' => '$_ADDONLANG'];
+            }
+        }
+    }
+    return $sections;
+}
+
+function zm_pb_lm_files(array $section): array
+{
+    $result = [];
+    foreach (['enabled' => $section['directory'], 'disabled' => $section['directory'] . '/disabled'] as $state => $dir) {
+        if (!is_dir($dir) || is_link($dir)) continue;
+        foreach (glob($dir . '/*.php') ?: [] as $file) {
+            $name = basename($file, '.php');
+            if ($name === 'index' || is_link($file) || !preg_match('/^[a-z0-9_-]+$/D', $name)) continue;
+            if (!isset($result[$name]) || $state === 'enabled') $result[$name] = ['file' => $file, 'state' => $state];
+        }
+    }
+    ksort($result);
+    return $result;
+}
+
+function zm_pb_lm_name(array $section, string $supported): string
+{
+    if ($supported === 'ukranian' &&
+        (is_file($section['directory'] . '/ukrainian.php') ||
+         is_file($section['directory'] . '/disabled/ukrainian.php'))) return 'ukrainian';
+    if ($section['kind'] === 'self' || $section['kind'] === 'admin') {
+        if ($supported === 'portuguese-pt') return 'portugues';
+        if ($supported === 'portuguese-br') return 'portugues-br';
+    }
+    return $supported;
+}
+
+function zm_pb_lm_supported_name(array $section, string $name): ?string
+{
+    foreach (array_keys(ZM_PB_LANGS) as $key) {
+        if (zm_pb_lm_name($section, $key) === $name) return $key;
+    }
+    return null;
+}
+
+function zm_pb_lm_variable(array $section, string $file): string
+{
+    if ($section['kind'] !== 'module') return $section['variable'];
+    $source = file_get_contents($file);
+    if (preg_match('/\$_(ADDONLANG|ADMINLANG|LANG)\s*(?:\[|=)/', (string) $source, $matches))
+        return '$_' . $matches[1];
+    return '';
+}
+
+/** Load only a previously discovered PHP catalog inside a local scope. */
+function zm_pb_lm_load_php(string $file, string $variable)
+{
+    $read = static function ($path) use ($variable) {
+        $_LANG = []; $_ADMINLANG = []; $_ADDONLANG = [];
+        $returned = require $path;
+        if ($variable === '$_LANG') return $_LANG;
+        if ($variable === '$_ADMINLANG') return $_ADMINLANG;
+        if ($variable === '$_ADDONLANG') return $_ADDONLANG;
+        return $returned;
+    };
+    return $read($file);
+}
+
+function zm_pb_lm_copy($value)
+{
+    if (is_object($value)) {
+        $copy = new stdClass();
+        foreach ($value as $key => $item) $copy->$key = zm_pb_lm_copy($item);
+        return $copy;
+    }
+    if (is_array($value)) return array_map('zm_pb_lm_copy', $value);
+    return $value;
+}
+
+function zm_pb_lm_merge($base, $extra)
+{
+    if (is_object($base) && is_object($extra)) {
+        foreach ($extra as $key => $item) $base->$key = isset($base->$key) ? zm_pb_lm_merge($base->$key, $item) : zm_pb_lm_copy($item);
+        return $base;
+    }
+    if (is_array($base) && is_array($extra)) {
+        foreach ($extra as $key => $item) $base[$key] = array_key_exists($key, $base) ? zm_pb_lm_merge($base[$key], $item) : zm_pb_lm_copy($item);
+        return $base;
+    }
+    return zm_pb_lm_copy($extra);
+}
+
+function zm_pb_lm_set(&$catalog, array $path, string $value): void
+{
+    $cursor =& $catalog;
+    foreach ($path as $index => $segment) {
+        if (!isset($segment['type'], $segment['key']) || !in_array($segment['type'], ['array', 'object'], true)) return;
+        $key = $segment['key'];
+        if ($segment['type'] === 'object') {
+            if (!is_object($cursor)) return;
+            if ($index === count($path) - 1) { $cursor->$key = $value; return; }
+            if (!isset($cursor->$key)) $cursor->$key = $path[$index + 1]['type'] === 'object' ? new stdClass() : [];
+            $cursor =& $cursor->$key;
+        } else {
+            if (!is_array($cursor)) return;
+            if ($index === count($path) - 1) { $cursor[$key] = $value; return; }
+            if (!isset($cursor[$key])) $cursor[$key] = $path[$index + 1]['type'] === 'object' ? new stdClass() : [];
+            $cursor =& $cursor[$key];
+        }
+    }
+}
+
+function zm_pb_lm_own(string $name, bool $allowDisabled = false)
+{
+    $english = ZM_PB_ALANGDIR . 'english.php';
+    $default = $name === 'english' ? require $english : zm_pb_lm_own('english');
+    $file = ZM_PB_ALANGDIR . $name . '.php';
+    if ($allowDisabled && !is_file($file)) $file = ZM_PB_ALANGDIR . 'disabled/' . $name . '.php';
+    if ($name !== 'english' && is_file($file) && filesize($file)) {
+        $result = require $file;
+        if (is_object($result)) {
+            if (!get_object_vars($result)) {
+                $preferred = zm_pb_lm_name(['kind' => 'self', 'directory' => ZM_PB_ALANGDIR], ZM_PB_DEFLANG);
+                if ($preferred !== $name && is_file(ZM_PB_ALANGDIR . $preferred . '.php'))
+                    $default = zm_pb_lm_own($preferred);
+            } else $default = zm_pb_lm_merge($default, $result);
+        }
+    }
+    foreach ([ZM_PB_ALANGDIR . 'overrides/' . $name . '.php',
+        ZM_PB_ALANGDIR . 'overrides/managed/' . $name . '.php'] as $override) {
+        if (!is_file($override)) continue;
+        try {
+            $entries = require $override;
+            if (is_object($entries)) $default = zm_pb_lm_merge($default, $entries);
+            if (is_array($entries)) foreach ($entries as $entry) {
+                if (isset($entry['path'], $entry['value']) && is_array($entry['path']) && is_string($entry['value']))
+                    zm_pb_lm_set($default, $entry['path'], $entry['value']);
+            }
+        } catch (Throwable $error) {
+            error_log('zmchel language override: ' . $error->getMessage());
+        }
+    }
+    return $default;
+}
+
+function zm_pb_lm_catalog(array $section, string $name, bool $withOverride = true)
+{
+    if ($section['kind'] === 'self') return zm_pb_lm_own($name, true);
+    $files = zm_pb_lm_files($section);
+    if (!isset($files[$name])) return [];
+    $file = $files[$name]['file'];
+    $variable = zm_pb_lm_variable($section, $file);
+    if ($variable === '' && $section['kind'] !== 'module')
+        throw new RuntimeException('This catalog does not use a supported PHP language variable.');
+    $catalog = zm_pb_lm_load_php($file, $variable);
+    if ($variable === '') return is_array($catalog) || is_object($catalog) ? $catalog : [];
+    $override = $section['directory'] . '/overrides/' . $name . '.php';
+    $moduleAlreadyLoaded = $section['kind'] === 'module' && $files[$name]['state'] === 'enabled' &&
+        strpos((string) file_get_contents($file), 'ZM_PB_LM_INCLUDE:' . $name) !== false;
+    if ($withOverride && is_file($override) && !$moduleAlreadyLoaded) {
+        $changes = zm_pb_lm_load_php($override, $variable);
+        $catalog = zm_pb_lm_merge($catalog, $changes);
+    }
+    return $catalog;
+}
+
+function zm_pb_lm_flatten($catalog, array $path = [], array &$rows = []): array
+{
+    if (is_array($catalog) || is_object($catalog)) {
+        foreach ($catalog as $key => $item) {
+            $next = $path;
+            $next[] = ['type' => is_object($catalog) ? 'object' : 'array', 'key' => $key];
+            zm_pb_lm_flatten($item, $next, $rows);
+        }
+    } elseif (is_string($catalog) || is_numeric($catalog)) {
+        $id = base64_encode(json_encode($path, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
+        $rows[$id] = ['path' => $path, 'value' => (string) $catalog, 'label' => zm_pb_lm_path_label($path), 'id' => $id];
+    }
+    return $rows;
+}
+
+function zm_pb_lm_containers($catalog, array $path = [], array &$result = []): array
+{
+    if (!is_array($catalog) && !is_object($catalog)) return $result;
+    $result[] = ['id' => $path ? base64_encode(json_encode($path, JSON_UNESCAPED_UNICODE)) : '',
+        'label' => $path ? zm_pb_lm_path_label($path) : '(root)'];
+    foreach ($catalog as $key => $value) {
+        if (!is_array($value) && !is_object($value)) continue;
+        $next = $path;
+        $next[] = ['type' => is_object($catalog) ? 'object' : 'array', 'key' => $key];
+        zm_pb_lm_containers($value, $next, $result);
+    }
+    return $result;
+}
+
+function zm_pb_lm_at($catalog, array $path)
+{
+    foreach ($path as $part) {
+        $key = $part['key'];
+        if (is_object($catalog) && property_exists($catalog, (string) $key)) $catalog = $catalog->$key;
+        elseif (is_array($catalog) && array_key_exists($key, $catalog)) $catalog = $catalog[$key];
+        else return null;
+    }
+    return $catalog;
+}
+
+function zm_pb_lm_path_label(array $path): string
+{
+    $label = '';
+    foreach ($path as $part) {
+        $label .= $part['type'] === 'object' ? ($label === '' ? (string) $part['key'] : '->' . $part['key'])
+            : '[' . var_export($part['key'], true) . ']';
+    }
+    return $label;
+}
+
+function zm_pb_lm_path(string $encoded): array
+{
+    if (strlen($encoded) > 4096) throw new InvalidArgumentException('Invalid translation key.');
+    $json = base64_decode($encoded, true);
+    $path = $json === false ? null : json_decode($json, true);
+    if (!is_array($path) || !$path || count($path) > 12) throw new InvalidArgumentException('Invalid translation key.');
+    foreach ($path as $segment) {
+        if (!is_array($segment) || !isset($segment['type'], $segment['key']) ||
+            !in_array($segment['type'], ['array', 'object'], true) ||
+            !(is_string($segment['key']) || is_int($segment['key'])) ||
+            strlen((string) $segment['key']) > 200 || (string) $segment['key'] === '')
+            throw new InvalidArgumentException('Invalid translation key.');
+    }
+    return $path;
+}
+
+function zm_pb_lm_managed_entries(string $file): array
+{
+    if (!is_file($file)) return [];
+    $content = file_get_contents($file);
+    if ($content === false) throw new RuntimeException('Cannot read the existing override.');
+    if (!preg_match('~/\* ZM_PB_LM_DATA:([A-Za-z0-9+/=]+) \*/~', (string) $content, $match)) return [];
+    $data = json_decode(base64_decode($match[1], true), true);
+    return is_array($data) ? $data : [];
+}
+
+function zm_pb_lm_write(string $file, string $content): void
+{
+    $dir = dirname($file);
+    if (!is_dir($dir) && !mkdir($dir, 0750, true) && !is_dir($dir)) throw new RuntimeException('Cannot create the override directory.');
+    if (is_link($dir) || is_link($file)) throw new RuntimeException('Symbolic links cannot be edited.');
+    $temp = tempnam($dir, '.zm-pb-');
+    if ($temp === false) throw new RuntimeException('Cannot create a temporary file.');
+    try {
+        if (is_file($file)) {
+            $mode = fileperms($file);
+            if ($mode === false) throw new RuntimeException('Cannot read file permissions.');
+            chmod($temp, $mode & 0777);
+        }
+        if (file_put_contents($temp, $content) !== strlen($content) || !rename($temp, $file))
+            throw new RuntimeException('Cannot save the language file.');
+        if (function_exists('opcache_invalidate')) @opcache_invalidate($file, true);
+    } finally {
+        if (is_file($temp)) unlink($temp);
+    }
+}
+
+function zm_pb_lm_save(array $section, string $name, array $path, string $value, bool $custom = false): void
+{
+    $files = zm_pb_lm_files($section);
+    if (!isset($files[$name])) throw new InvalidArgumentException('Language not found.');
+    if (strlen($value) > 65535 || strpos($value, "\0") !== false || preg_match('//u', $value) !== 1)
+        throw new InvalidArgumentException('Invalid translation text.');
+    $dir = $section['directory'] . '/overrides' . ($section['kind'] === 'self' ? '/managed' : '');
+    if (!is_dir($dir) && !mkdir($dir, 0750, true) && !is_dir($dir)) throw new RuntimeException('Cannot create the override directory.');
+    $lock = fopen($dir . '/.zm-pb-language-manager.lock', 'c');
+    if (!$lock || !flock($lock, LOCK_EX)) throw new RuntimeException('Cannot lock the language file.');
+    try {
+        $file = $dir . '/' . $name . '.php';
+        $entries = zm_pb_lm_managed_entries($file);
+        $entryId = base64_encode(json_encode($path, JSON_UNESCAPED_UNICODE));
+        $entries[$entryId] = ['path' => $path, 'value' => $value,
+            'custom' => $custom || !empty($entries[$entryId]['custom'])];
+        if ($section['kind'] === 'self') {
+            $regular = []; $customEntries = [];
+            foreach ($entries as $entry) {
+                if (!empty($entry['custom'])) $customEntries[] = $entry;
+                else $regular[] = $entry;
+            }
+            $content = "<?php\n/* Managed by zmchel language manager. */\n";
+            if (is_file($file)) {
+                $existing = file_get_contents($file);
+                if ($existing === false) throw new RuntimeException('Cannot read the existing override.');
+                if (strpos($existing, 'Managed by zmchel language manager.') === false)
+                    throw new RuntimeException('An existing override file is not managed by this editor.');
+            }
+            $marker = base64_encode(json_encode($entries, JSON_UNESCAPED_UNICODE));
+            $content .= "/* ZM_PB_LM_DATA:$marker */\nreturn array_merge(\n" .
+                var_export($regular, true) . ",\n/* CUSTOMS */\n" . var_export($customEntries, true) . "\n);\n";
+            zm_pb_lm_write($file, $content);
+            return;
+        }
+        $variable = zm_pb_lm_variable($section, $files[$name]['file']);
+        if ($variable === '') throw new RuntimeException('This catalog cannot be saved automatically.');
+        $lines = []; $customLines = [];
+        foreach ($entries as $entry) {
+            $expression = $variable;
+            foreach ($entry['path'] as $segment) {
+                $expression .= $segment['type'] === 'object' ? '->{' . var_export($segment['key'], true) . '}' : '[' . var_export($segment['key'], true) . ']';
+            }
+            $line = $expression . ' = ' . var_export($entry['value'], true) . ';';
+            if (!empty($entry['custom'])) $customLines[] = $line;
+            else $lines[] = $line;
+        }
+        $marker = base64_encode(json_encode($entries, JSON_UNESCAPED_UNICODE));
+        $block = "/* ZM_PB_LM_START */\n/* ZM_PB_LM_DATA:$marker */\n" . implode("\n", $lines) .
+            ($customLines ? "\n/* CUSTOMS */\n" . implode("\n", $customLines) : '') . "\n/* ZM_PB_LM_END */";
+        $content = is_file($file) ? file_get_contents($file) : "<?php\n";
+        if ($content === false) throw new RuntimeException('Cannot read the existing override.');
+        $pattern = '~/\* ZM_PB_LM_START \*/.*?/\* ZM_PB_LM_END \*/~s';
+        if (preg_match($pattern, $content)) $content = preg_replace_callback($pattern, static function () use ($block) { return $block; }, $content, 1);
+        else $content .= (preg_match('/\?>\s*$/', $content) ? "\n<?php\n" : "\n") . $block . "\n";
+        zm_pb_lm_write($file, $content);
+        if ($section['kind'] === 'module') zm_pb_lm_ensure_module_include($files[$name]['file'], $name);
+    } finally {
+        flock($lock, LOCK_UN);
+        fclose($lock);
+    }
+}
+
+function zm_pb_lm_ensure_module_include(string $file, string $name): void
+{
+    $source = file_get_contents($file);
+    if ($source === false) throw new RuntimeException('Cannot read the module language file.');
+    $tag = 'ZM_PB_LM_INCLUDE:' . $name;
+    if (strpos($source, $tag) !== false) return;
+    $line = "// $tag\nif (is_file(__DIR__ . '/overrides/$name.php')) require __DIR__ . '/overrides/$name.php';\n";
+    $source .= (preg_match('/\?>\s*$/', $source) ? "\n<?php\n" : "\n") . $line;
+    zm_pb_lm_write($file, $source);
+}
+
+function zm_pb_lm_add(array $section, string $name): void
+{
+    if (zm_pb_lm_supported_name($section, $name) === null || isset(zm_pb_lm_files($section)[$name]))
+        throw new InvalidArgumentException('This language cannot be added.');
+    if ($section['kind'] === 'self') $content = "<?php\n/* Custom language; English strings fill missing keys. */\nreturn (object)[];\n";
+    else {
+        $files = zm_pb_lm_files($section);
+        $preferred = zm_pb_lm_name($section, ZM_PB_DEFLANG);
+        $reference = isset($files[$preferred]) && $files[$preferred]['state'] === 'enabled' ? $preferred :
+            (isset($files['english']) ? 'english' : array_key_first($files));
+        if (!$reference || $files[$reference]['state'] !== 'enabled') throw new RuntimeException('No base language is available.');
+        $variable = zm_pb_lm_variable($section, $files[$reference]['file']);
+        if ($variable === '') throw new RuntimeException('This catalog cannot be added automatically.');
+        $content = "<?php\nrequire (is_file(__DIR__ . '/" . $reference . ".php') ? __DIR__ : dirname(__DIR__)) . '/" . $reference . ".php';\n";
+        $content .= $variable . ' = ' . $variable . " ?? [];\n";
+        $supported = zm_pb_lm_supported_name($section, $name);
+        if ($section['kind'] === 'client') $content .= '$_LANG[\'locale\'] = ' . var_export(ZM_PB_LANGS[$supported]['locale'], true) . ";\n";
+    }
+    $file = $section['directory'] . '/' . $name . '.php';
+    if (is_file($file)) throw new RuntimeException('Language file already exists.');
+    zm_pb_lm_write($file, $content);
+}
+
+function zm_pb_lm_toggle(array $section, string $name, bool $enable): void
+{
+    $files = zm_pb_lm_files($section);
+    if (!isset($files[$name])) throw new InvalidArgumentException('Language not found.');
+    if (!$enable && ($name === 'english' || $name === zm_pb_lm_name($section, ZM_PB_DEFLANG)))
+        throw new InvalidArgumentException('The default language cannot be disabled.');
+    $target = $section['directory'] . ($enable ? '' : '/disabled') . '/' . $name . '.php';
+    if (is_file($target)) throw new RuntimeException('Target language file already exists.');
+    if (($files[$name]['state'] === 'disabled') !== $enable) throw new InvalidArgumentException('Language is already in this state.');
+    if (!is_dir(dirname($target)) && !mkdir(dirname($target), 0750, true)) throw new RuntimeException('Cannot create the disabled directory.');
+    if (!rename($files[$name]['file'], $target)) throw new RuntimeException('Cannot move the language file.');
+    if (function_exists('opcache_invalidate')) @opcache_invalidate($target, true);
+}
+
+/** Updates may restore files that were intentionally moved to disabled/. */
+function zm_pb_lm_recheck_disabled(): void
+{
+    $stamp = ZM_PB_INCDIR . 'language_manager_last_check.txt';
+    $handle = fopen($stamp, 'c+');
+    if (!$handle || !flock($handle, LOCK_EX)) throw new RuntimeException('Cannot lock the language check.');
+    try {
+        rewind($handle);
+        if (trim((string) stream_get_contents($handle)) === date('Y-m-d')) return;
+        foreach (zm_pb_lm_sections() as $section) {
+            $dir = $section['directory'];
+            if (!is_dir($dir . '/disabled') || is_link($dir . '/disabled')) continue;
+            foreach (glob($dir . '/disabled/*.php') ?: [] as $disabled) {
+                $name = basename($disabled);
+                $enabled = $dir . '/' . $name;
+                if (!is_file($enabled) || is_link($enabled) || is_link($disabled)) continue;
+                $backup = $disabled . '.previous-' . date('YmdHis');
+                if (!rename($disabled, $backup)) throw new RuntimeException('Cannot back up disabled language: ' . $name);
+                if (!rename($enabled, $disabled)) {
+                    rename($backup, $disabled);
+                    throw new RuntimeException('Cannot disable restored language: ' . $name);
+                }
+            }
+        }
+        rewind($handle);
+        ftruncate($handle, 0);
+        fwrite($handle, date('Y-m-d'));
+        fflush($handle);
+    } finally {
+        flock($handle, LOCK_UN);
+        fclose($handle);
+    }
+}

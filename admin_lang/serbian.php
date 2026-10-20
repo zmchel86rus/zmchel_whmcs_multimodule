@@ -461,6 +461,23 @@ return (object)[
             'img_err_novalid'=>'Неважећа медијска датотека.'
         ],
     ],
+    'langs_manager' => (object)[
+        'sections'=>'Одељци',
+        'languages'=>'Језици',
+        'translations'=>'Преводи',
+        'disabled'=>'Искључени',
+        'available'=>'Доступни за додавање',
+        'no_languages'=>'Нису пронађене језичке датотеке.',
+        'disabled_editable'=>'Овај језик је искључен, али његови преводи и даље могу да се уређују.',
+        'reference'=>'Референтни језик',
+        'save_one'=>'Свако дугме Сачувај чува само један превод.',
+        'key'=>'Кључ',
+        'reference_value'=>'Изворни текст',
+        'translation'=>'Превод',
+        'new_translation'=>'Нови превод',
+        'inside'=>'У одељку',
+        'select_language'=>'Прво изаберите језик.',
+    ],
     'other' => (object)[
         'show'=> 'Прикажи',
         'hide'=> 'Сакриј',

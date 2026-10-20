@@ -458,6 +458,23 @@ return (object)[
             'img_err_novalid'=>'Ogiltig mediefil.'
         ],
     ],
+    'langs_manager' => (object)[
+        'sections'=>'Sektioner',
+        'languages'=>'Språk',
+        'translations'=>'Översättningar',
+        'disabled'=>'Inaktiverade',
+        'available'=>'Kan läggas till',
+        'no_languages'=>'Inga språkfiler hittades.',
+        'disabled_editable'=>'Det här språket är inaktiverat, men översättningarna kan fortfarande redigeras.',
+        'reference'=>'Referensspråk',
+        'save_one'=>'Varje Spara-knapp sparar bara en översättning.',
+        'key'=>'Nyckel',
+        'reference_value'=>'Originaltext',
+        'translation'=>'Översättning',
+        'new_translation'=>'Ny översättning',
+        'inside'=>'Under',
+        'select_language'=>'Välj ett språk först.',
+    ],
     'other' => (object)[
         'show'=> 'Visa',
         'hide'=> 'Dölj',

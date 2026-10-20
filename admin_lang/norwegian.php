@@ -458,6 +458,23 @@ return (object)[
             'img_err_novalid'=>'Ugyldig mediefil.'
         ],
     ],
+    'langs_manager' => (object)[
+        'sections'=>'Seksjoner',
+        'languages'=>'Språk',
+        'translations'=>'Oversettelser',
+        'disabled'=>'Deaktivert',
+        'available'=>'Kan legges til',
+        'no_languages'=>'Ingen språkfiler funnet.',
+        'disabled_editable'=>'Dette språket er deaktivert, men oversettelsene kan fortsatt redigeres.',
+        'reference'=>'Referansespråk',
+        'save_one'=>'Hver Lagre-knapp lagrer bare én oversettelse.',
+        'key'=>'Nøkkel',
+        'reference_value'=>'Originaltekst',
+        'translation'=>'Oversettelse',
+        'new_translation'=>'Ny oversettelse',
+        'inside'=>'Under',
+        'select_language'=>'Velg et språk først.',
+    ],
     'other' => (object)[
         'show'=> 'Vis',
         'hide'=> 'Skjul',

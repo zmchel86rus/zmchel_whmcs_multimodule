@@ -22,4 +22,6 @@ if ($subpage === 'readme.md') {
     require __DIR__ . '/get/rewrite_manager.php';
 } elseif ($subpage === 'module_settings') {
     require __DIR__ . '/get/module_settings.php';
+} elseif ($subpage === 'langs_manager') {
+    require __DIR__ . '/get/langs_manager.php';
 }

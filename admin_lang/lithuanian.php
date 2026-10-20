@@ -461,6 +461,23 @@ return (object)[
             'img_err_novalid'=>'Neteisingas medijos failas.'
         ],
     ],
+    'langs_manager' => (object)[
+        'sections'=>'Skyriai',
+        'languages'=>'Kalbos',
+        'translations'=>'Vertimai',
+        'disabled'=>'Išjungtos',
+        'available'=>'Galima pridėti',
+        'no_languages'=>'Kalbų failų nerasta.',
+        'disabled_editable'=>'Ši kalba išjungta, bet jos vertimus vis dar galima redaguoti.',
+        'reference'=>'Palyginimo kalba',
+        'save_one'=>'Kiekvienas mygtukas Išsaugoti išsaugo tik vieną vertimą.',
+        'key'=>'Raktas',
+        'reference_value'=>'Pradinis tekstas',
+        'translation'=>'Vertimas',
+        'new_translation'=>'Naujas vertimas',
+        'inside'=>'Skyriuje',
+        'select_language'=>'Pirmiausia pasirinkite kalbą.',
+    ],
     'other' => (object)[
         'show'=> 'Rodyti',
         'hide'=> 'Slėpti',

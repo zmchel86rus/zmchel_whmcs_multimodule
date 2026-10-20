@@ -41,3 +41,4 @@ jobs:
           php tests/smarty_admin_guard.php
           php tests/content_links.php
           php tests/table_of_contents.php
+          php tests/language_manager.php
