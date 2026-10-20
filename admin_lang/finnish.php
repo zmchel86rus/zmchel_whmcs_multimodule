@@ -462,6 +462,7 @@ return (object)[
         ],
     ],
     'langs_manager' => (object)[
+        'show_all'=>'Näytä kaikki', 'show_original'=>'Näytä alkuperäiset', 'show_added'=>'Näytä lisätyt',
         'sections'=>'Osiot',
         'languages'=>'Kielet',
         'translations'=>'Käännökset',
@@ -479,6 +480,7 @@ return (object)[
         'select_language'=>'Valitse ensin kieli.',
     ],
     'other' => (object)[
+        'search'=>'Haku',
         'show'=> 'Näytä',
         'hide'=> 'Piilota',
         'enable'  => 'Salli',

@@ -218,17 +218,19 @@ function zm_pb_lm_flatten($catalog, array $path = [], array &$rows = []): array
             zm_pb_lm_flatten($item, $next, $rows);
         }
     } elseif (is_string($catalog) || is_numeric($catalog)) {
-        $id = base64_encode(json_encode($path, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
+        $id = zm_pb_lm_path_id($path);
         $rows[$id] = ['path' => $path, 'value' => (string) $catalog, 'label' => zm_pb_lm_path_label($path), 'id' => $id];
     }
     return $rows;
 }
 
-function zm_pb_lm_filter_rows(array $rows, string $query): array
+function zm_pb_lm_filter_rows(array $rows, string $query, string $view = 'all'): array
 {
     $query = trim($query);
-    if ($query === '') return $rows;
-    return array_filter($rows, static function (array $row) use ($query): bool {
+    return array_filter($rows, static function (array $row) use ($query, $view): bool {
+        if ($view === 'original' && !empty($row['added'])) return false;
+        if ($view === 'added' && empty($row['added'])) return false;
+        if ($query === '') return true;
         foreach (['label', 'value', 'source'] as $field) {
             $text = $row[$field] ?? '';
             if (function_exists('mb_stripos') ? mb_stripos($text, $query, 0, 'UTF-8') !== false :
@@ -271,6 +273,11 @@ function zm_pb_lm_path_label(array $path): string
             : '[' . var_export($part['key'], true) . ']';
     }
     return $label;
+}
+
+function zm_pb_lm_path_id(array $path): string
+{
+    return base64_encode(json_encode($path, JSON_UNESCAPED_UNICODE));
 }
 
 function zm_pb_lm_path(string $encoded): array
@@ -322,10 +329,54 @@ function zm_pb_lm_write(string $file, string $content): void
 
 function zm_pb_lm_save(array $section, string $name, array $path, string $value, bool $custom = false): void
 {
-    $files = zm_pb_lm_files($section);
-    if (!isset($files[$name])) throw new InvalidArgumentException('Language not found.');
     if (strlen($value) > 65535 || strpos($value, "\0") !== false || preg_match('//u', $value) !== 1)
         throw new InvalidArgumentException('Invalid translation text.');
+    zm_pb_lm_update_entries($section, $name, static function (array $entries) use ($path, $value, $custom): array {
+        $entryId = zm_pb_lm_path_id($path);
+        $entries[$entryId] = ['path' => $path, 'value' => $value,
+            'custom' => $custom || !empty($entries[$entryId]['custom'])];
+        return $entries;
+    });
+}
+
+function zm_pb_lm_change_custom(array $section, string $name, array $path, ?string $newKey): void
+{
+    if ($newKey !== null && ($newKey === '' || strlen($newKey) > 200 ||
+        preg_match('//u', $newKey) !== 1 || preg_match('/[\x00-\x1F]/', $newKey)))
+        throw new InvalidArgumentException('Invalid translation key.');
+    zm_pb_lm_update_entries($section, $name, static function (array $entries) use ($section, $name, $path, $newKey): array {
+        $entryId = zm_pb_lm_path_id($path);
+        if (empty($entries[$entryId]['custom']))
+            throw new InvalidArgumentException('Only added translations can be changed or deleted.');
+        if ($newKey === null) {
+            unset($entries[$entryId]);
+            return $entries;
+        }
+        $last = count($path) - 1;
+        if ((string) $path[$last]['key'] === $newKey) return $entries;
+        $catalog = zm_pb_lm_catalog($section, $name);
+        $parent = zm_pb_lm_at($catalog, array_slice($path, 0, -1));
+        if (!is_array($parent) && !is_object($parent))
+            throw new InvalidArgumentException('Translation parent not found.');
+        if ((is_array($parent) && array_key_exists($newKey, $parent)) ||
+            (is_object($parent) && property_exists($parent, $newKey)))
+            throw new InvalidArgumentException('Translation key already exists.');
+        $newPath = $path;
+        $newPath[$last]['key'] = $newKey;
+        $newId = zm_pb_lm_path_id($newPath);
+        if (isset($entries[$newId])) throw new InvalidArgumentException('Translation key already exists.');
+        $entry = $entries[$entryId];
+        $entry['path'] = $newPath;
+        unset($entries[$entryId]);
+        $entries[$newId] = $entry;
+        return $entries;
+    });
+}
+
+function zm_pb_lm_update_entries(array $section, string $name, callable $change): void
+{
+    $files = zm_pb_lm_files($section);
+    if (!isset($files[$name])) throw new InvalidArgumentException('Language not found.');
     $dir = $section['directory'] . '/overrides' . ($section['kind'] === 'self' ? '/managed' : '');
     if (!is_dir($dir) && !mkdir($dir, 0750, true) && !is_dir($dir)) throw new RuntimeException('Cannot create the override directory.');
     $lock = fopen($dir . '/.zm-pb-language-manager.lock', 'c');
@@ -333,10 +384,8 @@ function zm_pb_lm_save(array $section, string $name, array $path, string $value,
     try {
         $file = $dir . '/' . $name . '.php';
         $entries = zm_pb_lm_managed_entries($file);
-        $entryId = base64_encode(json_encode($path, JSON_UNESCAPED_UNICODE));
-        $isCustom = $custom || !empty($entries[$entryId]['custom']);
+        $entries = $change($entries);
         if ($section['kind'] === 'module') zm_pb_lm_upgrade_module_include($files[$name]['file'], $name);
-        $entries[$entryId] = ['path' => $path, 'value' => $value, 'custom' => $isCustom];
         $original = zm_pb_lm_catalog($section, $name, false);
         foreach ($entries as $id => $entry) {
             $baseValue = zm_pb_lm_at($original, $entry['path']);

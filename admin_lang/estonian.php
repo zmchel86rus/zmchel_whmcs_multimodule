@@ -459,6 +459,7 @@ return (object)[
         ],
     ],
     'langs_manager' => (object)[
+        'show_all'=>'Näita kõiki', 'show_original'=>'Näita algseid', 'show_added'=>'Näita lisatuid',
         'sections'=>'Jaotised',
         'languages'=>'Keeled',
         'translations'=>'Tõlked',
@@ -476,6 +477,7 @@ return (object)[
         'select_language'=>'Valige esmalt keel.',
     ],
     'other' => (object)[
+        'search'=>'Otsing',
         'show'=> 'Näita',
         'hide'=> 'Peida',
         'enable'  => 'Luba',

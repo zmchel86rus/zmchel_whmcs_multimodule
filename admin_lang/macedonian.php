@@ -462,6 +462,7 @@ return (object)[
         ],
     ],
     'langs_manager' => (object)[
+        'show_all'=>'Прикажи ги сите', 'show_original'=>'Прикажи ги оригиналните', 'show_added'=>'Прикажи ги додадените',
         'sections'=>'Оддели',
         'languages'=>'Јазици',
         'translations'=>'Преводи',
@@ -479,6 +480,7 @@ return (object)[
         'select_language'=>'Прво изберете јазик.',
     ],
     'other' => (object)[
+        'search'=>'Пребарување',
         'show'=> 'Прикажи',
         'hide'=> 'Скриј',
         'enable'  => 'Дозволи',

@@ -459,6 +459,7 @@ return (object)[
         ],
     ],
     'langs_manager' => (object)[
+        'show_all'=>'Exibir todas', 'show_original'=>'Exibir as originais', 'show_added'=>'Exibir as adicionadas',
         'sections'=>'Seções',
         'languages'=>'Idiomas',
         'translations'=>'Traduções',
@@ -476,6 +477,7 @@ return (object)[
         'select_language'=>'Selecione primeiro um idioma.',
     ],
     'other' => (object)[
+        'search'=>'Pesquisa',
         'show'=> 'Mostrar',
         'hide'=> 'Ocultar',
         'enable'  => 'Permitir',

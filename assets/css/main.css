@@ -82,6 +82,19 @@
     display: grid!important; 
 }
 
+#zm-pagebuilder .flex-dir-col {
+    flex-direction: column!important;
+}
+#zm-pagebuilder .flex-dir-colrev {
+    flex-direction: column-reverse!important;
+}
+#zm-pagebuilder .flex-dir-row {
+    flex-direction: row!important;
+}
+#zm-pagebuilder .flex-dir-rowrev {
+    flex-direction: row-reverse!important;
+}
+
 #zm-pagebuilder .gap-01{
     gap:0.1em!important
 }
@@ -1114,4 +1127,14 @@
 #zm-pagebuilder.langs-manager .lm-language-grid .lm-action-form {
     flex: none;
 }
+#zm-pagebuilder.langs-manager td.lang_translates.key > code{
+    white-space:normal;
+    word-break:break-all
+}
+#zm-pagebuilder.langs-manager td.lang_translates.source{
+    white-space:pre-wrap;
+    word-break:break-word
+}
 
+#zm-pagebuilder.langs-manager form.lm-action-form label{display:inline-flex;flex-direction: column;width: 100%;}
+#zm-pagebuilder.langs-manager form.lm-action-form label input{width:100%}

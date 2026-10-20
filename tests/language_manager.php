@@ -96,6 +96,15 @@ try {
     zm_pb_lm_save($own, 'english', $mixed, 'Old');
     lm_check(!is_file(ZM_PB_ALANGDIR . 'overrides/managed/english.php'),
         'An unchanged module override was not removed.');
+    $ownCustom = [['type' => 'object', 'key' => 'section'], ['type' => 'object', 'key' => 'added']];
+    zm_pb_lm_save($own, 'english', $ownCustom, 'Custom value', true);
+    zm_pb_lm_change_custom($own, 'english', $ownCustom, 'renamed');
+    lm_check(!property_exists(zm_pb_lm_own('english')->section, 'added') &&
+        zm_pb_lm_own('english')->section->renamed === 'Custom value', 'Module custom key was not renamed.');
+    $ownRenamed = [['type' => 'object', 'key' => 'section'], ['type' => 'object', 'key' => 'renamed']];
+    zm_pb_lm_change_custom($own, 'english', $ownRenamed, null);
+    lm_check(!property_exists(zm_pb_lm_own('english')->section, 'renamed') &&
+        !is_file(ZM_PB_ALANGDIR . 'overrides/managed/english.php'), 'Module custom key was not deleted.');
 
     $path = [['type' => 'array', 'key' => 'group'], ['type' => 'array', 'key' => 'title']];
     zm_pb_lm_save($client, 'english', $path, 'Client override');
@@ -112,6 +121,15 @@ try {
     zm_pb_lm_save($admin, 'english', $path, 'Original');
     lm_check(!is_file($root . '/admin/lang/overrides/english.php'),
         'An unchanged WHMCS admin override was not removed.');
+    $adminCustom = [['type' => 'array', 'key' => 'extraText']];
+    zm_pb_lm_save($admin, 'english', $adminCustom, 'Extra text', true);
+    zm_pb_lm_change_custom($admin, 'english', $adminCustom, 'renamedText');
+    $adminRenamed = [['type' => 'array', 'key' => 'renamedText']];
+    lm_check(zm_pb_lm_catalog($admin, 'english')['renamedText'] === 'Extra text',
+        'WHMCS admin custom key was not renamed.');
+    zm_pb_lm_change_custom($admin, 'english', $adminRenamed, null);
+    lm_check(!is_file($root . '/admin/lang/overrides/english.php'),
+        'Deleting the last WHMCS admin custom key left an override file.');
     zm_pb_lm_add($admin, 'finnish');
     zm_pb_lm_add($admin, 'finnish');
     $adminBackup = zm_pb_lm_added_backup($admin, 'finnish', 'enabled');
@@ -131,6 +149,30 @@ try {
     lm_check(strpos(file_get_contents($root . '/lang/overrides/english.php'), "'Keep me'") !== false &&
         count(zm_pb_lm_managed_entries($root . '/lang/overrides/english.php')) === 1,
         'Restoring one translation removed manual or custom entries.');
+    $clientCustom = [['type' => 'array', 'key' => 'customKey']];
+    try {
+        zm_pb_lm_change_custom($client, 'english', $clientCustom, 'group');
+        throw new RuntimeException('A custom key replaced an original key.');
+    } catch (InvalidArgumentException $error) {
+        lm_check($error->getMessage() === 'Translation key already exists.', 'Wrong key collision error.');
+    }
+    try {
+        zm_pb_lm_change_custom($client, 'english', $path, null);
+        throw new RuntimeException('An original key was deleted.');
+    } catch (InvalidArgumentException $error) {
+        lm_check($error->getMessage() === 'Only added translations can be changed or deleted.',
+            'Original key deletion was not blocked.');
+    }
+    zm_pb_lm_change_custom($client, 'english', $clientCustom, 'new/key');
+    $renamedCustom = [['type' => 'array', 'key' => 'new/key']];
+    lm_check(!isset(zm_pb_lm_catalog($client, 'english')['customKey']) &&
+        zm_pb_lm_catalog($client, 'english')['new/key'] === 'New value' &&
+        isset(zm_pb_lm_flatten(zm_pb_lm_catalog($client, 'english'))[zm_pb_lm_path_id($renamedCustom)]),
+        'Client custom key with a slash was not renamed or listed.');
+    zm_pb_lm_change_custom($client, 'english', $renamedCustom, null);
+    lm_check(!isset(zm_pb_lm_catalog($client, 'english')['new/key']) &&
+        strpos(file_get_contents($root . '/lang/overrides/english.php'), "'Keep me'") !== false,
+        'Deleting a custom key removed manual overrides.');
 
     zm_pb_lm_save($addon, 'english', $path, 'Addon override');
     lm_check(zm_pb_lm_catalog($addon, 'english')['group']['title'] === 'Addon override', 'Addon override failed.');
@@ -204,6 +246,12 @@ try {
     lm_check(count(zm_pb_lm_filter_rows($rows, 'translated')) === 1, 'Translation search failed.');
     lm_check(count(zm_pb_lm_filter_rows($rows, 'ORIGINAL TEXT')) === 1, 'Reference search failed.');
     lm_check(count(zm_pb_lm_filter_rows($rows, 'missing')) === 0, 'Search returned unrelated rows.');
+    $rows[0]['added'] = false;
+    $rows[1]['added'] = true;
+    lm_check(count(zm_pb_lm_filter_rows($rows, '', 'original')) === 1 &&
+        count(zm_pb_lm_filter_rows($rows, '', 'added')) === 1 &&
+        count(zm_pb_lm_filter_rows($rows, '', 'all')) === 2,
+        'Original and added translation filters returned the wrong rows.');
     if (function_exists('mb_stripos')) {
         $rows[] = ['label' => 'section->russian', 'value' => 'Перевод', 'source' => 'Исходный текст'];
         lm_check(count(zm_pb_lm_filter_rows($rows, 'ПЕРЕВОД')) === 1, 'Unicode translation search failed.');

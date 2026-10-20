@@ -462,6 +462,7 @@ return (object)[
         ],
     ],
     'langs_manager' => (object)[
+        'show_all'=>'Afișează toate', 'show_original'=>'Afișează originalele', 'show_added'=>'Afișează traducerile adăugate',
         'sections'=>'Secțiuni',
         'languages'=>'Limbi',
         'translations'=>'Traduceri',
@@ -479,6 +480,7 @@ return (object)[
         'select_language'=>'Selectați mai întâi o limbă.',
     ],
     'other' => (object)[
+        'search'=>'Căutare',
         'show'=> 'Afișează',
         'hide'=> 'Ascunde',
         'enable'  => 'Permite',

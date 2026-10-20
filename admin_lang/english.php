@@ -462,6 +462,7 @@ return (object)[
         ],
     ],
     'langs_manager' => (object)[
+        'show_all'=>'Show all', 'show_original'=>'Show original', 'show_added'=>'Show added',
         'sections'=>'Sections', 'languages'=>'Languages', 'translations'=>'Translations',
         'disabled'=>'Disabled', 'available'=>'Available to add', 'no_languages'=>'No language files found.',
         'disabled_editable'=>'This language is disabled. Its translations are still editable.',
@@ -470,6 +471,7 @@ return (object)[
         'new_translation'=>'New translation', 'inside'=>'Inside', 'select_language'=>'Select a language first.',
     ],
     'other' => (object)[
+        'search'=>'Search',
         'show'=> 'Show',
         'hide'=> 'Hide',
         'enable'  => 'Allow',

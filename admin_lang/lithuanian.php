@@ -462,6 +462,7 @@ return (object)[
         ],
     ],
     'langs_manager' => (object)[
+        'show_all'=>'Rodyti visus', 'show_original'=>'Rodyti pradinius', 'show_added'=>'Rodyti pridėtus',
         'sections'=>'Skyriai',
         'languages'=>'Kalbos',
         'translations'=>'Vertimai',
@@ -479,6 +480,7 @@ return (object)[
         'select_language'=>'Pirmiausia pasirinkite kalbą.',
     ],
     'other' => (object)[
+        'search'=>'Paieška',
         'show'=> 'Rodyti',
         'hide'=> 'Slėpti',
         'enable'  => 'Leisti',

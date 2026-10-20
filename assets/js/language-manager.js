@@ -21,6 +21,10 @@
         url.hash = 'mod_lm_tab_lang_list_edit';
         window.location.assign(url.toString());
     });
+    var viewSelect = document.getElementById('lm-view');
+    if (viewSelect) viewSelect.addEventListener('change', function () {
+        searchForm.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
+    });
     var box = document.getElementById('lm-message');
     document.querySelectorAll('.langs-manager .lm-action-form').forEach(function (form) {
         if (form.dataset.lmBound) return;
@@ -28,8 +32,10 @@
         form.addEventListener('submit', function (event) {
             event.preventDefault();
             if (form.dataset.lmSubmitting) return;
-            form.dataset.lmSubmitting = '1';
+            var action = form.elements.namedItem('action').value;
             var button = form.querySelector('button[type="submit"]');
+            if (action === 'delete_translation' && !window.confirm(button.textContent.trim() + '?')) return;
+            form.dataset.lmSubmitting = '1';
             var status = form.querySelector('.lm-row-status');
             button.disabled = true;
             if (status) status.textContent = '';
@@ -50,9 +56,8 @@
                     box.className = 'alert alert-success';
                     box.textContent = result.title || 'Saved';
                 }
-                var action = form.elements.namedItem('action').value;
                 if (action !== 'save_translation') {
-                    window.location.hash = action === 'add_translation'
+                    window.location.hash = ['add_translation', 'rename_translation', 'delete_translation'].indexOf(action) !== -1
                         ? 'mod_lm_tab_lang_list_edit' : 'mod_lm_tab_lang_list';
                     window.location.reload();
                 }

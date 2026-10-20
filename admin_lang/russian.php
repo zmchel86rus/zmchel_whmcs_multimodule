@@ -462,6 +462,7 @@ return (object)[
         ],
     ],
     'langs_manager' => (object)[
+        'show_all'=>'Показать все', 'show_original'=>'Показать оригинальные', 'show_added'=>'Показать добавленные',
         'sections'=>'Разделы', 'languages'=>'Языки', 'translations'=>'Переводы',
         'disabled'=>'Отключено', 'available'=>'Можно добавить', 'no_languages'=>'Языковые файлы не найдены.',
         'disabled_editable'=>'Язык отключён, но его переводы по-прежнему можно редактировать.',
@@ -470,6 +471,7 @@ return (object)[
         'new_translation'=>'Новый перевод', 'inside'=>'В разделе', 'select_language'=>'Сначала выберите язык.',
     ],
     'other' => (object)[
+        'search'=>'Поиск',
         'show'=> 'Показать',
         'hide'=> 'Скрыть',
         'enable'  => 'Разрешить',

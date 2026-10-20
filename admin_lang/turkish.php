@@ -459,6 +459,7 @@ return (object)[
         ],
     ],
     'langs_manager' => (object)[
+        'show_all'=>'Tümünü göster', 'show_original'=>'Özgün olanları göster', 'show_added'=>'Eklenenleri göster',
         'sections'=>'Bölümler',
         'languages'=>'Diller',
         'translations'=>'Çeviriler',
@@ -476,6 +477,7 @@ return (object)[
         'select_language'=>'Önce bir dil seçin.',
     ],
     'other' => (object)[
+        'search'=>'Arama',
         'show'=> 'Göster',
         'hide'=> 'Gizle',
         'enable'  => 'İzin ver',

@@ -462,6 +462,7 @@ return (object)[
         ],
     ],
     'langs_manager' => (object)[
+        'show_all'=>'Zobraziť všetky', 'show_original'=>'Zobraziť pôvodné', 'show_added'=>'Zobraziť pridané',
         'sections'=>'Sekcie',
         'languages'=>'Jazyky',
         'translations'=>'Preklady',
@@ -479,6 +480,7 @@ return (object)[
         'select_language'=>'Najprv vyberte jazyk.',
     ],
     'other' => (object)[
+        'search'=>'Vyhľadávanie',
         'show'=> 'Zobraziť',
         'hide'=> 'Skryť',
         'enable'  => 'Povoliť',

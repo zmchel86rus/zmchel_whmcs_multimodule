@@ -462,6 +462,7 @@ return (object)[
         ],
     ],
     'langs_manager' => (object)[
+        'show_all'=>'Rādīt visus', 'show_original'=>'Rādīt sākotnējos', 'show_added'=>'Rādīt pievienotos',
         'sections'=>'Sadaļas',
         'languages'=>'Valodas',
         'translations'=>'Tulkojumi',
@@ -479,6 +480,7 @@ return (object)[
         'select_language'=>'Vispirms izvēlieties valodu.',
     ],
     'other' => (object)[
+        'search'=>'Meklēšana',
         'show'=> 'Rādīt',
         'hide'=> 'Paslēpt',
         'enable'  => 'Atļaut',

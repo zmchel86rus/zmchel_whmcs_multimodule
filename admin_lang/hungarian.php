@@ -459,6 +459,7 @@ return (object)[
         ],
     ],
     'langs_manager' => (object)[
+        'show_all'=>'Összes megjelenítése', 'show_original'=>'Eredetiek megjelenítése', 'show_added'=>'Hozzáadottak megjelenítése',
         'sections'=>'Szakaszok',
         'languages'=>'Nyelvek',
         'translations'=>'Fordítások',
@@ -476,6 +477,7 @@ return (object)[
         'select_language'=>'Előbb válasszon nyelvet.',
     ],
     'other' => (object)[
+        'search'=>'Keresés',
         'show'=> 'Megjelenítés',
         'hide'=> 'Elrejtés',
         'enable'  => 'Engedélyezés',

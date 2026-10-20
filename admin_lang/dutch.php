@@ -462,6 +462,7 @@ return (object)[
         ],
     ],
     'langs_manager' => (object)[
+        'show_all'=>'Alles tonen', 'show_original'=>'Originele tonen', 'show_added'=>'Toegevoegde tonen',
         'sections'=>'Secties',
         'languages'=>'Talen',
         'translations'=>'Vertalingen',
@@ -479,6 +480,7 @@ return (object)[
         'select_language'=>'Selecteer eerst een taal.',
     ],
     'other' => (object)[
+        'search'=>'Zoeken',
         'show'=> 'Tonen',
         'hide'=> 'Verbergen',
         'enable'  => 'Toestaan',

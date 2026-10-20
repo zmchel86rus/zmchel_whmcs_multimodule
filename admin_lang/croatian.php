@@ -459,6 +459,7 @@ return (object)[
         ],
     ],
     'langs_manager' => (object)[
+        'show_all'=>'Prikaži sve', 'show_original'=>'Prikaži izvorne', 'show_added'=>'Prikaži dodane',
         'sections'=>'Odjeljci',
         'languages'=>'Jezici',
         'translations'=>'Prijevodi',
@@ -476,6 +477,7 @@ return (object)[
         'select_language'=>'Najprije odaberite jezik.',
     ],
     'other' => (object)[
+        'search'=>'Pretraživanje',
         'show'=> 'Prikaži',
         'hide'=> 'Sakrij',
         'enable'  => 'Dopusti',

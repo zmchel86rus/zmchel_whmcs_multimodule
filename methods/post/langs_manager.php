@@ -13,7 +13,15 @@ try {
     if (!is_string($id) || !isset($sections[$id]) || !is_string($name) ||
         !preg_match('/^[a-z0-9_-]+$/D', $name)) throw new InvalidArgumentException('Invalid language section.');
     $section = $sections[$id];
-    if ($method_action === 'save_translation' || $method_action === 'add_translation') {
+    if ($method_action === 'rename_translation' || $method_action === 'delete_translation') {
+        $keyPath = $_POST['key_path'] ?? null;
+        if (!is_string($keyPath)) throw new InvalidArgumentException('Invalid translation key.');
+        $path = zm_pb_lm_path($keyPath);
+        $newKey = $method_action === 'rename_translation' ? ($_POST['new_key'] ?? null) : null;
+        if ($method_action === 'rename_translation' && !is_string($newKey))
+            throw new InvalidArgumentException('Invalid translation key.');
+        zm_pb_lm_change_custom($section, $name, $path, $newKey);
+    } elseif ($method_action === 'save_translation' || $method_action === 'add_translation') {
         $files = zm_pb_lm_files($section);
         if (!isset($files[$name])) throw new InvalidArgumentException('Language not found.');
         $value = $_POST['value'] ?? null;

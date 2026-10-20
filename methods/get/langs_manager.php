@@ -52,6 +52,8 @@ try {
     }
     $search = isset($_GET['q']) && is_string($_GET['q']) ? trim($_GET['q']) : '';
     if (strlen($search) > 200) $search = '';
+    $view = isset($_GET['view']) && is_string($_GET['view']) &&
+        in_array($_GET['view'], ['all', 'original', 'added'], true) ? $_GET['view'] : 'all';
     $editUrl = $baseUrl . ($language !== '' ? '&language=' . rawurlencode($language) : '');
     $smarty->assign('lm_sections', $sectionRows);
     $smarty->assign('lm_languages', $languageRows);
@@ -60,8 +62,11 @@ try {
     $smarty->assign('lm_language', $language);
     $smarty->assign('lm_base_url', $baseUrl);
     $smarty->assign('lm_edit_url', $editUrl);
-    $smarty->assign('lm_current_url', $editUrl . ($search !== '' ? '&q=' . rawurlencode($search) : ''));
+    $viewUrl = $editUrl . ($view !== 'all' ? '&view=' . $view : '');
+    $smarty->assign('lm_current_url', $viewUrl . ($search !== '' ? '&q=' . rawurlencode($search) : ''));
+    $smarty->assign('lm_reset_url', $viewUrl);
     $smarty->assign('lm_search', $search);
+    $smarty->assign('lm_view', $view);
     $smarty->assign('lm_current_title', $section['title']);
     if ($language !== '') {
         $reference = zm_pb_lm_name($section, ZM_PB_DEFLANG);
@@ -71,13 +76,18 @@ try {
         $shape = zm_pb_lm_merge(zm_pb_lm_copy($source), $target);
         $targetRows = zm_pb_lm_flatten($target);
         $sourceRows = zm_pb_lm_flatten($source);
+        $overrideDir = $section['directory'] . '/overrides' . ($section['kind'] === 'self' ? '/managed' : '');
+        $managed = zm_pb_lm_managed_entries($overrideDir . '/' . $language . '.php');
         $all = $sourceRows + $targetRows;
         foreach ($all as $id => &$row) {
             $row['value'] = $targetRows[$id]['value'] ?? '';
             $row['source'] = $sourceRows[$id]['value'] ?? '';
+            $row['added'] = !isset($sourceRows[$id]) || !empty($managed[$id]['custom']);
+            $row['managed_custom'] = !empty($managed[$id]['custom']);
+            $row['key'] = (string) $row['path'][count($row['path']) - 1]['key'];
         }
         unset($row);
-        $all = zm_pb_lm_filter_rows($all, $search);
+        $all = zm_pb_lm_filter_rows($all, $search, $view);
         uasort($all, static function ($a, $b) { return strcmp($a['label'], $b['label']); });
         $page = max(1, (int) ($_GET['page'] ?? 1));
         $perPage = 50;
