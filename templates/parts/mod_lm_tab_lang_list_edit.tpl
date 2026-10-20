@@ -3,6 +3,16 @@
 {if $lm_state == 'disabled'}<p class="alert alert-info">{$lm_text->disabled_editable|escape}</p>{/if}
 {if $lm_readonly}<p class="alert alert-warning">This module returns a PHP catalog instead of using a language variable. Its loader needs an override adapter before edits can be saved.</p>{/if}
 <p class="text-muted">{$lm_text->reference|escape}: {$lm_reference|escape}. {$lm_text->save_one|escape}</p>
+<form id="lm-search-form" class="form-inline" method="get" action="addonmodules.php#mod_lm_tab_lang_list_edit" style="margin-bottom:15px">
+    <input type="hidden" name="module" value="{$addonName|escape}">
+    <input type="hidden" name="subpage" value="langs_manager">
+    <input type="hidden" name="section" value="{$lm_section|escape}">
+    <input type="hidden" name="language" value="{$lm_language|escape}">
+    <label for="lm-search">{$lm_text->key|escape} / {$lm_text->translation|escape}</label>
+    <input id="lm-search" class="form-control" type="search" name="q" value="{$lm_search|escape}" maxlength="200">
+    <button class="btn btn-default" type="submit" aria-label="{$lm_text->key|escape} / {$lm_text->translation|escape}">&#128269;</button>
+    {if $lm_search !== ''}<a class="btn btn-default" href="{$lm_edit_url|escape}#mod_lm_tab_lang_list_edit">{$other_translates->reset|escape}</a>{/if}
+</form>
 <div class="table-responsive">
 <table class="table table-striped table-bordered">
     <thead><tr><th style="width:28%">{$lm_text->key|escape}</th><th style="width:30%">{$lm_text->reference_value|escape}</th><th>{$lm_text->translation|escape}</th></tr></thead>
@@ -27,6 +37,8 @@
             </form>
         </td>
     </tr>
+    {foreachelse}
+    <tr><td colspan="3" class="text-muted">&mdash;</td></tr>
     {/foreach}
     </tbody>
 </table>

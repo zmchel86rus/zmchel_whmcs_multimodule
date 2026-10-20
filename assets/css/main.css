@@ -1092,3 +1092,26 @@
 #zm-pagebuilder .extra-langs > span:before{content:var(--show-text);padding-right:2px;cursor:pointer}
 #zm-pagebuilder .extra-langs > span.collapsed:before{content:var(--hide-text);}
 
+#zm-pagebuilder.langs-manager .lm-language-grid {
+    display: flex;
+    flex-wrap: wrap;
+}
+#zm-pagebuilder.langs-manager .lm-language-grid > [class*="col-"] {
+    display: flex;
+    margin-bottom: 10px;
+}
+#zm-pagebuilder.langs-manager .lm-language-grid .list-group-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    width: 100%;
+}
+#zm-pagebuilder.langs-manager .lm-language-grid .lm-language-name {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+#zm-pagebuilder.langs-manager .lm-language-grid .lm-action-form {
+    flex: none;
+}
+

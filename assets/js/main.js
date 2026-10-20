@@ -18,7 +18,8 @@ $('#zm-pagebuilder .extra-langs > span').on('click', function (e) {
 });
 
 $('#zm-pagebuilder form').filter(function () {
-    return (this.getAttribute('method') || '').toLowerCase() === 'post';
+    return (this.getAttribute('method') || '').toLowerCase() === 'post' &&
+        !this.classList.contains('lm-action-form');
 }).on('submit', function (e) {
     e.preventDefault();
 

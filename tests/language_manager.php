@@ -22,6 +22,11 @@ function lm_check($condition, string $message): void
     if (!$condition) throw new RuntimeException($message);
 }
 
+function add_hook($name, $priority, $callback): void
+{
+    $GLOBALS['lm_hooks'][$name][$priority][] = $callback;
+}
+
 function lm_remove(string $directory): void
 {
     foreach (scandir($directory) ?: [] as $item) {
@@ -84,6 +89,13 @@ try {
         'Saving changed the original module language file.');
     lm_check(strpos(file_get_contents(ZM_PB_ALANGDIR . 'overrides/english.php'), 'Manual') !== false,
         'Saving changed a manual module override.');
+    zm_pb_lm_save($own, 'english', [['type' => 'object', 'key' => 'section'],
+        ['type' => 'object', 'key' => 'title']], 'Original');
+    lm_check(zm_pb_lm_own('english')->section->title === 'Manual',
+        'Restoring an original value removed a manual override.');
+    zm_pb_lm_save($own, 'english', $mixed, 'Old');
+    lm_check(!is_file(ZM_PB_ALANGDIR . 'overrides/managed/english.php'),
+        'An unchanged module override was not removed.');
 
     $path = [['type' => 'array', 'key' => 'group'], ['type' => 'array', 'key' => 'title']];
     zm_pb_lm_save($client, 'english', $path, 'Client override');
@@ -91,19 +103,48 @@ try {
     zm_pb_lm_save($admin, 'english', $path, 'Admin override');
     lm_check(zm_pb_lm_catalog($client, 'english')['group']['title'] === 'Client override', 'Client override failed.');
     lm_check(zm_pb_lm_catalog($client, 'english')['customKey'] === 'New value', 'Custom translation failed.');
+    file_put_contents($root . '/lang/spanish.php', "<?php \$_LANG['locale'] = 'es_ES';\n");
+    lm_check(zm_pb_lm_source_catalog($client, 'spanish', 'english')['group']['title'] === 'Original',
+        'The reference fallback includes an override from another language.');
     lm_check(zm_pb_lm_catalog($admin, 'english')['group']['title'] === 'Admin override', 'Admin override failed.');
+    lm_check(zm_pb_lm_source_catalog($admin, 'english', 'english')['group']['title'] === 'Original',
+        'The reference column includes the admin override.');
+    zm_pb_lm_save($admin, 'english', $path, 'Original');
+    lm_check(!is_file($root . '/admin/lang/overrides/english.php'),
+        'An unchanged WHMCS admin override was not removed.');
     zm_pb_lm_add($admin, 'finnish');
+    zm_pb_lm_add($admin, 'finnish');
+    $adminBackup = zm_pb_lm_added_backup($admin, 'finnish', 'enabled');
+    lm_check(is_file($adminBackup), 'The added WHMCS admin language has no backup.');
+    unlink($root . '/admin/lang/finnish.php');
+    zm_pb_lm_restore_added_languages();
+    lm_check(is_file($root . '/admin/lang/finnish.php'), 'The WHMCS admin language was not restored.');
     zm_pb_lm_save($admin, 'finnish', $path, 'Finnish admin text');
     lm_check(zm_pb_lm_catalog($admin, 'finnish')['group']['title'] === 'Finnish admin text',
         'New WHMCS admin language failed.');
+    lm_check(zm_pb_lm_source_catalog($admin, 'finnish', 'english')['group']['title'] === 'Original',
+        'The reference column includes the selected language override.');
     $override = file_get_contents($root . '/lang/overrides/english.php');
     lm_check(strpos($override, "'Keep me'") !== false && strpos($override, '/* CUSTOMS */') !== false,
         'Existing manual override was removed.');
+    zm_pb_lm_save($client, 'english', $path, 'Original');
+    lm_check(strpos(file_get_contents($root . '/lang/overrides/english.php'), "'Keep me'") !== false &&
+        count(zm_pb_lm_managed_entries($root . '/lang/overrides/english.php')) === 1,
+        'Restoring one translation removed manual or custom entries.');
 
     zm_pb_lm_save($addon, 'english', $path, 'Addon override');
     lm_check(zm_pb_lm_catalog($addon, 'english')['group']['title'] === 'Addon override', 'Addon override failed.');
     lm_check(strpos(file_get_contents($root . '/modules/addons/sample/lang/english.php'), 'ZM_PB_LM_INCLUDE') !== false,
         'Addon did not load its override.');
+    $addonFile = $root . '/modules/addons/sample/lang/english.php';
+    $source = file_get_contents($addonFile);
+    file_put_contents($addonFile, str_replace(
+        "if (empty(\$GLOBALS['ZM_PB_LM_SKIP_OVERRIDES']) && is_file(__DIR__ . '/overrides/english.php'))",
+        "if (is_file(__DIR__ . '/overrides/english.php'))", $source));
+    zm_pb_lm_save($addon, 'english', $path, 'Original');
+    lm_check(!is_file($root . '/modules/addons/sample/lang/overrides/english.php') &&
+        strpos(file_get_contents($addonFile), 'ZM_PB_LM_SKIP_OVERRIDES') !== false,
+        'An unchanged addon override was not removed or its loader was not updated.');
     zm_pb_lm_add($addon, 'finnish');
     zm_pb_lm_save($addon, 'finnish', $path, 'Finnish addon text');
     lm_check(zm_pb_lm_catalog($addon, 'finnish')['group']['title'] === 'Finnish addon text',
@@ -113,24 +154,75 @@ try {
         'Disabled new addon language cannot be loaded.');
 
     zm_pb_lm_add($own, 'finnish');
+    zm_pb_lm_add($own, 'finnish');
     zm_pb_lm_save($own, 'finnish', [['type' => 'object', 'key' => 'section'],
         ['type' => 'object', 'key' => 'title']], 'Suomi');
     lm_check(zm_pb_lm_own('finnish')->section->title === 'Suomi', 'New module language failed.');
     zm_pb_lm_toggle($own, 'finnish', false);
+    zm_pb_lm_toggle($own, 'finnish', false);
     lm_check(zm_pb_lm_catalog($own, 'finnish')->section->title === 'Suomi',
         'Disabled language cannot be edited.');
     zm_pb_lm_toggle($own, 'finnish', true);
+    zm_pb_lm_toggle($own, 'finnish', true);
+    copy(ZM_PB_ALANGDIR . 'finnish.php', ZM_PB_ALANGDIR . 'disabled/finnish.php');
+    try {
+        zm_pb_lm_toggle($own, 'finnish', false);
+        throw new RuntimeException('Conflicting language files were silently accepted.');
+    } catch (RuntimeException $error) {
+        if ($error->getMessage() === 'Conflicting language files were silently accepted.') throw $error;
+    }
+    unlink(ZM_PB_ALANGDIR . 'disabled/finnish.php');
     zm_pb_lm_add($client, 'finnish');
     lm_check(zm_pb_lm_catalog($client, 'finnish')['locale'] === 'fi_FI',
         'New WHMCS language has no locale.');
     zm_pb_lm_toggle($client, 'finnish', false);
+    zm_pb_lm_toggle($client, 'finnish', false);
+    lm_check(is_file(zm_pb_lm_added_backup($client, 'finnish', 'disabled')) &&
+        !is_file(zm_pb_lm_added_backup($client, 'finnish', 'enabled')),
+        'The backup did not follow the disabled language.');
+    unlink($root . '/lang/disabled/finnish.php');
+    zm_pb_lm_restore_added_languages();
+    lm_check(is_file($root . '/lang/disabled/finnish.php') &&
+        !is_file($root . '/lang/finnish.php'), 'A disabled language was not restored in its disabled state.');
+    file_put_contents($root . '/lang/finnish.php', "<?php \$_LANG['locale'] = 'fi_FI';\n");
+    zm_pb_lm_restore_added_languages();
+    lm_check(!is_file($root . '/lang/finnish.php') &&
+        is_file($root . '/lang/disabled/finnish.php'),
+        'A restored core language was not kept disabled.');
+    file_put_contents($root . '/lang/romanian.php',
+        "<?php\nrequire (is_file(__DIR__ . '/english.php') ? __DIR__ : dirname(__DIR__)) . '/english.php';\n\$_LANG = \$_LANG ?? [];\n");
+    zm_pb_lm_restore_added_languages();
+    lm_check(is_file(zm_pb_lm_added_backup($client, 'romanian', 'enabled')),
+        'A language added by an earlier manager version was not backed up.');
     lm_check(zm_pb_lm_catalog($client, 'finnish')['locale'] === 'fi_FI',
         'Disabled new WHMCS language cannot be loaded.');
+    $rows = [
+        ['label' => "section->title", 'value' => 'Translated text', 'source' => 'Original text'],
+        ['label' => "section->other", 'value' => 'Different text', 'source' => 'Other original'],
+    ];
+    lm_check(count(zm_pb_lm_filter_rows($rows, 'TITLE')) === 1, 'Key search failed.');
+    lm_check(count(zm_pb_lm_filter_rows($rows, 'translated')) === 1, 'Translation search failed.');
+    lm_check(count(zm_pb_lm_filter_rows($rows, 'ORIGINAL TEXT')) === 1, 'Reference search failed.');
+    lm_check(count(zm_pb_lm_filter_rows($rows, 'missing')) === 0, 'Search returned unrelated rows.');
+    if (function_exists('mb_stripos')) {
+        $rows[] = ['label' => 'section->russian', 'value' => 'Перевод', 'source' => 'Исходный текст'];
+        lm_check(count(zm_pb_lm_filter_rows($rows, 'ПЕРЕВОД')) === 1, 'Unicode translation search failed.');
+    }
     file_put_contents($root . '/lang/finnish.php', "<?php \$_LANG['locale'] = 'fi_FI';\n");
-    zm_pb_lm_recheck_disabled();
+    define('WHMCS', true);
+    require dirname(__DIR__) . '/hooks/language_manager.php';
+    lm_check(isset($GLOBALS['lm_hooks']['DailyCronJob'][10000]) &&
+        !isset($GLOBALS['lm_hooks']['AfterCronJob']), 'Language checks must use the daily cron hook.');
+    $dailyCheck = $GLOBALS['lm_hooks']['DailyCronJob'][10000][0];
+    $dailyCheck();
     lm_check(!is_file($root . '/lang/finnish.php') &&
         is_file($root . '/lang/disabled/finnish.php'), 'Cron check did not disable a restored language.');
-    echo "PASS language sections, mixed keys, one-row saves, overrides, new and disabled languages\n";
+    lm_check(!is_file(ZM_PB_INCDIR . 'language_manager_last_check.txt'),
+        'The language check still uses a stamp file.');
+    file_put_contents($root . '/lang/finnish.php', "<?php \$_LANG['locale'] = 'fi_FI';\n");
+    $dailyCheck();
+    lm_check(!is_file($root . '/lang/finnish.php'), 'A repeated daily check did not disable the restored language.');
+    echo "PASS language sections, one-row saves, override cleanup, backup restoration and disabled languages\n";
 } finally {
     lm_remove($root);
 }
