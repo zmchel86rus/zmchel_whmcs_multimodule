@@ -75,7 +75,7 @@
                                             {/if}
                                         {/foreach}
                                     </div>
-                                    <span onclick="$(this).prev().slideToggle();$(this).toggleClass('collapsed');">({$page->langs|@count-5})</span>
+                                    <span>({$page->langs|@count-5})</span>
                                 </div>
                                 {/if}
                             </td>

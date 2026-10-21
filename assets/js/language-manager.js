@@ -36,7 +36,7 @@
             var button = form.querySelector('button[type="submit"]');
             if (action === 'delete_translation' && !window.confirm(button.textContent.trim() + '?')) return;
             form.dataset.lmSubmitting = '1';
-            var status = form.querySelector('.lm-row-status');
+            var status = form.parentElement.querySelector('.lm-row-status');
             button.disabled = true;
             if (status) status.textContent = '';
             box.hidden = true;
