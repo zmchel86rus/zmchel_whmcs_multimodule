@@ -10,8 +10,14 @@ try {
     $sections = zm_pb_lm_sections();
     $id = $_POST['section'] ?? '';
     $name = $_POST['language'] ?? '';
-    if (!is_string($id) || !isset($sections[$id]) || !is_string($name) ||
+    if (!is_string($id) || !is_string($name) ||
         !preg_match('/^[a-z0-9_-]+$/D', $name)) throw new InvalidArgumentException('Invalid language section.');
+    if ($method_action === 'fix_language_filename') {
+        if ($id !== 'all') throw new InvalidArgumentException('Invalid language section.');
+        zm_pb_lm_fix_filename_all($sections, $name);
+        exit(json_encode(['status' => 'success', 'title' => $GLOBALS['ZM_PB_ADMINLANG']->other->success]));
+    }
+    if (!isset($sections[$id])) throw new InvalidArgumentException('Invalid language section.');
     $section = $sections[$id];
     if ($method_action === 'export_translations' || $method_action === 'import_translations') {
         $files = zm_pb_lm_files($section);
@@ -49,8 +55,6 @@ try {
         }
         exit(json_encode(['status' => 'success', 'title' => $GLOBALS['ZM_PB_ADMINLANG']->other->success,
             'count' => $result['updated'], 'message' => $message], JSON_UNESCAPED_UNICODE));
-    } elseif ($method_action === 'fix_language_filename') {
-        zm_pb_lm_fix_filename($section, $name);
     } elseif ($method_action === 'rename_translation' || $method_action === 'delete_translation') {
         $keyPath = $_POST['key_path'] ?? null;
         if (!is_string($keyPath)) throw new InvalidArgumentException('Invalid translation key.');

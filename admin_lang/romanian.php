@@ -143,7 +143,6 @@ return (object)[
             'belarusian' => 'Belarusă',
             'albanian' => 'Albaneză',
             'irish' => 'Irlandeză',
-            'romansh' => 'Romanșă',
         ]],
         'alerts'=> (object)[
             'access_denied'=>'Acces refuzat. Această pagină a modulului este disponibilă numai Superadministratorului (ID {super_admin_id}).',

@@ -27,14 +27,12 @@ try {
         }
         $disabled = 0;
         foreach ($files as $file) if ($file['state'] === 'disabled') $disabled++;
-        $filenameFixes = zm_pb_lm_filename_candidates($item);
         $sectionRows[] = ['id' => $id, 'title' => $item['title'], 'total' => count($files),
             'disabled' => $disabled, 'missing' => $missing,
-            'filename_fixes' => $filenameFixes,
-            'first_filename_target' => $filenameFixes[0]['new'] ?? '',
             'url' => 'addonmodules.php?' . http_build_query(['module' => ZM_PB_NAME, 'subpage' => 'langs_manager',
                 'section' => $id], '', '&', PHP_QUERY_RFC3986)];
     }
+    $filenameFixes = zm_pb_lm_global_filename_candidates($sections);
     $files = is_dir($section['directory']) ? zm_pb_lm_files($section) : [];
     $requestedLanguage = isset($_GET['language']) && is_string($_GET['language']) ? $_GET['language'] : '';
     if (!isset($files[$requestedLanguage])) {
@@ -64,6 +62,7 @@ try {
         in_array($_GET['view'], ['all', 'original', 'added'], true) ? $_GET['view'] : 'all';
     $editUrl = $baseUrl . ($language !== '' ? '&language=' . rawurlencode($language) : '');
     $smarty->assign('lm_sections', $sectionRows);
+    $smarty->assign('lm_filename_fixes', $filenameFixes);
     $smarty->assign('lm_languages', $languageRows);
     $smarty->assign('lm_missing', $missingLanguages);
     $smarty->assign('lm_section', $selectedId);

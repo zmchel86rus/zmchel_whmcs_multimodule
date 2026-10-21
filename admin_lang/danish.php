@@ -143,7 +143,6 @@ return (object)[
             'belarusian' => 'Belarusisk',
             'albanian' => 'Albansk',
             'irish' => 'Irsk',
-            'romansh' => 'Rætoromansk',
         ]],
         'alerts'=> (object)[
             'access_denied'=>'Adgang nægtet. Denne modulside er kun tilgængelig for superadministratoren (ID {super_admin_id}).',

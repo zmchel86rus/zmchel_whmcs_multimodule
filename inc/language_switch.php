@@ -6,11 +6,13 @@ require_once __DIR__ . '/page_urls.php';
 /** Read the WHMCS preference without changing it based on a URL prefix. */
 function zm_pb_preferred_language()
 {
-    $language = is_string($_SESSION['Language'] ?? null) ? strtolower($_SESSION['Language']) : '';
+    $language = is_string($_SESSION['Language'] ?? null) ?
+        zm_pb_lm_supported_key(strtolower($_SESSION['Language'])) : '';
     if (isset(ZM_PB_LANGS[$language])) return $language;
     $clientId = (int) ($_SESSION['uid'] ?? 0);
     if ($clientId > 0) {
-        $language = strtolower((string) \Illuminate\Database\Capsule\Manager::table('tblclients')->where('id', $clientId)->value('language'));
+        $language = zm_pb_lm_supported_key(strtolower((string)
+            \Illuminate\Database\Capsule\Manager::table('tblclients')->where('id', $clientId)->value('language')));
         if (isset(ZM_PB_LANGS[$language])) return $language;
     }
     return strtolower(ZM_PB_DEFLANG);
@@ -150,7 +152,7 @@ function zm_pb_language_query_repair_target($uri)
     if ($cleaned === $query) return null;
     parse_str($cleaned, $parameters);
     $language = $parameters['language'] ?? null;
-    if (!is_string($language) || !isset(ZM_PB_LANGS[strtolower($language)])) return null;
+    if (!is_string($language) || !isset(ZM_PB_LANGS[zm_pb_lm_supported_key(strtolower($language))])) return null;
     return $parts['path'] . ($cleaned !== '' ? '?' . $cleaned : '');
 }
 
@@ -158,7 +160,7 @@ function zm_pb_language_query_repair_target($uri)
 function zm_pb_language_switch_target($uri, array $query)
 {
     if (!ZM_PB_ENABLE_LANG_ROUTE || !is_string($query['language'] ?? null)) return null;
-    $language = strtolower($query['language']);
+    $language = zm_pb_lm_supported_key(strtolower($query['language']));
     if (!isset(ZM_PB_LANGS[$language])) return null;
     $code = ZM_PB_LANGS[$language]['route_code'] ?? '';
     if (!preg_match('/^[a-z]{2,3}(?:-[a-z0-9]{2,8})*$/iD', $code)) return null;

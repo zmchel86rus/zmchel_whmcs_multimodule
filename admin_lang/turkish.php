@@ -142,7 +142,6 @@ return (object)[
             'belarusian' => 'Belarusça',
             'albanian' => 'Arnavutça',
             'irish' => 'İrlandaca',
-            'romansh' => 'Romanşça',
         ]],
         'alerts'=> (object)[
             'access_denied'=>'Erişim reddedildi. Bu modül sayfasına yalnızca Süper Yönetici (ID {super_admin_id}) erişebilir.',

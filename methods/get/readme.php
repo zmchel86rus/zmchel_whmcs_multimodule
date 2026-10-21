@@ -11,6 +11,11 @@ use Illuminate\Database\Capsule\Manager as Capsule;
     $relativePath = $isAdditionalDoc ? 'docs/' . $doc . '.md' : 'instruction.md';
     $readmePath = ZM_PB_ROOTDIR . 'rep_info/' . $readmeLanguage . '/' . $relativePath;
     if (!is_readable($readmePath)) {
+        $legacyName = array_search($readmeLanguage, zm_pb_lm_filename_aliases(), true);
+        if ($legacyName !== false)
+            $readmePath = ZM_PB_ROOTDIR . 'rep_info/' . $legacyName . '/' . $relativePath;
+    }
+    if (!is_readable($readmePath)) {
         $readmePath = ZM_PB_ROOTDIR . 'rep_info/english/' . $relativePath;
     }
     $markdown = is_readable($readmePath) ? file_get_contents($readmePath) : false;

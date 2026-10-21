@@ -42,11 +42,14 @@ class ZM_PB_Menu
         require_once __DIR__ . '/navigation_language.php';
         $responseLanguage = ZM_PB_NavigationLanguage::responseLanguage();
         if ($responseLanguage !== null) return $responseLanguage;
-        if (defined('USER_LANG') && isset(ZM_PB_LANGS[strtolower(USER_LANG)])) return strtolower(USER_LANG);
+        if (defined('USER_LANG')) {
+            $userLanguage = zm_pb_lm_supported_key(strtolower(USER_LANG));
+            if (isset(ZM_PB_LANGS[$userLanguage])) return $userLanguage;
+        }
         $request = zm_pb_parse_request();
         foreach (ZM_PB_LANGS as $name => $info) if ($info['route_code'] === ($request['lang'] ?? '')) return $name;
         if (!ZM_PB_ENABLE_LANG_ROUTE) {
-            $lang = strtolower((string) ($_SESSION['Language'] ?? ZM_PB_DEFLANG));
+            $lang = zm_pb_lm_supported_key(strtolower((string) ($_SESSION['Language'] ?? ZM_PB_DEFLANG)));
             if (isset(ZM_PB_LANGS[$lang])) return $lang;
         }
         return ZM_PB_DEFLANG;

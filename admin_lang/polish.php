@@ -143,7 +143,6 @@ return (object)[
             'belarusian' => 'Białoruski',
             'albanian' => 'Albański',
             'irish' => 'Irlandzki',
-            'romansh' => 'Retoromański',
         ]],
         'alerts'=> (object)[
             'access_denied'=>'Odmowa dostępu. Ta strona modułu jest dostępna tylko dla Super Administratora (ID {super_admin_id}).',

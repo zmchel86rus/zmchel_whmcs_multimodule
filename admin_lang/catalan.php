@@ -143,7 +143,6 @@ return (object)[
             'belarusian' => 'Belarús',
             'albanian' => 'Albanès',
             'irish' => 'Irlandès',
-            'romansh' => 'Retoromànic',
         ]],
         'alerts'=> (object)[
             'access_denied'=>'Accés denegat. Aquesta pàgina del mòdul només està disponible per al superadministrador (ID {super_admin_id}).',

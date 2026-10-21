@@ -143,7 +143,6 @@ return (object)[
             'belarusian' => 'Baltarusių',
             'albanian' => 'Albanų',
             'irish' => 'Airių',
-            'romansh' => 'Retoromanų',
         ]],
         'alerts'=> (object)[
             'access_denied'=>'Prieiga uždrausta. Šis modulio puslapis prieinamas tik vyriausiajam administratoriui (ID {super_admin_id}).',

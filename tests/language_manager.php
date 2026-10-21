@@ -6,6 +6,8 @@ mkdir($root . '/modules/addons/sample/admin_lang', 0750, true);
 mkdir($root . '/modules/addons/self/admin_lang', 0750, true);
 mkdir($root . '/admin/lang', 0750, true);
 mkdir($root . '/lang/overrides', 0750, true);
+copy(dirname(__DIR__) . '/supported_langs.php', $root . '/modules/addons/self/supported_langs.php');
+copy(dirname(__DIR__) . '/disabled_langs.php', $root . '/modules/addons/self/disabled_langs.php');
 
 define('ZM_PB_VER', 'test');
 define('ROOTDIR', $root);
@@ -407,6 +409,38 @@ try {
     $unchanged = json_decode(zm_pb_lm_export_translations($client, 'whmcs_client', 'english', 'english'), true);
     lm_check(zm_pb_lm_import_translations($client, 'whmcs_client', 'english', 'english', $unchanged)['updated'] === 0,
         'Importing an unchanged export wrote translations again.');
+    file_put_contents($root . '/modules/addons/sample/lang/portugues-br.php',
+        "<?php \$_ADDONLANG['name'] = 'Brazilian';\n");
+    file_put_contents($root . '/modules/addons/sample/admin_lang/portugues-br.php',
+        "<?php \$_ADDONLANG['name'] = 'Brazilian admin';\n");
+    $candidates = array_column(zm_pb_lm_global_filename_candidates($sections), 'new', 'old');
+    lm_check(($candidates['portugues-br'] ?? null) === 'portuguese-br' &&
+        ($candidates['ukranian'] ?? null) === 'ukrainian',
+        'Global corrections did not include all sections and the supported list.');
+    zm_pb_lm_fix_filename_all($sections, 'portugues-br');
+    lm_check(is_file($root . '/modules/addons/sample/lang/portuguese-br.php') &&
+        is_file($root . '/modules/addons/sample/admin_lang/portuguese-br.php') &&
+        is_file($root . '/modules/addons/sample/lang/portugues-br.php') &&
+        is_file($root . '/modules/addons/sample/admin_lang/portugues-br.php'),
+        'A global correction missed a module section or its compatibility alias.');
+    try {
+        zm_pb_lm_fix_filename_all($sections, 'ukranian');
+        throw new RuntimeException('Global correction ignored a filename collision.');
+    } catch (RuntimeException $error) {
+        if ($error->getMessage() === 'Global correction ignored a filename collision.') throw $error;
+    }
+    lm_check(isset(zm_pb_module_languages_state(rtrim(ZM_PB_ROOTDIR, '/'))['enabled']['ukranian']),
+        'A rejected global correction changed supported_langs.php.');
+    unlink($root . '/lang/ukrainian.php');
+    zm_pb_lm_fix_filename_all($sections, 'ukranian');
+    $lists = zm_pb_module_languages_state(rtrim(ZM_PB_ROOTDIR, '/'));
+    lm_check(isset($lists['enabled']['ukrainian']) && !isset($lists['enabled']['ukranian']) &&
+        is_file($root . '/lang/ukrainian.php') && is_file($root . '/lang/ukranian.php'),
+        'The global correction did not update supported_langs.php and the client catalog.');
+    lm_check(zm_pb_lm_rekey_json('["ukranian","english","ukrainian"]', 'ukranian', 'ukrainian', false)
+        === '["ukrainian","english"]' &&
+        zm_pb_lm_rekey_json('{"ukranian":"Text"}', 'ukranian', 'ukrainian', true)
+        === '{"ukrainian":"Text"}', 'Saved language keys were not converted.');
     echo "PASS language sections, one-row saves, filename corrections, override cleanup, backup restoration and disabled languages\n";
 } finally {
     lm_remove($root);

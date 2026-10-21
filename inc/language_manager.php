@@ -1,5 +1,6 @@
 <?php
 if (!defined('ZM_PB_VER')) die('Direct access not allowed');
+require_once __DIR__ . '/module_languages.php';
 
 /** The editor only accepts directories discovered here, never a path from a request. */
 function zm_pb_lm_sections(): array
@@ -74,8 +75,11 @@ function zm_pb_lm_is_filename_alias(string $file, string $old): bool
 function zm_pb_lm_supported_key(string $name): string
 {
     $aliases = zm_pb_lm_filename_aliases();
-    if (isset($aliases[$name])) $name = $aliases[$name];
-    return $name === 'ukrainian' ? 'ukranian' : $name;
+    $canonical = $aliases[$name] ?? $name;
+    if (isset(ZM_PB_LANGS[$canonical])) return $canonical;
+    if (isset(ZM_PB_LANGS[$name])) return $name;
+    $legacy = array_search($canonical, $aliases, true);
+    return $legacy !== false && isset(ZM_PB_LANGS[$legacy]) ? $legacy : $canonical;
 }
 
 function zm_pb_lm_name(array $section, string $supported): string
@@ -105,6 +109,124 @@ function zm_pb_lm_filename_candidates(array $section): array
             $candidates[] = ['old' => $old, 'new' => $new];
     }
     return $candidates;
+}
+
+function zm_pb_lm_global_filename_candidates(array $sections): array
+{
+    $found = [];
+    foreach ($sections as $section) {
+        foreach (zm_pb_lm_filename_candidates($section) as $candidate)
+            $found[$candidate['old']] = $candidate;
+    }
+    $lists = zm_pb_module_languages_state(rtrim(ZM_PB_ROOTDIR, '/\\'));
+    foreach (zm_pb_lm_filename_aliases() as $old => $new) {
+        if (isset($lists['enabled'][$old]) || isset($lists['disabled'][$old]))
+            $found[$old] = ['old' => $old, 'new' => $new];
+    }
+    ksort($found);
+    return array_values($found);
+}
+
+function zm_pb_lm_rekey_json($value, string $old, string $new, bool $associative)
+{
+    $data = json_decode((string) $value, true);
+    if (!is_array($data)) return null;
+    if ($associative) {
+        if (!array_key_exists($old, $data)) return null;
+        if (array_key_exists($new, $data))
+            throw new RuntimeException('Both language names are present in saved translations.');
+        $data[$new] = $data[$old];
+        unset($data[$old]);
+    } else {
+        if (!in_array($old, $data, true)) return null;
+        $data = array_values(array_unique(array_map(static function ($item) use ($old, $new) {
+            return $item === $old ? $new : $item;
+        }, $data)));
+    }
+    return json_encode($data, JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR);
+}
+
+function zm_pb_lm_rekey_saved_languages(string $old, string $new): void
+{
+    $db = \Illuminate\Database\Capsule\Manager::class;
+    if (zm_pb_has_table('zm_pb_pages_settings')) {
+        $rows = $db::table('zm_pb_pages_settings')->where('lang', $old)->get(['id', 'page_id']);
+        foreach ($rows as $row) {
+            if ($db::table('zm_pb_pages_settings')->where('page_id', $row->page_id)->where('lang', $new)->exists())
+                throw new RuntimeException('A page already has translations under both language names.');
+        }
+        $db::table('zm_pb_pages_settings')->where('lang', $old)->update(['lang' => $new]);
+    }
+    foreach ([['zm_pb_pages', 'langs', false], ['zm_pb_menu_items', 'labels', true]] as $target) {
+        [$table, $column, $associative] = $target;
+        if (!zm_pb_has_table($table)) continue;
+        foreach ($db::table($table)->where($column, 'like', '%' . $old . '%')->get(['id', $column]) as $row) {
+            $updated = zm_pb_lm_rekey_json($row->$column, $old, $new, $associative);
+            if ($updated !== null) $db::table($table)->where('id', $row->id)->update([$column => $updated]);
+        }
+    }
+    if (zm_pb_has_table('zm_pb_redirects')) {
+        foreach ($db::table('zm_pb_redirects')->where('conditions', 'like', '%' . $old . '%')
+            ->get(['id', 'conditions']) as $row) {
+            $conditions = json_decode((string) $row->conditions, true);
+            if (!is_array($conditions) || ($conditions['language'] ?? null) !== $old) continue;
+            $conditions['language'] = $new;
+            $db::table('zm_pb_redirects')->where('id', $row->id)->update([
+                'conditions' => json_encode($conditions, JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR)]);
+        }
+    }
+}
+
+function zm_pb_lm_check_filename_target(array $section, string $old, string $new): void
+{
+    $directory = $section['directory'];
+    $files = zm_pb_lm_files($section);
+    if (!isset($files[$old])) return;
+    foreach (['', '/disabled', '/overrides', '/overrides/managed',
+        '/overrides/.zm-pb-added-languages/enabled',
+        '/overrides/.zm-pb-added-languages/disabled'] as $subdir) {
+        $target = $directory . $subdir . '/' . $new . '.php';
+        $source = $directory . $subdir . '/' . $old . '.php';
+        if (is_link($directory . $subdir) || is_link($source) || is_link($target))
+            throw new RuntimeException('Symbolic links cannot be edited.');
+        if (is_file($source) && is_file($target))
+            throw new RuntimeException('The corrected language file already exists in ' . $section['title'] . '.');
+    }
+}
+
+function zm_pb_lm_fix_filename_all(array $sections, string $old): string
+{
+    $aliases = zm_pb_lm_filename_aliases();
+    if (!isset($aliases[$old])) throw new InvalidArgumentException('This language filename is already correct.');
+    $available = array_column(zm_pb_lm_global_filename_candidates($sections), 'new', 'old');
+    if (!isset($available[$old])) throw new InvalidArgumentException('Language filename not found.');
+    $new = $aliases[$old];
+    foreach ($sections as $section) zm_pb_lm_check_filename_target($section, $old, $new);
+    $directory = rtrim(ZM_PB_ROOTDIR, '/\\');
+    $lists = zm_pb_module_languages_state($directory);
+    $needsRekey = isset($lists['enabled'][$old]) || isset($lists['disabled'][$old]);
+    $configFile = $directory . '/' . (isset($lists['enabled'][$old]) ? 'supported_langs.php' : 'disabled_langs.php');
+    $originalConfig = $needsRekey ? file_get_contents($configFile) : null;
+    if ($needsRekey && $originalConfig === false) throw new RuntimeException('Cannot read the language list.');
+    $db = \Illuminate\Database\Capsule\Manager::class;
+    $transaction = function_exists('zm_pb_has_table');
+    if ($transaction) $db::connection()->beginTransaction();
+    $configChanged = false;
+    try {
+        if ($transaction) zm_pb_lm_rekey_saved_languages($old, $new);
+        if ($needsRekey) $configChanged = zm_pb_module_languages_rekey($directory, $old, $new);
+        foreach ($sections as $section) {
+            foreach (zm_pb_lm_filename_candidates($section) as $candidate) {
+                if ($candidate['old'] === $old) zm_pb_lm_fix_filename($section, $old);
+            }
+        }
+        if ($transaction) $db::connection()->commit();
+    } catch (Throwable $error) {
+        if ($transaction) $db::connection()->rollBack();
+        if ($configChanged) zm_pb_module_languages_write($configFile, $originalConfig);
+        throw $error;
+    }
+    return $new;
 }
 
 function zm_pb_lm_fix_filename(array $section, string $old): string

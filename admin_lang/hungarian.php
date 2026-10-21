@@ -142,7 +142,6 @@ return (object)[
             'belarusian' => 'Belarusz',
             'albanian' => 'Albán',
             'irish' => 'Ír',
-            'romansh' => 'Rétoromán',
         ]],
         'alerts'=> (object)[
             'access_denied'=>'Hozzáférés megtagadva. A modul ezen oldala csak a szuperadminisztrátor számára érhető el (ID {super_admin_id}).',

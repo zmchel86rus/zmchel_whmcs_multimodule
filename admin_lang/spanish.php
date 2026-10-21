@@ -143,7 +143,6 @@ return (object)[
             'belarusian' => 'Bielorruso',
             'albanian' => 'Albanés',
             'irish' => 'Irlandés',
-            'romansh' => 'Romanche',
         ]],
         'alerts'=> (object)[
             'access_denied'=>'Acceso denegado. Esta página del módulo solo está disponible para el superadministrador (ID {super_admin_id}).',

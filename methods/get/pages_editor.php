@@ -108,6 +108,7 @@ require_once ZM_PB_INCDIR . 'menu_manager.php';
             'russian' => ['ru', 'ru.js'],
             'german' => ['de', 'de.js'],
             'ukranian' => ['uk', 'uk.js'],
+            'ukrainian' => ['uk', 'uk.js'],
             'spanish' => ['es', 'es.js'],
             'french' => ['fr-FR', 'fr.js'],
             'portuguese-pt' => ['pt-PT', 'pt.js'],

@@ -143,7 +143,6 @@ return (object)[
             'belarusian' => 'Valkovenäjä',
             'albanian' => 'Albania',
             'irish' => 'Iiri',
-            'romansh' => 'Retoromaani',
         ]],
         'alerts'=> (object)[
             'access_denied'=>'Pääsy evätty. Tämä moduulin sivu on vain pääkäyttäjän käytettävissä (ID {super_admin_id}).',

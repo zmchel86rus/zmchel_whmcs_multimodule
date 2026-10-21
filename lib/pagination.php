@@ -28,7 +28,7 @@ class ZM_PB_Pagination
     private static function label($key)
     {
         $labels = ['russian' => ['page'=>'Страница','count'=>'На странице'], 'english'=>['page'=>'Page','count'=>'Per page'],
-            'german'=>['page'=>'Seite','count'=>'Pro Seite'], 'ukranian'=>['page'=>'Сторінка','count'=>'На сторінці'], 'spanish'=>['page'=>'Página','count'=>'Por página']];
+            'german'=>['page'=>'Seite','count'=>'Pro Seite'], 'ukranian'=>['page'=>'Сторінка','count'=>'На сторінці'], 'ukrainian'=>['page'=>'Сторінка','count'=>'На сторінці'], 'spanish'=>['page'=>'Página','count'=>'Por página']];
         return ($labels[self::$language] ?? $labels['english'])[$key];
     }
 

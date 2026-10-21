@@ -142,7 +142,6 @@ return (object)[
             'belarusian' => 'Belarusiska',
             'albanian' => 'Albanska',
             'irish' => 'Iriska',
-            'romansh' => 'Rätoromanska',
         ]],
         'alerts'=> (object)[
             'access_denied'=>'Åtkomst nekad. Den här modulsidan är endast tillgänglig för huvudadministratören (ID {super_admin_id}).',

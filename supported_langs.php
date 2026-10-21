@@ -45,7 +45,6 @@ $langs = [
     'belarusian' => ['code'=>'BY','name'=>'Беларуская','locale'=>'be_BY','locale_BCP47'=>'be-BY','code_ISO639_1'=>'be'],
     'albanian' => ['code'=>'AL','name'=>'Shqip','locale'=>'sq_AL','locale_BCP47'=>'sq-AL','code_ISO639_1'=>'sq'],
     'irish' => ['code'=>'IE','name'=>'Gaeilge','locale'=>'ga_IE','locale_BCP47'=>'ga-IE','code_ISO639_1'=>'ga'],
-    'romansh' => ['code'=>'CH','name'=>'Rumantsch','locale'=>'rm_CH','locale_BCP47'=>'rm-CH','code_ISO639_1'=>'rm'],
 ];
 
 // Keep the primary language on its ISO route; use the locale for regional variants.

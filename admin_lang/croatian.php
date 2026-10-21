@@ -142,7 +142,6 @@ return (object)[
             'belarusian' => 'Bjeloruski',
             'albanian' => 'Albanski',
             'irish' => 'Irski',
-            'romansh' => 'Retoromanski',
         ]],
         'alerts'=> (object)[
             'access_denied'=>'Pristup odbijen. Ova stranica modula dostupna je samo glavnom administratoru (ID {super_admin_id}).',

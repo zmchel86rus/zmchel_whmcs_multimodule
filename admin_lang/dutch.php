@@ -143,7 +143,6 @@ return (object)[
             'belarusian' => 'Belarussisch',
             'albanian' => 'Albanees',
             'irish' => 'Iers',
-            'romansh' => 'Reto-Romaans',
         ]],
         'alerts'=> (object)[
             'access_denied'=>'Toegang geweigerd. Deze modulepagina is alleen beschikbaar voor de hoofdbeheerder (ID {super_admin_id}).',

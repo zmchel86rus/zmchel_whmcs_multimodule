@@ -143,7 +143,6 @@ return (object)[
             'belarusian' => 'Беларуски',
             'albanian' => 'Албански',
             'irish' => 'Ирландски',
-            'romansh' => 'Реторомански',
         ]],
         'alerts'=> (object)[
             'access_denied'=>'Достъпът е отказан. Тази страница на модула е достъпна само за главния администратор (ID {super_admin_id}).',

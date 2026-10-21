@@ -143,7 +143,6 @@ return (object)[
             'belarusian' => 'Bieloruština',
             'albanian' => 'Albánčina',
             'irish' => 'Írčina',
-            'romansh' => 'Rétorománčina',
         ]],
         'alerts'=> (object)[
             'access_denied'=>'Prístup zamietnutý. Táto stránka modulu je dostupná iba superadministrátorovi (ID {super_admin_id}).',

@@ -143,7 +143,6 @@ return (object)[
             'belarusian' => 'Beloruščina',
             'albanian' => 'Albanščina',
             'irish' => 'Irščina',
-            'romansh' => 'Retoromanščina',
         ]],
         'alerts'=> (object)[
             'access_denied'=>'Dostop zavrnjen. Ta stran modula je na voljo samo glavnemu skrbniku (ID {super_admin_id}).',

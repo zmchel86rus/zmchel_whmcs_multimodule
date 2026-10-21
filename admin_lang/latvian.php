@@ -143,7 +143,6 @@ return (object)[
             'belarusian' => 'Baltkrievu',
             'albanian' => 'Albāņu',
             'irish' => 'Īru',
-            'romansh' => 'Retoromāņu',
         ]],
         'alerts'=> (object)[
             'access_denied'=>'Piekļuve liegta. Šī moduļa lapa ir pieejama tikai galvenajam administratoram (ID {super_admin_id}).',

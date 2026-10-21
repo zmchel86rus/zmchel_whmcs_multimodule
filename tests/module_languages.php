@@ -22,6 +22,8 @@ try {
     $initial = zm_pb_module_languages_state($directory);
     $initialCount = count($initial['enabled']);
     ml_check($initialCount > 1, 'Initial language lists are wrong.');
+    ml_check(zm_pb_module_languages_default('ukranian') === 'ukrainian',
+        'The legacy Ukrainian name was not mapped to its corrected key.');
 
     zm_pb_module_languages_toggle($directory, 'german', false, 'english');
     $state = zm_pb_module_languages_state($directory);
@@ -63,6 +65,12 @@ try {
         ml_check(strpos($error->getMessage(), 'default language') !== false,
             'The default language was rejected for the wrong reason.');
     }
+    zm_pb_module_languages_toggle($directory, 'ukranian', false, 'english');
+    ml_check(zm_pb_module_languages_rekey($directory, 'ukranian', 'ukrainian') &&
+        isset(zm_pb_module_languages_state($directory)['disabled']['ukrainian']) &&
+        !zm_pb_module_languages_rekey($directory, 'ukranian', 'ukrainian'),
+        'A disabled language was not corrected in disabled_langs.php.');
+    zm_pb_module_languages_toggle($directory, 'ukrainian', true, 'english');
     ml_check(count(zm_pb_module_languages_state($directory)['enabled']) === $initialCount,
         'A rejected operation changed the language lists.');
     echo "PASS module language toggles, default protection and regional routes\n";

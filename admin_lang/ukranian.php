@@ -143,7 +143,6 @@ return (object)[
             'belarusian' => 'Білоруська',
             'albanian' => 'Албанська',
             'irish' => 'Ірландська',
-            'romansh' => 'Ретороманська',
         ]],
         'alerts'=> (object)[
             'access_denied'=>'Доступ заборонено. Ця сторінка модуля доступна лише суперадміністратору (ID {super_admin_id}).',

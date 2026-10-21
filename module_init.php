@@ -19,7 +19,14 @@ if (!defined('ZM_PB_SECURE_SALT')) define('ZM_PB_SECURE_SALT', '');
 if (!defined('ZM_PB_NONCE_SALT')) define('ZM_PB_NONCE_SALT', '');
 ### SALTS CONSTS ###
 
-if (!defined('ZM_PB_DEFLANG')) define('ZM_PB_DEFLANG', strtolower($CONFIG['Language'] ?? 'english') );
+$moduleSupportedLanguages = require __DIR__ . '/supported_langs.php';
+$cmsDefaultLanguage = strtolower((string) ($CONFIG['Language'] ?? 'english'));
+$defaultAliases = ['ukranian' => 'ukrainian', 'portugues' => 'portuguese-pt',
+    'portugues-br' => 'portuguese-br'];
+if (!isset($moduleSupportedLanguages[$cmsDefaultLanguage]) &&
+    isset($moduleSupportedLanguages[$defaultAliases[$cmsDefaultLanguage] ?? '']))
+    $cmsDefaultLanguage = $defaultAliases[$cmsDefaultLanguage];
+if (!defined('ZM_PB_DEFLANG')) define('ZM_PB_DEFLANG', $cmsDefaultLanguage);
 if (!defined('ZM_PB_ALLOWED_CONSTS_CHANGE')) define('ZM_PB_ALLOWED_CONSTS_CHANGE', [
     'ZM_PB_CHECK_SUPERADM',
     'ZM_PB_PRETTY_URLS',
@@ -162,7 +169,7 @@ if ($adminId) {
 $adminlang = strtolower((string) $adminlang);
 if (!preg_match('/^[a-z0-9_-]+$/D', $adminlang)) $adminlang = 'english';
 ### SUP MODULE LANGS CONSTS ###
-if (!defined('ZM_PB_LANGS')) define('ZM_PB_LANGS', ( require_once ZM_PB_ROOTDIR.'supported_langs.php') );
+if (!defined('ZM_PB_LANGS')) define('ZM_PB_LANGS', $moduleSupportedLanguages);
 require_once ZM_PB_INCDIR . 'language_manager.php';
 $adminClientLanguage = zm_pb_lm_supported_key($adminlang);
 $adminlang = zm_pb_lm_name(['kind' => 'self', 'directory' => ZM_PB_ALANGDIR], $adminClientLanguage);
@@ -178,7 +185,10 @@ if (!isset($GLOBALS['ZM_PB_ADMINLANG']) && defined('ZM_PB_ALANGDIR')){
     zm_pb_lm_apply_runtime_tokens($admin_lang_data);
     foreach (ZM_PB_LANGS as $languageKey => $languageInfo) {
         if (!isset($admin_lang_data->module->supported_langs->translate->$languageKey)) {
-            $admin_lang_data->module->supported_langs->translate->$languageKey = $languageInfo['name'];
+            $legacyKey = array_search($languageKey, zm_pb_lm_filename_aliases(), true);
+            $admin_lang_data->module->supported_langs->translate->$languageKey =
+                $legacyKey !== false && isset($admin_lang_data->module->supported_langs->translate->$legacyKey)
+                    ? $admin_lang_data->module->supported_langs->translate->$legacyKey : $languageInfo['name'];
         }
     }
     $GLOBALS['ZM_PB_ADMINLANG'] = $admin_lang_data;

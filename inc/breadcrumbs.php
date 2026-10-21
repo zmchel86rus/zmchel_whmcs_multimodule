@@ -100,7 +100,8 @@ function zm_pb_client_breadcrumbs(array $vars)
 {
     if (!is_array($vars['breadcrumb'] ?? null) || !$vars['breadcrumb']) return [];
     $context = $GLOBALS['zm_pb_breadcrumb_context'] ?? [];
-    $language = strtolower((string) ($context['lang'] ?? $vars['language'] ?? $_SESSION['Language'] ?? ZM_PB_DEFLANG));
+    $language = zm_pb_lm_supported_key(strtolower((string)
+        ($context['lang'] ?? $vars['language'] ?? $_SESSION['Language'] ?? ZM_PB_DEFLANG)));
     $request = zm_pb_parse_request();
     if (ZM_PB_ENABLE_LANG_ROUTE && !zm_pb_route_uses_user_language($request)) {
         $language = ZM_PB_DEFLANG;

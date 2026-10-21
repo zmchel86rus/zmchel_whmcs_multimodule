@@ -227,6 +227,7 @@ if (!function_exists('zm_pb_load_page_by_slug')) {
             if( isset($_SESSION['Language'])) $lang = $_SESSION['Language'];
             elseif( isset($_SESSION['uid']) ) $lang = Capsule::table('tblclients')->where('id', $_SESSION['uid'])->value('language');
             else $lang = ZM_PB_DEFLANG;
+            $lang = zm_pb_lm_supported_key(strtolower((string) $lang));
 
             $page_settings = Capsule::table('zm_pb_pages_settings')
                 ->where('page_id', $page->id)

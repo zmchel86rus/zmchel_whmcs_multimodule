@@ -56,7 +56,8 @@ class ZM_PB_NavigationLanguage
             if ($account) break;
         }
         if (!$account) return;
-        $sourceLanguages = array_unique(['english', $language, strtolower((string) ($_SESSION['Language'] ?? ZM_PB_DEFLANG))]);
+        $sourceLanguages = array_unique(['english', $language,
+            zm_pb_lm_supported_key(strtolower((string) ($_SESSION['Language'] ?? ZM_PB_DEFLANG)))]);
         $sources = [];
         foreach ($sourceLanguages as $sourceLanguage) {
             $catalog = ZM_PB_LanguageCatalog::core($sourceLanguage);

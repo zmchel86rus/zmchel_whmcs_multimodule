@@ -142,7 +142,6 @@ return (object)[
             'belarusian' => 'Valgevene',
             'albanian' => 'Albaania',
             'irish' => 'Iiri',
-            'romansh' => 'Romanši',
         ]],
         'alerts'=> (object)[
             'access_denied'=>'Juurdepääs keelatud. See mooduli leht on saadaval ainult peaadministraatorile (ID {super_admin_id}).',
