@@ -95,7 +95,7 @@ return (object)[
             'title'=>'Moduldatabase',
             'description'=>'',
             'alerts'=> (object)[
-                'access_denied'=> 'Tilgang nektet. Bare superadministratoren (ID 1) kan bruke modulens databaseside.',
+                'access_denied'=> 'Tilgang nektet. Bare superadministratoren (ID {super_admin_id}) kan bruke modulens databaseside.',
                 'db_operation_error' => ['Operasjonen ble fullført med feil. Vellykket: ', '. Feil: '],
                 'db_operation_success' => 'Operasjonen ble fullført. Behandlede objekter',
             ],
@@ -130,10 +130,22 @@ return (object)[
             'lithuanian' => 'Litauisk',
             'latvian' => 'Latvisk',
             'slovenian' => 'Slovensk',
-            'slovak' => 'Slovakisk'
+            'slovak' => 'Slovakisk',
+            'indonesian' => 'Indonesisk',
+            'swahili' => 'Swahili',
+            'vietnamese' => 'Vietnamesisk',
+            'malay' => 'Malayisk',
+            'uzbek' => 'Usbekisk',
+            'azerbaijani' => 'Aserbajdsjansk',
+            'kazakh' => 'Kasakhisk',
+            'icelandic' => 'Islandsk',
+            'belarusian' => 'Belarusisk',
+            'albanian' => 'Albansk',
+            'irish' => 'Irsk',
+            'romansh' => 'Retoromansk',
         ]],
         'alerts'=> (object)[
-            'access_denied'=>'Tilgang nektet. Denne modulsiden er bare tilgjengelig for superadministratoren (ID ' . ZM_PB_SUPERADM_ID . ').',
+            'access_denied'=>'Tilgang nektet. Denne modulsiden er bare tilgjengelig for superadministratoren (ID {super_admin_id}).',
             'it_is_override_page'=>'Denne siden overstyrer: ',
         ],
         'trash' => (object)['title'=>'Papirkurv','description'=>'Elementer som flyttes til papirkurven, slettes permanent hvis de slettes her.']
@@ -204,6 +216,8 @@ return (object)[
         'markers_incomplete'=>'Markørene for modulregler i .htaccess er ufullstendige.',
     ],
     'module_settings' => (object)[
+        'language_rewrite_note'=>'Hvis du bruker pene URL-er på Apache, oppdater reglene i Rewrite Manager etter at språkene er endret.',
+        'languages'=>(object)['description'=>'Velg språkene modulen kan bruke. Deaktivering sletter ikke innholdet.','enabled'=>'Aktiverte','disabled'=>'Deaktiverte','default_language'=>'Standardspråk'],
         'editable_consts' => (object)[
             'title'=>'Modulvariabler',
             'description'=>"Redigerbare globale modulvariabler",
@@ -459,6 +473,7 @@ return (object)[
         ],
     ],
     'langs_manager' => (object)[
+        'import_skipped'=>'Følgende oversettelsesnøkler ble ikke importert:', 'import_unknown'=>'ukjent nøkkel', 'import_duplicate'=>'duplikatnøkkel',
         'show_all'=>'Vis alle', 'show_original'=>'Vis opprinnelige', 'show_added'=>'Vis tilføyde',
         'sections'=>'Seksjoner',
         'languages'=>'Språk',

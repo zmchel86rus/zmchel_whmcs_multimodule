@@ -2,6 +2,7 @@
 if (!defined('ZM_PB_VER')) die('Direct access not allowed');
 $smarty->assign('lm_access_denied', false);
 $smarty->assign('lm_text', $GLOBALS['ZM_PB_ADMINLANG']->langs_manager);
+$smarty->assign('lm_transfer_text', $GLOBALS['ZM_PB_ADMINLANG']->transfer);
 
 if (!zm_pb_check_super_admin()) {
     $smarty->assign('lm_access_denied', true);
@@ -26,14 +27,21 @@ try {
         }
         $disabled = 0;
         foreach ($files as $file) if ($file['state'] === 'disabled') $disabled++;
+        $filenameFixes = zm_pb_lm_filename_candidates($item);
         $sectionRows[] = ['id' => $id, 'title' => $item['title'], 'total' => count($files),
             'disabled' => $disabled, 'missing' => $missing,
+            'filename_fixes' => $filenameFixes,
+            'first_filename_target' => $filenameFixes[0]['new'] ?? '',
             'url' => 'addonmodules.php?' . http_build_query(['module' => ZM_PB_NAME, 'subpage' => 'langs_manager',
                 'section' => $id], '', '&', PHP_QUERY_RFC3986)];
     }
     $files = is_dir($section['directory']) ? zm_pb_lm_files($section) : [];
-    $language = isset($_GET['language']) && is_string($_GET['language']) && isset($files[$_GET['language']])
-        ? $_GET['language'] : (array_key_first($files) ?? '');
+    $requestedLanguage = isset($_GET['language']) && is_string($_GET['language']) ? $_GET['language'] : '';
+    if (!isset($files[$requestedLanguage])) {
+        $correctedName = zm_pb_lm_filename_aliases()[$requestedLanguage] ?? '';
+        if (isset($files[$correctedName])) $requestedLanguage = $correctedName;
+    }
+    $language = isset($files[$requestedLanguage]) ? $requestedLanguage : (array_key_first($files) ?? '');
     $baseUrl = 'addonmodules.php?' . http_build_query(['module' => ZM_PB_NAME, 'subpage' => 'langs_manager',
         'section' => $selectedId], '', '&', PHP_QUERY_RFC3986);
     $languageLabels = (array) ($GLOBALS['ZM_PB_ADMINLANG']->module->supported_langs->translate ?? []);
@@ -60,6 +68,9 @@ try {
     $smarty->assign('lm_missing', $missingLanguages);
     $smarty->assign('lm_section', $selectedId);
     $smarty->assign('lm_language', $language);
+    $selectedSupported = $language !== '' ? zm_pb_lm_supported_name($section, $language) : null;
+    $smarty->assign('lm_language_title', $selectedSupported
+        ? ($languageLabels[$selectedSupported] ?? ZM_PB_LANGS[$selectedSupported]['name']) : $language);
     $smarty->assign('lm_base_url', $baseUrl);
     $smarty->assign('lm_edit_url', $editUrl);
     $viewUrl = $editUrl . ($view !== 'all' ? '&view=' . $view : '');
@@ -71,22 +82,9 @@ try {
     if ($language !== '') {
         $reference = zm_pb_lm_name($section, ZM_PB_DEFLANG);
         if (!isset($files[$reference])) $reference = isset($files['english']) ? 'english' : $language;
-        $target = zm_pb_lm_catalog($section, $language);
-        $source = zm_pb_lm_source_catalog($section, $language, $reference);
-        $shape = zm_pb_lm_merge(zm_pb_lm_copy($source), $target);
-        $targetRows = zm_pb_lm_flatten($target);
-        $sourceRows = zm_pb_lm_flatten($source);
-        $overrideDir = $section['directory'] . '/overrides' . ($section['kind'] === 'self' ? '/managed' : '');
-        $managed = zm_pb_lm_managed_entries($overrideDir . '/' . $language . '.php');
-        $all = $sourceRows + $targetRows;
-        foreach ($all as $id => &$row) {
-            $row['value'] = $targetRows[$id]['value'] ?? '';
-            $row['source'] = $sourceRows[$id]['value'] ?? '';
-            $row['added'] = !isset($sourceRows[$id]) || !empty($managed[$id]['custom']);
-            $row['managed_custom'] = !empty($managed[$id]['custom']);
-            $row['key'] = (string) $row['path'][count($row['path']) - 1]['key'];
-        }
-        unset($row);
+        $editor = zm_pb_lm_editor_rows($section, $language, $reference);
+        $shape = $editor['shape'];
+        $all = $editor['rows'];
         $all = zm_pb_lm_filter_rows($all, $search, $view);
         uasort($all, static function ($a, $b) { return strcmp($a['label'], $b['label']); });
         $page = max(1, (int) ($_GET['page'] ?? 1));
@@ -98,6 +96,15 @@ try {
         $smarty->assign('lm_pages', $pages);
         $smarty->assign('lm_total', count($all));
         $smarty->assign('lm_reference', $reference);
+        $referenceSupported = zm_pb_lm_supported_name($section, $reference);
+        $smarty->assign('lm_reference_title', $referenceSupported
+            ? ($languageLabels[$referenceSupported] ?? ZM_PB_LANGS[$referenceSupported]['name']) : $reference);
+        $pagination = [1, $pages];
+        for ($number = max(1, $page - 2); $number <= min($pages, $page + 2); $number++)
+            $pagination[] = $number;
+        $pagination = array_values(array_unique($pagination));
+        sort($pagination, SORT_NUMERIC);
+        $smarty->assign('lm_pagination', $pagination);
         $smarty->assign('lm_parents', zm_pb_lm_containers($shape));
         $smarty->assign('lm_state', $files[$language]['state']);
         $smarty->assign('lm_readonly', $section['kind'] === 'module' &&

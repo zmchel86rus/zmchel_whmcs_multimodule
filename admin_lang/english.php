@@ -96,7 +96,7 @@ return (object)[
             'title'=>'Module database',
             'description'=>'',
             'alerts'=> (object)[
-                'access_denied'=> 'Access denied. Only the Super Administrator (ID 1) can use the module Database page.',
+                'access_denied'=> 'Access denied. Only the Super Administrator (ID {super_admin_id}) can use the module Database page.',
                 'db_operation_error' => ['Operation completed with errors. Successful: ', '. Errors: '],
                 'db_operation_success' => 'Operation completed successfully. Processed objects',
             ],
@@ -131,10 +131,23 @@ return (object)[
             'lithuanian' => 'Lithuanian',
             'latvian' => 'Latvian',
             'slovenian' => 'Slovenian',
-            'slovak' => 'Slovak'
+            'slovak' => 'Slovak',
+
+            'indonesian' => 'Indonesian',
+            'swahili' => 'Swahili',
+            'vietnamese' => 'Vietnamese',
+            'malay' => 'Malay',
+            'uzbek' => 'Uzbek',
+            'azerbaijani' => 'Azerbaijani',
+            'kazakh' => 'Kazakh',
+            'icelandic' => 'Icelandic',
+            'belarusian' => 'Belarusian',
+            'albanian' => 'Albanian',
+            'irish' => 'Irish',
+            'romansh' => 'Romansh',
         ]],
         'alerts'=> (object)[
-            'access_denied'=>'Access denied. This module page is available only to the Super Administrator (ID ' . ZM_PB_SUPERADM_ID . ').',
+            'access_denied'=>'Access denied. This module page is available only to the Super Administrator (ID {super_admin_id}).',
             'it_is_override_page'=>'This page overrides: ',
         ],
         'trash' => (object)['title'=>'Trash','description'=>'Items moved to Trash. Deleting an item here is permanent.']
@@ -205,6 +218,8 @@ return (object)[
         'markers_incomplete'=>'The module rule markers in .htaccess are incomplete.',
     ],
     'module_settings' => (object)[
+        'language_rewrite_note'=>'If you use pretty URLs on Apache, update the rules in Rewrite Manager after changing languages.',
+        'languages'=>(object)['description'=>'Choose which languages the module can use. Disabling a language does not delete its content.','enabled'=>'Enabled','disabled'=>'Disabled','default_language'=>'Default language'],
         'editable_consts' => (object)[
             'title'=>'Module variables',
             'description'=>"Editable global module variables",
@@ -462,6 +477,7 @@ return (object)[
         ],
     ],
     'langs_manager' => (object)[
+        'import_skipped'=>'The following translation keys were not imported:', 'import_unknown'=>'unknown key', 'import_duplicate'=>'duplicate key',
         'show_all'=>'Show all', 'show_original'=>'Show original', 'show_added'=>'Show added',
         'sections'=>'Sections', 'languages'=>'Languages', 'translations'=>'Translations',
         'disabled'=>'Disabled', 'available'=>'Available to add', 'no_languages'=>'No language files found.',

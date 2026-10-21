@@ -95,7 +95,7 @@ return (object)[
             'title'=>'Baza podataka modula',
             'description'=>'',
             'alerts'=> (object)[
-                'access_denied'=> 'Pristup odbijen. Samo glavni administrator (ID 1) može koristiti stranicu Baza podataka modula.',
+                'access_denied'=> 'Pristup odbijen. Samo glavni administrator (ID {super_admin_id}) može koristiti stranicu Baza podataka modula.',
                 'db_operation_error' => ['Operacija je dovršena s pogreškama. Uspješno: ', '. Pogreške: '],
                 'db_operation_success' => 'Operacija je uspješno dovršena. Obrađeni objekti',
             ],
@@ -130,10 +130,22 @@ return (object)[
             'lithuanian' => 'Litavski',
             'latvian' => 'Latvijski',
             'slovenian' => 'Slovenski',
-            'slovak' => 'Slovački'
+            'slovak' => 'Slovački',
+            'indonesian' => 'Indonezijski',
+            'swahili' => 'Svahili',
+            'vietnamese' => 'Vijetnamski',
+            'malay' => 'Malajski',
+            'uzbek' => 'Uzbečki',
+            'azerbaijani' => 'Azerbajdžanski',
+            'kazakh' => 'Kazaški',
+            'icelandic' => 'Islandski',
+            'belarusian' => 'Bjeloruski',
+            'albanian' => 'Albanski',
+            'irish' => 'Irski',
+            'romansh' => 'Retoromanski',
         ]],
         'alerts'=> (object)[
-            'access_denied'=>'Pristup odbijen. Ova stranica modula dostupna je samo glavnom administratoru (ID ' . ZM_PB_SUPERADM_ID . ').',
+            'access_denied'=>'Pristup odbijen. Ova stranica modula dostupna je samo glavnom administratoru (ID {super_admin_id}).',
             'it_is_override_page'=>'Ova stranica zamjenjuje: ',
         ],
         'trash' => (object)['title'=>'Otpad','description'=>'Stavke premještene u otpad. Brisanje stavke ovdje je trajno.']
@@ -204,6 +216,8 @@ return (object)[
         'markers_incomplete'=>'Oznake bloka pravila modula u .htaccess nisu potpune.',
     ],
     'module_settings' => (object)[
+        'language_rewrite_note'=>'Ako koristite lijepe URL-ove na Apacheu, nakon promjene jezika ažurirajte pravila u upravitelju prepisivanja.',
+        'languages'=>(object)['description'=>'Odaberite jezike koje modul može koristiti. Isključivanje jezika ne briše sadržaj.','enabled'=>'Uključeni','disabled'=>'Isključeni','default_language'=>'Zadani jezik'],
         'editable_consts' => (object)[
             'title'=>'Varijable modula',
             'description'=>"Globalne varijable modula koje se mogu uređivati",
@@ -459,6 +473,7 @@ return (object)[
         ],
     ],
     'langs_manager' => (object)[
+        'import_skipped'=>'Sljedeći ključevi prijevoda nisu uvezeni:', 'import_unknown'=>'nepoznat ključ', 'import_duplicate'=>'duplicirani ključ',
         'show_all'=>'Prikaži sve', 'show_original'=>'Prikaži izvorne', 'show_added'=>'Prikaži dodane',
         'sections'=>'Odjeljci',
         'languages'=>'Jezici',

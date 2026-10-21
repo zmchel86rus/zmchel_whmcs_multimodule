@@ -95,7 +95,7 @@ return (object)[
             'title'=>'Moduladatbázis',
             'description'=>'',
             'alerts'=> (object)[
-                'access_denied'=> 'Hozzáférés megtagadva. A modul Adatbázis oldalát csak a szuperadminisztrátor (ID 1) használhatja.',
+                'access_denied'=> 'Hozzáférés megtagadva. A modul Adatbázis oldalát csak a szuperadminisztrátor (ID {super_admin_id}) használhatja.',
                 'db_operation_error' => ['A művelet hibákkal fejeződött be. Sikeres: ', '. Hibák: '],
                 'db_operation_success' => 'A művelet sikeresen befejeződött. Feldolgozott objektumok',
             ],
@@ -130,10 +130,22 @@ return (object)[
             'lithuanian' => 'Litván',
             'latvian' => 'Lett',
             'slovenian' => 'Szlovén',
-            'slovak' => 'Szlovák'
+            'slovak' => 'Szlovák',
+            'indonesian' => 'Indonéz',
+            'swahili' => 'Szuahéli',
+            'vietnamese' => 'Vietnámi',
+            'malay' => 'Maláj',
+            'uzbek' => 'Üzbég',
+            'azerbaijani' => 'Azerbajdzsáni',
+            'kazakh' => 'Kazah',
+            'icelandic' => 'Izlandi',
+            'belarusian' => 'Belarusz',
+            'albanian' => 'Albán',
+            'irish' => 'Ír',
+            'romansh' => 'Rétoromán',
         ]],
         'alerts'=> (object)[
-            'access_denied'=>'Hozzáférés megtagadva. A modul ezen oldala csak a szuperadminisztrátor számára érhető el (ID ' . ZM_PB_SUPERADM_ID . ').',
+            'access_denied'=>'Hozzáférés megtagadva. A modul ezen oldala csak a szuperadminisztrátor számára érhető el (ID {super_admin_id}).',
             'it_is_override_page'=>'Ez az oldal a következőt írja felül: ',
         ],
         'trash' => (object)['title'=>'Lomtár','description'=>'A Lomtárba helyezett elemek. Az itt törölt elemek véglegesen elvesznek.']
@@ -204,6 +216,8 @@ return (object)[
         'markers_incomplete'=>'A modul szabályjelölői hiányosak a .htaccess fájlban.',
     ],
     'module_settings' => (object)[
+        'language_rewrite_note'=>'Ha Apache alatt szép URL-eket használ, a nyelvek módosítása után frissítse a szabályokat a Rewrite Managerben.',
+        'languages'=>(object)['description'=>'Válassza ki a modul által használható nyelveket. A kikapcsolás nem törli a tartalmat.','enabled'=>'Engedélyezve','disabled'=>'Letiltva','default_language'=>'Alapértelmezett nyelv'],
         'editable_consts' => (object)[
             'title'=>'Modulváltozók',
             'description'=>"Szerkeszthető globális modulváltozók",
@@ -459,6 +473,7 @@ return (object)[
         ],
     ],
     'langs_manager' => (object)[
+        'import_skipped'=>'A következő fordítási kulcsok importálása kimaradt:', 'import_unknown'=>'ismeretlen kulcs', 'import_duplicate'=>'ismétlődő kulcs',
         'show_all'=>'Összes megjelenítése', 'show_original'=>'Eredetiek megjelenítése', 'show_added'=>'Hozzáadottak megjelenítése',
         'sections'=>'Szakaszok',
         'languages'=>'Nyelvek',

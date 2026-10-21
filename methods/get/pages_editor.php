@@ -85,8 +85,16 @@ require_once ZM_PB_INCDIR . 'menu_manager.php';
         $smarty->assign('page_data', $page_data);
         $smarty->assign('mediamanager_modal', $smarty->fetch( ZM_PB_TEMPLATESPARTSDIR .'modal_mediamanager.tpl' ) );
 
-        $grapesLang = is_file(ZM_PB_ASSETSDIR . 'grapesjs/langs/' . ZM_PB_ADMINLANGNAME . '.json') ? ZM_PB_ADMINLANGNAME : 'english';
+        $grapesCandidate = ZM_PB_ADMINLANGNAME;
+        if (!is_file(ZM_PB_ASSETSDIR . 'grapesjs/langs/' . $grapesCandidate . '.json')) {
+            $legacyGrapesName = array_search($grapesCandidate, zm_pb_lm_filename_aliases(), true);
+            if ($legacyGrapesName !== false) $grapesCandidate = $legacyGrapesName;
+        }
+        $grapesLang = is_file(ZM_PB_ASSETSDIR . 'grapesjs/langs/' . $grapesCandidate . '.json') ? $grapesCandidate : 'english';
         $grapesClientLang = $grapesLang === 'english' ? 'english' : ZM_PB_ADMIN_CLIENT_LANGNAME;
+        if (!isset(ZM_PB_LANGS[$grapesClientLang])) {
+            $grapesClientLang = isset(ZM_PB_LANGS[ZM_PB_DEFLANG]) ? ZM_PB_DEFLANG : array_key_first(ZM_PB_LANGS);
+        }
         $grapesLocale = ZM_PB_LANGS[$grapesClientLang]['code_ISO639_1'];
         $grapesText = json_decode(file_get_contents(ZM_PB_ASSETSDIR.'grapesjs/langs/'.$grapesLang.'.json'), true);
         $smarty->assign('grapes_translates', $grapesText);

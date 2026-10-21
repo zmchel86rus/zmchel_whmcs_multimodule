@@ -96,7 +96,7 @@ return (object)[
             'title'=>'Moduļa datubāze',
             'description'=>'',
             'alerts'=> (object)[
-                'access_denied'=> 'Piekļuve liegta. Moduļa datubāzes lapu var izmantot tikai galvenais administrators (ID 1).',
+                'access_denied'=> 'Piekļuve liegta. Moduļa datubāzes lapu var izmantot tikai galvenais administrators (ID {super_admin_id}).',
                 'db_operation_error' => ['Darbība pabeigta ar kļūdām. Veiksmīgi: ', '. Kļūdas: '],
                 'db_operation_success' => 'Darbība veiksmīgi pabeigta. Apstrādātie objekti',
             ],
@@ -131,10 +131,22 @@ return (object)[
             'lithuanian' => 'Lietuviešu',
             'latvian' => 'Latviešu',
             'slovenian' => 'Slovēņu',
-            'slovak' => 'Slovāku'
+            'slovak' => 'Slovāku',
+            'indonesian' => 'Indonēziešu',
+            'swahili' => 'Svahili',
+            'vietnamese' => 'Vjetnamiešu',
+            'malay' => 'Malajiešu',
+            'uzbek' => 'Uzbeku',
+            'azerbaijani' => 'Azerbaidžāņu',
+            'kazakh' => 'Kazahu',
+            'icelandic' => 'Islandiešu',
+            'belarusian' => 'Baltkrievu',
+            'albanian' => 'Albāņu',
+            'irish' => 'Īru',
+            'romansh' => 'Retoromāņu',
         ]],
         'alerts'=> (object)[
-            'access_denied'=>'Piekļuve liegta. Šī moduļa lapa ir pieejama tikai galvenajam administratoram (ID ' . ZM_PB_SUPERADM_ID . ').',
+            'access_denied'=>'Piekļuve liegta. Šī moduļa lapa ir pieejama tikai galvenajam administratoram (ID {super_admin_id}).',
             'it_is_override_page'=>'Šī lapa aizstāj: ',
         ],
         'trash' => (object)['title'=>'Atkritne','description'=>'Uz atkritni pārvietotie vienumi. Dzēšot vienumu šeit, tas tiek neatgriezeniski izdzēsts.']
@@ -205,6 +217,8 @@ return (object)[
         'markers_incomplete'=>'Moduļa noteikumu atzīmes .htaccess failā nav pilnīgas.',
     ],
     'module_settings' => (object)[
+        'language_rewrite_note'=>'Ja Apache izmantojat saprotamus URL, pēc valodu maiņas atjauniniet noteikumus pārrakstīšanas pārvaldniekā.',
+        'languages'=>(object)['description'=>'Izvēlieties valodas, ko modulis var izmantot. Valodas izslēgšana neizdzēš tās saturu.','enabled'=>'Ieslēgtas','disabled'=>'Izslēgtas','default_language'=>'Noklusējuma valoda'],
         'editable_consts' => (object)[
             'title'=>'Moduļa mainīgie',
             'description'=>"Rediģējami globālie moduļa mainīgie",
@@ -462,6 +476,7 @@ return (object)[
         ],
     ],
     'langs_manager' => (object)[
+        'import_skipped'=>'Šīs tulkojumu atslēgas netika importētas:', 'import_unknown'=>'nezināma atslēga', 'import_duplicate'=>'dublēta atslēga',
         'show_all'=>'Rādīt visus', 'show_original'=>'Rādīt sākotnējos', 'show_added'=>'Rādīt pievienotos',
         'sections'=>'Sadaļas',
         'languages'=>'Valodas',

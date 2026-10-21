@@ -1138,3 +1138,11 @@
 
 #zm-pagebuilder.langs-manager form.lm-action-form label{display:inline-flex;flex-direction: column;width: 100%;}
 #zm-pagebuilder.langs-manager form.lm-action-form label input{width:100%}
+#zm-pagebuilder.langs-manager .lm-filename-form{display:flex;align-items:center;flex-wrap:wrap;gap:6px;min-width:260px}
+#zm-pagebuilder.langs-manager .lm-filename-select{width:auto;max-width:180px}
+#zm-pagebuilder.langs-manager .lm-filename-target{white-space:nowrap}
+
+#zm-pagebuilder .module-language-grid > [class*="col-"] { margin-bottom: 10px; }
+#zm-pagebuilder .module-language-item { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 48px; margin-bottom: 0; }
+#zm-pagebuilder .module-language-item > span:first-child { min-width: 0; overflow-wrap: anywhere; }
+#zm-pagebuilder .module-language-item form { flex: none; }

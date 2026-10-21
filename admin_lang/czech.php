@@ -95,7 +95,7 @@ return (object)[
             'title'=>'Databáze modulu',
             'description'=>'',
             'alerts'=> (object)[
-                'access_denied'=> 'Přístup odepřen. Stránku Databáze modulu může používat pouze hlavní administrátor (ID 1).',
+                'access_denied'=> 'Přístup odepřen. Stránku Databáze modulu může používat pouze hlavní administrátor (ID {super_admin_id}).',
                 'db_operation_error' => ['Operace dokončena s chybami. Úspěšně: ', '. Chyby: '],
                 'db_operation_success' => 'Operace úspěšně dokončena. Zpracované objekty',
             ],
@@ -130,10 +130,22 @@ return (object)[
             'lithuanian' => 'Litevština',
             'latvian' => 'Lotyština',
             'slovenian' => 'Slovinština',
-            'slovak' => 'Slovenština'
+            'slovak' => 'Slovenština',
+            'indonesian' => 'Indonéština',
+            'swahili' => 'Svahilština',
+            'vietnamese' => 'Vietnamština',
+            'malay' => 'Malajština',
+            'uzbek' => 'Uzbečtina',
+            'azerbaijani' => 'Ázerbájdžánština',
+            'kazakh' => 'Kazaština',
+            'icelandic' => 'Islandština',
+            'belarusian' => 'Běloruština',
+            'albanian' => 'Albánština',
+            'irish' => 'Irština',
+            'romansh' => 'Rétorománština',
         ]],
         'alerts'=> (object)[
-            'access_denied'=>'Přístup odepřen. Tato stránka modulu je dostupná pouze hlavnímu administrátorovi (ID ' . ZM_PB_SUPERADM_ID . ').',
+            'access_denied'=>'Přístup odepřen. Tato stránka modulu je dostupná pouze hlavnímu administrátorovi (ID {super_admin_id}).',
             'it_is_override_page'=>'Tato stránka nahrazuje: ',
         ],
         'trash' => (object)['title'=>'Koš','description'=>'Položky přesunuté do koše. Smazání položky odtud je trvalé.']
@@ -204,6 +216,8 @@ return (object)[
         'markers_incomplete'=>'Značky bloku pravidel modulu v .htaccess jsou neúplné.',
     ],
     'module_settings' => (object)[
+        'language_rewrite_note'=>'Pokud používáte přívětivé URL na Apache, po změně jazyků aktualizujte pravidla ve správci přepisování.',
+        'languages'=>(object)['description'=>'Vyberte jazyky, které může modul používat. Vypnutí jazyka nesmaže jeho obsah.','enabled'=>'Zapnuté','disabled'=>'Vypnuté','default_language'=>'Výchozí jazyk'],
         'editable_consts' => (object)[
             'title'=>'Proměnné modulu',
             'description'=>"Upravitelné globální proměnné modulu",
@@ -459,6 +473,7 @@ return (object)[
         ],
     ],
     'langs_manager' => (object)[
+        'import_skipped'=>'Následující překladové klíče nebyly importovány:', 'import_unknown'=>'neznámý klíč', 'import_duplicate'=>'duplicitní klíč',
         'show_all'=>'Zobrazit vše', 'show_original'=>'Zobrazit původní', 'show_added'=>'Zobrazit přidané',
         'sections'=>'Sekce',
         'languages'=>'Jazyky',

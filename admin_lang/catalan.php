@@ -96,7 +96,7 @@ return (object)[
             'title'=>'Base de dades del mòdul',
             'description'=>'',
             'alerts'=> (object)[
-                'access_denied'=> 'Accés denegat. Només el superadministrador (ID 1) pot utilitzar la pàgina Base de dades del mòdul.',
+                'access_denied'=> 'Accés denegat. Només el superadministrador (ID {super_admin_id}) pot utilitzar la pàgina Base de dades del mòdul.',
                 'db_operation_error' => ['L\'operació s\'ha completat amb errors. Correctes: ', '. Errors: '],
                 'db_operation_success' => 'L\'operació s\'ha completat correctament. Objectes processats',
             ],
@@ -131,10 +131,22 @@ return (object)[
             'lithuanian' => 'Lituà',
             'latvian' => 'Letó',
             'slovenian' => 'Eslovè',
-            'slovak' => 'Eslovac'
+            'slovak' => 'Eslovac',
+            'indonesian' => 'Indonesi',
+            'swahili' => 'Suahili',
+            'vietnamese' => 'Vietnamita',
+            'malay' => 'Malai',
+            'uzbek' => 'Uzbek',
+            'azerbaijani' => 'Azerbaidjanès',
+            'kazakh' => 'Kazakh',
+            'icelandic' => 'Islandès',
+            'belarusian' => 'Belarús',
+            'albanian' => 'Albanès',
+            'irish' => 'Irlandès',
+            'romansh' => 'Retoromànic',
         ]],
         'alerts'=> (object)[
-            'access_denied'=>'Accés denegat. Aquesta pàgina del mòdul només està disponible per al superadministrador (ID ' . ZM_PB_SUPERADM_ID . ').',
+            'access_denied'=>'Accés denegat. Aquesta pàgina del mòdul només està disponible per al superadministrador (ID {super_admin_id}).',
             'it_is_override_page'=>'Aquesta pàgina substitueix: ',
         ],
         'trash' => (object)['title'=>'Paperera','description'=>'Elements moguts a la paperera. Si suprimiu un element aquí, la supressió serà permanent.']
@@ -205,6 +217,8 @@ return (object)[
         'markers_incomplete'=>'Els marcadors de regles del mòdul a .htaccess estan incomplets.',
     ],
     'module_settings' => (object)[
+        'language_rewrite_note'=>'Si feu servir URL amigables amb Apache, actualitzeu les regles al gestor de reescriptura després de canviar els idiomes.',
+        'languages'=>(object)['description'=>'Trieu els idiomes que pot utilitzar el mòdul. Desactivar-ne un no elimina el contingut.','enabled'=>'Activats','disabled'=>'Desactivats','default_language'=>'Idioma predeterminat'],
         'editable_consts' => (object)[
             'title'=>'Variables del mòdul',
             'description'=>"Variables globals editables del mòdul",
@@ -462,6 +476,7 @@ return (object)[
         ],
     ],
     'langs_manager' => (object)[
+        'import_skipped'=>'Les claus de traducció següents no s\'han importat:', 'import_unknown'=>'clau desconeguda', 'import_duplicate'=>'clau duplicada',
         'show_all'=>'Mostra-ho tot', 'show_original'=>'Mostra les originals', 'show_added'=>'Mostra les afegides',
         'sections'=>'Seccions',
         'languages'=>'Idiomes',

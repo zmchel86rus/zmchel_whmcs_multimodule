@@ -32,6 +32,11 @@ const translate_texts = {
                 </a>
             </li>
             <li role="presentation">
+                <a href="#mod_ss_tab_languages" aria-controls="mod_ss_tab_languages" role="tab" data-toggle="tab">
+                    {$module_translates->supported_langs->title|escape}
+                </a>
+            </li>
+            <li role="presentation">
                 <a href="#mod_ss_tab_redirects" aria-controls="mod_ss_tab_redirects" role="tab" data-toggle="tab">{$redirects_text->settings|escape}</a>
             </li>
             <li role="presentation">
@@ -61,6 +66,9 @@ const translate_texts = {
             </div>
             <div role="tabpanel" class="tab-pane active" id="mod_ss_tab_consts">
                 {include file="./parts/mod_ss_tab_consts.tpl"}
+            </div>
+            <div role="tabpanel" class="tab-pane" id="mod_ss_tab_languages">
+                {include file="./parts/mod_ss_tab_languages.tpl"}
             </div>
 
             <div role="tabpanel" class="tab-pane" id="mod_ss_tab_redirects">

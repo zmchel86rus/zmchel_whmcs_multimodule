@@ -33,6 +33,19 @@ $langs = [
     'latvian' => ['code'=>'LV','name'=>'Latviešu','locale'=>'lv_LV','locale_BCP47'=>'lv-LV','code_ISO639_1'=>'lv'],
     'slovenian' => ['code'=>'SI','name'=>'Slovenščina','locale'=>'sl_SI','locale_BCP47'=>'sl-SI','code_ISO639_1'=>'sl'],
     'slovak' => ['code'=>'SK','name'=>'Slovenčina','locale'=>'sk_SK','locale_BCP47'=>'sk-SK','code_ISO639_1'=>'sk'],
+    
+    'indonesian' => ['code'=>'ID','name'=>'Bahasa Indonesia','locale'=>'id_ID','locale_BCP47'=>'id-ID','code_ISO639_1'=>'id'],
+    'swahili' => ['code'=>'TZ','name'=>'Kiswahili','locale'=>'sw_TZ','locale_BCP47'=>'sw-TZ','code_ISO639_1'=>'sw'],
+    'vietnamese' => ['code'=>'VN','name'=>'Tiếng Việt','locale'=>'vi_VN','locale_BCP47'=>'vi-VN','code_ISO639_1'=>'vi'],
+    'malay' => ['code'=>'MY','name'=>'Bahasa Melayu','locale'=>'ms_MY','locale_BCP47'=>'ms-MY','code_ISO639_1'=>'ms'],
+    'uzbek' => ['code'=>'UZ','name'=>'O‘zbekcha','locale'=>'uz_Latn_UZ','locale_BCP47'=>'uz-Latn-UZ','code_ISO639_1'=>'uz'],
+    'azerbaijani' => ['code'=>'AZ','name'=>'Azərbaycanca','locale'=>'az_AZ','locale_BCP47'=>'az-AZ','code_ISO639_1'=>'az'],
+    'kazakh' => ['code'=>'KZ','name'=>'Қазақша','locale'=>'kk_KZ','locale_BCP47'=>'kk-KZ','code_ISO639_1'=>'kk'],
+    'icelandic' => ['code'=>'IS','name'=>'Íslenska','locale'=>'is_IS','locale_BCP47'=>'is-IS','code_ISO639_1'=>'is'],
+    'belarusian' => ['code'=>'BY','name'=>'Беларуская','locale'=>'be_BY','locale_BCP47'=>'be-BY','code_ISO639_1'=>'be'],
+    'albanian' => ['code'=>'AL','name'=>'Shqip','locale'=>'sq_AL','locale_BCP47'=>'sq-AL','code_ISO639_1'=>'sq'],
+    'irish' => ['code'=>'IE','name'=>'Gaeilge','locale'=>'ga_IE','locale_BCP47'=>'ga-IE','code_ISO639_1'=>'ga'],
+    'romansh' => ['code'=>'CH','name'=>'Rumantsch','locale'=>'rm_CH','locale_BCP47'=>'rm-CH','code_ISO639_1'=>'rm'],
 ];
 
 // Keep the primary language on its ISO route; use the locale for regional variants.
@@ -40,7 +53,7 @@ $codeCounts = array_count_values(array_column($langs, 'code_ISO639_1'));
 foreach ($langs as &$info) {
     $code = $info['code_ISO639_1'];
     $isVariant = $codeCounts[$code] > 1 && strcasecmp($info['code'], $code) !== 0;
-    $info['route_code'] = $isVariant ? $info['locale_BCP47'] : $code;
+    $info['route_code'] = $info['route_code'] ?? ($isVariant ? $info['locale_BCP47'] : $code);
 }
 unset($info);
 

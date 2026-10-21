@@ -95,7 +95,7 @@ return (object)[
             'title'=>'Mooduli andmebaas',
             'description'=>'',
             'alerts'=> (object)[
-                'access_denied'=> 'Juurdepääs keelatud. Ainult peaadministraator (ID 1) saab kasutada mooduli andmebaasi lehte.',
+                'access_denied'=> 'Juurdepääs keelatud. Ainult peaadministraator (ID {super_admin_id}) saab kasutada mooduli andmebaasi lehte.',
                 'db_operation_error' => ['Toiming lõpetati vigadega. Õnnestus: ', '. Vigu: '],
                 'db_operation_success' => 'Toiming lõpetati edukalt. Töödeldud objektid',
             ],
@@ -130,10 +130,22 @@ return (object)[
             'lithuanian' => 'Leedu keel',
             'latvian' => 'Läti keel',
             'slovenian' => 'Sloveeni keel',
-            'slovak' => 'Slovaki keel'
+            'slovak' => 'Slovaki keel',
+            'indonesian' => 'Indoneesia',
+            'swahili' => 'Suahiili',
+            'vietnamese' => 'Vietnami',
+            'malay' => 'Malai',
+            'uzbek' => 'Usbeki',
+            'azerbaijani' => 'Aserbaidžaani',
+            'kazakh' => 'Kasahhi',
+            'icelandic' => 'Islandi',
+            'belarusian' => 'Valgevene',
+            'albanian' => 'Albaania',
+            'irish' => 'Iiri',
+            'romansh' => 'Romanši',
         ]],
         'alerts'=> (object)[
-            'access_denied'=>'Juurdepääs keelatud. See mooduli leht on saadaval ainult peaadministraatorile (ID ' . ZM_PB_SUPERADM_ID . ').',
+            'access_denied'=>'Juurdepääs keelatud. See mooduli leht on saadaval ainult peaadministraatorile (ID {super_admin_id}).',
             'it_is_override_page'=>'See leht asendab: ',
         ],
         'trash' => (object)['title'=>'Prügikast','description'=>'Prügikasti teisaldatud üksused. Siit kustutamine on jäädav.']
@@ -204,6 +216,8 @@ return (object)[
         'markers_incomplete'=>'Mooduli reeglite markerid failis .htaccess on puudulikud.',
     ],
     'module_settings' => (object)[
+        'language_rewrite_note'=>'Kui kasutate Apache\'is ilusaid URL-e, uuendage pärast keelte muutmist reegleid Rewrite Manageris.',
+        'languages'=>(object)['description'=>'Valige keeled, mida moodul saab kasutada. Keele väljalülitamine ei kustuta selle sisu.','enabled'=>'Lubatud','disabled'=>'Keelatud','default_language'=>'Vaikimisi keel'],
         'editable_consts' => (object)[
             'title'=>'Mooduli muutujad',
             'description'=>"Muudetavad globaalsed mooduli muutujad",
@@ -459,6 +473,7 @@ return (object)[
         ],
     ],
     'langs_manager' => (object)[
+        'import_skipped'=>'Järgmisi tõlkevõtmeid ei imporditud:', 'import_unknown'=>'tundmatu võti', 'import_duplicate'=>'duplikaatvõti',
         'show_all'=>'Näita kõiki', 'show_original'=>'Näita algseid', 'show_added'=>'Näita lisatuid',
         'sections'=>'Jaotised',
         'languages'=>'Keeled',

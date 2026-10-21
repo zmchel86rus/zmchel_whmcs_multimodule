@@ -19,6 +19,24 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 
     } else {
         if( empty($method_action) ){
+            require_once ZM_PB_INCDIR . 'module_languages.php';
+            $languageLists = zm_pb_module_languages_state(ZM_PB_ROOTDIR);
+            $languageLabels = (array) ($GLOBALS['ZM_PB_ADMINLANG']->module->supported_langs->translate ?? []);
+            $defaultLanguage = zm_pb_module_languages_default(strtolower(ZM_PB_DEFLANG));
+            $languageText = $GLOBALS['ZM_PB_ADMINLANG']->module_settings->languages;
+            $languageGroups = [];
+            foreach (['enabled', 'disabled'] as $state) {
+                $rows = [];
+                foreach ($languageLists[$state] as $key => $info) {
+                    $rows[] = ['key' => $key, 'title' => $languageLabels[$key] ?? $info['name'],
+                        'default' => $key === $defaultLanguage];
+                }
+                $languageGroups[] = ['state' => $state, 'title' => $languageText->$state,
+                    'operation' => $state === 'enabled' ? 'disable' : 'enable',
+                    'count' => count($rows), 'rows' => $rows];
+            }
+            $smarty->assign('module_language_groups', $languageGroups);
+            $smarty->assign('module_languages_can_edit', $isSuperAdmin);
         
             $editable_consts_main = [];
             $editable_consts_sitemap = [];

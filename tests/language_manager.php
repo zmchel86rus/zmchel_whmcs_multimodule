@@ -13,6 +13,7 @@ define('ZM_PB_ROOTDIR', $root . '/modules/addons/self/');
 define('ZM_PB_ALANGDIR', ZM_PB_ROOTDIR . 'admin_lang/');
 define('ZM_PB_INCDIR', $root . '/inc/');
 define('ZM_PB_DEFLANG', 'english');
+define('ZM_PB_SUPERADM_ID', 42);
 define('ZM_PB_LANGS', require dirname(__DIR__) . '/supported_langs.php');
 require dirname(__DIR__) . '/inc/language_manager.php';
 mkdir(ZM_PB_INCDIR, 0750, true);
@@ -66,6 +67,24 @@ try {
         if ($error->getMessage() === 'Unsupported addon was silently changed.') throw $error;
     }
     $own = $sections['module_self'];
+    $runtime = (object)['module' => (object)[
+        'alerts' => (object)['access_denied' => 'Only admin {super_admin_id}.'],
+        'module_db' => (object)['alerts' => (object)['access_denied' => 'Database ID {super_admin_id}.']],
+    ]];
+    zm_pb_lm_apply_runtime_tokens($runtime);
+    lm_check($runtime->module->alerts->access_denied === 'Only admin 42.' &&
+        $runtime->module->module_db->alerts->access_denied === 'Database ID 42.',
+        'Runtime administrator ID was not substituted.');
+    foreach (['english', 'russian'] as $language) {
+        $catalog = require dirname(__DIR__) . '/admin_lang/' . $language . '.php';
+        lm_check(strpos($catalog->module->alerts->access_denied, '{super_admin_id}') !== false &&
+            strpos($catalog->module->module_db->alerts->access_denied, '{super_admin_id}') !== false,
+            'The original language file does not expose the editable ID placeholder.');
+        zm_pb_lm_apply_runtime_tokens($catalog);
+        lm_check(strpos($catalog->module->alerts->access_denied, '(ID 42)') !== false &&
+            strpos($catalog->module->module_db->alerts->access_denied, '(ID 42)') !== false,
+            'The administrator ID was not rendered in the language file.');
+    }
     $client = $sections['whmcs_client'];
     $admin = $sections['whmcs_admin'];
     $addon = $sections['module:addons:sample:lang'];
@@ -270,7 +289,125 @@ try {
     file_put_contents($root . '/lang/finnish.php', "<?php \$_LANG['locale'] = 'fi_FI';\n");
     $dailyCheck();
     lm_check(!is_file($root . '/lang/finnish.php'), 'A repeated daily check did not disable the restored language.');
-    echo "PASS language sections, one-row saves, override cleanup, backup restoration and disabled languages\n";
+    file_put_contents(ZM_PB_ALANGDIR . 'ukranian.php',
+        "<?php return (object)['section' => (object)['title' => 'Ukrainian']];\n");
+    file_put_contents(ZM_PB_ALANGDIR . 'overrides/ukranian.php',
+        "<?php return (object)['section' => (object)['title' => 'Custom Ukrainian']];\n");
+    file_put_contents(ZM_PB_ALANGDIR . 'overrides/managed/ukranian.php', "<?php return [];\n");
+    lm_check(zm_pb_lm_name($own, 'ukranian') === 'ukranian', 'Legacy module filename was not found.');
+    lm_check(count(zm_pb_lm_filename_candidates($own)) === 1 &&
+        zm_pb_lm_filename_candidates($own)[0]['new'] === 'ukrainian' &&
+        zm_pb_lm_supported_key('portugues-br') === 'portuguese-br',
+        'Filename corrections or language aliases are wrong.');
+    zm_pb_lm_fix_filename($own, 'ukranian');
+    lm_check(zm_pb_lm_name($own, 'ukranian') === 'ukrainian' &&
+        !is_file(ZM_PB_ALANGDIR . 'ukranian.php') &&
+        is_file(ZM_PB_ALANGDIR . 'overrides/managed/ukrainian.php') &&
+        !is_file(ZM_PB_ALANGDIR . 'overrides/managed/ukranian.php') &&
+        zm_pb_lm_own('ukrainian')->section->title === 'Custom Ukrainian' &&
+        zm_pb_lm_own('ukranian')->section->title === 'Custom Ukrainian',
+        'Module filename correction lost the catalog or its override.');
+    file_put_contents(ZM_PB_ALANGDIR . 'disabled/portugues-br.php',
+        "<?php return (object)['section' => (object)['title' => 'Brazilian']];\n");
+    zm_pb_lm_fix_filename($own, 'portugues-br');
+    lm_check(is_file(ZM_PB_ALANGDIR . 'disabled/portuguese-br.php') &&
+        !is_file(ZM_PB_ALANGDIR . 'disabled/portugues-br.php') &&
+        zm_pb_lm_catalog($own, 'portuguese-br')->section->title === 'Brazilian',
+        'A disabled module catalog could not be renamed or read.');
+    zm_pb_lm_add($admin, 'portugues-br');
+    lm_check(is_file(zm_pb_lm_added_backup($admin, 'portugues-br', 'enabled')),
+        'Legacy WHMCS admin backup was not created.');
+    zm_pb_lm_fix_filename($admin, 'portugues-br');
+    lm_check(isset(zm_pb_lm_files($admin)['portuguese-br']) &&
+        !isset(zm_pb_lm_files($admin)['portugues-br']) &&
+        is_file(zm_pb_lm_added_backup($admin, 'portuguese-br', 'enabled')) &&
+        !is_file(zm_pb_lm_added_backup($admin, 'portugues-br', 'enabled')) &&
+        is_file($root . '/admin/lang/portugues-br.php') &&
+        zm_pb_lm_load_php($root . '/admin/lang/portugues-br.php', '$_ADMINLANG')['group']['title'] === 'Original',
+        'WHMCS admin filename correction or compatibility alias failed.');
+    zm_pb_lm_add($client, 'portugues');
+    zm_pb_lm_fix_filename($client, 'portugues');
+    lm_check(zm_pb_lm_name($client, 'portuguese-pt') === 'portuguese-pt' &&
+        !isset(zm_pb_lm_files($client)['portugues']) &&
+        zm_pb_lm_catalog($client, 'portuguese-pt')['locale'] === 'pt_PT' &&
+        zm_pb_lm_load_php($root . '/lang/portugues.php', '$_LANG')['locale'] === 'pt_PT',
+        'WHMCS client filename correction failed.');
+    zm_pb_lm_toggle($client, 'portuguese-pt', false);
+    lm_check(is_file($root . '/lang/disabled/portugues.php') &&
+        is_file($root . '/lang/disabled/portuguese-pt.php') &&
+        !is_file($root . '/lang/portugues.php'), 'The compatibility alias did not follow the disabled language.');
+    file_put_contents($root . '/lang/portugues.php', "<?php \$_LANG['restored'] = 'Core update';\n");
+    zm_pb_lm_recheck_disabled();
+    lm_check(!is_file($root . '/lang/portugues.php') &&
+        count(glob($root . '/lang/disabled/portugues.php.restored-*') ?: []) === 1,
+        'A core update re-enabled a corrected legacy filename.');
+    zm_pb_lm_toggle($client, 'portuguese-pt', true);
+    lm_check(is_file($root . '/lang/portugues.php') &&
+        is_file($root . '/lang/portuguese-pt.php'), 'The compatibility alias was not enabled again.');
+    file_put_contents($root . '/modules/addons/sample/lang/ukranian.php',
+        "<?php \$_ADDONLANG['group']['title'] = 'Legacy addon';\n");
+    zm_pb_lm_save($addon, 'ukranian', $path, 'Custom addon');
+    zm_pb_lm_fix_filename($addon, 'ukranian');
+    lm_check(zm_pb_lm_catalog($addon, 'ukrainian')['group']['title'] === 'Custom addon' &&
+        strpos(file_get_contents($root . '/modules/addons/sample/lang/ukrainian.php'),
+            'ZM_PB_LM_INCLUDE:ukrainian') !== false,
+        'Addon filename correction lost its override loader.');
+    zm_pb_lm_save($addon, 'ukrainian', $path, 'Changed addon');
+    lm_check(zm_pb_lm_catalog($addon, 'ukrainian')['group']['title'] === 'Changed addon',
+        'Corrected addon filename cannot save translations.');
+    file_put_contents($root . '/lang/ukranian.php', "<?php \$_LANG['legacy'] = 'Keep';\n");
+    file_put_contents($root . '/lang/ukrainian.php', "<?php \$_LANG['current'] = 'Keep';\n");
+    try {
+        zm_pb_lm_fix_filename($client, 'ukranian');
+        throw new RuntimeException('A filename collision overwrote an existing catalog.');
+    } catch (RuntimeException $error) {
+        if ($error->getMessage() === 'A filename collision overwrote an existing catalog.') throw $error;
+    }
+    lm_check(is_file($root . '/lang/ukranian.php') && is_file($root . '/lang/ukrainian.php'),
+        'A rejected filename correction removed a catalog.');
+    $editor = zm_pb_lm_editor_rows($own, 'english', 'english');
+    $titlePath = [['type' => 'object', 'key' => 'section'], ['type' => 'object', 'key' => 'title']];
+    $titleId = zm_pb_lm_path_id($titlePath);
+    lm_check($editor['rows'][$titleId]['source'] === 'Original' &&
+        $editor['rows'][$titleId]['value'] === 'Manual',
+        'The original column included an override.');
+    zm_pb_lm_add($client, 'french');
+    $newEditor = zm_pb_lm_editor_rows($client, 'french', 'english');
+    lm_check($newEditor['rows'][zm_pb_lm_path_id($path)]['source'] === 'Original',
+        'A new language did not use the reference column.');
+    $existingEditor = zm_pb_lm_editor_rows($client, 'spanish', 'english');
+    lm_check($existingEditor['rows'][zm_pb_lm_path_id($path)]['source'] === '',
+        'An existing language showed a reference value as its original.');
+    zm_pb_lm_save($client, 'english', [['type' => 'array', 'key' => 'customKey']], 'New value', true);
+    $export = json_decode(zm_pb_lm_export_translations($client, 'whmcs_client', 'english', 'english'), true);
+    lm_check(is_array($export) && count($export['translations']) > 0, 'Translation export is empty.');
+    foreach ($export['translations'] as &$item) {
+        if ($item['path'] === zm_pb_lm_path_id($path)) $item['translation'] = 'Bulk changed';
+    }
+    unset($item);
+    $bad = $export;
+    $bad['translations'][] = ['key' => 'missing', 'path' => zm_pb_lm_path_id([['type' => 'array', 'key' => 'missing']]),
+        'translation' => 'Must not be added'];
+    $bad['translations'][] = ['key' => 'another missing',
+        'path' => zm_pb_lm_path_id([['type' => 'array', 'key' => 'another missing']]),
+        'translation' => 'Must not be added'];
+    $bad['translations'][] = $bad['translations'][count($bad['translations']) - 2];
+    $bad['translations'][] = $export['translations'][0];
+    $result = zm_pb_lm_import_translations($client, 'whmcs_client', 'english', 'english', $bad);
+    lm_check($result['updated'] === 1 && count($result['skipped']) === 4 &&
+        $result['skipped'][0] === ['key' => 'missing', 'reason' => 'unknown'] &&
+        $result['skipped'][1] === ['key' => 'another missing', 'reason' => 'unknown'] &&
+        $result['skipped'][2] === ['key' => 'missing', 'reason' => 'duplicate'] &&
+        $result['skipped'][3]['reason'] === 'duplicate',
+        'Unknown or duplicate keys were not skipped and reported.');
+    lm_check(zm_pb_lm_catalog($client, 'english')['group']['title'] === 'Bulk changed' &&
+        zm_pb_lm_catalog($client, 'english')['customKey'] === 'New value' &&
+        !isset(zm_pb_lm_catalog($client, 'english')['missing']),
+        'Bulk import lost translated or custom keys.');
+    $unchanged = json_decode(zm_pb_lm_export_translations($client, 'whmcs_client', 'english', 'english'), true);
+    lm_check(zm_pb_lm_import_translations($client, 'whmcs_client', 'english', 'english', $unchanged)['updated'] === 0,
+        'Importing an unchanged export wrote translations again.');
+    echo "PASS language sections, one-row saves, filename corrections, override cleanup, backup restoration and disabled languages\n";
 } finally {
     lm_remove($root);
 }

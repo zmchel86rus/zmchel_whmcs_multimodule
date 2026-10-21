@@ -26,6 +26,26 @@
         searchForm.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
     });
     var box = document.getElementById('lm-message');
+    var importReportKey = 'zm_pb_lm_import_report:' + window.location.pathname + window.location.search;
+    if (box) {
+        try {
+            var pendingReport = window.sessionStorage.getItem(importReportKey);
+            if (pendingReport) {
+                window.sessionStorage.removeItem(importReportKey);
+                var report = JSON.parse(pendingReport);
+                box.hidden = false;
+                box.className = report.partial ? 'alert alert-warning' : 'alert alert-success';
+                box.style.whiteSpace = 'pre-line';
+                box.textContent = report.text;
+            }
+        } catch (error) { /* Storage may be unavailable in private browsing. */ }
+    }
+    document.querySelectorAll('.langs-manager .lm-filename-select').forEach(function (select) {
+        select.addEventListener('change', function () {
+            var option = select.options[select.selectedIndex];
+            select.form.querySelector('.lm-filename-target').textContent = option.dataset.target + '.php';
+        });
+    });
     document.querySelectorAll('.langs-manager .lm-action-form').forEach(function (form) {
         if (form.dataset.lmBound) return;
         form.dataset.lmBound = '1';
@@ -35,6 +55,11 @@
             var action = form.elements.namedItem('action').value;
             var button = form.querySelector('button[type="submit"]');
             if (action === 'delete_translation' && !window.confirm(button.textContent.trim() + '?')) return;
+            if (action === 'fix_language_filename') {
+                var selected = form.elements.namedItem('language');
+                var target = selected.options[selected.selectedIndex].dataset.target;
+                if (!window.confirm(button.textContent.trim() + ': ' + selected.value + '.php → ' + target + '.php?')) return;
+            }
             form.dataset.lmSubmitting = '1';
             var status = form.parentElement.querySelector('.lm-row-status');
             button.disabled = true;
@@ -50,15 +75,35 @@
                 return response.json();
             }).then(function (result) {
                 if (result.status !== 'success') throw new Error(result.message || 'Could not save.');
+                if (result.download) {
+                    var file = new Blob([result.download.content], { type: 'application/json;charset=utf-8' });
+                    var link = document.createElement('a');
+                    link.href = URL.createObjectURL(file);
+                    link.download = result.download.filename;
+                    document.body.appendChild(link);
+                    link.click();
+                    link.remove();
+                    setTimeout(function () { URL.revokeObjectURL(link.href); }, 1000);
+                }
                 if (status) status.textContent = result.title || 'Saved';
                 else {
                     box.hidden = false;
-                    box.className = 'alert alert-success';
-                    box.textContent = result.title || 'Saved';
+                    box.className = result.message ? 'alert alert-warning' : 'alert alert-success';
+                    box.style.whiteSpace = 'pre-line';
+                    box.textContent = (result.title || 'Saved') + (result.message ? '\n' + result.message : '');
                 }
-                if (action !== 'save_translation') {
-                    window.location.hash = ['add_translation', 'rename_translation', 'delete_translation'].indexOf(action) !== -1
-                        ? 'mod_lm_tab_lang_list_edit' : 'mod_lm_tab_lang_list';
+                if (action !== 'save_translation' && action !== 'export_translations') {
+                    if (action === 'import_translations') {
+                        try {
+                            window.sessionStorage.setItem(importReportKey, JSON.stringify({
+                                text: (result.title || 'Saved') + (result.message ? '\n' + result.message : ''),
+                                partial: Boolean(result.message)
+                            }));
+                        } catch (error) { return; }
+                    }
+                    window.location.hash = action === 'fix_language_filename' ? 'mod_lm_tab_lists'
+                        : ['add_translation', 'rename_translation', 'delete_translation', 'import_translations'].indexOf(action) !== -1
+                            ? 'mod_lm_tab_lang_list_edit' : 'mod_lm_tab_lang_list';
                     window.location.reload();
                 }
             }).catch(function (error) {

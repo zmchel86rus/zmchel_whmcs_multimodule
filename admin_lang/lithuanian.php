@@ -96,7 +96,7 @@ return (object)[
             'title'=>'Modulio duomenų bazė',
             'description'=>'',
             'alerts'=> (object)[
-                'access_denied'=> 'Prieiga uždrausta. Modulio duomenų bazės puslapiu gali naudotis tik vyriausiasis administratorius (ID 1).',
+                'access_denied'=> 'Prieiga uždrausta. Modulio duomenų bazės puslapiu gali naudotis tik vyriausiasis administratorius (ID {super_admin_id}).',
                 'db_operation_error' => ['Operacija baigta su klaidomis. Sėkmingai atlikta: ', '. Klaidos: '],
                 'db_operation_success' => 'Operacija sėkmingai baigta. Apdorota objektų',
             ],
@@ -131,10 +131,22 @@ return (object)[
             'lithuanian' => 'Lietuvių',
             'latvian' => 'Latvių',
             'slovenian' => 'Slovėnų',
-            'slovak' => 'Slovakų'
+            'slovak' => 'Slovakų',
+            'indonesian' => 'Indoneziečių',
+            'swahili' => 'Suahilių',
+            'vietnamese' => 'Vietnamiečių',
+            'malay' => 'Malajiečių',
+            'uzbek' => 'Uzbekų',
+            'azerbaijani' => 'Azerbaidžaniečių',
+            'kazakh' => 'Kazachų',
+            'icelandic' => 'Islandų',
+            'belarusian' => 'Baltarusių',
+            'albanian' => 'Albanų',
+            'irish' => 'Airių',
+            'romansh' => 'Retoromanų',
         ]],
         'alerts'=> (object)[
-            'access_denied'=>'Prieiga uždrausta. Šis modulio puslapis prieinamas tik vyriausiajam administratoriui (ID ' . ZM_PB_SUPERADM_ID . ').',
+            'access_denied'=>'Prieiga uždrausta. Šis modulio puslapis prieinamas tik vyriausiajam administratoriui (ID {super_admin_id}).',
             'it_is_override_page'=>'Šis puslapis pakeičia: ',
         ],
         'trash' => (object)['title'=>'Šiukšlinė','description'=>'Į šiukšlinę perkelti elementai. Ištrynus elementą čia, jis pašalinamas visam laikui.']
@@ -205,6 +217,8 @@ return (object)[
         'markers_incomplete'=>'Modulio taisyklių žymos faile .htaccess yra neužbaigtos.',
     ],
     'module_settings' => (object)[
+        'language_rewrite_note'=>'Jei naudojate patogius URL su Apache, pakeitę kalbas atnaujinkite taisykles perrašymo tvarkytuvėje.',
+        'languages'=>(object)['description'=>'Pasirinkite kalbas, kurias modulis gali naudoti. Išjungus kalbą jos turinys neištrinamas.','enabled'=>'Įjungtos','disabled'=>'Išjungtos','default_language'=>'Numatytoji kalba'],
         'editable_consts' => (object)[
             'title'=>'Modulio kintamieji',
             'description'=>"Redaguojami globalieji modulio kintamieji",
@@ -462,6 +476,7 @@ return (object)[
         ],
     ],
     'langs_manager' => (object)[
+        'import_skipped'=>'Šie vertimų raktai nebuvo importuoti:', 'import_unknown'=>'nežinomas raktas', 'import_duplicate'=>'pasikartojantis raktas',
         'show_all'=>'Rodyti visus', 'show_original'=>'Rodyti pradinius', 'show_added'=>'Rodyti pridėtus',
         'sections'=>'Skyriai',
         'languages'=>'Kalbos',

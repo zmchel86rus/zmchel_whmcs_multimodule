@@ -95,7 +95,7 @@ return (object)[
             'title'=>'Modül veritabanı',
             'description'=>'',
             'alerts'=> (object)[
-                'access_denied'=> 'Erişim reddedildi. Modülün Veritabanı sayfasını yalnızca Süper Yönetici (ID 1) kullanabilir.',
+                'access_denied'=> 'Erişim reddedildi. Modülün Veritabanı sayfasını yalnızca Süper Yönetici (ID {super_admin_id}) kullanabilir.',
                 'db_operation_error' => ['İşlem hatalarla tamamlandı. Başarılı: ', '. Hatalar: '],
                 'db_operation_success' => 'İşlem başarıyla tamamlandı. İşlenen nesneler',
             ],
@@ -130,10 +130,22 @@ return (object)[
             'lithuanian' => 'Litvanca',
             'latvian' => 'Letonca',
             'slovenian' => 'Slovence',
-            'slovak' => 'Slovakça'
+            'slovak' => 'Slovakça',
+            'indonesian' => 'Endonezce',
+            'swahili' => 'Svahili dili',
+            'vietnamese' => 'Vietnamca',
+            'malay' => 'Malayca',
+            'uzbek' => 'Özbekçe',
+            'azerbaijani' => 'Azerbaycan dili',
+            'kazakh' => 'Kazakça',
+            'icelandic' => 'İzlandaca',
+            'belarusian' => 'Belarusça',
+            'albanian' => 'Arnavutça',
+            'irish' => 'İrlandaca',
+            'romansh' => 'Romanşça',
         ]],
         'alerts'=> (object)[
-            'access_denied'=>'Erişim reddedildi. Bu modül sayfasına yalnızca Süper Yönetici (ID ' . ZM_PB_SUPERADM_ID . ') erişebilir.',
+            'access_denied'=>'Erişim reddedildi. Bu modül sayfasına yalnızca Süper Yönetici (ID {super_admin_id}) erişebilir.',
             'it_is_override_page'=>'Bu sayfa şunun yerini alır: ',
         ],
         'trash' => (object)['title'=>'Çöp kutusu','description'=>'Çöp kutusuna taşınan öğeler. Burada silinen öğeler kalıcı olarak kaldırılır.']
@@ -204,6 +216,8 @@ return (object)[
         'markers_incomplete'=>'.htaccess dosyasındaki modül kural işaretleyicileri eksik.',
     ],
     'module_settings' => (object)[
+        'language_rewrite_note'=>'Apache üzerinde güzel URL kullanıyorsanız dilleri değiştirdikten sonra Rewrite Manager kurallarını güncelleyin.',
+        'languages'=>(object)['description'=>'Modülün kullanabileceği dilleri seçin. Bir dili kapatmak içeriğini silmez.','enabled'=>'Etkin','disabled'=>'Devre dışı','default_language'=>'Varsayılan dil'],
         'editable_consts' => (object)[
             'title'=>'Modül değişkenleri',
             'description'=>"Düzenlenebilir genel modül değişkenleri",
@@ -459,6 +473,7 @@ return (object)[
         ],
     ],
     'langs_manager' => (object)[
+        'import_skipped'=>'Aşağıdaki çeviri anahtarları içe aktarılmadı:', 'import_unknown'=>'bilinmeyen anahtar', 'import_duplicate'=>'yinelenen anahtar',
         'show_all'=>'Tümünü göster', 'show_original'=>'Özgün olanları göster', 'show_added'=>'Eklenenleri göster',
         'sections'=>'Bölümler',
         'languages'=>'Diller',

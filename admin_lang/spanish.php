@@ -96,7 +96,7 @@ return (object)[
             'title'=>'Base de datos del módulo',
             'description'=>'',
             'alerts'=> (object)[
-                'access_denied'=> 'Acceso denegado. Solo el superadministrador (ID 1) puede usar la página de base de datos del módulo.',
+                'access_denied'=> 'Acceso denegado. Solo el superadministrador (ID {super_admin_id}) puede usar la página de base de datos del módulo.',
                 'db_operation_error' => ['Operación completada con errores. Correctos: ', '. Errores: '],
                 'db_operation_success' => 'Operación completada correctamente. Objetos procesados',
             ],
@@ -131,10 +131,22 @@ return (object)[
             'lithuanian' => 'Lituano',
             'latvian' => 'Letón',
             'slovenian' => 'Esloveno',
-            'slovak' => 'Eslovaco'
+            'slovak' => 'Eslovaco',
+            'indonesian' => 'Indonesio',
+            'swahili' => 'Suajili',
+            'vietnamese' => 'Vietnamita',
+            'malay' => 'Malayo',
+            'uzbek' => 'Uzbeko',
+            'azerbaijani' => 'Azerbaiyano',
+            'kazakh' => 'Kazajo',
+            'icelandic' => 'Islandés',
+            'belarusian' => 'Bielorruso',
+            'albanian' => 'Albanés',
+            'irish' => 'Irlandés',
+            'romansh' => 'Romanche',
         ]],
         'alerts'=> (object)[
-            'access_denied'=>'Acceso denegado. Esta página del módulo solo está disponible para el superadministrador (ID ' . ZM_PB_SUPERADM_ID . ').',
+            'access_denied'=>'Acceso denegado. Esta página del módulo solo está disponible para el superadministrador (ID {super_admin_id}).',
             'it_is_override_page'=>'Esta página sustituye a: ',
         ],
         'trash' => (object)['title'=>'Papelera','description'=>'Elementos enviados a la papelera. La eliminación aquí es definitiva.']
@@ -205,6 +217,8 @@ return (object)[
         'markers_incomplete'=>'Los marcadores de reglas del módulo en .htaccess están incompletos.',
     ],
     'module_settings' => (object)[
+        'language_rewrite_note'=>'Si usas URL amigables en Apache, actualiza las reglas en Rewrite Manager después de cambiar los idiomas.',
+        'languages'=>(object)['description'=>'Elige los idiomas que puede usar el módulo. Desactivar un idioma no elimina su contenido.','enabled'=>'Activados','disabled'=>'Desactivados','default_language'=>'Idioma predeterminado'],
         'editable_consts' => (object)[
             'title'=>'Variables del módulo',
             'description'=>"Variables globales editables del módulo",
@@ -462,6 +476,7 @@ return (object)[
         ],
     ],
     'langs_manager' => (object)[
+        'import_skipped'=>'No se importaron las siguientes claves de traducción:', 'import_unknown'=>'clave desconocida', 'import_duplicate'=>'clave duplicada',
         'show_all'=>'Mostrar todas', 'show_original'=>'Mostrar las originales', 'show_added'=>'Mostrar las añadidas',
         'sections'=>'Secciones',
         'languages'=>'Idiomas',

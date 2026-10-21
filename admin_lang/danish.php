@@ -96,7 +96,7 @@ return (object)[
             'title'=>'Moduldatabase',
             'description'=>'',
             'alerts'=> (object)[
-                'access_denied'=> 'Adgang nægtet. Kun superadministratoren (ID 1) kan bruge modulets databaseside.',
+                'access_denied'=> 'Adgang nægtet. Kun superadministratoren (ID {super_admin_id}) kan bruge modulets databaseside.',
                 'db_operation_error' => ['Handlingen blev udført med fejl. Vellykkede: ', '. Fejl: '],
                 'db_operation_success' => 'Handlingen blev gennemført. Behandlede objekter',
             ],
@@ -131,10 +131,22 @@ return (object)[
             'lithuanian' => 'Litauisk',
             'latvian' => 'Lettisk',
             'slovenian' => 'Slovensk',
-            'slovak' => 'Slovakisk'
+            'slovak' => 'Slovakisk',
+            'indonesian' => 'Indonesisk',
+            'swahili' => 'Swahili',
+            'vietnamese' => 'Vietnamesisk',
+            'malay' => 'Malajisk',
+            'uzbek' => 'Usbekisk',
+            'azerbaijani' => 'Aserbajdsjansk',
+            'kazakh' => 'Kasakhisk',
+            'icelandic' => 'Islandsk',
+            'belarusian' => 'Belarusisk',
+            'albanian' => 'Albansk',
+            'irish' => 'Irsk',
+            'romansh' => 'Rætoromansk',
         ]],
         'alerts'=> (object)[
-            'access_denied'=>'Adgang nægtet. Denne modulside er kun tilgængelig for superadministratoren (ID ' . ZM_PB_SUPERADM_ID . ').',
+            'access_denied'=>'Adgang nægtet. Denne modulside er kun tilgængelig for superadministratoren (ID {super_admin_id}).',
             'it_is_override_page'=>'Denne side overstyrer: ',
         ],
         'trash' => (object)['title'=>'Papirkurv','description'=>'Elementer, der flyttes til papirkurven, slettes permanent, hvis de slettes her.']
@@ -205,6 +217,8 @@ return (object)[
         'markers_incomplete'=>'Markørerne for modulets regler i .htaccess er ufuldstændige.',
     ],
     'module_settings' => (object)[
+        'language_rewrite_note'=>'Hvis du bruger pæne URL-adresser på Apache, skal du opdatere reglerne i Rewrite Manager efter sprogændringer.',
+        'languages'=>(object)['description'=>'Vælg de sprog, modulet kan bruge. Deaktivering sletter ikke indholdet.','enabled'=>'Aktiverede','disabled'=>'Deaktiverede','default_language'=>'Standardsprog'],
         'editable_consts' => (object)[
             'title'=>'Modulvariabler',
             'description'=>"Redigerbare globale modulvariabler",
@@ -462,6 +476,7 @@ return (object)[
         ],
     ],
     'langs_manager' => (object)[
+        'import_skipped'=>'Følgende oversættelsesnøgler blev ikke importeret:', 'import_unknown'=>'ukendt nøgle', 'import_duplicate'=>'dubleret nøgle',
         'show_all'=>'Vis alle', 'show_original'=>'Vis originale', 'show_added'=>'Vis tilføjede',
         'sections'=>'Sektioner',
         'languages'=>'Sprog',

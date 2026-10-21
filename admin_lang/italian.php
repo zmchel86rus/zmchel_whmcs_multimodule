@@ -95,7 +95,7 @@ return (object)[
             'title'=>'Database del modulo',
             'description'=>'',
             'alerts'=> (object)[
-                'access_denied'=> 'Accesso negato. Solo il Super Amministratore (ID 1) può utilizzare la pagina Database del modulo.',
+                'access_denied'=> 'Accesso negato. Solo il Super Amministratore (ID {super_admin_id}) può utilizzare la pagina Database del modulo.',
                 'db_operation_error' => ['Operazione completata con errori. Riuscite: ', '. Errori: '],
                 'db_operation_success' => 'Operazione completata correttamente. Oggetti elaborati',
             ],
@@ -130,10 +130,22 @@ return (object)[
             'lithuanian' => 'Lituano',
             'latvian' => 'Lettone',
             'slovenian' => 'Sloveno',
-            'slovak' => 'Slovacco'
+            'slovak' => 'Slovacco',
+            'indonesian' => 'Indonesiano',
+            'swahili' => 'Swahili',
+            'vietnamese' => 'Vietnamita',
+            'malay' => 'Malese',
+            'uzbek' => 'Uzbeco',
+            'azerbaijani' => 'Azerbaigiano',
+            'kazakh' => 'Kazako',
+            'icelandic' => 'Islandese',
+            'belarusian' => 'Bielorusso',
+            'albanian' => 'Albanese',
+            'irish' => 'Irlandese',
+            'romansh' => 'Romancio',
         ]],
         'alerts'=> (object)[
-            'access_denied'=>'Accesso negato. Questa pagina del modulo è disponibile solo per il Super Amministratore (ID ' . ZM_PB_SUPERADM_ID . ').',
+            'access_denied'=>'Accesso negato. Questa pagina del modulo è disponibile solo per il Super Amministratore (ID {super_admin_id}).',
             'it_is_override_page'=>'Questa pagina sostituisce: ',
         ],
         'trash' => (object)['title'=>'Cestino','description'=>'Elementi spostati nel Cestino. L’eliminazione di un elemento da qui è definitiva.']
@@ -204,6 +216,8 @@ return (object)[
         'markers_incomplete'=>'I marcatori delle regole del modulo in .htaccess sono incompleti.',
     ],
     'module_settings' => (object)[
+        'language_rewrite_note'=>'Se usi URL semplificati con Apache, aggiorna le regole nel Rewrite Manager dopo aver modificato le lingue.',
+        'languages'=>(object)['description'=>'Scegli le lingue utilizzabili dal modulo. Disattivare una lingua non ne elimina i contenuti.','enabled'=>'Attive','disabled'=>'Disattive','default_language'=>'Lingua predefinita'],
         'editable_consts' => (object)[
             'title'=>'Variabili del modulo',
             'description'=>"Variabili globali modificabili del modulo",
@@ -459,6 +473,7 @@ return (object)[
         ],
     ],
     'langs_manager' => (object)[
+        'import_skipped'=>'Le seguenti chiavi di traduzione non sono state importate:', 'import_unknown'=>'chiave sconosciuta', 'import_duplicate'=>'chiave duplicata',
         'show_all'=>'Mostra tutte', 'show_original'=>'Mostra le originali', 'show_added'=>'Mostra le aggiunte',
         'sections'=>'Sezioni',
         'languages'=>'Lingue',

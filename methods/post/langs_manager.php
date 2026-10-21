@@ -13,7 +13,45 @@ try {
     if (!is_string($id) || !isset($sections[$id]) || !is_string($name) ||
         !preg_match('/^[a-z0-9_-]+$/D', $name)) throw new InvalidArgumentException('Invalid language section.');
     $section = $sections[$id];
-    if ($method_action === 'rename_translation' || $method_action === 'delete_translation') {
+    if ($method_action === 'export_translations' || $method_action === 'import_translations') {
+        $files = zm_pb_lm_files($section);
+        if (!isset($files[$name])) throw new InvalidArgumentException('Language not found.');
+        $reference = zm_pb_lm_name($section, ZM_PB_DEFLANG);
+        if (!isset($files[$reference])) $reference = isset($files['english']) ? 'english' : $name;
+        if ($method_action === 'export_translations') {
+            $content = zm_pb_lm_export_translations($section, $id, $name, $reference);
+            $filename = 'translations-' . preg_replace('/[^a-zA-Z0-9_-]/', '-', $id) . '-' . $name . '.json';
+            exit(json_encode(['status' => 'success', 'title' => $GLOBALS['ZM_PB_ADMINLANG']->other->success,
+                'download' => ['filename' => $filename, 'content' => $content]], JSON_UNESCAPED_UNICODE));
+        }
+        if ($section['kind'] === 'module' && zm_pb_lm_variable($section, $files[$name]['file']) === '')
+            throw new RuntimeException('This catalog cannot be saved automatically.');
+        $upload = $_FILES['translations_file'] ?? null;
+        if (!is_array($upload) || ($upload['error'] ?? UPLOAD_ERR_NO_FILE) !== UPLOAD_ERR_OK ||
+            !isset($upload['tmp_name'], $upload['size']) || !is_string($upload['tmp_name']) ||
+            !is_int($upload['size']) || $upload['size'] > 8 * 1024 * 1024 ||
+            !is_uploaded_file($upload['tmp_name']))
+            throw new InvalidArgumentException('Translation file is missing or too large (maximum 8 MiB).');
+        $content = file_get_contents($upload['tmp_name']);
+        if ($content === false) throw new RuntimeException('Cannot read the translation file.');
+        $data = json_decode($content, true);
+        if (!is_array($data)) throw new InvalidArgumentException('Invalid translation JSON file.');
+        $result = zm_pb_lm_import_translations($section, $id, $name, $reference, $data);
+        $text = $GLOBALS['ZM_PB_ADMINLANG']->langs_manager;
+        $message = '';
+        if ($result['skipped']) {
+            $lines = [$text->import_skipped];
+            foreach ($result['skipped'] as $entry) {
+                $reason = $entry['reason'] === 'duplicate' ? $text->import_duplicate : $text->import_unknown;
+                $lines[] = $entry['key'] . ' — ' . $reason;
+            }
+            $message = implode("\n", $lines);
+        }
+        exit(json_encode(['status' => 'success', 'title' => $GLOBALS['ZM_PB_ADMINLANG']->other->success,
+            'count' => $result['updated'], 'message' => $message], JSON_UNESCAPED_UNICODE));
+    } elseif ($method_action === 'fix_language_filename') {
+        zm_pb_lm_fix_filename($section, $name);
+    } elseif ($method_action === 'rename_translation' || $method_action === 'delete_translation') {
         $keyPath = $_POST['key_path'] ?? null;
         if (!is_string($keyPath)) throw new InvalidArgumentException('Invalid translation key.');
         $path = zm_pb_lm_path($keyPath);

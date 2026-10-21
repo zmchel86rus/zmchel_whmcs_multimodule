@@ -96,7 +96,7 @@ return (object)[
             'title'=>'Moduldatenbank',
             'description'=>'',
             'alerts'=> (object)[
-                'access_denied'=> 'Zugriff verweigert. Nur der Superadministrator (ID 1) darf die Moduldatenbank verwalten.',
+                'access_denied'=> 'Zugriff verweigert. Nur der Superadministrator (ID {super_admin_id}) darf die Moduldatenbank verwalten.',
                 'db_operation_error' => ['Vorgang mit Fehlern abgeschlossen. Erfolgreich: ', '. Fehler: '],
                 'db_operation_success' => 'Vorgang erfolgreich abgeschlossen. Bearbeitete Objekte',
             ],
@@ -131,10 +131,22 @@ return (object)[
             'lithuanian' => 'Litauisch',
             'latvian' => 'Lettisch',
             'slovenian' => 'Slowenisch',
-            'slovak' => 'Slowakisch'
+            'slovak' => 'Slowakisch',
+            'indonesian' => 'Indonesisch',
+            'swahili' => 'Suaheli',
+            'vietnamese' => 'Vietnamesisch',
+            'malay' => 'Malaiisch',
+            'uzbek' => 'Usbekisch',
+            'azerbaijani' => 'Aserbaidschanisch',
+            'kazakh' => 'Kasachisch',
+            'icelandic' => 'Isländisch',
+            'belarusian' => 'Belarussisch',
+            'albanian' => 'Albanisch',
+            'irish' => 'Irisch',
+            'romansh' => 'Rätoromanisch',
         ]],
         'alerts'=> (object)[
-            'access_denied'=>'Zugriff verweigert. Diese Modulseite ist nur für den Superadministrator verfügbar (ID ' . ZM_PB_SUPERADM_ID . ').',
+            'access_denied'=>'Zugriff verweigert. Diese Modulseite ist nur für den Superadministrator verfügbar (ID {super_admin_id}).',
             'it_is_override_page'=>'Diese Seite überschreibt: ',
         ],
         'trash' => (object)['title'=>'Papierkorb','description'=>'In den Papierkorb verschobene Elemente. Das Löschen hier ist endgültig.']
@@ -205,6 +217,8 @@ return (object)[
         'markers_incomplete'=>'Die Modulmarkierungen in .htaccess sind unvollständig.',
     ],
     'module_settings' => (object)[
+        'language_rewrite_note'=>'Wenn Sie sprechende URLs mit Apache verwenden, aktualisieren Sie nach Sprachänderungen die Regeln im Rewrite Manager.',
+        'languages'=>(object)['description'=>'Wählen Sie die Sprachen aus, die das Modul verwenden kann. Beim Deaktivieren bleiben die Inhalte erhalten.','enabled'=>'Aktiviert','disabled'=>'Deaktiviert','default_language'=>'Standardsprache'],
         'editable_consts' => (object)[
             'title'=>'Modulvariablen',
             'description'=>"Bearbeitbare globale Modulvariablen",
@@ -462,6 +476,7 @@ return (object)[
         ],
     ],
     'langs_manager' => (object)[
+        'import_skipped'=>'Die folgenden Übersetzungsschlüssel wurden nicht importiert:', 'import_unknown'=>'unbekannter Schlüssel', 'import_duplicate'=>'doppelter Schlüssel',
         'show_all'=>'Alle anzeigen', 'show_original'=>'Originale anzeigen', 'show_added'=>'Hinzugefügte anzeigen',
         'sections'=>'Bereiche',
         'languages'=>'Sprachen',

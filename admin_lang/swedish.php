@@ -95,7 +95,7 @@ return (object)[
             'title'=>'Moduldatabas',
             'description'=>'',
             'alerts'=> (object)[
-                'access_denied'=> 'Åtkomst nekad. Endast huvudadministratören (ID 1) kan använda modulens databassida.',
+                'access_denied'=> 'Åtkomst nekad. Endast huvudadministratören (ID {super_admin_id}) kan använda modulens databassida.',
                 'db_operation_error' => ['Åtgärden slutfördes med fel. Lyckades: ', '. Fel: '],
                 'db_operation_success' => 'Åtgärden slutfördes. Behandlade objekt',
             ],
@@ -130,10 +130,22 @@ return (object)[
             'lithuanian' => 'Litauiska',
             'latvian' => 'Lettiska',
             'slovenian' => 'Slovenska',
-            'slovak' => 'Slovakiska'
+            'slovak' => 'Slovakiska',
+            'indonesian' => 'Indonesiska',
+            'swahili' => 'Swahili',
+            'vietnamese' => 'Vietnamesiska',
+            'malay' => 'Malajiska',
+            'uzbek' => 'Uzbekiska',
+            'azerbaijani' => 'Azerbajdzjanska',
+            'kazakh' => 'Kazakiska',
+            'icelandic' => 'Isländska',
+            'belarusian' => 'Belarusiska',
+            'albanian' => 'Albanska',
+            'irish' => 'Iriska',
+            'romansh' => 'Rätoromanska',
         ]],
         'alerts'=> (object)[
-            'access_denied'=>'Åtkomst nekad. Den här modulsidan är endast tillgänglig för huvudadministratören (ID ' . ZM_PB_SUPERADM_ID . ').',
+            'access_denied'=>'Åtkomst nekad. Den här modulsidan är endast tillgänglig för huvudadministratören (ID {super_admin_id}).',
             'it_is_override_page'=>'Den här sidan åsidosätter: ',
         ],
         'trash' => (object)['title'=>'Papperskorg','description'=>'Objekt som flyttats till papperskorgen. Om du tar bort ett objekt här raderas det permanent.']
@@ -204,6 +216,8 @@ return (object)[
         'markers_incomplete'=>'Markörerna för modulens regler i .htaccess är ofullständiga.',
     ],
     'module_settings' => (object)[
+        'language_rewrite_note'=>'Om du använder snygga URL:er med Apache, uppdatera reglerna i Rewrite Manager när du ändrar språk.',
+        'languages'=>(object)['description'=>'Välj vilka språk modulen kan använda. Att stänga av ett språk raderar inte innehållet.','enabled'=>'Aktiverade','disabled'=>'Inaktiverade','default_language'=>'Standardspråk'],
         'editable_consts' => (object)[
             'title'=>'Modulvariabler',
             'description'=>"Redigerbara globala modulvariabler",
@@ -459,6 +473,7 @@ return (object)[
         ],
     ],
     'langs_manager' => (object)[
+        'import_skipped'=>'Följande översättningsnycklar importerades inte:', 'import_unknown'=>'okänd nyckel', 'import_duplicate'=>'dubblettnyckel',
         'show_all'=>'Visa alla', 'show_original'=>'Visa ursprungliga', 'show_added'=>'Visa tillagda',
         'sections'=>'Sektioner',
         'languages'=>'Språk',

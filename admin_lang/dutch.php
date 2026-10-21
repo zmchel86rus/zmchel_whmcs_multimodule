@@ -96,7 +96,7 @@ return (object)[
             'title'=>'Moduledatabase',
             'description'=>'',
             'alerts'=> (object)[
-                'access_denied'=> 'Toegang geweigerd. Alleen de hoofdbeheerder (ID 1) heeft toegang tot de pagina Database van de module.',
+                'access_denied'=> 'Toegang geweigerd. Alleen de hoofdbeheerder (ID {super_admin_id}) heeft toegang tot de pagina Database van de module.',
                 'db_operation_error' => ['Bewerking voltooid met fouten. Geslaagd: ', '. Fouten: '],
                 'db_operation_success' => 'Bewerking voltooid. Verwerkte objecten',
             ],
@@ -131,10 +131,22 @@ return (object)[
             'lithuanian' => 'Litouws',
             'latvian' => 'Lets',
             'slovenian' => 'Sloveens',
-            'slovak' => 'Slowaaks'
+            'slovak' => 'Slowaaks',
+            'indonesian' => 'Indonesisch',
+            'swahili' => 'Swahili',
+            'vietnamese' => 'Vietnamees',
+            'malay' => 'Maleis',
+            'uzbek' => 'Oezbeeks',
+            'azerbaijani' => 'Azerbeidzjaans',
+            'kazakh' => 'Kazachs',
+            'icelandic' => 'IJslands',
+            'belarusian' => 'Belarussisch',
+            'albanian' => 'Albanees',
+            'irish' => 'Iers',
+            'romansh' => 'Reto-Romaans',
         ]],
         'alerts'=> (object)[
-            'access_denied'=>'Toegang geweigerd. Deze modulepagina is alleen beschikbaar voor de hoofdbeheerder (ID ' . ZM_PB_SUPERADM_ID . ').',
+            'access_denied'=>'Toegang geweigerd. Deze modulepagina is alleen beschikbaar voor de hoofdbeheerder (ID {super_admin_id}).',
             'it_is_override_page'=>'Deze pagina vervangt: ',
         ],
         'trash' => (object)['title'=>'Prullenbak','description'=>'Items die naar de prullenbak zijn verplaatst. Als u een item hier verwijdert, is dat definitief.']
@@ -205,6 +217,8 @@ return (object)[
         'markers_incomplete'=>'De markeringen van de moduleregels in .htaccess zijn onvolledig.',
     ],
     'module_settings' => (object)[
+        'language_rewrite_note'=>'Werk bij mooie URL\'s op Apache na een taalwijziging de regels in Rewrite Manager bij.',
+        'languages'=>(object)['description'=>'Kies welke talen de module kan gebruiken. Uitschakelen verwijdert de inhoud niet.','enabled'=>'Ingeschakeld','disabled'=>'Uitgeschakeld','default_language'=>'Standaardtaal'],
         'editable_consts' => (object)[
             'title'=>'Modulevariabelen',
             'description'=>"Bewerkbare globale modulevariabelen",
@@ -462,6 +476,7 @@ return (object)[
         ],
     ],
     'langs_manager' => (object)[
+        'import_skipped'=>'De volgende vertaalsleutels zijn niet geïmporteerd:', 'import_unknown'=>'onbekende sleutel', 'import_duplicate'=>'dubbele sleutel',
         'show_all'=>'Alles tonen', 'show_original'=>'Originele tonen', 'show_added'=>'Toegevoegde tonen',
         'sections'=>'Secties',
         'languages'=>'Talen',

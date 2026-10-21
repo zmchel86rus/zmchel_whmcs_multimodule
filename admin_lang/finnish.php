@@ -96,7 +96,7 @@ return (object)[
             'title'=>'Moduulin tietokanta',
             'description'=>'',
             'alerts'=> (object)[
-                'access_denied'=> 'Pääsy evätty. Vain pääkäyttäjä (ID 1) voi käyttää moduulin Tietokanta-sivua.',
+                'access_denied'=> 'Pääsy evätty. Vain pääkäyttäjä (ID {super_admin_id}) voi käyttää moduulin Tietokanta-sivua.',
                 'db_operation_error' => ['Toiminto suoritettiin virhein. Onnistuneet: ', '. Virheet: '],
                 'db_operation_success' => 'Toiminto suoritettiin onnistuneesti. Käsitellyt kohteet',
             ],
@@ -131,10 +131,22 @@ return (object)[
             'lithuanian' => 'Liettua',
             'latvian' => 'Latvia',
             'slovenian' => 'Sloveeni',
-            'slovak' => 'Slovakki'
+            'slovak' => 'Slovakki',
+            'indonesian' => 'Indonesia',
+            'swahili' => 'Swahili',
+            'vietnamese' => 'Vietnam',
+            'malay' => 'Malaiji',
+            'uzbek' => 'Uzbekki',
+            'azerbaijani' => 'Azeri',
+            'kazakh' => 'Kazakki',
+            'icelandic' => 'Islanti',
+            'belarusian' => 'Valkovenäjä',
+            'albanian' => 'Albania',
+            'irish' => 'Iiri',
+            'romansh' => 'Retoromaani',
         ]],
         'alerts'=> (object)[
-            'access_denied'=>'Pääsy evätty. Tämä moduulin sivu on vain pääkäyttäjän käytettävissä (ID ' . ZM_PB_SUPERADM_ID . ').',
+            'access_denied'=>'Pääsy evätty. Tämä moduulin sivu on vain pääkäyttäjän käytettävissä (ID {super_admin_id}).',
             'it_is_override_page'=>'Tämä sivu korvaa sivun: ',
         ],
         'trash' => (object)['title'=>'Roskakori','description'=>'Roskakoriin siirretyt kohteet. Kohteen poistaminen täältä on pysyvää.']
@@ -205,6 +217,8 @@ return (object)[
         'markers_incomplete'=>'Moduulin sääntömerkinnät .htaccess-tiedostossa ovat puutteelliset.',
     ],
     'module_settings' => (object)[
+        'language_rewrite_note'=>'Jos käytät Apachella selkokielisiä URL-osoitteita, päivitä uudelleenkirjoitussäännöt kielimuutosten jälkeen.',
+        'languages'=>(object)['description'=>'Valitse moduulin käyttämät kielet. Kielen poistaminen käytöstä ei poista sen sisältöä.','enabled'=>'Käytössä','disabled'=>'Pois käytöstä','default_language'=>'Oletuskieli'],
         'editable_consts' => (object)[
             'title'=>'Moduulin muuttujat',
             'description'=>"Muokattavat moduulin yleismuuttujat",
@@ -462,6 +476,7 @@ return (object)[
         ],
     ],
     'langs_manager' => (object)[
+        'import_skipped'=>'Seuraavia käännösavaimia ei tuotu:', 'import_unknown'=>'tuntematon avain', 'import_duplicate'=>'päällekkäinen avain',
         'show_all'=>'Näytä kaikki', 'show_original'=>'Näytä alkuperäiset', 'show_added'=>'Näytä lisätyt',
         'sections'=>'Osiot',
         'languages'=>'Kielet',

@@ -96,7 +96,7 @@ return (object)[
             'title'=>'База даних модуля',
             'description'=>'',
             'alerts'=> (object)[
-                'access_denied'=> 'Доступ заборонено. Керувати базою даних модуля може лише суперадміністратор (ID 1).',
+                'access_denied'=> 'Доступ заборонено. Керувати базою даних модуля може лише суперадміністратор (ID {super_admin_id}).',
                 'db_operation_error' => ['Операцію завершено з помилками. Успішно: ', '. Помилки: '],
                 'db_operation_success' => 'Операцію успішно завершено. Опрацьовані об\'єкти',
             ],
@@ -131,10 +131,22 @@ return (object)[
             'lithuanian' => 'Литовська',
             'latvian' => 'Латиська',
             'slovenian' => 'Словенська',
-            'slovak' => 'Словацька'
+            'slovak' => 'Словацька',
+            'indonesian' => 'Індонезійська',
+            'swahili' => 'Суахілі',
+            'vietnamese' => 'Вʼєтнамська',
+            'malay' => 'Малайська',
+            'uzbek' => 'Узбецька',
+            'azerbaijani' => 'Азербайджанська',
+            'kazakh' => 'Казахська',
+            'icelandic' => 'Ісландська',
+            'belarusian' => 'Білоруська',
+            'albanian' => 'Албанська',
+            'irish' => 'Ірландська',
+            'romansh' => 'Ретороманська',
         ]],
         'alerts'=> (object)[
-            'access_denied'=>'Доступ заборонено. Ця сторінка модуля доступна лише суперадміністратору (ID ' . ZM_PB_SUPERADM_ID . ').',
+            'access_denied'=>'Доступ заборонено. Ця сторінка модуля доступна лише суперадміністратору (ID {super_admin_id}).',
             'it_is_override_page'=>'Ця сторінка є заміною для: ',
         ],
         'trash' => (object)['title'=>'Кошик','description'=>'Елементи, переміщені до кошика. Видалення звідси остаточне.']
@@ -205,6 +217,8 @@ return (object)[
         'markers_incomplete'=>'Службові маркери правил модуля в .htaccess неповні.',
     ],
     'module_settings' => (object)[
+        'language_rewrite_note'=>'Якщо на Apache ввімкнено красиві URL, після зміни мов оновіть правила в менеджері rewrite.',
+        'languages'=>(object)['description'=>'Виберіть мови, які може використовувати модуль. Вимкнення мови не видаляє її вміст.','enabled'=>'Увімкнені','disabled'=>'Вимкнені','default_language'=>'Мова за замовчуванням'],
         'editable_consts' => (object)[
             'title'=>'Змінні модуля',
             'description'=>"Глобальні змінні модуля, які можна редагувати",
@@ -462,6 +476,7 @@ return (object)[
         ],
     ],
     'langs_manager' => (object)[
+        'import_skipped'=>'Наведені нижче ключі перекладу не було імпортовано:', 'import_unknown'=>'невідомий ключ', 'import_duplicate'=>'дубльований ключ',
         'show_all'=>'Показати всі', 'show_original'=>'Показати оригінальні', 'show_added'=>'Показати додані',
         'sections'=>'Розділи',
         'languages'=>'Мови',

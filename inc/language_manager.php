@@ -45,6 +45,7 @@ function zm_pb_lm_files(array $section): array
         foreach (glob($dir . '/*.php') ?: [] as $file) {
             $name = basename($file, '.php');
             if ($name === 'index' || is_link($file) || !preg_match('/^[a-z0-9_-]+$/D', $name)) continue;
+            if (zm_pb_lm_is_filename_alias($file, $name)) continue;
             if (!isset($result[$name]) || $state === 'enabled') $result[$name] = ['file' => $file, 'state' => $state];
         }
     }
@@ -52,24 +53,149 @@ function zm_pb_lm_files(array $section): array
     return $result;
 }
 
+function zm_pb_lm_filename_aliases(): array
+{
+    return ['ukranian' => 'ukrainian', 'portugues' => 'portuguese-pt',
+        'portugues-br' => 'portuguese-br'];
+}
+
+function zm_pb_lm_alias_source(string $new): string
+{
+    return "<?php\n/* ZM_PB_LM_FILENAME_ALIAS:$new */\nreturn require __DIR__ . '/$new.php';\n";
+}
+
+function zm_pb_lm_is_filename_alias(string $file, string $old): bool
+{
+    $new = zm_pb_lm_filename_aliases()[$old] ?? null;
+    return $new !== null && is_file(dirname($file) . '/' . $new . '.php') &&
+        file_get_contents($file) === zm_pb_lm_alias_source($new);
+}
+
+function zm_pb_lm_supported_key(string $name): string
+{
+    $aliases = zm_pb_lm_filename_aliases();
+    if (isset($aliases[$name])) $name = $aliases[$name];
+    return $name === 'ukrainian' ? 'ukranian' : $name;
+}
+
 function zm_pb_lm_name(array $section, string $supported): string
 {
-    if ($supported === 'ukranian' &&
-        (is_file($section['directory'] . '/ukrainian.php') ||
-         is_file($section['directory'] . '/disabled/ukrainian.php'))) return 'ukrainian';
-    if ($section['kind'] === 'self' || $section['kind'] === 'admin') {
-        if ($supported === 'portuguese-pt') return 'portugues';
-        if ($supported === 'portuguese-br') return 'portugues-br';
+    $canonical = zm_pb_lm_filename_aliases()[$supported] ?? $supported;
+    $legacy = array_search($canonical, zm_pb_lm_filename_aliases(), true);
+    foreach (array_filter([$canonical, $legacy]) as $name) {
+        if (is_file($section['directory'] . '/' . $name . '.php') ||
+            is_file($section['directory'] . '/disabled/' . $name . '.php')) return $name;
     }
-    return $supported;
+    return $canonical;
 }
 
 function zm_pb_lm_supported_name(array $section, string $name): ?string
 {
-    foreach (array_keys(ZM_PB_LANGS) as $key) {
-        if (zm_pb_lm_name($section, $key) === $name) return $key;
+    $supported = zm_pb_lm_supported_key($name);
+    return isset(ZM_PB_LANGS[$supported]) ? $supported : null;
+}
+
+function zm_pb_lm_filename_candidates(array $section): array
+{
+    $files = zm_pb_lm_files($section);
+    $candidates = [];
+    foreach (zm_pb_lm_filename_aliases() as $old => $new) {
+        if (isset($files[$old]) && !isset($files[$new]) &&
+            file_get_contents($files[$old]['file']) !== zm_pb_lm_alias_source($new))
+            $candidates[] = ['old' => $old, 'new' => $new];
     }
-    return null;
+    return $candidates;
+}
+
+function zm_pb_lm_fix_filename(array $section, string $old): string
+{
+    $new = zm_pb_lm_filename_aliases()[$old] ?? null;
+    if ($new === null) throw new InvalidArgumentException('This language filename is already correct.');
+    $files = zm_pb_lm_files($section);
+    if (!isset($files[$old])) throw new InvalidArgumentException('Language file not found.');
+    $directory = $section['directory'];
+    foreach ([$directory, $directory . '/overrides', $directory . '/overrides/managed',
+        $directory . '/overrides/.zm-pb-added-languages'] as $path) {
+        if (is_link($path)) throw new RuntimeException('Symbolic links cannot be edited.');
+    }
+    foreach (['', '/disabled'] as $subdir) {
+        if (is_file($directory . $subdir . '/' . $new . '.php') ||
+            is_link($directory . $subdir . '/' . $new . '.php'))
+            throw new RuntimeException('The corrected language file already exists.');
+    }
+    $moves = [];
+    $source = $files[$old]['file'];
+    $counterpart = $directory . ($files[$old]['state'] === 'enabled' ? '/disabled' : '') . '/' . $old . '.php';
+    if (is_link($source) || is_file($counterpart) || is_link($counterpart))
+        throw new RuntimeException('Conflicting language files already exist.');
+    if (file_get_contents($source) === zm_pb_lm_alias_source($new))
+        throw new RuntimeException('The old filename is a broken compatibility alias.');
+    $moves[] = [$source, dirname($source) . '/' . $new . '.php'];
+    $subdirs = ['/overrides'];
+    if ($section['kind'] === 'self') $subdirs[] = '/overrides/managed';
+    if ($section['kind'] === 'client' || $section['kind'] === 'admin') {
+        $subdirs[] = '/overrides/.zm-pb-added-languages/enabled';
+        $subdirs[] = '/overrides/.zm-pb-added-languages/disabled';
+    }
+    foreach ($subdirs as $subdir) {
+        $from = $directory . $subdir . '/' . $old . '.php';
+        $to = $directory . $subdir . '/' . $new . '.php';
+        if (is_link(dirname($from))) throw new RuntimeException('Symbolic links cannot be edited.');
+        if (is_file($to) || is_link($to)) throw new RuntimeException('The corrected override already exists.');
+        if (is_link($from)) throw new RuntimeException('Symbolic links cannot be edited.');
+        if (is_file($from)) $moves[] = [$from, $to];
+    }
+    $modes = [];
+    foreach ($moves as $move) {
+        $mode = fileperms($move[0]);
+        if ($mode === false) throw new RuntimeException('Cannot read language file permissions.');
+        $modes[$move[0]] = $mode & 0777;
+    }
+    $completed = [];
+    $writtenAliases = [];
+    $originalSource = $section['kind'] === 'module' ? file_get_contents($source) : null;
+    if ($section['kind'] === 'module' && $originalSource === false)
+        throw new RuntimeException('Cannot read the module language file.');
+    try {
+        foreach ($moves as $move) {
+            if (!rename($move[0], $move[1])) throw new RuntimeException('Cannot rename the language file.');
+            $completed[] = $move;
+            if (function_exists('opcache_invalidate')) {
+                @opcache_invalidate($move[0], true);
+                @opcache_invalidate($move[1], true);
+            }
+        }
+        if ($section['kind'] === 'module' && strpos($originalSource, 'ZM_PB_LM_INCLUDE:' . $old) !== false) {
+            $updated = str_replace(['ZM_PB_LM_INCLUDE:' . $old, '/overrides/' . $old . '.php'],
+                ['ZM_PB_LM_INCLUDE:' . $new, '/overrides/' . $new . '.php'], $originalSource);
+            zm_pb_lm_write($moves[0][1], $updated);
+        }
+        if ($section['kind'] !== 'self') {
+            zm_pb_lm_write($source, zm_pb_lm_alias_source($new));
+            $writtenAliases[] = $source;
+            if (!chmod($source, $modes[$source])) throw new RuntimeException('Cannot set language alias permissions.');
+            $oldOverride = $directory . '/overrides/' . $old . '.php';
+            if (is_file($directory . '/overrides/' . $new . '.php')) {
+                zm_pb_lm_write($oldOverride, zm_pb_lm_alias_source($new));
+                $writtenAliases[] = $oldOverride;
+                if (!chmod($oldOverride, $modes[$oldOverride]))
+                    throw new RuntimeException('Cannot set override alias permissions.');
+            }
+        }
+    } catch (Throwable $error) {
+        foreach ($writtenAliases as $alias) if (is_file($alias)) unlink($alias);
+        $rollbackFailed = false;
+        if ($section['kind'] === 'module' && is_file($moves[0][1])) {
+            try { zm_pb_lm_write($moves[0][1], $originalSource); }
+            catch (Throwable $rollbackError) { $rollbackFailed = true; }
+        }
+        foreach (array_reverse($completed) as $move) {
+            if (!rename($move[1], $move[0])) $rollbackFailed = true;
+        }
+        if ($rollbackFailed) throw new RuntimeException('Language filename correction failed and could not be rolled back.', 0, $error);
+        throw $error;
+    }
+    return $new;
 }
 
 function zm_pb_lm_variable(array $section, string $file): string
@@ -141,6 +267,10 @@ function zm_pb_lm_set(&$catalog, array $path, string $value): void
 
 function zm_pb_lm_own(string $name, bool $allowDisabled = false, bool $withOverride = true)
 {
+    if ($name !== 'english') {
+        $name = zm_pb_lm_name(['kind' => 'self', 'directory' => ZM_PB_ALANGDIR],
+            zm_pb_lm_supported_key($name));
+    }
     $english = ZM_PB_ALANGDIR . 'english.php';
     $default = $name === 'english' ? require $english : zm_pb_lm_own('english', false, $withOverride);
     $file = ZM_PB_ALANGDIR . $name . '.php';
@@ -170,6 +300,19 @@ function zm_pb_lm_own(string $name, bool $allowDisabled = false, bool $withOverr
         }
     }
     return $default;
+}
+
+/** Resolve placeholders only after the editable language catalog has been loaded. */
+function zm_pb_lm_apply_runtime_tokens($catalog): void
+{
+    if (!is_object($catalog) || !isset($catalog->module) || !is_object($catalog->module)) return;
+    $general = $catalog->module->alerts ?? null;
+    $database = $catalog->module->module_db->alerts ?? null;
+    foreach ([$general, $database] as $alerts) {
+        if (is_object($alerts) && isset($alerts->access_denied) && is_string($alerts->access_denied))
+            $alerts->access_denied = str_replace('{super_admin_id}',
+                (string) ZM_PB_SUPERADM_ID, $alerts->access_denied);
+    }
 }
 
 function zm_pb_lm_catalog(array $section, string $name, bool $withOverride = true)
@@ -207,6 +350,112 @@ function zm_pb_lm_source_catalog(array $section, string $name, string $reference
     $source = zm_pb_lm_catalog($section, $reference, false);
     if ($name === $reference) return $source;
     return zm_pb_lm_merge(zm_pb_lm_copy($source), zm_pb_lm_catalog($section, $name, false));
+}
+
+/** Return the selected file's values, or the reference for a newly added language. */
+function zm_pb_lm_editor_original(array $section, string $name, string $reference)
+{
+    $files = zm_pb_lm_files($section);
+    if (!isset($files[$name])) throw new InvalidArgumentException('Language not found.');
+    $file = $files[$name]['file'];
+    if (zm_pb_lm_is_added_file($file)) return zm_pb_lm_catalog($section, $reference, false);
+    if ($section['kind'] === 'self') {
+        $original = zm_pb_lm_load_php($file, '');
+        if (!is_object($original) && !is_array($original)) $original = [];
+        if (!$original || (is_object($original) && !get_object_vars($original)))
+            return zm_pb_lm_catalog($section, $reference, false);
+        return $original;
+    }
+    return zm_pb_lm_catalog($section, $name, false);
+}
+
+function zm_pb_lm_editor_rows(array $section, string $name, string $reference): array
+{
+    $original = zm_pb_lm_editor_original($section, $name, $reference);
+    $target = zm_pb_lm_catalog($section, $name);
+    $referenceCatalog = zm_pb_lm_catalog($section, $reference, false);
+    $shape = zm_pb_lm_merge(zm_pb_lm_copy($referenceCatalog), $target);
+    $originalRows = zm_pb_lm_flatten($original);
+    $targetRows = zm_pb_lm_flatten($target);
+    $referenceRows = zm_pb_lm_flatten($referenceCatalog);
+    $dir = $section['directory'] . '/overrides' . ($section['kind'] === 'self' ? '/managed' : '');
+    $managed = zm_pb_lm_managed_entries($dir . '/' . $name . '.php');
+    $all = $referenceRows + $targetRows;
+    foreach ($all as $id => &$row) {
+        $row['value'] = $targetRows[$id]['value'] ?? '';
+        $row['source'] = $originalRows[$id]['value'] ?? '';
+        $row['added'] = !isset($originalRows[$id]) || !empty($managed[$id]['custom']);
+        $row['managed_custom'] = !empty($managed[$id]['custom']);
+        $row['key'] = (string) $row['path'][count($row['path']) - 1]['key'];
+    }
+    unset($row);
+    return ['rows' => $all, 'shape' => $shape];
+}
+
+function zm_pb_lm_export_translations(array $section, string $sectionId, string $name, string $reference): string
+{
+    $rows = zm_pb_lm_editor_rows($section, $name, $reference)['rows'];
+    uasort($rows, static function ($a, $b) { return strcmp($a['label'], $b['label']); });
+    $translations = [];
+    foreach ($rows as $row) $translations[] = ['key' => $row['label'], 'path' => $row['id'],
+        'translation' => $row['value']];
+    $json = json_encode(['format' => 'zmchel-language-translations-v1', 'section' => $sectionId,
+        'language' => $name, 'translations' => $translations], JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+    if ($json === false) throw new RuntimeException('Cannot export the translations.');
+    return $json . "\n";
+}
+
+function zm_pb_lm_import_translations(array $section, string $sectionId, string $name, string $reference, array $data): array
+{
+    if (($data['format'] ?? null) !== 'zmchel-language-translations-v1' ||
+        ($data['section'] ?? null) !== $sectionId || ($data['language'] ?? null) !== $name ||
+        !isset($data['translations']) || !is_array($data['translations']))
+        throw new InvalidArgumentException('Invalid translation file or language section.');
+    $allowed = zm_pb_lm_editor_rows($section, $name, $reference)['rows'];
+    if (count($data['translations']) > 20000)
+        throw new InvalidArgumentException('Too many translation entries.');
+    $updates = [];
+    $seenPaths = [];
+    $seenKeys = [];
+    $skipped = [];
+    foreach ($data['translations'] as $item) {
+        if (!is_array($item) || !isset($item['path'], $item['key'], $item['translation']) ||
+            !is_string($item['path']) || !is_string($item['key']) || !is_string($item['translation']))
+            throw new InvalidArgumentException('Invalid translation entry.');
+        if (strlen($item['key']) > 4096 || preg_match('//u', $item['key']) !== 1)
+            throw new InvalidArgumentException('Invalid translation key.');
+        if (isset($seenPaths[$item['path']]) || isset($seenKeys[$item['key']])) {
+            $skipped[] = ['key' => $item['key'], 'reason' => 'duplicate'];
+            continue;
+        }
+        $seenPaths[$item['path']] = true;
+        $seenKeys[$item['key']] = true;
+        try {
+            $path = zm_pb_lm_path($item['path']);
+            $id = zm_pb_lm_path_id($path);
+        } catch (InvalidArgumentException $error) {
+            $skipped[] = ['key' => $item['key'], 'reason' => 'unknown'];
+            continue;
+        }
+        if (!isset($allowed[$id]) || $allowed[$id]['label'] !== $item['key']) {
+            $skipped[] = ['key' => $item['key'], 'reason' => 'unknown'];
+            continue;
+        }
+        $value = $item['translation'];
+        if (strlen($value) > 65535 || strpos($value, "\0") !== false || preg_match('//u', $value) !== 1)
+            throw new InvalidArgumentException('Invalid translation text.');
+        if ($value !== $allowed[$id]['value'])
+            $updates[$id] = ['path' => $path, 'value' => $value,
+                'custom' => !empty($allowed[$id]['managed_custom'])];
+    }
+    if ($updates) zm_pb_lm_update_entries($section, $name, static function (array $entries) use ($updates): array {
+        foreach ($updates as $id => $entry) {
+            $entry['custom'] = $entry['custom'] || !empty($entries[$id]['custom']);
+            $entries[$id] = $entry;
+        }
+        return $entries;
+    });
+    return ['updated' => count($updates), 'skipped' => $skipped];
 }
 
 function zm_pb_lm_flatten($catalog, array $path = [], array &$rows = []): array
@@ -584,9 +833,17 @@ function zm_pb_lm_toggle(array $section, string $name, bool $enable): void
         throw new InvalidArgumentException('The default language cannot be disabled.');
     $enabled = $section['directory'] . '/' . $name . '.php';
     $disabled = $section['directory'] . '/disabled/' . $name . '.php';
+    $legacyName = array_search($name, zm_pb_lm_filename_aliases(), true);
+    $aliasSource = $legacyName ? dirname($files[$name]['file']) . '/' . $legacyName . '.php' : null;
+    $aliasTarget = $legacyName ? dirname($enable ? $enabled : $disabled) . '/' . $legacyName . '.php' : null;
+    if ($aliasSource !== null && is_link($aliasSource)) throw new RuntimeException('Symbolic links cannot be edited.');
+    $moveAlias = $aliasSource !== null && is_file($aliasSource) &&
+        zm_pb_lm_is_filename_alias($aliasSource, $legacyName);
     if (is_file($enabled) && is_file($disabled))
         throw new RuntimeException('Both enabled and disabled language files already exist.');
     if ($files[$name]['state'] === ($enable ? 'enabled' : 'disabled')) return;
+    if ($moveAlias && (is_file($aliasTarget) || is_link($aliasTarget)))
+        throw new RuntimeException('Target language alias already exists.');
     $target = $section['directory'] . ($enable ? '' : '/disabled') . '/' . $name . '.php';
     if (is_file($target)) throw new RuntimeException('Target language file already exists.');
     if (!is_dir(dirname($target)) && !mkdir(dirname($target), 0750, true)) throw new RuntimeException('Cannot create the disabled directory.');
@@ -603,6 +860,11 @@ function zm_pb_lm_toggle(array $section, string $name, bool $enable): void
         if ($preparedBackup !== null && !$backupExisted) unlink($preparedBackup);
         throw new RuntimeException('Cannot move the language file.');
     }
+    if ($moveAlias && !rename($aliasSource, $aliasTarget)) {
+        rename($target, $files[$name]['file']);
+        if ($preparedBackup !== null && !$backupExisted) unlink($preparedBackup);
+        throw new RuntimeException('Cannot move the language alias.');
+    }
     if (function_exists('opcache_invalidate')) @opcache_invalidate($target, true);
     zm_pb_lm_sync_added_backup($section, $name, $enable ? 'enabled' : 'disabled', $target);
 }
@@ -616,6 +878,13 @@ function zm_pb_lm_recheck_disabled(): void
         foreach (glob($dir . '/disabled/*.php') ?: [] as $disabled) {
             $name = basename($disabled);
             $enabled = $dir . '/' . $name;
+            if (zm_pb_lm_is_filename_alias($disabled, basename($disabled, '.php'))) {
+                if (is_file($enabled) && !is_link($enabled)) {
+                    $backup = $disabled . '.restored-' . date('YmdHis') . '-' . bin2hex(random_bytes(3));
+                    if (!rename($enabled, $backup)) throw new RuntimeException('Cannot back up restored language alias: ' . $name);
+                }
+                continue;
+            }
             if (!is_file($enabled) || is_link($enabled) || is_link($disabled)) continue;
             $backup = $disabled . '.previous-' . date('YmdHis') . '-' . bin2hex(random_bytes(3));
             if (!rename($disabled, $backup)) throw new RuntimeException('Cannot back up disabled language: ' . $name);

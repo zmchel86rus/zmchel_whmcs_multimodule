@@ -96,7 +96,7 @@ return (object)[
             'title'=>'База података модула',
             'description'=>'',
             'alerts'=> (object)[
-                'access_denied'=> 'Приступ је одбијен. Само главни администратор (ID 1) може користити страницу База података модула.',
+                'access_denied'=> 'Приступ је одбијен. Само главни администратор (ID {super_admin_id}) може користити страницу База података модула.',
                 'db_operation_error' => ['Операција је завршена са грешкама. Успешно: ', '. Грешке: '],
                 'db_operation_success' => 'Операција је успешно завршена. Обрађени објекти',
             ],
@@ -131,10 +131,22 @@ return (object)[
             'lithuanian' => 'Литвански',
             'latvian' => 'Летонски',
             'slovenian' => 'Словеначки',
-            'slovak' => 'Словачки'
+            'slovak' => 'Словачки',
+            'indonesian' => 'Индонежански',
+            'swahili' => 'Свахили',
+            'vietnamese' => 'Вијетнамски',
+            'malay' => 'Малајски',
+            'uzbek' => 'Узбечки',
+            'azerbaijani' => 'Азербејџански',
+            'kazakh' => 'Казашки',
+            'icelandic' => 'Исландски',
+            'belarusian' => 'Белоруски',
+            'albanian' => 'Албански',
+            'irish' => 'Ирски',
+            'romansh' => 'Романш',
         ]],
         'alerts'=> (object)[
-            'access_denied'=>'Приступ је одбијен. Ова страница модула доступна је само главном администратору (ID ' . ZM_PB_SUPERADM_ID . ').',
+            'access_denied'=>'Приступ је одбијен. Ова страница модула доступна је само главном администратору (ID {super_admin_id}).',
             'it_is_override_page'=>'Ова страница замењује: ',
         ],
         'trash' => (object)['title'=>'Корпа','description'=>'Ставке премештене у корпу. Брисање ставке овде је трајно.']
@@ -205,6 +217,8 @@ return (object)[
         'markers_incomplete'=>'Ознаке блока правила модула у .htaccess нису потпуне.',
     ],
     'module_settings' => (object)[
+        'language_rewrite_note'=>'Ако користите лепе URL адресе на Apache серверу, ажурирајте правила у Rewrite Manager-у после промене језика.',
+        'languages'=>(object)['description'=>'Изаберите језике које модул може да користи. Искључивање језика не брише његов садржај.','enabled'=>'Укључени','disabled'=>'Искључени','default_language'=>'Подразумевани језик'],
         'editable_consts' => (object)[
             'title'=>'Променљиве модула',
             'description'=>"Глобалне променљиве модула које се могу уређивати",
@@ -462,6 +476,7 @@ return (object)[
         ],
     ],
     'langs_manager' => (object)[
+        'import_skipped'=>'Следећи кључеви превода нису увезени:', 'import_unknown'=>'непознат кључ', 'import_duplicate'=>'дуплирани кључ',
         'show_all'=>'Прикажи све', 'show_original'=>'Прикажи оригиналне', 'show_added'=>'Прикажи додате',
         'sections'=>'Одељци',
         'languages'=>'Језици',

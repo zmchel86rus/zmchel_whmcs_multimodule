@@ -161,14 +161,11 @@ if ($adminId) {
 }
 $adminlang = strtolower((string) $adminlang);
 if (!preg_match('/^[a-z0-9_-]+$/D', $adminlang)) $adminlang = 'english';
-// Existing language file and supported_langs.php key. - Oh, WHMCS...
-if ($adminlang === 'ukrainian') $adminlang = 'ukranian';
-if ($adminlang === 'portuguese-pt') $adminlang = 'portugues';
-if ($adminlang === 'portuguese-br') $adminlang = 'portugues-br';
-
 ### SUP MODULE LANGS CONSTS ###
 if (!defined('ZM_PB_LANGS')) define('ZM_PB_LANGS', ( require_once ZM_PB_ROOTDIR.'supported_langs.php') );
 require_once ZM_PB_INCDIR . 'language_manager.php';
+$adminClientLanguage = zm_pb_lm_supported_key($adminlang);
+$adminlang = zm_pb_lm_name(['kind' => 'self', 'directory' => ZM_PB_ALANGDIR], $adminClientLanguage);
 if (!isset($GLOBALS['ZM_PB_ADMINLANG']) && defined('ZM_PB_ALANGDIR')){
     $admin_lang_file = ZM_PB_ALANGDIR . $adminlang.'.php';
     if( !file_exists($admin_lang_file) ){
@@ -178,6 +175,7 @@ if (!isset($GLOBALS['ZM_PB_ADMINLANG']) && defined('ZM_PB_ALANGDIR')){
         $admin_lang_file = ZM_PB_ALANGDIR . 'english.php';
     }
     $admin_lang_data = zm_pb_lm_own($adminlang);
+    zm_pb_lm_apply_runtime_tokens($admin_lang_data);
     foreach (ZM_PB_LANGS as $languageKey => $languageInfo) {
         if (!isset($admin_lang_data->module->supported_langs->translate->$languageKey)) {
             $admin_lang_data->module->supported_langs->translate->$languageKey = $languageInfo['name'];
@@ -187,10 +185,7 @@ if (!isset($GLOBALS['ZM_PB_ADMINLANG']) && defined('ZM_PB_ALANGDIR')){
     if (PHP_VERSION_ID >= 80000 && !defined('ZM_PB_ADMINLANG')) define('ZM_PB_ADMINLANG', $admin_lang_data);
 }
 if (!defined('ZM_PB_ADMINLANGNAME')) define('ZM_PB_ADMINLANGNAME', $adminlang );
-$adminClientLanguage = [
-    'portugues' => 'portuguese-pt',
-    'portugues-br' => 'portuguese-br',
-][$adminlang] ?? $adminlang;
+$adminClientLanguage = zm_pb_lm_supported_key($adminlang);
 if (!defined('ZM_PB_ADMIN_CLIENT_LANGNAME')) define('ZM_PB_ADMIN_CLIENT_LANGNAME', $adminClientLanguage);
 ### SUP MODULE LANGS CONSTS ###
 unset($adminId);

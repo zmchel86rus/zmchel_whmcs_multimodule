@@ -16,6 +16,8 @@ use Illuminate\Database\Capsule\Manager as Capsule;
         require __DIR__ . '/module_settings/transfer.php';
     } elseif ($method_action === 'edit_module_vars') {
         require __DIR__ . '/module_settings/edit_module_vars.php';
+    } elseif ($method_action === 'toggle_module_language') {
+        require __DIR__ . '/module_settings/toggle_module_language.php';
     } elseif ($method_action === 'edit_module_custom_header') {
         require __DIR__ . '/module_settings/edit_module_custom_header.php';
     } elseif ($method_action === 'edit_module_custom_footer') {

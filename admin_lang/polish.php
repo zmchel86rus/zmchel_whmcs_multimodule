@@ -96,7 +96,7 @@ return (object)[
             'title'=>'Baza danych modułu',
             'description'=>'',
             'alerts'=> (object)[
-                'access_denied'=> 'Odmowa dostępu. Ze strony Baza danych modułu może korzystać wyłącznie Super Administrator (ID 1).',
+                'access_denied'=> 'Odmowa dostępu. Ze strony Baza danych modułu może korzystać wyłącznie Super Administrator (ID {super_admin_id}).',
                 'db_operation_error' => ['Operacja zakończona z błędami. Pomyślnie: ', '. Błędy: '],
                 'db_operation_success' => 'Operacja zakończona pomyślnie. Przetworzone obiekty',
             ],
@@ -131,10 +131,22 @@ return (object)[
             'lithuanian' => 'Litewski',
             'latvian' => 'Łotewski',
             'slovenian' => 'Słoweński',
-            'slovak' => 'Słowacki'
+            'slovak' => 'Słowacki',
+            'indonesian' => 'Indonezyjski',
+            'swahili' => 'Suahili',
+            'vietnamese' => 'Wietnamski',
+            'malay' => 'Malajski',
+            'uzbek' => 'Uzbecki',
+            'azerbaijani' => 'Azerbejdżański',
+            'kazakh' => 'Kazachski',
+            'icelandic' => 'Islandzki',
+            'belarusian' => 'Białoruski',
+            'albanian' => 'Albański',
+            'irish' => 'Irlandzki',
+            'romansh' => 'Retoromański',
         ]],
         'alerts'=> (object)[
-            'access_denied'=>'Odmowa dostępu. Ta strona modułu jest dostępna tylko dla Super Administratora (ID ' . ZM_PB_SUPERADM_ID . ').',
+            'access_denied'=>'Odmowa dostępu. Ta strona modułu jest dostępna tylko dla Super Administratora (ID {super_admin_id}).',
             'it_is_override_page'=>'Ta strona zastępuje: ',
         ],
         'trash' => (object)['title'=>'Kosz','description'=>'Elementy przeniesione do kosza. Usunięcie elementu stąd jest nieodwracalne.']
@@ -205,6 +217,8 @@ return (object)[
         'markers_incomplete'=>'Znaczniki reguł modułu w .htaccess są niekompletne.',
     ],
     'module_settings' => (object)[
+        'language_rewrite_note'=>'Jeśli używasz przyjaznych adresów URL na Apache, po zmianie języków zaktualizuj reguły w menedżerze przepisywania.',
+        'languages'=>(object)['description'=>'Wybierz języki dostępne w module. Wyłączenie języka nie usuwa jego treści.','enabled'=>'Włączone','disabled'=>'Wyłączone','default_language'=>'Język domyślny'],
         'editable_consts' => (object)[
             'title'=>'Zmienne modułu',
             'description'=>"Edytowalne globalne zmienne modułu",
@@ -462,6 +476,7 @@ return (object)[
         ],
     ],
     'langs_manager' => (object)[
+        'import_skipped'=>'Nie zaimportowano następujących kluczy tłumaczeń:', 'import_unknown'=>'nieznany klucz', 'import_duplicate'=>'zduplikowany klucz',
         'show_all'=>'Pokaż wszystkie', 'show_original'=>'Pokaż oryginalne', 'show_added'=>'Pokaż dodane',
         'sections'=>'Sekcje',
         'languages'=>'Języki',

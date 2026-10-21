@@ -95,7 +95,7 @@ return (object)[
             'title'=>'Base de dados do módulo',
             'description'=>'',
             'alerts'=> (object)[
-                'access_denied'=> 'Acesso negado. Apenas o Superadministrador (ID 1) pode utilizar a página Base de Dados do módulo.',
+                'access_denied'=> 'Acesso negado. Apenas o Superadministrador (ID {super_admin_id}) pode utilizar a página Base de Dados do módulo.',
                 'db_operation_error' => ['Operação concluída com erros. Bem-sucedidos: ', '. Erros: '],
                 'db_operation_success' => 'Operação concluída com sucesso. Objetos processados',
             ],
@@ -130,10 +130,22 @@ return (object)[
             'lithuanian' => 'Lituano',
             'latvian' => 'Letão',
             'slovenian' => 'Esloveno',
-            'slovak' => 'Eslovaco'
+            'slovak' => 'Eslovaco',
+            'indonesian' => 'Indonésio',
+            'swahili' => 'Suaíli',
+            'vietnamese' => 'Vietnamita',
+            'malay' => 'Malaio',
+            'uzbek' => 'Usbeque',
+            'azerbaijani' => 'Azerbaijano',
+            'kazakh' => 'Cazaque',
+            'icelandic' => 'Islandês',
+            'belarusian' => 'Bielorrusso',
+            'albanian' => 'Albanês',
+            'irish' => 'Irlandês',
+            'romansh' => 'Romanche',
         ]],
         'alerts'=> (object)[
-            'access_denied'=>'Acesso negado. Esta página do módulo está disponível apenas para o Superadministrador (ID ' . ZM_PB_SUPERADM_ID . ').',
+            'access_denied'=>'Acesso negado. Esta página do módulo está disponível apenas para o Superadministrador (ID {super_admin_id}).',
             'it_is_override_page'=>'Esta página substitui: ',
         ],
         'trash' => (object)['title'=>'Lixo','description'=>'Itens movidos para o Lixo. A eliminação de um item aqui é permanente.']
@@ -204,6 +216,8 @@ return (object)[
         'markers_incomplete'=>'Os marcadores das regras do módulo em .htaccess estão incompletos.',
     ],
     'module_settings' => (object)[
+        'language_rewrite_note'=>'Se utilizar URLs amigáveis no Apache, atualize as regras no gestor de reescrita depois de alterar os idiomas.',
+        'languages'=>(object)['description'=>'Escolha os idiomas que o módulo pode utilizar. Desativar um idioma não elimina o seu conteúdo.','enabled'=>'Ativos','disabled'=>'Desativados','default_language'=>'Idioma predefinido'],
         'editable_consts' => (object)[
             'title'=>'Variáveis do módulo',
             'description'=>"Variáveis globais editáveis do módulo",
@@ -459,6 +473,7 @@ return (object)[
         ],
     ],
     'langs_manager' => (object)[
+        'import_skipped'=>'As seguintes chaves de tradução não foram importadas:', 'import_unknown'=>'chave desconhecida', 'import_duplicate'=>'chave duplicada',
         'show_all'=>'Mostrar todas', 'show_original'=>'Mostrar as originais', 'show_added'=>'Mostrar as adicionadas',
         'sections'=>'Secções',
         'languages'=>'Idiomas',

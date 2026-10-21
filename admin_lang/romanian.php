@@ -96,7 +96,7 @@ return (object)[
             'title'=>'Baza de date a modulului',
             'description'=>'',
             'alerts'=> (object)[
-                'access_denied'=> 'Acces refuzat. Numai Superadministratorul (ID 1) poate utiliza pagina Bază de date a modulului.',
+                'access_denied'=> 'Acces refuzat. Numai Superadministratorul (ID {super_admin_id}) poate utiliza pagina Bază de date a modulului.',
                 'db_operation_error' => ['Operațiunea s-a încheiat cu erori. Reușite: ', '. Erori: '],
                 'db_operation_success' => 'Operațiunea s-a încheiat cu succes. Obiecte procesate',
             ],
@@ -131,10 +131,22 @@ return (object)[
             'lithuanian' => 'Lituaniană',
             'latvian' => 'Letonă',
             'slovenian' => 'Slovenă',
-            'slovak' => 'Slovacă'
+            'slovak' => 'Slovacă',
+            'indonesian' => 'Indoneziană',
+            'swahili' => 'Swahili',
+            'vietnamese' => 'Vietnameză',
+            'malay' => 'Malaeză',
+            'uzbek' => 'Uzbecă',
+            'azerbaijani' => 'Azeră',
+            'kazakh' => 'Kazahă',
+            'icelandic' => 'Islandeză',
+            'belarusian' => 'Belarusă',
+            'albanian' => 'Albaneză',
+            'irish' => 'Irlandeză',
+            'romansh' => 'Romanșă',
         ]],
         'alerts'=> (object)[
-            'access_denied'=>'Acces refuzat. Această pagină a modulului este disponibilă numai Superadministratorului (ID ' . ZM_PB_SUPERADM_ID . ').',
+            'access_denied'=>'Acces refuzat. Această pagină a modulului este disponibilă numai Superadministratorului (ID {super_admin_id}).',
             'it_is_override_page'=>'Această pagină suprascrie: ',
         ],
         'trash' => (object)['title'=>'Coș de gunoi','description'=>'Elementele mutate în Coșul de gunoi. Ștergerea unui element de aici este definitivă.']
@@ -205,6 +217,8 @@ return (object)[
         'markers_incomplete'=>'Marcajele blocului de reguli al modulului din .htaccess sunt incomplete.',
     ],
     'module_settings' => (object)[
+        'language_rewrite_note'=>'Dacă folosiți URL-uri prietenoase pe Apache, actualizați regulile din Rewrite Manager după modificarea limbilor.',
+        'languages'=>(object)['description'=>'Alegeți limbile pe care le poate folosi modulul. Dezactivarea unei limbi nu îi șterge conținutul.','enabled'=>'Activate','disabled'=>'Dezactivate','default_language'=>'Limba implicită'],
         'editable_consts' => (object)[
             'title'=>'Variabilele modulului',
             'description'=>"Variabile globale editabile ale modulului",
@@ -462,6 +476,7 @@ return (object)[
         ],
     ],
     'langs_manager' => (object)[
+        'import_skipped'=>'Următoarele chei de traducere nu au fost importate:', 'import_unknown'=>'cheie necunoscută', 'import_duplicate'=>'cheie duplicată',
         'show_all'=>'Afișează toate', 'show_original'=>'Afișează originalele', 'show_added'=>'Afișează traducerile adăugate',
         'sections'=>'Secțiuni',
         'languages'=>'Limbi',
