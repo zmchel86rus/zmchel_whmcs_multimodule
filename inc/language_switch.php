@@ -1,5 +1,6 @@
 <?php
 if (!defined('ZM_PB_VER')) die('Direct access not allowed');
+require_once __DIR__ . '/language_aliases.php';
 require_once __DIR__ . '/route_guard.php';
 require_once __DIR__ . '/page_urls.php';
 

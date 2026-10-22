@@ -1,6 +1,7 @@
 <?php
 if (!defined('ZM_PB_VER')) die('Direct access not allowed');
 require_once __DIR__ . '/module_languages.php';
+require_once __DIR__ . '/language_aliases.php';
 
 /** The editor only accepts directories discovered here, never a path from a request. */
 function zm_pb_lm_sections(): array
@@ -54,12 +55,6 @@ function zm_pb_lm_files(array $section): array
     return $result;
 }
 
-function zm_pb_lm_filename_aliases(): array
-{
-    return ['ukranian' => 'ukrainian', 'portugues' => 'portuguese-pt',
-        'portugues-br' => 'portuguese-br'];
-}
-
 function zm_pb_lm_alias_source(string $new): string
 {
     return "<?php\n/* ZM_PB_LM_FILENAME_ALIAS:$new */\nreturn require __DIR__ . '/$new.php';\n";
@@ -70,16 +65,6 @@ function zm_pb_lm_is_filename_alias(string $file, string $old): bool
     $new = zm_pb_lm_filename_aliases()[$old] ?? null;
     return $new !== null && is_file(dirname($file) . '/' . $new . '.php') &&
         file_get_contents($file) === zm_pb_lm_alias_source($new);
-}
-
-function zm_pb_lm_supported_key(string $name): string
-{
-    $aliases = zm_pb_lm_filename_aliases();
-    $canonical = $aliases[$name] ?? $name;
-    if (isset(ZM_PB_LANGS[$canonical])) return $canonical;
-    if (isset(ZM_PB_LANGS[$name])) return $name;
-    $legacy = array_search($canonical, $aliases, true);
-    return $legacy !== false && isset(ZM_PB_LANGS[$legacy]) ? $legacy : $canonical;
 }
 
 function zm_pb_lm_name(array $section, string $supported): string

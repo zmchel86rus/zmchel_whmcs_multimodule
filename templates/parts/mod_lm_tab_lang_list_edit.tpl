@@ -3,31 +3,6 @@
     {if $lm_state == 'disabled'}<p class="alert alert-info">{$lm_text->disabled_editable|escape}</p>{/if}
     {if $lm_readonly}<p class="alert alert-warning">This module returns a PHP catalog instead of using a language variable. Its loader needs an override adapter before edits can be saved.</p>{/if}
     <p class="text-muted">{$lm_text->reference|escape}: {$lm_reference_title|escape} ({$lm_reference|escape}). {$lm_text->save_one|escape}</p>
-    <div class="form-inline mar-b-2">
-        <form class="lm-action-form d-in" method="post" action="addonmodules.php">
-            <input type="hidden" name="module" value="{$addonName|escape}">
-            <input type="hidden" name="subpage" value="langs_manager">
-            <input type="hidden" name="section" value="{$lm_section|escape}">
-            <input type="hidden" name="language" value="{$lm_language|escape}">
-            <input type="hidden" name="action" value="export_translations">
-            <input type="hidden" name="zm_pb_forms_nonce" value="{$zm_pb_forms_nonce|escape}">
-            <input type="hidden" name="zm_pb_admin_nonce" value="{$zm_pb_admin_nonce|escape}">
-            <button class="btn btn-default" type="submit">{$lm_transfer_text->export|escape} JSON</button>
-        </form>
-        {if !$lm_readonly}
-        <form class="lm-action-form d-in" method="post" action="addonmodules.php" enctype="multipart/form-data">
-            <input type="hidden" name="module" value="{$addonName|escape}">
-            <input type="hidden" name="subpage" value="langs_manager">
-            <input type="hidden" name="section" value="{$lm_section|escape}">
-            <input type="hidden" name="language" value="{$lm_language|escape}">
-            <input type="hidden" name="action" value="import_translations">
-            <input type="hidden" name="zm_pb_forms_nonce" value="{$zm_pb_forms_nonce|escape}">
-            <input type="hidden" name="zm_pb_admin_nonce" value="{$zm_pb_admin_nonce|escape}">
-            <input class="form-control" type="file" name="translations_file" accept=".json,application/json" required aria-label="{$lm_transfer_text->file|escape}">
-            <button class="btn btn-default" type="submit">{$lm_transfer_text->import|escape} JSON</button>
-        </form>
-        {/if}
-    </div>
     <form id="lm-search-form" class="form-inline mar-b-2" method="get" action="addonmodules.php#mod_lm_tab_lang_list_edit">
         <input type="hidden" name="module" value="{$addonName|escape}">
         <input type="hidden" name="subpage" value="langs_manager">
@@ -142,4 +117,30 @@
         <button type="submit" class="btn d-block w-fit btn-success">{$other_translates->add|escape}</button>
     </form>
     {/if}
+    <div class="form-inline mar-t-2">
+        <h4>{$lm_transfer_text->import|escape} / {$lm_transfer_text->export|escape} - {$lm_text->translation|escape}</h4>
+        <form class="lm-action-form d-in" method="post" action="addonmodules.php">
+            <input type="hidden" name="module" value="{$addonName|escape}">
+            <input type="hidden" name="subpage" value="langs_manager">
+            <input type="hidden" name="section" value="{$lm_section|escape}">
+            <input type="hidden" name="language" value="{$lm_language|escape}">
+            <input type="hidden" name="action" value="export_translations">
+            <input type="hidden" name="zm_pb_forms_nonce" value="{$zm_pb_forms_nonce|escape}">
+            <input type="hidden" name="zm_pb_admin_nonce" value="{$zm_pb_admin_nonce|escape}">
+            <button class="btn btn-sm btn-default" type="submit">{$lm_transfer_text->export|escape} JSON</button>
+        </form>
+        {if !$lm_readonly}
+        <form class="lm-action-form d-in" method="post" action="addonmodules.php" enctype="multipart/form-data">
+            <input type="hidden" name="module" value="{$addonName|escape}">
+            <input type="hidden" name="subpage" value="langs_manager">
+            <input type="hidden" name="section" value="{$lm_section|escape}">
+            <input type="hidden" name="language" value="{$lm_language|escape}">
+            <input type="hidden" name="action" value="import_translations">
+            <input type="hidden" name="zm_pb_forms_nonce" value="{$zm_pb_forms_nonce|escape}">
+            <input type="hidden" name="zm_pb_admin_nonce" value="{$zm_pb_admin_nonce|escape}">
+            <input class="form-control" type="file" name="translations_file" accept=".json,application/json" required aria-label="{$lm_transfer_text->file|escape}">
+            <button class="btn btn-sm btn-default" type="submit">{$lm_transfer_text->import|escape} JSON</button>
+        </form>
+        {/if}
+    </div>
 {else}<p class="text-muted">{$lm_text->select_language|escape}</p>{/if}

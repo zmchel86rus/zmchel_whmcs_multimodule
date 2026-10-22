@@ -38,7 +38,7 @@ $langs = [
     'swahili' => ['code'=>'TZ','name'=>'Kiswahili','locale'=>'sw_TZ','locale_BCP47'=>'sw-TZ','code_ISO639_1'=>'sw'],
     'vietnamese' => ['code'=>'VN','name'=>'Tiếng Việt','locale'=>'vi_VN','locale_BCP47'=>'vi-VN','code_ISO639_1'=>'vi'],
     'malay' => ['code'=>'MY','name'=>'Bahasa Melayu','locale'=>'ms_MY','locale_BCP47'=>'ms-MY','code_ISO639_1'=>'ms'],
-    'uzbek' => ['code'=>'UZ','name'=>'O‘zbekcha','locale'=>'uz_Latn_UZ','locale_BCP47'=>'uz-Latn-UZ','code_ISO639_1'=>'uz'],
+    'uzbek' => ['code'=>'UZ','name'=>'O‘zbekcha','locale'=>'uz_UZ','locale_BCP47'=>'uz-UZ','code_ISO639_1'=>'uz'],
     'azerbaijani' => ['code'=>'AZ','name'=>'Azərbaycanca','locale'=>'az_AZ','locale_BCP47'=>'az-AZ','code_ISO639_1'=>'az'],
     'kazakh' => ['code'=>'KZ','name'=>'Қазақша','locale'=>'kk_KZ','locale_BCP47'=>'kk-KZ','code_ISO639_1'=>'kk'],
     'icelandic' => ['code'=>'IS','name'=>'Íslenska','locale'=>'is_IS','locale_BCP47'=>'is-IS','code_ISO639_1'=>'is'],

@@ -134,6 +134,17 @@ require_once ZM_PB_INCDIR . 'menu_manager.php';
             'latvian' => ['lv-LV', 'lv.js'],
             'slovenian' => ['sl-SI', 'sl.js'],
             'slovak' => ['sk-SK', 'sk.js'],
+            'indonesian' => ['id-ID', 'id.js'],
+            'swahili' => ['sw-TZ', 'sw.js'],
+            'vietnamese' => ['vi-VN', 'vi.js'],
+            'malay' => ['ms-MY', 'ms.js'],
+            'uzbek' => ['uz-UZ', 'uz.js'],
+            'azerbaijani' => ['az_AZ', 'az.js'],
+            'kazakh' => ['kk-KZ', 'kk.js'],
+            'icelandic' => ['is-IS', 'is.js'],
+            'belarusian' => ['be-BY', 'be.js'],
+            'albanian' => ['sq-AL', 'sq.js'],
+            'irish' => ['ga-IE', 'ga.js'],
         ];
         $tinyMceChoice = $tinyMcePacks[$grapesClientLang] ?? ['en', null];
         $tinyMceLanguage = $tinyMceChoice[1] !== null && is_file(ZM_PB_ASSETSDIR . 'tinymce/langs/' . $tinyMceChoice[1])
