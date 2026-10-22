@@ -1,5 +1,6 @@
 <script>
 const formsNonce = '{$zm_pb_forms_nonce}';
+const secNonce = '{$zm_pb_secure_nonce}';
 const addonName = '{$addonName}';
 const subpage = '{$subpage}';
 const translate_texts = {
@@ -37,7 +38,9 @@ const translate_texts = {
                 </a>
             </li>
             <li role="presentation">
-                <a href="#mod_ss_tab_redirects" aria-controls="mod_ss_tab_redirects" role="tab" data-toggle="tab">{$redirects_text->settings|escape}</a>
+                <a href="#mod_ss_tab_redirects" aria-controls="mod_ss_tab_redirects" role="tab" data-toggle="tab">
+                    {$redirects_text->settings|escape}
+                </a>
             </li>
             <li role="presentation">
                 <a href="#mod_ss_tab_sitemap" aria-controls="mod_ss_tab_sitemap" role="tab" data-toggle="tab">

@@ -12,7 +12,11 @@ use Illuminate\Database\Capsule\Manager as Capsule;
     if (!$isSuperAdmin) exit( json_encode(['status'=>'error', 'title'=>$GLOBALS['ZM_PB_ADMINLANG']->other->error,'message'=>$GLOBALS['ZM_PB_ADMINLANG']->module->alerts->access_denied]) );
 
     
-    if (in_array($method_action, ['export_module', 'import_module'], true)) {
+    if ($method_action === 'media_manager_upload') {
+        require_once ZM_PB_MEDIA_MANAGER_FILE;
+        header('Content-Type: application/json; charset=utf-8');
+        exit(json_encode(zm_pb_media_manager_upload($_FILES['file'] ?? null)));
+    } elseif (in_array($method_action, ['export_module', 'import_module'], true)) {
         require __DIR__ . '/module_settings/transfer.php';
     } elseif ($method_action === 'edit_module_vars') {
         require __DIR__ . '/module_settings/edit_module_vars.php';

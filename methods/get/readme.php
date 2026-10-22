@@ -9,16 +9,18 @@ use Illuminate\Database\Capsule\Manager as Capsule;
     $availableDocs = ['menus', 'pagination', 'redirects', 'sitemaps', 'smarty', 'structured-data', 'transfer'];
     $isAdditionalDoc = in_array($doc, $availableDocs, true);
     $relativePath = $isAdditionalDoc ? 'docs/' . $doc . '.md' : 'instruction.md';
-    $readmePath = ZM_PB_ROOTDIR . 'rep_info/' . $readmeLanguage . '/' . $relativePath;
-    if (!is_readable($readmePath)) {
-        $legacyName = array_search($readmeLanguage, zm_pb_lm_filename_aliases(), true);
-        if ($legacyName !== false)
-            $readmePath = ZM_PB_ROOTDIR . 'rep_info/' . $legacyName . '/' . $relativePath;
+    $aliases = zm_pb_lm_filename_aliases();
+    $legacyName = array_search($readmeLanguage, $aliases, true);
+    $readmePath = null;
+    foreach (array_unique([$readmeLanguage, $aliases[$readmeLanguage] ?? null, $legacyName ?: null, 'english']) as $name) {
+        if ($name === null) continue;
+        $candidate = ZM_PB_ROOTDIR . 'rep_info/' . $name . '/' . $relativePath;
+        if (is_readable($candidate)) {
+            $readmePath = $candidate;
+            break;
+        }
     }
-    if (!is_readable($readmePath)) {
-        $readmePath = ZM_PB_ROOTDIR . 'rep_info/english/' . $relativePath;
-    }
-    $markdown = is_readable($readmePath) ? file_get_contents($readmePath) : false;
+    $markdown = $readmePath !== null ? file_get_contents($readmePath) : false;
     if ($markdown === false) {
         $smarty->assign('alertType', 'danger');
         $smarty->assign('alertMessage', ($GLOBALS['ZM_PB_ADMINLANG'])->module->instruction_error);

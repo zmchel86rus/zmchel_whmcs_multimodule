@@ -105,7 +105,8 @@ function zm_pb_lm_global_filename_candidates(array $sections): array
     }
     $lists = zm_pb_module_languages_state(rtrim(ZM_PB_ROOTDIR, '/\\'));
     foreach (zm_pb_lm_filename_aliases() as $old => $new) {
-        if (isset($lists['enabled'][$old]) || isset($lists['disabled'][$old]))
+        if (isset($lists['enabled'][$old]) || isset($lists['disabled'][$old]) ||
+            is_dir(rtrim(ZM_PB_ROOTDIR, '/\\') . '/rep_info/' . $old))
             $found[$old] = ['old' => $old, 'new' => $new];
     }
     ksort($found);
@@ -188,6 +189,15 @@ function zm_pb_lm_fix_filename_all(array $sections, string $old): string
     $new = $aliases[$old];
     foreach ($sections as $section) zm_pb_lm_check_filename_target($section, $old, $new);
     $directory = rtrim(ZM_PB_ROOTDIR, '/\\');
+    $docsRoot = $directory . '/rep_info';
+    $oldDocs = $docsRoot . '/' . $old;
+    $newDocs = $docsRoot . '/' . $new;
+    if (is_link($docsRoot) || is_link($oldDocs) || is_link($newDocs))
+        throw new RuntimeException('Symbolic links cannot be edited.');
+    if (file_exists($oldDocs) && !is_dir($oldDocs))
+        throw new RuntimeException('The language documentation path is not a directory.');
+    if (is_dir($oldDocs) && file_exists($newDocs))
+        throw new RuntimeException('The corrected language documentation directory already exists.');
     $lists = zm_pb_module_languages_state($directory);
     $needsRekey = isset($lists['enabled'][$old]) || isset($lists['disabled'][$old]);
     $configFile = $directory . '/' . (isset($lists['enabled'][$old]) ? 'supported_langs.php' : 'disabled_langs.php');
@@ -197,9 +207,15 @@ function zm_pb_lm_fix_filename_all(array $sections, string $old): string
     $transaction = function_exists('zm_pb_has_table');
     if ($transaction) $db::connection()->beginTransaction();
     $configChanged = false;
+    $docsMoved = false;
     try {
         if ($transaction) zm_pb_lm_rekey_saved_languages($old, $new);
         if ($needsRekey) $configChanged = zm_pb_module_languages_rekey($directory, $old, $new);
+        if (is_dir($oldDocs)) {
+            if (!rename($oldDocs, $newDocs))
+                throw new RuntimeException('Cannot rename the language documentation directory.');
+            $docsMoved = true;
+        }
         foreach ($sections as $section) {
             foreach (zm_pb_lm_filename_candidates($section) as $candidate) {
                 if ($candidate['old'] === $old) zm_pb_lm_fix_filename($section, $old);
@@ -207,7 +223,8 @@ function zm_pb_lm_fix_filename_all(array $sections, string $old): string
         }
         if ($transaction) $db::connection()->commit();
     } catch (Throwable $error) {
-        if ($transaction) $db::connection()->rollBack();
+        if ($transaction && $db::connection()->transactionLevel() > 0) $db::connection()->rollBack();
+        if ($docsMoved) rename($newDocs, $oldDocs);
         if ($configChanged) zm_pb_module_languages_write($configFile, $originalConfig);
         throw $error;
     }

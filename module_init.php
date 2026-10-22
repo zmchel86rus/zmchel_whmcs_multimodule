@@ -61,7 +61,7 @@ if (!defined('ZM_PB_ALLOWED_CONSTS_CHANGE')) define('ZM_PB_ALLOWED_CONSTS_CHANGE
 ### INFO CONSTS ###
 if (!defined('ZM_PB_SUPERADM_ID')) define('ZM_PB_SUPERADM_ID', 1 );
 if (!defined('ZM_PB_FREFIX')) define('ZM_PB_FREFIX', 'ZM_PB_' );
-if (!defined('ZM_PB_VER')) define('ZM_PB_VER', '1.0.1' );
+if (!defined('ZM_PB_VER')) define('ZM_PB_VER', '1.1.1b' );
 if (!defined('ZM_PB_NAME')) define('ZM_PB_NAME', basename(__DIR__) );
 ### INFO CONSTS ###
 
@@ -78,7 +78,7 @@ if (!defined('ZM_PB_INCMODULEDIR')) define('ZM_PB_INCMODULEDIR', ZM_PB_INCDIR . 
 if (!defined('ZM_PB_LIBDIR')) define('ZM_PB_LIBDIR', ZM_PB_ROOTDIR . 'lib/' );
 if (!defined('ZM_PB_RESOURCESDIR')) define('ZM_PB_RESOURCESDIR', ZM_PB_ROOTDIR . 'resources/' );
 if (!defined('ZM_PB_ASSETSDIR')) define('ZM_PB_ASSETSDIR', ZM_PB_ROOTDIR . 'assets/' );
-if (!defined('ZM_PB_ALANGDIR')) define('ZM_PB_ALANGDIR', ZM_PB_ROOTDIR . 'admin_lang/' ); // saved as object
+if (!defined('ZM_PB_ALANGDIR')) define('ZM_PB_ALANGDIR', ZM_PB_ROOTDIR . 'admin_lang/' );
 if (!defined('ZM_PB_CLIENTSIDE_DIR')) define('ZM_PB_CLIENTSIDE_DIR', 'client_side/' );
 if (!defined('ZM_PB_CRUTCH_CLIENTSIDE_DIR')) define('ZM_PB_CRUTCH_CLIENTSIDE_DIR', '../../'.ZM_PB_ROOTDIR_INNER. 'templates/'.ZM_PB_CLIENTSIDE_DIR );
 if (!defined('ZM_PB_SCHEMAS_DIR')) define('ZM_PB_SCHEMAS_DIR', ZM_PB_ASSETSDIR.'schemas/' );
@@ -131,7 +131,7 @@ if (!defined('ZM_PB_FULLHOST')) define('ZM_PB_FULLHOST', rtrim(strtolower($CONFI
 ### SUP MODULE CONSTS ###
 if (!defined('ZM_PB_ACCEPTED_METHODS')) define('ZM_PB_ACCEPTED_METHODS', ['GET','POST','DELETE'] );
 if (!defined('ZM_PB_ACCEPTED_OVERRIDES')) define('ZM_PB_ACCEPTED_OVERRIDES', ['full','partial_before','partial_after','meta_only','partial_before_meta','partial_after_meta'] );
-if (!defined('ZM_PB_SUBPAGES')) define('ZM_PB_SUBPAGES', ['pages_manager','pages_editor','media_manager','menu_manager','rewrite_manager','redirects_manager','langs_manager','sitemap_manager','module_db','module_settings',/*'module_logs','code_editor',*/] );
+if (!defined('ZM_PB_SUBPAGES')) define('ZM_PB_SUBPAGES', ['pages_manager','pages_editor','media_manager','menu_manager','redirects_manager','langs_manager','sitemap_manager','module_db','module_settings','rewrite_manager',/*'module_logs','code_editor',*/] );
 if (!defined('ZM_PB_PAGE_BLOCK_EDITOR_TOOLS')) define('ZM_PB_PAGE_BLOCK_EDITOR_TOOLS', ['auth_zone', 'not_auth_zone', 'mixed_auth_zone', 'tinymce', 'paragraph', 'image', 'video', 'link', 'button', 'map', 'divider', 'spacer', 'flex', 'grid', 'carousel', 'custom_js', 'custom_css', 'smarty_variable']);
 ### SUP MODULE CONSTS ###
 

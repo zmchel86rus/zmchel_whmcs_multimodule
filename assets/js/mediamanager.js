@@ -10,6 +10,7 @@ var MediaManager = {
             formData.append('subpage', subpage);
             formData.append('action', action);
             formData.append('zm_pb_forms_nonce', formsNonce);
+            if (subpage === 'module_settings') formData.append('zm_pb_secure_nonce', secNonce);
 
             if( formData.get('delete') || action === 'media_manager_image_optimize' ) formData.append('zm_pb_admin_nonce', formsAdminNonce);
 

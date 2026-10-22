@@ -13,10 +13,21 @@
 | Language | Instructions |
 | --- | --- |
 | English | [Instructions](rep_info/english/instruction.md) |
+| Bahasa Indonesia | [Petunjuk](rep_info/indonesian/instruction.md) |
+| Kiswahili | [Maelekezo](rep_info/swahili/instruction.md) |
+| Tiếng Việt | [Hướng dẫn](rep_info/vietnamese/instruction.md) |
+| Bahasa Melayu | [Panduan](rep_info/malay/instruction.md) |
+| O‘zbekcha | [Yo‘riqnoma](rep_info/uzbek/instruction.md) |
+| Azərbaycanca | [Təlimat](rep_info/azerbaijani/instruction.md) |
+| Қазақша | [Нұсқаулық](rep_info/kazakh/instruction.md) |
+| Íslenska | [Leiðbeiningar](rep_info/icelandic/instruction.md) |
+| Беларуская | [Інструкцыя](rep_info/belarusian/instruction.md) |
+| Shqip | [Udhëzime](rep_info/albanian/instruction.md) |
+| Gaeilge | [Treoracha](rep_info/irish/instruction.md) |
 | Русский | [Инструкция](rep_info/russian/instruction.md) |
 | Deutsch | [Anleitung](rep_info/german/instruction.md) |
 | Español | [Instrucciones](rep_info/spanish/instruction.md) |
-| Українська | [Інструкція](rep_info/ukranian/instruction.md) |
+| Українська | [Інструкція](rep_info/ukrainian/instruction.md) |
 | Français | [Instructions](rep_info/french/instruction.md) |
 | Português (Portugal) | [Instruções](rep_info/portuguese-pt/instruction.md) |
 | Português (Brasil) | [Instruções](rep_info/portuguese-br/instruction.md) |
@@ -47,10 +58,21 @@
 | Language | Overview |
 | --- | --- |
 | English | [Overview](rep_info/english/overview.md) |
+| Bahasa Indonesia | [Gambaran umum](rep_info/indonesian/overview.md) |
+| Kiswahili | [Muhtasari](rep_info/swahili/overview.md) |
+| Tiếng Việt | [Tổng quan](rep_info/vietnamese/overview.md) |
+| Bahasa Melayu | [Gambaran keseluruhan](rep_info/malay/overview.md) |
+| O‘zbekcha | [Umumiy ma’lumot](rep_info/uzbek/overview.md) |
+| Azərbaycanca | [Ümumi məlumat](rep_info/azerbaijani/overview.md) |
+| Қазақша | [Шолу](rep_info/kazakh/overview.md) |
+| Íslenska | [Yfirlit](rep_info/icelandic/overview.md) |
+| Беларуская | [Агляд](rep_info/belarusian/overview.md) |
+| Shqip | [Përmbledhje](rep_info/albanian/overview.md) |
+| Gaeilge | [Forbhreathnú](rep_info/irish/overview.md) |
 | Русский | [Описание](rep_info/russian/overview.md) |
 | Deutsch | [Beschreibung](rep_info/german/overview.md) |
 | Español | [Descripción](rep_info/spanish/overview.md) |
-| Українська | [Опис](rep_info/ukranian/overview.md) |
+| Українська | [Опис](rep_info/ukrainian/overview.md) |
 | Français | [Présentation](rep_info/french/overview.md) |
 | Português (Portugal) | [Descrição](rep_info/portuguese-pt/overview.md) |
 | Português (Brasil) | [Descrição](rep_info/portuguese-br/overview.md) |

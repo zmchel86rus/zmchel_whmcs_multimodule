@@ -413,6 +413,8 @@ try {
         "<?php \$_ADDONLANG['name'] = 'Brazilian';\n");
     file_put_contents($root . '/modules/addons/sample/admin_lang/portugues-br.php',
         "<?php \$_ADDONLANG['name'] = 'Brazilian admin';\n");
+    mkdir(ZM_PB_ROOTDIR . 'rep_info/ukranian', 0750, true);
+    file_put_contents(ZM_PB_ROOTDIR . 'rep_info/ukranian/instruction.md', 'Ukrainian instructions');
     $candidates = array_column(zm_pb_lm_global_filename_candidates($sections), 'new', 'old');
     lm_check(($candidates['portugues-br'] ?? null) === 'portuguese-br' &&
         ($candidates['ukranian'] ?? null) === 'ukrainian',
@@ -431,12 +433,28 @@ try {
     }
     lm_check(isset(zm_pb_module_languages_state(rtrim(ZM_PB_ROOTDIR, '/'))['enabled']['ukranian']),
         'A rejected global correction changed supported_langs.php.');
+    lm_check(is_file(ZM_PB_ROOTDIR . 'rep_info/ukranian/instruction.md'),
+        'A rejected global correction moved the documentation directory.');
     unlink($root . '/lang/ukrainian.php');
+    mkdir(ZM_PB_ROOTDIR . 'rep_info/ukrainian', 0750, true);
+    try {
+        zm_pb_lm_fix_filename_all($sections, 'ukranian');
+        throw new RuntimeException('Global correction overwrote a documentation directory.');
+    } catch (RuntimeException $error) {
+        if ($error->getMessage() === 'Global correction overwrote a documentation directory.') throw $error;
+    }
+    lm_check(is_file(ZM_PB_ROOTDIR . 'rep_info/ukranian/instruction.md') &&
+        isset(zm_pb_module_languages_state(rtrim(ZM_PB_ROOTDIR, '/'))['enabled']['ukranian']),
+        'A documentation collision changed the language configuration.');
+    rmdir(ZM_PB_ROOTDIR . 'rep_info/ukrainian');
     zm_pb_lm_fix_filename_all($sections, 'ukranian');
     $lists = zm_pb_module_languages_state(rtrim(ZM_PB_ROOTDIR, '/'));
     lm_check(isset($lists['enabled']['ukrainian']) && !isset($lists['enabled']['ukranian']) &&
         is_file($root . '/lang/ukrainian.php') && is_file($root . '/lang/ukranian.php'),
         'The global correction did not update supported_langs.php and the client catalog.');
+    lm_check(is_file(ZM_PB_ROOTDIR . 'rep_info/ukrainian/instruction.md') &&
+        !file_exists(ZM_PB_ROOTDIR . 'rep_info/ukranian'),
+        'The global correction did not rename the documentation directory.');
     lm_check(zm_pb_lm_rekey_json('["ukranian","english","ukrainian"]', 'ukranian', 'ukrainian', false)
         === '["ukrainian","english"]' &&
         zm_pb_lm_rekey_json('{"ukranian":"Text"}', 'ukranian', 'ukrainian', true)
