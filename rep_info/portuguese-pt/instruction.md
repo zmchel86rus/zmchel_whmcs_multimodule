@@ -2,7 +2,13 @@
 
 **Antes de utilizar o módulo, gere salts exclusivos e coloque-os em `module_init.php`**: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` e `ZM_PB_NONCE_SALT`.
 
+**Antes da primeira utilização, abra Definições do módulo → Idiomas suportados e ative os idiomas necessários.**
+
 Desenvolvido e testado com **WHMCS 8.13.1–8.13.7**; compatibilidade PHP verificada nas versões **7.4–8.5**. O suporte para Apache é completo. Nginx também pode funcionar, mas o encaminhamento de idiomas na página inicial poderá exigir configuração adicional. **O módulo é gratuito.**
+
+## Gestor de idiomas (em desenvolvimento)
+
+Na administração do WHMCS, abra o Gestor de idiomas e escolha uma secção (idiomas do cliente ou da administração do WHMCS, este módulo ou outro) e um idioma. Compare o original ou a referência com a tradução, edite uma linha e guarde-a; também pode exportar e importar as chaves existentes em JSON. Os novos idiomas usam a referência até serem traduzidos. O gestor ativa e desativa ficheiros de idioma e corrige nomes antigos; altere primeiro o idioma predefinido no WHMCS.
 
 ## Acesso e páginas
 

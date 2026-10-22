@@ -2,7 +2,13 @@
 
 **Før du bruker modulen, må du generere unike salter og legge dem inn i `module_init.php`**: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` og `ZM_PB_NONCE_SALT`.
 
+**Før første bruk åpner du Modulinnstillinger → Støttede språk og aktiverer språkene du trenger.**
+
 Modulen er utviklet og testet med **WHMCS 8.13.1–8.13.7**; PHP-kompatibilitet er kontrollert for **7.4–8.5**. Apache støttes fullt ut. Nginx kan også fungere, men språkruting på forsiden kan kreve ekstra oppsett. **Modulen er gratis.**
+
+## Språkbehandling (under utvikling)
+
+Åpne Språkbehandling i WHMCS-administrasjonen og velg en seksjon (WHMCS-klient- eller administratorspråk, denne modulen eller en annen modul) og et språk. Sammenlign originalen eller referansen med oversettelsen, rediger én rad og lagre den; eksisterende nøkler kan også eksporteres og importeres som JSON. Nye språk bruker referansen til de er oversatt. Verktøyet aktiverer og deaktiverer språkfiler og retter gamle filnavn; endre standardspråk i WHMCS først.
 
 ## Tilgang og sider
 

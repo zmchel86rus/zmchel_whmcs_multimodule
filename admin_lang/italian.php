@@ -484,7 +484,7 @@ return (object)[
         'reference'=>'Lingua di riferimento',
         'save_one'=>'Ogni pulsante Salva salva una sola traduzione.',
         'key'=>'Chiave',
-        'reference_value'=>'Testo originale',
+        'reference_value'=>'Originale', 'reference_column'=>'Riferimento', 'untranslated'=>'Non tradotto',
         'translation'=>'Traduzione',
         'new_translation'=>'Nuova traduzione',
         'inside'=>'In',

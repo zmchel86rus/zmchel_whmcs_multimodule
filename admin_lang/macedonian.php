@@ -487,7 +487,7 @@ return (object)[
         'reference'=>'Референтен јазик',
         'save_one'=>'Секое копче Зачувај зачувува само еден превод.',
         'key'=>'Клуч',
-        'reference_value'=>'Изворен текст',
+        'reference_value'=>'Оригинал', 'reference_column'=>'Референца', 'untranslated'=>'Непреведено',
         'translation'=>'Превод',
         'new_translation'=>'Нов превод',
         'inside'=>'Во делот',

@@ -2,7 +2,13 @@
 
 **Před použitím modulu vygenerujte jedinečné soli a vložte je do `module_init.php`**: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` a `ZM_PB_NONCE_SALT`.
 
+**Před prvním použitím otevřete Nastavení modulu → Podporované jazyky a zapněte jazyky, které potřebujete.**
+
 Modul byl vyvinut a testován na **WHMCS 8.13.1–8.13.7**; kompatibilita s PHP byla ověřena pro **7.4–8.5**. Apache je plně podporován. Nginx může také fungovat, ale směrování jazyků na úvodní stránce může vyžadovat další nastavení. **Modul je zdarma.**
+
+## Správce jazyků (ve vývoji)
+
+V administraci WHMCS otevřete Správce jazyků a vyberte sekci (klientské nebo administrátorské jazyky WHMCS, tento či jiný modul) a jazyk. Porovnejte původní nebo referenční text s překladem, upravte řádek a uložte jej; existující klíče lze také exportovat a importovat jako JSON. Nové jazyky používají referenční text, dokud je nepřeložíte. Správce zapíná a vypíná jazykové soubory a opravuje staré názvy; výchozí jazyk nejprve změňte ve WHMCS.
 
 ## Přístup a stránky
 

@@ -481,7 +481,7 @@ return (object)[
         'disabled'=>'Выключана', 'available'=>'Даступныя для дадання', 'no_languages'=>'Моўныя файлы не знойдзены.',
         'disabled_editable'=>'Гэтая мова выключана. Яе пераклады ўсё яшчэ можна рэдагаваць.',
         'reference'=>'Эталонная мова', 'save_one'=>'Кожная кнопка «Захаваць» абнаўляе адзін пераклад.',
-        'key'=>'Ключ', 'reference_value'=>'Арыгінал', 'translation'=>'Пераклад',
+        'key'=>'Ключ', 'reference_value'=>'Арыгінал', 'reference_column'=>'Узор', 'untranslated'=>'Без перакладу', 'translation'=>'Пераклад',
         'new_translation'=>'Новы пераклад', 'inside'=>'Унутры', 'select_language'=>'Спачатку выберыце мову.',
     ],
     'other' => (object)[

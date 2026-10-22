@@ -2,6 +2,12 @@
 
 **Moduldan istifadə etməzdən əvvəl unikal salt dəyərləri yaradıb `module_init.php` faylına yerləşdirin: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` və `ZM_PB_NONCE_SALT`.** Modul **WHMCS 8.13.1–8.13.7** üzərində hazırlanıb və sınaqdan keçirilib. **PHP 7.4–8.5** uyğunluğu yoxlanılıb. Apache tam dəstəklənir; Nginx-də ana səhifənin dil marşrutlaşdırılması əlavə sazlama tələb edə bilər. **Modul pulsuzdur.**
 
+**İlk istifadədən əvvəl Modul parametrləri → Dəstəklənən dillər bölməsini açın və sizə lazım olan dilləri aktiv edin.**
+
+## Dil meneceri (hazırlanır)
+
+WHMCS idarəetməsində Dil menecerini açın, bölməni (WHMCS müştəri və ya admin dilləri, bu modul və ya başqa modul) və dili seçin. Orijinalı və ya istinad mətnini tərcümə ilə müqayisə edib hər sətri ayrıca yadda saxlayın; mövcud açarları JSON kimi ixrac və idxal etmək də olar. Yeni dil tərcümə edilənədək istinad mətnindən istifadə edir. Menecer dil fayllarını açıb-bağlayır və köhnə fayl adlarını düzəldir; standart dili söndürməzdən əvvəl onu WHMCS-də dəyişin.
+
 ## Səhifələrin yaradılması
 
 WHMCS idarəetmə panelində **Addons → zmchel WHMCS Multimodule** bölməsini açın. URL, yönləndirmə və ya server qaydalarını dəyişməzdən əvvəl modul parametrlərini ixrac edin. Səhifələr siyahısında daxili ad və domen, yaxud `.php` olmayan `haqqimizda` kimi *slug* daxil edin. Hər kəs, yalnız daxil olmuş istifadəçilər və ya qarışıq giriş seçin; sonra qaralama və ya dərc olunmuş statusu, səhifə növünü və dilləri seçin. WHMCS-in standart dili `supported_langs.php` daxilində olmalıdır.

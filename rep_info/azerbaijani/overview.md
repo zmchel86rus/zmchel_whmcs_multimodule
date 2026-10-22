@@ -2,7 +2,13 @@
 
 **İstifadədən əvvəl unikal salt dəyərlərini `module_init.php` faylına yazın: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` və `ZM_PB_NONCE_SALT`.** Modul **WHMCS 8.13.1–8.13.7** üzərində hazırlanıb və sınaqdan keçirilib. **PHP 7.4–8.5** uyğunluğu yoxlanılıb. Apache tam (100%) dəstəklənir; Nginx-də ana səhifənin dil marşrutları əlavə sazlama tələb edə bilər.
 
+**İlk istifadədən əvvəl Modul parametrləri → Dəstəklənən dillər bölməsini açın və sizə lazım olan dilləri aktiv edin.**
+
 **zmchel WHMCS Multimodule pulsuzdur.** WHMCS idarəetmə panelindən vizual redaktorla çoxdilli səhifələri, menyuları, media kitabxanasını, SEO metadatasını, XML sayt xəritələrini, yönləndirmələri, rewrite qaydalarını, idxal və ixracı idarə edin. Ətraflı məlumat üçün [təlimatı](instruction.md) oxuyun.
+
+## Dil meneceri (hazırlanır)
+
+WHMCS idarəetməsində Dil menecerini açın, bölməni (WHMCS müştəri və ya admin dilləri, bu modul və ya başqa modul) və dili seçin. Orijinalı və ya istinad mətnini tərcümə ilə müqayisə edib hər sətri ayrıca yadda saxlayın; mövcud açarları JSON kimi ixrac və idxal etmək də olar. Yeni dil tərcümə edilənədək istinad mətnindən istifadə edir. Menecer dil fayllarını açıb-bağlayır və köhnə fayl adlarını düzəldir; standart dili söndürməzdən əvvəl onu WHMCS-də dəyişin.
 
 ## Gələcək inkişaf
 

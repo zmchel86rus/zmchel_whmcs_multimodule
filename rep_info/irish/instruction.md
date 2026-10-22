@@ -2,6 +2,12 @@
 
 **Sula n-úsáideann tú an modúl, cruthaigh luachanna salt uathúla agus cuir i `module_init.php` iad: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` agus `ZM_PB_NONCE_SALT`.** Forbraíodh agus tástáladh an modúl ar **WHMCS 8.13.1–8.13.7**. Seiceáladh comhoiriúnacht le **PHP 7.4–8.5**. Tacaítear go hiomlán le Apache; d'fhéadfadh cumraíocht bhreise a bheith ag teastáil ó Nginx le haghaidh ródú teanga ar an leathanach baile. **Tá an modúl saor in aisce.**
 
+**Sula n-úsáidtear an modúl den chéad uair, oscail Socruithe an Mhodúil → Teangacha Tacaithe agus cumasaigh na teangacha atá uait.**
+
+## Bainisteoir Teangacha (á fhorbairt)
+
+Oscail Bainisteoir Teangacha i riarachán WHMCS agus roghnaigh rannóg (teangacha cliant nó riaracháin WHMCS, an modúl seo nó modúl eile) agus teanga. Cuir an bunleagan nó an tagairt i gcomparáid leis an aistriúchán, cuir líne amháin in eagar agus sábháil í; is féidir eochracha atá ann a easpórtáil agus a iompórtáil mar JSON freisin. Úsáideann teanga nua an tagairt go dtí go n-aistrítear í. Cumasaíonn nó díchumasaíonn an bainisteoir comhaid teanga agus ceartaíonn sé seanainmneacha; athraigh an teanga réamhshocraithe i WHMCS ar dtús.
+
 ## Leathanaigh a chruthú
 
 Oscail **Addons → zmchel WHMCS Multimodule** i limistéar riaracháin WHMCS. Easpórtáil socruithe an mhodúil sula n-athraíonn tú URLanna, atreoruithe nó rialacha freastalaí. I liosta na leathanach, cruthaigh leathanach le hainm inmheánach agus *slug* ar nós `futhainn`, gan fearann ná `.php`. Roghnaigh rochtain do chách, d'úsáideoirí sínithe isteach nó rochtain mheasctha; ansin roghnaigh dréacht nó foilsithe, cineál an leathanaigh agus na teangacha. Caithfidh teanga réamhshocraithe WHMCS a bheith i `supported_langs.php`.

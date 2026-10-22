@@ -2,9 +2,15 @@
 
 **Enne mooduli kasutamist genereeri unikaalsed soolad ja lisa need faili `module_init.php`**: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` ja `ZM_PB_NONCE_SALT`.
 
+**Enne esimest kasutuskorda ava Mooduli seaded → Toetatud keeled ja lülita vajalikud keeled sisse.**
+
 Moodul on loodud ja testitud **WHMCS-i versioonidel 8.13.1–8.13.7**. PHP ühilduvust on kontrollitud versioonidel **7.4–8.5**. Apache on täielikult toetatud. Moodul võib töötada ka Nginxiga, kuid keelte suunamine avalehel võib vajada lisaseadistust.
 
 **zmchel WHMCS Multimodule on tasuta.** See sisaldab visuaalset leheredaktorit, mitmekeelset sisu, menüüsid, meediakogu, SEO välju, XML-saidikaarte, ümbersuunamisi, ümberkirjutusreegleid ning importi ja eksporti. Loe [juhendit](instruction.md).
+
+## Keelehaldur (arendamisel)
+
+Ava WHMCS-i halduses Keelehaldur ning vali jaotis (WHMCS-i kliendi- või halduskeeled, see moodul või muu moodul) ja keel. Võrdle algteksti või võrdlusteksti tõlkega, muuda üht rida ja salvesta see; olemasolevaid võtmeid saab ka JSON-failina eksportida ja importida. Uus keel kasutab tõlkimiseni võrdlusteksti. Haldur lülitab keelefaile sisse ja välja ning parandab vanu failinimesid; vaikekeel muuda esmalt WHMCS-is.
 
 ## Edasised plaanid
 

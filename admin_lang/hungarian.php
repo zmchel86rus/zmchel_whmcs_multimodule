@@ -484,7 +484,7 @@ return (object)[
         'reference'=>'Viszonyítási nyelv',
         'save_one'=>'Minden Mentés gomb csak egy fordítást ment.',
         'key'=>'Kulcs',
-        'reference_value'=>'Eredeti szöveg',
+        'reference_value'=>'Eredeti', 'reference_column'=>'Referencia', 'untranslated'=>'Nincs lefordítva',
         'translation'=>'Fordítás',
         'new_translation'=>'Új fordítás',
         'inside'=>'Itt',

@@ -2,7 +2,13 @@
 
 **Sula n-úsáideann tú é, cruthaigh luachanna salt uathúla i `module_init.php`: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` agus `ZM_PB_NONCE_SALT`.** Forbraíodh agus tástáladh an modúl ar **WHMCS 8.13.1–8.13.7**. Seiceáladh comhoiriúnacht le **PHP 7.4–8.5**. Tacaítear go hiomlán le Apache (100%); d'fhéadfadh cumraíocht bhreise a bheith ag teastáil ó Nginx le haghaidh ródú teanga ar an leathanach baile.
 
+**Sula n-úsáidtear an modúl den chéad uair, oscail Socruithe an Mhodúil → Teangacha Tacaithe agus cumasaigh na teangacha atá uait.**
+
 **Tá zmchel WHMCS Multimodule saor in aisce.** Ó riarachán WHMCS is féidir leathanaigh ilteangacha a bhainistiú le heagarthóir amhairc, roghchláir, leabharlann meán, meiteashonraí SEO, léarscáileanna XML, atreoruithe, rialacha rewrite agus iompórtáil/easpórtáil. Léigh na [treoracha](instruction.md) sula dtosaíonn tú.
+
+## Bainisteoir Teangacha (á fhorbairt)
+
+Oscail Bainisteoir Teangacha i riarachán WHMCS agus roghnaigh rannóg (teangacha cliant nó riaracháin WHMCS, an modúl seo nó modúl eile) agus teanga. Cuir an bunleagan nó an tagairt i gcomparáid leis an aistriúchán, cuir líne amháin in eagar agus sábháil í; is féidir eochracha atá ann a easpórtáil agus a iompórtáil mar JSON freisin. Úsáideann teanga nua an tagairt go dtí go n-aistrítear í. Cumasaíonn nó díchumasaíonn an bainisteoir comhaid teanga agus ceartaíonn sé seanainmneacha; athraigh an teanga réamhshocraithe i WHMCS ar dtús.
 
 ## Forbairt amach anseo
 

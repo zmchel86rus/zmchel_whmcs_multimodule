@@ -487,7 +487,7 @@ return (object)[
         'reference'=>'Referentietaal',
         'save_one'=>'Elke knop Opslaan slaat één vertaling op.',
         'key'=>'Sleutel',
-        'reference_value'=>'Brontekst',
+        'reference_value'=>'Origineel', 'reference_column'=>'Referentie', 'untranslated'=>'Niet vertaald',
         'translation'=>'Vertaling',
         'new_translation'=>'Nieuwe vertaling',
         'inside'=>'Onder',

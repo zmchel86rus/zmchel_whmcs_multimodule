@@ -481,7 +481,7 @@ return (object)[
         'disabled'=>'Tidak aktif', 'available'=>'Tersedia untuk ditambah', 'no_languages'=>'Tiada fail bahasa ditemui.',
         'disabled_editable'=>'Bahasa ini dinyahaktifkan. Terjemahannya masih boleh disunting.',
         'reference'=>'Bahasa rujukan', 'save_one'=>'Setiap butang Simpan mengemas kini satu terjemahan.',
-        'key'=>'Kunci', 'reference_value'=>'Rujukan', 'translation'=>'Terjemahan',
+        'key'=>'Kunci', 'reference_value'=>'Asal', 'reference_column'=>'Rujukan', 'untranslated'=>'Belum diterjemah', 'translation'=>'Terjemahan',
         'new_translation'=>'Terjemahan baharu', 'inside'=>'Di dalam', 'select_language'=>'Pilih bahasa dahulu.',
     ],
     'other' => (object)[

@@ -6,6 +6,10 @@
 
 **PHP compatibility checked:** 7.4, 8.0, 8.1, 8.2, 8.3, 8.4, and 8.5. All PHP files passed syntax checks on each version; standalone tests were also run.
 
+**Before first use:** open Module settings → Supported languages and enable the languages you need. On activation, the module enables the WHMCS default language automatically; all other languages start disabled.
+
+**Language Manager (in development):** In the WHMCS admin area, select a language section and edit translations one row at a time, or export and import existing keys as JSON. New language files use the reference until translated. The manager can enable or disable language files and correct legacy filenames. To change the default language, enable the replacement in Module settings, change the WHMCS default, then disable the old language.
+
 **Activation report:** On activation, the module sends the WHMCS `SystemURL` domain and `module_start_using: true` to `https://193.42.118.3/using_module.php`. The receiver also records the connecting IP address. The report is encrypted before transmission and sent over HTTPS. Delivery is best effort and does not affect module activation. This report is solely to let the author know that someone is using the module. The module does not display any copyright notices or information about its use on your website.
 
 ## Instructions / Инструкции

@@ -2,9 +2,15 @@
 
 **A modul használata előtt hozzon létre egyedi sókat, és helyezze el őket a `module_init.php` fájlban**: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` és `ZM_PB_NONCE_SALT`.
 
+**Az első használat előtt nyissa meg a Modulbeállítások → Támogatott nyelvek menüt, és kapcsolja be a szükséges nyelveket.**
+
 A modult a **WHMCS 8.13.1–8.13.7** verzióival fejlesztették és tesztelték. A PHP-kompatibilitást a **7.4–8.5** verziókon ellenőrizték. Az Apache teljes mértékben támogatott. A modul Nginx alatt is működhet, de a kezdőlap nyelvi útválasztása további beállítást igényelhet.
 
 **A zmchel WHMCS Multimodule ingyenes.** Vizuális oldalszerkesztőt, többnyelvű tartalmat, menüket, médiatárat, SEO-mezőket, XML-webhelytérképeket, átirányításokat, átírási szabályokat, valamint importálást és exportálást kínál. Olvassa el az [útmutatót](instruction.md).
+
+## Nyelvkezelő (fejlesztés alatt)
+
+A WHMCS adminfelületén nyissa meg a Nyelvkezelőt, majd válasszon részt (WHMCS ügyfél- vagy adminnyelvek, ez vagy más modul) és nyelvet. Hasonlítsa össze az eredetit vagy a referenciát a fordítással, módosítson egy sort, majd mentse; a meglévő kulcsok JSON-ként exportálhatók és importálhatók. Az új nyelvek a fordításig a referenciát használják. A kezelő nyelvi fájlokat kapcsol be és ki, és javítja a régi fájlneveket; előbb a WHMCS-ben módosítsa az alapértelmezett nyelvet.
 
 ## További fejlesztési tervek
 

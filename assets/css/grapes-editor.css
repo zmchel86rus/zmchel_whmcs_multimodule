@@ -28,7 +28,7 @@
 #zm-pagebuilder .block-editor-container .block-editor-content {
     position: relative;
     padding: 0 !important;
-    min-height: calc(150vh + 141px);
+    min-height: calc(100vh + 141px);
     border: 1px solid #d5d9df;
 }
 

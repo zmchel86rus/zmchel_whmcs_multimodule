@@ -487,7 +487,7 @@ return (object)[
         'reference'=>'Език за сравнение',
         'save_one'=>'Всеки бутон „Запази“ записва само един превод.',
         'key'=>'Ключ',
-        'reference_value'=>'Оригинал',
+        'reference_value'=>'Оригинал', 'reference_column'=>'Референтен текст', 'untranslated'=>'Без превод',
         'translation'=>'Превод',
         'new_translation'=>'Нов превод',
         'inside'=>'В раздел',

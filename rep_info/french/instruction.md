@@ -2,7 +2,13 @@
 
 **Avant toute utilisation, générez des sels uniques et placez-les dans `module_init.php`** : `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` et `ZM_PB_NONCE_SALT`.
 
+**Avant la première utilisation, ouvrez Paramètres du module → Langues prises en charge et activez les langues nécessaires.**
+
 Module développé et testé avec **WHMCS 8.13.1–8.13.7** ; compatibilité PHP vérifiée de **7.4 à 8.5**. Apache est entièrement pris en charge. Nginx peut fonctionner, mais le routage des langues sur la page d’accueil demande parfois une configuration supplémentaire. **Le module est gratuit.**
+
+## Gestionnaire de langues (en cours de développement)
+
+Dans l'administration WHMCS, ouvrez le Gestionnaire de langues, puis choisissez une section (langues client ou admin de WHMCS, ce module ou un autre module) et une langue. Comparez l'original ou la référence à la traduction, modifiez une ligne et enregistrez-la ; vous pouvez aussi exporter et importer les clés existantes en JSON. Une nouvelle langue utilise la référence jusqu'à sa traduction. Le gestionnaire active ou désactive les fichiers linguistiques et corrige leurs anciens noms ; changez d'abord la langue par défaut dans WHMCS.
 
 ## Accès et pages
 

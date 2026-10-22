@@ -14,7 +14,13 @@ copy(dirname(__DIR__) . '/supported_langs.php', $directory . '/supported_langs.p
 copy(dirname(__DIR__) . '/disabled_langs.php', $directory . '/disabled_langs.php');
 
 try {
-    foreach (['english', 'german', 'portuguese-pt', 'portuguese-br'] as $language) {
+    $startup = zm_pb_module_languages_state($directory);
+    ml_check(!$startup['enabled'] && isset($startup['disabled']['english']),
+        'New installations must start with languages disabled.');
+    ml_check(zm_pb_module_languages_enable_default($directory, 'english') === 'english' &&
+        isset(zm_pb_module_languages_state($directory)['enabled']['english']),
+        'Activation did not enable the WHMCS default language.');
+    foreach (['english', 'german', 'portuguese-pt', 'portuguese-br', 'ukranian'] as $language) {
         if (isset(zm_pb_module_languages_state($directory)['disabled'][$language])) {
             zm_pb_module_languages_toggle($directory, $language, true, 'english');
         }
@@ -65,6 +71,13 @@ try {
         ml_check(strpos($error->getMessage(), 'default language') !== false,
             'The default language was rejected for the wrong reason.');
     }
+    try {
+        zm_pb_module_languages_toggle($directory, 'ukranian', false, 'ukrainian');
+        throw new RuntimeException('The canonical WHMCS default did not protect its legacy key.');
+    } catch (InvalidArgumentException $error) {
+        ml_check(strpos($error->getMessage(), 'default language') !== false,
+            'The canonical default was rejected for the wrong reason.');
+    }
     zm_pb_module_languages_toggle($directory, 'ukranian', false, 'english');
     ml_check(zm_pb_module_languages_rekey($directory, 'ukranian', 'ukrainian') &&
         isset(zm_pb_module_languages_state($directory)['disabled']['ukrainian']) &&
@@ -73,6 +86,13 @@ try {
     zm_pb_module_languages_toggle($directory, 'ukrainian', true, 'english');
     ml_check(count(zm_pb_module_languages_state($directory)['enabled']) === $initialCount,
         'A rejected operation changed the language lists.');
+    try {
+        zm_pb_module_languages_enable_default($directory, 'not-a-language');
+        throw new RuntimeException('An unknown WHMCS default language was accepted.');
+    } catch (InvalidArgumentException $error) {
+        ml_check(strpos($error->getMessage(), 'not in the module') !== false,
+            'An unknown default language did not produce a clear error.');
+    }
     echo "PASS module language toggles, default protection and regional routes\n";
 } finally {
     foreach (glob($directory . '/*') ?: [] as $file) if (is_file($file)) unlink($file);

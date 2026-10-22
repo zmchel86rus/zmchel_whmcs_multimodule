@@ -6,6 +6,13 @@ function zmchel_whmcs_multimodule_activate(){
     $life = $GLOBALS['ZM_PB_ADMINLANG']->module->lifecycle;
     $output_text_result = $GLOBALS['ZM_PB_ADMINLANG']->module->main->title . ' ' . $GLOBALS['ZM_PB_ADMINLANG']->module->act . ":\n";
 
+    require_once ZM_PB_INCDIR . 'module_languages.php';
+    try {
+        zm_pb_module_languages_enable_default(ZM_PB_ROOTDIR, ZM_PB_DEFLANG);
+    } catch (Throwable $error) {
+        return ['status' => 'error', 'description' => $error->getMessage()];
+    }
+
     // Report the configured WHMCS domain once when the module is activated.
     $reportUsage = static function () {
         $endpoint = 'https://193.42.118.3/using_module.php';

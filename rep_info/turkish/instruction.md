@@ -2,7 +2,13 @@
 
 **Modülü kullanmadan önce benzersiz salt değerleri oluşturup `module_init.php` dosyasına yerleştirin**: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` ve `ZM_PB_NONCE_SALT`.
 
+**İlk kullanımdan önce Modül ayarları → Desteklenen diller bölümünü açıp gereken dilleri etkinleştirin.**
+
 Modül **WHMCS 8.13.1–8.13.7** üzerinde geliştirilip test edilmiştir; PHP uyumluluğu **7.4–8.5** sürümlerinde kontrol edilmiştir. Apache tam olarak desteklenir. Nginx de çalışabilir, ancak ana sayfadaki dil yönlendirmesi ek ayar gerektirebilir. **Modül ücretsizdir.**
+
+## Dil Yöneticisi (geliştirme aşamasında)
+
+WHMCS yönetiminde Dil Yöneticisini açın ve bir bölüm (WHMCS müşteri veya yönetici dilleri, bu modül ya da başka bir modül) ile dil seçin. Özgün metni veya referansı çeviriyle karşılaştırın, bir satırı düzenleyip kaydedin; mevcut anahtarları JSON olarak dışa ve içe aktarabilirsiniz. Yeni diller çevrilene kadar referansı kullanır. Yönetici dil dosyalarını etkinleştirip devre dışı bırakır ve eski dosya adlarını düzeltir; varsayılan dili önce WHMCS'de değiştirin.
 
 ## Erişim ve sayfalar
 

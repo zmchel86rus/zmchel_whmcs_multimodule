@@ -16,7 +16,11 @@ define('ZM_PB_ALANGDIR', ZM_PB_ROOTDIR . 'admin_lang/');
 define('ZM_PB_INCDIR', $root . '/inc/');
 define('ZM_PB_DEFLANG', 'english');
 define('ZM_PB_SUPERADM_ID', 42);
-define('ZM_PB_LANGS', require dirname(__DIR__) . '/supported_langs.php');
+require dirname(__DIR__) . '/inc/module_languages.php';
+foreach (['english', 'ukranian'] as $language)
+    zm_pb_module_languages_toggle(ZM_PB_ROOTDIR, $language, true, 'english');
+define('ZM_PB_LANGS', (require dirname(__DIR__) . '/supported_langs.php') +
+    (require dirname(__DIR__) . '/disabled_langs.php'));
 require dirname(__DIR__) . '/inc/language_manager.php';
 mkdir(ZM_PB_INCDIR, 0750, true);
 
@@ -59,6 +63,15 @@ try {
 
     $sections = zm_pb_lm_sections();
     lm_check(isset($sections['module:addons:sample:lang']), 'Addon language directory was not found.');
+    try {
+        zm_pb_lm_toggle($sections['whmcs_admin'], 'english', false);
+        throw new RuntimeException('The WHMCS default language file was disabled.');
+    } catch (InvalidArgumentException $error) {
+        lm_check(strpos($error->getMessage(), 'default language') !== false,
+            'The default language file was rejected for the wrong reason.');
+    }
+    lm_check(is_file($root . '/admin/lang/english.php'),
+        'A rejected default language operation moved its file.');
     $returned = $sections['module:addons:sample:admin_lang'];
     lm_check(zm_pb_lm_catalog($returned, 'english')->title === 'Returned object',
         'Returned-object addon cannot be viewed.');
@@ -153,11 +166,25 @@ try {
         'Deleting the last WHMCS admin custom key left an override file.');
     zm_pb_lm_add($admin, 'finnish');
     zm_pb_lm_add($admin, 'finnish');
+    $newAdminRows = zm_pb_lm_editor_rows($admin, 'finnish', 'english');
+    lm_check($newAdminRows['source_is_reference'] &&
+        $newAdminRows['rows'][zm_pb_lm_path_id($path)]['source'] === 'Original' &&
+        $newAdminRows['rows'][zm_pb_lm_path_id($path)]['value'] === '' &&
+        zm_pb_lm_language_untranslated($admin, 'finnish'),
+        'A newly added language was shown as an original or already translated catalog.');
     $adminBackup = zm_pb_lm_added_backup($admin, 'finnish', 'enabled');
     lm_check(is_file($adminBackup), 'The added WHMCS admin language has no backup.');
     unlink($root . '/admin/lang/finnish.php');
     zm_pb_lm_restore_added_languages();
     lm_check(is_file($root . '/admin/lang/finnish.php'), 'The WHMCS admin language was not restored.');
+    zm_pb_lm_save($admin, 'finnish', $path, 'Finnish admin text');
+    lm_check(!zm_pb_lm_language_untranslated($admin, 'finnish') &&
+        !zm_pb_lm_editor_rows($admin, 'english', 'english')['source_is_reference'],
+        'The language list did not distinguish empty and original catalogs.');
+    zm_pb_lm_save($admin, 'finnish', $path, '');
+    lm_check(zm_pb_lm_language_untranslated($admin, 'finnish') &&
+        zm_pb_lm_editor_rows($admin, 'finnish', 'english')['rows'][zm_pb_lm_path_id($path)]['value'] === '',
+        'Clearing a new language translation did not restore reference inheritance.');
     zm_pb_lm_save($admin, 'finnish', $path, 'Finnish admin text');
     lm_check(zm_pb_lm_catalog($admin, 'finnish')['group']['title'] === 'Finnish admin text',
         'New WHMCS admin language failed.');

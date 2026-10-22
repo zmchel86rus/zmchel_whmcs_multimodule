@@ -487,7 +487,7 @@ return (object)[
         'reference'=>'Referenčni jezik',
         'save_one'=>'Vsak gumb Shrani shrani samo en prevod.',
         'key'=>'Ključ',
-        'reference_value'=>'Izvirno besedilo',
+        'reference_value'=>'Izvirnik', 'reference_column'=>'Referenca', 'untranslated'=>'Neprevedeno',
         'translation'=>'Prevod',
         'new_translation'=>'Nov prevod',
         'inside'=>'V razdelku',

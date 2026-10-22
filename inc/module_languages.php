@@ -19,7 +19,7 @@ function zm_pb_module_languages_state(string $directory): array
         throw new RuntimeException('Language list files are missing or are symbolic links.');
     $enabled = require $enabledFile;
     $disabled = require $disabledFile;
-    if (!is_array($enabled) || !is_array($disabled) || !$enabled || array_intersect_key($enabled, $disabled))
+    if (!is_array($enabled) || !is_array($disabled) || array_intersect_key($enabled, $disabled))
         throw new RuntimeException('Language lists are invalid or contain duplicate languages.');
     foreach ([$enabled, $disabled] as $list) {
         foreach ($list as $key => $info) {
@@ -121,8 +121,8 @@ function zm_pb_module_languages_toggle(string $directory, string $language, bool
         $target = $enable ? 'enabled' : 'disabled';
         if (isset($lists[$target][$language])) return;
         if (!isset($lists[$source][$language])) throw new InvalidArgumentException('Language not found.');
-        if (!$enable && ($language === strtolower($defaultLanguage) ||
-            $language === zm_pb_module_languages_default(strtolower($defaultLanguage))))
+        if (!$enable && zm_pb_module_languages_default($language) ===
+            zm_pb_module_languages_default(strtolower($defaultLanguage)))
             throw new InvalidArgumentException('The WHMCS default language cannot be disabled.');
         if (!$enable && count($lists['enabled']) < 2)
             throw new InvalidArgumentException('At least one language must remain enabled.');
@@ -162,4 +162,22 @@ function zm_pb_module_languages_toggle(string $directory, string $language, bool
         flock($lock, LOCK_UN);
         fclose($lock);
     }
+}
+
+function zm_pb_module_languages_enable_default(string $directory, string $defaultLanguage): string
+{
+    $default = strtolower($defaultLanguage);
+    $canonical = zm_pb_module_languages_default($default);
+    $aliases = ['ukranian' => 'ukrainian', 'portugues' => 'portuguese-pt',
+        'portugues-br' => 'portuguese-br'];
+    $legacy = array_search($canonical, $aliases, true);
+    $lists = zm_pb_module_languages_state($directory);
+    foreach (array_unique(array_filter([$canonical, $default, $legacy])) as $name) {
+        if (isset($lists['enabled'][$name])) return $name;
+        if (isset($lists['disabled'][$name])) {
+            zm_pb_module_languages_toggle($directory, $name, true, $default);
+            return $name;
+        }
+    }
+    throw new InvalidArgumentException('The WHMCS default language is not in the module language lists.');
 }

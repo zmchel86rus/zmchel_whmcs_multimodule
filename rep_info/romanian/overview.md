@@ -2,9 +2,15 @@
 
 **Înainte de utilizare, generați săruri unice și introduceți ZM_PB_ADMIN_SALT, ZM_PB_SECURE_SALT și ZM_PB_NONCE_SALT în module_init.php.** Modulul a fost dezvoltat și testat pe WHMCS 8.13.1–8.13.7. Apache este acceptat integral. Nginx poate funcționa, dar rutarea limbilor pe pagina principală poate necesita configurare suplimentară.
 
+**Înainte de prima utilizare, deschideți Setările modulului → Limbi acceptate și activați limbile necesare.**
+
 **Versiuni PHP verificate:** 7.4, 8.0, 8.1, 8.2, 8.3, 8.4 și 8.5.
 
 **zmchel WHMCS Multimodule este gratuit.** Permite administrarea paginilor și articolelor din panoul WHMCS, cu editor vizual, traduceri, meniuri, fișiere media, câmpuri SEO, sitemap-uri XML, redirecționări și reguli de rescriere.
+
+## Managerul de limbi (în dezvoltare)
+
+În administrarea WHMCS, deschideți Managerul de limbi și alegeți o secțiune (limbile pentru clienți sau administratori WHMCS, acest modul ori altul) și o limbă. Comparați originalul sau referința cu traducerea, modificați un rând și salvați-l; cheile existente pot fi exportate și importate ca JSON. Limbile noi folosesc referința până la traducere. Managerul activează sau dezactivează fișierele de limbă și corectează numele vechi; schimbați întâi limba implicită în WHMCS.
 
 ## Dezvoltare viitoare
 

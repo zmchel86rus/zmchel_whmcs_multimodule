@@ -2,7 +2,13 @@
 
 **Prima di usare il modulo, genera salt univoci e inseriscili in `module_init.php`**: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` e `ZM_PB_NONCE_SALT`.
 
+**Prima del primo utilizzo, apri Impostazioni del modulo → Lingue supportate e attiva le lingue necessarie.**
+
 Sviluppato e testato con **WHMCS 8.13.1–8.13.7**; compatibilità PHP verificata dalla versione **7.4 alla 8.5**. Apache è pienamente supportato. Il modulo può funzionare anche con Nginx, ma l’instradamento delle lingue nella pagina iniziale può richiedere altre impostazioni. **Il modulo è gratuito.**
+
+## Gestore delle lingue (in sviluppo)
+
+Nell'area amministrativa WHMCS, apri il Gestore delle lingue e scegli una sezione (lingue client o admin di WHMCS, questo modulo o un altro) e una lingua. Confronta l'originale o il riferimento con la traduzione, modifica una riga e salvala; puoi anche esportare e importare le chiavi esistenti in JSON. Le nuove lingue usano il riferimento finché non vengono tradotte. Il gestore abilita e disabilita i file linguistici e corregge i vecchi nomi; cambia prima la lingua predefinita in WHMCS.
 
 ## Accesso e pagine
 

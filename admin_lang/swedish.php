@@ -484,7 +484,7 @@ return (object)[
         'reference'=>'Referensspråk',
         'save_one'=>'Varje Spara-knapp sparar bara en översättning.',
         'key'=>'Nyckel',
-        'reference_value'=>'Originaltext',
+        'reference_value'=>'Original', 'reference_column'=>'Referens', 'untranslated'=>'Inte översatt',
         'translation'=>'Översättning',
         'new_translation'=>'Ny översättning',
         'inside'=>'Under',

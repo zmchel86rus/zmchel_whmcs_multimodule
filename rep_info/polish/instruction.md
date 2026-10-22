@@ -2,9 +2,15 @@
 
 **Przed użyciem wygeneruj unikalne sole i wpisz ZM_PB_ADMIN_SALT, ZM_PB_SECURE_SALT oraz ZM_PB_NONCE_SALT w module_init.php.** Moduł opracowano i przetestowano z WHMCS 8.13.1–8.13.7. Apache jest w pełni obsługiwany. Nginx może działać, lecz routing językowy strony głównej może wymagać dodatkowej konfiguracji.
 
+**Przed pierwszym użyciem otwórz Ustawienia modułu → Obsługiwane języki i włącz potrzebne języki.**
+
 **Sprawdzone wersje PHP:** 7.4, 8.0, 8.1, 8.2, 8.3, 8.4 i 8.5.
 
 **zmchel WHMCS Multimodule jest darmowy.** Pozwala zarządzać stronami i artykułami z panelu WHMCS. Zawiera edytor wizualny, tłumaczenia, menu, bibliotekę multimediów, pola SEO, mapy witryny XML, przekierowania i reguły przepisywania adresów.
+
+## Menedżer języków (w trakcie rozwoju)
+
+W administracji WHMCS otwórz Menedżer języków, wybierz sekcję (języki klienta lub administratora WHMCS, ten moduł albo inny) oraz język. Porównaj oryginał lub tekst odniesienia z tłumaczeniem, zmień jeden wiersz i zapisz go; istniejące klucze można też eksportować i importować jako JSON. Nowe języki korzystają z tekstu odniesienia do czasu przetłumaczenia. Menedżer włącza i wyłącza pliki językowe oraz poprawia dawne nazwy; najpierw zmień język domyślny w WHMCS.
 
 ## 1. Instalacja i dostęp
 

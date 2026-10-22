@@ -2,9 +2,15 @@
 
 **Before using the module, generate unique salts and put them in `module_init.php`: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT`, and `ZM_PB_NONCE_SALT`.** The module was developed and tested on **WHMCS 8.13.1–8.13.7** and has **full Apache support (100%)**. It may also work with Nginx, but check language routing on the home page separately.
 
+**Before first use, open Module settings → Supported languages and enable the languages you need.**
+
 **PHP compatibility checked:** 7.4, 8.0, 8.1, 8.2, 8.3, 8.4, and 8.5. All PHP files passed syntax checks on each version; standalone tests were also run.
 
 This guide is for staff who manage site content in WHMCS. Daily work with text, images and menus does not require programming. Export your settings before changing URLs, redirects, server rules or code, as those changes can affect published pages.
+
+## Language Manager (in development)
+
+Open Language Manager in the WHMCS admin area and choose a section (WHMCS client or admin, this module, or another module) and a language. Compare the original or reference with the translation, edit one row, and save it; you can also export and import existing keys as JSON. Newly added languages use the reference until translated. The manager enables or disables language files and corrects legacy filenames. To change the default language, enable the replacement in Module settings, change the WHMCS default, then disable the old language.
 
 ## 1. Finding your way around
 

@@ -44,7 +44,8 @@ define('ZM_PB_ENABLE_DEFAULT_LANG_ROUTE', in_array('--default-route', $argv, tru
 define('ZM_PB_ENABLE_PAGE_OVERRIDES', true);
 define('ZM_PB_MAINSYSTEM_PRETTY_URLS', true);
 define('ZM_PB_PRETTY_URLS', in_array('--pretty', $argv, true));
-define('ZM_PB_LANGS', require dirname(__DIR__) . '/supported_langs.php');
+define('ZM_PB_LANGS', (require dirname(__DIR__) . '/supported_langs.php') +
+    (require dirname(__DIR__) . '/disabled_langs.php'));
 $routeCodes = array_column(ZM_PB_LANGS, 'route_code');
 if (count($routeCodes) !== count(array_unique($routeCodes))
     || ZM_PB_LANGS['portuguese-pt']['route_code'] !== 'pt'

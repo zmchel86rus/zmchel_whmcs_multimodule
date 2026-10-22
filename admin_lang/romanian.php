@@ -487,7 +487,7 @@ return (object)[
         'reference'=>'Limbă de referință',
         'save_one'=>'Fiecare buton Salvează salvează o singură traducere.',
         'key'=>'Cheie',
-        'reference_value'=>'Text sursă',
+        'reference_value'=>'Original', 'reference_column'=>'Referință', 'untranslated'=>'Netradus',
         'translation'=>'Traducere',
         'new_translation'=>'Traducere nouă',
         'inside'=>'În',

@@ -2,10 +2,11 @@
 <div class="row lm-language-grid">
     {foreach $lm_languages as $language}
     <div class="col-xs-12 col-sm-6 col-md-4">
-        <div class="list-group-item">
+        <div class="list-group-item{if $language.untranslated} lm-language-untranslated{/if}">
             <span class="lm-language-name"><a href="{$language.url|escape}#mod_lm_tab_lang_list_edit">
                 <strong>{$language.title|escape}</strong> <small>({$language.name|escape})</small>
-            </a>{if $language.state == 'disabled'} <span class="label label-default">{$lm_text->disabled|escape}</span>{/if}</span>
+            </a>{if $language.state == 'disabled'} <span class="label label-default">{$lm_text->disabled|escape}</span>{/if}
+            {if $language.untranslated} <span class="label label-warning">{$lm_text->untranslated|escape}</span>{/if}</span>
             <form class="lm-action-form" method="post" action="addonmodules.php">
                 <input type="hidden" name="module" value="{$addonName|escape}">
                 <input type="hidden" name="subpage" value="langs_manager">

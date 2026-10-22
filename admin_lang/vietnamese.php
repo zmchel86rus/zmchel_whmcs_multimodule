@@ -481,7 +481,7 @@ return (object)[
         'disabled'=>'Đã tắt', 'available'=>'Có thể thêm', 'no_languages'=>'Không tìm thấy tệp ngôn ngữ nào.',
         'disabled_editable'=>'Ngôn ngữ này đã bị tắt. Bạn vẫn có thể chỉnh sửa bản dịch của nó.',
         'reference'=>'Ngôn ngữ tham chiếu', 'save_one'=>'Mỗi nút Lưu cập nhật một bản dịch.',
-        'key'=>'Khóa', 'reference_value'=>'Tham chiếu', 'translation'=>'Bản dịch',
+        'key'=>'Khóa', 'reference_value'=>'Bản gốc', 'reference_column'=>'Tham chiếu', 'untranslated'=>'Chưa dịch', 'translation'=>'Bản dịch',
         'new_translation'=>'Bản dịch mới', 'inside'=>'Bên trong', 'select_language'=>'Hãy chọn một ngôn ngữ trước.',
     ],
     'other' => (object)[

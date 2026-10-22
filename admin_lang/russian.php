@@ -481,7 +481,7 @@ return (object)[
         'disabled'=>'Отключено', 'available'=>'Можно добавить', 'no_languages'=>'Языковые файлы не найдены.',
         'disabled_editable'=>'Язык отключён, но его переводы по-прежнему можно редактировать.',
         'reference'=>'Язык для сравнения', 'save_one'=>'Каждая кнопка сохраняет только один перевод.',
-        'key'=>'Ключ', 'reference_value'=>'Оригинал', 'translation'=>'Перевод',
+        'key'=>'Ключ', 'reference_value'=>'Оригинал', 'reference_column'=>'Референс', 'untranslated'=>'Без переводов', 'translation'=>'Перевод',
         'new_translation'=>'Новый перевод', 'inside'=>'В разделе', 'select_language'=>'Сначала выберите язык.',
     ],
     'other' => (object)[

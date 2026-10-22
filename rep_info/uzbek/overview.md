@@ -2,7 +2,13 @@
 
 **Ishlatishdan oldin noyob salt qiymatlarini `module_init.php` fayliga kiriting: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` va `ZM_PB_NONCE_SALT`.** Modul **WHMCS 8.13.1–8.13.7** da ishlab chiqilgan va sinovdan o‘tgan. **PHP 7.4–8.5** mosligi tekshirilgan. Apache to‘liq (100%) qo‘llab-quvvatlanadi; Nginx’da bosh sahifaning til marshruti qo‘shimcha sozlashni talab qilishi mumkin.
 
+**Birinchi foydalanishdan oldin Modul sozlamalari → Qo‘llab-quvvatlanadigan tillar bo‘limini ochib, kerakli tillarni yoqing.**
+
 **zmchel WHMCS Multimodule bepul.** WHMCS boshqaruv panelidan ko‘p tilli sahifalar, vizual muharrir, menyular, media kutubxonasi, SEO metama’lumotlari, XML sayt xaritasi, yo‘naltirishlar, rewrite qoidalari hamda import va eksportni boshqaring. Boshlash uchun [qo‘llanmani](instruction.md) o‘qing.
+
+## Tillar menejeri (ishlab chiqilmoqda)
+
+WHMCS boshqaruv panelida Tillar menejerini ochib, bo‘limni (WHMCS mijoz yoki admin tillari, shu modul yoxud boshqa modul) va tilni tanlang. Asl nusxa yoki namuna matnni tarjima bilan solishtiring, bitta qatorni tahrir qilib saqlang; mavjud kalitlarni JSON sifatida eksport va import qilish ham mumkin. Yangi tillar tarjima qilinmaguncha namuna matndan foydalanadi. Menejer til fayllarini yoqib-o‘chiradi va eski nomlarni tuzatadi; standart tilni avval WHMCS-da o‘zgartiring.
 
 ## Kelajakdagi rejalar
 

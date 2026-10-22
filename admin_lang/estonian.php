@@ -484,7 +484,7 @@ return (object)[
         'reference'=>'Võrdluskeel',
         'save_one'=>'Iga Salvesta nupp salvestab ainult ühe tõlke.',
         'key'=>'Võti',
-        'reference_value'=>'Algtekst',
+        'reference_value'=>'Originaal', 'reference_column'=>'Võrdlustekst', 'untranslated'=>'Tõlkimata',
         'translation'=>'Tõlge',
         'new_translation'=>'Uus tõlge',
         'inside'=>'Jaotises',

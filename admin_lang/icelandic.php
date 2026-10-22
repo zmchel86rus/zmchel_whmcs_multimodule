@@ -481,7 +481,7 @@ return (object)[
         'disabled'=>'Óvirkt', 'available'=>'Hægt að bæta við', 'no_languages'=>'Engar tungumálaskrár fundust.',
         'disabled_editable'=>'Þetta tungumál er óvirkt. Enn er hægt að breyta þýðingum þess.',
         'reference'=>'Viðmiðunartungumál', 'save_one'=>'Hver Vista-hnappur uppfærir eina þýðingu.',
-        'key'=>'Lykill', 'reference_value'=>'Viðmið', 'translation'=>'Þýðing',
+        'key'=>'Lykill', 'reference_value'=>'Frumtexti', 'reference_column'=>'Viðmið', 'untranslated'=>'Óþýtt', 'translation'=>'Þýðing',
         'new_translation'=>'Ný þýðing', 'inside'=>'Innan', 'select_language'=>'Veldu fyrst tungumál.',
     ],
     'other' => (object)[

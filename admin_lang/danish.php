@@ -487,7 +487,7 @@ return (object)[
         'reference'=>'Referencesprog',
         'save_one'=>'Hver Gem-knap gemmer kun én oversættelse.',
         'key'=>'Nøgle',
-        'reference_value'=>'Originaltekst',
+        'reference_value'=>'Original', 'reference_column'=>'Reference', 'untranslated'=>'Uden oversættelse',
         'translation'=>'Oversættelse',
         'new_translation'=>'Ny oversættelse',
         'inside'=>'Under',

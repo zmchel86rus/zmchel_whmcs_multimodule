@@ -2,7 +2,13 @@
 
 **Para përdorimit, krijoni vlera salt unike në `module_init.php`: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` dhe `ZM_PB_NONCE_SALT`.** Moduli është zhvilluar dhe testuar në **WHMCS 8.13.1–8.13.7**. Përputhshmëria me **PHP 7.4–8.5** është kontrolluar. Apache mbështetet plotësisht (100%); Nginx mund të kërkojë konfigurim shtesë për rrugëzimin e gjuhës në faqen kryesore.
 
+**Para përdorimit të parë, hapni Cilësimet e modulit → Gjuhët e mbështetura dhe aktivizoni gjuhët që ju nevojiten.**
+
 **zmchel WHMCS Multimodule është falas.** Nga administrimi i WHMCS mund të menaxhoni faqe shumëgjuhëshe me redaktor pamor, meny, bibliotekë mediash, metadata SEO, harta XML, ridrejtime, rregulla rewrite dhe import/eksport. Lexoni [udhëzimet](instruction.md) para se të filloni.
+
+## Menaxheri i gjuhëve (në zhvillim)
+
+Në administrimin WHMCS, hapni Menaxherin e gjuhëve dhe zgjidhni seksionin (klientët ose administratorët e WHMCS, këtë modul ose një modul tjetër) dhe gjuhën. Krahasoni tekstin origjinal ose referencën me përkthimin, ndryshoni një rresht dhe ruajeni; çelësat ekzistues mund të eksportohen dhe importohen edhe si JSON. Gjuhët e saposhtuara përdorin referencën derisa të përkthehen. Menaxheri aktivizon ose çaktivizon skedarët e gjuhës dhe korrigjon emrat e vjetër të skedarëve; gjuhën e parazgjedhur ndryshojeni fillimisht në WHMCS.
 
 ## Zhvillimi i ardhshëm
 

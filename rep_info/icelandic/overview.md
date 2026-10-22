@@ -2,7 +2,13 @@
 
 **Áður en einingin er notuð skaltu setja einstök salt-gildi í `module_init.php`: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` og `ZM_PB_NONCE_SALT`.** Einingin var þróuð og prófuð með **WHMCS 8.13.1–8.13.7**. Samhæfni við **PHP 7.4–8.5** hefur verið yfirfarin. Apache er studdur að fullu (100%); Nginx gæti þurft viðbótarstillingar fyrir tungumálaleiðir á forsíðu.
 
+**Áður en einingin er notuð skaltu opna Stillingar einingar → Studd tungumál og virkja þau tungumál sem þú þarft.**
+
 **zmchel WHMCS Multimodule er ókeypis.** Í stjórnborði WHMCS geturðu stjórnað fjöltyngdum síðum með sjónrænum ritli, valmyndum, miðlasafni, SEO-lýsigögnum, XML-vefkortum, áframsendingum, rewrite-reglum og inn- og útflutningi. Sjá [leiðbeiningar](instruction.md) til að hefjast handa.
+
+## Tungumálastýring (í þróun)
+
+Opnaðu Tungumálastýringu í WHMCS-stjórnborðinu og veldu hluta (tungumál viðskiptavina eða stjórnenda WHMCS, þessa einingu eða aðra) og tungumál. Berðu frumtexta eða viðmið saman við þýðinguna, breyttu einni línu og vistaðu; einnig má flytja núverandi lykla út og inn sem JSON. Ný tungumál nota viðmiðstexta þar til þau hafa verið þýdd. Stýringin virkjar eða slekkur á tungumálaskrám og leiðréttir gömul skráarnöfn; breyttu sjálfgefnu tungumáli fyrst í WHMCS.
 
 ## Framtíðaráform
 

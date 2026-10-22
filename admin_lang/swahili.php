@@ -481,7 +481,7 @@ return (object)[
         'disabled'=>'Imezimwa', 'available'=>'Zinapatikana kwa kuongeza', 'no_languages'=>'Hakuna faili za lugha zilizopatikana.',
         'disabled_editable'=>'Lugha hii imezimwa. Tafsiri zake bado zinaweza kuhaririwa.',
         'reference'=>'Lugha ya rejea', 'save_one'=>'Kila kitufe cha Hifadhi husasisha tafsiri moja.',
-        'key'=>'Ufunguo', 'reference_value'=>'Rejea', 'translation'=>'Tafsiri',
+        'key'=>'Ufunguo', 'reference_value'=>'Asili', 'reference_column'=>'Marejeo', 'untranslated'=>'Haijatafsiriwa', 'translation'=>'Tafsiri',
         'new_translation'=>'Tafsiri mpya', 'inside'=>'Ndani ya', 'select_language'=>'Chagua lugha kwanza.',
     ],
     'other' => (object)[

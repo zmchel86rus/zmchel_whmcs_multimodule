@@ -48,7 +48,8 @@ try {
         $supported = zm_pb_lm_supported_name($section, $name);
         $languageRows[] = ['name' => $name, 'title' => $supported
             ? ($languageLabels[$supported] ?? ZM_PB_LANGS[$supported]['name']) : $name,
-            'state' => $file['state'], 'url' => $baseUrl . '&language=' . rawurlencode($name)];
+            'state' => $file['state'], 'untranslated' => zm_pb_lm_language_untranslated($section, $name),
+            'url' => $baseUrl . '&language=' . rawurlencode($name)];
     }
     $missingLanguages = [];
     foreach (ZM_PB_LANGS as $key => $info) {
@@ -82,6 +83,7 @@ try {
         $reference = zm_pb_lm_name($section, ZM_PB_DEFLANG);
         if (!isset($files[$reference])) $reference = isset($files['english']) ? 'english' : $language;
         $editor = zm_pb_lm_editor_rows($section, $language, $reference);
+        $smarty->assign('lm_source_is_reference', $editor['source_is_reference']);
         $shape = $editor['shape'];
         $all = $editor['rows'];
         $all = zm_pb_lm_filter_rows($all, $search, $view);

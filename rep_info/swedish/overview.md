@@ -2,9 +2,15 @@
 
 **Innan du använder modulen måste du skapa unika salts och lägga dem i `module_init.php`**: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` och `ZM_PB_NONCE_SALT`.
 
+**Öppna Modulinställningar → Språk som stöds och aktivera de språk du behöver innan du börjar använda modulen.**
+
 Modulen utvecklades och testades med **WHMCS 8.13.1–8.13.7**. PHP-kompatibilitet kontrollerades för **7.4–8.5**. Apache stöds fullt ut. Modulen kan även fungera med Nginx, men språkstyrningen på startsidan kan kräva ytterligare inställningar.
 
 **zmchel WHMCS Multimodule är gratis.** Den innehåller en visuell sidredigerare, flerspråkigt innehåll, menyer, mediebibliotek, SEO-fält, XML-webbplatskartor, omdirigeringar, omskrivningsregler samt import och export. Läs [instruktionerna](instruction.md).
+
+## Språkhanterare (under utveckling)
+
+Öppna Språkhanteraren i WHMCS-administrationen och välj en del (WHMCS klient- eller administratörsspråk, den här modulen eller en annan) och ett språk. Jämför originalet eller referensen med översättningen, redigera en rad och spara den; befintliga nycklar kan också exporteras och importeras som JSON. Nya språk använder referensen tills de har översatts. Hanteraren aktiverar eller inaktiverar språkfiler och rättar gamla filnamn; ändra först standardspråk i WHMCS.
 
 ## Framtida utveckling
 

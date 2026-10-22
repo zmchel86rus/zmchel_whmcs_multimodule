@@ -487,7 +487,7 @@ return (object)[
         'reference'=>'Idioma de referència',
         'save_one'=>'Cada botó «Desa» desa una sola traducció.',
         'key'=>'Clau',
-        'reference_value'=>'Text original',
+        'reference_value'=>'Original', 'reference_column'=>'Referència', 'untranslated'=>'Sense traducció',
         'translation'=>'Traducció',
         'new_translation'=>'Traducció nova',
         'inside'=>'Dins de',

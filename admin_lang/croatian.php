@@ -484,7 +484,7 @@ return (object)[
         'reference'=>'Referentni jezik',
         'save_one'=>'Svaki gumb Spremi sprema samo jedan prijevod.',
         'key'=>'Ključ',
-        'reference_value'=>'Izvorni tekst',
+        'reference_value'=>'Izvornik', 'reference_column'=>'Referenca', 'untranslated'=>'Bez prijevoda',
         'translation'=>'Prijevod',
         'new_translation'=>'Novi prijevod',
         'inside'=>'Unutar',

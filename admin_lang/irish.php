@@ -481,7 +481,7 @@ return (object)[
         'disabled'=>'Díchumasaithe', 'available'=>'Ar fáil le cur leis', 'no_languages'=>'Níor aimsíodh aon chomhaid teanga.',
         'disabled_editable'=>'Tá an teanga seo díchumasaithe. Is féidir a haistriúcháin a chur in eagar fós.',
         'reference'=>'Teanga thagartha', 'save_one'=>'Nuashonraíonn gach cnaipe Sábháil aistriúchán amháin.',
-        'key'=>'Eochair', 'reference_value'=>'Tagairt', 'translation'=>'Aistriúchán',
+        'key'=>'Eochair', 'reference_value'=>'Bunleagan', 'reference_column'=>'Tagairt', 'untranslated'=>'Gan aistriúchán', 'translation'=>'Aistriúchán',
         'new_translation'=>'Aistriúchán nua', 'inside'=>'Laistigh de', 'select_language'=>'Roghnaigh teanga ar dtús.',
     ],
     'other' => (object)[

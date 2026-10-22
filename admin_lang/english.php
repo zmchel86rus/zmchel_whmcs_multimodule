@@ -482,7 +482,7 @@ return (object)[
         'disabled'=>'Disabled', 'available'=>'Available to add', 'no_languages'=>'No language files found.',
         'disabled_editable'=>'This language is disabled. Its translations are still editable.',
         'reference'=>'Reference language', 'save_one'=>'Each Save button updates one translation.',
-        'key'=>'Key', 'reference_value'=>'Reference', 'translation'=>'Translation',
+        'key'=>'Key', 'reference_value'=>'Original', 'reference_column'=>'Reference', 'untranslated'=>'Untranslated', 'translation'=>'Translation',
         'new_translation'=>'New translation', 'inside'=>'Inside', 'select_language'=>'Select a language first.',
     ],
     'other' => (object)[

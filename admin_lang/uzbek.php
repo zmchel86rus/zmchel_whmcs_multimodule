@@ -481,7 +481,7 @@ return (object)[
         'disabled'=>'Oʻchirilgan', 'available'=>'Qoʻshish mumkin', 'no_languages'=>'Til fayllari topilmadi.',
         'disabled_editable'=>'Bu til oʻchirilgan. Uning tarjimalarini baribir tahrirlash mumkin.',
         'reference'=>'Namuna til', 'save_one'=>'Har bir «Saqlash» tugmasi bitta tarjimani yangilaydi.',
-        'key'=>'Kalit', 'reference_value'=>'Namuna', 'translation'=>'Tarjima',
+        'key'=>'Kalit', 'reference_value'=>'Asl nusxa', 'reference_column'=>'Namuna matn', 'untranslated'=>'Tarjima qilinmagan', 'translation'=>'Tarjima',
         'new_translation'=>'Yangi tarjima', 'inside'=>'Ichida', 'select_language'=>'Avval tilni tanlang.',
     ],
     'other' => (object)[

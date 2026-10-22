@@ -1120,6 +1120,10 @@
     gap: 8px;
     width: 100%;
 }
+#zm-pagebuilder.langs-manager .lm-language-grid .lm-language-untranslated {
+    border-left: 3px solid #e6ad32;
+    background: #fffdf5;
+}
 #zm-pagebuilder.langs-manager .lm-language-grid .lm-language-name {
     min-width: 0;
     overflow-wrap: anywhere;

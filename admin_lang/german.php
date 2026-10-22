@@ -487,7 +487,7 @@ return (object)[
         'reference'=>'Referenzsprache',
         'save_one'=>'Jede Speichern-Schaltfläche speichert nur eine Übersetzung.',
         'key'=>'Schlüssel',
-        'reference_value'=>'Originaltext',
+        'reference_value'=>'Original', 'reference_column'=>'Referenz', 'untranslated'=>'Nicht übersetzt',
         'translation'=>'Übersetzung',
         'new_translation'=>'Neue Übersetzung',
         'inside'=>'Unter',

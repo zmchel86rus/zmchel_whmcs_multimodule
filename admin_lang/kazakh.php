@@ -481,7 +481,7 @@ return (object)[
         'disabled'=>'Өшірулі', 'available'=>'Қосуға қолжетімді', 'no_languages'=>'Тіл файлдары табылмады.',
         'disabled_editable'=>'Бұл тіл өшірілген. Оның аудармаларын әлі де өңдеуге болады.',
         'reference'=>'Эталондық тіл', 'save_one'=>'Әрбір «Сақтау» түймесі бір аударманы жаңартады.',
-        'key'=>'Кілт', 'reference_value'=>'Эталон', 'translation'=>'Аударма',
+        'key'=>'Кілт', 'reference_value'=>'Түпнұсқа', 'reference_column'=>'Анықтамалық мәтін', 'untranslated'=>'Аударылмаған', 'translation'=>'Аударма',
         'new_translation'=>'Жаңа аударма', 'inside'=>'Ішінде', 'select_language'=>'Алдымен тілді таңдаңыз.',
     ],
     'other' => (object)[

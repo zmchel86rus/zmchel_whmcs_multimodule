@@ -476,25 +476,32 @@ function zm_pb_lm_source_catalog(array $section, string $name, string $reference
     return zm_pb_lm_merge(zm_pb_lm_copy($source), zm_pb_lm_catalog($section, $name, false));
 }
 
-/** Return the selected file's values, or the reference for a newly added language. */
-function zm_pb_lm_editor_original(array $section, string $name, string $reference)
+function zm_pb_lm_editor_has_original(array $section, string $name): bool
 {
     $files = zm_pb_lm_files($section);
     if (!isset($files[$name])) throw new InvalidArgumentException('Language not found.');
     $file = $files[$name]['file'];
-    if (zm_pb_lm_is_added_file($file)) return zm_pb_lm_catalog($section, $reference, false);
+    if (zm_pb_lm_is_added_file($file)) return false;
     if ($section['kind'] === 'self') {
         $original = zm_pb_lm_load_php($file, '');
-        if (!is_object($original) && !is_array($original)) $original = [];
-        if (!$original || (is_object($original) && !get_object_vars($original)))
-            return zm_pb_lm_catalog($section, $reference, false);
-        return $original;
+        return (is_object($original) || is_array($original)) && (bool) zm_pb_lm_flatten($original);
     }
+    return (bool) zm_pb_lm_flatten(zm_pb_lm_catalog($section, $name, false));
+}
+
+/** Use the reference only when the selected file contains no original translations. */
+function zm_pb_lm_editor_original(array $section, string $name, string $reference)
+{
+    if (!zm_pb_lm_editor_has_original($section, $name))
+        return zm_pb_lm_catalog($section, $reference, false);
+    if ($section['kind'] === 'self')
+        return zm_pb_lm_load_php(zm_pb_lm_files($section)[$name]['file'], '');
     return zm_pb_lm_catalog($section, $name, false);
 }
 
 function zm_pb_lm_editor_rows(array $section, string $name, string $reference): array
 {
+    $hasOriginal = zm_pb_lm_editor_has_original($section, $name);
     $original = zm_pb_lm_editor_original($section, $name, $reference);
     $target = zm_pb_lm_catalog($section, $name);
     $referenceCatalog = zm_pb_lm_catalog($section, $reference, false);
@@ -506,14 +513,31 @@ function zm_pb_lm_editor_rows(array $section, string $name, string $reference): 
     $managed = zm_pb_lm_managed_entries($dir . '/' . $name . '.php');
     $all = $referenceRows + $targetRows;
     foreach ($all as $id => &$row) {
-        $row['value'] = $targetRows[$id]['value'] ?? '';
+        $row['value'] = $hasOriginal ? ($targetRows[$id]['value'] ?? '') :
+            ($managed[$id]['value'] ?? (($targetRows[$id]['value'] ?? '') !== ($referenceRows[$id]['value'] ?? '')
+                ? ($targetRows[$id]['value'] ?? '') : ''));
         $row['source'] = $originalRows[$id]['value'] ?? '';
         $row['added'] = !isset($originalRows[$id]) || !empty($managed[$id]['custom']);
         $row['managed_custom'] = !empty($managed[$id]['custom']);
         $row['key'] = (string) $row['path'][count($row['path']) - 1]['key'];
     }
     unset($row);
-    return ['rows' => $all, 'shape' => $shape];
+    return ['rows' => $all, 'shape' => $shape, 'source_is_reference' => !$hasOriginal];
+}
+
+function zm_pb_lm_language_untranslated(array $section, string $name): bool
+{
+    $files = zm_pb_lm_files($section);
+    if (!isset($files[$name])) throw new InvalidArgumentException('Language not found.');
+    // Only generated catalogs and our own empty catalogs need this badge.
+    if (!zm_pb_lm_is_added_file($files[$name]['file']) &&
+        ($section['kind'] !== 'self' || zm_pb_lm_editor_has_original($section, $name))) return false;
+    $directory = $section['directory'] . '/overrides';
+    foreach ([$directory . '/' . $name . '.php',
+        $directory . '/managed/' . $name . '.php'] as $file) {
+        if (is_file($file) && filesize($file) > 0) return false;
+    }
+    return true;
 }
 
 function zm_pb_lm_export_translations(array $section, string $sectionId, string $name, string $reference): string
@@ -704,6 +728,15 @@ function zm_pb_lm_save(array $section, string $name, array $path, string $value,
 {
     if (strlen($value) > 65535 || strpos($value, "\0") !== false || preg_match('//u', $value) !== 1)
         throw new InvalidArgumentException('Invalid translation text.');
+    if ($value === '' && !$custom && !zm_pb_lm_editor_has_original($section, $name)) {
+        zm_pb_lm_update_entries($section, $name, static function (array $entries) use ($path): array {
+            $entryId = zm_pb_lm_path_id($path);
+            if (!empty($entries[$entryId]['custom'])) $entries[$entryId]['value'] = '';
+            else unset($entries[$entryId]);
+            return $entries;
+        });
+        return;
+    }
     zm_pb_lm_update_entries($section, $name, static function (array $entries) use ($path, $value, $custom): array {
         $entryId = zm_pb_lm_path_id($path);
         $entries[$entryId] = ['path' => $path, 'value' => $value,
@@ -953,7 +986,8 @@ function zm_pb_lm_toggle(array $section, string $name, bool $enable): void
 {
     $files = zm_pb_lm_files($section);
     if (!isset($files[$name])) throw new InvalidArgumentException('Language not found.');
-    if (!$enable && ($name === 'english' || $name === zm_pb_lm_name($section, ZM_PB_DEFLANG)))
+    if (!$enable && ($name === 'english' ||
+        zm_pb_module_languages_default($name) === zm_pb_module_languages_default(ZM_PB_DEFLANG)))
         throw new InvalidArgumentException('The default language cannot be disabled.');
     $enabled = $section['directory'] . '/' . $name . '.php';
     $disabled = $section['directory'] . '/disabled/' . $name . '.php';

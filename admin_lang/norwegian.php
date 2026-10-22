@@ -484,7 +484,7 @@ return (object)[
         'reference'=>'Referansespråk',
         'save_one'=>'Hver Lagre-knapp lagrer bare én oversettelse.',
         'key'=>'Nøkkel',
-        'reference_value'=>'Originaltekst',
+        'reference_value'=>'Original', 'reference_column'=>'Referanse', 'untranslated'=>'Ikke oversatt',
         'translation'=>'Oversettelse',
         'new_translation'=>'Ny oversettelse',
         'inside'=>'Under',

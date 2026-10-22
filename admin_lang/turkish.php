@@ -484,7 +484,7 @@ return (object)[
         'reference'=>'Referans dili',
         'save_one'=>'Her Kaydet düğmesi yalnızca bir çeviriyi kaydeder.',
         'key'=>'Anahtar',
-        'reference_value'=>'Kaynak metin',
+        'reference_value'=>'Orijinal', 'reference_column'=>'Referans', 'untranslated'=>'Çevrilmedi',
         'translation'=>'Çeviri',
         'new_translation'=>'Yeni çeviri',
         'inside'=>'İçinde',

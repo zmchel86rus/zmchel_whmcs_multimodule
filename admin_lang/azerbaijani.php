@@ -481,7 +481,7 @@ return (object)[
         'disabled'=>'Deaktivdir', 'available'=>'Əlavə etmək üçün əlçatandır', 'no_languages'=>'Dil faylları tapılmadı.',
         'disabled_editable'=>'Bu dil deaktivdir. Onun tərcümələrini yenə də redaktə etmək olar.',
         'reference'=>'İstinad dili', 'save_one'=>'Hər Saxla düyməsi bir tərcüməni yeniləyir.',
-        'key'=>'Açar', 'reference_value'=>'İstinad mətni', 'translation'=>'Tərcümə',
+        'key'=>'Açar', 'reference_value'=>'Orijinal', 'reference_column'=>'İstinad', 'untranslated'=>'Tərcümə olunmayıb', 'translation'=>'Tərcümə',
         'new_translation'=>'Yeni tərcümə', 'inside'=>'Daxilində', 'select_language'=>'Əvvəlcə dil seçin.',
     ],
     'other' => (object)[

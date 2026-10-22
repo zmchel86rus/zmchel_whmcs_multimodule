@@ -13,7 +13,8 @@ define('ZM_PB_ASSETSDIR', $root . '/assets/'); define('ZM_PB_FULLHOST', 'https:/
 define('ZM_PB_ASSETSURL', ZM_PB_FULLHOST . 'modules/addons/zmchel_whmcs_multimodule/assets/');
 define('ZM_PB_MAINSYSTEM_ATTACHMENTS_DIR', $root . '/attachments/'); define('ZM_PB_MAINSYSTEM_ATTACHMENTS_URL', ZM_PB_FULLHOST . 'attachments/');
 define('ZM_PB_MEDIA_MANAGER_FILE', $module . 'lib/media_manager.php');
-define('ZM_PB_LANGS', require $module . 'supported_langs.php'); define('ZM_PB_DEFLANG', 'english');
+define('ZM_PB_LANGS', (require $module . 'supported_langs.php') +
+    (require $module . 'disabled_langs.php')); define('ZM_PB_DEFLANG', 'english');
 $GLOBALS['ZM_PB_ADMINLANG'] = require ZM_PB_ALANGDIR . 'russian.php';
 define('ZM_PB_ENABLE_LANG_ROUTE', true); define('ZM_PB_PRETTY_URLS', true); define('ZM_PB_MAINSYSTEM_PRETTY_URLS', true);
 define('ZM_PB_ENABLE_PAGE_OVERRIDES', true); define('ZM_PB_ENABLE_REDIRECTS_MANAGER', true); define('ZM_PB_ENABLE_FOOTERMENU', true);

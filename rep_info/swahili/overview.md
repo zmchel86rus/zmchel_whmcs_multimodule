@@ -2,7 +2,13 @@
 
 **Kabla ya kutumia moduli, tengeneza thamani za salt za kipekee ndani ya `module_init.php`: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` na `ZM_PB_NONCE_SALT`.** Moduli ilitengenezwa na kupimwa kwenye **WHMCS 8.13.1–8.13.7**. Uoanifu wa **PHP 7.4–8.5** umekaguliwa. Apache inaungwa mkono kikamilifu (100%); Nginx inaweza kuhitaji usanidi wa ziada kwa uelekezaji wa lugha kwenye ukurasa wa mwanzo.
 
+**Kabla ya matumizi ya kwanza, fungua Mipangilio ya moduli → Lugha zinazoungwa mkono na uwashe lugha unazohitaji.**
+
 **zmchel WHMCS Multimodule ni ya bure.** Kutoka eneo la usimamizi la WHMCS, simamia kurasa za lugha nyingi kwa kihariri cha picha, menyu, maktaba ya media, taarifa za SEO, ramani za tovuti za XML, uelekezaji upya, sheria za rewrite, kuingiza na kuhamisha data. Soma [maelekezo](instruction.md) kabla ya kuanza.
+
+## Meneja wa lugha (unaendelezwa)
+
+Katika usimamizi wa WHMCS, fungua Meneja wa lugha na uchague sehemu (lugha za wateja au wasimamizi wa WHMCS, moduli hii au nyingine) na lugha. Linganisha asili au marejeo na tafsiri, hariri mstari mmoja na uhifadhi; funguo zilizopo pia zinaweza kuhamishwa na kuingizwa kama JSON. Lugha mpya hutumia marejeo mpaka zitafsiriwe. Meneja huwasha na kuzima faili za lugha na kurekebisha majina ya zamani; badili kwanza lugha chaguomsingi kwenye WHMCS.
 
 ## Mipango ya baadaye
 

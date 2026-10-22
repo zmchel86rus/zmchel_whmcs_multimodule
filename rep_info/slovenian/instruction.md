@@ -2,9 +2,15 @@
 
 **Pred uporabo ustvarite edinstvene soli in v module_init.php vnesite ZM_PB_ADMIN_SALT, ZM_PB_SECURE_SALT in ZM_PB_NONCE_SALT.** Modul je bil razvit in preizkušen z WHMCS 8.13.1–8.13.7. Apache je v celoti podprt. Nginx lahko deluje, vendar lahko jezikovno usmerjanje na domači strani zahteva dodatne nastavitve.
 
+**Pred prvo uporabo odprite Nastavitve modula → Podprti jeziki in vključite jezike, ki jih potrebujete.**
+
 **Preverjene različice PHP:** 7.4, 8.0, 8.1, 8.2, 8.3, 8.4 in 8.5.
 
 **zmchel WHMCS Multimodule je brezplačen.** V skrbništvu WHMCS omogoča upravljanje strani in člankov z vizualnim urejevalnikom, prevodi, meniji, medijsko knjižnico, polji SEO, zemljevidi spletnega mesta XML, preusmeritvami in pravili za prepisovanje URL-jev.
+
+## Upravitelj jezikov (v razvoju)
+
+V skrbništvu WHMCS odprite Upravitelja jezikov ter izberite razdelek (jeziki za stranke ali skrbnike WHMCS, ta ali drug modul) in jezik. Primerjajte izvirnik ali referenco s prevodom, uredite eno vrstico in jo shranite; obstoječe ključe lahko tudi izvozite in uvozite kot JSON. Novi jeziki uporabljajo referenco, dokler niso prevedeni. Upravitelj omogoča ali onemogoča jezikovne datoteke in popravi stara imena; privzeti jezik najprej spremenite v WHMCS.
 
 ## 1. Namestitev in dostop
 

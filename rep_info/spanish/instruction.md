@@ -2,9 +2,15 @@
 
 **Antes de usar el módulo, genere valores salt únicos e introdúzcalos en `module_init.php`: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` y `ZM_PB_NONCE_SALT`.** El módulo se desarrolló y probó con **WHMCS 8.13.1–8.13.7** y ofrece **compatibilidad completa con Apache (100 %)**. También puede funcionar con Nginx, pero compruebe por separado el enrutamiento por idioma de la página de inicio.
 
+**Antes del primer uso, abre Configuración del módulo → Idiomas compatibles y activa los idiomas que necesites.**
+
 **Versiones de PHP comprobadas:** 7.4, 8.0, 8.1, 8.2, 8.3, 8.4 y 8.5. Todos los archivos PHP superaron la comprobación de sintaxis en cada versión; también se ejecutaron pruebas independientes.
 
 Esta guía es para el personal que administra el contenido del sitio desde WHMCS. El trabajo cotidiano con textos, imágenes y menús no requiere programación. Antes de cambiar direcciones, redirecciones, reglas del servidor o código, exporte los ajustes: esos cambios pueden afectar a páginas publicadas.
+
+## Gestor de idiomas (en desarrollo)
+
+En la administración de WHMCS, abre el Gestor de idiomas y elige una sección (idiomas de cliente o administración de WHMCS, este módulo u otro) y un idioma. Compara el original o la referencia con la traducción, edita una fila y guárdala; también puedes exportar e importar las claves existentes como JSON. Los idiomas nuevos usan la referencia hasta que se traduzcan. El gestor activa o desactiva archivos de idioma y corrige nombres antiguos; cambia primero el idioma predeterminado en WHMCS.
 
 ## 1. Orientación
 

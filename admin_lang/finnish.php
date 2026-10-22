@@ -487,7 +487,7 @@ return (object)[
         'reference'=>'Vertailukieli',
         'save_one'=>'Jokainen Tallenna-painike tallentaa vain yhden käännöksen.',
         'key'=>'Avain',
-        'reference_value'=>'Alkuperäinen teksti',
+        'reference_value'=>'Alkuperäinen', 'reference_column'=>'Vertailuteksti', 'untranslated'=>'Kääntämättä',
         'translation'=>'Käännös',
         'new_translation'=>'Uusi käännös',
         'inside'=>'Osiossa',

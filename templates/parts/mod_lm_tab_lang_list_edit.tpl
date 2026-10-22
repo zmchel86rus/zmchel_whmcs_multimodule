@@ -20,7 +20,7 @@
     </form>
     <div class="table-responsive">
     <table class="table table-striped table-bordered">
-        <thead><tr><th style="width:28%">{$lm_text->key|escape}</th><th style="width:30%">{$lm_text->reference_value|escape}</th><th>{$lm_text->translation|escape}</th></tr></thead>
+        <thead><tr><th style="width:28%">{$lm_text->key|escape}</th><th style="width:30%">{if $lm_source_is_reference}{$lm_text->reference_column|escape}{else}{$lm_text->reference_value|escape}{/if}</th><th>{$lm_text->translation|escape}</th></tr></thead>
         <tbody>
         {foreach $lm_rows as $row}
         <tr>

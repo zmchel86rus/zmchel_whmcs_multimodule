@@ -2,9 +2,15 @@
 
 **Antes de utilizar o módulo, gere salts exclusivos e coloque-os em `module_init.php`**: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` e `ZM_PB_NONCE_SALT`.
 
+**Antes da primeira utilização, abra Definições do módulo → Idiomas suportados e ative os idiomas necessários.**
+
 O módulo foi desenvolvido e testado com **WHMCS 8.13.1 a 8.13.7**. A compatibilidade com PHP foi verificada da versão **7.4 à 8.5**. O suporte para Apache é completo. Também pode funcionar com Nginx, mas o encaminhamento por idioma na página inicial poderá exigir configuração adicional.
 
 **O zmchel WHMCS Multimodule é gratuito.** Inclui um editor visual de páginas, conteúdos multilingues, menus, gestor de multimédia, campos SEO, mapas do site XML, redirecionamentos, regras de reescrita e importação/exportação. Consulte as [instruções](instruction.md).
+
+## Gestor de idiomas (em desenvolvimento)
+
+Na administração do WHMCS, abra o Gestor de idiomas e escolha uma secção (idiomas do cliente ou da administração do WHMCS, este módulo ou outro) e um idioma. Compare o original ou a referência com a tradução, edite uma linha e guarde-a; também pode exportar e importar as chaves existentes em JSON. Os novos idiomas usam a referência até serem traduzidos. O gestor ativa e desativa ficheiros de idioma e corrige nomes antigos; altere primeiro o idioma predefinido no WHMCS.
 
 ## Desenvolvimento futuro
 

@@ -2,6 +2,12 @@
 
 **Kabla ya kutumia moduli, tengeneza thamani za salt za kipekee na uziweke katika `module_init.php`: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` na `ZM_PB_NONCE_SALT`.** Moduli ilitengenezwa na kupimwa kwenye **WHMCS 8.13.1–8.13.7**. Uoanifu wa **PHP 7.4–8.5** umekaguliwa. Apache inaungwa mkono kikamilifu; Nginx inaweza kuhitaji usanidi wa ziada kwa uelekezaji wa lugha kwenye ukurasa wa mwanzo. **Moduli ni ya bure.**
 
+**Kabla ya matumizi ya kwanza, fungua Mipangilio ya moduli → Lugha zinazoungwa mkono na uwashe lugha unazohitaji.**
+
+## Meneja wa lugha (unaendelezwa)
+
+Katika usimamizi wa WHMCS, fungua Meneja wa lugha na uchague sehemu (lugha za wateja au wasimamizi wa WHMCS, moduli hii au nyingine) na lugha. Linganisha asili au marejeo na tafsiri, hariri mstari mmoja na uhifadhi; funguo zilizopo pia zinaweza kuhamishwa na kuingizwa kama JSON. Lugha mpya hutumia marejeo mpaka zitafsiriwe. Meneja huwasha na kuzima faili za lugha na kurekebisha majina ya zamani; badili kwanza lugha chaguomsingi kwenye WHMCS.
+
 ## Kuunda kurasa
 
 Fungua **Addons → zmchel WHMCS Multimodule** katika eneo la usimamizi la WHMCS. Kabla ya kubadilisha URL, uelekezaji upya au sheria za seva, hamisha mipangilio ya moduli. Kwenye orodha ya kurasa, ongeza ukurasa wenye jina la ndani na *slug* kama `kuhusu-sisi`, bila kikoa au `.php`. Chagua ufikiaji wa wote, wa walioingia kwenye akaunti au mchanganyiko; kisha chagua hali ya rasimu au iliyochapishwa, aina ya ukurasa na lugha. Lugha chaguomsingi ya WHMCS lazima iwe ndani ya `supported_langs.php`.

@@ -2,9 +2,15 @@
 
 **Erzeugen Sie vor der Verwendung unbedingt eigene Salt-Werte und tragen Sie diese in `module_init.php` ein: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` und `ZM_PB_NONCE_SALT`.** Das Modul wurde für **WHMCS 8.13.1–8.13.7** entwickelt und getestet; **Apache wird vollständig unterstützt (100 %)**. Es kann auch mit Nginx funktionieren; die Sprachführung auf der Startseite sollte dort gesondert geprüft und gegebenenfalls eingerichtet werden.
 
+**Öffnen Sie vor der ersten Verwendung Moduleinstellungen → Unterstützte Sprachen und aktivieren Sie die benötigten Sprachen.**
+
 **Geprüfte PHP-Versionen:** 7.4, 8.0, 8.1, 8.2, 8.3, 8.4 und 8.5. Alle PHP-Dateien haben die Syntaxprüfung mit jeder Version bestanden; zusätzlich wurden eigenständige Tests ausgeführt.
 
 **ZMChel WHMCS Multimodule ist kostenlos.** Damit lassen sich Website-Inhalte im WHMCS-Administrationsbereich verwalten: mit visuellem Seiten- und Blockeditor, mehrsprachigen Inhalten, Menüs, Mediathek, SEO-Metadaten, XML-Sitemaps, Weiterleitungen, Rewrite-Regeln sowie Import und Export. Die [Anleitung](instruction.md) beschreibt die Bedienung.
+
+## Sprachverwaltung (in Entwicklung)
+
+Öffnen Sie in der WHMCS-Administration die Sprachverwaltung und wählen Sie einen Bereich (WHMCS-Client- oder Adminsprachen, dieses oder ein anderes Modul) und eine Sprache. Vergleichen Sie Original oder Referenz mit der Übersetzung, bearbeiten Sie eine Zeile und speichern Sie sie; vorhandene Schlüssel lassen sich auch als JSON exportieren und importieren. Neue Sprachen verwenden bis zur Übersetzung den Referenztext. Die Verwaltung aktiviert oder deaktiviert Sprachdateien und korrigiert alte Dateinamen; ändern Sie die Standardsprache zuerst in WHMCS.
 
 ## Geplante Weiterentwicklung
 

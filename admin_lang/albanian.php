@@ -481,7 +481,7 @@ return (object)[
         'disabled'=>'Çaktivizuar', 'available'=>'Të disponueshme për t\'u shtuar', 'no_languages'=>'Nuk u gjet asnjë skedar gjuhe.',
         'disabled_editable'=>'Kjo gjuhë është çaktivizuar. Përkthimet e saj mund të redaktohen ende.',
         'reference'=>'Gjuha e referencës', 'save_one'=>'Çdo buton Ruaj përditëson një përkthim.',
-        'key'=>'Çelësi', 'reference_value'=>'Referenca', 'translation'=>'Përkthimi',
+        'key'=>'Çelësi', 'reference_value'=>'Origjinali', 'reference_column'=>'Referenca', 'untranslated'=>'Pa përkthim', 'translation'=>'Përkthimi',
         'new_translation'=>'Përkthim i ri', 'inside'=>'Brenda', 'select_language'=>'Zgjidhni fillimisht një gjuhë.',
     ],
     'other' => (object)[

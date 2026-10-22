@@ -20,11 +20,12 @@ if (!defined('ZM_PB_NONCE_SALT')) define('ZM_PB_NONCE_SALT', '');
 ### SALTS CONSTS ###
 
 $moduleSupportedLanguages = require __DIR__ . '/supported_langs.php';
+$moduleAvailableLanguages = $moduleSupportedLanguages + (require __DIR__ . '/disabled_langs.php');
 $cmsDefaultLanguage = strtolower((string) ($CONFIG['Language'] ?? 'english'));
 $defaultAliases = ['ukranian' => 'ukrainian', 'portugues' => 'portuguese-pt',
     'portugues-br' => 'portuguese-br'];
-if (!isset($moduleSupportedLanguages[$cmsDefaultLanguage]) &&
-    isset($moduleSupportedLanguages[$defaultAliases[$cmsDefaultLanguage] ?? '']))
+if (!isset($moduleAvailableLanguages[$cmsDefaultLanguage]) &&
+    isset($moduleAvailableLanguages[$defaultAliases[$cmsDefaultLanguage] ?? '']))
     $cmsDefaultLanguage = $defaultAliases[$cmsDefaultLanguage];
 if (!defined('ZM_PB_DEFLANG')) define('ZM_PB_DEFLANG', $cmsDefaultLanguage);
 if (!defined('ZM_PB_ALLOWED_CONSTS_CHANGE')) define('ZM_PB_ALLOWED_CONSTS_CHANGE', [
@@ -83,6 +84,17 @@ if (!defined('ZM_PB_CLIENTSIDE_DIR')) define('ZM_PB_CLIENTSIDE_DIR', 'client_sid
 if (!defined('ZM_PB_CRUTCH_CLIENTSIDE_DIR')) define('ZM_PB_CRUTCH_CLIENTSIDE_DIR', '../../'.ZM_PB_ROOTDIR_INNER. 'templates/'.ZM_PB_CLIENTSIDE_DIR );
 if (!defined('ZM_PB_SCHEMAS_DIR')) define('ZM_PB_SCHEMAS_DIR', ZM_PB_ASSETSDIR.'schemas/' );
 ### DIRS CONSTS ###
+
+// Restore the WHMCS default language when an existing installation receives the new disabled-by-default lists.
+if (!$moduleSupportedLanguages) {
+    require_once ZM_PB_INCDIR . 'module_languages.php';
+    try {
+        zm_pb_module_languages_enable_default(ZM_PB_ROOTDIR, ZM_PB_DEFLANG);
+        $moduleSupportedLanguages = require __DIR__ . '/supported_langs.php';
+    } catch (Throwable $error) {
+        error_log('zmchel WHMCS Multimodule: cannot enable the default language: ' . $error->getMessage());
+    }
+}
 
 require_once ZM_PB_INCDIR.'editable_consts.php';
 

@@ -2,6 +2,12 @@
 
 **Trước khi dùng mô-đun, hãy tạo các salt riêng và điền vào `module_init.php`: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` và `ZM_PB_NONCE_SALT`.** Mô-đun được phát triển và thử nghiệm trên **WHMCS 8.13.1–8.13.7**; khả năng tương thích PHP đã được kiểm tra từ **7.4 đến 8.5**. Apache được hỗ trợ đầy đủ; Nginx có thể cần cấu hình thêm cho định tuyến ngôn ngữ ở trang chủ. **Mô-đun hoàn toàn miễn phí.**
 
+**Trước lần sử dụng đầu tiên, hãy mở Cài đặt mô-đun → Ngôn ngữ được hỗ trợ và bật những ngôn ngữ bạn cần.**
+
+## Trình quản lý ngôn ngữ (đang phát triển)
+
+Trong khu vực quản trị WHMCS, mở Trình quản lý ngôn ngữ rồi chọn mục (ngôn ngữ khách hàng hoặc quản trị của WHMCS, mô-đun này hay mô-đun khác) và ngôn ngữ. So sánh bản gốc hoặc bản tham chiếu với bản dịch, sửa một dòng và lưu; bạn cũng có thể xuất và nhập các khóa hiện có dưới dạng JSON. Ngôn ngữ mới dùng bản tham chiếu cho tới khi được dịch. Trình quản lý bật hoặc tắt tệp ngôn ngữ và sửa tên tệp cũ; hãy đổi ngôn ngữ mặc định trong WHMCS trước.
+
 ## Bắt đầu và tạo trang
 
 Trong khu vực quản trị WHMCS, mở **Addons → zmchel WHMCS Multimodule**. Trước khi sửa URL, chuyển hướng hoặc quy tắc máy chủ, hãy xuất cấu hình mô-đun. Ở danh sách trang, tạo trang với tên nội bộ và *slug* như `gioi-thieu`, không kèm tên miền hay `.php`. Chọn quyền xem cho mọi người, khách hàng đã đăng nhập hoặc cả hai; tiếp theo chọn trạng thái nháp hay đã xuất bản, loại trang và ngôn ngữ. Ngôn ngữ mặc định của WHMCS phải có trong `supported_langs.php`.

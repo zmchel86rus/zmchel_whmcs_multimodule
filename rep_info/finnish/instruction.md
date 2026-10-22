@@ -2,9 +2,15 @@
 
 **Luo ennen käyttöä yksilölliset suolat ja lisää ZM_PB_ADMIN_SALT, ZM_PB_SECURE_SALT ja ZM_PB_NONCE_SALT tiedostoon module_init.php.** Moduuli on kehitetty ja testattu WHMCS-versioilla 8.13.1–8.13.7. Apachea tuetaan täysin. Nginx voi toimia, mutta etusivun kielireititys saattaa vaatia lisäasetuksia.
 
+**Avaa ennen ensimmäistä käyttöä Moduulin asetukset → Tuetut kielet ja ota tarvitsemasi kielet käyttöön.**
+
 **Tarkistetut PHP-versiot:** 7.4, 8.0, 8.1, 8.2, 8.3, 8.4 ja 8.5.
 
 **zmchel WHMCS Multimodule on maksuton.** Sillä voi hallita sivuja ja artikkeleita WHMCS:n hallintapaneelissa. Toimintoihin kuuluvat visuaalinen editori, käännökset, valikot, mediakirjasto, SEO-kentät, XML-sivustokartat, uudelleenohjaukset ja URL-uudelleenkirjoitussäännöt.
+
+## Kielten hallinta (kehitteillä)
+
+Avaa WHMCS:n ylläpidossa Kielten hallinta ja valitse osio (WHMCS:n asiakas- tai ylläpitokielet, tämä moduuli tai muu moduuli) sekä kieli. Vertaa alkuperäistä tai vertailutekstiä käännökseen, muokkaa yhtä riviä ja tallenna se; olemassa olevia avaimia voi myös viedä ja tuoda JSON-tiedostona. Uusi kieli käyttää vertailutekstiä, kunnes se käännetään. Hallinta ottaa kielitiedostoja käyttöön tai poistaa niitä käytöstä ja korjaa vanhoja tiedostonimiä; vaihda oletuskieli ensin WHMCS:ssä.
 
 ## 1. Asennus ja käyttöoikeudet
 

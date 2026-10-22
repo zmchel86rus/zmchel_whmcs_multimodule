@@ -9,7 +9,8 @@ define('ZM_PB_INCDIR', $directory . '/');
 $GLOBALS['ZM_PB_ADMINLANG'] = (object) ['rewrite_manager' => (object) ['custom' => 'Custom']];
 define('ZM_PB_ENABLE_LANG_ROUTE', !in_array('--routes-off', $argv, true));
 define('ZM_PB_ENABLE_DEFAULT_LANG_ROUTE', in_array('--default-route', $argv, true));
-define('ZM_PB_LANGS', require dirname(__DIR__) . '/supported_langs.php');
+define('ZM_PB_LANGS', (require dirname(__DIR__) . '/supported_langs.php') +
+    (require dirname(__DIR__) . '/disabled_langs.php'));
 define('ZM_PB_DEFLANG', 'english');
 define('ZM_PB_FULLHOST', 'https://example.test/billing/');
 define('ZM_PB_PRETTY_URLS', true);

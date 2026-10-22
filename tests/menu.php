@@ -25,7 +25,8 @@ define('ZM_PB_ENABLE_MAINNAV', true);
 define('ZM_PB_ENABLE_SECONDARYNAV', false);
 define('ZM_PB_ENABLE_MAINSIDEBAR', true);
 define('ZM_PB_ENABLE_SECONDARYSIDEBAR', false);
-define('ZM_PB_LANGS', require ZM_PB_ROOTDIR . 'supported_langs.php');
+define('ZM_PB_LANGS', (require ZM_PB_ROOTDIR . 'supported_langs.php') +
+    (require ZM_PB_ROOTDIR . 'disabled_langs.php'));
 function check($condition, $message) { if (!$condition) throw new RuntimeException($message); }
 function zm_pb_has_table($name) { return Capsule::schema()->hasTable($name); }
 function zm_pb_parse_request() { return ['lang' => 'ru', 'slug' => 'test']; }

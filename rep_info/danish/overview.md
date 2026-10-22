@@ -2,9 +2,15 @@
 
 **Generér unikke salts før brug, og indsæt ZM_PB_ADMIN_SALT, ZM_PB_SECURE_SALT og ZM_PB_NONCE_SALT i module_init.php.** Modulet er udviklet og testet med WHMCS 8.13.1–8.13.7. Apache understøttes fuldt ud. Nginx kan fungere, men sprogruter på forsiden kan kræve ekstra konfiguration.
 
+**Før første brug skal du åbne Modulindstillinger → Understøttede sprog og aktivere de sprog, du har brug for.**
+
 **Kontrollerede PHP-versioner:** 7.4, 8.0, 8.1, 8.2, 8.3, 8.4 og 8.5.
 
 **zmchel WHMCS Multimodule er gratis.** Administrér sider og artikler fra WHMCS-administrationen med visuel editor, oversættelser, menuer, mediefiler, SEO-felter, XML-sitemaps, viderestillinger og omskrivningsregler.
+
+## Sprogstyring (under udvikling)
+
+Åbn Sprogstyring i WHMCS-administrationen, og vælg en sektion (WHMCS-klient- eller administratorsprog, dette modul eller et andet modul) og et sprog. Sammenlign originalen eller referencen med oversættelsen, rediger én række, og gem den; eksisterende nøgler kan også eksporteres og importeres som JSON. Nye sprog bruger referencen, indtil de oversættes. Styringen aktiverer og deaktiverer sprogfiler og retter gamle filnavne; skift først standardsprog i WHMCS.
 
 ## Fremtidig udvikling
 

@@ -2,9 +2,15 @@
 
 **Pirms lietošanas ģenerējiet unikālus sāļus un ievietojiet ZM_PB_ADMIN_SALT, ZM_PB_SECURE_SALT un ZM_PB_NONCE_SALT failā module_init.php.** Modulis izstrādāts un pārbaudīts ar WHMCS 8.13.1–8.13.7. Apache tiek pilnībā atbalstīts. Nginx var darboties, taču valodu maršrutēšanai sākumlapā var būt vajadzīga papildu konfigurācija.
 
+**Pirms pirmās lietošanas atveriet Moduļa iestatījumi → Atbalstītās valodas un ieslēdziet nepieciešamās valodas.**
+
 **Pārbaudītās PHP versijas:** 7.4, 8.0, 8.1, 8.2, 8.3, 8.4 un 8.5.
 
 **zmchel WHMCS Multimodule ir bezmaksas.** Tas ļauj pārvaldīt lapas un rakstus WHMCS administrācijā, izmantojot vizuālo redaktoru, tulkojumus, izvēlnes, mediju bibliotēku, SEO laukus, XML vietnes kartes, pāradresācijas un URL pārrakstīšanas noteikumus.
+
+## Valodu pārvaldnieks (izstrādē)
+
+WHMCS administrācijā atveriet Valodu pārvaldnieku un izvēlieties sadaļu (WHMCS klientu vai administratoru valodas, šo vai citu moduli) un valodu. Salīdziniet oriģinālu vai atsauci ar tulkojumu, rediģējiet vienu rindu un saglabājiet; esošās atslēgas var arī eksportēt un importēt JSON formātā. Jaunās valodas līdz tulkošanai izmanto atsauci. Pārvaldnieks ieslēdz un izslēdz valodu failus un labo vecos failu nosaukumus; vispirms mainiet noklusējuma valodu WHMCS.
 
 ## Turpmākā attīstība
 

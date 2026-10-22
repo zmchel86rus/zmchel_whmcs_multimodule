@@ -2,6 +2,12 @@
 
 **Sebelum menggunakan modul, buat salt unik dan masukkan ke `module_init.php`: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT`, dan `ZM_PB_NONCE_SALT`.** Modul ini dikembangkan dan diuji pada **WHMCS 8.13.1–8.13.7**. Kompatibilitas PHP telah diperiksa untuk **7.4–8.5**. Apache didukung sepenuhnya; Nginx mungkin memerlukan konfigurasi tambahan untuk perutean bahasa di beranda. **Modul ini gratis.**
 
+**Sebelum penggunaan pertama, buka Pengaturan modul → Bahasa yang didukung dan aktifkan bahasa yang Anda perlukan.**
+
+## Pengelola bahasa (dalam pengembangan)
+
+Di admin WHMCS, buka Pengelola bahasa lalu pilih bagian (bahasa klien atau admin WHMCS, modul ini atau modul lain) dan bahasa. Bandingkan teks asli atau referensi dengan terjemahan, ubah satu baris dan simpan; kunci yang sudah ada juga dapat diekspor dan diimpor sebagai JSON. Bahasa baru memakai referensi sampai diterjemahkan. Pengelola dapat mengaktifkan atau menonaktifkan berkas bahasa serta membetulkan nama berkas lama; ubah dulu bahasa bawaan di WHMCS.
+
 ## Memulai dan membuat halaman
 
 Buka **Addons → zmchel WHMCS Multimodule** di area admin WHMCS. Sebelum mengubah URL, pengalihan, atau aturan server, ekspor pengaturan modul. Di daftar halaman, pilih tambah halaman, isi nama internal dan *slug* seperti `tentang-kami` tanpa domain atau `.php`. Pilih akses untuk semua pengunjung, pengguna yang masuk, atau mode campuran; lalu pilih status draf atau terbit, jenis halaman, dan bahasa. Bahasa bawaan WHMCS harus tersedia di `supported_langs.php`.

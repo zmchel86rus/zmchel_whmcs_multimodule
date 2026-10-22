@@ -487,7 +487,7 @@ return (object)[
         'reference'=>'Język odniesienia',
         'save_one'=>'Każdy przycisk Zapisz zapisuje tylko jedno tłumaczenie.',
         'key'=>'Klucz',
-        'reference_value'=>'Tekst źródłowy',
+        'reference_value'=>'Oryginał', 'reference_column'=>'Tekst odniesienia', 'untranslated'=>'Nieprzetłumaczone',
         'translation'=>'Tłumaczenie',
         'new_translation'=>'Nowe tłumaczenie',
         'inside'=>'W sekcji',

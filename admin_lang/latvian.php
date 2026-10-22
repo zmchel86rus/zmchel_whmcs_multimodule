@@ -487,7 +487,7 @@ return (object)[
         'reference'=>'Atsauces valoda',
         'save_one'=>'Katra poga Saglabāt saglabā tikai vienu tulkojumu.',
         'key'=>'Atslēga',
-        'reference_value'=>'Sākotnējais teksts',
+        'reference_value'=>'Oriģināls', 'reference_column'=>'Atsauce', 'untranslated'=>'Nav tulkojuma',
         'translation'=>'Tulkojums',
         'new_translation'=>'Jauns tulkojums',
         'inside'=>'Sadaļā',

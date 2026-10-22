@@ -484,7 +484,7 @@ return (object)[
         'reference'=>'Referenční jazyk',
         'save_one'=>'Každé tlačítko Uložit uloží pouze jeden překlad.',
         'key'=>'Klíč',
-        'reference_value'=>'Původní text',
+        'reference_value'=>'Originál', 'reference_column'=>'Referenční text', 'untranslated'=>'Bez překladu',
         'translation'=>'Překlad',
         'new_translation'=>'Nový překlad',
         'inside'=>'V sekci',

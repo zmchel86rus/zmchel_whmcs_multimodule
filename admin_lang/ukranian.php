@@ -487,7 +487,7 @@ return (object)[
         'reference'=>'Мова для порівняння',
         'save_one'=>'Кожна кнопка Зберегти зберігає лише один переклад.',
         'key'=>'Ключ',
-        'reference_value'=>'Оригінал',
+        'reference_value'=>'Оригінал', 'reference_column'=>'Зразок', 'untranslated'=>'Без перекладу',
         'translation'=>'Переклад',
         'new_translation'=>'Новий переклад',
         'inside'=>'У розділі',

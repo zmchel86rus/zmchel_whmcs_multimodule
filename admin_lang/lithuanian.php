@@ -487,7 +487,7 @@ return (object)[
         'reference'=>'Palyginimo kalba',
         'save_one'=>'Kiekvienas mygtukas Išsaugoti išsaugo tik vieną vertimą.',
         'key'=>'Raktas',
-        'reference_value'=>'Pradinis tekstas',
+        'reference_value'=>'Originalas', 'reference_column'=>'Pavyzdinis tekstas', 'untranslated'=>'Neišversta',
         'translation'=>'Vertimas',
         'new_translation'=>'Naujas vertimas',
         'inside'=>'Skyriuje',
