@@ -6,10 +6,6 @@
 
 **zmchel WHMCS Multimodule miễn phí.** Ngay trong khu vực quản trị WHMCS, bạn có thể quản lý trang đa ngôn ngữ bằng trình biên tập trực quan, menu, thư viện ảnh, siêu dữ liệu SEO, sơ đồ trang XML, chuyển hướng, quy tắc rewrite và nhập/xuất dữ liệu. Xem [hướng dẫn sử dụng](instruction.md) trước khi bắt đầu.
 
-## Trình quản lý ngôn ngữ (đang phát triển)
-
-Trong khu vực quản trị WHMCS, mở Trình quản lý ngôn ngữ rồi chọn mục (ngôn ngữ khách hàng hoặc quản trị của WHMCS, mô-đun này hay mô-đun khác) và ngôn ngữ. So sánh bản gốc hoặc bản tham chiếu với bản dịch, sửa một dòng và lưu; bạn cũng có thể xuất và nhập các khóa hiện có dưới dạng JSON. Ngôn ngữ mới dùng bản tham chiếu cho tới khi được dịch. Trình quản lý bật hoặc tắt tệp ngôn ngữ và sửa tên tệp cũ; hãy đổi ngôn ngữ mặc định trong WHMCS trước.
-
 ## Hướng phát triển
 
 - Thêm trang lồng nhau và danh mục hoặc chuyên mục trang.

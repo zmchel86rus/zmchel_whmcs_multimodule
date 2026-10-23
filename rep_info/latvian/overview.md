@@ -8,10 +8,6 @@
 
 **zmchel WHMCS Multimodule ir bezmaksas.** Tas ļauj pārvaldīt lapas un rakstus WHMCS administrācijā, izmantojot vizuālo redaktoru, tulkojumus, izvēlnes, mediju bibliotēku, SEO laukus, XML vietnes kartes, pāradresācijas un URL pārrakstīšanas noteikumus.
 
-## Valodu pārvaldnieks (izstrādē)
-
-WHMCS administrācijā atveriet Valodu pārvaldnieku un izvēlieties sadaļu (WHMCS klientu vai administratoru valodas, šo vai citu moduli) un valodu. Salīdziniet oriģinālu vai atsauci ar tulkojumu, rediģējiet vienu rindu un saglabājiet; esošās atslēgas var arī eksportēt un importēt JSON formātā. Jaunās valodas līdz tulkošanai izmanto atsauci. Pārvaldnieks ieslēdz un izslēdz valodu failus un labo vecos failu nosaukumus; vispirms mainiet noklusējuma valodu WHMCS.
-
 ## Turpmākā attīstība
 
 - Pievienot ligzdotas lapas un lapu kategorijas.

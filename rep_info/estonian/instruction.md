@@ -10,6 +10,8 @@ Moodul on loodud ja testitud **WHMCS-i versioonidel 8.13.1–8.13.7**; PHP ühil
 
 Ava WHMCS-i halduses Keelehaldur ning vali jaotis (WHMCS-i kliendi- või halduskeeled, see moodul või muu moodul) ja keel. Võrdle algteksti või võrdlusteksti tõlkega, muuda üht rida ja salvesta see; olemasolevaid võtmeid saab ka JSON-failina eksportida ja importida. Uus keel kasutab tõlkimiseni võrdlusteksti. Haldur lülitab keelefaile sisse ja välja ning parandab vanu failinimesid; vaikekeel muuda esmalt WHMCS-is.
 
+→ [Keelehaldur](../english/docs/language-manager.md) (English)
+
 ## Juurdepääs ja lehed
 
 Ava WHMCS-i halduses **Addons → zmchel WHMCS Multimodule**. Lehtede loendis saab lehti luua, otsida, muuta ja kustutada. *Slug* on aadressi osa pärast domeeni, näiteks `contact` aadressis `/contact/`. Enne URL-ide, ümbersuunamiste või serverireeglite muutmist ekspordi mooduli seaded.

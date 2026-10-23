@@ -12,6 +12,8 @@
 
 În administrarea WHMCS, deschideți Managerul de limbi și alegeți o secțiune (limbile pentru clienți sau administratori WHMCS, acest modul ori altul) și o limbă. Comparați originalul sau referința cu traducerea, modificați un rând și salvați-l; cheile existente pot fi exportate și importate ca JSON. Limbile noi folosesc referința până la traducere. Managerul activează sau dezactivează fișierele de limbă și corectează numele vechi; schimbați întâi limba implicită în WHMCS.
 
+→ [Managerul de limbi](docs/language-manager.md)
+
 ## 1. Instalare și acces
 
 Activați modulul suplimentar în WHMCS și acordați acces administratorilor autorizați. În Baza de date a modulului verificați tabelele necesare. Revizuiți apoi URL-urile prietenoase, rutele lingvistice și pozițiile meniurilor. Apache folosește .htaccess; în Nginx configurați separat regulile echivalente.

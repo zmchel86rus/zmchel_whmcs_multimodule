@@ -8,10 +8,6 @@
 
 **zmchel WHMCS Multimodule je bezplatný.** Umožňuje spravovať stránky a články v administrácii WHMCS pomocou vizuálneho editora, prekladov, ponúk, knižnice médií, polí SEO, máp stránok XML, presmerovaní a pravidiel prepisovania URL.
 
-## Správca jazykov (vo vývoji)
-
-V administrácii WHMCS otvorte Správcu jazykov a vyberte sekciu (klientske alebo administrátorské jazyky WHMCS, tento či iný modul) a jazyk. Porovnajte originál alebo referenčný text s prekladom, upravte jeden riadok a uložte ho; existujúce kľúče možno aj exportovať a importovať ako JSON. Nové jazyky používajú referenčný text, kým ich nepreložíte. Správca zapína a vypína jazykové súbory a opravuje staré názvy; predvolený jazyk najskôr zmeňte vo WHMCS.
-
 ## Ďalší vývoj
 
 - Pridať vnorené stránky a kategórie stránok.

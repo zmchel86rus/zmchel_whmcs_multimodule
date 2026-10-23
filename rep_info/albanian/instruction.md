@@ -8,6 +8,8 @@
 
 Në administrimin WHMCS, hapni Menaxherin e gjuhëve dhe zgjidhni seksionin (klientët ose administratorët e WHMCS, këtë modul ose një modul tjetër) dhe gjuhën. Krahasoni tekstin origjinal ose referencën me përkthimin, ndryshoni një rresht dhe ruajeni; çelësat ekzistues mund të eksportohen dhe importohen edhe si JSON. Gjuhët e saposhtuara përdorin referencën derisa të përkthehen. Menaxheri aktivizon ose çaktivizon skedarët e gjuhës dhe korrigjon emrat e vjetër të skedarëve; gjuhën e parazgjedhur ndryshojeni fillimisht në WHMCS.
 
+→ [Menaxheri i gjuhëve](../english/docs/language-manager.md) (English)
+
 ## Krijimi i faqeve
 
 Në administrimin e WHMCS, hapni **Addons → zmchel WHMCS Multimodule**. Eksportoni cilësimet para ndryshimeve në URL, ridrejtime ose rregulla të serverit. Te lista e faqeve, shtoni një faqe me emër të brendshëm dhe *slug* si `rreth-nesh`, pa domen ose `.php`. Zgjidhni qasjen për të gjithë, për përdorues të identifikuar ose të përzier; pastaj caktoni statusin draft apo publikuar, llojin dhe gjuhët. Gjuha e parazgjedhur e WHMCS duhet të jetë në `supported_langs.php`.

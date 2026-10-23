@@ -12,6 +12,8 @@ This guide is for staff who manage site content in WHMCS. Daily work with text, 
 
 Open Language Manager in the WHMCS admin area and choose a section (WHMCS client or admin, this module, or another module) and a language. Compare the original or reference with the translation, edit one row, and save it; you can also export and import existing keys as JSON. Newly added languages use the reference until translated. The manager enables or disables language files and corrects legacy filenames. To change the default language, enable the replacement in Module settings, change the WHMCS default, then disable the old language.
 
+See the [detailed Language Manager guide](docs/language-manager.md).
+
 ## 1. Finding your way around
 
 Sign in to the WHMCS admin area with access to the add-on and open **Addons → ZMChel WHMCS Multimodule**. The tabs cover the page list, sitemap, media library, menu manager, rewrite rules, redirects, module database and module settings. The page list lets you create, find, edit and remove pages and configure replacements for WHMCS pages. In the module database tab, an administrator can check or repair missing tables.
@@ -108,7 +110,7 @@ For the first setup, activate the add-on and grant access, check the module data
 
 ## 14. Final checks and common problems
 
-Before handing over a page, confirm **Published** status, saved content and metadata for each enabled language. Open the public URL as a visitor and on a narrow screen. Check title, images, `alt`, buttons, links and forms. Test two language versions; for overrides, test the system URL. Check desktop/mobile menus and an old URL after slug changes. Regenerate `sitemap_index.xml` after publication or override changes.
+After publishing a page, confirm **Published** status, saved content and metadata for each enabled language. Open the public URL as a visitor and on a narrow screen. Check title, images, `alt`, buttons, links and forms. Test two language versions; for overrides, test the system URL. Check desktop/mobile menus and an old URL after slug changes. Regenerate `sitemap_index.xml` after publication or override changes.
 
 If a page returns 404, check publication, slug, translation, pretty URLs and rewrite rules. For missing language content, check that language's content and SEO; copying structure does not translate text. For `/ru/login`, turn off language handling on the link. For a missing menu, check enablement, location, module output area and desktop/mobile mode. For missing images, select a real media file. For undelivered forms, check recipient and WHMCS mail/SMTP. For failed menu saves, check required fields and database tables. For stale sitemaps, check settings, cron and write access. For rewrite changes, apply the rules after saving and configure Nginx separately.
 

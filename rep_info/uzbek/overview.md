@@ -6,10 +6,6 @@
 
 **zmchel WHMCS Multimodule bepul.** WHMCS boshqaruv panelidan ko‘p tilli sahifalar, vizual muharrir, menyular, media kutubxonasi, SEO metama’lumotlari, XML sayt xaritasi, yo‘naltirishlar, rewrite qoidalari hamda import va eksportni boshqaring. Boshlash uchun [qo‘llanmani](instruction.md) o‘qing.
 
-## Tillar menejeri (ishlab chiqilmoqda)
-
-WHMCS boshqaruv panelida Tillar menejerini ochib, bo‘limni (WHMCS mijoz yoki admin tillari, shu modul yoxud boshqa modul) va tilni tanlang. Asl nusxa yoki namuna matnni tarjima bilan solishtiring, bitta qatorni tahrir qilib saqlang; mavjud kalitlarni JSON sifatida eksport va import qilish ham mumkin. Yangi tillar tarjima qilinmaguncha namuna matndan foydalanadi. Menejer til fayllarini yoqib-o‘chiradi va eski nomlarni tuzatadi; standart tilni avval WHMCS-da o‘zgartiring.
-
 ## Kelajakdagi rejalar
 
 - Ichma-ich sahifalar va sahifa toifalarini qo‘shish.

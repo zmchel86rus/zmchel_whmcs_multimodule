@@ -6,10 +6,6 @@
 
 **zmchel WHMCS Multimodule pulsuzdur.** WHMCS idarəetmə panelindən vizual redaktorla çoxdilli səhifələri, menyuları, media kitabxanasını, SEO metadatasını, XML sayt xəritələrini, yönləndirmələri, rewrite qaydalarını, idxal və ixracı idarə edin. Ətraflı məlumat üçün [təlimatı](instruction.md) oxuyun.
 
-## Dil meneceri (hazırlanır)
-
-WHMCS idarəetməsində Dil menecerini açın, bölməni (WHMCS müştəri və ya admin dilləri, bu modul və ya başqa modul) və dili seçin. Orijinalı və ya istinad mətnini tərcümə ilə müqayisə edib hər sətri ayrıca yadda saxlayın; mövcud açarları JSON kimi ixrac və idxal etmək də olar. Yeni dil tərcümə edilənədək istinad mətnindən istifadə edir. Menecer dil fayllarını açıb-bağlayır və köhnə fayl adlarını düzəldir; standart dili söndürməzdən əvvəl onu WHMCS-də dəyişin.
-
 ## Gələcək inkişaf
 
 - İç-içə səhifələr və səhifə kateqoriyaları əlavə etmək.

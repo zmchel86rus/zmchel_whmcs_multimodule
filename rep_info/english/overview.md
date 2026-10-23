@@ -8,10 +8,6 @@
 
 **ZMChel WHMCS Multimodule is free.** It lets you manage site content from the WHMCS admin area. Its tools include a visual page and block editor, multilingual content, menus, a media library, SEO metadata, XML sitemaps, redirects, rewrite rules, and import/export. See the [instructions](instruction.md) for everyday use.
 
-## Language Manager (in development)
-
-Open Language Manager in the WHMCS admin area and choose a section (WHMCS client or admin, this module, or another module) and a language. Compare the original or reference with the translation, edit one row, and save it; you can also export and import existing keys as JSON. Newly added languages use the reference until translated. The manager enables or disables language files and corrects legacy filenames. To change the default language, enable the replacement in Module settings, change the WHMCS default, then disable the old language.
-
 ## Future development
 
 - Add nested pages and page categories or sections.

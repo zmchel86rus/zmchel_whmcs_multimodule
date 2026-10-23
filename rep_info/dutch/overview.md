@@ -8,10 +8,6 @@
 
 **zmchel WHMCS Multimodule is gratis.** Beheer pagina's en artikelen vanuit de WHMCS-administratie, met een visuele editor, vertalingen, menu's, mediabestanden, SEO-velden, XML-sitemaps, omleidingen en herschrijfregels.
 
-## Talenbeheer (in ontwikkeling)
-
-Open Talenbeheer in het WHMCS-beheer en kies een onderdeel (WHMCS-client- of beheertalen, deze module of een andere module) en een taal. Vergelijk de oorspronkelijke tekst of referentie met de vertaling, bewerk één regel en sla die op; bestaande sleutels kun je ook als JSON exporteren en importeren. Nieuwe talen gebruiken de referentie totdat ze zijn vertaald. Talenbeheer schakelt taalbestanden in of uit en corrigeert oude bestandsnamen; wijzig eerst de standaardtaal in WHMCS.
-
 ## Toekomstige ontwikkeling
 
 - Ondersteuning voor geneste pagina's en paginacategorieën toevoegen.

@@ -12,6 +12,8 @@
 
 W administracji WHMCS otwórz Menedżer języków, wybierz sekcję (języki klienta lub administratora WHMCS, ten moduł albo inny) oraz język. Porównaj oryginał lub tekst odniesienia z tłumaczeniem, zmień jeden wiersz i zapisz go; istniejące klucze można też eksportować i importować jako JSON. Nowe języki korzystają z tekstu odniesienia do czasu przetłumaczenia. Menedżer włącza i wyłącza pliki językowe oraz poprawia dawne nazwy; najpierw zmień język domyślny w WHMCS.
 
+→ [Menedżer języków](docs/language-manager.md)
+
 ## 1. Instalacja i dostęp
 
 Włącz dodatek w WHMCS i przyznaj dostęp uprawnionym administratorom. Sprawdź wymagane tabele w sekcji bazy danych modułu. Przejrzyj przyjazne adresy, trasy językowe i miejsca menu. Apache korzysta z .htaccess; w Nginx równoważne reguły trzeba skonfigurować osobno.

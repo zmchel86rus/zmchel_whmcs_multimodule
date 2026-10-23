@@ -8,10 +8,6 @@ Modül **WHMCS 8.13.1–8.13.7** üzerinde geliştirilip test edilmiştir. PHP u
 
 **zmchel WHMCS Multimodule ücretsizdir.** Görsel sayfa düzenleyicisi, çok dilli içerik, menüler, medya kütüphanesi, SEO alanları, XML site haritaları, yönlendirmeler, yeniden yazma kuralları ve içe/dışa aktarma araçları sunar. [Talimatları](instruction.md) okuyun.
 
-## Dil Yöneticisi (geliştirme aşamasında)
-
-WHMCS yönetiminde Dil Yöneticisini açın ve bir bölüm (WHMCS müşteri veya yönetici dilleri, bu modül ya da başka bir modül) ile dil seçin. Özgün metni veya referansı çeviriyle karşılaştırın, bir satırı düzenleyip kaydedin; mevcut anahtarları JSON olarak dışa ve içe aktarabilirsiniz. Yeni diller çevrilene kadar referansı kullanır. Yönetici dil dosyalarını etkinleştirip devre dışı bırakır ve eski dosya adlarını düzeltir; varsayılan dili önce WHMCS'de değiştirin.
-
 ## Gelecekteki geliştirmeler
 
 - İç içe sayfalar ve sayfa kategorileri eklemek.

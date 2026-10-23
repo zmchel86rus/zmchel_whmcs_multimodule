@@ -8,10 +8,6 @@
 
 **zmchel WHMCS Multimodule yra nemokamas.** WHMCS administravimo srityje galima tvarkyti puslapius ir straipsnius naudojant vaizdinę rengyklę, vertimus, meniu, medijos biblioteką, SEO laukus, XML svetainės schemas, peradresavimus ir URL perrašymo taisykles.
 
-## Kalbų tvarkytuvė (kuriama)
-
-WHMCS administravimo srityje atverkite Kalbų tvarkytuvę, pasirinkite skyrių (WHMCS klientų ar administratorių kalbas, šį ar kitą modulį) ir kalbą. Palyginkite originalą arba pavyzdinį tekstą su vertimu, pakeiskite vieną eilutę ir ją išsaugokite; esamus raktus galima eksportuoti ir importuoti kaip JSON. Naujos kalbos naudoja pavyzdinį tekstą, kol yra išverčiamos. Tvarkytuvė įjungia ir išjungia kalbų failus bei taiso senus pavadinimus; numatytąją kalbą pirmiausia pakeiskite WHMCS.
-
 ## Tolesnė plėtra
 
 - Pridėti įdėtinius puslapius ir jų kategorijas.

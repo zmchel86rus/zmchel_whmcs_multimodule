@@ -8,10 +8,6 @@
 
 **ZMChel WHMCS Multimodule ist kostenlos.** Damit lassen sich Website-Inhalte im WHMCS-Administrationsbereich verwalten: mit visuellem Seiten- und Blockeditor, mehrsprachigen Inhalten, Menüs, Mediathek, SEO-Metadaten, XML-Sitemaps, Weiterleitungen, Rewrite-Regeln sowie Import und Export. Die [Anleitung](instruction.md) beschreibt die Bedienung.
 
-## Sprachverwaltung (in Entwicklung)
-
-Öffnen Sie in der WHMCS-Administration die Sprachverwaltung und wählen Sie einen Bereich (WHMCS-Client- oder Adminsprachen, dieses oder ein anderes Modul) und eine Sprache. Vergleichen Sie Original oder Referenz mit der Übersetzung, bearbeiten Sie eine Zeile und speichern Sie sie; vorhandene Schlüssel lassen sich auch als JSON exportieren und importieren. Neue Sprachen verwenden bis zur Übersetzung den Referenztext. Die Verwaltung aktiviert oder deaktiviert Sprachdateien und korrigiert alte Dateinamen; ändern Sie die Standardsprache zuerst in WHMCS.
-
 ## Geplante Weiterentwicklung
 
 - Verschachtelte Seiten und Seitenkategorien bzw. Rubriken ergänzen.

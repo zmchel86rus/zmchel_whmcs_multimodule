@@ -10,6 +10,8 @@ Modül **WHMCS 8.13.1–8.13.7** üzerinde geliştirilip test edilmiştir; PHP u
 
 WHMCS yönetiminde Dil Yöneticisini açın ve bir bölüm (WHMCS müşteri veya yönetici dilleri, bu modül ya da başka bir modül) ile dil seçin. Özgün metni veya referansı çeviriyle karşılaştırın, bir satırı düzenleyip kaydedin; mevcut anahtarları JSON olarak dışa ve içe aktarabilirsiniz. Yeni diller çevrilene kadar referansı kullanır. Yönetici dil dosyalarını etkinleştirip devre dışı bırakır ve eski dosya adlarını düzeltir; varsayılan dili önce WHMCS'de değiştirin.
 
+→ [Dil Yöneticisi](../english/docs/language-manager.md) (English)
+
 ## Erişim ve sayfalar
 
 WHMCS yönetim panelinde **Addons → zmchel WHMCS Multimodule** bölümünü açın. Sayfa listesinde sayfa oluşturabilir, arayabilir, düzenleyebilir ve silebilirsiniz. *Slug*, `/contact/` adresindeki `contact` gibi alan adından sonraki bölümdür. URL'leri, yönlendirmeleri veya sunucu kurallarını değiştirmeden önce modül ayarlarını dışa aktarın.

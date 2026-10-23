@@ -10,6 +10,8 @@ A modult a **WHMCS 8.13.1–8.13.7** verzióival fejlesztették és tesztelték;
 
 A WHMCS adminfelületén nyissa meg a Nyelvkezelőt, majd válasszon részt (WHMCS ügyfél- vagy adminnyelvek, ez vagy más modul) és nyelvet. Hasonlítsa össze az eredetit vagy a referenciát a fordítással, módosítson egy sort, majd mentse; a meglévő kulcsok JSON-ként exportálhatók és importálhatók. Az új nyelvek a fordításig a referenciát használják. A kezelő nyelvi fájlokat kapcsol be és ki, és javítja a régi fájlneveket; előbb a WHMCS-ben módosítsa az alapértelmezett nyelvet.
 
+→ [Nyelvkezelő](../english/docs/language-manager.md) (English)
+
 ## Hozzáférés és oldalak
 
 A WHMCS adminisztrációjában nyissa meg az **Addons → zmchel WHMCS Multimodule** részt. Az oldalak listájában létrehozhat, kereshet, szerkeszthet és törölhet oldalakat. A *slug* a cím domain utáni része, például a `/contact/` címben a `contact`. URL-ek, átirányítások vagy kiszolgálói szabályok módosítása előtt exportálja a modulbeállításokat.

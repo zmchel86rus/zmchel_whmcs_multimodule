@@ -6,10 +6,6 @@
 
 **zmchel WHMCS Multimodule ni ya bure.** Kutoka eneo la usimamizi la WHMCS, simamia kurasa za lugha nyingi kwa kihariri cha picha, menyu, maktaba ya media, taarifa za SEO, ramani za tovuti za XML, uelekezaji upya, sheria za rewrite, kuingiza na kuhamisha data. Soma [maelekezo](instruction.md) kabla ya kuanza.
 
-## Meneja wa lugha (unaendelezwa)
-
-Katika usimamizi wa WHMCS, fungua Meneja wa lugha na uchague sehemu (lugha za wateja au wasimamizi wa WHMCS, moduli hii au nyingine) na lugha. Linganisha asili au marejeo na tafsiri, hariri mstari mmoja na uhifadhi; funguo zilizopo pia zinaweza kuhamishwa na kuingizwa kama JSON. Lugha mpya hutumia marejeo mpaka zitafsiriwe. Meneja huwasha na kuzima faili za lugha na kurekebisha majina ya zamani; badili kwanza lugha chaguomsingi kwenye WHMCS.
-
 ## Mipango ya baadaye
 
 - Kuongeza kurasa zinazowekwa ndani ya nyingine na makundi ya kurasa.

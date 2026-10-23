@@ -12,6 +12,8 @@
 
 V skrbništvu WHMCS odprite Upravitelja jezikov ter izberite razdelek (jeziki za stranke ali skrbnike WHMCS, ta ali drug modul) in jezik. Primerjajte izvirnik ali referenco s prevodom, uredite eno vrstico in jo shranite; obstoječe ključe lahko tudi izvozite in uvozite kot JSON. Novi jeziki uporabljajo referenco, dokler niso prevedeni. Upravitelj omogoča ali onemogoča jezikovne datoteke in popravi stara imena; privzeti jezik najprej spremenite v WHMCS.
 
+→ [Upravitelj jezikov](docs/language-manager.md)
+
 ## 1. Namestitev in dostop
 
 V WHMCS aktivirajte dodatni modul in dodelite dostop pooblaščenim skrbnikom. V zbirki podatkov modula preverite potrebne tabele. Preglejte prijazne URL-je, jezikovne poti in položaje menijev. Apache uporablja .htaccess; v Nginxu enakovredna strežniška pravila nastavite posebej.

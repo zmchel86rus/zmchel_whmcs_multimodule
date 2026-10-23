@@ -6,10 +6,6 @@
 
 **zmchel WHMCS Multimodule er ókeypis.** Í stjórnborði WHMCS geturðu stjórnað fjöltyngdum síðum með sjónrænum ritli, valmyndum, miðlasafni, SEO-lýsigögnum, XML-vefkortum, áframsendingum, rewrite-reglum og inn- og útflutningi. Sjá [leiðbeiningar](instruction.md) til að hefjast handa.
 
-## Tungumálastýring (í þróun)
-
-Opnaðu Tungumálastýringu í WHMCS-stjórnborðinu og veldu hluta (tungumál viðskiptavina eða stjórnenda WHMCS, þessa einingu eða aðra) og tungumál. Berðu frumtexta eða viðmið saman við þýðinguna, breyttu einni línu og vistaðu; einnig má flytja núverandi lykla út og inn sem JSON. Ný tungumál nota viðmiðstexta þar til þau hafa verið þýdd. Stýringin virkjar eða slekkur á tungumálaskrám og leiðréttir gömul skráarnöfn; breyttu sjálfgefnu tungumáli fyrst í WHMCS.
-
 ## Framtíðaráform
 
 - Bæta við undirsíðum og flokkum eða efnissviðum.

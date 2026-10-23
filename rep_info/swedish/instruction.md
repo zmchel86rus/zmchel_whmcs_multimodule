@@ -10,6 +10,8 @@ Modulen utvecklades och testades med **WHMCS 8.13.1–8.13.7**; PHP-kompatibilit
 
 Öppna Språkhanteraren i WHMCS-administrationen och välj en del (WHMCS klient- eller administratörsspråk, den här modulen eller en annan) och ett språk. Jämför originalet eller referensen med översättningen, redigera en rad och spara den; befintliga nycklar kan också exporteras och importeras som JSON. Nya språk använder referensen tills de har översatts. Hanteraren aktiverar eller inaktiverar språkfiler och rättar gamla filnamn; ändra först standardspråk i WHMCS.
 
+→ [Språkhanterare](../english/docs/language-manager.md) (English)
+
 ## Åtkomst och sidor
 
 Öppna **Addons → zmchel WHMCS Multimodule** i WHMCS-administrationen. Sidlistan låter dig skapa, hitta, redigera och ta bort sidor. En *slug* är adressdelen efter domänen, till exempel `contact` i `/contact/`. Exportera modulinställningarna innan du ändrar URL:er, omdirigeringar eller serverregler.

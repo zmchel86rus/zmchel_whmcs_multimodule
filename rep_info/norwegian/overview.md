@@ -8,10 +8,6 @@ Modulen ble utviklet og testet med **WHMCS 8.13.1–8.13.7**. PHP-kompatibilitet
 
 **zmchel WHMCS Multimodule er gratis.** Den inneholder en visuell sideredigerer, flerspråklig innhold, menyer, mediebibliotek, SEO-felt, XML-nettstedskart, viderekoblinger, omskrivingsregler og import/eksport. Les [bruksanvisningen](instruction.md).
 
-## Språkbehandling (under utvikling)
-
-Åpne Språkbehandling i WHMCS-administrasjonen og velg en seksjon (WHMCS-klient- eller administratorspråk, denne modulen eller en annen modul) og et språk. Sammenlign originalen eller referansen med oversettelsen, rediger én rad og lagre den; eksisterende nøkler kan også eksporteres og importeres som JSON. Nye språk bruker referansen til de er oversatt. Verktøyet aktiverer og deaktiverer språkfiler og retter gamle filnavn; endre standardspråk i WHMCS først.
-
 ## Videre utvikling
 
 - Legge til nøstede sider og sidekategorier.

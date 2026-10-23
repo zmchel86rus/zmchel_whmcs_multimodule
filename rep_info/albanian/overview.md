@@ -6,10 +6,6 @@
 
 **zmchel WHMCS Multimodule është falas.** Nga administrimi i WHMCS mund të menaxhoni faqe shumëgjuhëshe me redaktor pamor, meny, bibliotekë mediash, metadata SEO, harta XML, ridrejtime, rregulla rewrite dhe import/eksport. Lexoni [udhëzimet](instruction.md) para se të filloni.
 
-## Menaxheri i gjuhëve (në zhvillim)
-
-Në administrimin WHMCS, hapni Menaxherin e gjuhëve dhe zgjidhni seksionin (klientët ose administratorët e WHMCS, këtë modul ose një modul tjetër) dhe gjuhën. Krahasoni tekstin origjinal ose referencën me përkthimin, ndryshoni një rresht dhe ruajeni; çelësat ekzistues mund të eksportohen dhe importohen edhe si JSON. Gjuhët e saposhtuara përdorin referencën derisa të përkthehen. Menaxheri aktivizon ose çaktivizon skedarët e gjuhës dhe korrigjon emrat e vjetër të skedarëve; gjuhën e parazgjedhur ndryshojeni fillimisht në WHMCS.
-
 ## Zhvillimi i ardhshëm
 
 - Shtimi i faqeve të ndërfutura dhe kategorive ose rubrikave.

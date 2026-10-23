@@ -6,10 +6,6 @@
 
 **zmchel WHMCS Multimodule gratis.** Dari admin WHMCS, Anda dapat mengelola halaman multibahasa dengan editor visual, menu, pustaka media, metadata SEO, peta situs XML, pengalihan, aturan rewrite, serta impor dan ekspor. Baca [petunjuk penggunaan](instruction.md) sebelum mulai.
 
-## Pengelola bahasa (dalam pengembangan)
-
-Di admin WHMCS, buka Pengelola bahasa lalu pilih bagian (bahasa klien atau admin WHMCS, modul ini atau modul lain) dan bahasa. Bandingkan teks asli atau referensi dengan terjemahan, ubah satu baris dan simpan; kunci yang sudah ada juga dapat diekspor dan diimpor sebagai JSON. Bahasa baru memakai referensi sampai diterjemahkan. Pengelola dapat mengaktifkan atau menonaktifkan berkas bahasa serta membetulkan nama berkas lama; ubah dulu bahasa bawaan di WHMCS.
-
 ## Rencana pengembangan
 
 - Menambahkan halaman bertingkat dan kategori atau rubrik.

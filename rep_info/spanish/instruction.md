@@ -12,6 +12,8 @@ Esta guía es para el personal que administra el contenido del sitio desde WHMCS
 
 En la administración de WHMCS, abre el Gestor de idiomas y elige una sección (idiomas de cliente o administración de WHMCS, este módulo u otro) y un idioma. Compara el original o la referencia con la traducción, edita una fila y guárdala; también puedes exportar e importar las claves existentes como JSON. Los idiomas nuevos usan la referencia hasta que se traduzcan. El gestor activa o desactiva archivos de idioma y corrige nombres antiguos; cambia primero el idioma predeterminado en WHMCS.
 
+→ [Gestor de idiomas](docs/language-manager.md)
+
 ## 1. Orientación
 
 Entre en la administración de WHMCS con acceso al complemento y abra **Complementos → ZMChel WHMCS Multimodule**. Las pestañas incluyen lista de páginas, mapa del sitio, biblioteca multimedia, gestor de menús, reglas rewrite, redirecciones, base de datos y ajustes. En la lista puede crear, buscar, editar o quitar páginas y configurar sustituciones de páginas WHMCS. En **Base de datos del módulo**, un administrador puede detectar y reparar tablas ausentes.

@@ -12,6 +12,8 @@
 
 WHMCS administravimo srityje atverkite Kalbų tvarkytuvę, pasirinkite skyrių (WHMCS klientų ar administratorių kalbas, šį ar kitą modulį) ir kalbą. Palyginkite originalą arba pavyzdinį tekstą su vertimu, pakeiskite vieną eilutę ir ją išsaugokite; esamus raktus galima eksportuoti ir importuoti kaip JSON. Naujos kalbos naudoja pavyzdinį tekstą, kol yra išverčiamos. Tvarkytuvė įjungia ir išjungia kalbų failus bei taiso senus pavadinimus; numatytąją kalbą pirmiausia pakeiskite WHMCS.
 
+→ [Kalbų tvarkytuvė](docs/language-manager.md)
+
 ## 1. Diegimas ir prieiga
 
 Įjunkite papildomą modulį WHMCS ir suteikite prieigą įgaliotiems administratoriams. Modulio duomenų bazės skiltyje patikrinkite būtinas lenteles. Peržiūrėkite tvarkingus URL, kalbų maršrutus ir meniu vietas. Apache naudoja .htaccess; Nginx atveju atitinkamas serverio taisykles nustatykite atskirai.

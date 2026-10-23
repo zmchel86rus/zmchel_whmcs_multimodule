@@ -12,6 +12,8 @@
 
 Open Talenbeheer in het WHMCS-beheer en kies een onderdeel (WHMCS-client- of beheertalen, deze module of een andere module) en een taal. Vergelijk de oorspronkelijke tekst of referentie met de vertaling, bewerk één regel en sla die op; bestaande sleutels kun je ook als JSON exporteren en importeren. Nieuwe talen gebruiken de referentie totdat ze zijn vertaald. Talenbeheer schakelt taalbestanden in of uit en corrigeert oude bestandsnamen; wijzig eerst de standaardtaal in WHMCS.
 
+→ [Talenbeheer](docs/language-manager.md)
+
 ## 1. Installatie en toegang
 
 Activeer de add-on in WHMCS en geef bevoegde medewerkers toegang. Controleer in Module database of de vereiste tabellen bestaan. Bekijk daarna de instellingen voor nette URL's, taalroutes en menu's. Laat Apache de regels uit .htaccess lezen; configureer bij Nginx de equivalente serverregels zelf.

@@ -6,10 +6,6 @@
 
 **zmchel WHMCS Multimodule ialah modul percuma.** Ia membolehkan anda mengurus halaman berbilang bahasa melalui penyunting visual, menu, pustaka media, metadata SEO, peta laman XML, pengalihan, peraturan rewrite serta import dan eksport dari pentadbiran WHMCS. Rujuk [panduan penggunaan](instruction.md) sebelum bermula.
 
-## Pengurus bahasa (dalam pembangunan)
-
-Dalam pentadbiran WHMCS, buka Pengurus bahasa dan pilih bahagian (bahasa klien atau admin WHMCS, modul ini atau modul lain) serta bahasa. Bandingkan teks asal atau rujukan dengan terjemahan, ubah satu baris dan simpan; kunci sedia ada juga boleh dieksport dan diimport sebagai JSON. Bahasa baharu menggunakan rujukan sehingga diterjemahkan. Pengurus boleh menghidupkan atau mematikan fail bahasa dan membetulkan nama fail lama; tukar bahasa lalai dalam WHMCS dahulu.
-
 ## Rancangan pembangunan
 
 - Menambah halaman bersarang serta kategori atau rubrik halaman.

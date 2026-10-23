@@ -8,6 +8,8 @@
 
 Katika usimamizi wa WHMCS, fungua Meneja wa lugha na uchague sehemu (lugha za wateja au wasimamizi wa WHMCS, moduli hii au nyingine) na lugha. Linganisha asili au marejeo na tafsiri, hariri mstari mmoja na uhifadhi; funguo zilizopo pia zinaweza kuhamishwa na kuingizwa kama JSON. Lugha mpya hutumia marejeo mpaka zitafsiriwe. Meneja huwasha na kuzima faili za lugha na kurekebisha majina ya zamani; badili kwanza lugha chaguomsingi kwenye WHMCS.
 
+→ [Meneja wa lugha](../english/docs/language-manager.md) (English)
+
 ## Kuunda kurasa
 
 Fungua **Addons → zmchel WHMCS Multimodule** katika eneo la usimamizi la WHMCS. Kabla ya kubadilisha URL, uelekezaji upya au sheria za seva, hamisha mipangilio ya moduli. Kwenye orodha ya kurasa, ongeza ukurasa wenye jina la ndani na *slug* kama `kuhusu-sisi`, bila kikoa au `.php`. Chagua ufikiaji wa wote, wa walioingia kwenye akaunti au mchanganyiko; kisha chagua hali ya rasimu au iliyochapishwa, aina ya ukurasa na lugha. Lugha chaguomsingi ya WHMCS lazima iwe ndani ya `supported_langs.php`.

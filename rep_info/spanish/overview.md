@@ -8,10 +8,6 @@
 
 **ZMChel WHMCS Multimodule es gratuito.** Permite gestionar el contenido del sitio desde la administración de WHMCS: editor visual de páginas y bloques, contenido multilingüe, menús, biblioteca multimedia, metadatos SEO, mapas del sitio XML, redirecciones, reglas rewrite e importación/exportación. Consulte las [instrucciones](instruction.md) para usarlo.
 
-## Gestor de idiomas (en desarrollo)
-
-En la administración de WHMCS, abre el Gestor de idiomas y elige una sección (idiomas de cliente o administración de WHMCS, este módulo u otro) y un idioma. Compara el original o la referencia con la traducción, edita una fila y guárdala; también puedes exportar e importar las claves existentes como JSON. Los idiomas nuevos usan la referencia hasta que se traduzcan. El gestor activa o desactiva archivos de idioma y corrige nombres antiguos; cambia primero el idioma predeterminado en WHMCS.
-
 ## Desarrollo futuro
 
 - Añadir páginas anidadas y categorías o secciones de páginas.

@@ -8,10 +8,6 @@ Modul byl vyvinut a testován na **WHMCS 8.13.1–8.13.7**. Kompatibilita s PHP 
 
 **zmchel WHMCS Multimodule je zdarma.** Obsahuje vizuální editor stránek, vícejazyčný obsah, nabídky, knihovnu médií, pole SEO, XML mapy webu, přesměrování, pravidla přepisování a import/export. Přečtěte si [návod](instruction.md).
 
-## Správce jazyků (ve vývoji)
-
-V administraci WHMCS otevřete Správce jazyků a vyberte sekci (klientské nebo administrátorské jazyky WHMCS, tento či jiný modul) a jazyk. Porovnejte původní nebo referenční text s překladem, upravte řádek a uložte jej; existující klíče lze také exportovat a importovat jako JSON. Nové jazyky používají referenční text, dokud je nepřeložíte. Správce zapíná a vypíná jazykové soubory a opravuje staré názvy; výchozí jazyk nejprve změňte ve WHMCS.
-
 ## Plány do budoucna
 
 - Přidat vnořené stránky a kategorie.

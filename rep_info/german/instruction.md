@@ -12,6 +12,8 @@ Diese Anleitung richtet sich an Mitarbeiter, die Website-Inhalte über WHMCS pfl
 
 Öffnen Sie in der WHMCS-Administration die Sprachverwaltung und wählen Sie einen Bereich (WHMCS-Client- oder Adminsprachen, dieses oder ein anderes Modul) und eine Sprache. Vergleichen Sie Original oder Referenz mit der Übersetzung, bearbeiten Sie eine Zeile und speichern Sie sie; vorhandene Schlüssel lassen sich auch als JSON exportieren und importieren. Neue Sprachen verwenden bis zur Übersetzung den Referenztext. Die Verwaltung aktiviert oder deaktiviert Sprachdateien und korrigiert alte Dateinamen; ändern Sie die Standardsprache zuerst in WHMCS.
 
+→ [Sprachverwaltung](docs/language-manager.md)
+
 ## 1. Orientierung
 
 Melden Sie sich mit Berechtigung für das Add-on im WHMCS-Adminbereich an und öffnen Sie **Add-ons → ZMChel WHMCS Multimodule**. Die Reiter führen zur Seitenliste, Sitemap, Mediathek, Menüverwaltung, Rewrite-Regeln, Weiterleitungen, Moduldatenbank und den Moduleinstellungen. In der Seitenliste können Sie Seiten erstellen, suchen, ändern und entfernen sowie WHMCS-Seiten ersetzen. Die Moduldatenbank zeigt fehlende Tabellen und bietet Reparaturen für Administratoren.

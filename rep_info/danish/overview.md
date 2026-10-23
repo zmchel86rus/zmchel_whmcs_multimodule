@@ -8,10 +8,6 @@
 
 **zmchel WHMCS Multimodule er gratis.** Administrér sider og artikler fra WHMCS-administrationen med visuel editor, oversættelser, menuer, mediefiler, SEO-felter, XML-sitemaps, viderestillinger og omskrivningsregler.
 
-## Sprogstyring (under udvikling)
-
-Åbn Sprogstyring i WHMCS-administrationen, og vælg en sektion (WHMCS-klient- eller administratorsprog, dette modul eller et andet modul) og et sprog. Sammenlign originalen eller referencen med oversættelsen, rediger én række, og gem den; eksisterende nøgler kan også eksporteres og importeres som JSON. Nye sprog bruger referencen, indtil de oversættes. Styringen aktiverer og deaktiverer sprogfiler og retter gamle filnavne; skift først standardsprog i WHMCS.
-
 ## Fremtidig udvikling
 
 - Tilføje indlejrede sider og sidekategorier.

@@ -8,10 +8,6 @@
 
 **zmchel WHMCS Multimodule je brezplačen.** V skrbništvu WHMCS omogoča upravljanje strani in člankov z vizualnim urejevalnikom, prevodi, meniji, medijsko knjižnico, polji SEO, zemljevidi spletnega mesta XML, preusmeritvami in pravili za prepisovanje URL-jev.
 
-## Upravitelj jezikov (v razvoju)
-
-V skrbništvu WHMCS odprite Upravitelja jezikov ter izberite razdelek (jeziki za stranke ali skrbnike WHMCS, ta ali drug modul) in jezik. Primerjajte izvirnik ali referenco s prevodom, uredite eno vrstico in jo shranite; obstoječe ključe lahko tudi izvozite in uvozite kot JSON. Novi jeziki uporabljajo referenco, dokler niso prevedeni. Upravitelj omogoča ali onemogoča jezikovne datoteke in popravi stara imena; privzeti jezik najprej spremenite v WHMCS.
-
 ## Prihodnji razvoj
 
 - Dodati gnezdene strani in kategorije strani.

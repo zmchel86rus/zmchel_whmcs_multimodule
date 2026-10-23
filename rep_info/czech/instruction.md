@@ -10,6 +10,8 @@ Modul byl vyvinut a testován na **WHMCS 8.13.1–8.13.7**; kompatibilita s PHP 
 
 V administraci WHMCS otevřete Správce jazyků a vyberte sekci (klientské nebo administrátorské jazyky WHMCS, tento či jiný modul) a jazyk. Porovnejte původní nebo referenční text s překladem, upravte řádek a uložte jej; existující klíče lze také exportovat a importovat jako JSON. Nové jazyky používají referenční text, dokud je nepřeložíte. Správce zapíná a vypíná jazykové soubory a opravuje staré názvy; výchozí jazyk nejprve změňte ve WHMCS.
 
+→ [Správce jazyků](../english/docs/language-manager.md) (English)
+
 ## Přístup a stránky
 
 V administraci WHMCS otevřete **Addons → zmchel WHMCS Multimodule**. Seznam stránek umožňuje stránky vytvářet, vyhledávat, upravovat a mazat. *Slug* je část adresy za doménou, například `contact` v `/contact/`. Před změnou URL, přesměrování nebo pravidel serveru exportujte nastavení modulu.

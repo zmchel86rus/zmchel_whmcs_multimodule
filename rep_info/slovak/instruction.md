@@ -12,6 +12,8 @@
 
 V administrácii WHMCS otvorte Správcu jazykov a vyberte sekciu (klientske alebo administrátorské jazyky WHMCS, tento či iný modul) a jazyk. Porovnajte originál alebo referenčný text s prekladom, upravte jeden riadok a uložte ho; existujúce kľúče možno aj exportovať a importovať ako JSON. Nové jazyky používajú referenčný text, kým ich nepreložíte. Správca zapína a vypína jazykové súbory a opravuje staré názvy; predvolený jazyk najskôr zmeňte vo WHMCS.
 
+→ [Správca jazykov](docs/language-manager.md)
+
 ## 1. Inštalácia a prístup
 
 Aktivujte doplnkový modul vo WHMCS a udeľte prístup oprávneným administrátorom. V databázovej sekcii modulu skontrolujte potrebné tabuľky. Prezrite si pekné URL, jazykové trasy a umiestnenie ponúk. Apache používa .htaccess; pre Nginx nastavte príslušné serverové pravidlá samostatne.

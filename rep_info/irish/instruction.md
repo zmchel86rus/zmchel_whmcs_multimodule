@@ -8,6 +8,8 @@
 
 Oscail Bainisteoir Teangacha i riarachán WHMCS agus roghnaigh rannóg (teangacha cliant nó riaracháin WHMCS, an modúl seo nó modúl eile) agus teanga. Cuir an bunleagan nó an tagairt i gcomparáid leis an aistriúchán, cuir líne amháin in eagar agus sábháil í; is féidir eochracha atá ann a easpórtáil agus a iompórtáil mar JSON freisin. Úsáideann teanga nua an tagairt go dtí go n-aistrítear í. Cumasaíonn nó díchumasaíonn an bainisteoir comhaid teanga agus ceartaíonn sé seanainmneacha; athraigh an teanga réamhshocraithe i WHMCS ar dtús.
 
+→ [Bainisteoir Teangacha](../english/docs/language-manager.md) (English)
+
 ## Leathanaigh a chruthú
 
 Oscail **Addons → zmchel WHMCS Multimodule** i limistéar riaracháin WHMCS. Easpórtáil socruithe an mhodúil sula n-athraíonn tú URLanna, atreoruithe nó rialacha freastalaí. I liosta na leathanach, cruthaigh leathanach le hainm inmheánach agus *slug* ar nós `futhainn`, gan fearann ná `.php`. Roghnaigh rochtain do chách, d'úsáideoirí sínithe isteach nó rochtain mheasctha; ansin roghnaigh dréacht nó foilsithe, cineál an leathanaigh agus na teangacha. Caithfidh teanga réamhshocraithe WHMCS a bheith i `supported_langs.php`.

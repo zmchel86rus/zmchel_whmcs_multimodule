@@ -8,6 +8,8 @@
 
 WHMCS idarəetməsində Dil menecerini açın, bölməni (WHMCS müştəri və ya admin dilləri, bu modul və ya başqa modul) və dili seçin. Orijinalı və ya istinad mətnini tərcümə ilə müqayisə edib hər sətri ayrıca yadda saxlayın; mövcud açarları JSON kimi ixrac və idxal etmək də olar. Yeni dil tərcümə edilənədək istinad mətnindən istifadə edir. Menecer dil fayllarını açıb-bağlayır və köhnə fayl adlarını düzəldir; standart dili söndürməzdən əvvəl onu WHMCS-də dəyişin.
 
+→ [Dil meneceri](../english/docs/language-manager.md) (English)
+
 ## Səhifələrin yaradılması
 
 WHMCS idarəetmə panelində **Addons → zmchel WHMCS Multimodule** bölməsini açın. URL, yönləndirmə və ya server qaydalarını dəyişməzdən əvvəl modul parametrlərini ixrac edin. Səhifələr siyahısında daxili ad və domen, yaxud `.php` olmayan `haqqimizda` kimi *slug* daxil edin. Hər kəs, yalnız daxil olmuş istifadəçilər və ya qarışıq giriş seçin; sonra qaralama və ya dərc olunmuş statusu, səhifə növünü və dilləri seçin. WHMCS-in standart dili `supported_langs.php` daxilində olmalıdır.

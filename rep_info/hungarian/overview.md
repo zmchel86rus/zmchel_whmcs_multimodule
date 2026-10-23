@@ -8,10 +8,6 @@ A modult a **WHMCS 8.13.1–8.13.7** verzióival fejlesztették és tesztelték.
 
 **A zmchel WHMCS Multimodule ingyenes.** Vizuális oldalszerkesztőt, többnyelvű tartalmat, menüket, médiatárat, SEO-mezőket, XML-webhelytérképeket, átirányításokat, átírási szabályokat, valamint importálást és exportálást kínál. Olvassa el az [útmutatót](instruction.md).
 
-## Nyelvkezelő (fejlesztés alatt)
-
-A WHMCS adminfelületén nyissa meg a Nyelvkezelőt, majd válasszon részt (WHMCS ügyfél- vagy adminnyelvek, ez vagy más modul) és nyelvet. Hasonlítsa össze az eredetit vagy a referenciát a fordítással, módosítson egy sort, majd mentse; a meglévő kulcsok JSON-ként exportálhatók és importálhatók. Az új nyelvek a fordításig a referenciát használják. A kezelő nyelvi fájlokat kapcsol be és ki, és javítja a régi fájlneveket; előbb a WHMCS-ben módosítsa az alapértelmezett nyelvet.
-
 ## További fejlesztési tervek
 
 - Egymásba ágyazott oldalak és oldalkategóriák hozzáadása.

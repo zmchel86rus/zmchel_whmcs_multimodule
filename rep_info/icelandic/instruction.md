@@ -8,6 +8,8 @@
 
 Opnaðu Tungumálastýringu í WHMCS-stjórnborðinu og veldu hluta (tungumál viðskiptavina eða stjórnenda WHMCS, þessa einingu eða aðra) og tungumál. Berðu frumtexta eða viðmið saman við þýðinguna, breyttu einni línu og vistaðu; einnig má flytja núverandi lykla út og inn sem JSON. Ný tungumál nota viðmiðstexta þar til þau hafa verið þýdd. Stýringin virkjar eða slekkur á tungumálaskrám og leiðréttir gömul skráarnöfn; breyttu sjálfgefnu tungumáli fyrst í WHMCS.
 
+→ [Tungumálastýring](../english/docs/language-manager.md) (English)
+
 ## Búa til síður
 
 Opnaðu **Addons → zmchel WHMCS Multimodule** í stjórnborði WHMCS. Flyttu út stillingar einingarinnar áður en þú breytir vefslóðum, áframsendingum eða netþjónsreglum. Búðu til síðu með innra heiti og *slug*, til dæmis `um-okkur`, án léns eða `.php`. Veldu aðgang fyrir alla, innskráða notendur eða blandaðan hóp. Veldu svo drög eða birta síðu, síðugerð og tungumál. Sjálfgefið tungumál WHMCS verður að vera í `supported_langs.php`.

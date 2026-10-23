@@ -8,6 +8,8 @@
 
 Trong khu vực quản trị WHMCS, mở Trình quản lý ngôn ngữ rồi chọn mục (ngôn ngữ khách hàng hoặc quản trị của WHMCS, mô-đun này hay mô-đun khác) và ngôn ngữ. So sánh bản gốc hoặc bản tham chiếu với bản dịch, sửa một dòng và lưu; bạn cũng có thể xuất và nhập các khóa hiện có dưới dạng JSON. Ngôn ngữ mới dùng bản tham chiếu cho tới khi được dịch. Trình quản lý bật hoặc tắt tệp ngôn ngữ và sửa tên tệp cũ; hãy đổi ngôn ngữ mặc định trong WHMCS trước.
 
+→ [Trình quản lý ngôn ngữ](../english/docs/language-manager.md) (English)
+
 ## Bắt đầu và tạo trang
 
 Trong khu vực quản trị WHMCS, mở **Addons → zmchel WHMCS Multimodule**. Trước khi sửa URL, chuyển hướng hoặc quy tắc máy chủ, hãy xuất cấu hình mô-đun. Ở danh sách trang, tạo trang với tên nội bộ và *slug* như `gioi-thieu`, không kèm tên miền hay `.php`. Chọn quyền xem cho mọi người, khách hàng đã đăng nhập hoặc cả hai; tiếp theo chọn trạng thái nháp hay đã xuất bản, loại trang và ngôn ngữ. Ngôn ngữ mặc định của WHMCS phải có trong `supported_langs.php`.

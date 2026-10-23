@@ -10,6 +10,8 @@ Modul je razvijen i testiran na **WHMCS-u 8.13.1–8.13.7**; PHP kompatibilnost 
 
 U administraciji WHMCS-a otvorite Upravitelj jezika te odaberite odjeljak (klijentski ili administratorski jezici WHMCS-a, ovaj ili drugi modul) i jezik. Usporedite izvornik ili referentni tekst s prijevodom, uredite redak i spremite ga; postojeće ključeve možete i izvesti ili uvesti kao JSON. Novi jezici nasljeđuju referentni tekst dok ih ne prevedete. Upravitelj uključuje i isključuje jezične datoteke te ispravlja stare nazive; zadani jezik najprije promijenite u WHMCS-u.
 
+→ [Upravitelj jezika](../english/docs/language-manager.md) (English)
+
 ## Pristup i stranice
 
 U administraciji WHMCS-a otvorite **Addons → zmchel WHMCS Multimodule**. Popis stranica omogućuje stvaranje, pretraživanje, uređivanje i brisanje stranica. *Slug* je dio adrese nakon domene, primjerice `contact` u `/contact/`. Prije promjene URL-ova, preusmjeravanja ili pravila poslužitelja izvezite postavke modula.

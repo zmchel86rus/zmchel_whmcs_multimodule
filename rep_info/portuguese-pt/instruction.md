@@ -10,6 +10,8 @@ Desenvolvido e testado com **WHMCS 8.13.1–8.13.7**; compatibilidade PHP verifi
 
 Na administração do WHMCS, abra o Gestor de idiomas e escolha uma secção (idiomas do cliente ou da administração do WHMCS, este módulo ou outro) e um idioma. Compare o original ou a referência com a tradução, edite uma linha e guarde-a; também pode exportar e importar as chaves existentes em JSON. Os novos idiomas usam a referência até serem traduzidos. O gestor ativa e desativa ficheiros de idioma e corrige nomes antigos; altere primeiro o idioma predefinido no WHMCS.
 
+→ [Gestor de idiomas](../english/docs/language-manager.md) (English)
+
 ## Acesso e páginas
 
 Na administração do WHMCS, abra **Addons → zmchel WHMCS Multimodule**. A lista de páginas permite criar, procurar, editar e eliminar páginas. Um *slug* é a parte do endereço a seguir ao domínio, por exemplo `contact` em `/contact/`. Exporte as definições antes de alterar URLs, redirecionamentos ou regras do servidor.

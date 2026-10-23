@@ -8,10 +8,6 @@
 
 **zmchel WHMCS Multimodule on maksuton.** Sillä voi hallita sivuja ja artikkeleita WHMCS:n hallintapaneelissa. Toimintoihin kuuluvat visuaalinen editori, käännökset, valikot, mediakirjasto, SEO-kentät, XML-sivustokartat, uudelleenohjaukset ja URL-uudelleenkirjoitussäännöt.
 
-## Kielten hallinta (kehitteillä)
-
-Avaa WHMCS:n ylläpidossa Kielten hallinta ja valitse osio (WHMCS:n asiakas- tai ylläpitokielet, tämä moduuli tai muu moduuli) sekä kieli. Vertaa alkuperäistä tai vertailutekstiä käännökseen, muokkaa yhtä riviä ja tallenna se; olemassa olevia avaimia voi myös viedä ja tuoda JSON-tiedostona. Uusi kieli käyttää vertailutekstiä, kunnes se käännetään. Hallinta ottaa kielitiedostoja käyttöön tai poistaa niitä käytöstä ja korjaa vanhoja tiedostonimiä; vaihda oletuskieli ensin WHMCS:ssä.
-
 ## Tuleva kehitys
 
 - Lisätä sisäkkäiset sivut ja sivuluokat.

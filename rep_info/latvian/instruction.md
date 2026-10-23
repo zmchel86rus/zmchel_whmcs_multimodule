@@ -12,6 +12,8 @@
 
 WHMCS administrācijā atveriet Valodu pārvaldnieku un izvēlieties sadaļu (WHMCS klientu vai administratoru valodas, šo vai citu moduli) un valodu. Salīdziniet oriģinālu vai atsauci ar tulkojumu, rediģējiet vienu rindu un saglabājiet; esošās atslēgas var arī eksportēt un importēt JSON formātā. Jaunās valodas līdz tulkošanai izmanto atsauci. Pārvaldnieks ieslēdz un izslēdz valodu failus un labo vecos failu nosaukumus; vispirms mainiet noklusējuma valodu WHMCS.
 
+→ [Valodu pārvaldnieks](docs/language-manager.md)
+
 ## 1. Uzstādīšana un piekļuve
 
 Aktivizējiet papildmoduli WHMCS un piešķiriet piekļuvi pilnvarotajiem administratoriem. Moduļa datubāzes sadaļā pārbaudiet nepieciešamās tabulas. Pārskatiet glītās URL adreses, valodu maršrutus un izvēļņu vietas. Apache izmanto .htaccess; Nginx gadījumā atbilstošie servera noteikumi jākonfigurē atsevišķi.

@@ -12,6 +12,8 @@
 
 Avaa WHMCS:n ylläpidossa Kielten hallinta ja valitse osio (WHMCS:n asiakas- tai ylläpitokielet, tämä moduuli tai muu moduuli) sekä kieli. Vertaa alkuperäistä tai vertailutekstiä käännökseen, muokkaa yhtä riviä ja tallenna se; olemassa olevia avaimia voi myös viedä ja tuoda JSON-tiedostona. Uusi kieli käyttää vertailutekstiä, kunnes se käännetään. Hallinta ottaa kielitiedostoja käyttöön tai poistaa niitä käytöstä ja korjaa vanhoja tiedostonimiä; vaihda oletuskieli ensin WHMCS:ssä.
 
+→ [Kielten hallinta](docs/language-manager.md)
+
 ## 1. Asennus ja käyttöoikeudet
 
 Ota lisämoduuli käyttöön WHMCS:ssä ja myönnä pääsy tarvittaville ylläpitäjille. Tarkista vaaditut taulut moduulin tietokantatyökalulla. Käy läpi siistit URL-osoitteet, kielireitit ja valikkopaikat. Apache käyttää .htaccess-tiedostoa; Nginxissä vastaavat säännöt määritetään erikseen.

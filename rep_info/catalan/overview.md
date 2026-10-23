@@ -8,10 +8,6 @@
 
 **zmchel WHMCS Multimodule és gratuït.** Permet gestionar pàgines i articles des de l'administració de WHMCS amb un editor visual, traduccions, menús, fitxers multimèdia, camps SEO, mapes del lloc XML, redireccions i regles de reescriptura.
 
-## Gestor d'idiomes (en desenvolupament)
-
-A l'administració de WHMCS, obriu el Gestor d'idiomes i trieu una secció (idiomes de client o d'administració de WHMCS, aquest mòdul o un altre) i un idioma. Compareu l'original o la referència amb la traducció, editeu una fila i deseu-la; també podeu exportar i importar les claus existents com a JSON. Els idiomes nous hereten la referència fins que es tradueixen. El gestor activa i desactiva fitxers d'idioma i corregeix noms antics; canvieu abans l'idioma per defecte a WHMCS.
-
 ## Desenvolupament futur
 
 - Afegir pàgines imbricades i categories de pàgines.

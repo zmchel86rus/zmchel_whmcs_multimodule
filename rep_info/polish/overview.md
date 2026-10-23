@@ -8,10 +8,6 @@
 
 **zmchel WHMCS Multimodule jest darmowy.** Pozwala zarządzać stronami i artykułami z panelu WHMCS. Zawiera edytor wizualny, tłumaczenia, menu, bibliotekę multimediów, pola SEO, mapy witryny XML, przekierowania i reguły przepisywania adresów.
 
-## Menedżer języków (w trakcie rozwoju)
-
-W administracji WHMCS otwórz Menedżer języków, wybierz sekcję (języki klienta lub administratora WHMCS, ten moduł albo inny) oraz język. Porównaj oryginał lub tekst odniesienia z tłumaczeniem, zmień jeden wiersz i zapisz go; istniejące klucze można też eksportować i importować jako JSON. Nowe języki korzystają z tekstu odniesienia do czasu przetłumaczenia. Menedżer włącza i wyłącza pliki językowe oraz poprawia dawne nazwy; najpierw zmień język domyślny w WHMCS.
-
 ## Dalszy rozwój
 
 - Dodać zagnieżdżone strony i kategorie stron.

@@ -8,10 +8,6 @@ Le module a été développé et testé avec **WHMCS 8.13.1 à 8.13.7**. Sa comp
 
 **zmchel WHMCS Multimodule est gratuit.** Il réunit un éditeur visuel de pages, des contenus multilingues, des menus, une médiathèque, des champs SEO, des plans de site XML, des redirections, des règles de réécriture et l’importation/exportation. Consultez les [instructions](instruction.md).
 
-## Gestionnaire de langues (en cours de développement)
-
-Dans l'administration WHMCS, ouvrez le Gestionnaire de langues, puis choisissez une section (langues client ou admin de WHMCS, ce module ou un autre module) et une langue. Comparez l'original ou la référence à la traduction, modifiez une ligne et enregistrez-la ; vous pouvez aussi exporter et importer les clés existantes en JSON. Une nouvelle langue utilise la référence jusqu'à sa traduction. Le gestionnaire active ou désactive les fichiers linguistiques et corrige leurs anciens noms ; changez d'abord la langue par défaut dans WHMCS.
-
 ## Évolutions envisagées
 
 - Ajouter des pages imbriquées et des catégories.

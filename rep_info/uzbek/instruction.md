@@ -8,6 +8,8 @@
 
 WHMCS boshqaruv panelida Tillar menejerini ochib, bo‘limni (WHMCS mijoz yoki admin tillari, shu modul yoxud boshqa modul) va tilni tanlang. Asl nusxa yoki namuna matnni tarjima bilan solishtiring, bitta qatorni tahrir qilib saqlang; mavjud kalitlarni JSON sifatida eksport va import qilish ham mumkin. Yangi tillar tarjima qilinmaguncha namuna matndan foydalanadi. Menejer til fayllarini yoqib-o‘chiradi va eski nomlarni tuzatadi; standart tilni avval WHMCS-da o‘zgartiring.
 
+→ [Tillar menejeri](../english/docs/language-manager.md) (English)
+
 ## Sahifa yaratish
 
 WHMCS boshqaruv panelida **Addons → zmchel WHMCS Multimodule** bo‘limini oching. URL, yo‘naltirish yoki server qoidalarini o‘zgartirishdan oldin modul sozlamalarini eksport qiling. Sahifalar ro‘yxatida yangi sahifa yarating: ichki nom va domen yoki `.php` qo‘shilmagan `biz-haqimizda` kabi *slug* kiriting. Hammaga, faqat tizimga kirganlarga yoki aralash kirish turini, so‘ng qoralama yoki chop etilgan holatni, sahifa turini va tillarni tanlang. WHMCS’ning standart tili `supported_langs.php` da bo‘lishi kerak.

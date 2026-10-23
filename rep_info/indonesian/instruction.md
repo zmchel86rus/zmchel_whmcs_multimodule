@@ -8,6 +8,8 @@
 
 Di admin WHMCS, buka Pengelola bahasa lalu pilih bagian (bahasa klien atau admin WHMCS, modul ini atau modul lain) dan bahasa. Bandingkan teks asli atau referensi dengan terjemahan, ubah satu baris dan simpan; kunci yang sudah ada juga dapat diekspor dan diimpor sebagai JSON. Bahasa baru memakai referensi sampai diterjemahkan. Pengelola dapat mengaktifkan atau menonaktifkan berkas bahasa serta membetulkan nama berkas lama; ubah dulu bahasa bawaan di WHMCS.
 
+→ [Pengelola bahasa](../english/docs/language-manager.md) (English)
+
 ## Memulai dan membuat halaman
 
 Buka **Addons → zmchel WHMCS Multimodule** di area admin WHMCS. Sebelum mengubah URL, pengalihan, atau aturan server, ekspor pengaturan modul. Di daftar halaman, pilih tambah halaman, isi nama internal dan *slug* seperti `tentang-kami` tanpa domain atau `.php`. Pilih akses untuk semua pengunjung, pengguna yang masuk, atau mode campuran; lalu pilih status draf atau terbit, jenis halaman, dan bahasa. Bahasa bawaan WHMCS harus tersedia di `supported_langs.php`.

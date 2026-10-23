@@ -12,6 +12,8 @@
 
 A l'administració de WHMCS, obriu el Gestor d'idiomes i trieu una secció (idiomes de client o d'administració de WHMCS, aquest mòdul o un altre) i un idioma. Compareu l'original o la referència amb la traducció, editeu una fila i deseu-la; també podeu exportar i importar les claus existents com a JSON. Els idiomes nous hereten la referència fins que es tradueixen. El gestor activa i desactiva fitxers d'idioma i corregeix noms antics; canvieu abans l'idioma per defecte a WHMCS.
 
+→ [Gestor d'idiomes](docs/language-manager.md)
+
 ## 1. Instal·lació i accés
 
 Activeu el complement a WHMCS i doneu accés als administradors autoritzats. Comproveu les taules necessàries a la base de dades del mòdul. Reviseu els URL amigables, les rutes d'idioma i les ubicacions dels menús. Apache utilitza .htaccess; amb Nginx cal configurar les regles equivalents al servidor.
