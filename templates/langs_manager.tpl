@@ -1,6 +1,6 @@
 {include file="./menus.tpl"}
 <div id="zm-pagebuilder" class="panel panel-default langs-manager">
-    <div class="panel-heading"><h3 class="panel-title">{$module_translates->langs_manager->title|escape}</h3></div>
+    <div class="panel-heading"><h3 class="panel-title">{$module_translates->{$subpage}->title|escape}</h3></div>
     <div class="panel-body">
         {if $alertHtml}{$alertHtml}{/if}
         {if !$lm_access_denied}
@@ -23,5 +23,7 @@
         </div>
         {/if}
     </div>
+    <hr>
+    <a class="d-block pd-2" href="{$main_host_url}admin/addonmodules.php?module={$addonName|escape}&amp;subpage=README.md&amp;doc={$subpage}" target="_blank">{$module_translates->instruction|escape} - {$module_translates->{$subpage}->title|escape}</a>
 </div>
 {$page_assets|default:'' nofilter}

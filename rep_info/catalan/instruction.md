@@ -8,38 +8,45 @@
 
 **zmchel WHMCS Multimodule és gratuït.** Permet gestionar pàgines i articles des de l'administració de WHMCS amb un editor visual, traduccions, menús, fitxers multimèdia, camps SEO, mapes del lloc XML, redireccions i regles de reescriptura.
 
-## Gestor d'idiomes (en desenvolupament)
+## Configuració del mòdul
 
-A l'administració de WHMCS, obriu el Gestor d'idiomes i trieu una secció (idiomes de client o d'administració de WHMCS, aquest mòdul o un altre) i un idioma. Compareu l'original o la referència amb la traducció, editeu una fila i deseu-la; també podeu exportar i importar les claus existents com a JSON. Els idiomes nous hereten la referència fins que es tradueixen. El gestor activa i desactiva fitxers d'idioma i corregeix noms antics; canvieu abans l'idioma per defecte a WHMCS.
+Trieu els idiomes que pot utilitzar el mòdul. Desactivar-ne un no elimina el contingut.
 
-→ [Gestor d'idiomes](docs/language-manager.md)
+- **Configuració del mòdul → Idiomes admesos → Activa**
+- **Base de dades del mòdul → Corregeix Elements seleccionats**
+- **Regles de reescriptura → Comprova les regles → Afegeix o actualitza les regles**
 
-## 1. Instal·lació i accés
+Nginx no llegeix .htaccess i, per tant, aquestes regles no hi funcionen. Configureu regles equivalents a nginx.
 
-Activeu el complement a WHMCS i doneu accés als administradors autoritzats. Comproveu les taules necessàries a la base de dades del mòdul. Reviseu els URL amigables, les rutes d'idioma i les ubicacions dels menús. Apache utilitza .htaccess; amb Nginx cal configurar les regles equivalents al servidor.
+## Gestor de pàgines
 
-## 2. Creació de pàgines
+- **Afegeix una pàgina → Nom de la pàgina → Slug de la pàgina → Desa**
+- **Editor de pàgines → Configuració del contingut → Configuració de les metadades → Configuració del mapa del lloc de la pàgina → Desa-ho tot**
+- **Gestor de pàgines → Visita**
+- **Mapa del lloc → Genera els mapes del lloc**
 
-Obriu la llista de pàgines i afegiu-ne una. Indiqueu un nom intern i un slug amb lletres llatines, números i guionets, per exemple about-us. Trieu accés per a tothom, només per a clients identificats o només per a visitants. Seleccioneu l'estat i els idiomes. El mòdul ha de reconèixer l'idioma per defecte de WHMCS.
+Només s'admeten lletres llatines, guionets i dígits.
 
-## 3. Edició del contingut
+Usuaris amb sessió iniciada: només poden accedir a la pàgina els usuaris amb sessió iniciada; visitants: només hi poden accedir els visitants; mixt: tothom hi pot accedir, amb la visibilitat controlada pels blocs de la pàgina.
 
-Per a cada idioma, ompliu les pestanyes Contingut, Metadades i Mapa del lloc. Arrossegueu blocs a l'editor, modifiqueu textos i imatges i deseu cada pestanya. Copiar amb contingut proporciona una base; copiar l'estructura prepara la disposició per traduir-la. El text no es tradueix automàticament.
+La generació automàtica s'executa després del cron de WHMCS quan correspon una actualització. La generació manual comença immediatament.
 
-## 4. Enllaços i publicació
+## Guies per secció
 
-Activeu l'opció d'afegir l'idioma actual a l'URL per als enllaços a pàgines traduïdes del mòdul. Desactiveu-la per a URL externs, correu electrònic i rutes de WHMCS sense versió lingüística. Després de publicar, comproveu la pàgina com a visitant i com a client, en mòbil i ordinador, i en dos idiomes.
+- [Gestor de pàgines](docs/pages_manager.md)
+- [Editor de pàgines](docs/pages_editor.md)
+- [Gestor multimèdia](docs/media_manager.md)
+- [Menús](docs/menu_manager.md)
+- [Gestor d'idiomes](docs/langs_manager.md)
+- [Redireccions](docs/redirects_manager.md)
+- [Mapes del lloc](docs/sitemap_manager.md)
+- [Regles de reescriptura](docs/rewrite_manager.md)
+- [Configuració del mòdul](docs/module_settings.md)
+- [Base de dades del mòdul](docs/module_db.md)
 
-## 5. Gestió i manteniment
+## Materials addicionals
 
-El gestor de menús controla la navegació i el gestor multimèdia controla les imatges. El gestor de redireccions crea regles 301 i 302. El mapa del lloc genera fitxers XML. Exporteu la configuració abans de canvis importants; torneu a aplicar les regles de reescriptura i reviseu el mapa del lloc després de publicar.
-
-## Temes detallats
-
-- [Menús](docs/menus.md)
-- [Paginació i filtres](docs/pagination.md)
-- [Redireccions](docs/redirects.md)
-- [Mapes del lloc](docs/sitemaps.md)
-- [Smarty i variables](docs/smarty.md)
-- [Dades estructurades](docs/structured-data.md)
-- [Importació i exportació](docs/transfer.md)
+- [Paginació i filtres](docs/pages_editor_pagination.md)
+- [Smarty i variables](docs/pages_editor_smarty.md)
+- [Dades estructurades](docs/module_structured_data.md)
+- [Importació i exportació](docs/module_settings_transfer.md)

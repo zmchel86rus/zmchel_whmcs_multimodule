@@ -42,3 +42,7 @@ jobs:
           php tests/content_links.php
           php tests/table_of_contents.php
           php tests/language_manager.php
+          for language in rep_info/*/; do
+            php tests/readme_loader.php "$(basename "$language")"
+          done
+          php tests/documentation.php

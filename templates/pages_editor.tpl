@@ -90,6 +90,8 @@ const page_editor_tools = {$pages_editor_translates->page_editor|json_encode nof
             {* {if $default_lang_supported && isset($page_visit_urls[$main_default_lang])}<a class="btn btn-primary" href="{$page_visit_urls[$main_default_lang]|escape:'html'}" target="_blank">{$other_translates->goto}</a>{/if} *}
         </div>
     </div>
+    <hr>
+    <a class="d-block pd-2" href="{$main_host_url}admin/addonmodules.php?module={$addonName|escape}&amp;subpage=README.md&amp;doc={$subpage}" target="_blank">{$module_translates->instruction|escape} - {$module_translates->{$subpage}->title|escape}</a>
 </div>
 
 {$mediamanager_modal}

@@ -9,7 +9,7 @@
             {if $language.untranslated} <span class="label label-warning">{$lm_text->untranslated|escape}</span>{/if}</span>
             <form class="lm-action-form" method="post" action="addonmodules.php">
                 <input type="hidden" name="module" value="{$addonName|escape}">
-                <input type="hidden" name="subpage" value="langs_manager">
+                <input type="hidden" name="subpage" value="{$subpage}">
                 <input type="hidden" name="section" value="{$lm_section|escape}">
                 <input type="hidden" name="language" value="{$language.name|escape}">
                 <input type="hidden" name="action" value="{if $language.state == 'disabled'}enable_language{else}disable_language{/if}">
@@ -30,7 +30,7 @@
             <span class="lm-language-name">{$language.title|escape} <small>({$language.name|escape})</small></span>
             <form class="lm-action-form" method="post" action="addonmodules.php">
                 <input type="hidden" name="module" value="{$addonName|escape}">
-                <input type="hidden" name="subpage" value="langs_manager">
+                <input type="hidden" name="subpage" value="{$subpage}">
                 <input type="hidden" name="section" value="{$lm_section|escape}">
                 <input type="hidden" name="language" value="{$language.name|escape}">
                 <input type="hidden" name="action" value="add_language">

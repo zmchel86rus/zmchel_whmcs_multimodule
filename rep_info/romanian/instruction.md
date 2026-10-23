@@ -8,38 +8,45 @@
 
 **zmchel WHMCS Multimodule este gratuit.** Permite administrarea paginilor și articolelor din panoul WHMCS, cu editor vizual, traduceri, meniuri, fișiere media, câmpuri SEO, sitemap-uri XML, redirecționări și reguli de rescriere.
 
-## Managerul de limbi (în dezvoltare)
+## Setările modulului
 
-În administrarea WHMCS, deschideți Managerul de limbi și alegeți o secțiune (limbile pentru clienți sau administratori WHMCS, acest modul ori altul) și o limbă. Comparați originalul sau referința cu traducerea, modificați un rând și salvați-l; cheile existente pot fi exportate și importate ca JSON. Limbile noi folosesc referința până la traducere. Managerul activează sau dezactivează fișierele de limbă și corectează numele vechi; schimbați întâi limba implicită în WHMCS.
+Alegeți limbile pe care le poate folosi modulul. Dezactivarea unei limbi nu îi șterge conținutul.
 
-→ [Managerul de limbi](docs/language-manager.md)
+- **Setările modulului → Limbi acceptate → Activează**
+- **Baza de date a modulului → Remediază Elemente selectate**
+- **Reguli de rescriere → Verifică regulile → Adaugă sau actualizează regulile**
 
-## 1. Instalare și acces
+Nginx nu citește .htaccess, astfel încât aceste reguli nu funcționează în Nginx. Configurați reguli echivalente în nginx.
 
-Activați modulul suplimentar în WHMCS și acordați acces administratorilor autorizați. În Baza de date a modulului verificați tabelele necesare. Revizuiți apoi URL-urile prietenoase, rutele lingvistice și pozițiile meniurilor. Apache folosește .htaccess; în Nginx configurați separat regulile echivalente.
+## Manager de pagini
 
-## 2. Crearea paginilor
+- **Adaugă pagină → Numele paginii → Slug-ul paginii → Salvează**
+- **Editor de pagini → Setări de conținut → Setări pentru metadate → Setările hărții site-ului pentru pagină → Salvează tot**
+- **Manager de pagini → Vizitează**
+- **Hartă a site-ului → Generează hărțile site-ului**
 
-Deschideți lista de pagini și alegeți adăugarea unei pagini. Introduceți un nume intern și un slug cu litere latine, cifre și cratime, de exemplu about-us. Alegeți accesul public, doar pentru clienți autentificați sau doar pentru vizitatori. Selectați starea și limbile. Limba implicită a WHMCS trebuie să fie acceptată de modul.
+Sunt permise numai litere latine, cratime și cifre.
 
-## 3. Editarea conținutului
+Utilizatori autentificați: numai cei autentificați pot accesa pagina; Vizitatori: numai vizitatorii neautentificați o pot accesa; Mixt: toți o pot accesa, iar vizibilitatea este controlată de blocurile din pagină.
 
-Pentru fiecare limbă completați filele Conținut, Metadate și Sitemap. Trageți blocuri în editor, modificați textul și imaginile și salvați fiecare filă. Copierea cu conținut oferă un punct de pornire; copierea structurii pregătește aspectul pentru traducere. Textul nu este tradus automat.
+Generarea automată rulează după cron-ul WHMCS când este necesară o actualizare. Generarea manuală începe imediat.
 
-## 4. Linkuri și publicare
+## Ghiduri pe secțiuni
 
-Activați adăugarea limbii curente în URL pentru linkuri către pagini traduse ale modulului. Dezactivați opțiunea pentru URL-uri externe, adrese de e-mail și rute WHMCS fără variante lingvistice. După publicare, verificați pagina ca vizitator și client, pe desktop și mobil, în cel puțin două limbi.
+- [Manager de pagini](docs/pages_manager.md)
+- [Editor de pagini](docs/pages_editor.md)
+- [Manager media](docs/media_manager.md)
+- [Meniuri](docs/menu_manager.md)
+- [Managerul de limbi](docs/langs_manager.md)
+- [Redirecționări](docs/redirects_manager.md)
+- [Sitemap-uri](docs/sitemap_manager.md)
+- [Reguli de rescriere](docs/rewrite_manager.md)
+- [Setările modulului](docs/module_settings.md)
+- [Baza de date a modulului](docs/module_db.md)
 
-## 5. Administrare și întreținere
+## Materiale suplimentare
 
-Managerul de meniuri controlează navigarea, iar managerul media controlează imaginile. Managerul de redirecționări creează reguli 301 și 302. Sitemap generează fișiere XML. Exportați setările înaintea modificărilor importante; după schimbarea regulilor de rescriere, aplicați-le din nou și verificați sitemap-ul.
-
-## Subiecte detaliate
-
-- [Meniuri](docs/menus.md)
-- [Paginare și filtre](docs/pagination.md)
-- [Redirecționări](docs/redirects.md)
-- [Sitemap-uri](docs/sitemaps.md)
-- [Smarty și variabile](docs/smarty.md)
-- [Date structurate](docs/structured-data.md)
-- [Import și export](docs/transfer.md)
+- [Paginare și filtre](docs/pages_editor_pagination.md)
+- [Smarty și variabile](docs/pages_editor_smarty.md)
+- [Date structurate](docs/module_structured_data.md)
+- [Import și export](docs/module_settings_transfer.md)

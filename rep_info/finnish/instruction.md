@@ -8,38 +8,45 @@
 
 **zmchel WHMCS Multimodule on maksuton.** Sillä voi hallita sivuja ja artikkeleita WHMCS:n hallintapaneelissa. Toimintoihin kuuluvat visuaalinen editori, käännökset, valikot, mediakirjasto, SEO-kentät, XML-sivustokartat, uudelleenohjaukset ja URL-uudelleenkirjoitussäännöt.
 
-## Kielten hallinta (kehitteillä)
+## Moduulin asetukset
 
-Avaa WHMCS:n ylläpidossa Kielten hallinta ja valitse osio (WHMCS:n asiakas- tai ylläpitokielet, tämä moduuli tai muu moduuli) sekä kieli. Vertaa alkuperäistä tai vertailutekstiä käännökseen, muokkaa yhtä riviä ja tallenna se; olemassa olevia avaimia voi myös viedä ja tuoda JSON-tiedostona. Uusi kieli käyttää vertailutekstiä, kunnes se käännetään. Hallinta ottaa kielitiedostoja käyttöön tai poistaa niitä käytöstä ja korjaa vanhoja tiedostonimiä; vaihda oletuskieli ensin WHMCS:ssä.
+Valitse moduulin käyttämät kielet. Kielen poistaminen käytöstä ei poista sen sisältöä.
 
-→ [Kielten hallinta](docs/language-manager.md)
+- **Moduulin asetukset → Tuetut kielet → Ota käyttöön**
+- **Moduulin tietokanta → Korjaa Valitut kohteet**
+- **Uudelleenkirjoitussäännöt → Tarkista säännöt → Lisää tai päivitä säännöt**
 
-## 1. Asennus ja käyttöoikeudet
+Nginx ei lue .htaccess-tiedostoa, joten nämä säännöt eivät toimi siinä. Määritä vastaavat säännöt nginx-palvelimeen.
 
-Ota lisämoduuli käyttöön WHMCS:ssä ja myönnä pääsy tarvittaville ylläpitäjille. Tarkista vaaditut taulut moduulin tietokantatyökalulla. Käy läpi siistit URL-osoitteet, kielireitit ja valikkopaikat. Apache käyttää .htaccess-tiedostoa; Nginxissä vastaavat säännöt määritetään erikseen.
+## Sivujen hallinta
 
-## 2. Sivun luominen
+- **Lisää sivu → Sivun nimi → Sivun URL-tunniste → Tallenna**
+- **Sivueditori → Sisällön asetukset → Metatietojen asetukset → Sivun sivustokartta-asetukset → Tallenna kaikki**
+- **Sivujen hallinta → Vieraile**
+- **Sivustokartta → Luo sivustokartat**
 
-Avaa sivuluettelo ja lisää uusi sivu. Anna sisäinen nimi ja slug, jossa on latinalaisia kirjaimia, numeroita ja yhdysmerkkejä, esimerkiksi about-us. Valitse pääsy kaikille, vain kirjautuneille asiakkaille tai vain vierailijoille. Valitse tila ja kielet. WHMCS:n oletuskielen täytyy olla moduulin tukema.
+Vain latinalaiset kirjaimet, yhdysmerkit ja numerot sallitaan.
 
-## 3. Sisällön muokkaus
+Kirjautuneet käyttäjät: vain kirjautuneet käyttäjät pääsevät sivulle; Vierailijat: vain kirjautumattomat pääsevät sivulle; Kaikki: kaikki pääsevät sivulle, ja näkyvyyttä säädetään sivun sisäisillä lohkoilla.
 
-Täytä jokaiselle kielelle Sisältö-, Metatiedot- ja Sivustokartta-välilehdet. Vedä lohkoja editoriin, muokkaa tekstiä ja kuvia ja tallenna jokainen välilehti. Kopioi sisällön kanssa antaa pohjan; kopioi rakenne valmistelee asettelun käännöstä varten. Tekstiä ei käännetä automaattisesti.
+Automaattinen luonti käynnistyy WHMCS:n cron-ajon jälkeen, kun päivitys on ajankohtainen. Manuaalinen luonti käynnistyy heti.
 
-## 4. Linkit ja julkaisu
+## Osioiden oppaat
 
-Ota nykyisen kielen lisääminen URL-osoitteeseen käyttöön, kun linkki vie moduulin käännetylle sivulle. Poista se käytöstä ulkoisille linkeille, sähköpostiosoitteille ja WHMCS-reiteille, joilla ei ole kieliversioita. Testaa julkaistu sivu vieraana ja asiakkaana, tietokoneella ja puhelimella sekä kahdella kielellä.
+- [Sivujen hallinta](docs/pages_manager.md)
+- [Sivueditori](docs/pages_editor.md)
+- [Median hallinta](docs/media_manager.md)
+- [Valikot](docs/menu_manager.md)
+- [Kielten hallinta](docs/langs_manager.md)
+- [Uudelleenohjaukset](docs/redirects_manager.md)
+- [Sivustokartat](docs/sitemap_manager.md)
+- [Uudelleenkirjoitussäännöt](docs/rewrite_manager.md)
+- [Moduulin asetukset](docs/module_settings.md)
+- [Moduulin tietokanta](docs/module_db.md)
 
-## 5. Ylläpito
+## Lisämateriaalit
 
-Valikkojen hallinta ohjaa navigointia ja median hallinta kuvia. Uudelleenohjausten hallinnassa voi lisätä 301- ja 302-sääntöjä. Sivustokarttatyökalu luo XML-tiedostot. Vie asetukset ennen suuria muutoksia; ota muuttuneet URL-säännöt uudelleen käyttöön ja tarkista sivustokartta julkaisun jälkeen.
-
-## Lisäohjeet
-
-- [Valikot](docs/menus.md)
-- [Sivutus ja suodattimet](docs/pagination.md)
-- [Uudelleenohjaukset](docs/redirects.md)
-- [Sivustokartat](docs/sitemaps.md)
-- [Smarty ja muuttujat](docs/smarty.md)
-- [Rakenteinen tieto](docs/structured-data.md)
-- [Tuonti ja vienti](docs/transfer.md)
+- [Sivutus ja suodattimet](docs/pages_editor_pagination.md)
+- [Smarty ja muuttujat](docs/pages_editor_smarty.md)
+- [Rakenteinen tieto](docs/module_structured_data.md)
+- [Tuonti ja vienti](docs/module_settings_transfer.md)

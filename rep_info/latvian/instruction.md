@@ -8,38 +8,45 @@
 
 **zmchel WHMCS Multimodule ir bezmaksas.** Tas ļauj pārvaldīt lapas un rakstus WHMCS administrācijā, izmantojot vizuālo redaktoru, tulkojumus, izvēlnes, mediju bibliotēku, SEO laukus, XML vietnes kartes, pāradresācijas un URL pārrakstīšanas noteikumus.
 
-## Valodu pārvaldnieks (izstrādē)
+## Moduļa iestatījumi
 
-WHMCS administrācijā atveriet Valodu pārvaldnieku un izvēlieties sadaļu (WHMCS klientu vai administratoru valodas, šo vai citu moduli) un valodu. Salīdziniet oriģinālu vai atsauci ar tulkojumu, rediģējiet vienu rindu un saglabājiet; esošās atslēgas var arī eksportēt un importēt JSON formātā. Jaunās valodas līdz tulkošanai izmanto atsauci. Pārvaldnieks ieslēdz un izslēdz valodu failus un labo vecos failu nosaukumus; vispirms mainiet noklusējuma valodu WHMCS.
+Izvēlieties valodas, ko modulis var izmantot. Valodas izslēgšana neizdzēš tās saturu.
 
-→ [Valodu pārvaldnieks](docs/language-manager.md)
+- **Moduļa iestatījumi → Atbalstītās valodas → Iespējot**
+- **Moduļa datubāze → Labot Atlasītie vienumi**
+- **URL pārrakstīšanas noteikumi → Pārbaudīt noteikumus → Pievienot vai atjaunināt noteikumus**
 
-## 1. Uzstādīšana un piekļuve
+Nginx nelasa .htaccess failus, tāpēc šie noteikumi tajā nedarbojas. Konfigurējiet līdzvērtīgus noteikumus nginx.
 
-Aktivizējiet papildmoduli WHMCS un piešķiriet piekļuvi pilnvarotajiem administratoriem. Moduļa datubāzes sadaļā pārbaudiet nepieciešamās tabulas. Pārskatiet glītās URL adreses, valodu maršrutus un izvēļņu vietas. Apache izmanto .htaccess; Nginx gadījumā atbilstošie servera noteikumi jākonfigurē atsevišķi.
+## Lapu pārvaldnieks
 
-## 2. Lapas veidošana
+- **Pievienot lapu → Lapas nosaukums → Lapas URL identifikators (slug) → Saglabāt**
+- **Lapu redaktors → Satura iestatījumi → Metadatu iestatījumi → Lapas vietnes kartes iestatījumi → Saglabāt visu**
+- **Lapu pārvaldnieks → Apmeklēt**
+- **Vietnes karte → Ģenerēt vietnes kartes**
 
-Atveriet lapu sarakstu un pievienojiet lapu. Norādiet iekšējo nosaukumu un slug ar latīņu burtiem, cipariem un defisēm, piemēram, about-us. Izvēlieties piekļuvi visiem, tikai autorizētiem klientiem vai tikai viesiem. Norādiet statusu un valodas. WHMCS noklusējuma valodai jābūt moduļa atbalstītai.
+Atļauti tikai latīņu burti, defises un cipari.
 
-## 3. Satura rediģēšana
+Pieteikušies lietotāji: lapai var piekļūt tikai pieteikušies lietotāji; Viesi: tikai viesi; Jaukta piekļuve: lapai var piekļūt visi, bet redzamību kontrolē lapas bloki.
 
-Katrai valodai aizpildiet Satura, Metadatu un Vietnes kartes cilnes. Ievelciet blokus redaktorā, mainiet tekstu un attēlus un saglabājiet katru cilni. Kopēšana ar saturu dod sākuma versiju; struktūras kopēšana sagatavo izkārtojumu tulkošanai. Teksts netiek tulkots automātiski.
+Automātiskā ģenerēšana tiek veikta pēc WHMCS cron izpildes, kad pienācis atjaunināšanas laiks. Manuālā ģenerēšana sākas nekavējoties.
 
-## 4. Saites un publicēšana
+## Sadaļu ceļveži
 
-Saitēm uz tulkotām moduļa lapām ieslēdziet pašreizējās valodas pievienošanu URL. Izslēdziet to ārējām saitēm, e-pasta adresēm un WHMCS maršrutiem bez valodu versijām. Pēc publicēšanas pārbaudiet lapu kā viesis un klients, datorā un tālrunī, vismaz divās valodās.
+- [Lapu pārvaldnieks](docs/pages_manager.md)
+- [Lapu redaktors](docs/pages_editor.md)
+- [Multivides pārvaldnieks](docs/media_manager.md)
+- [Izvēlnes](docs/menu_manager.md)
+- [Valodu pārvaldnieks](docs/langs_manager.md)
+- [Pāradresācijas](docs/redirects_manager.md)
+- [Vietnes kartes](docs/sitemap_manager.md)
+- [URL pārrakstīšanas noteikumi](docs/rewrite_manager.md)
+- [Moduļa iestatījumi](docs/module_settings.md)
+- [Moduļa datubāze](docs/module_db.md)
 
-## 5. Pārvaldība un uzturēšana
+## Papildu materiāli
 
-Izvēļņu pārvaldnieks kontrolē navigāciju, bet mediju pārvaldnieks — attēlus. Pāradresāciju pārvaldnieks izveido 301 un 302 noteikumus. Vietnes karte ģenerē XML failus. Pirms lielām izmaiņām eksportējiet iestatījumus; pēc pārrakstīšanas noteikumu maiņas tos piemērojiet no jauna un pārbaudiet karti.
-
-## Detalizētas tēmas
-
-- [Izvēlnes](docs/menus.md)
-- [Lapošana un filtri](docs/pagination.md)
-- [Pāradresācijas](docs/redirects.md)
-- [Vietnes kartes](docs/sitemaps.md)
-- [Smarty un mainīgie](docs/smarty.md)
-- [Strukturētie dati](docs/structured-data.md)
-- [Imports un eksports](docs/transfer.md)
+- [Lapošana un filtri](docs/pages_editor_pagination.md)
+- [Smarty un mainīgie](docs/pages_editor_smarty.md)
+- [Strukturētie dati](docs/module_structured_data.md)
+- [Imports un eksports](docs/module_settings_transfer.md)

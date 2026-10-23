@@ -38,7 +38,7 @@
                                 {if isset($rule.custom_id)}
                                     <form method="POST" action="addonmodules.php">
                                         <input type="hidden" name="module" value="{$addonName|escape}">
-                                        <input type="hidden" name="subpage" value="rewrite_manager">
+                                        <input type="hidden" name="subpage" value="{$subpage}">
                                         <input type="hidden" name="action" value="delete_rule">
                                         <input type="hidden" name="rule_id" value="{$rule.custom_id|escape}">
                                         <input type="hidden" name="zm_pb_forms_nonce" value="{$zm_pb_forms_nonce}">
@@ -52,10 +52,10 @@
                     </tbody>
                 </table>
             </div>
-            <a class="btn btn-default" href="addonmodules.php?module={$addonName|escape:'url'}&amp;subpage=rewrite_manager">{$rewrite_manager_translates->check}</a>
+            <a class="btn btn-default" href="addonmodules.php?module={$addonName|escape:'url'}&amp;subpage={$subpage}">{$rewrite_manager_translates->check}</a>
             <form id="rewrite_rules_form" method="POST" action="addonmodules.php" style="display:inline-block">
                 <input type="hidden" name="module" value="{$addonName|escape}">
-                <input type="hidden" name="subpage" value="rewrite_manager">
+                <input type="hidden" name="subpage" value="{$subpage}">
                 <input type="hidden" name="action" value="install_rules">
                 <input type="hidden" name="zm_pb_forms_nonce" value="{$zm_pb_forms_nonce}">
                 <input type="hidden" name="zm_pb_secure_nonce" value="{$zm_pb_secure_nonce}">
@@ -65,7 +65,7 @@
                 <form method="POST" action="addonmodules.php" style="display:inline-block"
                       data-confirm="{$rewrite_manager_translates->remove_confirm|escape}">
                     <input type="hidden" name="module" value="{$addonName|escape}">
-                    <input type="hidden" name="subpage" value="rewrite_manager">
+                    <input type="hidden" name="subpage" value="{$subpage}">
                     <input type="hidden" name="action" value="remove_rules">
                     <input type="hidden" name="zm_pb_forms_nonce" value="{$zm_pb_forms_nonce}">
                     <input type="hidden" name="zm_pb_secure_nonce" value="{$zm_pb_secure_nonce}">
@@ -76,7 +76,7 @@
             <h4>{$rewrite_manager_translates->add_custom}</h4>
             <form id="rewrite_custom_rule_form" method="POST" action="addonmodules.php">
                 <input type="hidden" name="module" value="{$addonName|escape}">
-                <input type="hidden" name="subpage" value="rewrite_manager">
+                <input type="hidden" name="subpage" value="{$subpage}">
                 <input type="hidden" name="action" value="add_rule">
                 <input type="hidden" name="zm_pb_forms_nonce" value="{$zm_pb_forms_nonce}">
                 <input type="hidden" name="zm_pb_secure_nonce" value="{$zm_pb_secure_nonce}">
@@ -100,4 +100,6 @@
             </form>
         {/if}
     </div>
+    <hr>
+    <a class="d-block pd-2" href="{$main_host_url}admin/addonmodules.php?module={$addonName|escape}&amp;subpage=README.md&amp;doc={$subpage}" target="_blank">{$module_translates->instruction|escape} - {$module_translates->{$subpage}->title|escape}</a>
 </div>

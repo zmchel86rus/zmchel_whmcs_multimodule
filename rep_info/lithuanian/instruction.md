@@ -8,38 +8,45 @@
 
 **zmchel WHMCS Multimodule yra nemokamas.** WHMCS administravimo srityje galima tvarkyti puslapius ir straipsnius naudojant vaizdinę rengyklę, vertimus, meniu, medijos biblioteką, SEO laukus, XML svetainės schemas, peradresavimus ir URL perrašymo taisykles.
 
-## Kalbų tvarkytuvė (kuriama)
+## Modulio nustatymai
 
-WHMCS administravimo srityje atverkite Kalbų tvarkytuvę, pasirinkite skyrių (WHMCS klientų ar administratorių kalbas, šį ar kitą modulį) ir kalbą. Palyginkite originalą arba pavyzdinį tekstą su vertimu, pakeiskite vieną eilutę ir ją išsaugokite; esamus raktus galima eksportuoti ir importuoti kaip JSON. Naujos kalbos naudoja pavyzdinį tekstą, kol yra išverčiamos. Tvarkytuvė įjungia ir išjungia kalbų failus bei taiso senus pavadinimus; numatytąją kalbą pirmiausia pakeiskite WHMCS.
+Pasirinkite kalbas, kurias modulis gali naudoti. Išjungus kalbą jos turinys neištrinamas.
 
-→ [Kalbų tvarkytuvė](docs/language-manager.md)
+- **Modulio nustatymai → Palaikomos kalbos → Įjungti**
+- **Modulio duomenų bazė → Taisyti Pasirinkti elementai**
+- **URL perrašymo taisyklės → Patikrinti taisykles → Pridėti arba atnaujinti taisykles**
 
-## 1. Diegimas ir prieiga
+Nginx neskaito .htaccess, todėl šios taisyklės jame neveikia. Lygiavertes taisykles sukonfigūruokite nginx.
 
-Įjunkite papildomą modulį WHMCS ir suteikite prieigą įgaliotiems administratoriams. Modulio duomenų bazės skiltyje patikrinkite būtinas lenteles. Peržiūrėkite tvarkingus URL, kalbų maršrutus ir meniu vietas. Apache naudoja .htaccess; Nginx atveju atitinkamas serverio taisykles nustatykite atskirai.
+## Puslapių tvarkyklė
 
-## 2. Puslapio kūrimas
+- **Pridėti puslapį → Puslapio pavadinimas → Puslapio URL identifikatorius (slug) → Išsaugoti**
+- **Puslapių redaktorius → Turinio nustatymai → Metaduomenų nustatymai → Puslapio svetainės schemos nustatymai → Išsaugoti viską**
+- **Puslapių tvarkyklė → Apsilankyti**
+- **Svetainės schema → Generuoti svetainės schemas**
 
-Atverkite puslapių sąrašą ir pridėkite puslapį. Nurodykite vidinį pavadinimą ir slug iš lotyniškų raidžių, skaitmenų bei brūkšnelių, pavyzdžiui, about-us. Pasirinkite prieigą visiems, tik prisijungusiems klientams arba tik svečiams. Nustatykite būseną ir kalbas. Numatytoji WHMCS kalba turi būti palaikoma modulio.
+Leidžiamos tik lotyniškos raidės, brūkšneliai ir skaitmenys.
 
-## 3. Turinio redagavimas
+Prisijungę naudotojai: puslapį gali pasiekti tik prisijungę naudotojai; Svečiai: puslapį gali pasiekti tik neprisijungę lankytojai; Mišri: puslapį gali pasiekti visi, o matomumą valdo puslapio blokai.
 
-Kiekvienai kalbai užpildykite Turinio, Metaduomenų ir Svetainės schemos skirtukus. Nuvilkite blokus į rengyklę, pakeiskite tekstą bei paveikslėlius ir išsaugokite kiekvieną skirtuką. Kopijavimas su turiniu suteikia pradinį variantą, o struktūros kopijavimas paruošia išdėstymą vertimui. Tekstas automatiškai neverčiamas.
+Automatinis generavimas vykdomas po WHMCS cron, kai ateina laikas atnaujinti. Rankinis generavimas pradedamas iš karto.
 
-## 4. Nuorodos ir skelbimas
+## Skyrių vadovai
 
-Nuorodoms į išverstus modulio puslapius įjunkite dabartinės kalbos pridėjimą prie URL. Išjunkite jį išorinėms nuorodoms, el. paštui ir WHMCS maršrutams be kalbinių versijų. Paskelbę patikrinkite puslapį kaip svečias ir klientas, kompiuteryje ir telefone, bent dviem kalbomis.
+- [Puslapių tvarkyklė](docs/pages_manager.md)
+- [Puslapių redaktorius](docs/pages_editor.md)
+- [Medijos tvarkytuvė](docs/media_manager.md)
+- [Meniu](docs/menu_manager.md)
+- [Kalbų tvarkytuvė](docs/langs_manager.md)
+- [Peradresavimai](docs/redirects_manager.md)
+- [Svetainės schemos](docs/sitemap_manager.md)
+- [URL perrašymo taisyklės](docs/rewrite_manager.md)
+- [Modulio nustatymai](docs/module_settings.md)
+- [Modulio duomenų bazė](docs/module_db.md)
 
-## 5. Valdymas ir priežiūra
+## Papildoma medžiaga
 
-Meniu tvarkyklė valdo naršymą, o medijos tvarkyklė — vaizdus. Peradresavimų tvarkyklė kuria 301 ir 302 taisykles. Svetainės schemos įrankis generuoja XML failus. Prieš didelius pakeitimus eksportuokite nustatymus; pakeitę perrašymo taisykles pritaikykite jas iš naujo ir patikrinkite schemą.
-
-## Išsamios temos
-
-- [Meniu](docs/menus.md)
-- [Puslapiavimas ir filtrai](docs/pagination.md)
-- [Peradresavimai](docs/redirects.md)
-- [Svetainės schemos](docs/sitemaps.md)
-- [Smarty ir kintamieji](docs/smarty.md)
-- [Struktūrizuoti duomenys](docs/structured-data.md)
-- [Importas ir eksportas](docs/transfer.md)
+- [Puslapiavimas ir filtrai](docs/pages_editor_pagination.md)
+- [Smarty ir kintamieji](docs/pages_editor_smarty.md)
+- [Struktūrizuoti duomenys](docs/module_structured_data.md)
+- [Importas ir eksportas](docs/module_settings_transfer.md)

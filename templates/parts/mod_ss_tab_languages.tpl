@@ -11,7 +11,7 @@
                 <span class="label label-info">{$module_settings_translates->languages->default_language|escape}</span>
             {/if}
             {if $module_languages_can_edit && (!$language.default || $group.state == 'disabled')}
-                <form method="post" action="addonmodules.php">
+                <form method="post" class="pd-0" action="addonmodules.php">
                     <input type="hidden" name="module" value="{$addonName|escape}">
                     <input type="hidden" name="subpage" value="module_settings">
                     <input type="hidden" name="action" value="toggle_module_language">

@@ -1,29 +1,50 @@
 # Leiðbeiningar fyrir zmchel WHMCS Multimodule
 
-**Áður en einingin er notuð skaltu búa til einstök salt-gildi og setja þau í `module_init.php`: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` og `ZM_PB_NONCE_SALT`.** Einingin var þróuð og prófuð með **WHMCS 8.13.1–8.13.7**. Samhæfni við **PHP 7.4–8.5** hefur verið yfirfarin. Apache er studdur að fullu; Nginx gæti þurft viðbótarstillingar fyrir tungumálaleiðir á forsíðu. **Einingin er ókeypis.**
+**Áður en einingin er notuð skaltu setja einstök salt-gildi í `module_init.php`: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` og `ZM_PB_NONCE_SALT`.** Einingin var þróuð og prófuð með **WHMCS 8.13.1–8.13.7**. Samhæfni við **PHP 7.4–8.5** hefur verið yfirfarin. Apache er studdur að fullu (100%); Nginx gæti þurft viðbótarstillingar fyrir tungumálaleiðir á forsíðu.
 
 **Áður en einingin er notuð skaltu opna Stillingar einingar → Studd tungumál og virkja þau tungumál sem þú þarft.**
 
-## Tungumálastýring (í þróun)
+**zmchel WHMCS Multimodule er ókeypis.** Í stjórnborði WHMCS geturðu stjórnað fjöltyngdum síðum með sjónrænum ritli, valmyndum, miðlasafni, SEO-lýsigögnum, XML-vefkortum, áframsendingum, rewrite-reglum og inn- og útflutningi.
 
-Opnaðu Tungumálastýringu í WHMCS-stjórnborðinu og veldu hluta (tungumál viðskiptavina eða stjórnenda WHMCS, þessa einingu eða aðra) og tungumál. Berðu frumtexta eða viðmið saman við þýðinguna, breyttu einni línu og vistaðu; einnig má flytja núverandi lykla út og inn sem JSON. Ný tungumál nota viðmiðstexta þar til þau hafa verið þýdd. Stýringin virkjar eða slekkur á tungumálaskrám og leiðréttir gömul skráarnöfn; breyttu sjálfgefnu tungumáli fyrst í WHMCS.
+## Stillingar einingar
 
-→ [Tungumálastýring](../english/docs/language-manager.md) (English)
+Veldu hvaða tungumál einingin má nota. Ef tungumál er gert óvirkt eyðist efni þess ekki.
 
-## Búa til síður
+- **Stillingar einingar → Studd tungumál → Virkja**
+- **Gagnagrunnur einingar → Lagfæra Valin atriði**
+- **Endurskrifunarreglur → Athuga reglur → Bæta við eða uppfæra reglur**
 
-Opnaðu **Addons → zmchel WHMCS Multimodule** í stjórnborði WHMCS. Flyttu út stillingar einingarinnar áður en þú breytir vefslóðum, áframsendingum eða netþjónsreglum. Búðu til síðu með innra heiti og *slug*, til dæmis `um-okkur`, án léns eða `.php`. Veldu aðgang fyrir alla, innskráða notendur eða blandaðan hóp. Veldu svo drög eða birta síðu, síðugerð og tungumál. Sjálfgefið tungumál WHMCS verður að vera í `supported_langs.php`.
+Nginx les ekki .htaccess og því virka þessar reglur ekki þar. Settu samsvarandi reglur upp í nginx.
 
-Eftir vistun opnarðu síðuna og fyllir út efni, lýsigögn og stillingar vefkorts fyrir hvert tungumál. Hver hluti hefur sinn eigin vistunarhnapp. Athugaðu niðurstöðuna og opinberu síðuna. Fyrsta eyðing færir síðu í ruslið; varanleg eyðing fer fram þar.
+## Umsjón með síðum
 
-## Ritill og tungumál
+- **Bæta við síðu → Heiti síðu → Vefslóðarheiti síðu → Vista**
+- **Síðaritill → Efnisstillingar → Stillingar lýsigagna → Vefkortsstillingar síðu → Vista allt**
+- **Umsjón með síðum → Heimsækja**
+- **Vefkort → Búa til vefkort**
 
-Veldu tungumál á efnisflipanum, dragðu GrapesJS-einingar á vinnusvæðið og breyttu texta, myndum og stillingum. Til eru kaflar, dálkar, töflur, algengar spurningar, samskiptaform, listar, síðuskipting og svæði fyrir gesti eða meðlimi. Þú getur afritað uppbyggingu yfir á annað tungumál og þýtt textann áður en þú birtir. Tengla- og hnappaeiningar geta bætt tungumáli síðunnar við innri vefslóðir; slökktu á því fyrir ytri tengla, skrár, `mailto:` og WHMCS-leiðir án þýðinga.
+Aðeins latneskir bókstafir, bandstrik og tölustafir eru leyfð.
 
-Þegar læsilegar vefslóðir og tungumálaleiðir eru virkar notar aðaltungumálið stutta leið eins og `/is/`, eða enga forskeytaleið ef leið fyrir sjálfgefið tungumál er óvirk. Svæðisbundin afbrigði nota BCP 47 staðfærslu. Prófaðu tengla á fleiri en einu tungumáli.
+Innskráðir notendur: aðeins innskráðir notendur hafa aðgang að síðunni; Gestir: aðeins gestir hafa aðgang að henni; Blandað: allir hafa aðgang, en sýnileika er stýrt með blokkum innan síðunnar.
 
-## SEO, miðlar og viðhald
+Sjálfvirk myndun fer fram eftir WHMCS-cron þegar komið er að uppfærslu. Handvirk myndun hefst samstundis.
 
-Fylltu út titil, lýsingu, robots-stillingu, kanóníska vefslóð og upplýsingar fyrir samfélagsmiðla fyrir hvert tungumál. Birt síða sem er ekki kerfissíða getur birst á XML-vefkorti. Hladdu myndum upp í Media Manager, settu inn alt-texta og skoðaðu gæði eftir fínstillingu. Raðaðu síðum og sérsniðnum tenglum í Menu Manager og stilltu tungumálaheiti og staðsetningu.
+## Leiðbeiningar eftir hlutum
 
-Redirect Manager býr til varanlegar `301` eða tímabundnar `302` áframsendingar. Rewrite Manager skrifar `.htaccess`-reglur fyrir Apache; Nginx þarf samsvarandi netþjónsstillingar. Flyttu út JSON áður en mikið magn gagna er flutt inn. Nánari enskar leiðbeiningar: [valmyndir](../english/docs/menus.md), [síðuskipting](../english/docs/pagination.md), [áframsendingar](../english/docs/redirects.md), [vefkort](../english/docs/sitemaps.md), [Smarty](../english/docs/smarty.md), [skipulögð gögn](../english/docs/structured-data.md), [gagnaflutningur](../english/docs/transfer.md).
+- [Umsjón með síðum](docs/pages_manager.md)
+- [Síðaritill](docs/pages_editor.md)
+- [Umsjón með miðlum](docs/media_manager.md)
+- [valmyndir](docs/menu_manager.md)
+- [Tungumálastýring](docs/langs_manager.md)
+- [áframsendingar](docs/redirects_manager.md)
+- [vefkort](docs/sitemap_manager.md)
+- [Endurskrifunarreglur](docs/rewrite_manager.md)
+- [Stillingar einingar](docs/module_settings.md)
+- [Gagnagrunnur einingar](docs/module_db.md)
+
+## Viðbótarefni
+
+- [síðuskipting](docs/pages_editor_pagination.md)
+- [Smarty](docs/pages_editor_smarty.md)
+- [skipulögð gögn](docs/module_structured_data.md)
+- [gagnaflutningur](docs/module_settings_transfer.md)

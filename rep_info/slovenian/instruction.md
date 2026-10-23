@@ -8,38 +8,45 @@
 
 **zmchel WHMCS Multimodule je brezplačen.** V skrbništvu WHMCS omogoča upravljanje strani in člankov z vizualnim urejevalnikom, prevodi, meniji, medijsko knjižnico, polji SEO, zemljevidi spletnega mesta XML, preusmeritvami in pravili za prepisovanje URL-jev.
 
-## Upravitelj jezikov (v razvoju)
+## Nastavitve modula
 
-V skrbništvu WHMCS odprite Upravitelja jezikov ter izberite razdelek (jeziki za stranke ali skrbnike WHMCS, ta ali drug modul) in jezik. Primerjajte izvirnik ali referenco s prevodom, uredite eno vrstico in jo shranite; obstoječe ključe lahko tudi izvozite in uvozite kot JSON. Novi jeziki uporabljajo referenco, dokler niso prevedeni. Upravitelj omogoča ali onemogoča jezikovne datoteke in popravi stara imena; privzeti jezik najprej spremenite v WHMCS.
+Izberite jezike, ki jih modul lahko uporablja. Izklop jezika ne izbriše njegove vsebine.
 
-→ [Upravitelj jezikov](docs/language-manager.md)
+- **Nastavitve modula → Podprti jeziki → Omogoči**
+- **Podatkovna zbirka modula → Popravi Izbrani elementi**
+- **Pravila prepisovanja URL → Preveri pravila → Dodaj ali posodobi pravila**
 
-## 1. Namestitev in dostop
+Nginx ne bere datoteke .htaccess, zato ta pravila v njem ne delujejo. Enakovredna pravila nastavite v nginx.
 
-V WHMCS aktivirajte dodatni modul in dodelite dostop pooblaščenim skrbnikom. V zbirki podatkov modula preverite potrebne tabele. Preglejte prijazne URL-je, jezikovne poti in položaje menijev. Apache uporablja .htaccess; v Nginxu enakovredna strežniška pravila nastavite posebej.
+## Upravitelj strani
 
-## 2. Ustvarjanje strani
+- **Dodaj stran → Ime strani → URL-oznaka strani (slug) → Shrani**
+- **Urejevalnik strani → Nastavitve vsebine → Nastavitve metapodatkov → Nastavitve zemljevida spletnega mesta za stran → Shrani vse**
+- **Upravitelj strani → Obišči**
+- **Zemljevid spletnega mesta → Ustvari zemljevide spletnega mesta**
 
-Odprite seznam strani in dodajte stran. Vnesite notranje ime in slug iz latiničnih črk, številk in vezajev, na primer about-us. Izberite dostop za vse, samo za prijavljene stranke ali samo za goste. Nastavite stanje in jezike. Privzeti jezik WHMCS mora modul podpirati.
+Dovoljene so samo latinične črke, vezaji in številke.
 
-## 3. Urejanje vsebine
+Prijavljeni uporabniki: do strani lahko dostopajo samo prijavljeni uporabniki; Gostje: dostopajo lahko samo gostje; Mešano: dostopajo lahko vsi, vidnost pa določajo bloki na strani.
 
-Za vsak jezik izpolnite zavihke Vsebina, Metapodatki in Zemljevid spletnega mesta. Bloke povlecite v urejevalnik, spremenite besedilo in slike ter shranite vsak zavihek. Kopiranje z vsebino ponudi izhodišče, kopiranje strukture pa pripravi postavitev za prevod. Besedilo se ne prevede samodejno.
+Samodejno ustvarjanje se izvede po opravilu WHMCS cron, ko je čas za posodobitev. Ročno ustvarjanje se začne takoj.
 
-## 4. Povezave in objava
+## Navodila po razdelkih
 
-Pri povezavah do prevedenih strani modula vključite dodajanje trenutnega jezika v URL. Izključite ga za zunanje naslove, e-pošto in poti WHMCS brez jezikovnih različic. Po objavi preverite stran kot gost in stranka, na računalniku in telefonu ter v najmanj dveh jezikih.
+- [Upravitelj strani](docs/pages_manager.md)
+- [Urejevalnik strani](docs/pages_editor.md)
+- [Upravljalnik predstavnostnih datotek](docs/media_manager.md)
+- [Meniji](docs/menu_manager.md)
+- [Upravitelj jezikov](docs/langs_manager.md)
+- [Preusmeritve](docs/redirects_manager.md)
+- [Zemljevidi spletnega mesta](docs/sitemap_manager.md)
+- [Pravila prepisovanja URL](docs/rewrite_manager.md)
+- [Nastavitve modula](docs/module_settings.md)
+- [Podatkovna zbirka modula](docs/module_db.md)
 
-## 5. Upravljanje in vzdrževanje
+## Dodatno gradivo
 
-Upravitelj menijev ureja navigacijo, upravitelj medijev pa slike. Upravitelj preusmeritev ustvarja pravila 301 in 302. Zemljevid spletnega mesta ustvari datoteke XML. Pred večjimi spremembami izvozite nastavitve; po spremembah pravil za prepisovanje jih ponovno uporabite in preverite zemljevid.
-
-## Podrobnejše teme
-
-- [Meniji](docs/menus.md)
-- [Stranjenje in filtri](docs/pagination.md)
-- [Preusmeritve](docs/redirects.md)
-- [Zemljevidi spletnega mesta](docs/sitemaps.md)
-- [Smarty in spremenljivke](docs/smarty.md)
-- [Strukturirani podatki](docs/structured-data.md)
-- [Uvoz in izvoz](docs/transfer.md)
+- [Stranjenje in filtri](docs/pages_editor_pagination.md)
+- [Smarty in spremenljivke](docs/pages_editor_smarty.md)
+- [Strukturirani podatki](docs/module_structured_data.md)
+- [Uvoz in izvoz](docs/module_settings_transfer.md)

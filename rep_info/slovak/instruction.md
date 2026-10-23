@@ -8,38 +8,45 @@
 
 **zmchel WHMCS Multimodule je bezplatný.** Umožňuje spravovať stránky a články v administrácii WHMCS pomocou vizuálneho editora, prekladov, ponúk, knižnice médií, polí SEO, máp stránok XML, presmerovaní a pravidiel prepisovania URL.
 
-## Správca jazykov (vo vývoji)
+## Nastavenia modulu
 
-V administrácii WHMCS otvorte Správcu jazykov a vyberte sekciu (klientske alebo administrátorské jazyky WHMCS, tento či iný modul) a jazyk. Porovnajte originál alebo referenčný text s prekladom, upravte jeden riadok a uložte ho; existujúce kľúče možno aj exportovať a importovať ako JSON. Nové jazyky používajú referenčný text, kým ich nepreložíte. Správca zapína a vypína jazykové súbory a opravuje staré názvy; predvolený jazyk najskôr zmeňte vo WHMCS.
+Vyberte jazyky, ktoré môže modul používať. Vypnutie jazyka nevymaže jeho obsah.
 
-→ [Správca jazykov](docs/language-manager.md)
+- **Nastavenia modulu → Podporované jazyky → Zapnúť**
+- **Databáza modulu → Opraviť Vybrané položky**
+- **Pravidlá prepisovania URL → Skontrolovať pravidlá → Pridať alebo aktualizovať pravidlá**
 
-## 1. Inštalácia a prístup
+Nginx nečíta súbor .htaccess, preto tam tieto pravidlá nefungujú. Nastavte zodpovedajúce pravidlá v nginx.
 
-Aktivujte doplnkový modul vo WHMCS a udeľte prístup oprávneným administrátorom. V databázovej sekcii modulu skontrolujte potrebné tabuľky. Prezrite si pekné URL, jazykové trasy a umiestnenie ponúk. Apache používa .htaccess; pre Nginx nastavte príslušné serverové pravidlá samostatne.
+## Správca stránok
 
-## 2. Vytvorenie stránky
+- **Pridať stránku → Názov stránky → Slug stránky → Uložiť**
+- **Editor stránok → Nastavenia obsahu → Nastavenia metadát → Nastavenia mapy stránok → Uložiť všetko**
+- **Správca stránok → Navštíviť**
+- **Mapa stránok → Generovať mapy stránok**
 
-Otvorte zoznam stránok a pridajte stránku. Zadajte interný názov a slug z latinských písmen, číslic a spojovníkov, napríklad about-us. Vyberte prístup pre všetkých, iba pre prihlásených klientov alebo iba pre hostí. Nastavte stav a jazyky. Predvolený jazyk WHMCS musí modul podporovať.
+Povolené sú iba písmená latinky, spojovníky a číslice.
 
-## 3. Úprava obsahu
+Prihlásení používatelia: na stránku majú prístup len prihlásení používatelia; Hostia: prístup majú len hostia; Zmiešaný: prístup majú všetci a viditeľnosť riadia bloky na stránke.
 
-Pre každý jazyk vyplňte karty Obsah, Metadáta a Mapa stránok. Presuňte bloky do editora, upravte text a obrázky a uložte každú kartu. Kopírovanie s obsahom vytvorí východisko; kopírovanie štruktúry pripraví rozloženie na preklad. Text sa neprekladá automaticky.
+Automatické generovanie sa spustí po vykonaní cronu WHMCS, keď nastane čas aktualizácie. Manuálne generovanie sa spustí okamžite.
 
-## 4. Odkazy a publikovanie
+## Návody podľa sekcií
 
-Pri odkazoch na preložené stránky modulu zapnite pridávanie aktuálneho jazyka do URL. Vypnite ho pre externé adresy, e-mail a trasy WHMCS bez jazykových verzií. Po publikovaní skontrolujte stránku ako hosť aj klient, na počítači a telefóne, aspoň v dvoch jazykoch.
+- [Správca stránok](docs/pages_manager.md)
+- [Editor stránok](docs/pages_editor.md)
+- [Správca médií](docs/media_manager.md)
+- [Ponuky](docs/menu_manager.md)
+- [Správca jazykov](docs/langs_manager.md)
+- [Presmerovania](docs/redirects_manager.md)
+- [Mapy stránok](docs/sitemap_manager.md)
+- [Pravidlá prepisovania URL](docs/rewrite_manager.md)
+- [Nastavenia modulu](docs/module_settings.md)
+- [Databáza modulu](docs/module_db.md)
 
-## 5. Správa a údržba
+## Ďalšie materiály
 
-Správca ponúk riadi navigáciu a správca médií obrázky. Správca presmerovaní vytvára pravidlá 301 a 302. Mapa stránok generuje súbory XML. Pred väčšími zmenami exportujte nastavenia; po zmene pravidiel prepisovania ich znova použite a skontrolujte mapu stránok.
-
-## Podrobnejšie témy
-
-- [Ponuky](docs/menus.md)
-- [Stránkovanie a filtre](docs/pagination.md)
-- [Presmerovania](docs/redirects.md)
-- [Mapy stránok](docs/sitemaps.md)
-- [Smarty a premenné](docs/smarty.md)
-- [Štruktúrované údaje](docs/structured-data.md)
-- [Import a export](docs/transfer.md)
+- [Stránkovanie a filtre](docs/pages_editor_pagination.md)
+- [Smarty a premenné](docs/pages_editor_smarty.md)
+- [Štruktúrované údaje](docs/module_structured_data.md)
+- [Import a export](docs/module_settings_transfer.md)

@@ -8,38 +8,45 @@
 
 **zmchel WHMCS Multimodule er gratis.** Administrér sider og artikler fra WHMCS-administrationen med visuel editor, oversættelser, menuer, mediefiler, SEO-felter, XML-sitemaps, viderestillinger og omskrivningsregler.
 
-## Sprogstyring (under udvikling)
+## Modulindstillinger
 
-Åbn Sprogstyring i WHMCS-administrationen, og vælg en sektion (WHMCS-klient- eller administratorsprog, dette modul eller et andet modul) og et sprog. Sammenlign originalen eller referencen med oversættelsen, rediger én række, og gem den; eksisterende nøgler kan også eksporteres og importeres som JSON. Nye sprog bruger referencen, indtil de oversættes. Styringen aktiverer og deaktiverer sprogfiler og retter gamle filnavne; skift først standardsprog i WHMCS.
+Vælg de sprog, modulet kan bruge. Deaktivering sletter ikke indholdet.
 
-→ [Sprogstyring](docs/language-manager.md)
+- **Modulindstillinger → Understøttede sprog → Aktivér**
+- **Moduldatabase → Ret Valgte elementer**
+- **Omskrivningsregler → Kontrollér regler → Tilføj eller opdater regler**
 
-## 1. Installation og adgang
+Nginx læser ikke .htaccess, så disse regler virker ikke her. Konfigurér tilsvarende regler i nginx.
 
-Aktivér tilføjelsesmodulet i WHMCS, og giv relevante medarbejdere adgang. Kontrollér de nødvendige tabeller under Moduldatabase. Gennemgå derefter pæne URL'er, sprogruter og menuområder. Apache bruger .htaccess; på Nginx skal tilsvarende serverregler konfigureres særskilt.
+## Sidemanager
 
-## 2. Opret sider
+- **Tilføj side → Sidenavn → Sideslug → Gem**
+- **Sideeditor → Indholdsindstillinger → Metadataindstillinger → Sidens sitemapindstillinger → Gem alle**
+- **Sidemanager → Besøg**
+- **Sitemap → Generér sitemaps**
 
-Åbn Sideliste, og vælg Tilføj side. Angiv et internt navn og en slug med latinske bogstaver, tal og bindestreger, f.eks. about-us. Vælg adgang for alle, kun loggede kunder eller kun gæster. Vælg status og sprog. WHMCS' standardsprog skal være understøttet af modulet.
+Kun latinske bogstaver, bindestreger og cifre er tilladt.
 
-## 3. Redigér indhold
+Brugere, der er logget ind: Kun brugere, der er logget ind, kan tilgå siden; Gæster: Kun gæster kan tilgå den; Blandet: Alle kan tilgå siden, og synligheden styres af blokke på siden.
 
-Åbn siden, og udfyld Indhold, Metadata og Sitemap for hvert sprog. Træk blokke ind i editoren, ret tekst og billeder, og gem de enkelte faner. Kopiér med indhold giver et udgangspunkt; Kopiér struktur giver et layout til oversættelse. Teksten oversættes ikke automatisk.
+Automatisk generering kører efter WHMCS-cron, når det er tid til en opdatering. Manuel generering starter med det samme.
 
-## 4. Links og udgivelse
+## Vejledninger til sektionerne
 
-Slå tilføjelse af sidens sprog til for links til oversatte modulsider. Slå den fra for eksterne URL'er, e-mailadresser og WHMCS-ruter uden sprogversion. Efter udgivelse skal siden testes som gæst og kunde samt på mobil. Kontrollér titel, billeder, formularer og mindst to sprog.
+- [Sidemanager](docs/pages_manager.md)
+- [Sideeditor](docs/pages_editor.md)
+- [Mediehåndtering](docs/media_manager.md)
+- [Menuer](docs/menu_manager.md)
+- [Sprogstyring](docs/langs_manager.md)
+- [Viderestillinger](docs/redirects_manager.md)
+- [Sitemaps](docs/sitemap_manager.md)
+- [Omskrivningsregler](docs/rewrite_manager.md)
+- [Modulindstillinger](docs/module_settings.md)
+- [Moduldatabase](docs/module_db.md)
 
-## 5. Drift og vedligeholdelse
+## Yderligere materiale
 
-Menu Manager styrer navigation, og Media Manager styrer billeder. Redirect Manager opretter 301- og 302-viderestillinger. Sitemap genererer XML-filer. Eksportér indstillinger før større ændringer eller import. Anvend omskrivningsregler igen efter ændringer, og kontrollér sitemappet efter udgivelse.
-
-## Uddybende emner
-
-- [Menuer](docs/menus.md)
-- [Sideinddeling og filtre](docs/pagination.md)
-- [Viderestillinger](docs/redirects.md)
-- [Sitemaps](docs/sitemaps.md)
-- [Smarty og variabler](docs/smarty.md)
-- [Strukturerede data](docs/structured-data.md)
-- [Import og eksport](docs/transfer.md)
+- [Sideinddeling og filtre](docs/pages_editor_pagination.md)
+- [Smarty og variabler](docs/pages_editor_smarty.md)
+- [Strukturerede data](docs/module_structured_data.md)
+- [Import og eksport](docs/module_settings_transfer.md)

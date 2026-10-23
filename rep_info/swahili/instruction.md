@@ -1,29 +1,50 @@
 # Maelekezo ya zmchel WHMCS Multimodule
 
-**Kabla ya kutumia moduli, tengeneza thamani za salt za kipekee na uziweke katika `module_init.php`: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` na `ZM_PB_NONCE_SALT`.** Moduli ilitengenezwa na kupimwa kwenye **WHMCS 8.13.1–8.13.7**. Uoanifu wa **PHP 7.4–8.5** umekaguliwa. Apache inaungwa mkono kikamilifu; Nginx inaweza kuhitaji usanidi wa ziada kwa uelekezaji wa lugha kwenye ukurasa wa mwanzo. **Moduli ni ya bure.**
+**Kabla ya kutumia moduli, tengeneza thamani za salt za kipekee ndani ya `module_init.php`: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` na `ZM_PB_NONCE_SALT`.** Moduli ilitengenezwa na kupimwa kwenye **WHMCS 8.13.1–8.13.7**. Uoanifu wa **PHP 7.4–8.5** umekaguliwa. Apache inaungwa mkono kikamilifu (100%); Nginx inaweza kuhitaji usanidi wa ziada kwa uelekezaji wa lugha kwenye ukurasa wa mwanzo.
 
 **Kabla ya matumizi ya kwanza, fungua Mipangilio ya moduli → Lugha zinazoungwa mkono na uwashe lugha unazohitaji.**
 
-## Meneja wa lugha (unaendelezwa)
+**zmchel WHMCS Multimodule ni ya bure.** Kutoka eneo la usimamizi la WHMCS, simamia kurasa za lugha nyingi kwa kihariri cha picha, menyu, maktaba ya media, taarifa za SEO, ramani za tovuti za XML, uelekezaji upya, sheria za rewrite, kuingiza na kuhamisha data.
 
-Katika usimamizi wa WHMCS, fungua Meneja wa lugha na uchague sehemu (lugha za wateja au wasimamizi wa WHMCS, moduli hii au nyingine) na lugha. Linganisha asili au marejeo na tafsiri, hariri mstari mmoja na uhifadhi; funguo zilizopo pia zinaweza kuhamishwa na kuingizwa kama JSON. Lugha mpya hutumia marejeo mpaka zitafsiriwe. Meneja huwasha na kuzima faili za lugha na kurekebisha majina ya zamani; badili kwanza lugha chaguomsingi kwenye WHMCS.
+## Mipangilio ya moduli
 
-→ [Meneja wa lugha](../english/docs/language-manager.md) (English)
+Chagua lugha ambazo moduli inaweza kutumia. Kuzima lugha hakufuti maudhui yake.
 
-## Kuunda kurasa
+- **Mipangilio ya moduli → Lugha zinazotumika → Washa**
+- **Hifadhidata ya moduli → Rekebisha Vipengee vilivyochaguliwa**
+- **Kanuni za kuandika upya → Kagua kanuni → Ongeza au sasisha kanuni**
 
-Fungua **Addons → zmchel WHMCS Multimodule** katika eneo la usimamizi la WHMCS. Kabla ya kubadilisha URL, uelekezaji upya au sheria za seva, hamisha mipangilio ya moduli. Kwenye orodha ya kurasa, ongeza ukurasa wenye jina la ndani na *slug* kama `kuhusu-sisi`, bila kikoa au `.php`. Chagua ufikiaji wa wote, wa walioingia kwenye akaunti au mchanganyiko; kisha chagua hali ya rasimu au iliyochapishwa, aina ya ukurasa na lugha. Lugha chaguomsingi ya WHMCS lazima iwe ndani ya `supported_langs.php`.
+Nginx haisomi .htaccess, hivyo kanuni hizi hazifanyi kazi humo. Sanidi kanuni zinazolingana katika nginx.
 
-Baada ya kuhifadhi, fungua ukurasa na ujaze maudhui, taarifa za meta na mipangilio ya ramani ya tovuti kwa kila lugha. Kila sehemu ina kitufe chake cha kuhifadhi. Kagua ujumbe wa matokeo na ukurasa wa umma. Kufuta kwanza huhamisha ukurasa kwenye pipa; kufuta kabisa hufanyika kutoka huko.
+## Kidhibiti cha Kurasa
 
-## Kihariri na lugha
+- **Ongeza ukurasa → Jina la ukurasa → Slug ya ukurasa → Hifadhi**
+- **Kihariri cha kurasa → Mipangilio ya maudhui → Mipangilio ya metadata → Mipangilio ya ramani ya tovuti ya ukurasa → Hifadhi zote**
+- **Kidhibiti cha Kurasa → Tembelea**
+- **Ramani ya tovuti → Tengeneza ramani za tovuti**
 
-Chagua lugha katika kichupo cha maudhui, buruta vizuizi vya GrapesJS kwenye eneo la kazi, kisha hariri maandishi, picha na mipangilio. Kuna sehemu, safu wima, majedwali, FAQ, fomu ya mawasiliano, orodha, ugawaji wa kurasa na maeneo ya wageni au wanachama. Unaweza kunakili muundo kwa lugha nyingine kisha kutafsiri maandishi kabla ya kuchapisha. Vizuizi vya viungo na vitufe vinaweza kuongeza lugha ya sasa kwenye URL za ndani; zima chaguo hilo kwa viungo vya nje, faili, `mailto:` na njia za WHMCS zisizo na tafsiri.
+Herufi za Kilatini, vistari na tarakimu pekee zinaruhusiwa.
 
-URL rafiki na uelekezaji wa lugha vikiwashwa, lugha kuu hutumia njia fupi kama `/sw/`, au bila kiambishi ikiwa njia ya lugha chaguomsingi imezimwa. Tofauti za kikanda hutumia locale ya BCP 47. Jaribu viungo katika lugha kadhaa.
+Watumiaji walioingia: watumiaji walioingia pekee wanaweza kufikia ukurasa; Wageni: wageni pekee wanaweza kuufikia; Mchanganyiko: kila mtu anaweza kuufikia, na mwonekano hudhibitiwa na vitalu vilivyo ndani ya ukurasa.
 
-## SEO, picha na matengenezo
+Utengenezaji wa kiotomatiki huendeshwa baada ya cron ya WHMCS wakati sasisho linapohitajika. Utengenezaji wa mikono huanza mara moja.
 
-Kwa kila lugha, jaza kichwa, maelezo, robots, URL kanoniki na taarifa za mitandao ya kijamii. Ukurasa uliochapishwa ambao si wa mfumo unaweza kuingia kwenye ramani ya tovuti ya XML. Pakia picha kupitia Media Manager, ongeza maandishi mbadala na kagua ubora baada ya uboreshaji. Katika Menu Manager, panga kurasa na viungo maalumu, weka majina ya kila lugha, eneo na mwonekano.
+## Miongozo kwa kila sehemu
 
-Redirect Manager huweka uelekezaji upya wa kudumu wa `301` au wa muda wa `302`. Rewrite Manager huandika sheria za `.htaccess` kwa Apache; Nginx inahitaji sheria zinazolingana kwenye seva. Hamisha JSON kabla ya uingizaji mkubwa wa data. Maelezo zaidi kwa Kiingereza: [menyu](../english/docs/menus.md), [ugawaji wa kurasa](../english/docs/pagination.md), [uelekezaji upya](../english/docs/redirects.md), [ramani ya tovuti](../english/docs/sitemaps.md), [Smarty](../english/docs/smarty.md), [data yenye muundo](../english/docs/structured-data.md), [uhamishaji wa data](../english/docs/transfer.md).
+- [Kidhibiti cha Kurasa](docs/pages_manager.md)
+- [Kihariri cha kurasa](docs/pages_editor.md)
+- [Kidhibiti cha Midia](docs/media_manager.md)
+- [menyu](docs/menu_manager.md)
+- [Meneja wa lugha](docs/langs_manager.md)
+- [uelekezaji upya](docs/redirects_manager.md)
+- [ramani ya tovuti](docs/sitemap_manager.md)
+- [Kanuni za kuandika upya](docs/rewrite_manager.md)
+- [Mipangilio ya moduli](docs/module_settings.md)
+- [Hifadhidata ya moduli](docs/module_db.md)
+
+## Nyenzo za ziada
+
+- [ugawaji wa kurasa](docs/pages_editor_pagination.md)
+- [Smarty](docs/pages_editor_smarty.md)
+- [data yenye muundo](docs/module_structured_data.md)
+- [uhamishaji wa data](docs/module_settings_transfer.md)

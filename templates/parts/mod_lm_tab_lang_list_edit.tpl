@@ -5,7 +5,7 @@
     <p class="text-muted">{$lm_text->reference|escape}: {$lm_reference_title|escape} ({$lm_reference|escape}). {$lm_text->save_one|escape}</p>
     <form id="lm-search-form" class="form-inline mar-b-2" method="get" action="addonmodules.php#mod_lm_tab_lang_list_edit">
         <input type="hidden" name="module" value="{$addonName|escape}">
-        <input type="hidden" name="subpage" value="langs_manager">
+        <input type="hidden" name="subpage" value="{$subpage}">
         <input type="hidden" name="section" value="{$lm_section|escape}">
         <input type="hidden" name="language" value="{$lm_language|escape}">
         <label for="lm-search">{$lm_text->key|escape} / {$lm_text->translation|escape}</label>
@@ -28,7 +28,7 @@
                 {if $row.managed_custom && !$lm_readonly}
                 <form class="lm-action-form mar-t-1" method="post" action="addonmodules.php">
                     <input type="hidden" name="module" value="{$addonName|escape}">
-                    <input type="hidden" name="subpage" value="langs_manager">
+                    <input type="hidden" name="subpage" value="{$subpage}">
                     <input type="hidden" name="section" value="{$lm_section|escape}">
                     <input type="hidden" name="language" value="{$lm_language|escape}">
                     <input type="hidden" name="action" value="rename_translation">
@@ -44,7 +44,7 @@
             <td>
                 <form class="lm-action-form d-in" method="post" action="addonmodules.php">
                     <input type="hidden" name="module" value="{$addonName|escape}">
-                    <input type="hidden" name="subpage" value="langs_manager">
+                    <input type="hidden" name="subpage" value="{$subpage}">
                     <input type="hidden" name="section" value="{$lm_section|escape}">
                     <input type="hidden" name="language" value="{$lm_language|escape}">
                     <input type="hidden" name="action" value="save_translation">
@@ -57,7 +57,7 @@
                 {if $row.managed_custom && !$lm_readonly}
                 <form class="lm-action-form d-in" method="post" action="addonmodules.php">
                     <input type="hidden" name="module" value="{$addonName|escape}">
-                    <input type="hidden" name="subpage" value="langs_manager">
+                    <input type="hidden" name="subpage" value="{$subpage}">
                     <input type="hidden" name="section" value="{$lm_section|escape}">
                     <input type="hidden" name="language" value="{$lm_language|escape}">
                     <input type="hidden" name="action" value="delete_translation">
@@ -88,7 +88,7 @@
         {if $lm_page < $lm_pages}<a class="btn btn-default" href="{$lm_current_url|escape}&amp;page={$lm_page+1}#mod_lm_tab_lang_list_edit" aria-label="{$other_translates->page|escape} {$lm_page+1}">&rarr;</a>{/if}
         <form class="form-inline d-in" method="get" action="addonmodules.php#mod_lm_tab_lang_list_edit">
             <input type="hidden" name="module" value="{$addonName|escape}">
-            <input type="hidden" name="subpage" value="langs_manager">
+            <input type="hidden" name="subpage" value="{$subpage}">
             <input type="hidden" name="section" value="{$lm_section|escape}">
             <input type="hidden" name="language" value="{$lm_language|escape}">
             {if $lm_search !== ''}<input type="hidden" name="q" value="{$lm_search|escape}">{/if}
@@ -102,7 +102,7 @@
     <h4>{$lm_text->new_translation|escape}</h4>
     <form class="lm-action-form d-flex flex-dir-col" method="post" action="addonmodules.php">
         <input type="hidden" name="module" value="{$addonName|escape}">
-        <input type="hidden" name="subpage" value="langs_manager">
+        <input type="hidden" name="subpage" value="{$subpage}">
         <input type="hidden" name="section" value="{$lm_section|escape}">
         <input type="hidden" name="language" value="{$lm_language|escape}">
         <input type="hidden" name="action" value="add_translation">
@@ -117,11 +117,12 @@
         <button type="submit" class="btn d-block w-fit btn-success">{$other_translates->add|escape}</button>
     </form>
     {/if}
+    <hr>
     <div class="form-inline mar-t-2">
         <h4>{$lm_transfer_text->import|escape} / {$lm_transfer_text->export|escape} - {$lm_text->translation|escape}</h4>
         <form class="lm-action-form d-in" method="post" action="addonmodules.php">
             <input type="hidden" name="module" value="{$addonName|escape}">
-            <input type="hidden" name="subpage" value="langs_manager">
+            <input type="hidden" name="subpage" value="{$subpage}">
             <input type="hidden" name="section" value="{$lm_section|escape}">
             <input type="hidden" name="language" value="{$lm_language|escape}">
             <input type="hidden" name="action" value="export_translations">
@@ -132,7 +133,7 @@
         {if !$lm_readonly}
         <form class="lm-action-form d-in" method="post" action="addonmodules.php" enctype="multipart/form-data">
             <input type="hidden" name="module" value="{$addonName|escape}">
-            <input type="hidden" name="subpage" value="langs_manager">
+            <input type="hidden" name="subpage" value="{$subpage}">
             <input type="hidden" name="section" value="{$lm_section|escape}">
             <input type="hidden" name="language" value="{$lm_language|escape}">
             <input type="hidden" name="action" value="import_translations">

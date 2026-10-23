@@ -13,7 +13,7 @@
         <p class="help-block">{$sitemap_manager_translates->cron_hint|escape}</p>
         <form method="POST" action="addonmodules.php" id="zm-pb-sitemap-generate">
             <input type="hidden" name="module" value="{$addonName}">
-            <input type="hidden" name="subpage" value="sitemap_manager">
+            <input type="hidden" name="subpage" value="{$subpage}">
             <input type="hidden" name="action" value="generate_sitemaps">
             <input type="hidden" name="zm_pb_forms_nonce" value="{$zm_pb_forms_nonce}">
             <input type="hidden" name="zm_pb_admin_nonce" value="{$zm_pb_admin_nonce}">
@@ -73,4 +73,6 @@
         </div>
     {/if}
     </div>
+    <hr>
+    <a class="d-block pd-2" href="{$main_host_url}admin/addonmodules.php?module={$addonName|escape}&amp;subpage=README.md&amp;doc={$subpage}" target="_blank">{$module_translates->instruction|escape} - {$module_translates->{$subpage}->title|escape}</a>
 </div>

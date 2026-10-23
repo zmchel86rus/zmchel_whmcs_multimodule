@@ -1,29 +1,50 @@
 # Udhëzime për zmchel WHMCS Multimodule
 
-**Para përdorimit të modulit, krijoni vlera salt unike dhe vendosini në `module_init.php`: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` dhe `ZM_PB_NONCE_SALT`.** Moduli është zhvilluar dhe testuar në **WHMCS 8.13.1–8.13.7**. Përputhshmëria me **PHP 7.4–8.5** është kontrolluar. Apache mbështetet plotësisht; Nginx mund të kërkojë konfigurim shtesë për rrugëzimin e gjuhës në faqen kryesore. **Moduli është falas.**
+**Para përdorimit, krijoni vlera salt unike në `module_init.php`: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` dhe `ZM_PB_NONCE_SALT`.** Moduli është zhvilluar dhe testuar në **WHMCS 8.13.1–8.13.7**. Përputhshmëria me **PHP 7.4–8.5** është kontrolluar. Apache mbështetet plotësisht (100%); Nginx mund të kërkojë konfigurim shtesë për rrugëzimin e gjuhës në faqen kryesore.
 
 **Para përdorimit të parë, hapni Cilësimet e modulit → Gjuhët e mbështetura dhe aktivizoni gjuhët që ju nevojiten.**
 
-## Menaxheri i gjuhëve (në zhvillim)
+**zmchel WHMCS Multimodule është falas.** Nga administrimi i WHMCS mund të menaxhoni faqe shumëgjuhëshe me redaktor pamor, meny, bibliotekë mediash, metadata SEO, harta XML, ridrejtime, rregulla rewrite dhe import/eksport.
 
-Në administrimin WHMCS, hapni Menaxherin e gjuhëve dhe zgjidhni seksionin (klientët ose administratorët e WHMCS, këtë modul ose një modul tjetër) dhe gjuhën. Krahasoni tekstin origjinal ose referencën me përkthimin, ndryshoni një rresht dhe ruajeni; çelësat ekzistues mund të eksportohen dhe importohen edhe si JSON. Gjuhët e saposhtuara përdorin referencën derisa të përkthehen. Menaxheri aktivizon ose çaktivizon skedarët e gjuhës dhe korrigjon emrat e vjetër të skedarëve; gjuhën e parazgjedhur ndryshojeni fillimisht në WHMCS.
+## Cilësimet e modulit
 
-→ [Menaxheri i gjuhëve](../english/docs/language-manager.md) (English)
+Zgjidhni gjuhët që mund të përdorë moduli. Çaktivizimi i një gjuhe nuk e fshin përmbajtjen e saj.
 
-## Krijimi i faqeve
+- **Cilësimet e modulit → Gjuhët e mbështetura → Aktivizo**
+- **Baza e të dhënave e modulit → Rregullo Elementet e përzgjedhura**
+- **Rregullat e rishkrimit → Kontrollo rregullat → Shto ose përditëso rregullat**
 
-Në administrimin e WHMCS, hapni **Addons → zmchel WHMCS Multimodule**. Eksportoni cilësimet para ndryshimeve në URL, ridrejtime ose rregulla të serverit. Te lista e faqeve, shtoni një faqe me emër të brendshëm dhe *slug* si `rreth-nesh`, pa domen ose `.php`. Zgjidhni qasjen për të gjithë, për përdorues të identifikuar ose të përzier; pastaj caktoni statusin draft apo publikuar, llojin dhe gjuhët. Gjuha e parazgjedhur e WHMCS duhet të jetë në `supported_langs.php`.
+Nginx nuk e lexon skedarin .htaccess, prandaj këto rregulla nuk funksionojnë aty. Konfiguroni rregulla të barasvlershme në nginx.
 
-Pas ruajtjes, hapni faqen dhe plotësoni përmbajtjen, metadatat dhe cilësimet e hartës së faqes për secilën gjuhë. Çdo seksion ka butonin e vet Ruaj. Kontrolloni njoftimin e rezultatit dhe faqen publike. Fshirja e parë e zhvendos faqen në kosh; fshirja përfundimtare bëhet aty.
+## Menaxheri i faqeve
 
-## Redaktori dhe gjuhët
+- **Shto faqe → Emri i faqes → Slug-u i faqes → Ruaj**
+- **Redaktori i faqeve → Cilësimet e përmbajtjes → Cilësimet e metadatave → Cilësimet e hartës së faqes → Ruaj të gjitha**
+- **Menaxheri i faqeve → Vizito**
+- **Harta e sajtit → Gjenero hartat e sajtit**
 
-Zgjidhni gjuhën në skedën e përmbajtjes, tërhiqni blloqet GrapesJS në hapësirën e punës dhe ndryshoni tekstin, figurat dhe cilësimet. Ka seksione, kolona, tabela, FAQ, formular kontakti, lista, faqëzim dhe zona për vizitorë ose anëtarë. Mund të kopjoni strukturën në një gjuhë tjetër dhe të përktheni tekstin para publikimit. Blloqet e lidhjeve dhe butonave mund t'i shtojnë gjuhën aktuale URL-së së brendshme; çaktivizojeni për lidhje të jashtme, skedarë, `mailto:` dhe rrugë WHMCS pa përkthim.
+Lejohen vetëm shkronjat latine, vizat lidhëse dhe shifrat.
 
-Me URL të bukura dhe rrugëzim gjuhësh aktiv, gjuha kryesore përdor rrugë të shkurtër si `/sq/`, ose pa prefiks nëse rruga e gjuhës së parazgjedhur është çaktivizuar. Variantet rajonale përdorin locale BCP 47. Testoni lidhjet në disa gjuhë.
+Përdoruesit e identifikuar: vetëm përdoruesit e identifikuar mund të hyjnë në faqe; Vizitorët: vetëm vizitorët mund të hyjnë; I përzier: të gjithë mund të hyjnë, ndërsa dukshmëria kontrollohet nga blloqet brenda faqes.
 
-## SEO, media dhe mirëmbajtja
+Gjenerimi automatik kryhet pas cron-it të WHMCS kur është koha për përditësim. Gjenerimi manual nis menjëherë.
 
-Plotësoni titullin, përshkrimin, robots, URL-në kanonike dhe të dhënat sociale për secilën gjuhë. Një faqe e publikuar që nuk është faqe sistemi mund të përfshihet në hartën XML. Ngarkoni figurat në Media Manager, shtoni tekst alternativ dhe kontrolloni cilësinë pas optimizimit. Në Menu Manager renditni faqet dhe lidhjet e personalizuara, caktoni emërtimet sipas gjuhës dhe vendndodhjen.
+## Udhëzuesit sipas seksioneve
 
-Redirect Manager krijon ridrejtime të përhershme `301` ose të përkohshme `302`. Rewrite Manager shkruan rregullat `.htaccess` për Apache; Nginx kërkon rregulla përkatëse në server. Eksportoni JSON përpara një importi të madh. Udhëzime të hollësishme në anglisht: [menytë](../english/docs/menus.md), [faqëzimi](../english/docs/pagination.md), [ridrejtimet](../english/docs/redirects.md), [hartat e faqes](../english/docs/sitemaps.md), [Smarty](../english/docs/smarty.md), [të dhënat e strukturuara](../english/docs/structured-data.md), [transferimi i të dhënave](../english/docs/transfer.md).
+- [Menaxheri i faqeve](docs/pages_manager.md)
+- [Redaktori i faqeve](docs/pages_editor.md)
+- [Menaxheri i mediave](docs/media_manager.md)
+- [menytë](docs/menu_manager.md)
+- [Menaxheri i gjuhëve](docs/langs_manager.md)
+- [ridrejtimet](docs/redirects_manager.md)
+- [hartat e faqes](docs/sitemap_manager.md)
+- [Rregullat e rishkrimit](docs/rewrite_manager.md)
+- [Cilësimet e modulit](docs/module_settings.md)
+- [Baza e të dhënave e modulit](docs/module_db.md)
+
+## Materiale shtesë
+
+- [faqëzimi](docs/pages_editor_pagination.md)
+- [Smarty](docs/pages_editor_smarty.md)
+- [të dhënat e strukturuara](docs/module_structured_data.md)
+- [transferimi i të dhënave](docs/module_settings_transfer.md)

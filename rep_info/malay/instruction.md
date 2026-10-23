@@ -1,31 +1,50 @@
 # Panduan zmchel WHMCS Multimodule
 
-**Sebelum menggunakan modul, jana salt yang unik dan letakkannya dalam `module_init.php`: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` dan `ZM_PB_NONCE_SALT`.** Modul ini dibangunkan dan diuji pada **WHMCS 8.13.1–8.13.7**. Keserasian PHP diperiksa untuk **7.4–8.5**. Apache disokong sepenuhnya; Nginx mungkin memerlukan konfigurasi tambahan bagi penghalaan bahasa di laman utama. **Modul ini percuma.**
+**Sebelum menggunakan modul, jana salt yang unik dalam `module_init.php`: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` dan `ZM_PB_NONCE_SALT`.** Modul ini dibangunkan dan diuji pada **WHMCS 8.13.1–8.13.7**. Keserasian PHP diperiksa untuk **7.4–8.5**. Apache disokong sepenuhnya (100%); Nginx boleh digunakan, tetapi penghalaan bahasa di laman utama mungkin memerlukan tetapan tambahan.
 
 **Sebelum penggunaan pertama, buka Tetapan modul → Bahasa yang disokong dan aktifkan bahasa yang anda perlukan.**
 
-## Pengurus bahasa (dalam pembangunan)
+**zmchel WHMCS Multimodule ialah modul percuma.** Ia membolehkan anda mengurus halaman berbilang bahasa melalui penyunting visual, menu, pustaka media, metadata SEO, peta laman XML, pengalihan, peraturan rewrite serta import dan eksport dari pentadbiran WHMCS.
 
-Dalam pentadbiran WHMCS, buka Pengurus bahasa dan pilih bahagian (bahasa klien atau admin WHMCS, modul ini atau modul lain) serta bahasa. Bandingkan teks asal atau rujukan dengan terjemahan, ubah satu baris dan simpan; kunci sedia ada juga boleh dieksport dan diimport sebagai JSON. Bahasa baharu menggunakan rujukan sehingga diterjemahkan. Pengurus boleh menghidupkan atau mematikan fail bahasa dan membetulkan nama fail lama; tukar bahasa lalai dalam WHMCS dahulu.
+## Tetapan modul
 
-→ [Pengurus bahasa](../english/docs/language-manager.md) (English)
+Pilih bahasa yang boleh digunakan oleh modul. Menyahaktifkan bahasa tidak akan memadam kandungannya.
 
-## Mula menggunakan dan mencipta halaman
+- **Tetapan modul → Bahasa yang disokong → Aktifkan**
+- **Pangkalan data modul → Baiki Item terpilih**
+- **Peraturan tulis semula → Semak peraturan → Tambah atau kemas kini peraturan**
 
-Buka **Addons → zmchel WHMCS Multimodule** dalam pentadbiran WHMCS. Eksport tetapan modul sebelum mengubah URL, pengalihan atau peraturan pelayan. Dalam senarai halaman, tambah halaman dengan nama dalaman dan *slug* seperti `tentang-kami`, tanpa domain atau `.php`. Pilih akses untuk semua pelawat, pengguna berdaftar atau mod campuran; kemudian pilih status draf atau diterbitkan, jenis halaman dan bahasa. Bahasa lalai WHMCS mesti wujud dalam `supported_langs.php`.
+Nginx tidak membaca .htaccess, jadi peraturan ini tidak berfungsi padanya. Konfigurasikan peraturan yang setara dalam nginx.
 
-Selepas menyimpan, buka halaman itu untuk mengisi kandungan, metadata dan tetapan peta laman bagi setiap bahasa. Setiap bahagian mempunyai butang Simpan sendiri. Semak mesej kejayaan dan paparan halaman awam. Pemadaman awal memindahkan halaman ke tong sampah; pemadaman kekal dibuat di situ.
+## Pengurus Halaman
 
-## Penyunting dan bahasa
+- **Tambah halaman → Nama halaman → Slug halaman → Simpan**
+- **Penyunting Halaman → Tetapan kandungan → Tetapan metadata → Tetapan peta laman halaman → Simpan semua**
+- **Pengurus Halaman → Lawati**
+- **Peta Laman → Jana peta laman**
 
-Pilih bahasa pada tab kandungan, seret blok GrapesJS ke kanvas, kemudian ubah teks, imej dan tetapan blok. Blok tersedia untuk seksyen, lajur, jadual, FAQ, borang hubungan, senarai, penomboran halaman dan kawasan khas tetamu atau ahli. Salin struktur ke bahasa lain jika perlu, terjemahkan teksnya dan simpan semula. Blok pautan serta butang boleh menambah bahasa halaman pada URL laman; matikan pilihan ini untuk pautan luar, fail, `mailto:` dan laluan WHMCS tanpa terjemahan.
+Hanya huruf Latin, tanda sempang dan angka dibenarkan.
 
-Apabila URL mesra dan penghalaan bahasa dihidupkan, bahasa utama menggunakan laluan pendek seperti `/ms/`, atau tiada awalan jika laluan bahasa lalai dimatikan. Varian serantau menggunakan locale BCP 47. Uji pautan dalam beberapa bahasa.
+Pengguna yang telah log masuk: hanya pengguna yang telah log masuk boleh mengakses halaman; Tetamu: hanya tetamu boleh mengaksesnya; Campuran: semua orang boleh mengakses halaman dan keterlihatan dikawal melalui blok di dalam halaman.
 
-## SEO, media dan menu
+Penjanaan automatik berjalan selepas cron WHMCS apabila kemas kini diperlukan. Penjanaan manual bermula serta-merta.
 
-Isi tajuk, penerangan, tetapan robots, URL kanonik serta data sosial untuk setiap bahasa. Halaman bukan sistem yang diterbitkan boleh dimasukkan ke peta laman XML. Muat naik imej melalui Media Manager, tambah teks alternatif dan semak hasil pengoptimumannya. Dalam Menu Manager, susun halaman dan pautan tersuai, kemudian tetapkan label setiap bahasa, lokasi dan keterlihatan pada desktop atau mudah alih.
+## Panduan mengikut bahagian
 
-## Pengalihan dan penyelenggaraan
+- [Pengurus Halaman](docs/pages_manager.md)
+- [Penyunting Halaman](docs/pages_editor.md)
+- [Pengurus Media](docs/media_manager.md)
+- [menu](docs/menu_manager.md)
+- [Pengurus bahasa](docs/langs_manager.md)
+- [pengalihan](docs/redirects_manager.md)
+- [peta laman](docs/sitemap_manager.md)
+- [Peraturan tulis semula](docs/rewrite_manager.md)
+- [Tetapan modul](docs/module_settings.md)
+- [Pangkalan data modul](docs/module_db.md)
 
-Gunakan Redirect Manager untuk pengalihan `301` kekal atau `302` sementara. Rewrite Manager menulis peraturan `.htaccess` untuk Apache; Nginx memerlukan konfigurasi pelayan yang setara. Uji perubahan URL sebagai tetamu dan pengguna berdaftar. Eksport JSON sebelum import besar, kemudian semak halaman, menu dan media. Panduan lanjut untuk [menu](../english/docs/menus.md), [penomboran halaman](../english/docs/pagination.md), [pengalihan](../english/docs/redirects.md), [peta laman](../english/docs/sitemaps.md), [Smarty](../english/docs/smarty.md), [data berstruktur](../english/docs/structured-data.md) dan [pemindahan data](../english/docs/transfer.md) tersedia dalam bahasa Inggeris.
+## Bahan tambahan
+
+- [penomboran halaman](docs/pages_editor_pagination.md)
+- [Smarty](docs/pages_editor_smarty.md)
+- [data berstruktur](docs/module_structured_data.md)
+- [pemindahan data](docs/module_settings_transfer.md)

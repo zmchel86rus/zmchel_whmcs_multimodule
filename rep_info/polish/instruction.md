@@ -8,38 +8,45 @@
 
 **zmchel WHMCS Multimodule jest darmowy.** Pozwala zarządzać stronami i artykułami z panelu WHMCS. Zawiera edytor wizualny, tłumaczenia, menu, bibliotekę multimediów, pola SEO, mapy witryny XML, przekierowania i reguły przepisywania adresów.
 
-## Menedżer języków (w trakcie rozwoju)
+## Ustawienia modułu
 
-W administracji WHMCS otwórz Menedżer języków, wybierz sekcję (języki klienta lub administratora WHMCS, ten moduł albo inny) oraz język. Porównaj oryginał lub tekst odniesienia z tłumaczeniem, zmień jeden wiersz i zapisz go; istniejące klucze można też eksportować i importować jako JSON. Nowe języki korzystają z tekstu odniesienia do czasu przetłumaczenia. Menedżer włącza i wyłącza pliki językowe oraz poprawia dawne nazwy; najpierw zmień język domyślny w WHMCS.
+Wybierz języki dostępne w module. Wyłączenie języka nie usuwa jego treści.
 
-→ [Menedżer języków](docs/language-manager.md)
+- **Ustawienia modułu → Obsługiwane języki → Włącz**
+- **Baza danych modułu → Napraw Wybrane elementy**
+- **Reguły przepisywania adresów → Sprawdź reguły → Dodaj lub zaktualizuj reguły**
 
-## 1. Instalacja i dostęp
+Nginx nie odczytuje pliku .htaccess, dlatego te reguły nie będą w nim działać. Skonfiguruj odpowiednie reguły w nginx.
 
-Włącz dodatek w WHMCS i przyznaj dostęp uprawnionym administratorom. Sprawdź wymagane tabele w sekcji bazy danych modułu. Przejrzyj przyjazne adresy, trasy językowe i miejsca menu. Apache korzysta z .htaccess; w Nginx równoważne reguły trzeba skonfigurować osobno.
+## Menedżer stron
 
-## 2. Tworzenie stron
+- **Dodaj stronę → Nazwa strony → Slug strony → Zapisz**
+- **Edytor stron → Ustawienia treści → Ustawienia metadanych → Ustawienia mapy witryny strony → Zapisz wszystko**
+- **Menedżer stron → Odwiedź**
+- **Mapa witryny → Generuj mapy witryny**
 
-Otwórz listę stron i dodaj stronę. Podaj nazwę wewnętrzną i slug z liter łacińskich, cyfr oraz łączników, np. about-us. Wybierz dostęp dla wszystkich, tylko zalogowanych klientów albo tylko gości. Ustaw status i języki. Domyślny język WHMCS musi być obsługiwany przez moduł.
+Dozwolone są tylko litery łacińskie, łączniki i cyfry.
 
-## 3. Edycja treści
+Zalogowani użytkownicy: dostęp do strony mają tylko zalogowani użytkownicy; Goście: tylko niezalogowani; Mieszany: dostęp mają wszyscy, a widoczność jest kontrolowana przez bloki wewnątrz strony.
 
-Dla każdego języka uzupełnij zakładki Treść, Metadane i Mapa witryny. Przeciągaj bloki do edytora, zmieniaj tekst i obrazy, a następnie zapisuj każdą zakładkę. Kopiowanie z treścią daje punkt wyjścia, a kopiowanie struktury przygotowuje układ do tłumaczenia. Tekst nie tłumaczy się automatycznie.
+Automatyczne generowanie jest uruchamiane po zadaniu cron WHMCS, gdy nadejdzie termin aktualizacji. Generowanie ręczne rozpoczyna się natychmiast.
 
-## 4. Linki i publikacja
+## Instrukcje według sekcji
 
-Dla linków do przetłumaczonych stron modułu włącz dodawanie bieżącego języka do URL. Wyłącz tę opcję dla zewnętrznych adresów, e-maili i tras WHMCS bez wersji językowej. Po publikacji sprawdź stronę jako gość i klient, na komputerze i telefonie, co najmniej w dwóch językach.
+- [Menedżer stron](docs/pages_manager.md)
+- [Edytor stron](docs/pages_editor.md)
+- [Menedżer multimediów](docs/media_manager.md)
+- [Menu](docs/menu_manager.md)
+- [Menedżer języków](docs/langs_manager.md)
+- [Przekierowania](docs/redirects_manager.md)
+- [Mapy witryny](docs/sitemap_manager.md)
+- [Reguły przepisywania adresów](docs/rewrite_manager.md)
+- [Ustawienia modułu](docs/module_settings.md)
+- [Baza danych modułu](docs/module_db.md)
 
-## 5. Zarządzanie i utrzymanie
+## Materiały dodatkowe
 
-Menedżer menu służy do nawigacji, a menedżer mediów do obrazów. Menedżer przekierowań tworzy reguły 301 i 302. Mapa witryny generuje pliki XML. Eksportuj ustawienia przed większymi zmianami; po zmianie reguł adresów zastosuj je ponownie i sprawdź mapę witryny.
-
-## Szczegółowe tematy
-
-- [Menu](docs/menus.md)
-- [Stronicowanie i filtry](docs/pagination.md)
-- [Przekierowania](docs/redirects.md)
-- [Mapy witryny](docs/sitemaps.md)
-- [Smarty i zmienne](docs/smarty.md)
-- [Dane strukturalne](docs/structured-data.md)
-- [Import i eksport](docs/transfer.md)
+- [Stronicowanie i filtry](docs/pages_editor_pagination.md)
+- [Smarty i zmienne](docs/pages_editor_smarty.md)
+- [Dane strukturalne](docs/module_structured_data.md)
+- [Import i eksport](docs/module_settings_transfer.md)

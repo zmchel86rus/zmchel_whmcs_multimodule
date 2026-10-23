@@ -21,7 +21,7 @@
 {if $lm_filename_fixes}
 <form class="lm-action-form lm-filename-form" method="post" action="addonmodules.php">
     <input type="hidden" name="module" value="{$addonName|escape}">
-    <input type="hidden" name="subpage" value="langs_manager">
+    <input type="hidden" name="subpage" value="{$subpage}">
     <input type="hidden" name="section" value="all">
     <input type="hidden" name="action" value="fix_language_filename">
     <input type="hidden" name="zm_pb_forms_nonce" value="{$zm_pb_forms_nonce|escape}">

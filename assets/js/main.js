@@ -109,6 +109,10 @@ $('#zm-pagebuilder form').filter(function () {
                     window.location.reload();
                     return;
                 }
+                if (formData.get('subpage') === 'pages_editor' && formData.get('action') === 'edit_page_main') {
+                    window.location.reload();
+                    return;
+                }
                 if (formId && formId.indexOf('form_content_') === 0 && response.contents) {
                     const lang = formId.replace('form_content_', '');
                     if (response.contents[lang]) BlockEditor.updateCodeAssetFiles($('#block_content_' + lang), response.contents[lang]);

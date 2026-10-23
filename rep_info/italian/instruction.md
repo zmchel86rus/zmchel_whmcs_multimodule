@@ -1,43 +1,52 @@
 # zmchel WHMCS Multimodule: istruzioni
 
-**Prima di usare il modulo, genera salt univoci e inseriscili in `module_init.php`**: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` e `ZM_PB_NONCE_SALT`.
+**Prima di utilizzare il modulo, genera salt univoci e inseriscili in `module_init.php`**: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` e `ZM_PB_NONCE_SALT`.
 
 **Prima del primo utilizzo, apri Impostazioni del modulo → Lingue supportate e attiva le lingue necessarie.**
 
-Sviluppato e testato con **WHMCS 8.13.1–8.13.7**; compatibilità PHP verificata dalla versione **7.4 alla 8.5**. Apache è pienamente supportato. Il modulo può funzionare anche con Nginx, ma l’instradamento delle lingue nella pagina iniziale può richiedere altre impostazioni. **Il modulo è gratuito.**
+Il modulo è stato sviluppato e testato con **WHMCS dalla versione 8.13.1 alla 8.13.7**. La compatibilità con PHP è stata verificata dalla versione **7.4 alla 8.5**. Apache è pienamente supportato. Il modulo può funzionare anche con Nginx, ma l’instradamento delle lingue nella pagina iniziale potrebbe richiedere una configurazione aggiuntiva.
 
-## Gestore delle lingue (in sviluppo)
+**zmchel WHMCS Multimodule è gratuito.** Offre un editor visuale di pagine, contenuti multilingue, menu, libreria multimediale, campi SEO, sitemap XML, reindirizzamenti, regole di riscrittura e importazione/esportazione.
 
-Nell'area amministrativa WHMCS, apri il Gestore delle lingue e scegli una sezione (lingue client o admin di WHMCS, questo modulo o un altro) e una lingua. Confronta l'originale o il riferimento con la traduzione, modifica una riga e salvala; puoi anche esportare e importare le chiavi esistenti in JSON. Le nuove lingue usano il riferimento finché non vengono tradotte. Il gestore abilita e disabilita i file linguistici e corregge i vecchi nomi; cambia prima la lingua predefinita in WHMCS.
+## Impostazioni del modulo
 
-→ [Gestore delle lingue](../english/docs/language-manager.md) (English)
+Scegli le lingue utilizzabili dal modulo. Disattivare una lingua non ne elimina i contenuti.
 
-## Accesso e pagine
+- **Impostazioni del modulo → Lingue supportate → Attiva**
+- **Database del modulo → Correggi Elementi selezionati**
+- **Regole di riscrittura → Controlla le regole → Aggiungi o aggiorna le regole**
 
-Nel pannello WHMCS apri **Addons → zmchel WHMCS Multimodule**. L’elenco delle pagine consente di creare, cercare, modificare ed eliminare pagine. Lo *slug* è la parte dell’indirizzo dopo il dominio, ad esempio `contact` in `/contact/`. Esporta le impostazioni prima di cambiare URL, reindirizzamenti o regole del server.
+Nginx non legge .htaccess, quindi queste regole non funzionano su questo server. Configura regole equivalenti in nginx.
 
-Per creare una pagina, inserisci un nome interno e uno slug con lettere latine, numeri e trattini, senza dominio né `.php`. Scegli l’accesso: visitatori, clienti autenticati o misto. Seleziona stato (bozza, pubblicata, differita o cestino), tipo (pagina, articolo o pagina di sistema) e lingue. La lingua predefinita di WHMCS deve essere presente in `supported_langs.php` e viene aggiunta automaticamente.
+## Gestore delle pagine
 
-Dopo il salvataggio apri la pagina e modifica le **impostazioni principali**, il **contenuto**, i **metadati** e le opzioni della **sitemap**. Ogni modulo ha il proprio pulsante Salva; «Salva tutto» li elabora tutti. Controlla i messaggi di conferma e visita la pagina pubblica. L’eliminazione sposta prima la pagina nel cestino; la cancellazione definitiva si esegue da lì.
+- **Aggiungi pagina → Nome della pagina → Slug della pagina → Salva**
+- **Editor delle pagine → Impostazioni del contenuto → Impostazioni dei metadati → Impostazioni della sitemap della pagina → Salva tutto**
+- **Gestore delle pagine → Visita**
+- **Sitemap → Genera sitemap**
 
-## Contenuto e lingue
+Sono consentiti solo lettere latine, trattini e cifre.
 
-Nella scheda Contenuto seleziona una lingua e trascina i blocchi GrapesJS nell’area di lavoro. Modifica testo, immagini e opzioni del blocco selezionato, poi salva quella lingua. Sono disponibili sezioni, colonne, tabelle, FAQ, fisarmoniche, moduli di contatto, elenchi, paginazione, aree per ospiti/clienti e codice personalizzato. Copia struttura o contenuto in un’altra lingua e traduci i testi prima della pubblicazione.
+Utenti autenticati: solo gli utenti che hanno effettuato l’accesso possono visualizzare la pagina; Ospiti: solo gli ospiti possono accedervi; Misto: tutti possono accedervi, con visibilità controllata dai blocchi presenti nella pagina.
 
-Con URL leggibili e instradamento linguistico, la lingua predefinita usa `/contact/`; le altre un prefisso come `/it/contact/`. Nei blocchi Link e Pulsante, abilita l’aggiunta della lingua corrente solo per le pagine tradotte del sito. Lasciala disattivata per link esterni, file, `mailto:`, `tel:` e percorsi WHMCS senza traduzioni. Controlla i link in più lingue.
+La generazione automatica viene eseguita dopo il cron di WHMCS quando è previsto un aggiornamento. La generazione manuale inizia immediatamente.
 
-## SEO, media e menu
+## Guide per sezione
 
-Per ogni lingua compila titolo, descrizione, immagine social, URL canonico, regole robots e tipo Schema nella scheda Metadati. Una pagina pubblicata non di sistema può comparire nella sitemap XML. Nella libreria multimediale carica le immagini, inserisci un testo alternativo utile e verifica la qualità dopo l’ottimizzazione.
+- [Gestore delle pagine](docs/pages_manager.md)
+- [Editor delle pagine](docs/pages_editor.md)
+- [Gestione dei file multimediali](docs/media_manager.md)
+- [Menu](docs/menu_manager.md)
+- [Gestore delle lingue](docs/langs_manager.md)
+- [Reindirizzamenti](docs/redirects_manager.md)
+- [Sitemap](docs/sitemap_manager.md)
+- [Regole di riscrittura](docs/rewrite_manager.md)
+- [Impostazioni del modulo](docs/module_settings.md)
+- [Database del modulo](docs/module_db.md)
 
-Nel Gestore dei menu crea un menu, aggiungi pagine o link personalizzati, ordina gli elementi e scegli posizione e visibilità. A ogni posizione può essere assegnato un solo menu. Per sostituire una pagina WHMCS, pubblica prima la nuova pagina, configura la sostituzione nell’elenco e prova l’URL WHMCS originale da visitatore e da cliente autenticato.
+## Materiali aggiuntivi
 
-## Strumenti del sito
-
-Nel Gestore dei reindirizzamenti imposta origine e destinazione: `301` per uno spostamento permanente, `302` per uno temporaneo. Il Gestore delle riscritture controlla le regole degli URL leggibili. Genera le sitemap nella relativa scheda e controlla `sitemap_index.xml`. Le impostazioni del modulo controllano anche menu, Smarty, manutenzione e importazione/esportazione. Un’esportazione JSON non sostituisce un backup completo di WHMCS.
-
-Il modulo di contatto può inviare un ticket WHMCS o un’email. Configura campi, destinatario o reparto di supporto, consensi e CAPTCHA, poi esegui un invio reale di prova. Se mancano tabelle del modulo, usa la sezione Database del modulo.
-
-## Documentazione aggiuntiva (English)
-
-[Menu](../english/docs/menus.md) · [Smarty](../english/docs/smarty.md) · [Paginazione](../english/docs/pagination.md) · [Sitemap](../english/docs/sitemaps.md) · [Reindirizzamenti](../english/docs/redirects.md) · [Dati strutturati](../english/docs/structured-data.md) · [Importazione ed esportazione](../english/docs/transfer.md).
+- [Paginazione](docs/pages_editor_pagination.md)
+- [Smarty](docs/pages_editor_smarty.md)
+- [Dati strutturati](docs/module_structured_data.md)
+- [Importazione ed esportazione](docs/module_settings_transfer.md)

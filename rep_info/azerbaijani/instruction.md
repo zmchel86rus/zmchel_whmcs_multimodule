@@ -1,29 +1,50 @@
 # zmchel WHMCS Multimodule təlimatı
 
-**Moduldan istifadə etməzdən əvvəl unikal salt dəyərləri yaradıb `module_init.php` faylına yerləşdirin: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` və `ZM_PB_NONCE_SALT`.** Modul **WHMCS 8.13.1–8.13.7** üzərində hazırlanıb və sınaqdan keçirilib. **PHP 7.4–8.5** uyğunluğu yoxlanılıb. Apache tam dəstəklənir; Nginx-də ana səhifənin dil marşrutlaşdırılması əlavə sazlama tələb edə bilər. **Modul pulsuzdur.**
+**İstifadədən əvvəl unikal salt dəyərlərini `module_init.php` faylına yazın: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` və `ZM_PB_NONCE_SALT`.** Modul **WHMCS 8.13.1–8.13.7** üzərində hazırlanıb və sınaqdan keçirilib. **PHP 7.4–8.5** uyğunluğu yoxlanılıb. Apache tam (100%) dəstəklənir; Nginx-də ana səhifənin dil marşrutları əlavə sazlama tələb edə bilər.
 
 **İlk istifadədən əvvəl Modul parametrləri → Dəstəklənən dillər bölməsini açın və sizə lazım olan dilləri aktiv edin.**
 
-## Dil meneceri (hazırlanır)
+**zmchel WHMCS Multimodule pulsuzdur.** WHMCS idarəetmə panelindən vizual redaktorla çoxdilli səhifələri, menyuları, media kitabxanasını, SEO metadatasını, XML sayt xəritələrini, yönləndirmələri, rewrite qaydalarını, idxal və ixracı idarə edin.
 
-WHMCS idarəetməsində Dil menecerini açın, bölməni (WHMCS müştəri və ya admin dilləri, bu modul və ya başqa modul) və dili seçin. Orijinalı və ya istinad mətnini tərcümə ilə müqayisə edib hər sətri ayrıca yadda saxlayın; mövcud açarları JSON kimi ixrac və idxal etmək də olar. Yeni dil tərcümə edilənədək istinad mətnindən istifadə edir. Menecer dil fayllarını açıb-bağlayır və köhnə fayl adlarını düzəldir; standart dili söndürməzdən əvvəl onu WHMCS-də dəyişin.
+## Modul parametrləri
 
-→ [Dil meneceri](../english/docs/language-manager.md) (English)
+Modulun istifadə edə biləcəyi dilləri seçin. Dili deaktiv etmək onun məzmununu silmir.
 
-## Səhifələrin yaradılması
+- **Modul parametrləri → Dəstəklənən dillər → Aktivləşdir**
+- **Modulun verilənlər bazası → Düzəlt Seçilmiş elementlər**
+- **URL yenidənyazma qaydaları → Qaydaları yoxla → Qaydaları əlavə et və ya yenilə**
 
-WHMCS idarəetmə panelində **Addons → zmchel WHMCS Multimodule** bölməsini açın. URL, yönləndirmə və ya server qaydalarını dəyişməzdən əvvəl modul parametrlərini ixrac edin. Səhifələr siyahısında daxili ad və domen, yaxud `.php` olmayan `haqqimizda` kimi *slug* daxil edin. Hər kəs, yalnız daxil olmuş istifadəçilər və ya qarışıq giriş seçin; sonra qaralama və ya dərc olunmuş statusu, səhifə növünü və dilləri seçin. WHMCS-in standart dili `supported_langs.php` daxilində olmalıdır.
+Nginx .htaccess faylını oxumur, buna görə bu qaydalar orada işləmir. Uyğun qaydaları nginx-də qurun.
 
-Yadda saxladıqdan sonra hər dil üçün məzmunu, metadatanı və sayt xəritəsi parametrlərini doldurun. Bölmələrin ayrıca Yadda saxla düyməsi var. Nəticə bildirişini və açıq səhifəni yoxlayın. İlk silmə səhifəni səbətə göndərir; birdəfəlik silmə səbətdən edilir.
+## Səhifə meneceri
 
-## Vizual redaktor və dillər
+- **Səhifə əlavə et → Səhifənin adı → Səhifənin slug-u → Saxla**
+- **Səhifə redaktoru → Məzmun parametrləri → Metaməlumat parametrləri → Səhifənin sayt xəritəsi parametrləri → Hamısını saxla**
+- **Səhifə meneceri → Ziyarət et**
+- **Sayt xəritəsi → Sayt xəritələrini yarat**
 
-Məzmun bölməsində dili seçin, GrapesJS bloklarını iş sahəsinə sürüşdürün, mətnləri, şəkilləri və blok parametrlərini redaktə edin. Bölmə, sütun, cədvəl, FAQ, əlaqə forması, siyahı, səhifələmə və qonaq/üzv zonaları mövcuddur. Quruluşu başqa dilə köçürüb mətnləri tərcümə edə bilərsiniz. Keçid və düymə bloklarında cari səhifənin dilini daxili URL-yə əlavə etmək olar; xarici keçidlər, fayllar, `mailto:` və tərcüməsi olmayan WHMCS yolları üçün bunu söndürün.
+Yalnız latın hərflərinə, defislərə və rəqəmlərə icazə verilir.
 
-Gözəl URL və dil marşrutları aktivdirsə, əsas dil `/az/` kimi qısa yoldan istifadə edir, standart dil üçün ayrıca yol söndürülübsə prefiks olmur. Regional variantlarda BCP 47 locale istifadə edilir. Keçidləri bir neçə dildə yoxlayın.
+Daxil olmuş istifadəçilər: səhifəyə yalnız hesaba daxil olanlar baxa bilər; Qonaqlar: yalnız qonaqlar baxa bilər; Qarışıq: hamı baxa bilər, görünmə isə səhifənin daxilindəki bloklarla idarə olunur.
 
-## SEO, media və texniki xidmət
+Yenilənmə vaxtı çatdıqda avtomatik yaratma WHMCS cron tapşırığından sonra başlayır. Əl ilə yaratma dərhal başlayır.
 
-Hər dil üçün başlıq, təsvir, robots, kanonik URL və sosial şəbəkə məlumatlarını daxil edin. Dərc edilmiş qeyri-sistem səhifəsi XML sayt xəritəsinə düşə bilər. Media Manager vasitəsilə şəkil yükləyin, alternativ mətn əlavə edin və optimallaşdırma nəticəsini yoxlayın. Menu Manager-də səhifələri və xüsusi keçidləri düzün, dil etiketlərini, yeri və görünməni seçin.
+## Bölmələr üzrə təlimatlar
 
-Redirect Manager-də daimi `301` və ya müvəqqəti `302` yönləndirmə yaradın. Rewrite Manager Apache üçün `.htaccess` qaydalarını yazır; Nginx üçün ekvivalent qaydalar serverdə qurulmalıdır. Böyük idxaldan əvvəl JSON ixrac edin. İngiliscə geniş təlimatlar: [menyular](../english/docs/menus.md), [səhifələmə](../english/docs/pagination.md), [yönləndirmələr](../english/docs/redirects.md), [sayt xəritələri](../english/docs/sitemaps.md), [Smarty](../english/docs/smarty.md), [strukturlaşdırılmış məlumat](../english/docs/structured-data.md), [məlumat ötürülməsi](../english/docs/transfer.md).
+- [Səhifə meneceri](docs/pages_manager.md)
+- [Səhifə redaktoru](docs/pages_editor.md)
+- [Media meneceri](docs/media_manager.md)
+- [menyular](docs/menu_manager.md)
+- [Dil meneceri](docs/langs_manager.md)
+- [yönləndirmələr](docs/redirects_manager.md)
+- [sayt xəritələri](docs/sitemap_manager.md)
+- [URL yenidənyazma qaydaları](docs/rewrite_manager.md)
+- [Modul parametrləri](docs/module_settings.md)
+- [Modulun verilənlər bazası](docs/module_db.md)
+
+## Əlavə materiallar
+
+- [səhifələmə](docs/pages_editor_pagination.md)
+- [Smarty](docs/pages_editor_smarty.md)
+- [strukturlaşdırılmış məlumat](docs/module_structured_data.md)
+- [məlumat ötürülməsi](docs/module_settings_transfer.md)

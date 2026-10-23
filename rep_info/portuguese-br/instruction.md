@@ -4,40 +4,49 @@
 
 **Antes do primeiro uso, abra Configurações do módulo → Idiomas suportados e ative os idiomas necessários.**
 
-Desenvolvido e testado no **WHMCS 8.13.1–8.13.7**; compatibilidade com PHP verificada nas versões **7.4–8.5**. O Apache é totalmente compatível. O módulo também pode funcionar com Nginx, mas o roteamento de idiomas na página inicial pode exigir configuração adicional. **O módulo é gratuito.**
+O módulo foi desenvolvido e testado no **WHMCS 8.13.1 a 8.13.7**. A compatibilidade com PHP foi verificada nas versões **7.4 a 8.5**. O suporte ao Apache é completo. Ele também pode funcionar com Nginx, mas o roteamento de idiomas na página inicial pode exigir configuração adicional.
 
-## Gerenciador de idiomas (em desenvolvimento)
+**O zmchel WHMCS Multimodule é gratuito.** Reúne um editor visual de páginas, conteúdo multilíngue, menus, gerenciador de mídia, campos de SEO, sitemaps XML, redirecionamentos, regras de reescrita e importação/exportação.
 
-Na administração do WHMCS, abra o Gerenciador de idiomas e selecione uma seção (idiomas do cliente ou do administrador do WHMCS, este módulo ou outro) e um idioma. Compare o original ou a referência com a tradução, edite uma linha e salve; também é possível exportar e importar as chaves existentes em JSON. Novos idiomas usam a referência até serem traduzidos. O gerenciador ativa e desativa arquivos de idioma e corrige nomes antigos; altere primeiro o idioma padrão no WHMCS.
+## Configurações do módulo
 
-→ [Gerenciador de idiomas](../english/docs/language-manager.md) (English)
+Escolha os idiomas que o módulo pode usar. Desativar um idioma não exclui seu conteúdo.
 
-## Acesso e páginas
+- **Configurações do módulo → Idiomas suportados → Ativar**
+- **Banco de Dados do módulo → Corrigir Itens selecionados**
+- **Regras de reescrita → Verificar regras → Adicionar ou atualizar regras**
 
-No painel do WHMCS, abra **Addons → zmchel WHMCS Multimodule**. A lista de páginas permite criar, localizar, editar e excluir páginas. O *slug* é a parte do endereço após o domínio, como `contact` em `/contact/`. Exporte as configurações antes de mudar URLs, redirecionamentos ou regras do servidor.
+O Nginx não lê .htaccess, portanto estas regras não funcionam nele. Configure regras equivalentes no nginx.
 
-Ao criar uma página, informe um nome interno e um slug com letras latinas, números e hífens, sem domínio ou `.php`. Escolha o acesso: visitantes, clientes conectados ou misto. Selecione o status (rascunho, publicado, adiado ou lixeira), o tipo (página, artigo ou página do sistema) e os idiomas. O idioma padrão do WHMCS precisa existir em `supported_langs.php`; ele é incluído automaticamente.
+## Gerenciador de páginas
 
-Depois de salvar, abra a página e edite as **configurações principais**, o **conteúdo**, os **metadados** e as opções do **sitemap**. Cada formulário tem seu próprio botão Salvar; «Salvar tudo» processa todos. Confira as mensagens de sucesso e visite a página pública. Excluir move a página primeiro para a lixeira; a exclusão definitiva é feita ali.
+- **Adicionar página → Nome da página → Slug da página → Salvar**
+- **Editor de páginas → Configurações de conteúdo → Configurações de metadados → Configurações do sitemap da página → Salvar tudo**
+- **Gerenciador de páginas → Visitar**
+- **Sitemap → Gerar sitemaps**
 
-## Conteúdo e idiomas
+Somente letras latinas, hífens e números são permitidos.
 
-Na guia Conteúdo, selecione um idioma e arraste blocos GrapesJS para a área de edição. Altere textos, imagens e opções do bloco selecionado e salve aquele idioma. Há seções, colunas, tabelas, FAQ, acordeões, formulários de contato, listas, paginação, áreas para visitantes/clientes e código personalizado. Copie a estrutura ou o conteúdo para outro idioma e traduza os textos antes de publicar.
+Usuários autenticados: somente usuários autenticados podem acessar a página; Visitantes: somente visitantes podem acessá-la; Misto: todos podem acessá-la, com a visibilidade controlada pelos blocos da página.
 
-Com URLs amigáveis e roteamento por idioma, o idioma padrão usa `/contact/`; os demais usam um prefixo, como `/pt/contact/` para português de Portugal e `/pt-BR/contact/` para português do Brasil. Nos blocos Link e Botão, ative a opção de incluir o idioma atual somente para páginas traduzidas do site. Deixe-a desligada para links externos, arquivos, `mailto:`, `tel:` e rotas WHMCS sem tradução. Teste os links em vários idiomas.
+A geração automática é executada após o cron do WHMCS quando uma atualização é necessária. A geração manual começa imediatamente.
 
-## SEO, mídia e menus
+## Guias por seção
 
-Para cada idioma, preencha o título, a descrição, a imagem social, a URL canônica, as regras de robots e o tipo Schema na guia Metadados. Uma página publicada que não seja do sistema pode aparecer no sitemap XML. No Gerenciador de mídia, envie imagens, informe um texto alternativo útil e confira a qualidade após a otimização.
+- [Gerenciador de páginas](docs/pages_manager.md)
+- [Editor de páginas](docs/pages_editor.md)
+- [Gerenciador de Mídia](docs/media_manager.md)
+- [Menus](docs/menu_manager.md)
+- [Gerenciador de idiomas](docs/langs_manager.md)
+- [Redirecionamentos](docs/redirects_manager.md)
+- [Sitemaps](docs/sitemap_manager.md)
+- [Regras de reescrita](docs/rewrite_manager.md)
+- [Configurações do módulo](docs/module_settings.md)
+- [Banco de Dados do módulo](docs/module_db.md)
 
-No Gerenciador de menus, crie um menu, adicione páginas ou links personalizados, ordene os itens e defina local e visibilidade. Cada local aceita apenas um menu. Para substituir uma página WHMCS, publique primeiro a nova página, configure a substituição na lista e teste a URL original do WHMCS como visitante e como cliente conectado.
+## Materiais adicionais
 
-## Ferramentas do site
-
-No Gerenciador de redirecionamentos, defina origem e destino: `301` para uma mudança permanente, `302` para uma temporária. O Gerenciador de reescrita controla as regras das URLs amigáveis. Gere sitemaps na guia Sitemap e confira `sitemap_index.xml`. As configurações do módulo também controlam menus, Smarty, manutenção e importação/exportação. Um JSON exportado não substitui um backup completo do WHMCS.
-
-O formulário de contato pode enviar um ticket WHMCS ou e-mail. Configure campos, destinatário ou departamento de suporte, consentimentos e CAPTCHA, e faça um envio real de teste. Se faltarem tabelas do módulo, use a guia Banco de dados do módulo.
-
-## Documentação adicional (English)
-
-[Menus](../english/docs/menus.md) · [Smarty](../english/docs/smarty.md) · [Paginação](../english/docs/pagination.md) · [Sitemaps](../english/docs/sitemaps.md) · [Redirecionamentos](../english/docs/redirects.md) · [Dados estruturados](../english/docs/structured-data.md) · [Importação e exportação](../english/docs/transfer.md).
+- [Paginação](docs/pages_editor_pagination.md)
+- [Smarty](docs/pages_editor_smarty.md)
+- [Dados estruturados](docs/module_structured_data.md)
+- [Importação e exportação](docs/module_settings_transfer.md)
