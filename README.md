@@ -1,3 +1,7 @@
+[![License: GPL v2](https://img.shields.io/badge/License-GPL_v2-lightgreen.svg?style=for-the-badge)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
+[![WHMCS](https://img.shields.io/badge/WHMCS-8.0%2B-blue.svg?style=for-the-badge)](https://www.whmcs.com/)
+[![PHP](https://img.shields.io/badge/PHP-7.4%2B-purple.svg?style=for-the-badge)](https://www.php.net/)
+
 # ZMChel WHMCS Multimodule — free page builder and site tools for WHMCS
 
 **ZMChel WHMCS Multimodule** is a free add-on for WHMCS. It combines a visual page builder with multilingual pages, menus, a media library, SEO fields, XML sitemaps, redirects and rewrite management. It is intended for site owners who want to manage content from the WHMCS admin area.
@@ -48,7 +52,8 @@
 | Türkçe | [Genel bakış](rep_info/turkish/overview.md) |
 | Magyar | [Áttekintés](rep_info/hungarian/overview.md) |
 
-## Suggest an idea / Предложить идею
+## Suggest an idea
+Suggest an idea / Предложить идею
 
 Send feedback or a feature suggestion to [ackirkin@gmail.com](mailto:ackirkin@gmail.com?subject=%D0%9F%D1%80%D0%B5%D0%B4%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BF%D0%BE%20%D0%BC%D1%83%D0%BB%D1%8C%D1%82%D0%B8%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8E) (subject: «Предложение по мультимодулю»).
 
