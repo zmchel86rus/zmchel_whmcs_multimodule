@@ -1,3 +1,7 @@
+[![License: GPL v2](https://img.shields.io/badge/License-GPL_v2-lightgreen.svg?style=for-the-badge)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
+[![WHMCS](https://img.shields.io/badge/WHMCS-8.0%2B-blue.svg?style=for-the-badge)](https://www.whmcs.com/)
+[![PHP](https://img.shields.io/badge/PHP-7.4%2B-purple.svg?style=for-the-badge)](https://www.php.net/)
+
 # ZMChel WHMCS Multimodule — free page builder and site tools for WHMCS
 
 **ZMChel WHMCS Multimodule** is a free add-on for WHMCS. It combines a visual page builder with multilingual pages, menus, a media library, SEO fields, XML sitemaps, redirects and rewrite management. It is intended for site owners who want to manage content from the WHMCS admin area.
@@ -10,7 +14,7 @@
 
 **Language Manager (in development):** In the WHMCS admin area, select a language section and edit translations one row at a time, or export and import existing keys as JSON. New language files use the reference until translated. The manager can enable or disable language files and correct legacy filenames. To change the default language, enable the replacement in Module settings, change the WHMCS default, then disable the old language.
 
-**Activation report:** On activation, the module sends the WHMCS `SystemURL` domain and `module_start_using: true` to `https://193.42.118.3/using_module.php`. The receiver also records the connecting IP address. The report is encrypted before transmission and sent over HTTPS. Delivery is best effort and does not affect module activation. This report is solely to let the author know that someone is using the module. The module does not display any copyright notices or information about its use on your website.
+**Activation report:** On activation, the module sends the WHMCS `SystemURL` domain and `module_start_using: true`. The receiver also records the connecting IP address. The report is encrypted before transmission and sent over HTTPS. Delivery is best effort and does not affect module activation. This report is solely to let the author know that someone is using the module. The module does not display any copyright notices or information about its use on your website.
 
 ## Instructions / Инструкции
 
@@ -102,11 +106,13 @@
 | Slovenščina | [Pregled](rep_info/slovenian/overview.md) |
 | Slovenčina | [Prehľad](rep_info/slovak/overview.md) |
 
-## Suggest an idea / Предложить идею
+## Suggest an idea
+Suggest an idea / Предложить идею
 
 Send feedback or a feature suggestion to [ackirkin@gmail.com](mailto:ackirkin@gmail.com?subject=%D0%9F%D1%80%D0%B5%D0%B4%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BF%D0%BE%20%D0%BC%D1%83%D0%BB%D1%8C%D1%82%D0%B8%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8E) (subject: «Предложение по мультимодулю»).
 
-## Ask a question / Задать вопрос
+## Ask a question
+Ask a question / Задать вопрос
 
 Have a question about the module? [Email ackirkin@gmail.com](mailto:ackirkin@gmail.com?subject=%D0%97%D0%B0%D0%B4%D0%B0%D1%82%D1%8C%20%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81%20%D0%BF%D0%BE%20%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D1%8E) (subject: «Задать вопрос по модулю»).
 
