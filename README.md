@@ -64,7 +64,7 @@ Have a question about the module? [Email ackirkin@gmail.com](mailto:ackirkin@gma
 
 ## Support the project / Поддержать проект
 
-The module is free. If it helps your site, you can support its development. Wallet addresses will be added here.
+The module is free. If it helps your site, you can support its development.
 
 | Currency | Wallet address |
 | --- | --- |
