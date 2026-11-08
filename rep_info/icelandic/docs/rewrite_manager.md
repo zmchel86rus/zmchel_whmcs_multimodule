@@ -13,12 +13,3 @@ Eftir að þú bætir við eða eyðir reglu skaltu smella á „Bæta við eða
 ## .htaccess
 
 Opnaðu umsjónina og berðu reglurnar saman við aðal `.htaccess` skrá vefsins. Fyrir eigin reglu skaltu vista URL-mynstur, áfangastað og flögg, síðan velja **Bæta við eða uppfæra reglur** svo blokkin sé skrifuð á undan WHMCS-reglum. Athugaðu stöðuna aftur og opnaðu birta síðu á sjálfgefnu máli og öðru tungumáli. Of vítt mynstur getur haft áhrif á aðrar síður. Með Nginx → Apache gilda reglurnar aðeins um beiðnir sem berast Apache.
-
-## Leiðbeiningar
-
-- Athuga reglur
-- Bæta við eða uppfæra reglur
-- Fjarlægja allar reglur úr .htaccess
-- Mynstur vefslóðar
-- Markslóð
-- Flögg

@@ -19,16 +19,3 @@ Pamat iestatījumos pārbaudiet nosaukumu, slug, tipu, statusu, piekļuvi un val
 ## Kontaktforma
 
 Pievienojiet bloku **Kontaktforma**. Izvēlieties **WHMCS pieteikumu** ar atbalsta nodaļu vai **e-pastu** ar saņēmēju; aizpildiet virsrakstu, aprakstu, tematu un pogas tekstu. Katram laukam norādiet nosaukumu, tipu, obligātumu un pārbaudi. Viesa pieteikumam vajag laukus ar sūtītāja vārda un e-pasta lomām. Nolaižamajā sarakstā rakstiet vienu variantu katrā rindā, piemēram `sales : Pārdošana`. Katram piekrišanas tekstam veidojiet atsevišķu lauku un izmantojiet WHMCS CAPTCHA. Saglabājiet un nosūtiet īstu pārbaudi kā viesis; pārbaudiet pieteikumu vai piegādi, kļūdas un formas notīrīšanu. Redaktora zaļais statuss neapstiprina piegādi; ja `mail()` nedarbojas, konfigurējiet SMTP WHMCS.
-
-## Instrukcijas
-
-- Ligzdots elastīgā izkārtojuma konteiners (Flex). Ievelciet tajā citus blokus.
-- Ligzdots CSS Grid konteiners. Ievelciet tajā citus blokus.
-- Ligzdots Bootstrap karuselis. Ievelciet tajā blokus; katrs kļūs par slaidu.
-- Visi bloki zem šī bloka tiek rādīti tikai pieteikušiem lietotājiem. Darbojas tikai tad, ja lapas piekļuves veids ir „Jaukta piekļuve”.
-- Visi bloki zem šī bloka tiek rādīti tikai viesiem. Darbojas tikai tad, ja lapas piekļuves veids ir „Jaukta piekļuve”.
-- **Lapas virsraksts**
-- **Metaapraksts**
-- **Kanoniskais URL**
-- **Meklētājprogrammu roboti** — index, follow / noindex, nofollow. Nosaka indeksēšanu.
-- **Schema veids** — Ja atspējots, šai lapai netiek izvadīts Schema.org JSON marķējums.

@@ -1,10 +1,14 @@
 # WHMCS üçün pulsuz multimodul
 
-**İstifadədən əvvəl unikal salt dəyərlərini `module_init.php` faylına yazın: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` və `ZM_PB_NONCE_SALT`.** Modul **WHMCS 8.13.1–8.13.7** üzərində hazırlanıb və sınaqdan keçirilib. **PHP 7.4–8.5** uyğunluğu yoxlanılıb. Apache tam (100%) dəstəklənir; Nginx-də ana səhifənin dil marşrutları əlavə sazlama tələb edə bilər.
+**zmchel WHMCS Multimodule pulsuzdur.** WHMCS idarəetmə panelindən vizual redaktorla çoxdilli səhifələri, menyuları, media kitabxanasını, SEO metadatasını, XML sayt xəritələrini, yönləndirmələri, rewrite qaydalarını, idxal və ixracı idarə edin. Ətraflı məlumat üçün [təlimatı](instruction.md) oxuyun.
+
+## İlk istifadədən əvvəl
 
 **İlk istifadədən əvvəl Modul parametrləri → Dəstəklənən dillər bölməsini açın və sizə lazım olan dilləri aktiv edin.**
 
-**zmchel WHMCS Multimodule pulsuzdur.** WHMCS idarəetmə panelindən vizual redaktorla çoxdilli səhifələri, menyuları, media kitabxanasını, SEO metadatasını, XML sayt xəritələrini, yönləndirmələri, rewrite qaydalarını, idxal və ixracı idarə edin. Ətraflı məlumat üçün [təlimatı](instruction.md) oxuyun.
+Hər aktivləşdirmədə modul yeni salt dəyərləri yaradır və onları `module_init.php` faylına yazır (`ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT`, `ZM_PB_NONCE_SALT`). Hər üç salt dəyərinin doldurulduğunu yoxlayın.
+
+Modul **WHMCS 8.13.0–9.1.0** üzərində hazırlanıb və sınaqdan keçirilib. **PHP 7.4–8.5** uyğunluğu yoxlanılıb. Apache tam (100%) dəstəklənir; Nginx-də ana səhifənin dil marşrutları əlavə sazlama tələb edə bilər.
 
 ## Gələcək inkişaf
 
@@ -12,9 +16,11 @@
 - Monolit kodu qarşılıqlı işləyən komponentlərə ayırmaq.
 - Admin giriş hüquqları meneceri yaratmaq və `supported_langs.php` dillərini genişləndirmək.
 - Modulun `.tpl` faylları və WHMCS müştəri mövzuları üçün kod redaktoru yaratmaq; admin mövzusu istisnadır.
-- Modul və WHMCS dil faylları üçün dil menecerini inkişaf etdirmək, media menecerini yaxşılaşdırmaq.
+- ~~Modul və WHMCS dil faylları üçün dil menecerini inkişaf etdirmək.~~
+- Media menecerini yaxşılaşdırmaq.
 - Yoast SEO-dan ilhamlanan, daha optimallaşdırılmış tam SEO meneceri qurmaq.
-- Çoxdilli sayt xəritəsi və HTML sayt xəritəsi səhifəsi əlavə etmək.
+- ~~Çoxdilli sayt xəritəsi və HTML sayt xəritəsi səhifəsi əlavə etmək.~~
+- HTML sayt xəritəsi səhifəsi əlavə etmək.
 - Səhifə menecerinə istifadə statistikası əlavə etmək.
 - JS, CSS və HTML kiçiltməsi, tam səhifə keşlənməsi, modul və WHMCS cədvəllərinin optimallaşdırılması üçün menecer qurmaq.
 - Modulun düzgün yeniləmə sistemini əlavə etmək.

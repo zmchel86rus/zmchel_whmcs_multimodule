@@ -19,16 +19,3 @@ Kontrollér navn, slug, type, status, adgang og sprog i grundindstillingerne. WH
 ## Kontaktformular
 
 Tilføj blokken **Kontaktformular**. Vælg **WHMCS-supportsag** og afdeling eller **e-mail** og modtager; angiv overskrift, beskrivelse, emne og knaptekst. Giv hvert felt et navn, en type, krav om udfyldelse og validering. En supportsag fra en gæst kræver felter med roller som afsenderens navn og e-mail. Skriv én valgmulighed pr. linje i rullemenuen, for eksempel `sales : Salg`. Opret et særskilt felt for hvert samtykke, og brug CAPTCHA indstillet i WHMCS. Gem og send en rigtig prøve som gæst; kontrollér sag eller levering, fejl og nulstilling. En grøn status i editoren beviser ikke levering; konfigurér SMTP i WHMCS, hvis `mail()` fejler.
-
-## Vejledning
-
-- Indlejret flex-layoutcontainer. Træk andre blokke ind i den.
-- Indlejret CSS Grid-container. Træk andre blokke ind i den.
-- Indlejret Bootstrap-karrusel. Træk blokke ind i den; hver blok bliver til et dias.
-- Alle blokke under denne blok vises kun for brugere, der er logget ind. Fungerer kun, når sidens adgangstype er Blandet.
-- Alle blokke under denne blok vises kun for gæster. Fungerer kun, når sidens adgangstype er Blandet.
-- **Sidetitel**
-- **Metabeskrivelse**
-- **Kanonisk URL**
-- **Robots** — index, follow / noindex, nofollow. Styrer indeksering.
-- **Schematype** — Når funktionen er deaktiveret, vises Schema.org-JSON-markup ikke for denne side.

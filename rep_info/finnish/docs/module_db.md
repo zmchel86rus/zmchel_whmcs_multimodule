@@ -7,16 +7,6 @@
 
 **Poista valitut** poistaa valitut tietokantaobjektit pysyvästi. Vie moduulin tiedot ja tee tietokannasta varmuuskopio ennen poistamista.
 
-## Ohjeet
-
-- Pääsy evätty. Vain pääkäyttäjä (ID …) voi käyttää moduulin Tietokanta-sivua.
-- Korjaa
-- Valitut kohteet
-- Poista
-- Tätä toimintoa ei voi peruuttaa.
-- Valikkotauluja ei ole vielä luotu. Lisää ne Moduulin tietokanta -osiossa.
-- Lisää ensin sarake optimization_attempted moduulin taulujen hallinnassa.
-
 ## 1. Asennus ja käyttöoikeudet
 
 Ota lisämoduuli käyttöön WHMCS:ssä ja myönnä pääsy tarvittaville ylläpitäjille. Tarkista vaaditut taulut moduulin tietokantatyökalulla. Käy läpi siistit URL-osoitteet, kielireitit ja valikkopaikat. Apache käyttää .htaccess-tiedostoa; Nginxissä vastaavat säännöt määritetään erikseen.

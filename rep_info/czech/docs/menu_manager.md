@@ -24,18 +24,3 @@ URL položky stránky se znovu sestaví podle aktuálního slugu a zveřejněné
 ## zm_pb_menus
 
 Údaje jsou v tabulkách `zm_pb_menus`, `zm_pb_menu_items` a `zm_pb_menu_locations`. Tabulky vytvořte nebo opravte v části Databáze modulu. Strom umožňuje nejvýše 10 úrovní a 300 položek; při odstranění rodiče se jeho potomci posunou o úroveň výše.
-
-## Pokyny
-
-- Vytvořit nabídku
-- Přidejte stránky, příspěvky nebo vlastní odkazy.
-- Přetažením změníte pořadí položek. Vnoření nastavte výběrem nadřazené položky nebo tlačítky pro přesun.
-- Použít jazyk aktuální stránky
-- Použít zadanou URL beze změny
-- Popisky v jiných jazycích
-- Viditelné pro
-- Zařízení
-- Každé umístění může mít jednu nabídku. Výběrem umístění se sem přesune jeho přiřazení z jiné nabídky.
-- Položky nejvyšší úrovně se stanou sloupci a vnořené položky odkazy. Pro nadpis bez odkazu použijte URL #.
-- Tabulky nabídek dosud nebyly vytvořeny. Přidejte je v Databázi modulu.
-

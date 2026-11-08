@@ -23,14 +23,3 @@ Katalog v `resources/available_vars/` uchovává názvy, typy, strukturu a uměl
     <span>{$item.title|escape}</span>
 {/foreach}
 ```
-
-## Pokyny
-
-- **Shromažďovat proměnné Smarty** — Zapnout nebo vypnout shromažďování proměnných Smarty.
-- **Používat shromážděné proměnné Smarty** — Zapnout nebo vypnout používání shromážděných proměnných Smarty v editoru stránek.
-- Proměnná Smarty (PHP)
-- Smarty: PHP, metody objektů, statická volání a nofilter jsou zakázány.
-- Šablona Smarty je příliš velká.
-- Smarty
-- Editor Smarty
-

@@ -31,10 +31,3 @@ Filtreler sayfalama ile aynı liste üzerinde çalışır. Metin araması virgü
 ## Flex / Grid
 
 Flex veya Grid seçip cihazlara göre genişlik ve sütunları ayarlayın. Filtreyi uygulamak ya da temizlemek listeyi ilk sayfaya döndürür. Sonuç sayısı seçicisi bağlantısı kopmadan taşınabilir; kopya panel aynı listeyi yönetir.
-
-## Talimatlar
-
-- Öğe sayısı seçimi: 10, 25, 50, 100, 250
-- 2. ve sonraki sayfaları dizine ekleme
-- Bağlantı biçimi
-- Varsayılan öğe sayısı

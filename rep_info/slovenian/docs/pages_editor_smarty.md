@@ -25,13 +25,3 @@ Katalog v `resources/available_vars/` hrani imena, vrste, zgradbo in umetne prim
     <span>{$item.title|escape}</span>
 {/foreach}
 ```
-
-## Navodila
-
-- **Zbiranje spremenljivk Smarty** — Omogočite ali onemogočite zbiranje spremenljivk Smarty.
-- **Uporaba zbranih spremenljivk Smarty** — Omogočite ali onemogočite uporabo zbranih spremenljivk Smarty v urejevalniku strani.
-- Spremenljivka Smarty (PHP)
-- Smarty: PHP, metode objektov, statični klici in nofilter so prepovedani.
-- Predloga Smarty je prevelika.
-- Smarty
-- Urejevalnik Smarty

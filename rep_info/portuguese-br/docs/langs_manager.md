@@ -17,19 +17,3 @@ Antes de editar em lote, exporte as chaves e traduções do idioma selecionado. 
 ## Arquivos de idioma e idioma padrão
 
 Um arquivo desativado continua editável. O arquivo base em inglês e o idioma padrão atual do WHMCS são protegidos. Para mudar o idioma padrão, ative o novo no módulo, altere-o no WHMCS e só então desative o antigo. Corrija nomes antigos de arquivos em **Seções**.
-
-## Instruções
-
-- Seções
-- Idiomas
-- Traduções
-- Este idioma está desativado, mas suas traduções ainda podem ser editadas.
-- Idioma de referência
-- Cada botão Salvar salva apenas uma tradução.
-- Não traduzido
-- Exibir as originais
-- Exibir as adicionadas
-- As seguintes chaves de tradução não foram importadas:
-- chave desconhecida
-- chave duplicada
-

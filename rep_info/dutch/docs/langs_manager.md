@@ -21,18 +21,3 @@ Met **JSON exporteren** download je sleutels en vertalingen van het gekozen onde
 Je kunt een taalbestand uitschakelen en weer inschakelen; ook uitgeschakeld blijft het bewerkbaar. Het Engelse basisbestand en de huidige standaardtaal van WHMCS zijn beschermd. Van via de manager toegevoegde WHMCS client- en beheertalen worden kopieën bewaard voor herstel na een update. Verschijnt op **Onderdelen** een correctie voor een bestandsnaam, controleer dan de nieuwe naam en klik op **Herstellen**; de correctie geldt voor de gevonden onderdelen.
 
 Wil je de standaardtaal wijzigen, schakel de nieuwe taal dan eerst in de module-instellingen in, wijzig vervolgens de WHMCS-standaardtaal en schakel pas daarna de oude taal uit. Controleer de teksten in zowel het beheerpaneel als het klantgedeelte.
-
-## Instructies
-
-- Secties
-- Talen
-- Vertalingen
-- Deze taal is uitgeschakeld, maar de vertalingen kunnen nog worden bewerkt.
-- Referentietaal
-- Elke knop Opslaan slaat één vertaling op.
-- Niet vertaald
-- Originele tonen
-- Toegevoegde tonen
-- De volgende vertaalsleutels zijn niet geïmporteerd:
-- onbekende sleutel
-- dubbele sleutel

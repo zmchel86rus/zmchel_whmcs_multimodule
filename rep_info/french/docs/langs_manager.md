@@ -17,19 +17,3 @@ Exportez les clés et les traductions de la langue choisie avant une modificatio
 ## Fichiers de langue et langue par défaut
 
 Un fichier désactivé reste modifiable. Le fichier anglais de base et la langue par défaut actuelle de WHMCS sont protégés. Pour changer de langue par défaut, activez la nouvelle dans le module, changez-la dans WHMCS, puis désactivez l'ancienne. Les anciens noms de fichiers se corrigent dans **Sections**.
-
-## Instructions
-
-- Sections
-- Langues
-- Traductions
-- Cette langue est désactivée, mais ses traductions restent modifiables.
-- Langue de référence
-- Chaque bouton Enregistrer ne sauvegarde qu'une traduction.
-- Non traduit
-- Afficher les traductions originales
-- Afficher les traductions ajoutées
-- Les clés de traduction suivantes n'ont pas été importées :
-- clé inconnue
-- clé en double
-

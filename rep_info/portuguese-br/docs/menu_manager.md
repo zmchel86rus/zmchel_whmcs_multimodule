@@ -24,18 +24,3 @@ A URL de um item de página é recalculada com o slug atual e a tradução publi
 ## zm_pb_menus
 
 Os dados ficam nas tabelas `zm_pb_menus`, `zm_pb_menu_items` e `zm_pb_menu_locations`. Crie ou corrija essas tabelas em Banco de dados do módulo. A árvore aceita até 10 níveis e 300 itens; ao excluir um item pai, seus filhos sobem um nível.
-
-## Instruções
-
-- Criar menu
-- Adicione páginas, publicações ou links personalizados.
-- Arraste os itens para reordená-los. Defina a hierarquia pelo seletor de item pai ou pelos botões de movimentação.
-- Usar o idioma da página atual
-- Usar a URL informada sem alterações
-- Rótulos em outros idiomas
-- Visível para
-- Dispositivos
-- Cada posição pode ter apenas um menu. Ao selecionar uma posição, sua atribuição será transferida de outro menu para este.
-- Os itens de nível superior se tornam colunas e os itens aninhados se tornam links. Use a URL # para um título sem link.
-- As tabelas dos menus ainda não foram criadas. Adicione-as em Banco de Dados do módulo.
-

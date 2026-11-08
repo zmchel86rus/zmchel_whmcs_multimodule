@@ -1,12 +1,22 @@
 # Instruccions de zmchel WHMCS Multimodule
 
-**Abans d'utilitzar-lo, genereu salts únics i introduïu ZM_PB_ADMIN_SALT, ZM_PB_SECURE_SALT i ZM_PB_NONCE_SALT a module_init.php.** El mòdul s'ha desenvolupat i provat amb WHMCS 8.13.1–8.13.7. Apache té suport complet. Nginx també pot funcionar, però l'encaminament per idiomes de la pàgina inicial pot requerir configuració addicional.
+**zmchel WHMCS Multimodule és gratuït.** Permet gestionar pàgines i articles des de l'administració de WHMCS amb un editor visual, traduccions, menús, fitxers multimèdia, camps SEO, mapes del lloc XML, redireccions i regles de reescriptura.
+
+## Abans del primer ús
 
 **Abans del primer ús, obriu Configuració del mòdul → Idiomes compatibles i activeu els idiomes que necessiteu.**
 
-**Versions de PHP comprovades:** 7.4, 8.0, 8.1, 8.2, 8.3, 8.4 i 8.5.
+En cada activació, el mòdul genera automàticament nous valors salt i els escriu a `module_init.php` (`ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT`, `ZM_PB_NONCE_SALT`). Comproveu que les tres claus salt tinguin valor.
 
-**zmchel WHMCS Multimodule és gratuït.** Permet gestionar pàgines i articles des de l'administració de WHMCS amb un editor visual, traduccions, menús, fitxers multimèdia, camps SEO, mapes del lloc XML, redireccions i regles de reescriptura.
+## Compatibilitat i funcionalitat comprovades
+
+- **PHP:** 7.4, 8.0, 8.1, 8.2, 8.3, 8.4, 8.5
+- **WHMCS:** 8.13.0–9.1.0
+- **Smarty:** 3, 4
+
+## Compatibilitat amb servidors web
+
+Apache té suport complet. Nginx també pot funcionar, però l'encaminament per idiomes de la pàgina inicial pot requerir configuració addicional.
 
 ## Configuració del mòdul
 

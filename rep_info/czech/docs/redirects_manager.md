@@ -13,10 +13,3 @@ Zadejte platnou cestu začínající / nebo úplnou URL HTTP(S). Zdroj musí pat
 Pravidla podporují HTTP kódy `301`, `302`, `303`, `307`, `308` a platí jen pro požadavky `GET`/`HEAD`, které dorazí do WHMCS. Zdroj se porovnává přesně podle cesty a případně zadaných parametrů; parametry cíle nahrazují původní. Správce ukládá pravidla do `zm_pb_redirects`, ale během požadavku tabulku nevytváří: použijte **Databázi modulu**. Stávající sloupce URL mají limit 128 bajtů.
 
 Ruční pravidla mají přednost před automatickými. Změna slugu zveřejněné stránky může po nastavené prodlevě vytvořit automatické `301` pro každý aktivní jazyk; zveřejnění konceptu nikoli. Pozdější přejmenování aktualizuje cíle starších pravidel. Pravidlo s parametry dotazu má přednost před pravidlem pouze pro cestu. Zdrojová URL musí patřit tomuto webu a nesmí obsahovat fragment `#`.
-
-## Pokyny
-
-- Zdroj
-- Cíl
-- Povoleno
-- Zakázáno

@@ -15,14 +15,3 @@ Controleer op de openbare pagina de JSON-LD, canonieke URL, taal en daadwerkelij
 ## Schema.org
 
 `SiteNavigationElement` gebruikt de werkelijk zichtbare menulinks en titels; de inhoudsopgave kan ook `WebPageElement` toevoegen voor bestaande koppen. `FAQPage` bevat alleen volledige vragen en antwoorden die de bezoeker ziet: verborgen blokken en gewone accordeons vallen buiten de markering. `BreadcrumbList` wordt alleen bij minstens twee items gemaakt. Organisatiegegevens komen uit WHMCS; contacttalen staan in `ContactPoint.availableLanguage` volgens BCP 47. Voor filters, paginering, formulieren en aangepaste HTML wordt geen Schema-type geraden.
-
-## Instructies
-
-- **Schematype** — Wanneer dit is uitgeschakeld, wordt voor deze pagina geen Schema.org-JSON-opmaak uitgevoerd.
-- **Broodkruimelnavigatie** — Paginanaam in broodkruimelnavigatie
-- **Canonieke URL**
-- **Paginatitel**
-- **Metabeschrijving**
-- **Open Graph-titel** — Als dit leeg is, wordt de paginatitel gebruikt.
-- **Open Graph-beschrijving** — Als dit leeg is, wordt de metabeschrijving gebruikt.
-- **Open Graph-afbeelding** — Als dit leeg is, wordt de pagina-afbeelding gebruikt.

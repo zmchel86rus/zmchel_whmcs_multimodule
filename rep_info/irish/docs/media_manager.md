@@ -7,17 +7,3 @@ Cliceáil **Uaslódáil comhad meán**, roghnaigh íomhá, fuaim, físeán nó P
 ## Íomhánna a thaispeáint
 
 Cruthaíonn an bainisteoir roinnt méideanna den íomhá. Is féidir **Optamaigh an íomhá** a úsáid tar éis uaslódála; seiceáil an caighdeán ina dhiaidh sin, go háirithe má tá téacs san íomhá. Mura n-oireann na leaganacha oiriúnaitheacha, múch `srcset` sa bhloc. Seiceáil an URL deiridh agus an téacs malartach ar an leathanach poiblí.
-
-## Treoracha
-
-- Uaslódáil comhad meán
-- **Ainm (inmheánach)**
-- **Teideal (más infheidhme)**
-- **Cur síos (más infheidhme)**
-- **Aitreabúid alt**
-- Cuardaigh de réir ainm
-- Cineál comhaid
-- Lódáil tuilleadh
-- Optamaigh íomhá
-- Tá optamú na buníomhá agus a leaganacha críochnaithe.
-- Roghnaigh comhad meán

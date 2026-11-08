@@ -13,14 +13,3 @@ Siyahını ad, giriş növü, səhifə növü, status və ya dilə görə süzü
 ## WHMCS
 
 WHMCS səhifəsini əvəz etmək üçün mövcud sistem ünvanını və modulun dərc olunmuş səhifəsini seçin. Tam əvəzləmə, məzmunun əvvəlinə və ya sonuna əlavə etmə, yaxud yalnız meta/SEO seçin. Yadda saxlayın və orijinal WHMCS URL-ni qonaq və daxil olmuş müştəri kimi yoxlayın.
-
-## Təlimatlar
-
-- Səhifə əlavə et
-- **Səhifənin adı** — Səhifənin daxili adı
-- **Səhifənin slug-u** — Yalnız latın hərflərinə, defislərə və rəqəmlərə icazə verilir.
-- **Giriş növü** — Daxil olmuş istifadəçilər: səhifəyə yalnız hesaba daxil olanlar baxa bilər; Qonaqlar: yalnız qonaqlar baxa bilər; Qarışıq: hamı baxa bilər, görünmə isə səhifənin daxilindəki bloklarla idarə olunur.
-- **Səhifənin növü** — Sistem səhifələri sayt xəritəsinə daxil edilmir və adi istifadəçilər üçün əlçatan deyil.
-- **Səhifənin dilləri** — Seçiminizdən asılı olmayaraq standart dil həmişə daxil edilir.
-- Tam əvəzləmə göstərilən məzmunu və metaməlumatları əvəz edir. Əvvələ əlavə et mövcud səhifə məzmunundan əvvəl məzmun yerləşdirir. Sona əlavə et mövcud səhifə məzmunundan sonra məzmun yerləşdirir. Yalnız metaməlumat/SEO səhifənin metaməlumatlarını əvəz edir.
-- Səhifə siyahısı üzrə naviqasiya

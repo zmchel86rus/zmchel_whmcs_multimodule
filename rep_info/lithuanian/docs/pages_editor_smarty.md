@@ -25,13 +25,3 @@ Katalogas `resources/available_vars/` saugo pavadinimus, tipus, struktūrą ir d
     <span>{$item.title|escape}</span>
 {/foreach}
 ```
-
-## Instrukcijos
-
-- **Rinkti „Smarty“ kintamuosius** — Įjungti arba išjungti „Smarty“ kintamųjų rinkimą.
-- **Naudoti surinktus „Smarty“ kintamuosius** — Įjungti arba išjungti surinktų „Smarty“ kintamųjų naudojimą puslapių redaktoriuje.
-- „Smarty“ (PHP) kintamasis
-- „Smarty“: PHP, objektų metodai, statiniai iškvietimai ir nofilter yra draudžiami.
-- „Smarty“ šablonas per didelis.
-- Smarty
-- Smarty redaktorius

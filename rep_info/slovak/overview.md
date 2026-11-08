@@ -1,12 +1,16 @@
 # Bezplatný multifunkčný modul pre WHMCS
 
-**Pred použitím vytvorte jedinečné soli a vložte ZM_PB_ADMIN_SALT, ZM_PB_SECURE_SALT a ZM_PB_NONCE_SALT do module_init.php.** Modul bol vyvinutý a testovaný s WHMCS 8.13.1–8.13.7. Apache je plne podporovaný. Nginx môže fungovať, ale jazykové smerovanie na úvodnej stránke môže vyžadovať ďalšie nastavenie.
+**zmchel WHMCS Multimodule je bezplatný.** Umožňuje spravovať stránky a články v administrácii WHMCS pomocou vizuálneho editora, prekladov, ponúk, knižnice médií, polí SEO, máp stránok XML, presmerovaní a pravidiel prepisovania URL.
+
+## Pred prvým použitím
 
 **Pred prvým použitím otvorte Nastavenia modulu → Podporované jazyky a zapnite jazyky, ktoré potrebujete.**
 
-**Overené verzie PHP:** 7.4, 8.0, 8.1, 8.2, 8.3, 8.4 a 8.5.
+Pri každej aktivácii modul automaticky vytvorí nové soli a zapíše ich do `module_init.php` (`ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT`, `ZM_PB_NONCE_SALT`). Skontrolujte, či sú vyplnené všetky tri soli.
 
-**zmchel WHMCS Multimodule je bezplatný.** Umožňuje spravovať stránky a články v administrácii WHMCS pomocou vizuálneho editora, prekladov, ponúk, knižnice médií, polí SEO, máp stránok XML, presmerovaní a pravidiel prepisovania URL.
+php.** Modul bol vyvinutý a testovaný s WHMCS 8.13.0–9.1.0. Apache je plne podporovaný. Nginx môže fungovať, ale jazykové smerovanie na úvodnej stránke môže vyžadovať ďalšie nastavenie.
+
+**Overené verzie PHP:** 7.4, 8.0, 8.1, 8.2, 8.3, 8.4 a 8.5.
 
 ## Ďalší vývoj
 
@@ -15,10 +19,11 @@
 - Zaviesť správu prístupových práv v administrácii modulu.
 - Rozšíriť predvolené jazyky v supported_langs.php.
 - Pridať editor kódu pre šablóny modulu a klientské témy, okrem administrátorskej témy.
-- Vytvoriť správcu jazykových súborov WHMCS a ďalších modulov.
+- ~~Vytvoriť správcu jazykových súborov WHMCS a ďalších modulov.~~
 - Vylepšiť správcu médií.
 - Vyvinúť plnohodnotného a efektívneho správcu SEO podľa vzoru Yoast SEO.
-- Pridať viacjazyčné mapy XML a stránku s mapou webu v HTML.
+- ~~Pridať viacjazyčné mapy XML a stránku s mapou webu v HTML.~~
+- Pridať HTML stránku mapy webu.
 - Pridať štatistiky používania do správcu stránok.
 - Minifikovať JS, CSS a HTML, ukladať celé stránky do vyrovnávacej pamäte a optimalizovať tabuľky modulu a WHMCS.
 - Pridať spoľahlivý systém aktualizácií modulu.

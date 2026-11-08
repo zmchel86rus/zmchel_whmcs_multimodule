@@ -1,4 +1,5 @@
 .zm-pb-menu-manager{font-size:14px}
+.zm-pb-menu-manager label > input[type=checkbox]{min-width:20px;cursor:pointer}
 .zm-pb-menu-switch{display:flex;gap:12px;align-items:center;margin-bottom:24px}
 .zm-pb-menu-switch select{max-width:340px}
 .zm-pb-menu-layout{display:grid;grid-template-columns:300px minmax(0,1fr);gap:24px;align-items:start}

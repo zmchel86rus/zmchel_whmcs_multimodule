@@ -1,12 +1,22 @@
 # zmchel WHMCS Multimodule: upute
 
-**Prije uporabe modula obavezno generirajte jedinstvene soli i upišite ih u `module_init.php`**: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` i `ZM_PB_NONCE_SALT`.
+**zmchel WHMCS Multimodule je besplatan.** Obuhvaća vizualni uređivač stranica, višejezični sadržaj, izbornike, medijsku zbirku, SEO polja, XML karte web-mjesta, preusmjeravanja, pravila prepisivanja te uvoz i izvoz.
+
+## Prije prve uporabe
 
 **Prije prve uporabe otvorite Postavke modula → Podržani jezici i uključite jezike koji su vam potrebni.**
 
-Modul je razvijen i testiran na **WHMCS-u 8.13.1–8.13.7**. Kompatibilnost s PHP-om provjerena je za verzije **7.4–8.5**. Apache je u potpunosti podržan. Modul može raditi i na Nginxu, ali usmjeravanje jezika na početnoj stranici može zahtijevati dodatnu konfiguraciju.
+Pri svakoj aktivaciji modul automatski stvara nove soli i zapisuje ih u `module_init.php` (`ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT`, `ZM_PB_NONCE_SALT`). Provjerite jesu li sve tri soli popunjene.
 
-**zmchel WHMCS Multimodule je besplatan.** Obuhvaća vizualni uređivač stranica, višejezični sadržaj, izbornike, medijsku zbirku, SEO polja, XML karte web-mjesta, preusmjeravanja, pravila prepisivanja te uvoz i izvoz.
+## Provjerena kompatibilnost i funkcionalnost
+
+- **PHP:** 7.4, 8.0, 8.1, 8.2, 8.3, 8.4, 8.5
+- **WHMCS:** 8.13.0–9.1.0
+- **Smarty:** 3, 4
+
+## Kompatibilnost s web-poslužiteljima
+
+Apache je u potpunosti podržan. Modul može raditi i na Nginxu, ali usmjeravanje jezika na početnoj stranici može zahtijevati dodatnu konfiguraciju.
 
 ## Postavke modula
 

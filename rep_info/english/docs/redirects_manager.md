@@ -17,14 +17,3 @@ Rules use `zm_pb_redirects`. A request never creates or repairs the table: use *
 `sitemap_pages.xml` and `sitemap_posts.xml` declare the XHTML namespace. Each URL lists reciprocal language alternates and `x-default` for the configured default-language address. Only active translations appear; a fallback uses its actual language. Redirect sources are excluded from `loc` and alternates. Pages sharing an override layout remain separate language groups. Regenerate XML in **Sitemap** or wait for the configured cron schedule.
 
 For isolated checks with project dependencies, run `tests/redirects.php` with optional `--plain`, `--routes-off`, `--disabled` or `--auto-off`, and `tests/sitemap.php` with optional `--plain`, `--routes-off`, `--overrides-off` or `--disabled`. Tests use SQLite in memory; sitemap tests create a temporary site root.
-
-## Instructions
-
-- Exact addresses: source → destination. The source is a path from the site root or a URL on this site. The destination is a path or full HTTP(S) URL. A rule without query parameters also matches requests with them; the destination is used as entered. Rules apply to GET/HEAD requests that reach WHMCS.
-- Source
-- Destination
-- Enabled
-- Disabled
-- Default: 14 days. Counted from the last change to the published page or its active translations; if never changed, from creation. Set 0 for no delay. Automatic rules use HTTP 301.
-- Override page addresses automatically redirect to the system pages they replace. If an override has several destinations, the first configured one is used. These redirects work whenever overrides are enabled, independently of Redirect Manager rules.
-- Enter a valid path beginning with / or a full HTTP(S) URL. The source must belong to this site; # fragments are not supported.

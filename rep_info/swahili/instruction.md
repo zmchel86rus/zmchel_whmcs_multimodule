@@ -1,10 +1,22 @@
 # Maelekezo ya zmchel WHMCS Multimodule
 
-**Kabla ya kutumia moduli, tengeneza thamani za salt za kipekee ndani ya `module_init.php`: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` na `ZM_PB_NONCE_SALT`.** Moduli ilitengenezwa na kupimwa kwenye **WHMCS 8.13.1–8.13.7**. Uoanifu wa **PHP 7.4–8.5** umekaguliwa. Apache inaungwa mkono kikamilifu (100%); Nginx inaweza kuhitaji usanidi wa ziada kwa uelekezaji wa lugha kwenye ukurasa wa mwanzo.
+**zmchel WHMCS Multimodule ni ya bure.** Kutoka eneo la usimamizi la WHMCS, simamia kurasa za lugha nyingi kwa kihariri cha picha, menyu, maktaba ya media, taarifa za SEO, ramani za tovuti za XML, uelekezaji upya, sheria za rewrite, kuingiza na kuhamisha data.
+
+## Kabla ya matumizi ya kwanza
 
 **Kabla ya matumizi ya kwanza, fungua Mipangilio ya moduli → Lugha zinazoungwa mkono na uwashe lugha unazohitaji.**
 
-**zmchel WHMCS Multimodule ni ya bure.** Kutoka eneo la usimamizi la WHMCS, simamia kurasa za lugha nyingi kwa kihariri cha picha, menyu, maktaba ya media, taarifa za SEO, ramani za tovuti za XML, uelekezaji upya, sheria za rewrite, kuingiza na kuhamisha data.
+Kila moduli inapowashwa, hutengeneza thamani mpya za salt na kuziandika kwenye `module_init.php` (`ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT`, `ZM_PB_NONCE_SALT`). Hakikisha thamani zote tatu za salt zimejazwa.
+
+## Uoanifu na utendaji uliopimwa
+
+- **PHP:** 7.4, 8.0, 8.1, 8.2, 8.3, 8.4, 8.5
+- **WHMCS:** 8.13.0–9.1.0
+- **Smarty:** 3, 4
+
+## Uoanifu na seva za wavuti
+
+Apache inaungwa mkono kikamilifu (100%); Nginx inaweza kuhitaji usanidi wa ziada kwa uelekezaji wa lugha kwenye ukurasa wa mwanzo.
 
 ## Mipangilio ya moduli
 

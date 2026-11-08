@@ -24,7 +24,3 @@ URL elementa strani se znova sestavi iz trenutnega sluga in objavljenega prevoda
 ## zm_pb_menus
 
 Podatki so v tabelah `zm_pb_menus`, `zm_pb_menu_items` in `zm_pb_menu_locations`. Ustvarite ali popravite jih v razdelku Podatkovna zbirka modula. Drevo omogoča največ 10 ravni in 300 elementov; ko izbrišete nadrejeni element, se njegovi podrejeni premaknejo eno raven više.
-
-## Navodila
-
-- Ustvarite meni, dodajte strani ali povezave po meri in razvrstite elemente z vlečenjem.

@@ -13,12 +13,3 @@ Dopo aver aggiunto o eliminato una regola, fai clic su “Aggiungi o aggiorna le
 ## .htaccess
 
 Apri il gestore e confronta le regole con il file principale `.htaccess`. Per una regola personalizzata salva il modello URL, la destinazione e i flag; quindi scegli **Aggiungi o aggiorna le regole** per scrivere il blocco prima delle regole WHMCS. Ricontrolla lo stato e apri una pagina pubblicata nella lingua predefinita e in un'altra. Un modello troppo ampio può coinvolgere altre pagine. Con Nginx → Apache, le regole valgono solo per le richieste inoltrate ad Apache.
-
-## Istruzioni
-
-- Controlla le regole
-- Aggiungi o aggiorna le regole
-- Rimuovi tutte le regole da .htaccess
-- Schema URL
-- Destinazione
-- Flag

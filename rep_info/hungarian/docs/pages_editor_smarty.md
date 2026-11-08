@@ -23,14 +23,3 @@ A `resources/available_vars/` katalógus neveket, típusokat, szerkezetet és me
     <span>{$item.title|escape}</span>
 {/foreach}
 ```
-
-## Útmutató
-
-- **Smarty-változók gyűjtése** — A Smarty-változók gyűjtésének be- vagy kikapcsolása.
-- **Összegyűjtött Smarty-változók használata** — Az összegyűjtött Smarty-változók használatának be- vagy kikapcsolása az oldalszerkesztőben.
-- Smarty (PHP) változó
-- Smarty: a PHP, az objektummetódusok, a statikus hívások és a nofilter használata tiltott.
-- A Smarty-sablon túl nagy.
-- Smarty
-- Smarty-szerkesztő
-

@@ -20,7 +20,7 @@ try {
     ml_check(zm_pb_module_languages_enable_default($directory, 'english') === 'english' &&
         isset(zm_pb_module_languages_state($directory)['enabled']['english']),
         'Activation did not enable the WHMCS default language.');
-    foreach (['english', 'german', 'portuguese-pt', 'portuguese-br', 'ukranian'] as $language) {
+    foreach (['english', 'german', 'portuguese-pt', 'portuguese-br', 'ukrainian'] as $language) {
         if (isset(zm_pb_module_languages_state($directory)['disabled'][$language])) {
             zm_pb_module_languages_toggle($directory, $language, true, 'english');
         }
@@ -28,8 +28,43 @@ try {
     $initial = zm_pb_module_languages_state($directory);
     $initialCount = count($initial['enabled']);
     ml_check($initialCount > 1, 'Initial language lists are wrong.');
+    zm_pb_module_languages_toggle_many($directory, ['german', 'portuguese-br'], false, 'english');
+    $bulkDisabled = zm_pb_module_languages_state($directory);
+    ml_check(isset($bulkDisabled['disabled']['german'], $bulkDisabled['disabled']['portuguese-br'])
+        && !isset($bulkDisabled['enabled']['german'], $bulkDisabled['enabled']['portuguese-br']),
+        'Bulk disable did not move every selected language.');
+    zm_pb_module_languages_toggle_many($directory, ['german', 'portuguese-br'], true, 'english');
+    ml_check(isset(zm_pb_module_languages_state($directory)['enabled']['german'],
+        zm_pb_module_languages_state($directory)['enabled']['portuguese-br']),
+        'Bulk enable did not restore every selected language.');
+    $beforeRejectedBulk = [file_get_contents($directory . '/supported_langs.php'),
+        file_get_contents($directory . '/disabled_langs.php')];
+    try {
+        zm_pb_module_languages_toggle_many($directory, ['german', 'english'], false, 'english');
+        throw new RuntimeException('Bulk disable accepted the default language.');
+    } catch (InvalidArgumentException $error) {
+        ml_check(strpos($error->getMessage(), 'default language') !== false,
+            'Bulk disable rejected the default language for the wrong reason.');
+    }
+    ml_check($beforeRejectedBulk === [file_get_contents($directory . '/supported_langs.php'),
+        file_get_contents($directory . '/disabled_langs.php')],
+        'A rejected bulk operation changed the language lists.');
     ml_check(zm_pb_module_languages_default('ukranian') === 'ukrainian',
         'The legacy Ukrainian name was not mapped to its corrected key.');
+    ml_check(zm_pb_module_languages_rekey($directory, 'ukrainian', 'ukranian'),
+        'Could not prepare an installation with the legacy Ukrainian key.');
+    $disabledFile = $directory . '/disabled_langs.php';
+    $source = file_get_contents(dirname(__DIR__) . '/disabled_langs.php');
+    $canonicalLine = zm_pb_module_languages_entry($source, 'ukrainian')['line'];
+    zm_pb_module_languages_write($disabledFile,
+        zm_pb_module_languages_insert(file_get_contents($disabledFile), $canonicalLine));
+    ml_check(zm_pb_module_languages_enable_default($directory, 'ukrainian') === 'ukranian'
+        && isset(zm_pb_module_languages_state($directory)['disabled']['ukrainian']),
+        'Activation enabled a duplicate Ukrainian route instead of keeping the legacy language.');
+    $disabledContent = file_get_contents($disabledFile);
+    $entry = zm_pb_module_languages_entry($disabledContent, 'ukrainian');
+    zm_pb_module_languages_write($disabledFile,
+        substr_replace($disabledContent, '', $entry['offset'], strlen($entry['line'])));
 
     zm_pb_module_languages_toggle($directory, 'german', false, 'english');
     $state = zm_pb_module_languages_state($directory);

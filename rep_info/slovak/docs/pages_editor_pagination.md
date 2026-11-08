@@ -35,9 +35,3 @@ Filtre pracujú s tým istým zoznamom ako stránkovanie. Textové hľadanie mô
 ## Flex / Grid
 
 Vyberte Flex alebo Grid a nastavte šírky a stĺpce podľa zariadenia. Použitie alebo vymazanie filtra vráti zoznam na prvú stránku. Volič počtu výsledkov možno presunúť bez straty väzby; duplicitný panel ovláda ten istý zoznam.
-
-## Pokyny
-
-- Neindexovať stranu 2 a ďalšie
-- Formát odkazov
-- Predvolený počet položiek na stranu

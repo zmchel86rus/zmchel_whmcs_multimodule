@@ -15,14 +15,3 @@ Pe pagina publică verificați JSON-LD, URL-ul canonic, limba și conținutul vi
 ## Schema.org
 
 `SiteNavigationElement` folosește legăturile și titlurile de meniu vizibile efectiv; cuprinsul poate adăuga și `WebPageElement` pentru titlurile existente pe pagină. `FAQPage` include doar întrebări și răspunsuri complete vizibile vizitatorului: blocurile ascunse și acordeoanele obișnuite sunt excluse. `BreadcrumbList` se creează numai cu cel puțin două elemente. Datele organizației provin din WHMCS; limbile de contact apar în `ContactPoint.availableLanguage` în format BCP 47. Modulul nu ghicește un tip Schema pentru filtre, paginare, formulare sau HTML personalizat.
-
-## Instrucțiuni
-
-- **Tip Schema** — Când opțiunea este dezactivată, marcajul JSON Schema.org nu este generat pentru această pagină.
-- **Fir de navigare** — Numele paginii în firul de navigare
-- **URL canonic**
-- **Titlul paginii**
-- **Meta descriere**
-- **Titlu Open Graph** — Dacă este gol, se folosește titlul paginii.
-- **Descriere Open Graph** — Dacă este goală, se folosește meta descrierea.
-- **Imagine Open Graph** — Dacă este goală, se folosește imaginea paginii.

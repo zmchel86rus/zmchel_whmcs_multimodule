@@ -13,14 +13,3 @@ Kwenye ukurasa wa umma, kagua JSON-LD, URL kanoniki, lugha na maudhui yanayoonek
 ## Schema.org
 
 `SiteNavigationElement` hutumia viungo na majina ya menyu yanayoonekana kweli; jedwali la maudhui linaweza kuongeza `WebPageElement` kwa vichwa vilivyopo kwenye ukurasa. `FAQPage` hujumuisha maswali na majibu kamili yanayoonekana kwa mgeni tu: bloku zilizofichwa na sehemu za kawaida zinazopanuka huachwa nje. `BreadcrumbList` huundwa tu ikiwa kuna vipengee angalau viwili. Data za shirika hutoka WHMCS; lugha za mawasiliano huwekwa kwenye `ContactPoint.availableLanguage` kwa BCP 47. Moduli haibuni aina ya Schema kwa vichujio, kurasa, fomu au HTML maalumu.
-
-## Maelekezo
-
-- **Aina ya Schema** — Ikizimwa, msimbo wa JSON wa Schema.org hautatolewa kwa ukurasa huu.
-- **Njia ya ukurasa** — Jina la ukurasa katika njia ya urambazaji
-- **URL ya canonical**
-- **Kichwa cha ukurasa**
-- **Maelezo ya meta**
-- **Kichwa cha Open Graph** — Ikiwa kimeachwa tupu, kichwa cha ukurasa kitatumika.
-- **Maelezo ya Open Graph** — Ikiwa yameachwa tupu, maelezo ya meta yatatumika.
-- **Picha ya Open Graph** — Ikiwa imeachwa tupu, picha ya ukurasa itatumika.

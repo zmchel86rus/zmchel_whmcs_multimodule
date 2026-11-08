@@ -15,14 +15,3 @@ Viešajame puslapyje patikrinkite JSON-LD, kanoninį URL, kalbą ir iš tikrųj�
 ## Schema.org
 
 `SiteNavigationElement` naudoja tik iš tikrųjų matomas meniu nuorodas ir pavadinimus; turinys gali pridėti `WebPageElement` realiai puslapyje esantiems antraščių adresams. `FAQPage` įtraukia tik lankytojui matomus pilnus klausimus ir atsakymus: paslėpti blokai ir paprasti akordeonai neįtraukiami. `BreadcrumbList` kuriamas tik esant bent dviem elementams. Organizacijos duomenys gaunami iš WHMCS; kontaktinės kalbos yra `ContactPoint.availableLanguage` BCP 47 formatu. Filtrams, puslapiavimui, formoms ir nuosavam HTML Schema tipas neatspėjamas.
-
-## Instrukcijos
-
-- **„Schema“ tipas** — Išjungus šiame puslapyje negeneruojamas Schema.org JSON žymėjimas.
-- **Naršymo kelias** — Puslapio pavadinimas naršymo kelyje
-- **Kanoninis URL**
-- **Puslapio antraštė**
-- **Metaaprašymas**
-- **„Open Graph“ antraštė** — Jei laukas tuščias, naudojama puslapio antraštė.
-- **„Open Graph“ aprašymas** — Jei laukas tuščias, naudojamas metaaprašymas.
-- **„Open Graph“ vaizdas** — Jei laukas tuščias, naudojamas puslapio vaizdas.

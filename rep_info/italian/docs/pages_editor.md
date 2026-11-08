@@ -21,16 +21,3 @@ Per ogni lingua compila titolo e descrizione, poi verifica canonical, robots, Op
 ## Modulo di contatto
 
 Aggiungi il blocco **Modulo di contatto**. Scegli un **ticket WHMCS** con reparto di supporto oppure un'**e-mail** con destinatario; compila titolo, descrizione, oggetto e testo del pulsante. Per ogni campo imposta nome, tipo, obbligatorietà e convalida. Un ticket di un visitatore richiede campi con i ruoli di nome ed e-mail del mittente. Nella tendina inserisci un'opzione per riga, per esempio `sales : Vendite`. Crea un campo separato per ogni consenso e usa il CAPTCHA configurato in WHMCS. Salva e invia una prova reale come visitatore; controlla ticket o consegna, errori e azzeramento del modulo. Lo stato verde dell'editor non conferma la consegna; imposta SMTP in WHMCS se `mail()` fallisce.
-
-## Istruzioni
-
-- Contenitore con layout Flex annidato. Trascina altri blocchi al suo interno.
-- Contenitore CSS Grid annidato. Trascina altri blocchi al suo interno.
-- Carosello Bootstrap annidato. Trascina i blocchi al suo interno; ciascuno diventa una diapositiva.
-- Tutti i blocchi sotto questo blocco sono visibili solo agli utenti autenticati. Funziona solo quando il tipo di accesso della pagina è Misto.
-- Tutti i blocchi sotto questo blocco sono visibili solo agli ospiti. Funziona solo quando il tipo di accesso della pagina è Misto.
-- **Titolo della pagina**
-- **Meta descrizione**
-- **URL canonico**
-- **Robots** — index, follow / noindex, nofollow. Controlla l’indicizzazione.
-- **Tipo di Schema** — Se disattivato, il markup JSON Schema.org non viene generato per questa pagina.

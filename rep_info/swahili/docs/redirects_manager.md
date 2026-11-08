@@ -13,10 +13,3 @@ Weka njia sahihi inayoanza na / au URL kamili ya HTTP(S). Chanzo lazima kiwe cha
 Sheria zinaunga mkono misimbo ya HTTP `301`, `302`, `303`, `307`, `308` na zinatumika tu kwa maombi ya `GET`/`HEAD` yanayofika WHMCS. Chanzo hulinganishwa kwa usahihi na njia na, zikibainishwa, parameta za swali; parameta za lengwa huchukua nafasi ya za zamani. Meneja huhifadhi sheria kwenye `zm_pb_redirects`, lakini hauundi jedwali wakati wa ombi: tumia **Hifadhidata ya moduli**. Safu zilizopo za URL zina kikomo cha baiti 128.
 
 Kanuni zilizowekwa mwenyewe hutangulia za kiotomatiki. Kubadili slug ya ukurasa uliochapishwa kunaweza kuunda uelekezaji `301` wa kiotomatiki kwa kila lugha inayotumika baada ya muda uliowekwa; kuchapisha rasimu hakufanyi hivyo. Mabadiliko ya majina ya baadaye husasisha malengo ya zamani. Kanuni yenye vigezo vya ombi hutangulia kanuni ya njia pekee. URL ya chanzo lazima iwe ya tovuti hii na isiwe na kipande `#`.
-
-## Maelekezo
-
-- Chanzo
-- Lengwa
-- Imewashwa
-- Imezimwa

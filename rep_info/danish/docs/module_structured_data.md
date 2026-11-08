@@ -15,14 +15,3 @@ Kontrollér JSON-LD, kanonisk URL, sprog og faktisk synligt indhold på den offe
 ## Schema.org
 
 `SiteNavigationElement` bruger de menulinks og titler, der faktisk er synlige; indholdsfortegnelsen kan også tilføje `WebPageElement` for overskrifter, som findes på siden. `FAQPage` omfatter kun udfyldte spørgsmål og svar, der er synlige for gæsten: skjulte blokke og almindelige harmonikaer udelades. `BreadcrumbList` oprettes kun med mindst to punkter. Organisationsdata kommer fra WHMCS; kontaktsprog angives i `ContactPoint.availableLanguage` som BCP 47. Der gættes ikke en Schema-type for filtre, sideinddeling, formularer eller egen HTML.
-
-## Vejledning
-
-- **Schematype** — Når funktionen er deaktiveret, vises Schema.org-JSON-markup ikke for denne side.
-- **Brødkrummer** — Sidenavn i brødkrummer
-- **Kanonisk URL**
-- **Sidetitel**
-- **Metabeskrivelse**
-- **Open Graph-titel** — Hvis feltet er tomt, bruges sidetitlen.
-- **Open Graph-beskrivelse** — Hvis feltet er tomt, bruges metabeskrivelsen.
-- **Open Graph-billede** — Hvis feltet er tomt, bruges sidebilledet.

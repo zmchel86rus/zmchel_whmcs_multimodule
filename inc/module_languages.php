@@ -110,8 +110,18 @@ function zm_pb_module_languages_rekey(string $directory, string $old, string $ne
 
 function zm_pb_module_languages_toggle(string $directory, string $language, bool $enable, string $defaultLanguage): void
 {
-    if (!preg_match('/^[a-z0-9_-]+$/D', $language))
-        throw new InvalidArgumentException('Invalid language.');
+    zm_pb_module_languages_toggle_many($directory, [$language], $enable, $defaultLanguage);
+}
+
+function zm_pb_module_languages_toggle_many(string $directory, array $languages, bool $enable, string $defaultLanguage): void
+{
+    if (!$languages) throw new InvalidArgumentException('Select at least one language.');
+    foreach ($languages as $language) {
+        if (!is_string($language) || !preg_match('/^[a-z0-9_-]+$/D', $language))
+            throw new InvalidArgumentException('Invalid language.');
+    }
+    if (count($languages) !== count(array_unique($languages)))
+        throw new InvalidArgumentException('Duplicate language.');
     $directory = rtrim($directory, '/\\');
     $lock = fopen($directory . '/.zm-pb-langs.lock', 'c');
     if (!$lock || !flock($lock, LOCK_EX)) throw new RuntimeException('Cannot lock the language lists.');
@@ -119,12 +129,17 @@ function zm_pb_module_languages_toggle(string $directory, string $language, bool
         $lists = zm_pb_module_languages_state($directory);
         $source = $enable ? 'disabled' : 'enabled';
         $target = $enable ? 'enabled' : 'disabled';
-        if (isset($lists[$target][$language])) return;
-        if (!isset($lists[$source][$language])) throw new InvalidArgumentException('Language not found.');
-        if (!$enable && zm_pb_module_languages_default($language) ===
-            zm_pb_module_languages_default(strtolower($defaultLanguage)))
-            throw new InvalidArgumentException('The WHMCS default language cannot be disabled.');
-        if (!$enable && count($lists['enabled']) < 2)
+        $toMove = [];
+        foreach ($languages as $language) {
+            if (isset($lists[$target][$language])) continue;
+            if (!isset($lists[$source][$language])) throw new InvalidArgumentException('Language not found.');
+            if (!$enable && zm_pb_module_languages_default($language) ===
+                zm_pb_module_languages_default(strtolower($defaultLanguage)))
+                throw new InvalidArgumentException('The WHMCS default language cannot be disabled.');
+            $toMove[] = $language;
+        }
+        if (!$toMove) return;
+        if (!$enable && count($lists['enabled']) - count($toMove) < 1)
             throw new InvalidArgumentException('At least one language must remain enabled.');
 
         $sourceFile = $directory . '/' . ($enable ? 'disabled_langs.php' : 'supported_langs.php');
@@ -147,13 +162,15 @@ function zm_pb_module_languages_toggle(string $directory, string $language, bool
         }
         $sourceContent = $contents[$source];
         $targetContent = $contents[$target];
-        $entry = zm_pb_module_languages_entry($sourceContent, $language);
-        $sourceUpdated = substr_replace($sourceContent, '', $entry['offset'], strlen($entry['line']));
-        $targetUpdated = zm_pb_module_languages_insert($targetContent, $entry['line']);
+        foreach ($toMove as $language) {
+            $entry = zm_pb_module_languages_entry($sourceContent, $language);
+            $sourceContent = substr_replace($sourceContent, '', $entry['offset'], strlen($entry['line']));
+            $targetContent = zm_pb_module_languages_insert($targetContent, $entry['line']);
+        }
 
-        zm_pb_module_languages_write($targetFile, $targetUpdated);
+        zm_pb_module_languages_write($targetFile, $targetContent);
         try {
-            zm_pb_module_languages_write($sourceFile, $sourceUpdated);
+            zm_pb_module_languages_write($sourceFile, $sourceContent);
         } catch (Throwable $error) {
             zm_pb_module_languages_write($targetFile, $originalTargetContent);
             throw $error;
@@ -172,8 +189,9 @@ function zm_pb_module_languages_enable_default(string $directory, string $defaul
         'portugues-br' => 'portuguese-br'];
     $legacy = array_search($canonical, $aliases, true);
     $lists = zm_pb_module_languages_state($directory);
-    foreach (array_unique(array_filter([$canonical, $default, $legacy])) as $name) {
-        if (isset($lists['enabled'][$name])) return $name;
+    $names = array_unique(array_filter([$default, $canonical, $legacy]));
+    foreach ($names as $name) if (isset($lists['enabled'][$name])) return $name;
+    foreach ($names as $name) {
         if (isset($lists['disabled'][$name])) {
             zm_pb_module_languages_toggle($directory, $name, true, $default);
             return $name;

@@ -31,10 +31,3 @@ Filtrene virker på den samme listen som sideinndelingen. Tekstsøk kan kontroll
 ## Flex / Grid
 
 Velg Flex eller Grid, og juster bredder og kolonner for ulike enheter. Å bruke eller fjerne et filter sender listen tilbake til første side. Velgeren for antall resultater kan flyttes uten å miste koblingen; et duplisert panel styrer samme liste.
-
-## Instruksjoner
-
-- Velg antall elementer: 10, 25, 50, 100, 250
-- Ikke indekser side 2 og videre
-- Lenkeformat
-- Standard antall elementer

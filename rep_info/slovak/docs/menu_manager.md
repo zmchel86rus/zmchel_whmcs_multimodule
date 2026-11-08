@@ -24,7 +24,3 @@ URL položky stránky sa znovu zostaví podľa aktuálneho slugu a zverejneného
 ## zm_pb_menus
 
 Údaje sú v tabuľkách `zm_pb_menus`, `zm_pb_menu_items` a `zm_pb_menu_locations`. Vytvorte alebo opravte ich v časti Databáza modulu. Strom umožňuje najviac 10 úrovní a 300 položiek; po odstránení rodiča sa jeho potomkovia posunú o úroveň vyššie.
-
-## Pokyny
-
-- Vytvorte ponuku, pridajte stránky alebo vlastné odkazy a usporiadajte položky presúvaním.

@@ -1,6 +1,15 @@
 <?php
 if (!defined('ZM_PB_VER')) die('Direct access not allowed');
 
+/** Apply the same slug rules when a request bypasses the page editor. */
+function zm_pb_clean_page_slug($value)
+{
+    if (!is_scalar($value)) return '';
+    $slug = strtolower(trim((string) $value));
+    $slug = preg_replace('/[^a-z0-9-]+/', '-', $slug);
+    return trim($slug, '-');
+}
+
 /** Return the public prefix for a language, including the default when enabled. */
 function zm_pb_language_route_code($language)
 {

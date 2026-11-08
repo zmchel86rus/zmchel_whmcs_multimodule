@@ -25,13 +25,3 @@ Hakemisto `resources/available_vars/` tallentaa nimet, tyypit, rakenteen ja kein
     <span>{$item.title|escape}</span>
 {/foreach}
 ```
-
-## Ohjeet
-
-- **Kerää Smarty-muuttujat** — Ota Smarty-muuttujien kerääminen käyttöön tai poista se käytöstä.
-- **Käytä kerättyjä Smarty-muuttujia** — Ota kerättyjen Smarty-muuttujien käyttö sivueditorissa käyttöön tai poista se käytöstä.
-- Smarty (PHP) -muuttuja
-- Smarty: PHP, oliometodit, staattiset kutsut ja nofilter ovat kiellettyjä.
-- Smarty-mallipohja on liian suuri.
-- Smarty
-- Smarty-editori

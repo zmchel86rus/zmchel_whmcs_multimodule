@@ -13,15 +13,3 @@ Na javnoj stranici provjerite JSON-LD, kanonski URL, jezik i sadržaj koji je st
 ## Schema.org
 
 `SiteNavigationElement` koristi stvarno vidljive poveznice i nazive izbornika; sadržaj stranice može dodati `WebPageElement` za naslove koji zaista postoje. `FAQPage` uključuje samo potpuna pitanja i odgovore vidljive posjetitelju: skriveni blokovi i obični harmonika-elementi isključeni su. `BreadcrumbList` nastaje samo s najmanje dvije stavke. Podaci o organizaciji dolaze iz WHMCS-a; jezici kontakta nalaze se u `ContactPoint.availableLanguage` u formatu BCP 47. Za filtre, straničenje, obrasce i vlastiti HTML ne pogađa se vrsta Schema.
-
-## Upute
-
-- **Vrsta sheme** — Kada je onemogućeno, JSON oznake Schema.org neće se ispisivati za ovu stranicu.
-- **Navigacijska putanja** — Naziv stranice u navigacijskoj putanji
-- **Kanonski URL**
-- **Naslov stranice**
-- **Metaopis**
-- **Naslov za Open Graph** — Ako je prazno, koristi se naslov stranice.
-- **Opis za Open Graph** — Ako je prazno, koristi se metaopis.
-- **Slika za Open Graph** — Ako je prazno, koristi se slika stranice.
-

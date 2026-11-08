@@ -15,14 +15,3 @@ Filtrera listan efter namn, åtkomst, typ, status eller språk. **Besök** öppn
 ## WHMCS
 
 För att ersätta en WHMCS-sida väljer du den befintliga systemadressen och en publicerad modulsida. Välj full ersättning, tillägg före eller efter det vanliga innehållet eller endast meta/SEO. Spara och testa den ursprungliga WHMCS-URL:en som gäst och som inloggad kund.
-
-## Instruktioner
-
-- Lägg till sida
-- **Sidnamn** — Internt sidnamn
-- **Sidans slug** — Endast latinska bokstäver, bindestreck och siffror är tillåtna.
-- **Åtkomsttyp** — Inloggade användare: endast inloggade användare har åtkomst till sidan; Gäster: endast gäster har åtkomst; Blandad: alla har åtkomst, men synligheten styrs av blocken på sidan.
-- **Sidtyp** — Systemsidor tas inte med i webbplatskartan och är inte tillgängliga för vanliga användare.
-- **Sidans språk** — Standardspråket ingår alltid, oavsett vad du väljer.
-- Fullständig åsidosättning ersätter det visade innehållet och metadata.\ Lägg till före placerar innehåll före det befintliga sidinnehållet.\ Lägg till efter placerar innehåll efter det befintliga sidinnehållet.\ Endast metadata/SEO ersätter sidans metadata.
-- Navigering i sidlistan

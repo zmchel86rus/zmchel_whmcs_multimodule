@@ -9,9 +9,14 @@ class ZM_PB_ContactForm
 {
     public static function text($lang)
     {
+        require_once __DIR__ . '/../inc/language_aliases.php';
+        $lang = zm_pb_lm_supported_key((string) $lang);
         $lang = isset(ZM_PB_LANGS[$lang]) ? $lang : ZM_PB_DEFLANG;
-        $path = ZM_PB_ASSETSDIR . 'grapesjs/langs/' . $lang . '.json';
-        return is_file($path) ? (json_decode(file_get_contents($path), true) ?: []) : [];
+        foreach (zm_pb_lm_language_keys($lang) as $name) {
+            $path = ZM_PB_ASSETSDIR . 'grapesjs/langs/' . $name . '.json';
+            if (is_file($path)) return json_decode(file_get_contents($path), true) ?: [];
+        }
+        return [];
     }
 
     private static function esc($text) { return htmlspecialchars((string) $text, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); }

@@ -17,19 +17,3 @@ Eksportoni çelësat dhe përkthimet e gjuhës së zgjedhur përpara redaktimit 
 ## Skedarët e gjuhës dhe gjuha e parazgjedhur
 
 Një skedar mund të çaktivizohet dhe të redaktohet edhe kur është joaktiv. Anglishtja bazë dhe gjuha e parazgjedhur e WHMCS janë të mbrojtura. Për të ndryshuar gjuhën e parazgjedhur, aktivizoni fillimisht të renë në cilësimet e modulit, ndryshojeni në WHMCS dhe vetëm pastaj çaktivizoni të vjetrën. Te **Seksionet** mund të korrigjoni emrat e vjetër të skedarëve.
-
-## Udhëzime
-
-- Seksionet
-- Gjuhët
-- Përkthimet
-- Kjo gjuhë është çaktivizuar. Përkthimet e saj mund të redaktohen ende.
-- Gjuha e referencës
-- Çdo buton Ruaj përditëson një përkthim.
-- Pa përkthim
-- Shfaq origjinalin
-- Shfaq të shtuarat
-- Çelësat e mëposhtëm të përkthimit nuk u importuan:
-- çelës i panjohur
-- çelës i dyfishuar
-

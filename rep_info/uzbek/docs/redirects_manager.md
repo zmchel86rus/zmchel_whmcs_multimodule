@@ -13,10 +13,3 @@ Almashtiruvchi sahifa manzillari avtomatik ravishda oʻrnini bosgan tizim sahifa
 Qoidalar HTTP `301`, `302`, `303`, `307`, `308` kodlarini qo‘llaydi va faqat WHMCS ga yetib kelgan `GET`/`HEAD` so‘rovlarida ishlaydi. Manba yo‘l va ko‘rsatilgan bo‘lsa so‘rov parametrlari bilan aniq mos keladi; manzil parametrlari eskilarini almashtiradi. Menejer qoidalarni `zm_pb_redirects` jadvalida saqlaydi, lekin so‘rov paytida jadval yaratmaydi: **Modul ma’lumotlar bazasi** bo‘limidan foydalaning. Mavjud URL ustunlari 128 bayt bilan cheklangan.
 
 Qo‘lda yaratilgan qoidalar avtomatik qoidalardan ustun. E'lon qilingan sahifaning slug qiymati o‘zgarsa, belgilangan kutishdan keyin har bir faol til uchun avtomatik `301` yaratilishi mumkin; qoralamani e'lon qilish buni qilmaydi. Keyingi qayta nomlashlar eski manzillarni yangilaydi. So‘rov parametrlari bor qoida faqat yo‘lga tegishli qoidani ortda qoldiradi. Manba URL shu saytga tegishli bo‘lishi va `#` fragmentini o‘z ichiga olmasligi kerak.
-
-## Yoʻriqnoma
-
-- Manba
-- Manzil
-- Yoqilgan
-- Oʻchirilgan

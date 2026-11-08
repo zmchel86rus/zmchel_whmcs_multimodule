@@ -21,16 +21,3 @@ Për çdo gjuhë plotësoni titullin dhe përshkrimin, pastaj kontrolloni canoni
 ## Formular kontakti
 
 Shtoni bllokun **Formular kontakti**. Zgjidhni **tiket WHMCS** dhe departament mbështetjeje, ose **email** dhe marrës; plotësoni titullin, përshkrimin, subjektin dhe butonin. Jepini çdo fushe emër, lloj, detyrim dhe kontroll. Tiketat nga vizitorët kërkojnë fusha për emrin dhe email-in e dërguesit. Për listën zbritëse shkruani një zgjedhje për rresht, p.sh. `sales : Shitje`. Krijoni fusha të veçanta për çdo pëlqim dhe përdorni CAPTCHA e WHMCS. Ruani dhe dërgoni një provë si vizitor; kontrolloni tiketën ose email-in, gabimet dhe pastrimin e formularit. Shenja jeshile e redaktorit nuk provon dorëzimin; nëse `mail()` dështon, konfiguroni SMTP në WHMCS.
-
-## Udhëzime
-
-- Kontejner i futur me strukturë Flex. Tërhiqni blloqe të tjera brenda tij.
-- Kontejner i futur CSS Grid. Tërhiqni blloqe të tjera brenda tij.
-- Karusel i futur Bootstrap. Tërhiqni blloqet brenda tij; secili bëhet një diapozitiv.
-- Të gjitha blloqet poshtë këtij blloku shfaqen vetëm për përdoruesit e identifikuar. Funksionon vetëm kur lloji i qasjes në faqe është I përzier.
-- Të gjitha blloqet poshtë këtij blloku shfaqen vetëm për vizitorët. Funksionon vetëm kur lloji i qasjes në faqe është I përzier.
-- **Titulli i faqes**
-- **Përshkrimi meta**
-- **URL kanonike**
-- **Robotët** — index, follow / noindex, nofollow. Kontrollon indeksimin.
-- **Lloji i skemës** — Kur çaktivizohet, shënimi JSON i Schema.org nuk shfaqet për këtë faqe.

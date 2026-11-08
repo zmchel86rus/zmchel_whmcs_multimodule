@@ -25,14 +25,3 @@ Prüfen Sie nach der Veröffentlichung das ausgegebene JSON-LD zusammen mit der 
 ## ContactPoint.availableLanguage
 
 Kontaktsprachen stammen aus WHMCS und stehen in `ContactPoint.availableLanguage` als BCP-47-Tags. Die Seitensprache gehört zu `WebPage` oder `ContactPage`; fügen Sie `Organization` keinen erfundenen `inLanguage`-Wert hinzu.
-
-## Anleitung
-
-- **Schema-Typ** — Bei Deaktivierung wird kein Schema.org-JSON für diese Seite ausgegeben.
-- **Breadcrumbs** — Seitenname in Breadcrumbs
-- **Kanonische URL**
-- **Seitentitel**
-- **Meta-Beschreibung**
-- **Open-Graph-Titel** — Wenn leer, wird der Seitentitel verwendet.
-- **Open-Graph-Beschreibung** — Wenn leer, wird die Meta-Beschreibung verwendet.
-- **Open-Graph-Bild** — Wenn leer, wird das Seitenbild verwendet.

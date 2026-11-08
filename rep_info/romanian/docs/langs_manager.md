@@ -21,18 +21,3 @@ Activați mai întâi limbile necesare în **Setările modulului → Limbi accep
 Un fișier de limbă poate fi dezactivat și reactivat; poate fi editat și când este dezactivat. Fișierul de bază în engleză și limba implicită curentă din WHMCS sunt protejate. Pentru limbile de client și administrator WHMCS adăugate prin manager se păstrează copii pentru restaurarea după o actualizare. Dacă în **Secțiuni** apare o corecție de nume, verificați noul nume și apăsați **Corectează**; schimbarea se aplică secțiunilor detectate.
 
 Pentru a schimba limba implicită, activați mai întâi noua limbă în setările modulului, apoi schimbați limba implicită în WHMCS și abia după aceea dezactivați limba veche. Verificați textele atât în administrare, cât și în zona clientului.
-
-## Instrucțiuni
-
-- Secțiuni
-- Limbi
-- Traduceri
-- Această limbă este dezactivată, dar traducerile ei pot fi editate în continuare.
-- Limbă de referință
-- Fiecare buton Salvează salvează o singură traducere.
-- Netradus
-- Afișează originalele
-- Afișează traducerile adăugate
-- Următoarele chei de traducere nu au fost importate:
-- cheie necunoscută
-- cheie duplicată

@@ -17,19 +17,3 @@ Antes de editar em massa, exporte as chaves e traduções do idioma selecionado.
 ## Ficheiros de idioma e idioma predefinido
 
 Um ficheiro desativado continua editável. O ficheiro base em inglês e o idioma predefinido atual do WHMCS estão protegidos. Para alterar o idioma predefinido, ative o novo no módulo, mude-o no WHMCS e só depois desative o antigo. Corrija nomes antigos de ficheiros em **Secções**.
-
-## Instruções
-
-- Secções
-- Idiomas
-- Traduções
-- Este idioma está desativado, mas as traduções continuam editáveis.
-- Idioma de referência
-- Cada botão Guardar guarda apenas uma tradução.
-- Por traduzir
-- Mostrar as originais
-- Mostrar as adicionadas
-- As seguintes chaves de tradução não foram importadas:
-- chave desconhecida
-- chave duplicada
-

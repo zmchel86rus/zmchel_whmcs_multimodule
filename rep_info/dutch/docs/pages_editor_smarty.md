@@ -25,13 +25,3 @@ De catalogus in `resources/available_vars/` bewaart namen, typen, structuur en k
     <span>{$item.title|escape}</span>
 {/foreach}
 ```
-
-## Instructies
-
-- **Smarty-variabelen verzamelen** — Schakel het verzamelen van Smarty-variabelen in of uit.
-- **Verzamelde Smarty-variabelen gebruiken** — Schakel het gebruik van verzamelde Smarty-variabelen in de pagina-editor in of uit.
-- Smarty-variabele (PHP)
-- Smarty: PHP, objectmethoden, statische aanroepen en nofilter zijn niet toegestaan.
-- Het Smarty-sjabloon is te groot.
-- Smarty
-- Smarty-editor

@@ -7,16 +7,6 @@ Puslapyje **Modulio duomenų bazė** rodomos būtinos lentelės ir stulpeliai be
 
 **Ištrinti pasirinktus** negrįžtamai pašalina pasirinktus duomenų bazės objektus. Prieš trindami eksportuokite modulio duomenis ir sukurkite duomenų bazės atsarginę kopiją.
 
-## Instrukcijos
-
-- Prieiga uždrausta. Modulio duomenų bazės puslapiu gali naudotis tik vyriausiasis administratorius (ID …).
-- Taisyti
-- Pasirinkti elementai
-- Ištrinti
-- Šio veiksmo negalima atšaukti.
-- Meniu lentelės dar nesukurtos. Pridėkite jas modulio duomenų bazėje.
-- Pirmiausia modulio lentelių tvarkytuvėje pridėkite stulpelį optimization_attempted.
-
 ## 1. Diegimas ir prieiga
 
 Įjunkite papildomą modulį WHMCS ir suteikite prieigą įgaliotiems administratoriams. Modulio duomenų bazės skiltyje patikrinkite būtinas lenteles. Peržiūrėkite tvarkingus URL, kalbų maršrutus ir meniu vietas. Apache naudoja .htaccess; Nginx atveju atitinkamas serverio taisykles nustatykite atskirai.

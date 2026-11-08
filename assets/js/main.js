@@ -2,6 +2,42 @@ if (['#mod_ss_tab_redirects', '#mod_ss_tab_transfer', '#mod_ss_tab_languages'].i
     $('#zm-pagebuilder a').filter(function () { return this.getAttribute('href') === window.location.hash; }).tab('show');
 }
 
+$('.copyvalue').on('click', async function() {
+    const element = $(this).parent().find('input, textarea').first();
+    if (!element.length) return;
+
+    const input = element[0];
+
+    if (typeof document.execCommand === 'function' && document.queryCommandSupported?.('copy') ) {
+        input.select();
+
+        if (document.execCommand('copy')) return;
+    }
+
+    if (navigator.clipboard?.writeText) {
+        try {
+            await navigator.clipboard.writeText(element.val());
+        } catch (e) {
+            console.warn('Text copy error:', e);
+        }
+    }
+});
+
+function zmPbShowTransferWarnings(messages) {
+    if (!Array.isArray(messages) || !messages.length) return;
+    const $warnings = $('#zm-pb-transfer-warnings').empty();
+    const $list = $('<ul class="mar-b-0"></ul>');
+    messages.forEach(message => $list.append($('<li></li>').text(message)));
+    $warnings.append($list).prop('hidden', false);
+}
+try {
+    const storedWarnings = sessionStorage.getItem('zm-pb-import-warnings');
+    if (storedWarnings && $('#zm-pb-transfer-warnings').length) {
+        sessionStorage.removeItem('zm-pb-import-warnings');
+        zmPbShowTransferWarnings(JSON.parse(storedWarnings));
+    }
+} catch (error) { /* Session storage may be unavailable in a private browser context. */ }
+
 $('#zm-pagebuilder [data-transfer-all]').on('change', function () {
     $(this.form).find('[name="transfer_sections[]"]').prop('checked', this.checked);
 });
@@ -9,6 +45,11 @@ $('#zm-pagebuilder [name="transfer_sections[]"]').on('change', function () {
     const $choices = $(this.form).find('[name="transfer_sections[]"]');
     const selected = $choices.filter(':checked').length;
     $(this.form).find('[data-transfer-all]').prop('checked', selected === $choices.length).prop('indeterminate', selected > 0 && selected < $choices.length);
+});
+
+$('#zm-pagebuilder [data-module-language-form] [name="languages[]"]').on('change', function () {
+    const form = this.form;
+    $(form).find('button[type="submit"]').prop('disabled', !$(form).find('[name="languages[]"]:checked').length);
 });
 
 $('#zm-pagebuilder .extra-langs > span').on('click', function (e) {
@@ -66,11 +107,46 @@ $('#zm-pagebuilder form').filter(function () {
 
     if( formData.get('subpage') === 'module_settings')
     $form.find('input[type="checkbox"]').each(function () {
-        if (!this.checked && this.name && this.name.indexOf('transfer_') !== 0) {
+        if (!this.checked && this.name && this.name.indexOf('transfer_') !== 0 && this.name !== 'languages[]') {
             formData.append(this.name, 'off');
         }
     });
     const pageDirtySnapshot = window.ZmPbPageDirty && window.ZmPbPageDirty.snapshot($form[0], true);
+
+    if (formData.get('subpage') === 'module_settings' && formData.get('action') === 'export_module') {
+        const $warnings = $('#zm-pb-transfer-warnings').empty().prop('hidden', true);
+        fetch($form.attr('action'), {method: 'POST', body: formData, credentials: 'same-origin'})
+            .then(async function (response) {
+                if (!response.ok || !(response.headers.get('Content-Type') || '').includes('application/zip')) {
+                    const result = await response.json();
+                    throw new Error(result.message || response.statusText);
+                }
+                const filename = (response.headers.get('Content-Disposition') || '').match(/filename="?([^";]+)"?/);
+                const url = URL.createObjectURL(await response.blob());
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = filename ? filename[1] : 'zmchel-whmcs-multimodule.zip';
+                document.body.appendChild(link);
+                link.click();
+                link.remove();
+                setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+                const warningCount = Number(response.headers.get('X-ZM-PB-Export-Warning-Count') || 0);
+                if (warningCount > 0) {
+                    let messages = [];
+                    try {
+                        const encoded = response.headers.get('X-ZM-PB-Export-Warnings') || '';
+                        messages = JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(encoded), char => char.charCodeAt(0))));
+                    } catch (error) { messages = []; }
+                    const $list = $('<ul class="mar-t-1 mar-b-0"></ul>');
+                    messages.forEach(message => $list.append($('<li></li>').text(message)));
+                    if (warningCount > messages.length) $list.append($('<li></li>').text('+' + (warningCount - messages.length) + ' — manifest.json'));
+                    $warnings.append($('<strong></strong>').text($form.data('skipped-assets'))).append($list).prop('hidden', false);
+                }
+                jQuery.growl.notice({title: $form.data('success-title'), message: $form.data('exported')});
+            })
+            .catch(function (error) { jQuery.growl.error({title: $form.data('error-title'), message: error.message}); });
+        return;
+    }
         
     $.ajax({
         url: $form.attr('action'),
@@ -100,6 +176,10 @@ $('#zm-pagebuilder form').filter(function () {
                 }
                 jQuery.growl.notice({ title: response.title, message: response.message })
                 if (formData.get('subpage') === 'module_settings' && formData.get('action') === 'import_module') {
+                    if (Array.isArray(response.warnings) && response.warnings.length) {
+                        try { sessionStorage.setItem('zm-pb-import-warnings', JSON.stringify(response.warnings)); }
+                        catch (error) { zmPbShowTransferWarnings(response.warnings); return; }
+                    }
                     window.location.hash = 'mod_ss_tab_transfer';
                     window.location.reload();
                     return;

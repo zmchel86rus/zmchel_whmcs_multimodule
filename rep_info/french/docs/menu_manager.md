@@ -24,18 +24,3 @@ L'URL d'un élément de page est recalculée à partir du slug actuel et de la t
 ## zm_pb_menus
 
 Les données se trouvent dans `zm_pb_menus`, `zm_pb_menu_items` et `zm_pb_menu_locations`. Créez ou réparez ces tables dans la Base de données du module. L'arborescence admet au plus 10 niveaux et 300 éléments; supprimer un parent remonte ses enfants d'un niveau.
-
-## Instructions
-
-- Créer un menu
-- Ajoutez des pages, des articles ou des liens personnalisés.
-- Faites glisser les éléments pour les réorganiser. Définissez leur imbrication à l’aide du sélecteur de parent ou des boutons de déplacement.
-- Utiliser la langue de la page actuelle
-- Utiliser l’URL saisie sans modification
-- Libellés dans les autres langues
-- Visible par
-- Appareils
-- Chaque emplacement ne peut avoir qu’un seul menu. Choisir un emplacement transfère ici son affectation depuis un autre menu.
-- Les éléments de premier niveau deviennent des colonnes et les éléments imbriqués deviennent des liens. Utilisez l’URL # pour un titre sans lien.
-- Les tables des menus n’ont pas encore été créées. Ajoutez-les dans la section Base de données du module.
-

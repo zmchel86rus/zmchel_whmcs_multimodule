@@ -21,18 +21,3 @@ Na karte **Preklady** stĺpec **Originál** zobrazuje text z pôvodného súboru
 Jazykový súbor môžete vypnúť a znova zapnúť; aj vypnutý zostáva upraviteľný. Základný anglický súbor a aktuálny predvolený jazyk WHMCS sú chránené. Pre klientské a administračné jazyky WHMCS pridané správcom sa ukladajú kópie na obnovenie po aktualizácii. Ak sa na karte **Sekcie** objaví oprava názvu súboru, skontrolujte nový názov a kliknite na **Opraviť**; zmena sa vzťahuje na nájdené sekcie.
 
 Pri zmene predvoleného jazyka najskôr zapnite nový jazyk v nastaveniach modulu, potom zmeňte predvolený jazyk vo WHMCS a až následne vypnite starý. Skontrolujte texty v administrácii aj klientskom rozhraní.
-
-## Pokyny
-
-- Sekcie
-- Jazyky
-- Preklady
-- Tento jazyk je vypnutý, ale jeho preklady možno stále upravovať.
-- Referenčný jazyk
-- Každé tlačidlo Uložiť uloží iba jeden preklad.
-- Nepreložené
-- Zobraziť pôvodné
-- Zobraziť pridané
-- Nasledujúce prekladové kľúče neboli importované:
-- neznámy kľúč
-- duplicitný kľúč

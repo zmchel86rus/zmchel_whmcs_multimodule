@@ -15,14 +15,3 @@ Szűrje a listát név, hozzáférés, típus, állapot vagy nyelv szerint. A **
 ## WHMCS
 
 WHMCS-oldal helyettesítéséhez válassza ki a meglévő rendszer URL-jét és a modul közzétett oldalát. Választhat teljes cserét, az eredeti tartalom elé vagy mögé beszúrást, illetve csak meta/SEO módosítást. Mentés után próbálja ki az eredeti WHMCS URL-t vendégként és bejelentkezett ügyfélként.
-
-## Útmutató
-
-- Oldal hozzáadása
-- **Oldal neve** — Az oldal belső neve
-- **Oldal slugja** — Csak latin betűk, kötőjelek és számjegyek engedélyezettek.
-- **Hozzáférés típusa** — Bejelentkezett felhasználók: az oldalt csak bejelentkezett felhasználók érhetik el; Vendégek: csak a vendégek férhetnek hozzá; Vegyes: mindenki elérheti, a láthatóságot pedig az oldalon belüli blokkok szabályozzák.
-- **Oldal típusa** — A rendszeroldalak nem szerepelnek a webhelytérképben, és a normál felhasználók számára nem érhetők el.
-- **Az oldal nyelvei** — Az alapértelmezett nyelv a választásától függetlenül mindig szerepel.
-- A teljes felülírás lecseréli a megjelenített tartalmat és metaadatokat.\ A „Beszúrás elé” a meglévő oldaltartalom elé helyezi a tartalmat.\ A „Beszúrás utána” a meglévő oldaltartalom után helyezi a tartalmat.\ A „Csak metaadatok/SEO” kizárólag az oldal metaadatait cseréli le.
-- Navigáció az oldalak listájában

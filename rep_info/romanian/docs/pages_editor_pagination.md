@@ -23,15 +23,3 @@ Filtrele acționează asupra aceleiași liste ca paginarea. Căutarea text poate
 ## Flex / Grid
 
 Alegeți Flex sau Grid și reglați lățimile și coloanele pentru fiecare dispozitiv. Aplicarea ori ștergerea filtrului revine la prima pagină. Selectorul numărului de rezultate poate fi mutat fără a pierde legătura; un panou duplicat controlează aceeași listă.
-
-## Instrucțiuni
-
-- Faceți clic pe blocul cu lista. Esc anulează selecția. Plasați paginarea în afara blocului țintă.
-- Pentru Smarty, introduceți variabila listei complete. Fără o variabilă, se paginează elementele HTML din container; opțional, specificați o clasă pentru rânduri sau eticheta tr. Linkurile păstrează numărul de elemente, sortarea și filtrele. Sunt acceptate mai multe liste independente.
-- Selector de elemente pe pagină: 10, 25, 50, 100, 250
-- Trageți selectorul numărului de elemente pe pagină în interiorul paginării sau în alte blocuri ale paginii. Acesta rămâne asociat cu paginarea respectivă.
-- Nu indexa pagina 2 și următoarele
-- Selectați blocul cu lista Smarty. Căutarea și paginarea trebuie să fie asociate aceluiași bloc.
-- Specificați variabila listei complete. Căutarea verifică oricare dintre câmpurile selectate, iar filtrele se aplică împreună. Condițiile se aplică înainte de calcularea numărului de pagini; aplicarea sau resetarea revine la prima pagină. Dacă există deja o asociere cu paginarea, aceasta furnizează variabila.
-- Formatul linkurilor
-- Număr implicit de elemente pe pagină

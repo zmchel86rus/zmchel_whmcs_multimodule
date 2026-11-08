@@ -15,14 +15,3 @@ A la pàgina pública, comproveu el JSON-LD, l'URL canònic, la llengua i el con
 ## Schema.org
 
 `SiteNavigationElement` fa servir els enllaços i títols de menú realment visibles; la taula de continguts pot afegir `WebPageElement` per als encapçalaments que existeixen. `FAQPage` només inclou preguntes i respostes completes visibles al visitant: se n'exclouen blocs ocults i acordions normals. `BreadcrumbList` es crea només amb dos elements o més. Les dades de l'organització provenen de WHMCS; els idiomes de contacte s'indiquen a `ContactPoint.availableLanguage` en format BCP 47. No s'endevina cap tipus Schema per a filtres, paginació, formularis o HTML personalitzat.
-
-## Instruccions
-
-- **Tipus de Schema** — Quan està desactivat, no es genera el marcatge JSON de Schema.org per a aquesta pàgina.
-- **Ruta de navegació** — Nom de la pàgina a la ruta de navegació
-- **URL canònic**
-- **Títol de la pàgina**
-- **Metadescripció**
-- **Títol d'Open Graph** — Si és buit, s'utilitza el títol de la pàgina.
-- **Descripció d'Open Graph** — Si és buida, s'utilitza la metadescripció.
-- **Imatge d'Open Graph** — Si és buida, s'utilitza la imatge de la pàgina.

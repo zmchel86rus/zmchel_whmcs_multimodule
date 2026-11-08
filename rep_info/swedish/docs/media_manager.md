@@ -7,18 +7,3 @@ Klicka på **Ladda upp mediefil**, välj en bild, ljudfil, video eller PDF och f
 ## Visa bilder
 
 Mediehanteraren skapar flera bildstorlekar. Du kan köra **Optimera bild** för en uppladdad bild och sedan kontrollera kvaliteten, särskilt om bilden innehåller text. Om de responsiva varianterna inte passar, stäng av `srcset` i det aktuella blocket. Kontrollera den slutliga webbadressen och den alternativa texten på den publika sidan.
-
-## Instruktioner
-
-- Ladda upp mediefil
-- **Namn (internt)**
-- **Titel (om tillämpligt)**
-- **Beskrivning (om tillämpligt)**
-- **Alt-attribut**
-- Sök efter namn
-- Filtyp
-- Ladda fler
-- Optimera bild
-- Optimeringen av originalbilden och dess varianter är slutförd.
-- Välj mediefil
-

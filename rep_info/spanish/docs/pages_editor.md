@@ -37,16 +37,3 @@ Para una página publicada que no sea del sistema, establezca frecuencia y prior
 Inserte **Formulario de contacto** y configure título, descripción, asunto y botón. Elija **Ticket WHMCS** con departamento de soporte o **Correo electrónico** con destinatario en el bloque. Añada campos con nombre, tipo, obligatoriedad y validación. Un ticket de invitado necesita campos con funciones de nombre y email del remitente. Para listas desplegables, escriba una opción por línea como `valor : Etiqueta`, por ejemplo `sales : Ventas`.
 
 Para varios consentimientos, cree campos **Consentimiento** separados, cada uno con texto y obligatoriedad propios. Se permiten enlaces seguros como `<a href="/privacy/">privacidad</a>`. Ordene los campos, anchuras y saltos de línea; si conviene, use Flex/Grid. CAPTCHA usa el tipo y las claves configuradas en WHMCS. Para email, seleccione mensaje de sistema sin plantilla WHMCS o formato normal. Guarde y envíe una prueba como visitante; verifique destinatario/ticket, errores y reinicio del formulario. Si PHP `mail()` falla, configure SMTP en WHMCS. El estado verde del editor no confirma entrega.
-
-## Instrucciones
-
-- Contenedor anidado con diseño flex. Arrastre otros bloques dentro.
-- Contenedor anidado con diseño CSS Grid. Arrastre otros bloques dentro.
-- Carrusel Bootstrap anidado. Arrastre bloques dentro; cada uno será una diapositiva.
-- Todos los bloques bajo este bloque solo se muestran a usuarios autenticados. Funciona únicamente con el tipo de acceso «Mixto».
-- Todos los bloques bajo este bloque solo se muestran a invitados. Funciona únicamente con el tipo de acceso «Mixto».
-- **Título de la página**
-- **Metadescripción**
-- **URL canónica**
-- **Robots** — index, follow / noindex, nofollow. Controla la indexación.
-- **Tipo de Schema** — Si se desactiva, no se genera marcado JSON de Schema.org para esta página.

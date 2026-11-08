@@ -17,19 +17,3 @@ Tömeges szerkesztés előtt exportálja a kiválasztott nyelv kulcsait és ford
 ## Nyelvi fájlok és alapértelmezett nyelv
 
 A letiltott nyelvi fájl továbbra is szerkeszthető. Az angol alapfájl és a WHMCS aktuális alapértelmezett nyelve védett. Az alapértelmezett nyelv cseréjekor először engedélyezze az újat a modulban, módosítsa a WHMCS-ben, majd tiltsa le a régit. A régi fájlnevek a **Szakaszok** lapon javíthatók.
-
-## Útmutató
-
-- Szakaszok
-- Nyelvek
-- Fordítások
-- Ez a nyelv le van tiltva, de a fordításai továbbra is szerkeszthetők.
-- Viszonyítási nyelv
-- Minden Mentés gomb csak egy fordítást ment.
-- Nincs lefordítva
-- Eredetiek megjelenítése
-- Hozzáadottak megjelenítése
-- A következő fordítási kulcsok importálása kimaradt:
-- ismeretlen kulcs
-- ismétlődő kulcs
-

@@ -13,10 +13,3 @@ Saisissez un chemin valide commençant par / ou une URL HTTP(S) complète. La so
 Les règles acceptent les codes HTTP `301`, `302`, `303`, `307` et `308` et ne s’appliquent qu’aux requêtes `GET`/`HEAD` qui atteignent WHMCS. La source est comparée exactement au chemin et, s’ils sont fournis, aux paramètres de requête ; ceux de la destination remplacent les anciens. Le gestionnaire stocke les règles dans `zm_pb_redirects`, mais ne crée pas la table pendant une requête : utilisez **Base de données du module**. Les colonnes URL existantes sont limitées à 128 octets.
 
 Les règles manuelles ont priorité sur les règles automatiques. Le changement de slug d'une page publiée peut créer un `301` automatique pour chaque langue active après le délai défini; publier un brouillon ne le fait pas. Les renommages suivants mettent à jour les anciennes destinations. Une règle avec paramètres de requête prime sur une règle limitée au chemin. L'URL source doit appartenir à ce site et ne doit pas contenir de fragment `#`.
-
-## Instructions
-
-- Source
-- Destination
-- Activé
-- Désactivé

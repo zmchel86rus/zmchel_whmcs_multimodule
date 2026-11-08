@@ -37,16 +37,3 @@ Bei einer veröffentlichten Nicht-Systemseite können Sie Sitemap-Häufigkeit un
 Fügen Sie den Block **Kontaktformular** hinzu und stellen Sie Titel, Beschreibung, Betreff und Schaltflächentext ein. Wählen Sie **WHMCS-Ticket** mit Support-Abteilung oder **E-Mail** mit Empfänger im Block. Legen Sie Felder mit Name, Typ, Pflichtangabe und Prüfung an. Ein Gast-Ticket braucht Felder für Absendername und E-Mail. Dropdown-Optionen schreiben Sie zeilenweise als `wert : Beschriftung`, z. B. `sales : Vertrieb`.
 
 Für mehrere Einwilligungen verwenden Sie getrennte **Einwilligung**-Felder mit eigenem Text und Pflichtstatus. Sichere Links wie `<a href="/privacy/">Datenschutz</a>` sind möglich. Legen Sie Breite, neue Zeile, Reihenfolge und gegebenenfalls Flex/Grid fest. CAPTCHA verwendet Typ und Schlüssel aus WHMCS. Bei E-Mail wählen Sie eine Systemnachricht ohne WHMCS-Vorlage oder die normale Gestaltung. Speichern Sie und schicken Sie als Besucher eine Testnachricht; prüfen Sie Empfänger/Ticket, Fehlermeldungen und Zurücksetzen des Formulars. Falls PHP `mail()` ausfällt, richten Sie SMTP in WHMCS ein. Der grüne Editorstatus beweist keinen E-Mail-Empfang.
-
-## Anleitung
-
-- Verschachtelter Container mit Flex-Layout. Ziehen Sie weitere Blöcke hinein.
-- Verschachtelter Container mit CSS-Grid-Layout. Ziehen Sie weitere Blöcke hinein.
-- Verschachteltes Bootstrap-Karussell. Ziehen Sie Blöcke hinein; jeder wird zu einer Folie.
-- Alle Blöcke unter diesem Block werden nur angemeldeten Benutzern angezeigt. Funktioniert nur beim Zugriffstyp „Gemischt“.
-- Alle Blöcke unter diesem Block werden nur Gästen angezeigt. Funktioniert nur beim Zugriffstyp „Gemischt“.
-- **Seitentitel**
-- **Meta-Beschreibung**
-- **Kanonische URL**
-- **Robots** — index, follow / noindex, nofollow. Steuert die Indexierung.
-- **Schema-Typ** — Bei Deaktivierung wird kein Schema.org-JSON für diese Seite ausgegeben.

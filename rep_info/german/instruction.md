@@ -1,12 +1,22 @@
 # Anleitung für ZMChel WHMCS Multimodule
 
-**Erzeugen Sie vor der Verwendung unbedingt eigene Salt-Werte und tragen Sie diese in `module_init.php` ein: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` und `ZM_PB_NONCE_SALT`.** Das Modul wurde für **WHMCS 8.13.1–8.13.7** entwickelt und getestet; **Apache wird vollständig unterstützt (100 %)**. Es kann auch mit Nginx funktionieren; die Sprachführung auf der Startseite sollte dort gesondert geprüft und gegebenenfalls eingerichtet werden.
+**ZMChel WHMCS Multimodule ist kostenlos.** Damit lassen sich Website-Inhalte im WHMCS-Administrationsbereich verwalten: mit visuellem Seiten- und Blockeditor, mehrsprachigen Inhalten, Menüs, Mediathek, SEO-Metadaten, XML-Sitemaps, Weiterleitungen, Rewrite-Regeln sowie Import und Export.
+
+## Vor der ersten Verwendung
 
 **Öffnen Sie vor der ersten Verwendung Moduleinstellungen → Unterstützte Sprachen und aktivieren Sie die benötigten Sprachen.**
 
-**Geprüfte PHP-Versionen:** 7.4, 8.0, 8.1, 8.2, 8.3, 8.4 und 8.5. Alle PHP-Dateien haben die Syntaxprüfung mit jeder Version bestanden; zusätzlich wurden eigenständige Tests ausgeführt.
+Bei jeder Aktivierung erzeugt das Modul automatisch neue Salt-Werte und schreibt sie in `module_init.php` (`ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT`, `ZM_PB_NONCE_SALT`). Prüfen Sie, ob alle drei Salt-Werte gesetzt sind.
 
-**ZMChel WHMCS Multimodule ist kostenlos.** Damit lassen sich Website-Inhalte im WHMCS-Administrationsbereich verwalten: mit visuellem Seiten- und Blockeditor, mehrsprachigen Inhalten, Menüs, Mediathek, SEO-Metadaten, XML-Sitemaps, Weiterleitungen, Rewrite-Regeln sowie Import und Export.
+## Geprüfte Kompatibilität und Funktion
+
+- **PHP:** 7.4, 8.0, 8.1, 8.2, 8.3, 8.4, 8.5
+- **WHMCS:** 8.13.0–9.1.0
+- **Smarty:** 3, 4
+
+## Webserver-Kompatibilität
+
+Apache wird vollständig unterstützt (100 %). Das Modul kann auch mit Nginx funktionieren; die Sprachführung auf der Startseite sollte dort gesondert geprüft und gegebenenfalls eingerichtet werden.
 
 ## Moduleinstellungen
 

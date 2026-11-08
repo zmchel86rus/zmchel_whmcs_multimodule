@@ -1,12 +1,16 @@
 # Nemokamas WHMCS daugiafunkcis modulis
 
-**Prieš naudodami sugeneruokite unikalias druskas ir įrašykite ZM_PB_ADMIN_SALT, ZM_PB_SECURE_SALT bei ZM_PB_NONCE_SALT į module_init.php.** Modulis sukurtas ir išbandytas su WHMCS 8.13.1–8.13.7. Apache palaikomas visiškai. Nginx taip pat gali veikti, tačiau kalbų maršrutizavimui pagrindiniame puslapyje gali reikėti papildomų nustatymų.
+**zmchel WHMCS Multimodule yra nemokamas.** WHMCS administravimo srityje galima tvarkyti puslapius ir straipsnius naudojant vaizdinę rengyklę, vertimus, meniu, medijos biblioteką, SEO laukus, XML svetainės schemas, peradresavimus ir URL perrašymo taisykles.
+
+## Prieš pirmą naudojimą
 
 **Prieš pirmą naudojimą atverkite Modulio nustatymai → Palaikomos kalbos ir įjunkite reikalingas kalbas.**
 
-**Patikrintos PHP versijos:** 7.4, 8.0, 8.1, 8.2, 8.3, 8.4 ir 8.5.
+Kaskart aktyvinant modulis automatiškai sugeneruoja naujas druskų reikšmes ir įrašo jas į `module_init.php` (`ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT`, `ZM_PB_NONCE_SALT`). Patikrinkite, ar užpildytos visos trys salt reikšmės.
 
-**zmchel WHMCS Multimodule yra nemokamas.** WHMCS administravimo srityje galima tvarkyti puslapius ir straipsnius naudojant vaizdinę rengyklę, vertimus, meniu, medijos biblioteką, SEO laukus, XML svetainės schemas, peradresavimus ir URL perrašymo taisykles.
+php.** Modulis sukurtas ir išbandytas su WHMCS 8.13.0–9.1.0. Apache palaikomas visiškai. Nginx taip pat gali veikti, tačiau kalbų maršrutizavimui pagrindiniame puslapyje gali reikėti papildomų nustatymų.
+
+**Patikrintos PHP versijos:** 7.4, 8.0, 8.1, 8.2, 8.3, 8.4 ir 8.5.
 
 ## Tolesnė plėtra
 
@@ -15,10 +19,11 @@
 - Sukurti modulio administravimo teisių tvarkyklę.
 - Išplėsti numatytųjų kalbų sąrašą supported_langs.php.
 - Pridėti kodo rengyklę modulio šablonams ir klientų temoms, išskyrus administravimo temą.
-- Sukurti WHMCS ir kitų modulių kalbos failų tvarkyklę.
+- ~~Sukurti WHMCS ir kitų modulių kalbos failų tvarkyklę.~~
 - Patobulinti medijos tvarkyklę.
 - Sukurti išsamią ir veiksmingą SEO tvarkyklę, įkvėptą Yoast SEO.
-- Pridėti daugiakalbes XML schemas ir HTML svetainės schemos puslapį.
+- ~~Pridėti daugiakalbes XML schemas ir HTML svetainės schemos puslapį.~~
+- Pridėti HTML svetainės schemos puslapį.
 - Pridėti naudojimo statistiką puslapių tvarkyklėje.
 - Mažinti JS, CSS ir HTML kodą, talpinti ištisus puslapius podėlyje ir optimizuoti modulio bei WHMCS lenteles.
 - Pridėti patikimą modulio naujinimo sistemą.

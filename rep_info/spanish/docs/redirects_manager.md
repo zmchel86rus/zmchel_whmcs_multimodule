@@ -13,14 +13,3 @@ Al cambiar el slug de una página que permanece publicada se crea una regla 301.
 Con sustituciones de páginas activas, el alias del diseño redirige a su página nativa incluso si las reglas guardadas están desactivadas. Si un diseño sustituye varias páginas, el alias apunta a la primera configurada; el mapa lista cada página nativa por separado. Cambiar el slug del diseño actualiza `page_overrides.to` en la misma transacción.
 
 Se usa `zm_pb_redirects`. Las solicitudes no crean ni reparan tablas: hágalo en **Base de datos del módulo**. Las columnas URL admiten 128 bytes y se rechazan valores más largos. `sitemap_pages.xml` y `sitemap_posts.xml` incluyen alternancias recíprocas por idioma y `x-default` para la URL configurada del idioma predeterminado. Solo aparecen traducciones activas; los orígenes de redirecciones se excluyen de `loc` y alternancias. Regeneración: **Mapa del sitio** o cron. Pruebas aisladas con SQLite temporal: `tests/redirects.php` y `tests/sitemap.php`, con opciones como `--plain`, `--routes-off` y `--disabled`.
-
-## Instrucciones
-
-- Direcciones exactas: origen → destino. El origen es una ruta desde la raíz del sitio o una URL de este sitio. El destino es una ruta o una URL HTTP(S) completa. Una regla sin parámetros también se aplica a solicitudes con parámetros; se usa el destino tal como se indicó. Las reglas se aplican a solicitudes GET/HEAD que llegan a WHMCS.
-- Origen
-- Destino
-- Activado
-- Desactivado
-- Valor predeterminado: 14 días. Se cuentan desde la última modificación de la página publicada o de sus traducciones activas; si no hubo cambios, desde su creación. 0 elimina la espera. Las reglas automáticas usan HTTP 301.
-- Las direcciones de las páginas sustitutas redirigen automáticamente a las páginas del sistema que reemplazan. Si hay varios destinos, se usa el primero configurado. Estas redirecciones funcionan cuando las sustituciones están activadas, con independencia del gestor.
-- Introduzca una ruta válida que empiece por / o una URL HTTP(S) completa. El origen debe pertenecer a este sitio; no se admiten fragmentos #.

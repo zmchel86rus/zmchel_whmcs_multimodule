@@ -18,14 +18,3 @@ Filtern Sie die Liste nach Name, Zugang, Typ, Status oder Sprache. **Besuchen** 
 Erstellen und veröffentlichen Sie zunächst die Builder-Seite. Öffnen Sie **Seitenliste → Seitenüberschreibungen → Überschreibung hinzufügen**, wählen Sie die WHMCS-Seite und die Builder-Seite und speichern Sie. **Vollständig** ersetzt Inhalt und Metadaten. **Vorher** oder **Nachher** fügt Blöcke vor bzw. nach dem Standardinhalt ein. **Nur Metadaten** ersetzt allein SEO-Daten; kombinierte Varianten fügen Blöcke hinzu und ersetzen Metadaten. Eine Systemseite darf nicht doppelt zugeordnet werden.
 
 Prüfen Sie die ursprüngliche **öffentliche WHMCS-Adresse**, auch als Gast und als angemeldeter Kunde. Der interne Builder-Slug leitet bei abweichender Adresse zur öffentlichen Seite weiter. Für eingeschränkte Teilbereiche verwenden Sie gemischten Zugriff und Bereiche für Gäste bzw. angemeldete Nutzer.
-
-## Anleitung
-
-- Seite hinzufügen
-- **Seitenname** — Interner Seitenname
-- **Seiten-Slug** — Nur lateinische Buchstaben, Bindestriche und Ziffern sind erlaubt.
-- **Zugriffstyp** — Angemeldete Benutzer: Nur angemeldete Benutzer können die Seite öffnen; Gäste: Nur Gäste können sie öffnen; Gemischt: Alle können sie öffnen, einzelne Blöcke steuern ihre eigene Sichtbarkeit.
-- **Seitentyp** — Systemseiten erscheinen nicht in der Sitemap und sind für normale Benutzer nicht verfügbar.
-- **Seitensprachen** — Die Standardsprache wird unabhängig von Ihrer Auswahl immer hinzugefügt.
-- Vollständige Überschreibung ersetzt Inhalt und Metadaten. Davor hinzufügen platziert Inhalt vor dem bestehenden Seiteninhalt. Danach hinzufügen platziert Inhalt nach dem bestehenden Seiteninhalt. Nur Metadaten/SEO ersetzt die Metadaten der Seite.
-- Seitennavigation

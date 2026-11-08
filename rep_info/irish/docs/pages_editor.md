@@ -21,16 +21,3 @@ Líon teideal agus cur síos do gach teanga, ansin seiceáil canonical, robots, 
 ## Foirm theagmhála
 
 Cuir bloc **Foirm theagmhála** leis. Roghnaigh **ticéad WHMCS** agus roinn tacaíochta, nó **ríomhphost** agus faighteoir; líon teideal, cur síos, ábhar agus téacs an chnaipe. Socraigh ainm, cineál, éigeantacht agus bailíochtú do gach réimse. Teastaíonn réimsí le róil ainm agus ríomhphost an tseoltóra ó thicéad a sheolann aoi. Cuir rogha amháin ar gach líne sa roghchlár anuas, mar shampla `sales : Díolacháin`. Cruthaigh réimse ar leith do gach toiliú agus úsáid CAPTCHA WHMCS. Sábháil agus seol fíorthástáil mar aoi; seiceáil ticéad nó seachadadh, earráidí agus glanadh na foirme. Ní dheimhníonn stádas glas an eagarthóra seachadadh; socraigh SMTP i WHMCS má theipeann ar `mail()`.
-
-## Treoracha
-
-- Coimeádán neadaithe le leagan amach Flex. Tarraing bloic eile isteach ann.
-- Coimeádán neadaithe CSS Grid. Tarraing bloic eile isteach ann.
-- Timpeallán neadaithe Bootstrap. Tarraing bloic isteach ann; déantar sleamhnán de gach ceann acu.
-- Ní thaispeántar na bloic go léir faoin mbloc seo ach d'úsáideoirí sínithe isteach. Ní oibríonn sé seo ach nuair atá cineál rochtana an leathanaigh Measctha.
-- Ní thaispeántar na bloic go léir faoin mbloc seo ach do chuairteoirí. Ní oibríonn sé seo ach nuair atá cineál rochtana an leathanaigh Measctha.
-- **Teideal an leathanaigh**
-- **Meitethuairisc**
-- **URL canónach**
-- **Robots** — index, follow / noindex, nofollow. Rialaíonn sé innéacsú.
-- **Cineál Schema** — Nuair atá sé díchumasaithe, ní aschuirtear marcáil JSON Schema.org don leathanach seo.

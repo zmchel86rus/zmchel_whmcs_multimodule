@@ -21,18 +21,3 @@ Skiltyje **Vertimai** stulpelis **Originalas** rodo pasirinktos kalbos pirminio 
 Kalbos failą galima išjungti ir vėl įjungti; net išjungtą jį galima redaguoti. Bazinis anglų kalbos failas ir dabartinė numatytoji WHMCS kalba yra apsaugoti. Tvarkytuvės pridėtiems WHMCS klientų ir administravimo kalbų failams saugomos kopijos, kad po atnaujinimo juos būtų galima atkurti. Jei **Skyriai** rodo failo vardo taisymą, patikrinkite naują vardą ir spauskite **Taisyti**; taisymas taikomas rastiems skyriams.
 
 Norėdami pakeisti numatytąją kalbą, pirma įjunkite naują kalbą modulio nustatymuose, tada pakeiskite numatytąją WHMCS kalbą ir tik po to išjunkite senąją. Patikrinkite tekstus administravimo ir klientų srityse.
-
-## Instrukcijos
-
-- Skyriai
-- Kalbos
-- Vertimai
-- Ši kalba išjungta, bet jos vertimus vis dar galima redaguoti.
-- Palyginimo kalba
-- Kiekvienas mygtukas Išsaugoti išsaugo tik vieną vertimą.
-- Neišversta
-- Rodyti pradinius
-- Rodyti pridėtus
-- Šie vertimų raktai nebuvo importuoti:
-- nežinomas raktas
-- pasikartojantis raktas

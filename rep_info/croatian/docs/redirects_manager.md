@@ -13,10 +13,3 @@ Unesite valjanu putanju koja počinje znakom / ili puni HTTP(S) URL. Izvor mora 
 Pravila podržavaju HTTP kodove `301`, `302`, `303`, `307`, `308` i primjenjuju se samo na zahtjeve `GET`/`HEAD` koji stignu u WHMCS. Izvor se točno uspoređuje s putanjom i, ako su zadani, parametrima upita; parametri odredišta zamjenjuju stare. Upravitelj sprema pravila u `zm_pb_redirects`, ali ne stvara tablicu tijekom zahtjeva: koristite **Bazu podataka modula**. Postojeći URL stupci ograničeni su na 128 bajtova.
 
 Ručna pravila imaju prednost pred automatskima. Promjena sluga objavljene stranice može nakon zadane odgode stvoriti automatski `301` za svaki aktivni jezik; objava skice to ne čini. Kasnija preimenovanja ažuriraju odredišta starih pravila. Pravilo s parametrima upita ima prednost pred pravilom samo za putanju. Izvorni URL mora pripadati ovom web-mjestu i ne smije sadržavati fragment `#`.
-
-## Upute
-
-- Izvor
-- Odredište
-- Omogućeno
-- Onemogućeno

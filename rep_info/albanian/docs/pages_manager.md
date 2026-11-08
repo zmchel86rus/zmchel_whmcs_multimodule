@@ -13,14 +13,3 @@ Filtroni listën sipas emrit, qasjes, llojit, gjendjes ose gjuhës. **Vizito** h
 ## WHMCS
 
 Për të zëvendësuar një faqe WHMCS, zgjidhni adresën ekzistuese të sistemit dhe një faqe të publikuar të modulit. Zgjidhni zëvendësim të plotë, shtim para ose pas përmbajtjes, ose vetëm meta/SEO. Ruani dhe testoni URL-në origjinale të WHMCS si vizitor dhe si klient i identifikuar.
-
-## Udhëzime
-
-- Shto faqe
-- **Emri i faqes** — Emri i brendshëm i faqes
-- **Slug-u i faqes** — Lejohen vetëm shkronjat latine, vizat lidhëse dhe shifrat.
-- **Lloji i qasjes** — Përdoruesit e identifikuar: vetëm përdoruesit e identifikuar mund të hyjnë në faqe; Vizitorët: vetëm vizitorët mund të hyjnë; I përzier: të gjithë mund të hyjnë, ndërsa dukshmëria kontrollohet nga blloqet brenda faqes.
-- **Lloji i faqes** — Faqet e sistemit përjashtohen nga harta e sajtit dhe nuk janë të disponueshme për përdoruesit e zakonshëm.
-- **Gjuhët e faqes** — Gjuha e parazgjedhur përfshihet gjithmonë, pavarësisht përzgjedhjes suaj.
-- Zëvendësimi i plotë zëvendëson përmbajtjen dhe metadatat e shfaqura. Shto përpara vendos përmbajtjen përpara përmbajtjes ekzistuese të faqes. Shto pas e vendos përmbajtjen pas përmbajtjes ekzistuese të faqes. Vetëm metadata/SEO zëvendëson metadatat e faqes.
-- Navigimi në listën e faqeve

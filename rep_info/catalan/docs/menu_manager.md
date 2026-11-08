@@ -24,7 +24,3 @@ Els URL dels elements de pàgina es tornen a calcular amb el slug actual i la tr
 ## zm_pb_menus
 
 Les dades es guarden a `zm_pb_menus`, `zm_pb_menu_items` i `zm_pb_menu_locations`. Creeu o repareu aquestes taules des de Base de dades del mòdul. L'arbre admet fins a 10 nivells i 300 elements; en eliminar un pare, els fills pugen un nivell.
-
-## Instruccions
-
-- Creeu un menú, afegiu-hi pàgines o enllaços personalitzats i ordeneu-los arrossegant-los.

@@ -31,10 +31,3 @@ Filtry pracují se stejným seznamem jako stránkování. Textové hledání mů
 ## Flex / Grid
 
 Zvolte Flex nebo Grid a nastavte šířky a sloupce podle zařízení. Použití nebo vymazání filtru vrátí seznam na první stránku. Volič počtu výsledků lze přesunout bez ztráty vazby; duplicitní panel ovládá stejný seznam.
-
-## Pokyny
-
-- Výběr počtu položek: 10, 25, 50, 100, 250
-- Neindexovat stránky od druhé dále
-- Formát odkazů
-- Výchozí počet položek

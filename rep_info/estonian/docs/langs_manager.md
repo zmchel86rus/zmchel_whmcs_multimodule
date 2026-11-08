@@ -17,19 +17,3 @@ Enne hulgi muutmist eksportige valitud keele võtmed ja tõlked. Import uuendab 
 ## Keelefailid ja vaikekeel
 
 Välja lülitatud keelefaili saab endiselt muuta. Inglise põhifail ja WHMCS-i praegune vaikekeel on kaitstud. Vaikekeele muutmiseks lülitage uus keel esmalt mooduli seadetes sisse, muutke seda WHMCS-is ja alles seejärel lülitage vana välja. Vanu failinimesid saate parandada **Jaotistes**.
-
-## Juhised
-
-- Jaotised
-- Keeled
-- Tõlked
-- See keel on keelatud, kuid selle tõlkeid saab endiselt muuta.
-- Võrdluskeel
-- Iga Salvesta nupp salvestab ainult ühe tõlke.
-- Tõlkimata
-- Näita algseid
-- Näita lisatuid
-- Järgmisi tõlkevõtmeid ei imporditud:
-- tundmatu võti
-- duplikaatvõti
-

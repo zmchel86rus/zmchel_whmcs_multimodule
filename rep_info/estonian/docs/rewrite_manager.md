@@ -13,12 +13,3 @@ Pärast reegli lisamist või kustutamist klõpsake muudatuste rakendamiseks fail
 ## .htaccess
 
 Ava haldur ja võrdle reegleid saidi peamise `.htaccess`-failiga. Oma reegli jaoks salvesta URL-i muster, siht ja lipud ning seejärel vajuta **Lisa või uuenda reegleid**, et plokk kirjutataks enne WHMCS-i reegleid. Kontrolli olekut uuesti ja ava avaldatud leht vaikekeeles ning veel ühes keeles. Liiga lai muster võib mõjutada muid lehti. Nginx → Apache seadistuses kehtivad need reeglid ainult Apachele edasi antud päringutele.
-
-## Juhised
-
-- Kontrolli reegleid
-- Lisa või uuenda reegleid
-- Eemalda kõik reeglid failist .htaccess
-- URL-i muster
-- Sihtkoht
-- Lipud

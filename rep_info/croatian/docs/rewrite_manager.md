@@ -13,12 +13,3 @@ Nakon dodavanja ili brisanja pravila kliknite „Dodaj ili ažuriraj pravila” 
 ## .htaccess
 
 Otvorite upravitelj i usporedite pravila s glavnom datotekom `.htaccess`. Za vlastito pravilo spremite URL uzorak, odredište i oznake, zatim kliknite **Dodaj ili ažuriraj pravila** kako bi se blok zapisao prije pravila WHMCS-a. Ponovno provjerite stanje i otvorite objavljenu stranicu na glavnom i još jednom jeziku. Preširok uzorak može utjecati na druge stranice. U postavi Nginx → Apache pravila vrijede samo za zahtjeve proslijeđene Apacheu.
-
-## Upute
-
-- Provjeri pravila
-- Dodaj ili ažuriraj pravila
-- Ukloni sva pravila iz .htaccess
-- Uzorak URL-a
-- Cilj
-- Oznake

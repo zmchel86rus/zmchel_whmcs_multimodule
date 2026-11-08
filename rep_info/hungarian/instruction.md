@@ -1,12 +1,22 @@
 # zmchel WHMCS Multimodule: útmutató
 
-**A modul használata előtt hozzon létre egyedi sókat, és helyezze el őket a `module_init.php` fájlban**: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` és `ZM_PB_NONCE_SALT`.
+**A zmchel WHMCS Multimodule ingyenes.** Vizuális oldalszerkesztőt, többnyelvű tartalmat, menüket, médiatárat, SEO-mezőket, XML-webhelytérképeket, átirányításokat, átírási szabályokat, valamint importálást és exportálást kínál.
+
+## Az első használat előtt
 
 **Az első használat előtt nyissa meg a Modulbeállítások → Támogatott nyelvek menüt, és kapcsolja be a szükséges nyelveket.**
 
-A modult a **WHMCS 8.13.1–8.13.7** verzióival fejlesztették és tesztelték. A PHP-kompatibilitást a **7.4–8.5** verziókon ellenőrizték. Az Apache teljes mértékben támogatott. A modul Nginx alatt is működhet, de a kezdőlap nyelvi útválasztása további beállítást igényelhet.
+A modul minden aktiváláskor új sóértékeket hoz létre, és beírja őket a `module_init.php` fájlba (`ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT`, `ZM_PB_NONCE_SALT`). Ellenőrizze, hogy mindhárom salt érték ki van-e töltve.
 
-**A zmchel WHMCS Multimodule ingyenes.** Vizuális oldalszerkesztőt, többnyelvű tartalmat, menüket, médiatárat, SEO-mezőket, XML-webhelytérképeket, átirányításokat, átírási szabályokat, valamint importálást és exportálást kínál.
+## Tesztelt kompatibilitás és működés
+
+- **PHP:** 7.4, 8.0, 8.1, 8.2, 8.3, 8.4, 8.5
+- **WHMCS:** 8.13.0–9.1.0
+- **Smarty:** 3, 4
+
+## Webszerver-kompatibilitás
+
+Az Apache teljes mértékben támogatott. A modul Nginx alatt is működhet, de a kezdőlap nyelvi útválasztása további beállítást igényelhet.
 
 ## Modulbeállítások
 

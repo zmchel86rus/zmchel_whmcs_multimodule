@@ -33,9 +33,3 @@ Síur vinna með sama lista og síðuskiptingin. Textaleit getur skoðað nokkra
 ## Flex / Grid
 
 Veldu Flex eða Grid og stilltu breiddir og dálka fyrir mismunandi tæki. Þegar síu er beitt eða hún hreinsuð fer listinn aftur á fyrstu síðu. Fjöldaval má færa án þess að tengingin rofni; afritað stjórnborð stýrir sama lista.
-
-## Leiðbeiningar
-
-- Setja noindex á síðu 2 og síðari síður
-- Snið tengla
-- Sjálfgefinn fjöldi atriða á síðu

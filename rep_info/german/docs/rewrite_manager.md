@@ -17,12 +17,3 @@ Aktivieren Sie die Sitemap-Erzeugung und wählen Sie die Häufigkeit in den Modu
 Im **Weiterleitungsmanager** geben Sie Quelle `/old-page/` und Ziel `/new-page/` ein, wählen `301` für dauerhaft oder `302` für vorübergehend, aktivieren, speichern und testen die alte URL. Automatische Weiterleitungen nach Slug-Änderungen haben einen eigenen Schalter und ein Mindestalter. Einzelheiten: [Weiterleitungen](redirects_manager.md).
 
 Im **Rewrite-Manager** prüfen Sie die Regeln und klicken dann **Regeln hinzufügen oder aktualisieren**, damit `.htaccess` geschrieben wird. Bei eigenen Regeln geben Sie URL-Muster, Ziel und Flags ein und wenden die Regeln erneut an. `.htaccess` gilt für Apache; Nginx benötigt entsprechende Serverregeln. Fehlerhafte Regeln können die ganze Website betreffen.
-
-## Anleitung
-
-- Regeln prüfen
-- Regeln hinzufügen oder aktualisieren
-- Alle Regeln aus .htaccess entfernen
-- URL-Muster
-- Ziel
-- Flags

@@ -7,17 +7,3 @@ Kliknij **Prześlij plik multimedialny**, wybierz obraz, plik audio, wideo lub P
 ## Wyświetlanie obrazów
 
 Menedżer tworzy obrazy w kilku rozmiarach. Dla przesłanego obrazu możesz uruchomić **Optymalizuj obraz**, a potem sprawdzić jakość, zwłaszcza gdy zawiera tekst. Jeśli warianty responsywne nie pasują, wyłącz `srcset` w danym bloku. Sprawdź końcowy URL i tekst alternatywny na publicznej stronie.
-
-## Instrukcje
-
-- Prześlij plik multimedialny
-- **Nazwa (wewnętrzna)**
-- **Tytuł (jeśli dotyczy)**
-- **Opis (jeśli dotyczy)**
-- **Atrybut alt**
-- Szukaj według nazwy
-- Typ pliku
-- Wczytaj więcej
-- Optymalizuj obraz
-- Optymalizacja oryginalnego obrazu i jego wariantów została zakończona.
-- Wybierz plik multimedialny

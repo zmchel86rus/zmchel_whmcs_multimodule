@@ -1,10 +1,14 @@
 # Multimodul percuma untuk WHMCS
 
-**Sebelum menggunakan modul, jana salt yang unik dalam `module_init.php`: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` dan `ZM_PB_NONCE_SALT`.** Modul ini dibangunkan dan diuji pada **WHMCS 8.13.1–8.13.7**. Keserasian PHP diperiksa untuk **7.4–8.5**. Apache disokong sepenuhnya (100%); Nginx boleh digunakan, tetapi penghalaan bahasa di laman utama mungkin memerlukan tetapan tambahan.
+**zmchel WHMCS Multimodule ialah modul percuma.** Ia membolehkan anda mengurus halaman berbilang bahasa melalui penyunting visual, menu, pustaka media, metadata SEO, peta laman XML, pengalihan, peraturan rewrite serta import dan eksport dari pentadbiran WHMCS. Rujuk [panduan penggunaan](instruction.md) sebelum bermula.
+
+## Sebelum penggunaan pertama
 
 **Sebelum penggunaan pertama, buka Tetapan modul → Bahasa yang disokong dan aktifkan bahasa yang anda perlukan.**
 
-**zmchel WHMCS Multimodule ialah modul percuma.** Ia membolehkan anda mengurus halaman berbilang bahasa melalui penyunting visual, menu, pustaka media, metadata SEO, peta laman XML, pengalihan, peraturan rewrite serta import dan eksport dari pentadbiran WHMCS. Rujuk [panduan penggunaan](instruction.md) sebelum bermula.
+Pada setiap pengaktifan, modul menjana nilai salt baharu secara automatik dan menulisnya ke dalam `module_init.php` (`ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT`, `ZM_PB_NONCE_SALT`). Pastikan ketiga-tiga nilai salt telah diisi.
+
+Modul ini dibangunkan dan diuji pada **WHMCS 8.13.0–9.1.0**. Keserasian PHP diperiksa untuk **7.4–8.5**. Apache disokong sepenuhnya (100%); Nginx boleh digunakan, tetapi penghalaan bahasa di laman utama mungkin memerlukan tetapan tambahan.
 
 ## Rancangan pembangunan
 
@@ -12,9 +16,11 @@
 - Memecahkan kod monolit kepada komponen yang saling berinteraksi.
 - Membina pengurus hak akses admin dan menambah bahasa lalai dalam `supported_langs.php`.
 - Membina penyunting kod untuk fail `.tpl` modul serta tema klien WHMCS, tetapi bukan tema admin.
-- Memperluas pengurus bahasa untuk fail bahasa modul dan WHMCS, serta menambah baik pengurus media.
+- ~~Memperluas pengurus bahasa untuk fail bahasa modul dan WHMCS.~~
+- Menambah baik pengurus media.
 - Membina pengurus SEO lengkap yang diilhamkan oleh Yoast SEO tetapi lebih dioptimumkan.
-- Menambah peta laman berbilang bahasa dan halaman peta laman HTML.
+- ~~Menambah peta laman berbilang bahasa dan halaman peta laman HTML.~~
+- Menambah halaman peta laman HTML.
 - Menambah statistik penggunaan pada pengurus halaman.
 - Membina pengurus pengoptimuman untuk mengecilkan JS, CSS dan HTML, cache halaman penuh, serta pengoptimuman jadual modul dan WHMCS.
 - Membina sistem kemas kini modul yang lebih baik.

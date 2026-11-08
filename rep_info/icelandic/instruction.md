@@ -1,10 +1,22 @@
 # Leiðbeiningar fyrir zmchel WHMCS Multimodule
 
-**Áður en einingin er notuð skaltu setja einstök salt-gildi í `module_init.php`: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` og `ZM_PB_NONCE_SALT`.** Einingin var þróuð og prófuð með **WHMCS 8.13.1–8.13.7**. Samhæfni við **PHP 7.4–8.5** hefur verið yfirfarin. Apache er studdur að fullu (100%); Nginx gæti þurft viðbótarstillingar fyrir tungumálaleiðir á forsíðu.
+**zmchel WHMCS Multimodule er ókeypis.** Í stjórnborði WHMCS geturðu stjórnað fjöltyngdum síðum með sjónrænum ritli, valmyndum, miðlasafni, SEO-lýsigögnum, XML-vefkortum, áframsendingum, rewrite-reglum og inn- og útflutningi.
+
+## Fyrir fyrstu notkun
 
 **Áður en einingin er notuð skaltu opna Stillingar einingar → Studd tungumál og virkja þau tungumál sem þú þarft.**
 
-**zmchel WHMCS Multimodule er ókeypis.** Í stjórnborði WHMCS geturðu stjórnað fjöltyngdum síðum með sjónrænum ritli, valmyndum, miðlasafni, SEO-lýsigögnum, XML-vefkortum, áframsendingum, rewrite-reglum og inn- og útflutningi.
+Við hverja virkjun býr einingin sjálfkrafa til ný saltgildi og skrifar þau í `module_init.php` (`ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT`, `ZM_PB_NONCE_SALT`). Gakktu úr skugga um að öll þrjú saltgildin séu útfyllt.
+
+## Prófuð samhæfni og virkni
+
+- **PHP:** 7.4, 8.0, 8.1, 8.2, 8.3, 8.4, 8.5
+- **WHMCS:** 8.13.0–9.1.0
+- **Smarty:** 3, 4
+
+## Samhæfni við vefþjóna
+
+Apache er studdur að fullu (100%); Nginx gæti þurft viðbótarstillingar fyrir tungumálaleiðir á forsíðu.
 
 ## Stillingar einingar
 

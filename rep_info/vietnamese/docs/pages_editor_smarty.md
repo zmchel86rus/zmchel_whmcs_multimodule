@@ -23,14 +23,3 @@ Danh mục trong `resources/available_vars/` lưu tên, kiểu, cấu trúc và 
     <span>{$item.title|escape}</span>
 {/foreach}
 ```
-
-## Hướng dẫn
-
-- **Thu thập biến Smarty** — Bật hoặc tắt việc thu thập các biến Smarty.
-- **Sử dụng các biến Smarty đã thu thập** — Bật hoặc tắt việc sử dụng các biến Smarty đã thu thập trong trình chỉnh sửa trang.
-- Biến Smarty (PHP)
-- Smarty: không cho phép PHP, phương thức đối tượng, lời gọi tĩnh và nofilter.
-- Mẫu Smarty quá lớn.
-- Smarty
-- Trình chỉnh sửa Smarty
-

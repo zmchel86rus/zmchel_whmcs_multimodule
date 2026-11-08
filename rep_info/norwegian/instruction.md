@@ -1,12 +1,22 @@
 # zmchel WHMCS Multimodule: bruksanvisning
 
-**Før du bruker modulen, må du generere unike salter og legge dem inn i `module_init.php`**: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` og `ZM_PB_NONCE_SALT`.
+**zmchel WHMCS Multimodule er gratis.** Den inneholder en visuell sideredigerer, flerspråklig innhold, menyer, mediebibliotek, SEO-felt, XML-nettstedskart, viderekoblinger, omskrivingsregler og import/eksport.
+
+## Før første bruk
 
 **Før første bruk åpner du Modulinnstillinger → Støttede språk og aktiverer språkene du trenger.**
 
-Modulen ble utviklet og testet med **WHMCS 8.13.1–8.13.7**. PHP-kompatibilitet ble kontrollert for **7.4–8.5**. Apache støttes fullt ut. Modulen kan også fungere med Nginx, men språkruting på forsiden kan kreve ekstra oppsett.
+Ved hver aktivering genererer modulen automatisk nye salter og skriver dem til `module_init.php` (`ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT`, `ZM_PB_NONCE_SALT`). Kontroller at alle de tre saltverdiene er fylt ut.
 
-**zmchel WHMCS Multimodule er gratis.** Den inneholder en visuell sideredigerer, flerspråklig innhold, menyer, mediebibliotek, SEO-felt, XML-nettstedskart, viderekoblinger, omskrivingsregler og import/eksport.
+## Testet kompatibilitet og funksjon
+
+- **PHP:** 7.4, 8.0, 8.1, 8.2, 8.3, 8.4, 8.5
+- **WHMCS:** 8.13.0–9.1.0
+- **Smarty:** 3, 4
+
+## Kompatibilitet med webservere
+
+Apache støttes fullt ut. Modulen kan også fungere med Nginx, men språkruting på forsiden kan kreve ekstra oppsett.
 
 ## Modulinnstillinger
 

@@ -48,10 +48,10 @@
 Пример для уже загруженной коллекции:
 
 ```smarty
-{foreach $registered_domains as $item}
-    <div class="domain">{$item.domain|escape}</div>
+{foreach $items as $item}
+    <div class="item">{$item.title|escape}</div>
 {foreachelse}
-    <p>Нет доменов.</p>
+    <p>Нет элементов.</p>
 {/foreach}
 ```
 
@@ -94,13 +94,3 @@ SQL/плагины WHMCS, подключения файлов, сетевые р
 
 Нужны зависимости проекта и PHP с расширениями WHMCS. Проверка использует
 реальные Smarty, Collection и Eloquent, но не подключается к БД.
-
-## Инструкция
-
-- **Сбор Smarty переменных** — Включает/выключает сбор Smarty переменных.
-- **Использование Smarty переменных** — Включает/выключает использование Smarty переменных в редакторе страниц.
-- Smarty (PHP) переменная
-- Smarty: PHP, методы объектов, статические вызовы и nofilter запрещены.
-- Шаблон Smarty слишком большой.
-- Smarty
-- Редактор Smarty

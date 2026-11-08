@@ -7,17 +7,3 @@ Feu clic a **Puja un fitxer multimèdia**, trieu una imatge, un fitxer d'àudio,
 ## Presentació de les imatges
 
 El gestor crea diverses mides de cada imatge. Podeu executar **Optimitza la imatge** després de pujar-la; reviseu-ne la qualitat, sobretot si conté text. Si les variants adaptatives no són adequades, desactiveu `srcset` al bloc corresponent. Comproveu l'URL final i el text alternatiu a la pàgina pública.
-
-## Instruccions
-
-- Puja un fitxer multimèdia
-- **Nom (intern)**
-- **Títol (si escau)**
-- **Descripció (si escau)**
-- **Atribut alt**
-- Cerca per nom
-- Tipus de fitxer
-- Carrega'n més
-- Optimitza la imatge
-- S'ha completat l'optimització de la imatge original i de les seves variants.
-- Selecciona un fitxer multimèdia

@@ -33,9 +33,3 @@ I filtri agiscono sullo stesso elenco della paginazione. La ricerca testuale pu√
 ## Flex / Grid
 
 Scegli Flex o Grid e imposta larghezze e colonne per dispositivo. Applicare o azzerare un filtro riporta alla prima pagina. Il selettore del numero di risultati pu√≤ essere spostato senza perdere il collegamento; un pannello duplicato controlla lo stesso elenco.
-
-## Istruzioni
-
-- Non indicizzare le pagine dalla seconda in poi
-- Formato dei link
-- Numero predefinito di elementi

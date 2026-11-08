@@ -23,14 +23,3 @@ Katalogen i `resources/available_vars/` lagrer navn, typer, struktur og kunstige
     <span>{$item.title|escape}</span>
 {/foreach}
 ```
-
-## Instruksjoner
-
-- **Samle inn Smarty-variabler** — Aktiver eller deaktiver innsamling av Smarty-variabler.
-- **Bruk innsamlede Smarty-variabler** — Aktiver eller deaktiver bruk av innsamlede Smarty-variabler i sideredigereren.
-- Smarty-variabel (PHP)
-- Smarty: PHP, objektmetoder, statiske kall og nofilter er ikke tillatt.
-- Smarty-malen er for stor.
-- Smarty
-- Smarty-redigerer
-

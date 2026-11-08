@@ -23,14 +23,3 @@ Katalog dalam `resources/available_vars/` menyimpan nama, jenis, struktur dan co
     <span>{$item.title|escape}</span>
 {/foreach}
 ```
-
-## Arahan
-
-- **Kumpul pemboleh ubah Smarty** — Aktifkan atau nyahaktifkan pengumpulan pemboleh ubah Smarty.
-- **Gunakan pemboleh ubah Smarty yang dikumpulkan** — Aktifkan atau nyahaktifkan penggunaan pemboleh ubah Smarty yang dikumpulkan dalam penyunting halaman.
-- Pemboleh ubah Smarty (PHP)
-- Smarty: PHP, kaedah objek, panggilan statik dan nofilter tidak dibenarkan.
-- Templat Smarty terlalu besar.
-- Smarty
-- Editor Smarty
-

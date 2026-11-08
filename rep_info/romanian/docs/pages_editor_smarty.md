@@ -25,13 +25,3 @@ Catalogul din `resources/available_vars/` păstrează nume, tipuri, structură �
     <span>{$item.title|escape}</span>
 {/foreach}
 ```
-
-## Instrucțiuni
-
-- **Colectează variabile Smarty** — Activează sau dezactivează colectarea variabilelor Smarty.
-- **Folosește variabilele Smarty colectate** — Activează sau dezactivează utilizarea variabilelor Smarty colectate în editorul de pagini.
-- Variabilă Smarty (PHP)
-- Smarty: PHP, metodele obiectelor, apelurile statice și nofilter sunt interzise.
-- Șablonul Smarty este prea mare.
-- Smarty
-- Editor Smarty

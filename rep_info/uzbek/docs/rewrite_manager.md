@@ -13,12 +13,3 @@ Qoida qoʻshilgan yoki oʻchirilgandan soʻng, oʻzgarishlarni .htaccess fayliga
 ## .htaccess
 
 Menejerni ochib, qoidalarni saytning asosiy `.htaccess` fayli bilan solishtiring. O‘z qoidangiz uchun URL shabloni, maqsad va bayroqlarni saqlang; keyin blokni WHMCS qoidalaridan oldin yozish uchun **Qoidalarni qo‘shish yoki yangilash** tugmasini bosing. Holatni yana tekshirib, e'lon qilingan sahifani standart va boshqa tilda oching. Juda keng shablon boshqa sahifalarga ta'sir qilishi mumkin. Nginx → Apache tizimida qoidalar faqat Apache-ga uzatilgan so‘rovlarga ishlaydi.
-
-## Yoʻriqnoma
-
-- Qoidalarni tekshirish
-- Qoidalarni qoʻshish yoki yangilash
-- .htaccess faylidan barcha qoidalarni oʻchirish
-- URL namunasi
-- Maqsad
-- Bayroqlar

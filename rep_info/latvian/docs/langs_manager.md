@@ -21,18 +21,3 @@ Cilnē **Tulkojumi** kolonna **Oriģināls** rāda izvēlētās valodas sākotn�
 Valodas failu var izslēgt un atkal ieslēgt; to var rediģēt arī izslēgtā stāvoklī. Angļu pamatfails un pašreizējā WHMCS noklusējuma valoda ir aizsargāti. Pārvaldnieka pievienotajiem WHMCS klienta un administrācijas valodu failiem tiek glabātas kopijas atjaunošanai pēc atjauninājuma. Ja cilnē **Sadaļas** redzams faila nosaukuma labojums, pārbaudiet jauno nosaukumu un nospiediet **Labot**; labojums attiecas uz atrastajām sadaļām.
 
 Lai mainītu noklusējuma valodu, vispirms ieslēdziet jauno valodu moduļa iestatījumos, pēc tam nomainiet WHMCS noklusējuma valodu un tikai tad izslēdziet veco. Pārbaudiet tekstus administrācijas un klienta daļā.
-
-## Instrukcijas
-
-- Sadaļas
-- Valodas
-- Tulkojumi
-- Šī valoda ir atspējota, taču tās tulkojumus joprojām var rediģēt.
-- Atsauces valoda
-- Katra poga Saglabāt saglabā tikai vienu tulkojumu.
-- Nav tulkojuma
-- Rādīt sākotnējos
-- Rādīt pievienotos
-- Šīs tulkojumu atslēgas netika importētas:
-- nezināma atslēga
-- dublēta atslēga

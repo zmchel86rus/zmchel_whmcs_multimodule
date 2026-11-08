@@ -13,12 +13,3 @@ Após adicionar ou excluir uma regra, clique em “Adicionar ou atualizar regras
 ## .htaccess
 
 Abra o gerenciador e compare as regras com o `.htaccess` principal do site. Para uma regra personalizada, salve o padrão de URL, o destino e as flags; depois clique em **Adicionar ou atualizar regras** para gravar o bloco antes das regras do WHMCS. Confira o estado novamente e abra uma página publicada no idioma padrão e em outro idioma. Um padrão amplo demais pode afetar outras páginas. Na configuração Nginx → Apache, as regras valem apenas para requisições encaminhadas ao Apache.
-
-## Instruções
-
-- Verificar regras
-- Adicionar ou atualizar regras
-- Remover todas as regras de .htaccess
-- Padrão da URL
-- Destino
-- Flags

@@ -44,6 +44,12 @@
                                 </input-with-button>
                                 <span class="description">{$media_manager_translates->input->max} {$media_manager_translates->input->count|lower} {$media_manager_translates->input->symbols|lower}: {$media_manager_translates->description->max_input}</span>
                             </div>
+                            <div class="form-group">
+                                <input-with-button>
+                                    <input type="text" class="form-control mediaurl pd-r-6" readonly>
+                                    <i class="fa-solid fa-copy pos-abs pos-y-auto pos-r-1 border-1 border-solid copyvalue pd-1"></i>
+                                </input-with-button>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group-btn d-flex jc-right">
@@ -52,7 +58,8 @@
                             <span id="zm_pb_optimization_status" class="description" aria-live="polite"></span>
                         </div>
                         <input type="submit" name="delete" value="{$other_translates->delete}" class="btn btn-link mar-r-6" id="delete_mediafile" onclick="return confirm('{$other_translates->you_sure} {$other_translates->action_is_irreversible}');">
-                        <input type="submit" name="save" value="{$other_translates->save}" class="btn btn-primary mar-l-6">
+                        <button type="button" class="btn btn-primary mar-l-6" data-dismiss="modal" aria-label="Close">{$other_translates->close}</button>
+                        <input type="submit" name="save" value="{$other_translates->save}" class="btn btn-primary mar-l-1">
                     </div>
                 </form>
             </div>

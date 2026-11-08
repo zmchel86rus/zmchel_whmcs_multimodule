@@ -13,12 +13,3 @@ Setelah menambahkan atau menghapus aturan, klik “Tambah atau perbarui aturan�
 ## .htaccess
 
 Buka pengelola dan bandingkan aturan dengan berkas utama `.htaccess` situs. Untuk aturan sendiri, simpan pola URL, tujuan, dan penanda; lalu klik **Tambah atau perbarui aturan** agar blok ditulis sebelum aturan WHMCS. Periksa statusnya lagi dan buka halaman terbit dalam bahasa bawaan serta bahasa lain. Pola yang terlalu luas dapat memengaruhi halaman lain. Pada susunan Nginx → Apache, aturan ini hanya berlaku untuk permintaan yang diteruskan ke Apache.
-
-## Petunjuk
-
-- Periksa aturan
-- Tambah atau perbarui aturan
-- Hapus semua aturan dari .htaccess
-- Pola URL
-- Target
-- Flag

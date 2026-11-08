@@ -63,6 +63,11 @@ function expect_url($actual, $expected)
     if ($actual !== $expected) throw new RuntimeException("Expected $expected, got $actual");
 }
 
+expect_url(zm_pb_clean_page_slug('  About Us  '), 'about-us');
+expect_url(zm_pb_clean_page_slug('A/../B?x=1'), 'a-b-x-1');
+expect_url(zm_pb_clean_page_slug('---'), '');
+expect_url(zm_pb_clean_page_slug(['invalid']), '');
+
 $page = (object) ['slug' => 'samplepage'];
 $base = 'https://example.test/billing/';
 $defaultPrefix = ZM_PB_ENABLE_DEFAULT_LANG_ROUTE ? 'en/' : '';

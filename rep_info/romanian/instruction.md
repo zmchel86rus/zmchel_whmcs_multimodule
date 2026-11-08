@@ -1,12 +1,22 @@
 # Instrucțiuni pentru zmchel WHMCS Multimodule
 
-**Înainte de utilizare, generați săruri unice și introduceți ZM_PB_ADMIN_SALT, ZM_PB_SECURE_SALT și ZM_PB_NONCE_SALT în module_init.php.** Modulul a fost dezvoltat și testat pe WHMCS 8.13.1–8.13.7. Apache este acceptat integral. Nginx poate funcționa, dar rutarea limbilor pe pagina principală poate necesita configurare suplimentară.
+**zmchel WHMCS Multimodule este gratuit.** Permite administrarea paginilor și articolelor din panoul WHMCS, cu editor vizual, traduceri, meniuri, fișiere media, câmpuri SEO, sitemap-uri XML, redirecționări și reguli de rescriere.
+
+## Înainte de prima utilizare
 
 **Înainte de prima utilizare, deschideți Setările modulului → Limbi acceptate și activați limbile necesare.**
 
-**Versiuni PHP verificate:** 7.4, 8.0, 8.1, 8.2, 8.3, 8.4 și 8.5.
+La fiecare activare, modulul generează automat valori salt noi și le scrie în `module_init.php` (`ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT`, `ZM_PB_NONCE_SALT`). Verificați dacă toate cele trei valori salt sunt completate.
 
-**zmchel WHMCS Multimodule este gratuit.** Permite administrarea paginilor și articolelor din panoul WHMCS, cu editor vizual, traduceri, meniuri, fișiere media, câmpuri SEO, sitemap-uri XML, redirecționări și reguli de rescriere.
+## Compatibilitate și funcționare testate
+
+- **PHP:** 7.4, 8.0, 8.1, 8.2, 8.3, 8.4, 8.5
+- **WHMCS:** 8.13.0–9.1.0
+- **Smarty:** 3, 4
+
+## Compatibilitate cu serverele web
+
+Apache este acceptat integral. Nginx poate funcționa, dar rutarea limbilor pe pagina principală poate necesita configurare suplimentară.
 
 ## Setările modulului
 

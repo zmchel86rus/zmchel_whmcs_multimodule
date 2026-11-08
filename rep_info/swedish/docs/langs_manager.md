@@ -17,19 +17,3 @@ Exportera nycklar och översättningar för det valda språket före större än
 ## Språkfiler och standardspråk
 
 En inaktiverad språkfil kan fortfarande redigeras. Den engelska basfilen och WHMCS nuvarande standardspråk är skyddade. För att byta standardspråk aktiverar du först det nya i modulen, ändrar det i WHMCS och inaktiverar det gamla därefter. Gamla filnamn kan rättas under **Avsnitt**.
-
-## Instruktioner
-
-- Sektioner
-- Språk
-- Översättningar
-- Det här språket är inaktiverat, men översättningarna kan fortfarande redigeras.
-- Referensspråk
-- Varje Spara-knapp sparar bara en översättning.
-- Inte översatt
-- Visa ursprungliga
-- Visa tillagda
-- Följande översättningsnycklar importerades inte:
-- okänd nyckel
-- dubblettnyckel
-

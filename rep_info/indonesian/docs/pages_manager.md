@@ -13,14 +13,3 @@ Saring daftar menurut nama, akses, jenis, status, atau bahasa. **Kunjungi** memb
 ## WHMCS
 
 Untuk mengganti halaman WHMCS, pilih alamat sistem yang sudah ada dan halaman modul yang telah diterbitkan. Pilih penggantian penuh, penambahan sebelum atau sesudah konten standar, atau hanya meta/SEO. Simpan lalu uji URL WHMCS asli sebagai pengunjung dan sebagai pelanggan yang masuk.
-
-## Petunjuk
-
-- Tambah halaman
-- **Nama halaman** — Nama internal halaman
-- **Slug halaman** — Hanya huruf Latin, tanda hubung, dan angka yang diizinkan.
-- **Jenis akses** — Pengguna yang masuk: hanya pengguna yang sudah masuk yang dapat mengakses halaman; Pengunjung: hanya pengunjung yang dapat mengaksesnya; Campuran: semua orang dapat mengaksesnya, dengan visibilitas diatur oleh blok di dalam halaman.
-- **Jenis halaman** — Halaman sistem tidak disertakan dalam peta situs dan tidak tersedia bagi pengguna biasa.
-- **Bahasa halaman** — Bahasa bawaan selalu disertakan, apa pun pilihan Anda.
-- Penggantian penuh menggantikan konten yang ditampilkan dan metadata. Tambahkan sebelum menempatkan konten sebelum konten halaman yang ada. Tambahkan sesudah menempatkan konten setelah konten halaman yang ada. Hanya metadata/SEO menggantikan metadata halaman.
-- Navigasi daftar halaman

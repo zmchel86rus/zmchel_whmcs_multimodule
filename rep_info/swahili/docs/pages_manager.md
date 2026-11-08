@@ -13,14 +13,3 @@ Chuja orodha kwa jina, ufikiaji, aina, hali au lugha. **Tembelea** hufungua URL 
 ## WHMCS
 
 Ili kubadilisha ukurasa wa WHMCS, chagua anwani iliyopo ya mfumo na ukurasa wa moduli uliochapishwa. Chagua uingizwaji kamili, kuongeza maudhui kabla au baada ya maudhui ya kawaida, au meta/SEO pekee. Hifadhi na ujaribu URL ya awali ya WHMCS kama mgeni na mteja aliyeingia.
-
-## Maelekezo
-
-- Ongeza ukurasa
-- **Jina la ukurasa** — Jina la ndani la ukurasa
-- **Slug ya ukurasa** — Herufi za Kilatini, vistari na tarakimu pekee zinaruhusiwa.
-- **Aina ya ufikiaji** — Watumiaji walioingia: watumiaji walioingia pekee wanaweza kufikia ukurasa; Wageni: wageni pekee wanaweza kuufikia; Mchanganyiko: kila mtu anaweza kuufikia, na mwonekano hudhibitiwa na vitalu vilivyo ndani ya ukurasa.
-- **Aina ya ukurasa** — Kurasa za mfumo hazijumuishwi kwenye ramani ya tovuti na hazipatikani kwa watumiaji wa kawaida.
-- **Lugha za ukurasa** — Lugha chaguo-msingi hujumuishwa kila wakati bila kujali ulichokichagua.
-- Ubadilishaji kamili huchukua nafasi ya maudhui na metadata zinazoonyeshwa. Ongeza kabla huweka maudhui kabla ya maudhui yaliyopo ya ukurasa. Ongeza baada huweka maudhui baada ya maudhui yaliyopo ya ukurasa. Metadata/SEO pekee hubadilisha metadata ya ukurasa.
-- Urambazaji wa orodha ya kurasa

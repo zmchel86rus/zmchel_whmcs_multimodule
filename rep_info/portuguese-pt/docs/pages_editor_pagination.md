@@ -33,9 +33,3 @@ Os filtros operam na mesma lista da paginação. A pesquisa textual pode verific
 ## Flex / Grid
 
 Escolha Flex ou Grid e ajuste larguras e colunas por dispositivo. Aplicar ou limpar um filtro regressa à primeira página. O seletor da quantidade pode ser movido sem perder a ligação; um painel duplicado controla a mesma lista.
-
-## Instruções
-
-- Seleção da quantidade: 10, 25, 50, 100, 250
-- Formato das ligações
-- Número de elementos por predefinição

@@ -4,8 +4,6 @@ if (php_sapi_name() === 'cli' || defined('ADMINAREA')
     || !in_array($_SERVER['REQUEST_METHOD'] ?? '', ['GET', 'HEAD'], true)) return;
 use Illuminate\Database\Capsule\Manager as Capsule;
 
-//perf301Mark('PB_route_S');
-
 $request = zm_pb_parse_request();
 // Installed Apache rules may still exist after the feature is disabled.
 if (!ZM_PB_ENABLE_LANG_ROUTE && !empty($request['lang'])) return;

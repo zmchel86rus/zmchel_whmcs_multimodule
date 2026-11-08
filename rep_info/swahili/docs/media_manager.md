@@ -7,17 +7,3 @@ Bofya **Pakia faili la media**, chagua picha, sauti, video au PDF, kisha jaza ji
 ## Kuonyesha picha
 
 Kidhibiti hutengeneza ukubwa mbalimbali wa picha. Unaweza kutumia **Boresha picha** kwa picha iliyopakiwa; kagua ubora baadaye, hasa ikiwa ina maandishi. Ikiwa matoleo yanayojirekebisha hayafai, zima `srcset` katika bloku hiyo. Hakiki URL ya mwisho na maandishi mbadala kwenye ukurasa wa umma.
-
-## Maelekezo
-
-- Pakia faili ya midia
-- **Jina (la ndani)**
-- **Kichwa (ikiwezekana)**
-- **Maelezo (ikiwezekana)**
-- **Sifa ya alt**
-- Tafuta kwa jina
-- Aina ya faili
-- Pakia zaidi
-- Boresha picha
-- Uboreshaji wa picha asilia na matoleo yake umekamilika.
-- Chagua faili ya midia

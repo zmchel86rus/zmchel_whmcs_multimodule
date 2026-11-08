@@ -24,17 +24,3 @@ URL ya kipengee cha ukurasa huhesabiwa upya kwa kutumia slug ya sasa na tafsiri 
 ## zm_pb_menus
 
 Data huhifadhiwa katika majedwali `zm_pb_menus`, `zm_pb_menu_items` na `zm_pb_menu_locations`. Unda au rekebisha majedwali katika sehemu ya Hifadhidata ya Moduli. Muundo wa menyu una viwango visivyozidi 10 na vipengee 300; ukifuta mzazi, watoto wake hupanda kiwango kimoja.
-
-## Maelekezo
-
-- Unda menyu
-- Ongeza kurasa, machapisho au viungo maalum.
-- Buruta vipengee ili kubadilisha mpangilio. Weka viwango vya ndani kwa kutumia kiteuzi cha mzazi au vitufe vya kuhamisha.
-- Tumia lugha ya ukurasa wa sasa
-- Tumia URL iliyoingizwa bila kuibadilisha
-- Majina katika lugha nyingine
-- Inaonekana kwa
-- Vifaa
-- Kila eneo linaweza kuwa na menyu moja. Ukichagua eneo, ugawaji wake utaondolewa kwenye menyu nyingine na kuhamishwa hapa.
-- Vipengee vya kiwango cha juu huwa safu wima, na vipengee vya ndani huwa viungo. Tumia URL # kwa kichwa kisicho na kiungo.
-- Majedwali ya menyu bado hayajaundwa. Yaongeze katika Hifadhidata ya Moduli.

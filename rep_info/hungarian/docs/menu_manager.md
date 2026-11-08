@@ -24,18 +24,3 @@ Az oldalbejegyzések URL-je az aktuális slug és a közzétett fordítás alapj
 ## zm_pb_menus
 
 Az adatok a `zm_pb_menus`, `zm_pb_menu_items` és `zm_pb_menu_locations` táblákban vannak. A táblákat a Modul adatbázisa részben hozza létre vagy javítsa. A fa legfeljebb 10 szintet és 300 elemet kezel; egy szülő törlésekor a gyermekei egy szinttel feljebb kerülnek.
-
-## Útmutató
-
-- Menü létrehozása
-- Adjon hozzá oldalakat, bejegyzéseket vagy egyéni hivatkozásokat.
-- Az elemeket húzással rendezheti át. Az alá-fölérendeltséget a szülőelem-választóval vagy a mozgatógombokkal állíthatja be.
-- Az aktuális oldal nyelvének használata
-- A megadott URL változatlan használata
-- Feliratok más nyelveken
-- Kik láthatják?
-- Eszközök
-- Minden megjelenítési helyhez egy menü rendelhető. Egy hely kiválasztása áthelyezi ide a hozzárendelést egy másik menüből.
-- A legfelső szintű elemek oszlopokká, az alárendelt elemek hivatkozásokká válnak. Hivatkozás nélküli címsorhoz használja a # URL-t.
-- A menütáblák még nem jöttek létre. Adja hozzá őket a Moduladatbázisban.
-

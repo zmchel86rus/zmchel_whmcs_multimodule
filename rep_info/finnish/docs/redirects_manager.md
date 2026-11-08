@@ -15,10 +15,3 @@ Anna vanha ja uusi URL-osoite. Käytä pysyvään siirtoon 301:tä ja tilapäise
 Säännöt tukevat HTTP-koodeja `301`, `302`, `303`, `307` ja `308` ja koskevat vain WHMCS:ään päätyviä `GET`/`HEAD`-pyyntöjä. Lähde täsmäytetään tarkasti polun ja annettujen kyselyparametrien perusteella; kohteen parametrit korvaavat vanhat. Hallinta tallentaa säännöt tauluun `zm_pb_redirects`, mutta ei luo taulua pyynnön aikana: käytä **Moduulin tietokanta** -osiota. Nykyisten URL-sarakkeiden raja on 128 tavua.
 
 Käsin lisätyt säännöt ovat automaattisia tärkeämpiä. Julkaistun sivun slugin muutos voi määrätyn viiveen jälkeen luoda automaattisen `301`-ohjauksen kullekin aktiiviselle kielelle; luonnoksen julkaisu ei tee niin. Myöhemmät nimenmuutokset päivittävät vanhojen sääntöjen kohteet. Kyselyparametreja sisältävä sääntö ohittaa pelkkää polkua koskevan säännön. Lähde-URL:n on kuuluttava tähän sivustoon eikä siinä saa olla `#`-katkelmaa.
-
-## Ohjeet
-
-- Lähde
-- Kohde
-- Käytössä
-- Pois käytöstä

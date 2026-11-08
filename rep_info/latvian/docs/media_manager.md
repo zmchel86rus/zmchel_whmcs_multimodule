@@ -7,17 +7,3 @@ Noklikšķiniet uz **Augšupielādēt multivides failu**, izvēlieties attēlu, 
 ## Attēlu attēlošana
 
 Pārvaldnieks izveido vairākus attēla izmērus. Augšupielādētam attēlam var palaist **Optimizēt attēlu** un pēc tam pārbaudīt kvalitāti, īpaši attēliem ar tekstu. Ja pielāgojamās versijas neder, attiecīgajā blokā izslēdziet `srcset`. Publiskajā lapā pārbaudiet galīgo URL un alternatīvo tekstu.
-
-## Instrukcijas
-
-- Augšupielādēt multivides failu
-- **Nosaukums (iekšējais)**
-- **Virsraksts (ja attiecināms)**
-- **Apraksts (ja attiecināms)**
-- **Atribūts alt**
-- Meklēt pēc nosaukuma
-- Faila tips
-- Ielādēt vairāk
-- Optimizēt attēlu
-- Sākotnējā attēla un tā variantu optimizācija ir pabeigta.
-- Atlasīt multivides failu

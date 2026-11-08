@@ -15,14 +15,3 @@ Filtrirajte popis po nazivu, pristupu, vrsti, statusu ili jeziku. **Posjeti** ot
 ## WHMCS
 
 Za zamjenu WHMCS stranice odaberite postojeću sistemsku adresu i objavljenu stranicu modula. Odaberite potpunu zamjenu, dodavanje prije ili poslije izvornog sadržaja ili samo meta/SEO. Spremite postavke i provjerite izvorni WHMCS URL kao gost i kao prijavljeni klijent.
-
-## Upute
-
-- Dodaj stranicu
-- **Naziv stranice** — Interni naziv stranice
-- **Slug stranice** — Dopuštena su samo latinična slova, crtice i znamenke.
-- **Vrsta pristupa** — Prijavljeni korisnici: stranici mogu pristupiti samo prijavljeni korisnici; Gosti: mogu joj pristupiti samo gosti; Mješovito: mogu joj pristupiti svi, a vidljivost se kontrolira blokovima unutar stranice.
-- **Vrsta stranice** — Sistemske stranice isključene su iz karte web-mjesta i nisu dostupne običnim korisnicima.
-- **Jezici stranice** — Zadani jezik uvijek je uključen, bez obzira na vaš odabir.
-- Potpuna zamjena zamjenjuje prikazani sadržaj i metapodatke.\ Dodaj prije umeće sadržaj prije postojećeg sadržaja stranice.\ Dodaj nakon umeće sadržaj nakon postojećeg sadržaja stranice.\ Samo metapodaci/SEO zamjenjuje metapodatke stranice.
-- Navigacija popisom stranica

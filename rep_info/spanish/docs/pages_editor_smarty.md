@@ -17,8 +17,8 @@ No se guardan valores reales. Contraseñas, tokens y datos personales se marcan 
 ## foreach
 
 ```smarty
-{foreach $registered_domains as $item}
-    <div class="domain">{$item.domain|escape}</div>
+{foreach $items as $item}
+    <div class="item">{$item.title|escape}</div>
 {foreachelse}
     <p>No hay dominios.</p>
 {/foreach}
@@ -29,13 +29,3 @@ No se guardan valores reales. Contraseñas, tokens y datos personales se marcan 
 El código se compila y comprueba al guardar y antes de mostrar. Smarty aislado recibe una copia de variables existentes como arrays y escalares. Se permiten condiciones, `foreach`, `assign` local, `capture`, `literal`, `strip`, `break`/`continue` y modificadores limitados: `escape`, `default`, `count`, `nl2br`, `upper`, `lower`, `capitalize`, `truncate`, `replace`, `cat`, `date_format`. Se prohíben PHP, métodos, funciones arbitrarias, SQL, inclusiones de archivos, red, superglobales y `nofilter`. Los valores se escapan automáticamente; escriba el HTML deseado en la plantilla. Los datos sensibles tampoco pasan a la copia de renderizado.
 
 Los bloques se resuelven en `ClientAreaFooterOutput:10000` y un filtro Smarty inserta el resultado en su posición original antes de enviar la respuesta. Las zonas sin autorización se eliminan antes. Si faltan datos o hay error, el bloque queda vacío y se registra el fallo en el log PHP. El catálogo no proporciona datos de otras páginas. Para comprobarlo con las dependencias del proyecto: `tests/smarty_blocks.php`.
-
-## Instrucciones
-
-- **Recopilar variables Smarty** — Activa o desactiva la recopilación de variables Smarty.
-- **Usar variables Smarty recopiladas** — Activa o desactiva el uso de variables Smarty recopiladas en el editor de páginas.
-- Variable Smarty (PHP)
-- Smarty: no se permiten PHP, métodos de objeto, llamadas estáticas ni nofilter.
-- La plantilla Smarty es demasiado grande.
-- Smarty
-- Editor Smarty

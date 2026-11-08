@@ -13,10 +13,3 @@ Sláðu inn gilda slóð sem byrjar á / eða fulla HTTP(S)-vefslóð. Uppruninn
 Reglurnar styðja HTTP-kóðana `301`, `302`, `303`, `307` og `308` og gilda aðeins fyrir `GET`/`HEAD`-beiðnir sem berast WHMCS. Uppruninn er borinn nákvæmlega saman við slóð og tilgreindar fyrirspurnarfæribreytur; færibreytur áfangastaðar koma í stað þeirra gömlu. Stjórinn geymir reglur í `zm_pb_redirects` en býr ekki til töfluna við beiðni: notaðu **Gagnagrunn einingar**. Núverandi URL-dálkar takmarkast við 128 bæti.
 
 Handvirkar reglur ganga framar sjálfvirkum. Breyting á slug birtrar síðu getur eftir stillta bið búið til sjálfvirka `301` beiningu fyrir hvert virkt tungumál; birting draga gerir það ekki. Síðari endurnefningar uppfæra eldri áfangastaði. Regla með fyrirspurnarbreytum hefur forgang fram yfir reglu sem á aðeins við slóðina. Upprunaleg URL verður að tilheyra þessum vef og má ekki innihalda `#`-brot.
-
-## Leiðbeiningar
-
-- Uppruni
-- Áfangastaður
-- Virkt
-- Óvirkt

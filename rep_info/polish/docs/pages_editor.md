@@ -19,16 +19,3 @@ W ustawieniach podstawowych sprawdź nazwę, slug, typ, stan, dostęp i języki.
 ## Formularz kontaktowy
 
 Dodaj blok **Formularz kontaktowy**. Wybierz **zgłoszenie WHMCS** i dział pomocy albo **e-mail** i odbiorcę; uzupełnij nagłówek, opis, temat i tekst przycisku. Dla każdego pola ustaw nazwę, typ, wymagalność i walidację. Zgłoszenie od gościa wymaga pól z rolami imienia i e-maila nadawcy. Opcje listy rozwijanej wpisuj po jednej w wierszu, np. `sales : Sprzedaż`. Utwórz oddzielne pole dla każdej zgody i użyj CAPTCHA ustawionej w WHMCS. Zapisz i wyślij prawdziwą próbę jako gość; sprawdź zgłoszenie lub doręczenie, błędy i wyczyszczenie formularza. Zielony stan edytora nie potwierdza doręczenia; jeśli `mail()` zawodzi, ustaw SMTP w WHMCS.
-
-## Instrukcje
-
-- Zagnieżdżony kontener układu Flex. Przeciągnij inne bloki do środka.
-- Zagnieżdżony kontener układu CSS Grid. Przeciągnij inne bloki do środka.
-- Zagnieżdżona karuzela Bootstrap. Przeciągnij bloki do środka; każdy z nich stanie się slajdem.
-- Wszystkie bloki poniżej tego bloku są wyświetlane tylko zalogowanym użytkownikom. Działa tylko wtedy, gdy typ dostępu do strony to Mieszany.
-- Wszystkie bloki poniżej tego bloku są wyświetlane tylko gościom. Działa tylko wtedy, gdy typ dostępu do strony to Mieszany.
-- **Tytuł strony**
-- **Opis meta**
-- **Kanoniczny adres URL**
-- **Robots** — index, follow / noindex, nofollow. Określa indeksowanie.
-- **Typ schematu** — Po wyłączeniu znaczniki JSON Schema.org nie są generowane dla tej strony.

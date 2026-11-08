@@ -13,14 +13,3 @@ Beim Umbenennen des Slugs einer weiterhin veröffentlichten Seite entsteht autom
 Ist die Seitenüberschreibung aktiv, leitet deren Alias auch bei deaktivierten gespeicherten Regeln zur ursprünglichen Systemseite. Bei mehreren überschriebenen Seiten zeigt der Layout-Alias auf die erste konfigurierte Seite; die Sitemap listet jede Systemseite getrennt. Die Umbenennung aktualisiert `page_overrides.to` zusammen mit Seite und Regeln in einer Transaktion.
 
 Die Daten liegen in `zm_pb_redirects`. Anfragen erstellen oder reparieren keine Tabellen; nutzen Sie dafür **Moduldatenbank**. URL-Spalten fassen 128 Byte, längere Eingaben werden abgelehnt. `sitemap_pages.xml` und `sitemap_posts.xml` enthalten wechselseitige Sprachalternativen und `x-default` für die Standardsprache. Nur aktive Übersetzungen erscheinen; Weiterleitungsquellen fehlen in `loc` und Alternativen. XML kann im **Sitemap-Manager** oder per Cron erneuert werden. Isolierte Tests: `tests/redirects.php` und `tests/sitemap.php` mit den Varianten `--plain`, `--routes-off` und `--disabled`; sie verwenden temporäre Dateien und SQLite im Speicher.
-
-## Anleitung
-
-- Exakte Adressen: Quelle → Ziel. Die Quelle ist ein Pfad ab der Website-Wurzel oder eine URL dieser Website. Das Ziel ist ein Pfad oder eine vollständige HTTP(S)-URL. Regeln ohne Abfrageparameter gelten auch für Anfragen mit Parametern; die Zieladresse wird wie eingegeben verwendet. Die Regeln gelten für GET-/HEAD-Anfragen, die WHMCS erreichen.
-- Quelle
-- Ziel
-- Aktiviert
-- Deaktiviert
-- Standard: 14 Tage. Ab der letzten Änderung der veröffentlichten Seite oder ihrer aktiven Übersetzungen, sonst ab Erstellung. 0 bedeutet ohne Wartezeit. Automatische Regeln verwenden HTTP 301.
-- Adressen von Überschreibungsseiten werden automatisch zu den ersetzten Systemseiten weitergeleitet. Bei mehreren Zielen wird das erste konfigurierte verwendet. Diese Weiterleitungen funktionieren bei aktivierten Überschreibungen unabhängig vom Weiterleitungsmanager.
-- Geben Sie einen gültigen Pfad ab / oder eine vollständige HTTP(S)-URL ein. Die Quelle muss zu dieser Website gehören; #-Fragmente werden nicht unterstützt.

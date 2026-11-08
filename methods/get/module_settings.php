@@ -19,10 +19,16 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 
     } else {
         if( empty($method_action) ){
+            require_once ZM_PB_INCDIR . 'directory_health.php';
+            $directoryText = $GLOBALS['ZM_PB_ADMINLANG']->module_settings->directory_check ?? null;
+            $smarty->assign('directory_health_title', $directoryText->title ?? 'Possible file access issues');
+            $smarty->assign('directory_health_issues', zm_pb_directory_health_messages(
+                zm_pb_directory_health_check(), $directoryText
+            ));
             require_once ZM_PB_INCDIR . 'module_languages.php';
             $languageLists = zm_pb_module_languages_state(ZM_PB_ROOTDIR);
             $languageLabels = (array) ($GLOBALS['ZM_PB_ADMINLANG']->module->supported_langs->translate ?? []);
-            $defaultLanguage = zm_pb_module_languages_default(strtolower(ZM_PB_DEFLANG));
+            $defaultLanguage = strtolower(ZM_PB_DEFLANG);
             $languageText = $GLOBALS['ZM_PB_ADMINLANG']->module_settings->languages;
             $languageGroups = [];
             foreach (['enabled', 'disabled'] as $state) {

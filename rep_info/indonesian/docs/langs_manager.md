@@ -17,19 +17,3 @@ Ekspor kunci dan terjemahan bahasa terpilih sebelum mengedit banyak entri. Impor
 ## Berkas bahasa dan bahasa baku
 
 Berkas bahasa yang dinonaktifkan tetap bisa diedit. Berkas dasar bahasa Inggris dan bahasa baku WHMCS saat ini dilindungi. Untuk mengganti bahasa baku, aktifkan bahasa baru di modul, ubah di WHMCS, lalu nonaktifkan bahasa lama. Nama berkas lama dapat diperbaiki pada **Bagian**.
-
-## Petunjuk
-
-- Bagian
-- Bahasa
-- Terjemahan
-- Bahasa ini dinonaktifkan. Terjemahannya masih dapat diedit.
-- Bahasa referensi
-- Setiap tombol Simpan memperbarui satu terjemahan.
-- Belum diterjemahkan
-- Tampilkan asli
-- Tampilkan yang ditambahkan
-- Kunci terjemahan berikut tidak diimpor:
-- kunci tidak dikenal
-- kunci duplikat
-

@@ -24,7 +24,3 @@ Adres URL elementu strony jest wyliczany ponownie z aktualnego slugu i opublikow
 ## zm_pb_menus
 
 Dane są przechowywane w tabelach `zm_pb_menus`, `zm_pb_menu_items` i `zm_pb_menu_locations`. Utwórz lub napraw je w sekcji Baza danych modułu. Drzewo obsługuje maksymalnie 10 poziomów i 300 elementów; po usunięciu rodzica jego dzieci przesuwają się o poziom wyżej.
-
-## Instrukcje
-
-- Utwórz menu, dodaj strony lub własne odnośniki i uporządkuj elementy przeciąganiem.

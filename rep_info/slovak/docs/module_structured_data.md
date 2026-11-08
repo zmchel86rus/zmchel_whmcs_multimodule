@@ -15,14 +15,3 @@ Na verejnej stránke overte JSON-LD, kanonickú URL, jazyk a skutočne viditeľn
 ## Schema.org
 
 `SiteNavigationElement` používa naozaj viditeľné odkazy a názvy ponuky; obsah stránky môže pridať `WebPageElement` pre nadpisy, ktoré skutočne existujú. `FAQPage` zahŕňa len úplné otázky a odpovede viditeľné návštevníkovi: skryté bloky a bežné akordeóny sa vynechávajú. `BreadcrumbList` vzniká iba pri aspoň dvoch položkách. Údaje organizácie pochádzajú z WHMCS; kontaktné jazyky sú v `ContactPoint.availableLanguage` vo formáte BCP 47. Pri filtroch, stránkovaní, formulároch a vlastnom HTML sa typ Schema neodhaduje.
-
-## Pokyny
-
-- **Typ schémy** — Ak je táto možnosť zakázaná, pre stránku sa nevypisujú údaje Schema.org vo formáte JSON.
-- **Drobečková navigácia** — Názov stránky v drobečkovej navigácii
-- **Kanonická URL adresa**
-- **Nadpis stránky**
-- **Meta popis**
-- **Nadpis Open Graph** — Ak je pole prázdne, použije sa nadpis stránky.
-- **Popis Open Graph** — Ak je pole prázdne, použije sa meta popis.
-- **Obrázok Open Graph** — Ak je pole prázdne, použije sa obrázok stránky.

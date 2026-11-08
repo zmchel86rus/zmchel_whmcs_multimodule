@@ -31,10 +31,3 @@ Filtrlər səhifələmə ilə eyni siyahıya tətbiq olunur. Mətn axtarışı v
 ## Flex / Grid
 
 Görünüş üçün Flex və ya Grid seçin, enləri və sütunları cihazlara görə qurun. Filtri tətbiq və ya sıfırlamaq siyahını ilk səhifəyə qaytarır. Nəticə sayı seçicisini paneldən ayırıb köçürmək olar; təkrarlanan panel eyni siyahını idarə edir.
-
-## Təlimatlar
-
-- Səhifədəki element sayı: 10, 25, 50, 100, 250
-- 2-ci və sonrakı səhifələri indeksləmə
-- Keçidlərin formatı
-- Səhifədə standart element sayı

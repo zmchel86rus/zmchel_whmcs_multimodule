@@ -18,6 +18,7 @@ require_once ZM_PB_INCDIR . 'page_urls.php';
             $now = date('Y-m-d H:i:s');
 
             foreach ($meta_data as $lang => $data) {
+                zm_pb_adopt_page_language($page_id, $lang);
 
                 $canonical = Capsule::table('zm_pb_pages')
                     ->where('id', $page_id)

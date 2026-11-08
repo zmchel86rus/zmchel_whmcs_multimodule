@@ -1,10 +1,14 @@
 # Ókeypis fjölþætt eining fyrir WHMCS
 
-**Áður en einingin er notuð skaltu setja einstök salt-gildi í `module_init.php`: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` og `ZM_PB_NONCE_SALT`.** Einingin var þróuð og prófuð með **WHMCS 8.13.1–8.13.7**. Samhæfni við **PHP 7.4–8.5** hefur verið yfirfarin. Apache er studdur að fullu (100%); Nginx gæti þurft viðbótarstillingar fyrir tungumálaleiðir á forsíðu.
+**zmchel WHMCS Multimodule er ókeypis.** Í stjórnborði WHMCS geturðu stjórnað fjöltyngdum síðum með sjónrænum ritli, valmyndum, miðlasafni, SEO-lýsigögnum, XML-vefkortum, áframsendingum, rewrite-reglum og inn- og útflutningi. Sjá [leiðbeiningar](instruction.md) til að hefjast handa.
+
+## Fyrir fyrstu notkun
 
 **Áður en einingin er notuð skaltu opna Stillingar einingar → Studd tungumál og virkja þau tungumál sem þú þarft.**
 
-**zmchel WHMCS Multimodule er ókeypis.** Í stjórnborði WHMCS geturðu stjórnað fjöltyngdum síðum með sjónrænum ritli, valmyndum, miðlasafni, SEO-lýsigögnum, XML-vefkortum, áframsendingum, rewrite-reglum og inn- og útflutningi. Sjá [leiðbeiningar](instruction.md) til að hefjast handa.
+Við hverja virkjun býr einingin sjálfkrafa til ný saltgildi og skrifar þau í `module_init.php` (`ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT`, `ZM_PB_NONCE_SALT`). Gakktu úr skugga um að öll þrjú saltgildin séu útfyllt.
+
+Einingin var þróuð og prófuð með **WHMCS 8.13.0–9.1.0**. Samhæfni við **PHP 7.4–8.5** hefur verið yfirfarin. Apache er studdur að fullu (100%); Nginx gæti þurft viðbótarstillingar fyrir tungumálaleiðir á forsíðu.
 
 ## Framtíðaráform
 
@@ -12,9 +16,11 @@
 - Skipta stórri kóðaeiningu upp í samstarfandi hluta.
 - Búa til réttindastýringu fyrir stjórnendur og fjölga sjálfgefnum tungumálum í `supported_langs.php`.
 - Búa til kóðaritil fyrir `.tpl`-skrár einingarinnar og notendaþemu WHMCS, en ekki stjórnendaþemað.
-- Þróa tungumálastýringu fyrir skrár einingarinnar og WHMCS og bæta miðlastýringu.
+- ~~Þróa tungumálastýringu fyrir skrár einingarinnar og WHMCS.~~
+- Bæta miðlastýringu.
 - Búa til fullbúna, betur fínstillta SEO-stýringu með innblæstri frá Yoast SEO.
-- Bæta við fjöltyngdum vefkortum og HTML-vefkortssíðu.
+- ~~Bæta við fjöltyngdum vefkortum og HTML-vefkortssíðu.~~
+- Bæta við HTML-vefkortssíðu.
 - Bæta notkunartölfræði við síðustýringu.
 - Búa til stýringu fyrir smækkun JS, CSS og HTML, skyndiminni fyrir heilar síður og fínstillingu taflna einingarinnar og WHMCS.
 - Búa til traust uppfærslukerfi fyrir eininguna.

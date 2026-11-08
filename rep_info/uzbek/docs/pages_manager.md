@@ -13,14 +13,3 @@ Ro‘yxatni nom, kirish, tur, holat yoki til bo‘yicha saralang. **Tashrif buyu
 ## WHMCS
 
 WHMCS sahifasini almashtirish uchun mavjud tizim manzili va modulning e'lon qilingan sahifasini tanlang. To‘liq almashtirishni, odatdagi kontent oldiga yoki keyin qo‘shishni yoxud faqat meta/SEO ni tanlang. Saqlang va asl WHMCS URL manzilini mehmon hamda tizimga kirgan mijoz sifatida sinang.
-
-## Yoʻriqnoma
-
-- Sahifa qoʻshish
-- **Sahifa nomi** — Ichki sahifa nomi
-- **Sahifa slugi** — Faqat lotin harflari, defislar va raqamlarga ruxsat etiladi.
-- **Kirish turi** — Tizimga kirgan foydalanuvchilar: sahifaga faqat tizimga kirganlar kira oladi; Mehmonlar: faqat mehmonlar kira oladi; Aralash: sahifaga hamma kira oladi, koʻrinish esa sahifa ichidagi bloklar orqali boshqariladi.
-- **Sahifa turi** — Tizim sahifalari sayt xaritasiga kiritilmaydi va oddiy foydalanuvchilarga ochiq emas.
-- **Sahifa tillari** — Tanlovingizdan qatʼi nazar, standart til doimo qoʻshiladi.
-- Toʻliq almashtirish koʻrsatiladigan kontent va metamaʼlumotlarni oʻrnini bosadi. Oldiga qoʻshish kontentni mavjud sahifa kontentidan oldin joylashtiradi. Orqasiga qoʻshish kontentni mavjud sahifa kontentidan keyin joylashtiradi. Faqat metamaʼlumotlar/SEO sahifa metamaʼlumotlarini almashtiradi.
-- Sahifalar roʻyxatida navigatsiya

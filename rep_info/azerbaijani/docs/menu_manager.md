@@ -24,17 +24,3 @@ Səhifə bəndlərinin URL-ləri cari slug və dərc edilmiş tərcümə əsası
 ## zm_pb_menus
 
 Məlumatlar `zm_pb_menus`, `zm_pb_menu_items` və `zm_pb_menu_locations` cədvəllərində saxlanılır. Cədvəlləri Modul verilənlər bazası bölməsində yaradın və ya düzəldin. Menyu ağacı ən çox 10 səviyyə və 300 bənd dəstəkləyir; ana bənd silinərsə, alt bəndlər bir səviyyə yuxarı keçir.
-
-## Təlimatlar
-
-- Menyu yarat
-- Səhifələr, yazılar və ya xüsusi keçidlər əlavə edin.
-- Sıralamanı dəyişmək üçün elementləri sürükləyin. İyerarxiyanı əsas element seçimi və ya köçürmə düymələri ilə tənzimləyin.
-- Cari səhifənin dilindən istifadə et
-- Daxil edilmiş URL-ni dəyişmədən istifadə et
-- Digər dillərdə etiketlər
-- Kimlərə görünür
-- Cihazlar
-- Hər yerləşmə sahəsində yalnız bir menyu ola bilər. Sahəni seçmək onu digər menyudan buraya təyin edir.
-- Üst səviyyəli elementlər sütunlara, daxili elementlər isə keçidlərə çevrilir. Keçidsiz başlıq üçün URL olaraq # istifadə edin.
-- Menyu cədvəlləri hələ yaradılmayıb. Onları Modulun verilənlər bazası bölməsində əlavə edin.

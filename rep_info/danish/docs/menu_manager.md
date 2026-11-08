@@ -24,7 +24,3 @@ URL'en for et sidepunkt beregnes på ny ud fra den aktuelle slug og den publicer
 ## zm_pb_menus
 
 Data ligger i tabellerne `zm_pb_menus`, `zm_pb_menu_items` og `zm_pb_menu_locations`. Opret eller reparer tabellerne under Modulets database. Træet understøtter højst 10 niveauer og 300 punkter; når et overordnet punkt slettes, flyttes dets underpunkter ét niveau op.
-
-## Vejledning
-
-- Opret en menu, tilføj sider eller egne links, og sorter punkterne ved at trække dem.

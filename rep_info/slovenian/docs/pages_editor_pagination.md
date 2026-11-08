@@ -35,9 +35,3 @@ Filtri delujejo na istem seznamu kot straničenje. Iskanje besedila lahko prever
 ## Flex / Grid
 
 Izberite Flex ali Grid ter nastavite širine in stolpce glede na napravo. Uporaba ali brisanje filtra vrne seznam na prvo stran. Izbirnik števila rezultatov lahko premaknete brez izgube povezave; podvojena plošča upravlja isti seznam.
-
-## Navodila
-
-- Ne indeksiraj strani od druge naprej
-- Oblika povezav
-- Privzeto število elementov na stran

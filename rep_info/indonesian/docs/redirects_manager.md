@@ -13,10 +13,3 @@ Masukkan jalur yang valid yang diawali / atau URL HTTP(S) lengkap. Sumber harus 
 Aturan mendukung kode HTTP `301`, `302`, `303`, `307`, `308` dan hanya berlaku untuk permintaan `GET`/`HEAD` yang mencapai WHMCS. Sumber dicocokkan persis dengan jalur dan, jika ditentukan, parameter kueri; parameter tujuan menggantikan parameter lama. Pengelola menyimpan aturan di `zm_pb_redirects`, tetapi tidak membuat tabel saat ada permintaan: gunakan **Basis data modul**. Kolom URL yang ada dibatasi 128 byte.
 
 Aturan manual didahulukan dari aturan otomatis. Perubahan slug halaman yang diterbitkan dapat membuat pengalihan `301` otomatis untuk setiap bahasa aktif setelah jeda yang ditetapkan; menerbitkan draf tidak membuatnya. Perubahan nama berikutnya memperbarui tujuan aturan lama. Aturan dengan parameter kueri didahulukan dari aturan yang hanya mencocokkan jalur. URL sumber harus milik situs ini dan tidak boleh memiliki fragmen `#`.
-
-## Petunjuk
-
-- Sumber
-- Tujuan
-- Aktif
-- Nonaktif

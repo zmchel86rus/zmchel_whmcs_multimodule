@@ -1,10 +1,22 @@
 # Panduan zmchel WHMCS Multimodule
 
-**Sebelum menggunakan modul, jana salt yang unik dalam `module_init.php`: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` dan `ZM_PB_NONCE_SALT`.** Modul ini dibangunkan dan diuji pada **WHMCS 8.13.1–8.13.7**. Keserasian PHP diperiksa untuk **7.4–8.5**. Apache disokong sepenuhnya (100%); Nginx boleh digunakan, tetapi penghalaan bahasa di laman utama mungkin memerlukan tetapan tambahan.
+**zmchel WHMCS Multimodule ialah modul percuma.** Ia membolehkan anda mengurus halaman berbilang bahasa melalui penyunting visual, menu, pustaka media, metadata SEO, peta laman XML, pengalihan, peraturan rewrite serta import dan eksport dari pentadbiran WHMCS.
+
+## Sebelum penggunaan pertama
 
 **Sebelum penggunaan pertama, buka Tetapan modul → Bahasa yang disokong dan aktifkan bahasa yang anda perlukan.**
 
-**zmchel WHMCS Multimodule ialah modul percuma.** Ia membolehkan anda mengurus halaman berbilang bahasa melalui penyunting visual, menu, pustaka media, metadata SEO, peta laman XML, pengalihan, peraturan rewrite serta import dan eksport dari pentadbiran WHMCS.
+Pada setiap pengaktifan, modul menjana nilai salt baharu secara automatik dan menulisnya ke dalam `module_init.php` (`ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT`, `ZM_PB_NONCE_SALT`). Pastikan ketiga-tiga nilai salt telah diisi.
+
+## Keserasian dan fungsi yang diuji
+
+- **PHP:** 7.4, 8.0, 8.1, 8.2, 8.3, 8.4, 8.5
+- **WHMCS:** 8.13.0–9.1.0
+- **Smarty:** 3, 4
+
+## Keserasian pelayan web
+
+Apache disokong sepenuhnya (100%); Nginx boleh digunakan, tetapi penghalaan bahasa di laman utama mungkin memerlukan tetapan tambahan.
 
 ## Tetapan modul
 

@@ -7,18 +7,3 @@ Klikk **Last opp mediefil**, velg et bilde, en lydfil, en video eller en PDF, og
 ## Vise bilder
 
 Mediebehandleren lager flere bildestørrelser. Du kan kjøre **Optimaliser bilde** for et opplastet bilde og deretter kontrollere kvaliteten, særlig hvis bildet inneholder tekst. Hvis de responsive variantene ikke passer, slår du av `srcset` i den aktuelle blokken. Kontroller den endelige URL-en og den alternative teksten på den offentlige siden.
-
-## Instruksjoner
-
-- Last opp mediefil
-- **Navn (internt)**
-- **Tittel (hvis aktuelt)**
-- **Beskrivelse (hvis aktuelt)**
-- **Alt-attributt**
-- Søk etter navn
-- Filtype
-- Last inn flere
-- Optimaliser bilde
-- Optimalisering av originalbildet og variantene er fullført.
-- Velg mediefil
-

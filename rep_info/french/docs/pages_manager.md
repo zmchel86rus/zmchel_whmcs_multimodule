@@ -15,14 +15,3 @@ Filtrez la liste par nom, accès, type, état ou langue. **Visiter** ouvre l'URL
 ## WHMCS
 
 Pour remplacer une page WHMCS, choisissez l'adresse système existante et une page publiée du module. Sélectionnez un remplacement complet, un ajout avant ou après le contenu habituel, ou seulement les données meta/SEO. Enregistrez et testez l'URL WHMCS d'origine en visiteur puis en client connecté.
-
-## Instructions
-
-- Ajouter une page
-- **Nom de la page** — Nom interne de la page
-- **Slug de la page** — Seules les lettres latines, les traits d’union et les chiffres sont autorisés.
-- **Type d’accès** — Utilisateurs connectés : seuls les utilisateurs connectés peuvent accéder à la page ; Visiteurs : seuls les visiteurs non connectés peuvent y accéder ; Mixte : tous peuvent y accéder, la visibilité étant contrôlée par les blocs de la page.
-- **Type de page** — Les pages système sont exclues du sitemap et ne sont pas accessibles aux utilisateurs ordinaires.
-- **Langues de la page** — La langue par défaut est toujours incluse, quelle que soit votre sélection.
-- Le remplacement complet remplace le contenu affiché et les métadonnées.\ « Ajouter avant » place le contenu avant le contenu existant de la page.\ « Ajouter après » place le contenu après le contenu existant de la page.\ « Métadonnées/SEO uniquement » remplace les métadonnées de la page.
-- Navigation dans la liste des pages

@@ -15,14 +15,3 @@ Listeyi ad, erişim, tür, durum veya dile göre süzün. **Ziyaret et** herkese
 ## WHMCS
 
 Bir WHMCS sayfasını değiştirmek için mevcut sistem adresini ve modülün yayınlanmış sayfasını seçin. Tam değiştirme, normal içeriğin önüne veya arkasına ekleme ya da yalnızca meta/SEO seçin. Kaydedin ve özgün WHMCS URL'sini ziyaretçi ve oturum açmış müşteri olarak sınayın.
-
-## Talimatlar
-
-- Sayfa ekle
-- **Sayfa adı** — Dahili sayfa adı
-- **Sayfa slug'ı** — Yalnızca Latin harfleri, kısa çizgiler ve rakamlara izin verilir.
-- **Erişim türü** — Oturum açmış kullanıcılar: sayfaya yalnızca oturum açmış kullanıcılar erişebilir; Misafirler: yalnızca misafirler erişebilir; Karma: sayfaya herkes erişebilir, görünürlük sayfa içindeki bloklarla kontrol edilir.
-- **Sayfa türü** — Sistem sayfaları site haritasına dahil edilmez ve normal kullanıcılara açık değildir.
-- **Sayfa dilleri** — Seçiminizden bağımsız olarak varsayılan dil her zaman dahil edilir.
-- Tam geçersiz kılma, görüntülenen içeriği ve meta verileri değiştirir.\ Öncesine ekle, içeriği mevcut sayfa içeriğinden önce yerleştirir.\ Sonrasına ekle, içeriği mevcut sayfa içeriğinden sonra yerleştirir.\ Yalnızca meta veri/SEO, sayfanın meta verilerini değiştirir.
-- Sayfa listesinde gezinme

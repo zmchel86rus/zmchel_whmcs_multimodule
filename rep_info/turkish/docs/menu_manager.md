@@ -24,18 +24,3 @@ Sayfa öğesinin URL'si güncel slug ve yayımlanmış çeviriye göre yeniden o
 ## zm_pb_menus
 
 Veriler `zm_pb_menus`, `zm_pb_menu_items` ve `zm_pb_menu_locations` tablolarında tutulur. Tabloları Modül Veritabanı bölümünden oluşturun veya onarın. Menü ağacı en fazla 10 düzey ve 300 öğe destekler; üst öğe silinirse alt öğeleri bir düzey yukarı taşınır.
-
-## Talimatlar
-
-- Menü oluştur
-- Sayfa, yazı veya özel bağlantı ekleyin.
-- Sıralarını değiştirmek için öğeleri sürükleyin. Üst öğe seçicisi veya taşıma düğmeleriyle iç içe yerleşimi ayarlayın.
-- Geçerli sayfanın dilini kullan
-- Girilen URL'yi değiştirmeden kullan
-- Diğer dillerdeki etiketler
-- Görünürlük
-- Cihazlar
-- Her konuma yalnızca bir menü atanabilir. Bir konum seçildiğinde bu konumun başka bir menüdeki ataması buraya taşınır.
-- Üst düzey öğeler sütunlara, iç içe öğeler bağlantılara dönüşür. Bağlantısız bir başlık için URL olarak # kullanın.
-- Menü tabloları henüz oluşturulmadı. Bunları Modül Veritabanı bölümünde ekleyin.
-

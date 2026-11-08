@@ -1,20 +1,36 @@
+[![Release](https://img.shields.io/badge/Release-v1.1.1-brightgreen.svg?style=for-the-badge)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/releases/latest)
 [![License: GPL v2](https://img.shields.io/badge/License-GPL_v2-lightgreen.svg?style=for-the-badge)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
-[![WHMCS](https://img.shields.io/badge/WHMCS-8.0%2B-blue.svg?style=for-the-badge)](https://www.whmcs.com/)
+[![WHMCS](https://img.shields.io/badge/WHMCS-8.13%2B-blue.svg?style=for-the-badge)](https://www.whmcs.com/)
 [![PHP](https://img.shields.io/badge/PHP-7.4%2B-purple.svg?style=for-the-badge)](https://www.php.net/)
+[![SMARTY](https://img.shields.io/badge/SMARTY-3%2B-yellow.svg?style=for-the-badge)](https://www.smarty.net/)
+
 
 # ZMChel WHMCS Multimodule — free page builder and site tools for WHMCS
 
 **ZMChel WHMCS Multimodule** is a free add-on for WHMCS. It combines a visual page builder with multilingual pages, menus, a media library, SEO fields, XML sitemaps, redirects and rewrite management. It is intended for site owners who want to manage content from the WHMCS admin area.
 
-**Before use:** generate unique salts and put them in `module_init.php` (`ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT`, `ZM_PB_NONCE_SALT`). The module was developed and tested on **WHMCS 8.13.1–8.13.7** and has **full Apache support (100%)**. It can also work with Nginx, but language routing on the home page may need additional configuration and testing.
+## Before first use / Перед первым использованием
 
-**PHP compatibility checked:** 7.4, 8.0, 8.1, 8.2, 8.3, 8.4, and 8.5. All PHP files passed syntax checks on each version; standalone tests were also run.
+Enable the languages you need in **Module settings → Supported languages**. On every activation, the module generates new salts in `module_init.php` (`ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT`, `ZM_PB_NONCE_SALT`). Check that all three salts have been populated.
+
+**Tested Compatibility & Functionality:**  
+All PHP files passed syntax checks on each listed PHP version; standalone tests were also performed.  
+Module functionality was tested and verified with the listed PHP, WHMCS, and Smarty versions.
+
+[![PHP](https://img.shields.io/badge/PHP-7.4%E2%80%938.5-purple.svg?style=for-the-badge)](https://www.php.net/)
+[![WHMCS](https://img.shields.io/badge/WHMCS-8.13.0%E2%80%939.1.0-blue.svg?style=for-the-badge)](https://www.whmcs.com/)
+[![SMARTY](https://img.shields.io/badge/SMARTY-3%2C%204-yellow.svg?style=for-the-badge)](https://www.smarty.net/)
+
+**Web Server Compatibility:**
+
+[![Apache](https://img.shields.io/badge/Apache-Fully%20Supported-green.svg?style=for-the-badge)](https://httpd.apache.org/)
+[![Nginx](https://img.shields.io/badge/Nginx-Additional%20Config-yellow.svg?style=for-the-badge)](https://nginx.org/)
+
+Apache is fully supported. Nginx can also be used, but home page language routing may require additional configuration and testing.
 
 **Before first use:** open Module settings → Supported languages and enable the languages you need. On activation, the module enables the WHMCS default language automatically; all other languages start disabled.
 
-**Language Manager (in development):** In the WHMCS admin area, select a language section and edit translations one row at a time, or export and import existing keys as JSON. New language files use the reference until translated. The manager can enable or disable language files and correct legacy filenames. To change the default language, enable the replacement in Module settings, change the WHMCS default, then disable the old language.
-
-**Activation report:** On activation, the module sends the WHMCS `SystemURL` domain and `module_start_using: true`. The receiver also records the connecting IP address. The report is encrypted before transmission and sent over HTTPS. Delivery is best effort and does not affect module activation. This report is solely to let the author know that someone is using the module. The module does not display any copyright notices or information about its use on your website.
+**Activation report:** On activation, the module sends the WHMCS `SystemURL` domain and `module_start_using: true` to `https://zmchel-activation.ackirkin.workers.dev/`. The receiver also records the connecting IP address. The report is encrypted before transmission and sent over HTTPS. Delivery is best effort and does not affect module activation. This report is solely to let the author know that someone is using the module. The module does not display any copyright notices or information about its use on your website.
 
 ## Instructions / Инструкции
 

@@ -7,17 +7,3 @@ Klicken Sie auf **Mediendatei hochladen**, wählen Sie ein Bild, eine Audio- ode
 ## Bilder ausgeben
 
 Der Medienmanager erzeugt mehrere Bildgrößen. Für ein hochgeladenes Bild können Sie **Bild optimieren** ausführen und danach die Qualität prüfen, besonders bei Bildern mit Text. Wenn die responsiven Varianten ungeeignet sind, schalten Sie `srcset` im betreffenden Block aus. Prüfen Sie die endgültige URL und den Alternativtext auf der öffentlichen Seite.
-
-## Anleitung
-
-- Mediendatei hochladen
-- **Name (intern)**
-- **Titel (falls zutreffend)**
-- **Beschreibung (falls zutreffend)**
-- **Alt-Attribut**
-- Nach Namen suchen
-- Dateityp
-- Mehr laden
-- Bild optimieren
-- Die Optimierung des Originalbilds und seiner Varianten ist abgeschlossen.
-- Mediendatei auswählen

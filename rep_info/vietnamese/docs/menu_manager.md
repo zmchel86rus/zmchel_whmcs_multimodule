@@ -24,17 +24,3 @@ URL của mục trang được tính lại từ slug hiện tại và bản dị
 ## zm_pb_menus
 
 Dữ liệu nằm trong các bảng `zm_pb_menus`, `zm_pb_menu_items` và `zm_pb_menu_locations`. Hãy tạo hoặc sửa các bảng trong mục Cơ sở dữ liệu của mô-đun. Cây menu hỗ trợ tối đa 10 cấp và 300 mục; khi xóa mục cha, các mục con được đưa lên một cấp.
-
-## Hướng dẫn
-
-- Tạo menu
-- Thêm trang, bài viết hoặc liên kết tùy chỉnh.
-- Kéo các mục để thay đổi thứ tự. Thiết lập cấp lồng nhau bằng bộ chọn mục cha hoặc các nút di chuyển.
-- Sử dụng ngôn ngữ của trang hiện tại
-- Giữ nguyên URL đã nhập
-- Nhãn ở các ngôn ngữ khác
-- Hiển thị cho
-- Thiết bị
-- Mỗi vị trí chỉ có thể được gán cho một menu. Khi chọn một vị trí, vị trí đó sẽ được chuyển từ menu khác sang menu này.
-- Các mục cấp cao nhất sẽ trở thành cột và các mục lồng nhau sẽ trở thành liên kết. Sử dụng URL # để tạo tiêu đề không có liên kết.
-- Các bảng menu chưa được tạo. Hãy thêm chúng trong phần Cơ sở dữ liệu mô-đun.

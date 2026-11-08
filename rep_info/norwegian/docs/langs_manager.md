@@ -17,19 +17,3 @@ Eksporter nøkler og oversettelser for det valgte språket før større endringe
 ## Språkfiler og standardspråk
 
 En deaktivert språkfil kan fortsatt redigeres. Den engelske basisfilen og gjeldende standardspråk i WHMCS er beskyttet. For å endre standardspråk aktiverer du det nye i modulen først, endrer det i WHMCS og deaktiverer det gamle etterpå. Gamle filnavn kan rettes under **Seksjoner**.
-
-## Instruksjoner
-
-- Seksjoner
-- Språk
-- Oversettelser
-- Dette språket er deaktivert, men oversettelsene kan fortsatt redigeres.
-- Referansespråk
-- Hver Lagre-knapp lagrer bare én oversettelse.
-- Ikke oversatt
-- Vis opprinnelige
-- Vis tilføyde
-- Følgende oversettelsesnøkler ble ikke importert:
-- ukjent nøkkel
-- duplikatnøkkel
-

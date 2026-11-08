@@ -17,19 +17,3 @@ Xuất khóa và bản dịch của ngôn ngữ đã chọn trước khi chỉnh
 ## Tệp ngôn ngữ và ngôn ngữ mặc định
 
 Tệp ngôn ngữ đã tắt vẫn có thể chỉnh sửa. Tệp tiếng Anh gốc và ngôn ngữ mặc định hiện tại của WHMCS được bảo vệ. Muốn đổi ngôn ngữ mặc định, hãy bật ngôn ngữ mới trong mô-đun, đổi nó trong WHMCS rồi mới tắt ngôn ngữ cũ. Sửa tên tệp cũ tại **Mục**.
-
-## Hướng dẫn
-
-- Các mục
-- Ngôn ngữ
-- Bản dịch
-- Ngôn ngữ này đã bị tắt. Bạn vẫn có thể chỉnh sửa bản dịch của nó.
-- Ngôn ngữ tham chiếu
-- Mỗi nút Lưu cập nhật một bản dịch.
-- Chưa dịch
-- Hiển thị bản gốc
-- Hiển thị mục đã thêm
-- Các khóa bản dịch sau chưa được nhập:
-- khóa không xác định
-- khóa trùng lặp
-

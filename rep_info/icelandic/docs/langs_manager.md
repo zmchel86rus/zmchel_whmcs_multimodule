@@ -17,19 +17,3 @@ Flyttu út lykla og þýðingar valins tungumáls áður en þú breytir mörgum
 ## Tungumálaskrár og sjálfgefið tungumál
 
 Hægt er að breyta óvirkri tungumálaskrá. Grunnskrá ensku og núverandi sjálfgefið tungumál WHMCS eru varin. Til að skipta um sjálfgefið tungumál skaltu fyrst virkja það nýja í einingunni, breyta því í WHMCS og síðan slökkva á því gamla. Eldri skráarnöfn má leiðrétta í **Hlutum**.
-
-## Leiðbeiningar
-
-- Hlutar
-- Tungumál
-- Þýðingar
-- Þetta tungumál er óvirkt. Enn er hægt að breyta þýðingum þess.
-- Viðmiðunartungumál
-- Hver Vista-hnappur uppfærir eina þýðingu.
-- Óþýtt
-- Sýna frumtexta
-- Sýna viðbætt
-- Eftirfarandi þýðingarlyklar voru ekki fluttir inn:
-- óþekktur lykill
-- tvítekinn lykill
-

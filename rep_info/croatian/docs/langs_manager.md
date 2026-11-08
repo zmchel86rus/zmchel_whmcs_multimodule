@@ -17,19 +17,3 @@ Prije skupnog uređivanja izvezite ključeve i prijevode odabranog jezika. Uvoz 
 ## Jezične datoteke i zadani jezik
 
 Onemogućenu datoteku možete i dalje uređivati. Osnovni engleski i trenutačni zadani jezik WHMCS-a zaštićeni su. Za promjenu zadanog jezika prvo uključite novi u postavkama modula, promijenite ga u WHMCS-u, a tek zatim isključite stari. Stare nazive datoteka ispravite u **Odjeljcima**.
-
-## Upute
-
-- Odjeljci
-- Jezici
-- Prijevodi
-- Ovaj je jezik isključen, ali njegove prijevode i dalje možete uređivati.
-- Referentni jezik
-- Svaki gumb Spremi sprema samo jedan prijevod.
-- Bez prijevoda
-- Prikaži izvorne
-- Prikaži dodane
-- Sljedeći ključevi prijevoda nisu uvezeni:
-- nepoznat ključ
-- duplicirani ključ
-

@@ -7,18 +7,3 @@ Cliquez sur **Téléverser un fichier multimédia**, choisissez une image, un fi
 ## Affichage des images
 
 Le gestionnaire crée plusieurs tailles d'image. Vous pouvez lancer **Optimiser l'image** après le téléversement, puis vérifier le rendu, surtout si l'image contient du texte. Si les variantes adaptatives ne conviennent pas, désactivez `srcset` dans ce bloc. Vérifiez l'URL finale et le texte alternatif sur la page publique.
-
-## Instructions
-
-- Téléverser un fichier multimédia
-- **Nom (interne)**
-- **Titre (le cas échéant)**
-- **Description (le cas échéant)**
-- **Attribut alt**
-- Rechercher par nom
-- Type de fichier
-- Charger plus
-- Optimiser l’image
-- L’optimisation de l’image d’origine et de ses variantes est terminée.
-- Sélectionner un fichier multimédia
-

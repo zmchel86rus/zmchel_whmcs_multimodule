@@ -17,19 +17,3 @@ Ommaviy tahrirdan oldin tanlangan til kalitlari va tarjimalarini eksport qiling.
 ## Til fayllari va standart til
 
 O‘chirilgan til faylini ham tahrirlash mumkin. Asosiy ingliz fayli va WHMCSning joriy standart tili himoyalangan. Standart tilni almashtirish uchun yangisini avval modulda yoqing, keyin WHMCSda o‘zgartiring va shundan so‘ng eskisini o‘chiring. Eski fayl nomlarini **Boʻlimlar** bo‘limida tuzatish mumkin.
-
-## Yoʻriqnoma
-
-- Boʻlimlar
-- Tillar
-- Tarjimalar
-- Bu til oʻchirilgan. Uning tarjimalarini baribir tahrirlash mumkin.
-- Namuna til
-- Har bir «Saqlash» tugmasi bitta tarjimani yangilaydi.
-- Tarjima qilinmagan
-- Aslini koʻrsatish
-- Qoʻshilganlarini koʻrsatish
-- Quyidagi tarjima kalitlari import qilinmadi:
-- nomaʼlum kalit
-- takroriy kalit
-

@@ -17,19 +17,3 @@ Eksport kunci dan terjemahan bahasa pilihan sebelum menyunting banyak entri. Imp
 ## Fail bahasa dan bahasa lalai
 
 Fail bahasa yang dinyahaktifkan masih boleh disunting. Fail asas bahasa Inggeris dan bahasa lalai WHMCS semasa dilindungi. Untuk menukar bahasa lalai, aktifkan bahasa baharu dalam modul, tukar bahasa dalam WHMCS, kemudian nyahaktifkan bahasa lama. Nama fail lama boleh dibetulkan di **Bahagian**.
-
-## Arahan
-
-- Bahagian
-- Bahasa
-- Terjemahan
-- Bahasa ini dinyahaktifkan. Terjemahannya masih boleh disunting.
-- Bahasa rujukan
-- Setiap butang Simpan mengemas kini satu terjemahan.
-- Belum diterjemah
-- Paparkan asal
-- Paparkan yang ditambah
-- Kunci terjemahan berikut tidak diimport:
-- kunci tidak dikenali
-- kunci pendua
-

@@ -13,10 +13,3 @@ Geçersiz kılınan sayfa adresleri, yerini aldıkları sistem sayfalarına otom
 Kurallar HTTP `301`, `302`, `303`, `307`, `308` kodlarını destekler ve yalnızca WHMCS'ye ulaşan `GET`/`HEAD` isteklerine uygulanır. Kaynak yol ve belirtilmişse sorgu parametreleriyle tam eşleşir; hedefin parametreleri eskilerini değiştirir. Yönetici kuralları `zm_pb_redirects` tablosunda saklar, ancak istek sırasında tablo oluşturmaz: **Modül veritabanı** bölümünü kullanın. Mevcut URL sütunları 128 baytla sınırlıdır.
 
 Elle oluşturulan kurallar otomatik kurallardan önceliklidir. Yayınlanmış bir sayfanın slug'ı değişirse, belirlenen bekleme süresinden sonra her etkin dil için otomatik `301` oluşturulabilir; taslağı yayınlamak bunu yapmaz. Sonraki ad değişiklikleri eski hedefleri günceller. Sorgu parametreleri içeren kural yalnızca yol için olan kuraldan önce uygulanır. Kaynak URL bu siteye ait olmalı ve `#` parçası içermemelidir.
-
-## Talimatlar
-
-- Kaynak
-- Hedef
-- Etkin
-- Devre dışı

@@ -23,14 +23,3 @@ Katalog yalnızca bir sayfada gözlenen değişkenler için kılavuzdur: onları
     <span>{$item.title|escape}</span>
 {/foreach}
 ```
-
-## Talimatlar
-
-- **Smarty değişkenlerini topla** — Smarty değişkenlerinin toplanmasını etkinleştirin veya devre dışı bırakın.
-- **Toplanan Smarty değişkenlerini kullan** — Toplanan Smarty değişkenlerinin sayfa düzenleyicisinde kullanılmasını etkinleştirin veya devre dışı bırakın.
-- Smarty (PHP) değişkeni
-- Smarty: PHP, nesne metotları, statik çağrılar ve nofilter yasaktır.
-- Smarty şablonu çok büyük.
-- Smarty
-- Smarty düzenleyicisi
-

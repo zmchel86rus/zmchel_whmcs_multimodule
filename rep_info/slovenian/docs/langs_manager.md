@@ -21,18 +21,3 @@ Na zavihku **Prevodi** stolpec **Izvirnik** prikazuje besedilo iz izvorne datote
 Jezikovno datoteko lahko izključite in znova vključite; urejanje je mogoče tudi, ko je izključena. Osnovna angleška datoteka in trenutni privzeti jezik WHMCS sta zaščitena. Za jezike odjemalskega in skrbniškega dela WHMCS, dodane z upraviteljem, se hranijo kopije za obnovitev po posodobitvi. Če je na zavihku **Razdelki** na voljo popravek imena datoteke, preverite novo ime in kliknite **Popravi**; popravek zajame najdene razdelke.
 
 Ko spreminjate privzeti jezik, najprej vključite novega v nastavitvah modula, nato spremenite privzeti jezik v WHMCS in šele potem izključite starega. Preverite besedila v skrbniškem in odjemalskem delu.
-
-## Navodila
-
-- Razdelki
-- Jeziki
-- Prevodi
-- Ta jezik je onemogočen, vendar je njegove prevode še vedno mogoče urejati.
-- Referenčni jezik
-- Vsak gumb Shrani shrani samo en prevod.
-- Neprevedeno
-- Prikaži izvirne
-- Prikaži dodane
-- Naslednji prevajalski ključi niso bili uvoženi:
-- neznan ključ
-- podvojen ključ

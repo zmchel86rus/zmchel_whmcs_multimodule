@@ -23,14 +23,3 @@ Katalog faqat sahifada ko‘rilgan o‘zgaruvchilar haqida yo‘riq beradi: ular
     <span>{$item.title|escape}</span>
 {/foreach}
 ```
-
-## Yoʻriqnoma
-
-- **Smarty oʻzgaruvchilarini yigʻish** — Smarty oʻzgaruvchilarini yigʻishni yoqish yoki oʻchirish.
-- **Yigʻilgan Smarty oʻzgaruvchilaridan foydalanish** — Sahifa muharririda yigʻilgan Smarty oʻzgaruvchilaridan foydalanishni yoqish yoki oʻchirish.
-- Smarty (PHP) oʻzgaruvchisi
-- Smarty: PHP, obyekt metodlari, statik chaqiruvlar va nofilter taqiqlangan.
-- Smarty shabloni juda katta.
-- Smarty
-- Smarty muharriri
-

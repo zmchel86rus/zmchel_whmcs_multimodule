@@ -3,6 +3,7 @@ if (!defined('ZM_PB_VER')) die('Direct access not allowed');
 use Illuminate\Database\Capsule\Manager as Capsule;
 require_once ZM_PB_INCDIR . 'menu_manager.php';
 require_once ZM_PB_INCDIR . 'route_guard.php';
+require_once __DIR__ . '/../inc/language_aliases.php';
 
 class ZM_PB_Menu
 {
@@ -32,7 +33,12 @@ class ZM_PB_Menu
         foreach ($query->get() as $page) self::$data['pages'][$page->id] = $page;
         foreach (Capsule::table('zm_pb_pages_settings')->whereIn('page_id', array_keys(self::$data['pages']))
             ->where('lang_active', true)->get(['page_id', 'lang', 'settings']) as $settings) {
-            self::$data['settings'][$settings->page_id][$settings->lang] = $settings;
+            $storedLanguage = $settings->lang;
+            $language = zm_pb_lm_supported_key($storedLanguage);
+            if (!isset(ZM_PB_LANGS[$language])) continue;
+            $settings->lang = $language;
+            if (!isset(self::$data['settings'][$settings->page_id][$language]) || $storedLanguage === $language)
+                self::$data['settings'][$settings->page_id][$language] = $settings;
         }
         return self::$data;
     }
@@ -118,7 +124,10 @@ class ZM_PB_Menu
                 $visibility = $item['visibility'] ?? 'mixed';
                 if (($visibility === 'auth' && !$loggedIn) || ($visibility === 'noauth' && $loggedIn)) continue;
                 $labels = is_string($item['labels'] ?? null) ? json_decode($item['labels'], true) : ($item['labels'] ?? []);
-                $label = $labels[$language] ?? ($item['label'] ?? '');
+                $label = $item['label'] ?? '';
+                foreach (zm_pb_lm_language_keys($language) as $key) {
+                    if (isset($labels[$key])) { $label = $labels[$key]; break; }
+                }
                 if (($item['type'] ?? '') === 'page') {
                     $page = $pages[$item['page_id']] ?? null;
                     if (!$page || $page->status !== 'publish' || ($page->auth_type === 'auth' && !$loggedIn) || ($page->auth_type === 'noauth' && $loggedIn)) continue;

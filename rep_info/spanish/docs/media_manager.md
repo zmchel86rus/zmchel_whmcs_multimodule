@@ -7,17 +7,3 @@ Haz clic en **Subir archivo multimedia**, elige una imagen, un audio, un vídeo 
 ## Mostrar imágenes
 
 El gestor crea varios tamaños de cada imagen. Puedes ejecutar **Optimizar imagen** después de subirla y comprobar la calidad, especialmente si contiene texto. Si las variantes adaptativas no sirven para esa imagen, desactiva `srcset` en el bloque correspondiente. Comprueba la URL final y el texto alternativo en la página pública.
-
-## Instrucciones
-
-- Subir archivo multimedia
-- **Nombre (interno)**
-- **Título (si corresponde)**
-- **Descripción (si corresponde)**
-- **Atributo Alt**
-- Buscar por nombre
-- Tipo de archivo
-- Cargar más
-- Optimizar imagen
-- Se completó la optimización de la imagen original y sus variantes.
-- Seleccionar archivo multimedia

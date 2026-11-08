@@ -13,10 +13,3 @@ Shkruani një shteg të vlefshëm që fillon me / ose një URL të plotë HTTP(S
 Rregullat mbështesin kodet HTTP `301`, `302`, `303`, `307` dhe `308` dhe zbatohen vetëm për kërkesa `GET`/`HEAD` që arrijnë në WHMCS. Burimi përputhet saktësisht me rrugën dhe, kur janë dhënë, parametrat e kërkimit; parametrat e destinacionit zëvendësojnë të vjetrit. Menaxheri ruan rregullat në `zm_pb_redirects`, por nuk krijon tabelën gjatë një kërkese: përdorni **Baza e të dhënave e modulit**. Fushat ekzistuese të URL-së pranojnë deri në 128 bajte.
 
 Rregullat manuale kanë përparësi ndaj atyre automatike. Ndryshimi i slug-ut të një faqeje të publikuar mund të krijojë ridrejtim automatik `301` për çdo gjuhë aktive pas vonesës së caktuar; publikimi i një drafti nuk e krijon. Riemërtimet e mëvonshme përditësojnë destinacionet e vjetra. Një rregull që përfshin parametrat e kërkesës ka përparësi ndaj rregullit vetëm për shtegun. URL-ja burimore duhet t'i përkasë këtij siti dhe të mos ketë fragment `#`.
-
-## Udhëzime
-
-- Burimi
-- Destinacioni
-- Aktivizuar
-- Çaktivizuar

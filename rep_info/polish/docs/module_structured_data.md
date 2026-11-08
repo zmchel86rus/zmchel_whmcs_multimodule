@@ -15,14 +15,3 @@ Na publicznej stronie sprawdź JSON-LD, kanoniczny URL, język i faktycznie wido
 ## Schema.org
 
 `SiteNavigationElement` wykorzystuje rzeczywiście widoczne linki i nazwy menu; spis treści może dodać `WebPageElement` dla nagłówków faktycznie obecnych na stronie. `FAQPage` obejmuje tylko pełne pytania i odpowiedzi widoczne dla odwiedzającego: ukryte bloki i zwykłe akordeony są pomijane. `BreadcrumbList` powstaje tylko przy co najmniej dwóch elementach. Dane organizacji pochodzą z WHMCS; języki kontaktu są w `ContactPoint.availableLanguage` w formacie BCP 47. Dla filtrów, paginacji, formularzy i własnego HTML moduł nie zgaduje typu Schema.
-
-## Instrukcje
-
-- **Typ schematu** — Po wyłączeniu znaczniki JSON Schema.org nie są generowane dla tej strony.
-- **Ścieżka nawigacyjna** — Nazwa strony w ścieżce nawigacyjnej
-- **Kanoniczny adres URL**
-- **Tytuł strony**
-- **Opis meta**
-- **Tytuł Open Graph** — Jeśli pole jest puste, używany jest tytuł strony.
-- **Opis Open Graph** — Jeśli pole jest puste, używany jest opis meta.
-- **Obraz Open Graph** — Jeśli pole jest puste, używany jest obraz strony.

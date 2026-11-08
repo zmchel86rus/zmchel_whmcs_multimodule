@@ -24,17 +24,3 @@ Sahifa bandining URL manzili joriy slug va e'lon qilingan tarjima asosida qayta 
 ## zm_pb_menus
 
 Ma'lumotlar `zm_pb_menus`, `zm_pb_menu_items` va `zm_pb_menu_locations` jadvallarida saqlanadi. Jadvallarni Modul ma'lumotlar bazasi bo‘limida yarating yoki tuzating. Daraxt ko‘pi bilan 10 daraja va 300 bandni qo‘llaydi; ota band o‘chirilsa, uning bolalari bir daraja yuqoriga ko‘tariladi.
-
-## Yoʻriqnoma
-
-- Menyu yaratish
-- Sahifalar, maqolalar yoki maxsus havolalar qoʻshing.
-- Elementlar tartibini oʻzgartirish uchun ularni sudrang. Ichma-ich joylashuvni ota-element tanlagichi yoki koʻchirish tugmalari bilan belgilang.
-- Joriy sahifa tilidan foydalanish
-- Kiritilgan URL manzilini oʻzgartirmasdan ishlatish
-- Boshqa tillardagi yorliqlar
-- Kimlarga koʻrinadi
-- Qurilmalar
-- Har bir joylashuvga bitta menyu biriktirish mumkin. Joylashuvni tanlash uni boshqa menyudan shu menyuga koʻchiradi.
-- Yuqori darajadagi elementlar ustunlarga, ichki elementlar esa havolalarga aylanadi. Havolasiz sarlavha uchun URL sifatida # kiriting.
-- Menyu jadvallari hali yaratilmagan. Ularni Modul maʼlumotlar bazasi boʻlimida qoʻshing.

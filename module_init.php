@@ -11,8 +11,9 @@ global $CONFIG;
  * Numbers from '0' to '9'
  * Letters from 'a' to 'Z'
  * Special chars @ | { } - _ [ ] ( ) * ! + , . & ` = : ; / < >
- * 
+ *
  * Salt Length >= 64
+ * Activation replaces these salts with new random values.
  */
 if (!defined('ZM_PB_ADMIN_SALT')) define('ZM_PB_ADMIN_SALT', '');
 if (!defined('ZM_PB_SECURE_SALT')) define('ZM_PB_SECURE_SALT', '');
@@ -20,13 +21,20 @@ if (!defined('ZM_PB_NONCE_SALT')) define('ZM_PB_NONCE_SALT', '');
 ### SALTS CONSTS ###
 
 $moduleSupportedLanguages = require __DIR__ . '/supported_langs.php';
+$defaultAliases = ['ukranian' => 'ukrainian', 'portugues' => 'portuguese-pt','portugues-br' => 'portuguese-br'];
+foreach ($defaultAliases as $old => $new) {
+    if ($old !== $new && isset($moduleSupportedLanguages[$old], $moduleSupportedLanguages[$new]))
+        unset($moduleSupportedLanguages[$old]);
+}
 $moduleAvailableLanguages = $moduleSupportedLanguages + (require __DIR__ . '/disabled_langs.php');
 $cmsDefaultLanguage = strtolower((string) ($CONFIG['Language'] ?? 'english'));
-$defaultAliases = ['ukranian' => 'ukrainian', 'portugues' => 'portuguese-pt',
-    'portugues-br' => 'portuguese-br'];
-if (!isset($moduleAvailableLanguages[$cmsDefaultLanguage]) &&
-    isset($moduleAvailableLanguages[$defaultAliases[$cmsDefaultLanguage] ?? '']))
-    $cmsDefaultLanguage = $defaultAliases[$cmsDefaultLanguage];
+$canonicalDefault = $defaultAliases[$cmsDefaultLanguage] ?? $cmsDefaultLanguage;
+$legacyDefault = array_search($canonicalDefault, $defaultAliases, true);
+if (isset($moduleSupportedLanguages[$canonicalDefault])) $cmsDefaultLanguage = $canonicalDefault;
+elseif (!isset($moduleSupportedLanguages[$cmsDefaultLanguage])) {
+    if ($legacyDefault !== false && isset($moduleSupportedLanguages[$legacyDefault])) $cmsDefaultLanguage = $legacyDefault;
+    elseif (isset($moduleAvailableLanguages[$canonicalDefault])) $cmsDefaultLanguage = $canonicalDefault;
+}
 if (!defined('ZM_PB_DEFLANG')) define('ZM_PB_DEFLANG', $cmsDefaultLanguage);
 if (!defined('ZM_PB_ALLOWED_CONSTS_CHANGE')) define('ZM_PB_ALLOWED_CONSTS_CHANGE', [
     'ZM_PB_CHECK_SUPERADM',
@@ -62,7 +70,7 @@ if (!defined('ZM_PB_ALLOWED_CONSTS_CHANGE')) define('ZM_PB_ALLOWED_CONSTS_CHANGE
 ### INFO CONSTS ###
 if (!defined('ZM_PB_SUPERADM_ID')) define('ZM_PB_SUPERADM_ID', 1 );
 if (!defined('ZM_PB_FREFIX')) define('ZM_PB_FREFIX', 'ZM_PB_' );
-if (!defined('ZM_PB_VER')) define('ZM_PB_VER', '1.1.1b' );
+if (!defined('ZM_PB_VER')) define('ZM_PB_VER', '1.1.1' );
 if (!defined('ZM_PB_NAME')) define('ZM_PB_NAME', basename(__DIR__) );
 ### INFO CONSTS ###
 
@@ -184,7 +192,7 @@ if (!preg_match('/^[a-z0-9_-]+$/D', $adminlang)) $adminlang = 'english';
 if (!defined('ZM_PB_LANGS')) define('ZM_PB_LANGS', $moduleSupportedLanguages);
 require_once ZM_PB_INCDIR . 'language_manager.php';
 $adminClientLanguage = zm_pb_lm_supported_key($adminlang);
-$adminlang = zm_pb_lm_name(['kind' => 'self', 'directory' => ZM_PB_ALANGDIR], $adminClientLanguage);
+$adminlang = zm_pb_lm_name(['kind' => 'self', 'directory' => ZM_PB_ALANGDIR], $adminlang);
 if (!isset($GLOBALS['ZM_PB_ADMINLANG']) && defined('ZM_PB_ALANGDIR')){
     $admin_lang_file = ZM_PB_ALANGDIR . $adminlang.'.php';
     if( !file_exists($admin_lang_file) ){
@@ -197,7 +205,8 @@ if (!isset($GLOBALS['ZM_PB_ADMINLANG']) && defined('ZM_PB_ALANGDIR')){
     zm_pb_lm_apply_runtime_tokens($admin_lang_data);
     foreach (ZM_PB_LANGS as $languageKey => $languageInfo) {
         if (!isset($admin_lang_data->module->supported_langs->translate->$languageKey)) {
-            $legacyKey = array_search($languageKey, zm_pb_lm_filename_aliases(), true);
+            $aliases = zm_pb_lm_filename_aliases();
+            $legacyKey = $aliases[$languageKey] ?? array_search($languageKey, $aliases, true);
             $admin_lang_data->module->supported_langs->translate->$languageKey =
                 $legacyKey !== false && isset($admin_lang_data->module->supported_langs->translate->$legacyKey)
                     ? $admin_lang_data->module->supported_langs->translate->$legacyKey : $languageInfo['name'];

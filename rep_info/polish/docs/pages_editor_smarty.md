@@ -25,13 +25,3 @@ Katalog w `resources/available_vars/` przechowuje nazwy, typy, strukturę i sztu
     <span>{$item.title|escape}</span>
 {/foreach}
 ```
-
-## Instrukcje
-
-- **Zbieraj zmienne Smarty** — Włącz lub wyłącz zbieranie zmiennych Smarty.
-- **Używaj zebranych zmiennych Smarty** — Włącz lub wyłącz używanie zebranych zmiennych Smarty w edytorze stron.
-- Zmienna Smarty (PHP)
-- Smarty: PHP, metody obiektów, wywołania statyczne i nofilter są zabronione.
-- Szablon Smarty jest zbyt duży.
-- Smarty
-- Edytor Smarty

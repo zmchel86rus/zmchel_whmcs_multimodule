@@ -33,10 +33,3 @@ Filtri darbojas ar to pašu sarakstu, ar kuru darbojas lapošana. Teksta meklē�
 ## Flex / Grid
 
 Izvēlieties Flex vai Grid, iestatiet platumu un kolonnas katrai ierīcei. Filtra piemērošana vai notīrīšana atgriež sarakstu pirmajā lapā. Vienumu skaita izvēlni var pārvietot, nezaudējot saiti; dublēts panelis vada to pašu sarakstu.
-
-## Instrukcijas
-
-- Elementu skaita izvēlne: 10, 25, 50, 100, 250
-- Neindeksēt 2. un turpmākās lapas
-- Saišu formāts
-- Noklusējuma elementu skaits lapā

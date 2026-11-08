@@ -31,10 +31,3 @@ A szűrők ugyanarra a listára hatnak, mint a lapozás. A szöveges keresés t�
 ## Flex / Grid
 
 Válasszon Flex vagy Grid elrendezést, az eszközökhöz külön szélességet és oszlopokat. Szűrő alkalmazása vagy törlése az első oldalra visz. Az elemszám-választó a kapcsolat elvesztése nélkül mozgatható; a másolt panel ugyanazt a listát vezérli.
-
-## Útmutató
-
-- Elemszám kiválasztása: 10, 25, 50, 100, 250
-- A 2. és további oldalak indexelésének tiltása
-- Hivatkozások formátuma
-- Elemek alapértelmezett száma

@@ -13,12 +13,3 @@ När du har lagt till eller tagit bort en regel klickar du på ”Lägg till ell
 ## .htaccess
 
 Öppna hanteraren och jämför reglerna med webbplatsens huvudfil `.htaccess`. Spara URL-mönster, mål och flaggor för en egen regel och välj sedan **Lägg till eller uppdatera regler** så att blocket skrivs före WHMCS-reglerna. Kontrollera status igen och öppna en publicerad sida på standardspråket och ett annat språk. Ett för brett mönster kan påverka andra sidor. Med Nginx → Apache gäller reglerna bara för förfrågningar som vidarebefordras till Apache.
-
-## Instruktioner
-
-- Kontrollera regler
-- Lägg till eller uppdatera regler
-- Ta bort alla regler från .htaccess
-- URL-mönster
-- Mål
-- Flaggor

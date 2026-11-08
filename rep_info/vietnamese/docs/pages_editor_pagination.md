@@ -35,8 +35,3 @@ Bộ lọc hoạt động trên cùng danh sách với phân trang. Tìm kiếm 
 ## Flex / Grid
 
 Chọn Flex hoặc Grid, điều chỉnh chiều rộng và số cột theo thiết bị. Áp dụng hay xóa bộ lọc đưa danh sách về trang đầu. Bộ chọn số kết quả có thể di chuyển mà vẫn liên kết; bảng điều khiển nhân đôi quản lý cùng danh sách.
-
-## Hướng dẫn
-
-- Định dạng liên kết
-- Số mục mặc định mỗi trang

@@ -1,10 +1,14 @@
 # Ilmhódúl saor in aisce do WHMCS
 
-**Sula n-úsáideann tú é, cruthaigh luachanna salt uathúla i `module_init.php`: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` agus `ZM_PB_NONCE_SALT`.** Forbraíodh agus tástáladh an modúl ar **WHMCS 8.13.1–8.13.7**. Seiceáladh comhoiriúnacht le **PHP 7.4–8.5**. Tacaítear go hiomlán le Apache (100%); d'fhéadfadh cumraíocht bhreise a bheith ag teastáil ó Nginx le haghaidh ródú teanga ar an leathanach baile.
+**Tá zmchel WHMCS Multimodule saor in aisce.** Ó riarachán WHMCS is féidir leathanaigh ilteangacha a bhainistiú le heagarthóir amhairc, roghchláir, leabharlann meán, meiteashonraí SEO, léarscáileanna XML, atreoruithe, rialacha rewrite agus iompórtáil/easpórtáil. Léigh na [treoracha](instruction.md) sula dtosaíonn tú.
+
+## Roimh an gcéad úsáid
 
 **Sula n-úsáidtear an modúl den chéad uair, oscail Socruithe an Mhodúil → Teangacha Tacaithe agus cumasaigh na teangacha atá uait.**
 
-**Tá zmchel WHMCS Multimodule saor in aisce.** Ó riarachán WHMCS is féidir leathanaigh ilteangacha a bhainistiú le heagarthóir amhairc, roghchláir, leabharlann meán, meiteashonraí SEO, léarscáileanna XML, atreoruithe, rialacha rewrite agus iompórtáil/easpórtáil. Léigh na [treoracha](instruction.md) sula dtosaíonn tú.
+Gach uair a ghníomhachtaítear an modúl, gineann sé luachanna salt nua agus scríobhann sé chuig `module_init.php` iad (`ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT`, `ZM_PB_NONCE_SALT`). Seiceáil go bhfuil luach ag gach ceann de na trí shalann.
+
+Forbraíodh agus tástáladh an modúl ar **WHMCS 8.13.0–9.1.0**. Seiceáladh comhoiriúnacht le **PHP 7.4–8.5**. Tacaítear go hiomlán le Apache (100%); d'fhéadfadh cumraíocht bhreise a bheith ag teastáil ó Nginx le haghaidh ródú teanga ar an leathanach baile.
 
 ## Forbairt amach anseo
 
@@ -12,9 +16,11 @@
 - An cód monailiteach a roinnt ina chomhpháirteanna a oibríonn le chéile.
 - Bainisteoir ceadanna riaracháin a chruthú agus tuilleadh teangacha réamhshocraithe a chur le `supported_langs.php`.
 - Eagarthóir cóid a dhéanamh do chomhaid `.tpl` an mhodúil agus do théamaí cliant WHMCS, seachas téama riaracháin.
-- Bainisteoir teangacha a fhorbairt do chomhaid an mhodúil agus WHMCS agus an bainisteoir meán a fheabhsú.
+- ~~Bainisteoir teangacha a fhorbairt do chomhaid an mhodúil agus WHMCS.~~
+- An bainisteoir meán a fheabhsú.
 - Bainisteoir SEO iomlán, níos fearr optamaithe, a thógáil ar nós Yoast SEO.
-- Léarscáileanna suímh ilteangacha agus leathanach léarscáile HTML a chur leis.
+- ~~Léarscáileanna suímh ilteangacha agus leathanach léarscáile HTML a chur leis.~~
+- Leathanach léarscáile HTML a chur leis.
 - Staitisticí úsáide a chur leis an mbainisteoir leathanach.
 - Bainisteoir optamaithe a chruthú do mhiondealú JS, CSS agus HTML, taisce lánleathanaigh agus táblaí an mhodúil agus WHMCS.
 - Córas ceart nuashonraithe a chur leis an modúl.

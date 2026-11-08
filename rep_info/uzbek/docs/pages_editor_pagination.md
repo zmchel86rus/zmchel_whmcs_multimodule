@@ -31,10 +31,3 @@ Filtrlar sahifalash bilan bir xil ro‘yxatda ishlaydi. Matnli qidiruv vergul bi
 ## Flex / Grid
 
 Flex yoki Grid ni tanlab, qurilmalar bo‘yicha kenglik va ustunlarni sozlang. Filtrni qo‘llash yoki tozalash ro‘yxatni birinchi sahifaga qaytaradi. Natijalar soni tanlagichini bog‘lanishni yo‘qotmasdan ko‘chirish mumkin; takror panel shu ro‘yxatni boshqaradi.
-
-## Yoʻriqnoma
-
-- Sahifadagi elementlar soni: 10, 25, 50, 100, 250
-- 2-sahifadan boshlab indekslashni taqiqlash
-- Havola formati
-- Sahifadagi standart elementlar soni

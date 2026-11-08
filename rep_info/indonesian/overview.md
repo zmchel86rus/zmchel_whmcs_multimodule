@@ -1,10 +1,14 @@
 # Multimodul gratis untuk WHMCS
 
-**Sebelum memakai modul, buat salt unik di `module_init.php`: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT`, dan `ZM_PB_NONCE_SALT`.** Modul ini dibuat dan diuji pada **WHMCS 8.13.1–8.13.7**. Pemeriksaan kompatibilitas PHP mencakup **7.4–8.5**. Apache didukung sepenuhnya (100%); Nginx dapat digunakan, tetapi perutean bahasa di beranda mungkin membutuhkan pengaturan tambahan.
+**zmchel WHMCS Multimodule gratis.** Dari admin WHMCS, Anda dapat mengelola halaman multibahasa dengan editor visual, menu, pustaka media, metadata SEO, peta situs XML, pengalihan, aturan rewrite, serta impor dan ekspor. Baca [petunjuk penggunaan](instruction.md) sebelum mulai.
+
+## Sebelum penggunaan pertama
 
 **Sebelum penggunaan pertama, buka Pengaturan modul → Bahasa yang didukung dan aktifkan bahasa yang Anda perlukan.**
 
-**zmchel WHMCS Multimodule gratis.** Dari admin WHMCS, Anda dapat mengelola halaman multibahasa dengan editor visual, menu, pustaka media, metadata SEO, peta situs XML, pengalihan, aturan rewrite, serta impor dan ekspor. Baca [petunjuk penggunaan](instruction.md) sebelum mulai.
+Setiap kali diaktifkan, modul membuat nilai salt baru secara otomatis dan menuliskannya ke `module_init.php` (`ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT`, `ZM_PB_NONCE_SALT`). Pastikan ketiga nilai salt sudah terisi.
+
+Modul ini dibuat dan diuji pada **WHMCS 8.13.0–9.1.0**. Pemeriksaan kompatibilitas PHP mencakup **7.4–8.5**. Apache didukung sepenuhnya (100%); Nginx dapat digunakan, tetapi perutean bahasa di beranda mungkin membutuhkan pengaturan tambahan.
 
 ## Rencana pengembangan
 
@@ -12,9 +16,11 @@
 - Memecah kode monolit menjadi komponen yang saling berinteraksi.
 - Membuat pengelola hak akses admin dan memperluas bahasa bawaan di `supported_langs.php`.
 - Membuat editor kode untuk berkas `.tpl` modul dan tema klien WHMCS, selain tema admin.
-- Mengembangkan pengelola bahasa untuk berkas bahasa modul dan WHMCS, serta meningkatkan pengelola media.
+- ~~Mengembangkan pengelola bahasa untuk berkas bahasa modul dan WHMCS.~~
+- Meningkatkan pengelola media.
 - Mengembangkan pengelola SEO yang lebih lengkap, terinspirasi Yoast SEO tetapi dioptimalkan.
-- Menambahkan peta situs multibahasa dan halaman peta situs HTML.
+- ~~Menambahkan peta situs multibahasa dan halaman peta situs HTML.~~
+- Menambahkan halaman peta situs HTML.
 - Menambahkan statistik penggunaan pada pengelola halaman.
 - Membuat pengelola optimasi untuk minifikasi JS, CSS, dan HTML, cache halaman penuh, serta optimasi tabel modul dan WHMCS.
 - Membuat sistem pembaruan modul yang layak.

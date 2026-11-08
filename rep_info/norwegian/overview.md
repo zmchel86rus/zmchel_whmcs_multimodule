@@ -1,12 +1,14 @@
 # Gratis multimodul for WHMCS
 
-**Før du bruker modulen, må du generere unike salter og legge dem inn i `module_init.php`**: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` og `ZM_PB_NONCE_SALT`.
+**zmchel WHMCS Multimodule er gratis.** Den inneholder en visuell sideredigerer, flerspråklig innhold, menyer, mediebibliotek, SEO-felt, XML-nettstedskart, viderekoblinger, omskrivingsregler og import/eksport. Les [bruksanvisningen](instruction.md).
+
+## Før første bruk
 
 **Før første bruk åpner du Modulinnstillinger → Støttede språk og aktiverer språkene du trenger.**
 
-Modulen ble utviklet og testet med **WHMCS 8.13.1–8.13.7**. PHP-kompatibilitet ble kontrollert for **7.4–8.5**. Apache støttes fullt ut. Modulen kan også fungere med Nginx, men språkruting på forsiden kan kreve ekstra oppsett.
+Ved hver aktivering genererer modulen automatisk nye salter og skriver dem til `module_init.php` (`ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT`, `ZM_PB_NONCE_SALT`). Kontroller at alle de tre saltverdiene er fylt ut.
 
-**zmchel WHMCS Multimodule er gratis.** Den inneholder en visuell sideredigerer, flerspråklig innhold, menyer, mediebibliotek, SEO-felt, XML-nettstedskart, viderekoblinger, omskrivingsregler og import/eksport. Les [bruksanvisningen](instruction.md).
+Modulen ble utviklet og testet med **WHMCS 8.13.0–9.1.0**. PHP-kompatibilitet ble kontrollert for **7.4–8.5**. Apache støttes fullt ut. Modulen kan også fungere med Nginx, men språkruting på forsiden kan kreve ekstra oppsett.
 
 ## Videre utvikling
 
@@ -15,9 +17,10 @@ Modulen ble utviklet og testet med **WHMCS 8.13.1–8.13.7**. PHP-kompatibilitet
 - Legge til tilgangsstyring for administrasjonen.
 - Utvide standardspråkene i `supported_langs.php`.
 - Lage en koderedigerer for modulens `.tpl`-filer og WHMCS-klienttemaer.
-- Lage en språkfilbehandler for modulen, andre moduler og WHMCS.
+- ~~Lage en språkfilbehandler for modulen, andre moduler og WHMCS.~~
 - Forbedre mediebehandleren og lage en mer fullstendig SEO-behandler.
-- Legge til flerspråklige nettstedskart og en HTML-side for nettstedskart.
+- ~~Legge til flerspråklige nettstedskart og en HTML-side for nettstedskart.~~
+- Legge til en HTML-side for nettstedskart.
 - Legge til bruksstatistikk i sidebehandleren.
 - Legge til minifisering av JS/CSS/HTML, sidehurtigbuffer og tabelloptimalisering.
 - Lage et skikkelig oppdateringssystem.

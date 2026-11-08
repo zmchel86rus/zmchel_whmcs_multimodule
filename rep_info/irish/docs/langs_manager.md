@@ -17,19 +17,3 @@ Easpórtáil eochracha agus aistriúcháin na teanga roghnaithe roimh eagarthói
 ## Comhaid teanga agus teanga réamhshocraithe
 
 Is féidir comhad teanga díchumasaithe a chur in eagar fós. Tá bunchomhad an Bhéarla agus teanga réamhshocraithe reatha WHMCS faoi chosaint. Chun an teanga réamhshocraithe a athrú, cumasaigh an ceann nua sa mhodúl ar dtús, athraigh í in WHMCS agus ansin díchumasaigh an seancheann. Is féidir seanainmneacha comhad a cheartú faoi **Rannáin**.
-
-## Treoracha
-
-- Rannáin
-- Teangacha
-- Aistriúcháin
-- Tá an teanga seo díchumasaithe. Is féidir a haistriúcháin a chur in eagar fós.
-- Teanga thagartha
-- Nuashonraíonn gach cnaipe Sábháil aistriúchán amháin.
-- Gan aistriúchán
-- Taispeáin an bunleagan
-- Taispeáin na cinn a cuireadh leis
-- Níor iompórtáladh na heochracha aistriúcháin seo a leanas:
-- eochair anaithnid
-- eochair dhúblach
-

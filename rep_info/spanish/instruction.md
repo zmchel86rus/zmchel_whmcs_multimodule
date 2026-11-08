@@ -1,12 +1,22 @@
 # Instrucciones de ZMChel WHMCS Multimodule
 
-**Antes de utilizar el módulo, genere valores salt únicos e introdúzcalos en `module_init.php`: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` y `ZM_PB_NONCE_SALT`.** El módulo se desarrolló y probó con **WHMCS 8.13.1–8.13.7** y ofrece **compatibilidad completa con Apache (100 %)**. También puede funcionar con Nginx, aunque el enrutamiento por idioma de la página de inicio puede necesitar configuración y pruebas adicionales.
+**ZMChel WHMCS Multimodule es gratuito.** Permite gestionar el contenido del sitio desde la administración de WHMCS: editor visual de páginas y bloques, contenido multilingüe, menús, biblioteca multimedia, metadatos SEO, mapas del sitio XML, redirecciones, reglas rewrite e importación/exportación.
+
+## Antes del primer uso
 
 **Antes del primer uso, abre Configuración del módulo → Idiomas compatibles y activa los idiomas que necesites.**
 
-**Versiones de PHP comprobadas:** 7.4, 8.0, 8.1, 8.2, 8.3, 8.4 y 8.5. Todos los archivos PHP superaron la comprobación de sintaxis en cada versión; también se ejecutaron pruebas independientes.
+En cada activación, el módulo genera automáticamente nuevos valores salt y los escribe en `module_init.php` (`ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT`, `ZM_PB_NONCE_SALT`). Compruebe que los tres valores salt estén definidos.
 
-**ZMChel WHMCS Multimodule es gratuito.** Permite gestionar el contenido del sitio desde la administración de WHMCS: editor visual de páginas y bloques, contenido multilingüe, menús, biblioteca multimedia, metadatos SEO, mapas del sitio XML, redirecciones, reglas rewrite e importación/exportación.
+## Compatibilidad y funcionamiento comprobados
+
+- **PHP:** 7.4, 8.0, 8.1, 8.2, 8.3, 8.4, 8.5
+- **WHMCS:** 8.13.0–9.1.0
+- **Smarty:** 3, 4
+
+## Compatibilidad con servidores web
+
+Apache tiene compatibilidad completa. Nginx también puede funcionar, pero el enrutamiento por idioma de la página de inicio puede requerir configuración y pruebas adicionales.
 
 ## Ajustes del módulo
 

@@ -21,18 +21,3 @@ Unter **Übersetzungen** zeigt **Original** den Text aus der ursprünglichen Dat
 Sprachdateien lassen sich deaktivieren und wieder aktivieren; deaktivierte Dateien bleiben bearbeitbar. Die englische Basisdatei und die aktuelle WHMCS-Standardsprache sind geschützt. Für vom Manager angelegte WHMCS-Client- und Administrationssprachen werden Sicherungskopien zur Wiederherstellung nach Updates gespeichert. Erscheint unter **Bereiche** eine Dateinamenkorrektur, prüfen Sie den neuen Namen und klicken Sie auf **Korrigieren**; die Änderung gilt für die erkannten Bereiche.
 
 Um die Standardsprache zu wechseln, aktivieren Sie die neue Sprache zuerst in den Moduleinstellungen, ändern dann die WHMCS-Standardsprache und deaktivieren erst danach die alte Sprache. Prüfen Sie die Texte sowohl im Administrations- als auch im Clientbereich.
-
-## Anleitung
-
-- Bereiche
-- Sprachen
-- Übersetzungen
-- Diese Sprache ist deaktiviert, ihre Übersetzungen können aber weiterhin bearbeitet werden.
-- Referenzsprache
-- Jede Speichern-Schaltfläche speichert nur eine Übersetzung.
-- Nicht übersetzt
-- Originale anzeigen
-- Hinzugefügte anzeigen
-- Die folgenden Übersetzungsschlüssel wurden nicht importiert:
-- unbekannter Schlüssel
-- doppelter Schlüssel

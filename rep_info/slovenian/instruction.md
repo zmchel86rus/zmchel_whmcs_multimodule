@@ -1,12 +1,22 @@
 # Navodila za zmchel WHMCS Multimodule
 
-**Pred uporabo ustvarite edinstvene soli in v module_init.php vnesite ZM_PB_ADMIN_SALT, ZM_PB_SECURE_SALT in ZM_PB_NONCE_SALT.** Modul je bil razvit in preizkušen z WHMCS 8.13.1–8.13.7. Apache je v celoti podprt. Nginx lahko deluje, vendar lahko jezikovno usmerjanje na domači strani zahteva dodatne nastavitve.
+**zmchel WHMCS Multimodule je brezplačen.** V skrbništvu WHMCS omogoča upravljanje strani in člankov z vizualnim urejevalnikom, prevodi, meniji, medijsko knjižnico, polji SEO, zemljevidi spletnega mesta XML, preusmeritvami in pravili za prepisovanje URL-jev.
+
+## Pred prvo uporabo
 
 **Pred prvo uporabo odprite Nastavitve modula → Podprti jeziki in vključite jezike, ki jih potrebujete.**
 
-**Preverjene različice PHP:** 7.4, 8.0, 8.1, 8.2, 8.3, 8.4 in 8.5.
+Ob vsaki aktivaciji modul samodejno ustvari nove soli in jih zapiše v `module_init.php` (`ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT`, `ZM_PB_NONCE_SALT`). Preverite, ali so izpolnjene vse tri vrednosti soli.
 
-**zmchel WHMCS Multimodule je brezplačen.** V skrbništvu WHMCS omogoča upravljanje strani in člankov z vizualnim urejevalnikom, prevodi, meniji, medijsko knjižnico, polji SEO, zemljevidi spletnega mesta XML, preusmeritvami in pravili za prepisovanje URL-jev.
+## Preverjena združljivost in delovanje
+
+- **PHP:** 7.4, 8.0, 8.1, 8.2, 8.3, 8.4, 8.5
+- **WHMCS:** 8.13.0–9.1.0
+- **Smarty:** 3, 4
+
+## Združljivost s spletnimi strežniki
+
+Apache je v celoti podprt. Nginx lahko deluje, vendar lahko jezikovno usmerjanje na domači strani zahteva dodatne nastavitve.
 
 ## Nastavitve modula
 

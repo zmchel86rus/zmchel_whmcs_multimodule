@@ -13,12 +13,3 @@ Après avoir ajouté ou supprimé une règle, cliquez sur « Ajouter ou mettre �
 ## .htaccess
 
 Ouvrez le gestionnaire et comparez les règles au fichier principal `.htaccess`. Pour une règle personnalisée, enregistrez le motif d'URL, la destination et les indicateurs, puis cliquez sur **Ajouter ou mettre à jour les règles** pour écrire le bloc avant les règles WHMCS. Vérifiez de nouveau l'état et ouvrez une page publiée dans la langue par défaut puis dans une autre langue. Un motif trop large peut toucher d'autres pages. Avec Nginx → Apache, seules les requêtes transmises à Apache suivent ces règles.
-
-## Instructions
-
-- Vérifier les règles
-- Ajouter ou mettre à jour les règles
-- Supprimer toutes les règles de .htaccess
-- Modèle d’URL
-- Cible
-- Indicateurs

@@ -31,10 +31,3 @@ Filtri rade nad istim popisom kao straničenje. Tekstualno pretraživanje može 
 ## Flex / Grid
 
 Odaberite Flex ili Grid te prilagodite širine i stupce po uređajima. Primjena ili poništavanje filtra vraća popis na prvu stranicu. Birač broja rezultata može se premjestiti bez gubitka veze; duplicirana ploča upravlja istim popisom.
-
-## Upute
-
-- Odabir broja stavki: 10, 25, 50, 100, 250
-- Nemoj indeksirati stranice od druge nadalje
-- Format poveznica
-- Zadani broj stavki

@@ -13,10 +13,3 @@ Inserisci un percorso valido che inizi con / o un URL HTTP(S) completo. L’orig
 Le regole supportano i codici HTTP `301`, `302`, `303`, `307` e `308` e si applicano solo alle richieste `GET`/`HEAD` che raggiungono WHMCS. L’origine corrisponde esattamente al percorso e, se specificati, ai parametri della query; i parametri della destinazione sostituiscono i precedenti. Il gestore salva le regole in `zm_pb_redirects`, ma non crea la tabella durante una richiesta: usa **Database del modulo**. Le colonne URL esistenti sono limitate a 128 byte.
 
 Le regole manuali hanno priorità su quelle automatiche. Cambiare lo slug di una pagina pubblicata può creare un `301` automatico per ogni lingua attiva dopo il ritardo impostato; pubblicare una bozza non lo crea. Le rinomine successive aggiornano le vecchie destinazioni. Una regola con parametri di query prevale su una regola relativa al solo percorso. L'URL di origine deve appartenere a questo sito e non deve includere un frammento `#`.
-
-## Istruzioni
-
-- Origine
-- Destinazione
-- Attivo
-- Disattivato

@@ -56,7 +56,7 @@
                     <td>{$element.priority|escape}</td>
                     <td>{$element.lastmod|escape}</td>
                     <td>
-                        <a class="btn btn-primary" href="addonmodules.php?module={$addonName|escape}&amp;subpage=pages_editor&amp;page_id={$element.page_id}" target="_blank" rel="noopener">
+                        <a class="btn btn-primary mar-b-1 mar-r-1" href="addonmodules.php?module={$addonName|escape}&amp;subpage=pages_editor&amp;page_id={$element.page_id}" target="_blank" rel="noopener">
                             <i class="fas fa-edit"></i> {$other_translates->edit}
                         </a>
                         <a class="btn btn-primary" href="{$element.url|escape}" target="_blank" rel="noopener">

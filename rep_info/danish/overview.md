@@ -1,12 +1,16 @@
 # Gratis multimodul til WHMCS
 
-**Generér unikke salts før brug, og indsæt ZM_PB_ADMIN_SALT, ZM_PB_SECURE_SALT og ZM_PB_NONCE_SALT i module_init.php.** Modulet er udviklet og testet med WHMCS 8.13.1–8.13.7. Apache understøttes fuldt ud. Nginx kan fungere, men sprogruter på forsiden kan kræve ekstra konfiguration.
+**zmchel WHMCS Multimodule er gratis.** Administrér sider og artikler fra WHMCS-administrationen med visuel editor, oversættelser, menuer, mediefiler, SEO-felter, XML-sitemaps, viderestillinger og omskrivningsregler.
+
+## Før første brug
 
 **Før første brug skal du åbne Modulindstillinger → Understøttede sprog og aktivere de sprog, du har brug for.**
 
-**Kontrollerede PHP-versioner:** 7.4, 8.0, 8.1, 8.2, 8.3, 8.4 og 8.5.
+Ved hver aktivering genererer modulet automatisk nye salts og skriver dem til `module_init.php` (`ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT`, `ZM_PB_NONCE_SALT`). Kontrollér, at alle tre saltværdier er udfyldt.
 
-**zmchel WHMCS Multimodule er gratis.** Administrér sider og artikler fra WHMCS-administrationen med visuel editor, oversættelser, menuer, mediefiler, SEO-felter, XML-sitemaps, viderestillinger og omskrivningsregler.
+php.** Modulet er udviklet og testet med WHMCS 8.13.0–9.1.0. Apache understøttes fuldt ud. Nginx kan fungere, men sprogruter på forsiden kan kræve ekstra konfiguration.
+
+**Kontrollerede PHP-versioner:** 7.4, 8.0, 8.1, 8.2, 8.3, 8.4 og 8.5.
 
 ## Fremtidig udvikling
 
@@ -15,10 +19,11 @@
 - Indføre rettighedsstyring for modulet i administrationen.
 - Udvide standardsprogene i supported_langs.php.
 - Tilføje en kodeeditor til modulskabeloner og klienttemaer, men ikke admintemaet.
-- Bygge en sproghåndtering til WHMCS' og andre modulers sprogfiler.
+- ~~Bygge en sproghåndtering til WHMCS' og andre modulers sprogfiler.~~
 - Forbedre mediehåndteringen.
 - Udvikle en fuld og effektiv SEO-håndtering inspireret af Yoast SEO.
-- Tilføje flersprogede XML-sitemaps og en HTML-sitemapside.
+- ~~Tilføje flersprogede XML-sitemaps og en HTML-sitemapside.~~
+- Tilføje en HTML-side med sitemap.
 - Tilføje brugsstatistik til sidehåndteringen.
 - Minificere JS, CSS og HTML, cache hele sider og optimere modulets og WHMCS' databasetabeller.
 - Indføre et ordentligt opdateringssystem for modulet.

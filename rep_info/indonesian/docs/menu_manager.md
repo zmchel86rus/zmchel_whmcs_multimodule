@@ -24,17 +24,3 @@ URL item halaman dihitung ulang dari slug saat ini dan terjemahan yang sudah dit
 ## zm_pb_menus
 
 Data disimpan di tabel `zm_pb_menus`, `zm_pb_menu_items`, dan `zm_pb_menu_locations`. Buat atau perbaiki tabel melalui Basis Data Modul. Pohon menu mendukung paling banyak 10 tingkat dan 300 item; saat induk dihapus, anak-anaknya naik satu tingkat.
-
-## Petunjuk
-
-- Buat menu
-- Tambahkan halaman, postingan, atau tautan khusus.
-- Seret item untuk mengubah urutannya. Atur hierarki menggunakan pemilih induk atau tombol pemindahan.
-- Gunakan bahasa halaman saat ini
-- Gunakan URL yang dimasukkan tanpa perubahan
-- Label dalam bahasa lain
-- Terlihat oleh
-- Perangkat
-- Setiap lokasi hanya dapat memiliki satu menu. Memilih lokasi akan memindahkan penugasannya dari menu lain ke menu ini.
-- Item tingkat teratas menjadi kolom dan item bertingkat menjadi tautan. Gunakan URL # untuk judul tanpa tautan.
-- Tabel menu belum dibuat. Tambahkan tabel tersebut di Basis Data Modul.

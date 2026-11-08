@@ -17,6 +17,7 @@ define('ZM_PB_INCDIR', $root . '/inc/');
 define('ZM_PB_DEFLANG', 'english');
 define('ZM_PB_SUPERADM_ID', 42);
 require dirname(__DIR__) . '/inc/module_languages.php';
+zm_pb_module_languages_rekey(ZM_PB_ROOTDIR, 'ukrainian', 'ukranian');
 foreach (['english', 'ukranian'] as $language)
     zm_pb_module_languages_toggle(ZM_PB_ROOTDIR, $language, true, 'english');
 define('ZM_PB_LANGS', (require dirname(__DIR__) . '/supported_langs.php') +

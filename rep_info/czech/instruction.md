@@ -1,12 +1,22 @@
 # zmchel WHMCS Multimodule: návod
 
-**Před použitím modulu vygenerujte jedinečné soli a vložte je do `module_init.php`**: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` a `ZM_PB_NONCE_SALT`.
+**zmchel WHMCS Multimodule je zdarma.** Obsahuje vizuální editor stránek, vícejazyčný obsah, nabídky, knihovnu médií, pole SEO, XML mapy webu, přesměrování, pravidla přepisování a import/export.
+
+## Před prvním použitím
 
 **Před prvním použitím otevřete Nastavení modulu → Podporované jazyky a zapněte jazyky, které potřebujete.**
 
-Modul byl vyvinut a testován na **WHMCS 8.13.1–8.13.7**. Kompatibilita s PHP byla ověřena pro verze **7.4–8.5**. Apache je plně podporován. Modul může fungovat také na Nginxu, ale směrování jazyků na úvodní stránce může vyžadovat další nastavení.
+Při každé aktivaci modul automaticky vytvoří nové soli a zapíše je do `module_init.php` (`ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT`, `ZM_PB_NONCE_SALT`). Ověřte, že jsou vyplněny všechny tři soli.
 
-**zmchel WHMCS Multimodule je zdarma.** Obsahuje vizuální editor stránek, vícejazyčný obsah, nabídky, knihovnu médií, pole SEO, XML mapy webu, přesměrování, pravidla přepisování a import/export.
+## Ověřená kompatibilita a funkčnost
+
+- **PHP:** 7.4, 8.0, 8.1, 8.2, 8.3, 8.4, 8.5
+- **WHMCS:** 8.13.0–9.1.0
+- **Smarty:** 3, 4
+
+## Kompatibilita s webovými servery
+
+Apache je plně podporován. Modul může fungovat také na Nginxu, ale směrování jazyků na úvodní stránce může vyžadovat další nastavení.
 
 ## Nastavení modulu
 

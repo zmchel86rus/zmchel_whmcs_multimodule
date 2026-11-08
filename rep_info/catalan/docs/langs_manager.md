@@ -21,18 +21,3 @@ A **Traduccions**, **Original** mostra el text real del fitxer d'origen de l'idi
 Podeu desactivar i tornar a activar un fitxer d'idioma; encara es pot editar quan està desactivat. L'anglès base i l'idioma predeterminat actual de WHMCS estan protegits. Per als idiomes de client i administrador de WHMCS afegits pel gestor, es desen còpies que permeten restaurar-los després d'una actualització. Si a **Seccions** apareix una correcció de nom de fitxer, reviseu el nom nou i premeu **Corregir**; afecta totes les seccions detectades.
 
 Per canviar l'idioma predeterminat, activeu primer el nou idioma a la configuració del mòdul, canvieu després el valor predeterminat de WHMCS i finalment desactiveu l'antic. Comproveu els textos tant a l'administració com a la part client.
-
-## Instruccions
-
-- Seccions
-- Idiomes
-- Traduccions
-- Aquest idioma està desactivat, però les traduccions es poden editar.
-- Idioma de referència
-- Cada botó «Desa» desa una sola traducció.
-- Sense traducció
-- Mostra les originals
-- Mostra les afegides
-- Les claus de traducció següents no s'han importat:
-- clau desconeguda
-- clau duplicada

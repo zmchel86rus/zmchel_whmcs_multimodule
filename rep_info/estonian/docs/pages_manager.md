@@ -15,14 +15,3 @@ Filtreeri loendit nime, ligipääsu, tüübi, oleku või keele järgi. **Külast
 ## WHMCS
 
 WHMCS-i lehe asendamiseks vali olemasolev süsteemiaadress ja avaldatud moodulileht. Vali täielik asendus, sisu lisamine enne või pärast tavapärast sisu või ainult meta/SEO. Salvesta ja kontrolli WHMCS-i algset URL-i külalise ning sisseloginud kliendina.
-
-## Juhised
-
-- Lisa leht
-- **Lehe nimi** — Sisemine lehe nimi
-- **Lehe püsiviide** — Lubatud on ainult ladina tähed, sidekriipsud ja numbrid.
-- **Juurdepääsu tüüp** — Sisseloginud kasutajad: lehele pääsevad ligi ainult sisseloginud kasutajad; külalised: lehele pääsevad ligi ainult külalised; segatud: lehele pääsevad ligi kõik, kuid nähtavust juhitakse lehe plokkide kaudu.
-- **Lehe tüüp** — Süsteemilehti ei lisata saidikaardile ja need pole tavakasutajatele kättesaadavad.
-- **Lehe keeled** — Vaikimisi keel kaasatakse alati, olenemata teie valikust.
-- Täielik asendus asendab kuvatava sisu ja metaandmed.\ Lisa ette paigutab sisu olemasoleva lehe sisu ette.\ Lisa järele paigutab sisu olemasoleva lehe sisu järele.\ Ainult metaandmed/SEO asendab lehe metaandmed.
-- Lehtede loendi navigeerimine

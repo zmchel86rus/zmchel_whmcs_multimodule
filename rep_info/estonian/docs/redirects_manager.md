@@ -13,10 +13,3 @@ Sisestage korrektne tee, mis algab märgiga /, või täielik HTTP(S)-URL. Lähte
 Reeglid toetavad HTTP-koode `301`, `302`, `303`, `307`, `308` ja kehtivad ainult WHMCS-i jõudvatele `GET`/`HEAD` päringutele. Lähteaadressi võrreldakse täpselt tee ja vajaduse korral päringuparameetrite järgi; sihtkoha parameetrid asendavad vanad. Haldur salvestab reeglid tabelisse `zm_pb_redirects`, kuid ei loo tabelit päringu ajal: kasutage **Mooduli andmebaasi**. Olemasolevad URL-veerud on piiratud 128 baidiga.
 
 Käsitsi lisatud reeglid on automaatsetest tähtsamad. Avaldatud lehe slug'i muutus võib pärast määratud ooteaega luua iga aktiivse keele jaoks automaatse `301`; mustandi avaldamine seda ei tee. Järgmised ümbernimetamised uuendavad vanade reeglite sihte. Päringuparameetritega reegel on ainult teele vastavast reeglist tähtsam. Lähte-URL peab kuuluma sellele saidile ega tohi sisaldada `#`-fragmenti.
-
-## Juhised
-
-- Lähteaadress
-- Sihtaadress
-- Lubatud
-- Keelatud

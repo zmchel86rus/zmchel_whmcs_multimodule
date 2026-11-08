@@ -7,16 +7,6 @@ Pagina **Baza de date a modulului** arată tabelele și coloanele necesare și s
 
 **Șterge elementele selectate** elimină definitiv obiectele alese din baza de date. Înainte de ștergere, exportați datele modulului și faceți o copie de siguranță a bazei.
 
-## Instrucțiuni
-
-- Acces refuzat. Numai Superadministratorul (ID …) poate utiliza pagina Bază de date a modulului.
-- Remediază
-- Elemente selectate
-- Șterge
-- Această acțiune nu poate fi anulată.
-- Tabelele meniurilor nu au fost încă create. Adăugați-le în Baza de date a modulului.
-- Adăugați mai întâi coloana optimization_attempted în managerul tabelelor modulului.
-
 ## 1. Instalare și acces
 
 Activați modulul suplimentar în WHMCS și acordați acces administratorilor autorizați. În Baza de date a modulului verificați tabelele necesare. Revizuiți apoi URL-urile prietenoase, rutele lingvistice și pozițiile meniurilor. Apache folosește .htaccess; în Nginx configurați separat regulile echivalente.

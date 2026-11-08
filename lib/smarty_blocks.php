@@ -15,7 +15,10 @@ class ZM_PB_SmartyBlocks
     {
         $smarty = new Smarty();
         $security = new Smarty_Security($smarty);
-        $security->php_handling = Smarty::PHP_REMOVE;
+        // Smarty 4 removed PHP handling modes; only older versions need this setting.
+        if (version_compare(Smarty::SMARTY_VERSION, '4.0', '<') && defined('Smarty::PHP_REMOVE')) {
+            $security->php_handling = Smarty::PHP_REMOVE;
+        }
         $security->php_functions = ['isset', 'empty', 'count', 'in_array', 'is_array', 'array_key_exists'];
         $security->php_modifiers = ['count', 'nl2br', 'array_key_exists', 'round'];
         $security->allowed_tags = ['if', 'ifclose', 'else', 'elseif', 'foreach', 'foreachclose', 'foreachelse', 'section', 'sectionclose', 'sectionelse', 'assign', 'capture', 'captureclose', 'literal', 'literalclose', 'strip', 'stripclose', 'break', 'continue', 'lang'];

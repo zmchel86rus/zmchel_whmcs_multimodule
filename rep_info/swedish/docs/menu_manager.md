@@ -24,18 +24,3 @@ URL:en för ett sidobjekt beräknas om från aktuell slug och publicerad övers�
 ## zm_pb_menus
 
 Data finns i tabellerna `zm_pb_menus`, `zm_pb_menu_items` och `zm_pb_menu_locations`. Skapa eller reparera tabellerna under Modulens databas. Trädet har högst 10 nivåer och 300 objekt; när en överordnad post tas bort flyttas dess underposter upp en nivå.
-
-## Instruktioner
-
-- Skapa meny
-- Lägg till sidor, inlägg eller anpassade länkar.
-- Dra objekt för att ändra ordningen. Ange hierarki med valet av överordnat objekt eller flyttknapparna.
-- Använd den aktuella sidans språk
-- Använd den angivna URL:en oförändrad
-- Etiketter på andra språk
-- Synlig för
-- Enheter
-- Varje placering kan ha en meny. Om du väljer en placering flyttas tilldelningen hit från en annan meny.
-- Objekt på toppnivå blir kolumner och underordnade objekt blir länkar. Använd URL # för en rubrik utan länk.
-- Menytabellerna har inte skapats ännu. Lägg till dem i Moduldatabas.
-

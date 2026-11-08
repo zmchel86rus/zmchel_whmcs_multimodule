@@ -23,14 +23,3 @@ Katalogi katika `resources/available_vars/` huhifadhi majina, aina, muundo na mi
     <span>{$item.title|escape}</span>
 {/foreach}
 ```
-
-## Maelekezo
-
-- **Kusanya vigeu vya Smarty** — Washa au zima ukusanyaji wa vigeu vya Smarty.
-- **Tumia vigeu vya Smarty vilivyokusanywa** — Washa au zima matumizi ya vigeu vya Smarty vilivyokusanywa katika kihariri cha kurasa.
-- Kigeu cha Smarty (PHP)
-- Smarty: PHP, mbinu za vitu, miito tuli na nofilter haviruhusiwi.
-- Kiolezo cha Smarty ni kikubwa mno.
-- Smarty
-- Kihariri cha Smarty
-

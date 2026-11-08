@@ -25,13 +25,3 @@ Katalóg v `resources/available_vars/` uchováva názvy, typy, štruktúru a ume
     <span>{$item.title|escape}</span>
 {/foreach}
 ```
-
-## Pokyny
-
-- **Zhromažďovať premenné Smarty** — Povoliť alebo zakázať zhromažďovanie premenných Smarty.
-- **Používať zhromaždené premenné Smarty** — Povoliť alebo zakázať používanie zhromaždených premenných Smarty v editore stránok.
-- Premenná Smarty (PHP)
-- Smarty: PHP, metódy objektov, statické volania a nofilter sú zakázané.
-- Šablóna Smarty je príliš veľká.
-- Smarty
-- Editor Smarty

@@ -33,9 +33,3 @@ Vichujio hufanya kazi kwenye orodha ileile inayogawanywa kwa kurasa. Utafutaji w
 ## Flex / Grid
 
 Chagua Flex au Grid na urekebishe upana na safu kwa kila kifaa. Kutumia au kuondoa kichujio hurudisha orodha ukurasa wa kwanza. Kiteuzi cha idadi ya matokeo kinaweza kuhamishwa bila kupoteza uhusiano; paneli rudufu hudhibiti orodha ileile.
-
-## Maelekezo
-
-- Usiweke kwenye faharasa ukurasa wa 2 na unaofuata
-- Muundo wa viungo
-- Idadi chaguomsingi ya vipengee kwa ukurasa

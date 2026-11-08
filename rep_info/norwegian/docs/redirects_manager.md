@@ -13,10 +13,3 @@ Angi en gyldig bane som begynner med /, eller en fullstendig HTTP(S)-URL. Kilden
 Reglene støtter HTTP-kodene `301`, `302`, `303`, `307` og `308` og gjelder bare `GET`/`HEAD`-forespørsler som når WHMCS. Kilden matches nøyaktig mot banen og eventuelle oppgitte spørringsparametre; destinasjonsparametre erstatter de gamle. Behandleren lagrer regler i `zm_pb_redirects`, men oppretter ikke tabellen under en forespørsel: bruk **Moduldatabase**. Eksisterende URL-kolonner er begrenset til 128 byte.
 
 Manuelle regler går foran automatiske. Når slug for en publisert side endres, kan en automatisk `301` opprettes for hvert aktive språk etter den angitte ventetiden; publisering av et utkast gjør ikke dette. Senere navneendringer oppdaterer gamle mål. En regel med spørringsparametere går foran en regel som bare gjelder stien. Kilde-URL-en må tilhøre dette nettstedet og ikke ha et `#`-fragment.
-
-## Instruksjoner
-
-- Kilde
-- Mål
-- Aktivert
-- Deaktivert

@@ -13,15 +13,3 @@ Kontrollera JSON-LD, kanonisk webbadress, språk och faktiskt synligt innehåll 
 ## Schema.org
 
 `SiteNavigationElement` använder menylänkar och titlar som faktiskt syns; innehållsförteckningen kan lägga till `WebPageElement` för rubriker som finns på sidan. `FAQPage` tar bara med fullständiga frågor och svar som besökaren ser: dolda block och vanliga dragspel lämnas utanför. `BreadcrumbList` skapas först vid minst två poster. Organisationsuppgifter kommer från WHMCS; kontaktspråk finns i `ContactPoint.availableLanguage` med BCP 47-format. Modulen gissar ingen Schema-typ för filter, paginering, formulär eller egen HTML.
-
-## Instruktioner
-
-- **Schematyp** — När funktionen är inaktiverad genereras ingen Schema.org-JSON-kod för den här sidan.
-- **Brödsmulor** — Sidnamn i brödsmulor
-- **Kanonisk URL**
-- **Sidtitel**
-- **Metabeskrivning**
-- **Open Graph-titel** — Om fältet lämnas tomt används sidtiteln.
-- **Open Graph-beskrivning** — Om fältet lämnas tomt används metabeskrivningen.
-- **Open Graph-bild** — Om fältet lämnas tomt används sidbilden.
-

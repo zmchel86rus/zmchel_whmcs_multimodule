@@ -7,18 +7,3 @@ Clique em **Enviar arquivo de mídia**, escolha uma imagem, áudio, vídeo ou PD
 ## Exibição de imagens
 
 O gerenciador cria imagens em vários tamanhos. Você pode executar **Otimizar imagem** em uma imagem enviada; depois, confira a qualidade, sobretudo se ela contém texto. Se as versões responsivas não forem adequadas, desative `srcset` nesse bloco. Confira a URL final e o texto alternativo na página pública.
-
-## Instruções
-
-- Enviar arquivo de mídia
-- **Nome (interno)**
-- **Título (se aplicável)**
-- **Descrição (se aplicável)**
-- **Atributo alt**
-- Pesquisar por nome
-- Tipo de arquivo
-- Carregar mais
-- Otimizar imagem
-- A otimização da imagem original e das suas variantes foi concluída.
-- Selecionar arquivo de mídia
-

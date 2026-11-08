@@ -23,15 +23,3 @@ Els filtres actuen sobre la mateixa llista que la paginació. La cerca de text p
 ## Flex / Grid
 
 Trieu Flex o Grid i ajusteu amplades i columnes per dispositiu. Aplicar o netejar filtres retorna la llista a la primera pàgina. Podeu moure el selector del nombre de resultats sense perdre'n l'enllaç; un panell duplicat controla la mateixa llista.
-
-## Instruccions
-
-- Fes clic al bloc de llista. Prem Esc per cancel·lar. Col·loca la paginació fora del bloc de destinació.
-- Per a Smarty, indica la variable de la llista completa. Sense variable, es paginen els elements HTML del contenidor; opcionalment, indica una classe de fila o l'etiqueta tr. Els enllaços conserven count, sort i els filtres. S'admeten diverses llistes independents.
-- Selector d'elements per pàgina: 10, 25, 50, 100, 250
-- Arrossega el selector d'elements per pàgina dins de la paginació o a altres blocs de la pàgina. Continuarà vinculat a aquesta paginació.
-- No indexis les pàgines a partir de la 2
-- Selecciona el bloc de llista Smarty. La cerca i la paginació han d'apuntar al mateix bloc.
-- Indica la variable de la llista completa. La cerca comprova qualsevol dels camps seleccionats i els filtres s'apliquen conjuntament. Les condicions s'apliquen abans de calcular les pàgines; aplicar o restablir torna a la primera pàgina. Si ja hi ha una paginació vinculada, se n'utilitza la variable.
-- Format dels enllaços
-- Elements per pàgina per defecte

@@ -25,13 +25,3 @@ El catàleg de `resources/available_vars/` desa noms, tipus, estructura i exempl
     <span>{$item.title|escape}</span>
 {/foreach}
 ```
-
-## Instruccions
-
-- **Recopila variables de Smarty** — Activa o desactiva la recopilació de variables de Smarty.
-- **Utilitza les variables de Smarty recopilades** — Activa o desactiva l'ús de les variables de Smarty recopilades a l'editor de pàgines.
-- Variable de Smarty (PHP)
-- Smarty: es prohibeixen PHP, els mètodes d'objecte, les crides estàtiques i nofilter.
-- La plantilla de Smarty és massa gran.
-- Smarty
-- Editor Smarty

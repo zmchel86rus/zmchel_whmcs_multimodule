@@ -24,7 +24,3 @@ Sivukohdan URL muodostetaan uudelleen nykyisestä slugista ja julkaistusta kää
 ## zm_pb_menus
 
 Tiedot tallennetaan tauluihin `zm_pb_menus`, `zm_pb_menu_items` ja `zm_pb_menu_locations`. Luo tai korjaa taulut moduulin tietokantaosiossa. Puussa voi olla enintään 10 tasoa ja 300 kohtaa; pääkohdan poistaminen nostaa sen alikohdat yhden tason ylemmäs.
-
-## Ohjeet
-
-- Luo valikko, lisää sivuja tai omia linkkejä ja järjestä kohteet vetämällä.

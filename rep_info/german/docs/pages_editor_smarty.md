@@ -17,10 +17,10 @@ Echte Werte werden nicht gespeichert. Passwort-, Token- und personenbezogene Fel
 ## foreach
 
 ```smarty
-{foreach $registered_domains as $item}
-    <div class="domain">{$item.domain|escape}</div>
+{foreach $items as $item}
+    <div class="item">{$item.title|escape}</div>
 {foreachelse}
-    <p>Keine Domains.</p>
+    <p>Keine Einträge.</p>
 {/foreach}
 ```
 
@@ -29,13 +29,3 @@ Echte Werte werden nicht gespeichert. Passwort-, Token- und personenbezogene Fel
 Code wird beim Speichern und vor der Ausgabe geprüft. Isoliertes Smarty erhält einen Schnappschuss bereits vorhandener Variablen als Arrays und Skalare. Erlaubt sind Bedingungen, `foreach`, lokales `assign`, `capture`, `literal`, `strip`, `break`/`continue` sowie ausgewählte Modifikatoren (`escape`, `default`, `count`, `nl2br`, `upper`, `lower`, `capitalize`, `truncate`, `replace`, `cat`, `date_format`). PHP, Methoden, beliebige Funktionen, SQL, Includes, Netzwerkzugriffe, Superglobals und `nofilter` sind verboten. Werte werden automatisch maskiert; HTML gehört direkt in die Vorlage. Sensible Felder fehlen auch im Ausgabe-Schnappschuss.
 
 Blöcke werden in `ClientAreaFooterOutput:10000` verarbeitet und über einen Smarty-Ausgabefilter an ihre ursprüngliche HTML-Position gesetzt. Gesperrte Bereiche werden vorher entfernt. Fehlende Daten oder Vorlagenfehler ergeben einen leeren Block und einen Eintrag im PHP-Fehlerprotokoll. Der Katalog ist keine Datenquelle und macht Variablen anderer Seiten nicht verfügbar. Prüfen Sie mit `tests/smarty_blocks.php` in einer WHMCS-Umgebung mit Projektabhängigkeiten.
-
-## Anleitung
-
-- **Smarty-Variablen sammeln** — Sammeln von Smarty-Variablen aktivieren oder deaktivieren.
-- **Gesammelte Smarty-Variablen verwenden** — Verwendung gesammelter Smarty-Variablen im Seiteneditor aktivieren oder deaktivieren.
-- Smarty-(PHP-)Variable
-- Smarty: PHP, Objektmethoden, statische Aufrufe und nofilter sind nicht erlaubt.
-- Die Smarty-Vorlage ist zu groß.
-- Smarty
-- Smarty-Editor

@@ -38,17 +38,3 @@ Draft, deleted and access-restricted pages are omitted. Hiding a parent hides it
 `inc/menu_schema.php` defines the schema used during activation and by `inc/module/db.php`. Creation, column repair and removal happen in **Module database**. If tables are missing, the menu manager links there; it only manages records. Deactivation removes tables only if `db_action` is enabled.
 
 Output is handled by `lib/menu.php`, helpers by `inc/menu_manager.php`, and hooks by `hooks/menu.php`. To check behavior in a WHMCS installation with PDO SQLite, run `php modules/addons/zmchel_whmcs_multimodule/tests/menu.php`, then repeat with `--plain`.
-
-## Instructions
-
-- Create menu
-- Add pages, posts or custom links.
-- Drag items to reorder them. Set nesting with the parent selector or move buttons.
-- Use the current page language
-- Use the entered URL unchanged
-- Labels in other languages
-- Visible to
-- Devices
-- Each location can have one menu. Selecting a location moves its assignment here from another menu.
-- Top-level items become columns and nested items become links. Use URL # for a heading without a link.
-- Menu tables have not been created yet. Add them in Module Database.

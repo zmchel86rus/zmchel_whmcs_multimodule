@@ -24,10 +24,10 @@ Example for an already-loaded collection:
 ## foreach
 
 ```smarty
-{foreach $registered_domains as $item}
-    <div class="domain">{$item.domain|escape}</div>
+{foreach $items as $item}
+    <div class="item">{$item.title|escape}</div>
 {foreachelse}
-    <p>No domains.</p>
+    <p>No items.</p>
 {/foreach}
 ```
 
@@ -40,13 +40,3 @@ PHP, static access, object methods, arbitrary functions, SQL and WHMCS plugins, 
 Blocks resolve in `ClientAreaFooterOutput:10000`. A [Smarty output filter](https://www.smarty.net/docs/en/api.register.filter.tpl) places each result back at its original HTML position before the HTTP response. Separately loaded templates use variables already defined in their context. Authorization-restricted zones are removed before Smarty blocks are queued. Missing data or template errors leave the block empty, suppress its internal marker and write the error to PHP error log.
 
 The catalog is a guide, not a data source: it cannot make a variable from another page available here. A full page override may lack variables created only by the native controller. For a check with WHMCS dependencies, run `php modules/addons/zmchel_whmcs_multimodule/tests/smarty_blocks.php`; it uses Smarty, Collection and Eloquent without a database connection.
-
-## Instructions
-
-- **Collect Smarty variables** — Enable or disable collecting Smarty variables.
-- **Use collected Smarty variables** — Enable or disable using collected Smarty variables in the page editor.
-- Smarty (PHP) variable
-- Smarty: PHP, object methods, static calls and nofilter are forbidden.
-- Smarty template is too large.
-- Smarty
-- Smarty editor

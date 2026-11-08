@@ -23,15 +23,3 @@ Filters werken op dezelfde lijst als de paginering. Tekstzoekopdrachten kunnen m
 ## Flex / Grid
 
 Kies Flex of Grid en stel breedtes en kolommen per apparaat in. Een filter toepassen of wissen zet de lijst terug op de eerste pagina. De keuzelijst voor aantallen kan worden verplaatst zonder de koppeling te verliezen; een dubbele balk bedient dezelfde lijst.
-
-## Instructies
-
-- Klik op het lijstblok. Druk op Esc om te annuleren. Plaats de paginering buiten het doelblok.
-- Geef voor Smarty de variabele van de volledige lijst op. Zonder variabele worden de HTML-elementen in de container over pagina's verdeeld; geef eventueel een rij-klasse of de tag tr op. Links behouden count, sort en filters. Meerdere onafhankelijke lijsten worden ondersteund.
-- Items per pagina: 10, 25, 50, 100, 250
-- Sleep de selector voor het aantal items per pagina naar de paginering of naar andere blokken op de pagina. De selector blijft aan deze paginering gekoppeld.
-- Pagina 2 en verder niet indexeren
-- Selecteer het Smarty-blok met de lijst. Zoeken en paginering moeten aan hetzelfde blok gekoppeld zijn.
-- Geef de variabele van de volledige lijst op. De zoekopdracht doorzoekt alle gekozen velden; filters worden gecombineerd. De voorwaarden worden toegepast voordat het aantal pagina's wordt berekend; bij toepassen of opnieuw instellen ga je terug naar de eerste pagina. Als er al een pagineringskoppeling is, wordt de bijbehorende variabele gebruikt.
-- Linkformaat
-- Standaardaantal items per pagina

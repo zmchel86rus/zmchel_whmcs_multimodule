@@ -13,10 +13,3 @@ Iontráil conair bhailí a thosaíonn le / nó URL iomlán HTTP(S). Ní mór don
 Tacaíonn rialacha leis na cóid HTTP `301`, `302`, `303`, `307` agus `308` agus ní bhaineann siad ach le hiarratais `GET`/`HEAD` a shroicheann WHMCS. Meaitseáiltear an fhoinse go beacht de réir an chosáin agus aon pharaiméadair fhiosrúcháin; tagann paraiméadair an chinn scríbe in áit na seanchinn. Coinnítear rialacha in `zm_pb_redirects`, ach ní chruthaítear an tábla le linn iarratais: úsáid **Bunachar sonraí an mhodúil**. Tá teorainn 128 beart ar na colúin URL atá ann.
 
 Tá tosaíocht ag rialacha láimhe ar rialacha uathoibríocha. D'fhéadfadh athrú ar slug leathanaigh fhoilsithe `301` uathoibríoch a chruthú do gach teanga ghníomhach tar éis na moille socraithe; ní dhéanann foilsiú dréachta amhlaidh. Nuashonraíonn athainmniú eile na seanspriocanna. Bíonn tosaíocht ag riail le paraiméadair iarratais ar riail don chonair amháin. Caithfidh an URL foinse a bheith ar an suíomh seo agus gan blúire `#` a bheith ann.
-
-## Treoracha
-
-- Foinse
-- Ceann scríbe
-- Cumasaithe
-- Díchumasaithe

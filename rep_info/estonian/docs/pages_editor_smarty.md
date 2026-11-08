@@ -23,14 +23,3 @@ Kataloog `resources/available_vars/` salvestab nimed, tüübid, struktuuri ja v�
     <span>{$item.title|escape}</span>
 {/foreach}
 ```
-
-## Juhised
-
-- **Kogu Smarty muutujad** — Luba või keela Smarty muutujate kogumine.
-- **Kasuta kogutud Smarty muutujaid** — Luba või keela kogutud Smarty muutujate kasutamine leheredaktoris.
-- Smarty (PHP) muutuja
-- Smarty: PHP, objektimeetodid, staatilised väljakutsed ja nofilter on keelatud.
-- Smarty mall on liiga suur.
-- Smarty
-- Smarty redaktor
-

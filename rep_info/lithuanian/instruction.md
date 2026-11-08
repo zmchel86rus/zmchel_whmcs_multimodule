@@ -1,12 +1,22 @@
 # zmchel WHMCS Multimodule instrukcija
 
-**Prieš naudodami sugeneruokite unikalias druskas ir įrašykite ZM_PB_ADMIN_SALT, ZM_PB_SECURE_SALT bei ZM_PB_NONCE_SALT į module_init.php.** Modulis sukurtas ir išbandytas su WHMCS 8.13.1–8.13.7. Apache palaikomas visiškai. Nginx taip pat gali veikti, tačiau kalbų maršrutizavimui pagrindiniame puslapyje gali reikėti papildomų nustatymų.
+**zmchel WHMCS Multimodule yra nemokamas.** WHMCS administravimo srityje galima tvarkyti puslapius ir straipsnius naudojant vaizdinę rengyklę, vertimus, meniu, medijos biblioteką, SEO laukus, XML svetainės schemas, peradresavimus ir URL perrašymo taisykles.
+
+## Prieš pirmą naudojimą
 
 **Prieš pirmą naudojimą atverkite Modulio nustatymai → Palaikomos kalbos ir įjunkite reikalingas kalbas.**
 
-**Patikrintos PHP versijos:** 7.4, 8.0, 8.1, 8.2, 8.3, 8.4 ir 8.5.
+Kaskart aktyvinant modulis automatiškai sugeneruoja naujas druskų reikšmes ir įrašo jas į `module_init.php` (`ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT`, `ZM_PB_NONCE_SALT`). Patikrinkite, ar užpildytos visos trys salt reikšmės.
 
-**zmchel WHMCS Multimodule yra nemokamas.** WHMCS administravimo srityje galima tvarkyti puslapius ir straipsnius naudojant vaizdinę rengyklę, vertimus, meniu, medijos biblioteką, SEO laukus, XML svetainės schemas, peradresavimus ir URL perrašymo taisykles.
+## Patikrintas suderinamumas ir veikimas
+
+- **PHP:** 7.4, 8.0, 8.1, 8.2, 8.3, 8.4, 8.5
+- **WHMCS:** 8.13.0–9.1.0
+- **Smarty:** 3, 4
+
+## Suderinamumas su žiniatinklio serveriais
+
+Apache palaikomas visiškai. Nginx taip pat gali veikti, tačiau kalbų maršrutizavimui pagrindiniame puslapyje gali reikėti papildomų nustatymų.
 
 ## Modulio nustatymai
 

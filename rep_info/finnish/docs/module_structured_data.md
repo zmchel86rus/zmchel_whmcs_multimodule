@@ -15,14 +15,3 @@ Tarkista julkiselta sivulta JSON-LD, kanoninen URL, kieli ja todella näkyvä si
 ## Schema.org
 
 `SiteNavigationElement` käyttää oikeasti näkyviä valikkolinkkejä ja niiden nimiä; sisällysluettelo voi lisätä `WebPageElement`-merkintöjä sivulta löytyville otsikoille. `FAQPage` sisältää vain vierailijalle näkyvät täydet kysymykset ja vastaukset: piilotetut lohkot ja tavalliset haitarit jätetään pois. `BreadcrumbList` luodaan vasta vähintään kahdesta kohdasta. Organisaatiotiedot tulevat WHMCS:stä; yhteydenottokielet ovat `ContactPoint.availableLanguage`-kentässä BCP 47 -muodossa. Suodattimille, sivutukselle, lomakkeille tai omalle HTML:lle ei arvata Schema-tyyppiä.
-
-## Ohjeet
-
-- **Schema-tyyppi** — Kun asetus on pois käytöstä, sivulle ei tulosteta Schema.org JSON -merkintää.
-- **Murupolku** — Sivun nimi murupolussa
-- **Kanoninen URL-osoite**
-- **Sivun otsikko**
-- **Metakuvaus**
-- **Open Graph -otsikko** — Jos kenttä on tyhjä, käytetään sivun otsikkoa.
-- **Open Graph -kuvaus** — Jos kenttä on tyhjä, käytetään metakuvausta.
-- **Open Graph -kuva** — Jos kenttä on tyhjä, käytetään sivun kuvaa.

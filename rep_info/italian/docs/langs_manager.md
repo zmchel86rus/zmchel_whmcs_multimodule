@@ -17,19 +17,3 @@ Prima delle modifiche in blocco esporta le chiavi e le traduzioni della lingua s
 ## File di lingua e lingua predefinita
 
 Un file disattivato resta modificabile. Il file inglese di base e l'attuale lingua predefinita di WHMCS sono protetti. Per cambiare la lingua predefinita, abilita prima la nuova nel modulo, cambiala in WHMCS e solo dopo disattiva la precedente. I vecchi nomi dei file si correggono in **Sezioni**.
-
-## Istruzioni
-
-- Sezioni
-- Lingue
-- Traduzioni
-- Questa lingua è disattivata, ma le traduzioni possono ancora essere modificate.
-- Lingua di riferimento
-- Ogni pulsante Salva salva una sola traduzione.
-- Non tradotto
-- Mostra le originali
-- Mostra le aggiunte
-- Le seguenti chiavi di traduzione non sono state importate:
-- chiave sconosciuta
-- chiave duplicata
-

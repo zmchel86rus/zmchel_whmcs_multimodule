@@ -1,10 +1,22 @@
 # zmchel WHMCS Multimodule qo‘llanmasi
 
-**Ishlatishdan oldin noyob salt qiymatlarini `module_init.php` fayliga kiriting: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` va `ZM_PB_NONCE_SALT`.** Modul **WHMCS 8.13.1–8.13.7** da ishlab chiqilgan va sinovdan o‘tgan. **PHP 7.4–8.5** mosligi tekshirilgan. Apache to‘liq (100%) qo‘llab-quvvatlanadi; Nginx’da bosh sahifaning til marshruti qo‘shimcha sozlashni talab qilishi mumkin.
+**zmchel WHMCS Multimodule bepul.** WHMCS boshqaruv panelidan ko‘p tilli sahifalar, vizual muharrir, menyular, media kutubxonasi, SEO metama’lumotlari, XML sayt xaritasi, yo‘naltirishlar, rewrite qoidalari hamda import va eksportni boshqaring.
+
+## Birinchi foydalanishdan oldin
 
 **Birinchi foydalanishdan oldin Modul sozlamalari → Qo‘llab-quvvatlanadigan tillar bo‘limini ochib, kerakli tillarni yoqing.**
 
-**zmchel WHMCS Multimodule bepul.** WHMCS boshqaruv panelidan ko‘p tilli sahifalar, vizual muharrir, menyular, media kutubxonasi, SEO metama’lumotlari, XML sayt xaritasi, yo‘naltirishlar, rewrite qoidalari hamda import va eksportni boshqaring.
+Har bir faollashtirishda modul yangi salt qiymatlarini avtomatik yaratadi va ularni `module_init.php` fayliga yozadi (`ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT`, `ZM_PB_NONCE_SALT`). Uchala salt qiymati ham toʻldirilganini tekshiring.
+
+## Sinovdan o‘tgan moslik va ishlash
+
+- **PHP:** 7.4, 8.0, 8.1, 8.2, 8.3, 8.4, 8.5
+- **WHMCS:** 8.13.0–9.1.0
+- **Smarty:** 3, 4
+
+## Veb-serverlar bilan moslik
+
+Apache to‘liq (100%) qo‘llab-quvvatlanadi; Nginx’da bosh sahifaning til marshruti qo‘shimcha sozlashni talab qilishi mumkin.
 
 ## Modul sozlamalari
 

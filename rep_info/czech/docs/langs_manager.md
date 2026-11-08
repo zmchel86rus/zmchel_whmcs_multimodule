@@ -17,19 +17,3 @@ Před hromadnou úpravou exportujte klíče a překlady vybraného jazyka. Impor
 ## Jazykové soubory a výchozí jazyk
 
 Vypnutý jazykový soubor lze dál upravovat. Základní angličtina a aktuální výchozí jazyk WHMCS jsou chráněné. Chcete-li změnit výchozí jazyk, nejprve zapněte nový v modulu, změňte jej ve WHMCS a až potom vypněte starý. Staré názvy souborů můžete opravit v **Sekcích**.
-
-## Pokyny
-
-- Sekce
-- Jazyky
-- Překlady
-- Tento jazyk je vypnutý, ale jeho překlady lze stále upravovat.
-- Referenční jazyk
-- Každé tlačítko Uložit uloží pouze jeden překlad.
-- Bez překladu
-- Zobrazit původní
-- Zobrazit přidané
-- Následující překladové klíče nebyly importovány:
-- neznámý klíč
-- duplicitní klíč
-

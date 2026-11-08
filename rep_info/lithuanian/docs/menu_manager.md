@@ -24,7 +24,3 @@ Puslapio elemento URL iš naujo sudaromas pagal dabartinį slug ir paskelbtą ve
 ## zm_pb_menus
 
 Duomenys laikomi lentelėse `zm_pb_menus`, `zm_pb_menu_items` ir `zm_pb_menu_locations`. Sukurkite arba pataisykite jas skiltyje Modulio duomenų bazė. Medis leidžia iki 10 lygių ir 300 elementų; pašalinus pirminį elementą, jo vaikai pakeliami vienu lygiu.
-
-## Instrukcijos
-
-- Sukurkite meniu, pridėkite puslapių ar savų nuorodų ir surikiuokite elementus juos vilkdami.

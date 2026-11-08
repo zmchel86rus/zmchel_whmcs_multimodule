@@ -1,10 +1,22 @@
 # zmchel WHMCS Multimodule təlimatı
 
-**İstifadədən əvvəl unikal salt dəyərlərini `module_init.php` faylına yazın: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` və `ZM_PB_NONCE_SALT`.** Modul **WHMCS 8.13.1–8.13.7** üzərində hazırlanıb və sınaqdan keçirilib. **PHP 7.4–8.5** uyğunluğu yoxlanılıb. Apache tam (100%) dəstəklənir; Nginx-də ana səhifənin dil marşrutları əlavə sazlama tələb edə bilər.
+**zmchel WHMCS Multimodule pulsuzdur.** WHMCS idarəetmə panelindən vizual redaktorla çoxdilli səhifələri, menyuları, media kitabxanasını, SEO metadatasını, XML sayt xəritələrini, yönləndirmələri, rewrite qaydalarını, idxal və ixracı idarə edin.
+
+## İlk istifadədən əvvəl
 
 **İlk istifadədən əvvəl Modul parametrləri → Dəstəklənən dillər bölməsini açın və sizə lazım olan dilləri aktiv edin.**
 
-**zmchel WHMCS Multimodule pulsuzdur.** WHMCS idarəetmə panelindən vizual redaktorla çoxdilli səhifələri, menyuları, media kitabxanasını, SEO metadatasını, XML sayt xəritələrini, yönləndirmələri, rewrite qaydalarını, idxal və ixracı idarə edin.
+Hər aktivləşdirmədə modul yeni salt dəyərləri yaradır və onları `module_init.php` faylına yazır (`ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT`, `ZM_PB_NONCE_SALT`). Hər üç salt dəyərinin doldurulduğunu yoxlayın.
+
+## Sınaqdan keçirilmiş uyğunluq və funksionallıq
+
+- **PHP:** 7.4, 8.0, 8.1, 8.2, 8.3, 8.4, 8.5
+- **WHMCS:** 8.13.0–9.1.0
+- **Smarty:** 3, 4
+
+## Veb serverlərlə uyğunluq
+
+Apache tam (100%) dəstəklənir; Nginx-də ana səhifənin dil marşrutları əlavə sazlama tələb edə bilər.
 
 ## Modul parametrləri
 

@@ -21,16 +21,3 @@ Fylltu út titil og lýsingu fyrir hvert tungumál og athugaðu canonical, robot
 ## Tengiliðaeyðublaði
 
 Bættu við **Tengiliðaeyðublaði**. Veldu **WHMCS-beiðni** og þjónustudeild eða **tölvupóst** og viðtakanda; fylltu út fyrirsögn, lýsingu, efni og hnappatexta. Hver reitur þarf heiti, gerð, skyldu og staðfestingu. Beiðni frá gesti þarf reiti með hlutverki nafns og netfangs sendanda. Settu einn valkost á hverja línu í fellilista, til dæmis `sales : Sala`. Búðu til sér reit fyrir hvert samþykki og notaðu CAPTCHA sem er stillt í WHMCS. Vistaðu og sendu alvöru prófun sem gestur; athugaðu beiðni eða afhendingu, villur og hreinsun eyðublaðs. Græn staða í ritli staðfestir ekki afhendingu; stilltu SMTP í WHMCS ef `mail()` bregst.
-
-## Leiðbeiningar
-
-- Hreiðraður gámur með sveigjanlegu útliti. Dragðu aðrar blokkir inn í hann.
-- Hreiðraður CSS Grid-gámur. Dragðu aðrar blokkir inn í hann.
-- Innfaldin Bootstrap-myndasýning. Dragðu blokkir inn; hver blokk verður að skyggnu.
-- Allar blokkir fyrir neðan þessa blokk birtast aðeins innskráðum notendum. Virkar aðeins þegar aðgangstegund síðunnar er Blandað.
-- Allar blokkir fyrir neðan þessa blokk birtast aðeins gestum. Virkar aðeins þegar aðgangstegund síðunnar er Blandað.
-- **Titill síðu**
-- **Lýsigagnalýsing**
-- **Vefslóð með kanónískri tilvísun**
-- **Robots** — index, follow / noindex, nofollow. Stýrir skráningu í leitarvélum.
-- **Tegund Schema** — Þegar þetta er óvirkt eru Schema.org JSON-gögn ekki birt fyrir þessa síðu.

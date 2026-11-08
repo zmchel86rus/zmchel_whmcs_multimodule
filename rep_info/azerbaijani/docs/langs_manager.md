@@ -17,19 +17,3 @@ Kütləvi redaktədən əvvəl seçilmiş dilin açarlarını və tərcümələr
 ## Dil faylları və standart dil
 
 Dil faylını söndürdükdən sonra da redaktə etmək olar. Əsas ingilis dili və WHMCS-in cari standart dili qorunur. Standart dili dəyişmək üçün əvvəlcə yenisini modul parametrlərində aktivləşdirin, sonra WHMCS-də dəyişin və yalnız bundan sonra köhnə dili söndürün. Köhnə fayl adlarını **Bölmələr** səhifəsində düzəldə bilərsiniz.
-
-## Təlimatlar
-
-- Bölmələr
-- Dillər
-- Tərcümələr
-- Bu dil deaktivdir. Onun tərcümələrini yenə də redaktə etmək olar.
-- İstinad dili
-- Hər Saxla düyməsi bir tərcüməni yeniləyir.
-- Tərcümə olunmayıb
-- Orijinalı göstər
-- Əlavə edilənləri göstər
-- Aşağıdakı tərcümə açarları idxal edilmədi:
-- naməlum açar
-- təkrarlanan açar
-

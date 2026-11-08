@@ -23,15 +23,3 @@ Filtry działają na tej samej liście co paginacja. Wyszukiwanie tekstowe może
 ## Flex / Grid
 
 Wybierz Flex lub Grid oraz dostosuj szerokości i kolumny do urządzeń. Zastosowanie lub wyczyszczenie filtra wraca do pierwszej strony. Selektor liczby wyników można przesuwać bez utraty powiązania; zduplikowany panel steruje tą samą listą.
-
-## Instrukcje
-
-- Kliknij blok listy. Klawisz Esc anuluje wybór. Umieść paginację poza blokiem docelowym.
-- Dla Smarty podaj zmienną pełnej listy. Bez zmiennej paginacji podlegają elementy HTML kontenera; opcjonalnie podaj klasę wiersza lub znacznik tr. Odnośniki zachowują count, sort i filtry. Obsługiwanych jest wiele niezależnych list.
-- Wybór liczby elementów na stronę: 10, 25, 50, 100, 250
-- Przeciągnij selektor liczby elementów na stronę do paginacji lub innych bloków strony. Pozostanie on powiązany z tą paginacją.
-- Nie indeksuj strony 2 i kolejnych
-- Wybierz blok listy Smarty. Wyszukiwanie i paginacja muszą odnosić się do tego samego bloku.
-- Podaj zmienną pełnej listy. Wyszukiwanie obejmuje dowolne z wybranych pól, a filtry działają łącznie. Warunki są stosowane przed obliczeniem liczby stron; zastosowanie lub zresetowanie filtrów przenosi na pierwszą stronę. Jeśli paginacja jest już powiązana z listą, używana jest jej zmienna.
-- Format odnośników
-- Domyślna liczba elementów na stronę

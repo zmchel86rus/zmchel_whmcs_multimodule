@@ -13,12 +13,3 @@ Qayda əlavə etdikdən və ya sildikdən sonra dəyişiklikləri .htaccess fayl
 ## .htaccess
 
 Meneceri açın və qaydaları saytın əsas `.htaccess` faylı ilə müqayisə edin. Öz qaydanız üçün URL nümunəsini, hədəfi və bayraqları saxlayın; sonra **Qaydaları əlavə et və ya yenilə** vasitəsilə blok WHMCS qaydalarından əvvəl yazılır. Vəziyyəti yenidən yoxlayın və dərc olunmuş səhifəni əsas və başqa dildə açın. Həddən artıq geniş nümunə digər səhifələrə təsir edə bilər. Nginx → Apache quruluşunda qaydalar yalnız Apache-yə ötürülən sorğulara tətbiq edilir.
-
-## Təlimatlar
-
-- Qaydaları yoxla
-- Qaydaları əlavə et və ya yenilə
-- .htaccess faylından bütün qaydaları sil
-- URL nümunəsi
-- Hədəf
-- Bayraqlar

@@ -24,17 +24,3 @@ URL item halaman dikira semula daripada slug semasa dan terjemahan yang diterbit
 ## zm_pb_menus
 
 Data disimpan dalam jadual `zm_pb_menus`, `zm_pb_menu_items` dan `zm_pb_menu_locations`. Cipta atau baiki jadual melalui Pangkalan Data Modul. Pepohon menyokong sehingga 10 aras dan 300 item; apabila induk dipadam, anaknya naik satu aras.
-
-## Arahan
-
-- Cipta menu
-- Tambah halaman, siaran atau pautan tersuai.
-- Seret item untuk mengubah susunan. Tetapkan hierarki menggunakan pemilih induk atau butang untuk mengalihkan item.
-- Gunakan bahasa halaman semasa
-- Gunakan URL yang dimasukkan tanpa perubahan
-- Label dalam bahasa lain
-- Boleh dilihat oleh
-- Peranti
-- Setiap lokasi boleh mempunyai satu menu sahaja. Memilih lokasi akan memindahkan penetapan lokasi daripada menu lain ke menu ini.
-- Item peringkat teratas menjadi lajur dan item bersarang menjadi pautan. Gunakan URL # untuk tajuk tanpa pautan.
-- Jadual menu belum dicipta. Tambahkannya melalui Pangkalan Data Modul.

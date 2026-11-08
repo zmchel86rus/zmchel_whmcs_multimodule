@@ -27,12 +27,3 @@ Filtrat punojnë mbi të njëjtën listë si faqëzimi. Kërkimi tekstual mund t
 ## Flex / Grid
 
 Për paraqitjen zgjidhni Flex ose Grid dhe rregulloni gjerësitë e kolonat sipas pajisjes. Zbatimi ose heqja e filtrave kthen listën në faqen e parë. Zgjedhësi i numrit të rezultateve mund të zhvendoset pa humbur lidhjen me panelin; një panel i dyfishuar kontrollon po të njëjtën listë.
-
-## Udhëzime
-
-- Klikoni bllokun e listës. Esc anulon. Vendoseni faqosjen jashtë bllokut të synuar.
-- Përzgjedhësi i elementeve për faqe: 10, 25, 50, 100, 250
-- Mos indekso faqen 2 e tutje
-- Zgjidhni bllokun e listës Smarty. Kërkimi dhe faqosja duhet të lidhen me të njëjtin bllok.
-- Formati i lidhjeve
-- Numri i parazgjedhur i elementeve për faqe

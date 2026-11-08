@@ -19,16 +19,3 @@ Controleer in de basisinstellingen naam, slug, type, status, toegang en talen. D
 ## Contactformulier
 
 Voeg een blok **Contactformulier** toe. Kies een **WHMCS-ticket** met supportafdeling of **e-mail** met ontvanger; vul kop, beschrijving, onderwerp en knoptekst in. Geef elk veld een naam, type, verplichting en validatie. Voor een gastticket zijn velden met de rollen afzendernaam en e-mailadres nodig. Zet bij keuzelijsten één optie per regel, bijvoorbeeld `sales : Verkoop`. Maak voor elke toestemming een apart veld en gebruik de CAPTCHA van WHMCS. Sla op en verstuur als gast een echte test; controleer het ticket of de aflevering, fouten en het leegmaken van het formulier. Een groene editorstatus bevestigt geen aflevering; stel SMTP in WHMCS in als `mail()` faalt.
-
-## Instructies
-
-- Geneste flex-indelingscontainer. Sleep andere blokken erin.
-- Geneste CSS Grid-container. Sleep andere blokken erin.
-- Geneste Bootstrap-carrousel. Sleep blokken erin; elk blok wordt een dia.
-- Alle blokken onder dit blok worden alleen aan ingelogde gebruikers getoond. Werkt alleen wanneer het toegangstype van de pagina Gemengd is.
-- Alle blokken onder dit blok worden alleen aan gasten getoond. Werkt alleen wanneer het toegangstype van de pagina Gemengd is.
-- **Paginatitel**
-- **Metabeschrijving**
-- **Canonieke URL**
-- **Robots** — index, follow / noindex, nofollow. Bepaalt de indexering.
-- **Schematype** — Wanneer dit is uitgeschakeld, wordt voor deze pagina geen Schema.org-JSON-opmaak uitgevoerd.

@@ -7,17 +7,3 @@
 ## Şəkillərin göstərilməsi
 
 Menecer şəklin bir neçə ölçüsünü yaradır. Yüklənmiş şəkil üçün **Şəkli optimallaşdır** əməliyyatını başladın və xüsusilə üzərində mətn olan şəkillərdə nəticənin keyfiyyətini yoxlayın. Adaptiv variantlar uyğun gəlmirsə, həmin blokda `srcset` parametrini söndürün. Açıq səhifədə son URL-i və alt mətni yoxlayın.
-
-## Təlimatlar
-
-- Media faylı yüklə
-- **Ad (daxili)**
-- **Başlıq (tətbiq olunduqda)**
-- **Təsvir (tətbiq olunduqda)**
-- **Alt atributu**
-- Ada görə axtar
-- Fayl növü
-- Daha çox yüklə
-- Şəkli optimallaşdır
-- Orijinal şəklin və onun variantlarının optimallaşdırılması tamamlandı.
-- Media faylını seç

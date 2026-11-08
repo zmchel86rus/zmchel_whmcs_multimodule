@@ -21,18 +21,3 @@ Na karcie **Tłumaczenia** kolumna **Oryginał** pokazuje tekst z pierwotnego pl
 Plik językowy można wyłączyć i ponownie włączyć; pozostaje edytowalny także po wyłączeniu. Bazowy plik angielski i obecny język domyślny WHMCS są chronione. Dla języków klienta i administracji WHMCS dodanych przez menedżer przechowywane są kopie pozwalające odtworzyć je po aktualizacji. Jeśli w **Sekcje** pojawi się poprawka nazwy pliku, sprawdź nową nazwę i kliknij **Popraw**; poprawka obejmuje wykryte sekcje.
 
 Aby zmienić język domyślny, najpierw włącz nowy język w ustawieniach modułu, następnie zmień domyślny język w WHMCS i dopiero potem wyłącz stary. Sprawdź teksty w panelu administracyjnym i części klienta.
-
-## Instrukcje
-
-- Sekcje
-- Języki
-- Tłumaczenia
-- Ten język jest wyłączony, ale nadal można edytować jego tłumaczenia.
-- Język odniesienia
-- Każdy przycisk Zapisz zapisuje tylko jedno tłumaczenie.
-- Nieprzetłumaczone
-- Pokaż oryginalne
-- Pokaż dodane
-- Nie zaimportowano następujących kluczy tłumaczeń:
-- nieznany klucz
-- zduplikowany klucz

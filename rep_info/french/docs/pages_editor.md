@@ -21,16 +21,3 @@ Pour chaque langue, renseignez le titre et la description puis vérifiez canonic
 ## Formulaire de contact
 
 Ajoutez le bloc **Formulaire de contact**. Choisissez un **ticket WHMCS** et un service d'assistance, ou un **e-mail** et un destinataire; renseignez titre, description, sujet et bouton. Pour chaque champ, définissez nom, type, obligation et validation. Un ticket envoyé par un visiteur nécessite des champs affectés aux rôles du nom et de l'adresse e-mail de l'expéditeur. Saisissez une option de liste déroulante par ligne, par exemple `sales : Ventes`. Créez un champ distinct par consentement et utilisez le CAPTCHA configuré dans WHMCS. Enregistrez et faites un véritable essai en visiteur; vérifiez ticket ou livraison, erreurs et remise à zéro. L'état vert de l'éditeur ne confirme pas la livraison; configurez SMTP dans WHMCS si `mail()` échoue.
-
-## Instructions
-
-- Conteneur Flex imbriqué. Faites glisser d’autres blocs à l’intérieur.
-- Conteneur CSS Grid imbriqué. Faites glisser d’autres blocs à l’intérieur.
-- Carrousel Bootstrap imbriqué. Faites glisser des blocs à l’intérieur ; chacun devient une diapositive.
-- Tous les blocs situés sous ce bloc sont affichés uniquement aux utilisateurs connectés. Fonctionne seulement si le type d’accès de la page est Mixte.
-- Tous les blocs situés sous ce bloc sont affichés uniquement aux visiteurs non connectés. Fonctionne seulement si le type d’accès de la page est Mixte.
-- **Titre de la page**
-- **Méta-description**
-- **URL canonique**
-- **Robots** — index, follow / noindex, nofollow. Contrôle l’indexation.
-- **Type Schema** — Si cette option est désactivée, le balisage JSON Schema.org n’est pas généré pour cette page.

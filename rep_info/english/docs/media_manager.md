@@ -9,17 +9,3 @@ Click **Upload**, choose an image, audio, video, or PDF file, and complete the a
 ## Image output
 
 The manager creates several image sizes. You can run **Optimize image** on an uploaded image and inspect the result afterward, especially if it contains text. If a particular image should not use responsive variants, turn off `srcset` in that Image block. Confirm the final URL and `alt` text on the public page.
-
-## Instructions
-
-- Upload media file
-- **Name (internal)**
-- **Title (if applicable)**
-- **Description (if applicable)**
-- **Alt attribute**
-- Search by name
-- File type
-- Load more
-- Optimize image
-- Optimization of the original image and its variants is complete.
-- Select media file

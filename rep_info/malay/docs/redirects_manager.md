@@ -13,10 +13,3 @@ Masukkan laluan sah yang bermula dengan / atau URL HTTP(S) penuh. Sumber mestila
 Peraturan menyokong kod HTTP `301`, `302`, `303`, `307`, `308` dan hanya terpakai pada permintaan `GET`/`HEAD` yang sampai ke WHMCS. Sumber dipadankan tepat pada laluan dan, jika dinyatakan, parameter pertanyaan; parameter destinasi menggantikan yang lama. Pengurus menyimpan peraturan dalam `zm_pb_redirects`, tetapi tidak mencipta jadual semasa permintaan: gunakan **Pangkalan data modul**. Lajur URL sedia ada terhad kepada 128 bait.
 
 Peraturan manual diutamakan daripada peraturan automatik. Perubahan slug halaman yang diterbitkan boleh membuat lencongan `301` automatik bagi setiap bahasa aktif selepas tempoh menunggu yang ditetapkan; penerbitan draf tidak membuatnya. Penamaan semula seterusnya mengemas kini sasaran lama. Peraturan dengan parameter pertanyaan diutamakan daripada peraturan laluan sahaja. URL sumber mesti milik laman ini dan tidak boleh mempunyai serpihan `#`.
-
-## Arahan
-
-- Sumber
-- Destinasi
-- Aktif
-- Tidak aktif

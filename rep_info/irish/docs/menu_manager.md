@@ -24,17 +24,3 @@ Ríomhtar URL míre leathanaigh arís ón slug reatha agus ón aistriúchán foi
 ## zm_pb_menus
 
 Coinnítear na sonraí sna táblaí `zm_pb_menus`, `zm_pb_menu_items` agus `zm_pb_menu_locations`. Cruthaigh nó deisigh iad i mBunachar Sonraí an Mhodúil. Ceadaítear suas le 10 leibhéal agus 300 mír; nuair a scriostar mír thuismitheora, bogann a páistí leibhéal amháin suas.
-
-## Treoracha
-
-- Cruthaigh roghchlár
-- Cuir leathanaigh, postálacha nó naisc shaincheaptha leis.
-- Tarraing míreanna chun a n-ord a athrú. Socraigh neadú leis an roghnóir tuismitheora nó leis na cnaipí bogtha.
-- Úsáid teanga an leathanaigh reatha
-- Úsáid an URL a iontráladh gan athrú
-- Lipéid i dteangacha eile
-- Infheicthe ag
-- Gléasanna
-- Ní féidir ach roghchlár amháin a bheith ag gach suíomh. Má roghnaítear suíomh, aistrítear a shannadh anseo ó roghchlár eile.
-- Déantar colúin de mhíreanna barrleibhéil agus naisc de mhíreanna neadaithe. Úsáid URL # le haghaidh ceannteidil gan nasc.
-- Níl na táblaí roghchláir cruthaithe fós. Cuir leo i mBunachar Sonraí an Mhodúil.

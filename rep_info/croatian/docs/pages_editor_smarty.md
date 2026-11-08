@@ -23,14 +23,3 @@ Katalog u `resources/available_vars/` čuva nazive, vrste, strukturu i umjetne p
     <span>{$item.title|escape}</span>
 {/foreach}
 ```
-
-## Upute
-
-- **Prikupljaj Smarty varijable** — Omogućite ili onemogućite prikupljanje Smarty varijabli.
-- **Koristi prikupljene Smarty varijable** — Omogućite ili onemogućite korištenje prikupljenih Smarty varijabli u uređivaču stranica.
-- Smarty (PHP) varijabla
-- Smarty: PHP, metode objekata, statički pozivi i nofilter nisu dopušteni.
-- Smarty predložak je prevelik.
-- Smarty
-- Smarty uređivač
-

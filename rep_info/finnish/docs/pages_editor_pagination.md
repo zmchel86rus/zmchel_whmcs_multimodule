@@ -33,10 +33,3 @@ Suodattimet kohdistuvat samaan luetteloon kuin sivutus. Tekstihaku voi tarkistaa
 ## Flex / Grid
 
 Valitse Flex tai Grid ja säädä leveydet sekä sarakkeet laitteittain. Suodattimen käyttö tai nollaus palauttaa luettelon ensimmäiselle sivulle. Tulosmäärän valitsinta voi siirtää ilman että yhteys katkeaa; kopioitu paneeli ohjaa samaa luetteloa.
-
-## Ohjeet
-
-- Sivukohtaisen määrän valitsin: 10, 25, 50, 100, 250
-- Älä indeksoi sivua 2 tai sitä seuraavia sivuja
-- Linkkien muoto
-- Kohteita sivulla oletusarvoisesti

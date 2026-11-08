@@ -12,12 +12,12 @@ $extras = [
 ];
 $expected = array_merge($sections, $extras);
 $sectionCounts = [
-    'pages_manager' => 4, 'pages_editor' => 5, 'media_manager' => 3,
-    'menu_manager' => 4, 'langs_manager' => 5, 'redirects_manager' => 2,
-    'sitemap_manager' => 2, 'rewrite_manager' => 3, 'module_settings' => 2,
-    'module_db' => 2, 'pages_editor_pagination' => 6,
-    'pages_editor_smarty' => 5, 'module_structured_data' => 4,
-    'module_settings_transfer' => 2,
+    'pages_manager' => 3, 'pages_editor' => 4, 'media_manager' => 2,
+    'menu_manager' => 3, 'langs_manager' => 4, 'redirects_manager' => 1,
+    'sitemap_manager' => 1, 'rewrite_manager' => 2, 'module_settings' => 1,
+    'module_db' => 1, 'pages_editor_pagination' => 5,
+    'pages_editor_smarty' => 4, 'module_structured_data' => 3,
+    'module_settings_transfer' => 1,
 ];
 $topics = [
     'pages_manager' => ['slug', 'WHMCS'],
@@ -26,10 +26,10 @@ $topics = [
     'menu_manager' => ['ZM_PB_ENABLE_MAINNAV', 'ZM_PB_ENABLE_SECONDARYNAV', 'zm_pb_menu_items', 'CSS', 'rel'],
     'langs_manager' => ['JSON', 'WHMCS'],
     'redirects_manager' => ['HTTP', '301', '308', 'GET', 'HEAD', 'zm_pb_redirects', '128'],
-    'sitemap_manager' => ['/html-sitemap', 'sitemap_index.xml', 'sitemap_pages.xml', 'sitemap_posts.xml', 'x-default', 'lang_active'],
+    'sitemap_manager' => ['sitemap_index.xml', 'sitemap_pages.xml', 'sitemap_posts.xml', 'x-default', 'lang_active'],
     'rewrite_manager' => ['.htaccess', 'nginx'],
     'module_settings' => ['WHMCS'],
-    'module_settings_transfer' => ['JSON', 'SystemURL', '32', 'upload_max_filesize', 'post_max_size'],
+    'module_settings_transfer' => ['ZIP', 'SystemURL', '128', 'upload_max_filesize', 'post_max_size'],
     'pages_editor_pagination' => ['/page/2/', '?page=2', 'noindex', '$zm_pagination', 'pager', 'YYYY-MM-DD', '{foreach}', 'array_slice', 'thead', 'tfoot'],
     'pages_editor_smarty' => ['|escape', 'nofilter', 'resources/available_vars/', 'Ctrl+Space', 'date_format'],
     'module_structured_data' => ['SiteNavigationElement', 'WebPageElement', 'FAQPage', 'BreadcrumbList', 'ContactPoint.availableLanguage'],
@@ -41,19 +41,27 @@ if (count($locales) !== 40) throw new RuntimeException('Unexpected number of doc
 foreach ($locales as $locale) {
     $language = basename($locale);
     $main = file_get_contents($locale . '/instruction.md');
+    if (!preg_match('//u', $main)) throw new RuntimeException("Invalid UTF-8 in main guide: $language.");
+    $overview = file_get_contents($locale . '/overview.md');
+    if (!preg_match('//u', $overview)) throw new RuntimeException("Invalid UTF-8 in overview: $language.");
+    $struckPlans = preg_match_all('/^- ~~.*~~\r?$/m', $overview);
+    $htmlPlan = preg_match('/^- ~~[^\r\n]*~~\r?\n- (?!~~)[^\r\n]+/mu', $overview);
+    if ($struckPlans !== 2 || !$htmlPlan) {
+        throw new RuntimeException("Roadmap status differs in $language ($struckPlans, $htmlPlan).");
+    }
     if (substr_count($main, '```') % 2 !== 0) {
         throw new RuntimeException("Unclosed code fence in main guide: $language.");
     }
     preg_match_all('/^## (.+)$/m', $main, $headings);
-    if (count($headings[0]) !== 4) {
+    if (count($headings[0]) !== 7) {
         throw new RuntimeException("Main guide sections differ in $language.");
     }
     preg_match_all('~\]\(docs/([a-z0-9_]+)\.md\)~', $main, $links);
     if ($links[1] !== $expected) {
         throw new RuntimeException("Main guide links differ in $language.");
     }
-    $sectionsHeadingPos = strpos($main, $headings[0][2]);
-    $extrasHeadingPos = strpos($main, $headings[0][3]);
+    $sectionsHeadingPos = strpos($main, $headings[0][5]);
+    $extrasHeadingPos = strpos($main, $headings[0][6]);
     $sectionPos = strpos($main, '](docs/pages_manager.md)');
     $extrasPos = strpos($main, '](docs/pages_editor_pagination.md)');
     if ($sectionsHeadingPos === false || $extrasHeadingPos === false ||
@@ -63,7 +71,7 @@ foreach ($locales as $locale) {
         throw new RuntimeException("Guide blocks are out of order in $language.");
     }
     foreach (['ZM_PB_ADMIN_SALT', 'ZM_PB_SECURE_SALT', 'ZM_PB_NONCE_SALT',
-              '8.13.1', '8.13.7', '7.4'] as $required) {
+              '8.13', '9.1', '7.4', 'Smarty'] as $required) {
         if (strpos($main, $required) === false) {
             throw new RuntimeException("Main guide omits $required in $language.");
         }
@@ -80,6 +88,9 @@ foreach ($locales as $locale) {
             throw new RuntimeException("Guide is not registered in readme.php: $id.");
         }
         $text = file_get_contents($path);
+        if (!preg_match('//u', $text)) throw new RuntimeException("Invalid UTF-8 in $language/$id.");
+        if (strpos($text, '/html-sitemap') !== false || strpos($text, '`lang_status`') !== false)
+            throw new RuntimeException("Unimplemented sitemap guidance remains in $language/$id.");
         if (substr_count($text, '```') % 2 !== 0) {
             throw new RuntimeException("Unclosed code fence: $language/$id.");
         }
@@ -100,7 +111,11 @@ foreach ($locales as $locale) {
         if (!$hasProse) {
             throw new RuntimeException("Guide contains only labels: $language/$id.");
         }
-        if (count(preg_split('/\s+/u', trim($text))) < 120) {
+        $minimumWords = [
+            'module_settings' => 70, 'pages_manager' => 100,
+            'rewrite_manager' => 90, 'media_manager' => 80, 'module_db' => 80,
+        ][$id] ?? 120;
+        if (count(preg_split('/\s+/u', trim($text))) < $minimumWords) {
             throw new RuntimeException("Guide is incomplete or truncated: $language/$id.");
         }
         foreach ($topics[$id] ?? [] as $topic) {

@@ -31,10 +31,3 @@ Filtrid töötavad sama loendiga nagu lehitsemine. Tekstiotsing saab kontrollida
 ## Flex / Grid
 
 Vali Flex või Grid ning määra laiused ja veerud seadme järgi. Filtri rakendamine või lähtestamine viib loendi esimesele lehele. Kirjete arvu valijat võib liigutada ühendust kaotamata; dubleeritud paneel juhib sama loendit.
-
-## Juhised
-
-- Elementide arvu valik: 10, 25, 50, 100, 250
-- Ära indekseeri lehti alates teisest lehest
-- Linkide vorming
-- Elementide vaikimisi arv

@@ -35,8 +35,3 @@ Oibríonn na scagairí ar an liosta céanna leis an leathanachú. Féadann cuard
 ## Flex / Grid
 
 Roghnaigh Flex nó Grid agus socraigh leithead agus colúin do ghléasanna. Filleann cur i bhfeidhm nó glanadh scagaire ar an gcéad leathanach. Is féidir roghnóir an líon torthaí a bhogadh gan an nasc a chailleadh; rialaíonn painéal dúblach an liosta céanna.
-
-## Treoracha
-
-- Formáid na nasc
-- Líon réamhshocraithe míreanna in aghaidh an leathanaigh

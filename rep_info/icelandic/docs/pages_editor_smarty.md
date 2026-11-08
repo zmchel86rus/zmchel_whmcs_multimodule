@@ -23,14 +23,3 @@ Skráin í `resources/available_vars/` geymir heiti, gerðir, uppbyggingu og til
     <span>{$item.title|escape}</span>
 {/foreach}
 ```
-
-## Leiðbeiningar
-
-- **Safna Smarty-breytum** — Virkja eða óvirkja söfnun Smarty-breyta.
-- **Nota safnaðar Smarty-breytur** — Virkja eða óvirkja notkun safnaðra Smarty-breyta í síðaritlinum.
-- Smarty (PHP)-breyta
-- Smarty: PHP, aðferðir hluta, kyrrstæð köll og nofilter eru bönnuð.
-- Smarty-sniðmátið er of stórt.
-- Smarty
-- Smarty-ritill
-

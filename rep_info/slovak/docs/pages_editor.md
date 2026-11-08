@@ -19,16 +19,3 @@ V základných nastaveniach skontrolujte názov, slug, typ, stav, prístup a jaz
 ## Kontaktný formulár
 
 Pridajte blok **Kontaktný formulár**. Vyberte **požiadavku WHMCS** a oddelenie podpory alebo **e-mail** a príjemcu; vyplňte nadpis, opis, predmet a text tlačidla. Každému poľu určite názov, typ, povinnosť a overenie. Požiadavka hosťa potrebuje polia s rolami mena a e-mailu odosielateľa. Do rozbaľovacieho zoznamu vložte jednu možnosť na riadok, napríklad `sales : Predaj`. Vytvorte samostatné pole pre každý súhlas a použite CAPTCHA nastavenú vo WHMCS. Uložte a odošlite skutočný test ako hosť; skontrolujte požiadavku alebo doručenie, chyby a vymazanie formulára. Zelený stav editora nepotvrdzuje doručenie; ak `mail()` zlyhá, nastavte SMTP vo WHMCS.
-
-## Pokyny
-
-- Vnorený kontajner s rozložením flex. Presuňte doň ďalšie bloky.
-- Vnorený kontajner CSS Grid. Presuňte doň ďalšie bloky.
-- Vnorený karusel Bootstrap. Presuňte doň bloky; každý bude samostatným snímkom.
-- Všetky bloky pod týmto blokom sa zobrazujú iba prihláseným používateľom. Funguje len vtedy, keď je typ prístupu k stránke Zmiešaný.
-- Všetky bloky pod týmto blokom sa zobrazujú iba hosťom. Funguje len vtedy, keď je typ prístupu k stránke Zmiešaný.
-- **Nadpis stránky**
-- **Meta popis**
-- **Kanonická URL adresa**
-- **Robots** — index, follow / noindex, nofollow. Riadi indexovanie.
-- **Typ schémy** — Ak je táto možnosť zakázaná, pre stránku sa nevypisujú údaje Schema.org vo formáte JSON.

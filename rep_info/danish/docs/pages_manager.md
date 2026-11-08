@@ -11,14 +11,3 @@ Filtrér listen efter navn, adgang, type, status eller sprog. **Besøg** åbner 
 ## WHMCS
 
 For at erstatte en WHMCS-side vælger du den eksisterende systemadresse og en publiceret modulside. Vælg fuld erstatning, tilføjelse før eller efter det normale indhold eller kun meta/SEO. Gem, og test den oprindelige WHMCS-URL både som gæst og som logget ind kunde.
-
-## Vejledning
-
-- Tilføj side
-- **Sidenavn** — Internt sidenavn
-- **Sideslug** — Kun latinske bogstaver, bindestreger og cifre er tilladt.
-- **Adgangstype** — Brugere, der er logget ind: Kun brugere, der er logget ind, kan tilgå siden; Gæster: Kun gæster kan tilgå den; Blandet: Alle kan tilgå siden, og synligheden styres af blokke på siden.
-- **Sidetype** — Systemsider udelades fra sitemappet og er ikke tilgængelige for almindelige brugere.
-- **Sidesprog** — Standardsproget medtages altid, uanset hvad du vælger.
-- Fuld overstyring erstatter det viste indhold og metadata. Tilføj før placerer indhold før sidens eksisterende indhold. Tilføj efter placerer indhold efter sidens eksisterende indhold. Kun metadata/SEO erstatter sidens metadata.
-- Navigation i sidelisten

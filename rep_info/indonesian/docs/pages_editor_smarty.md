@@ -23,14 +23,3 @@ Katalog di `resources/available_vars/` menyimpan nama, tipe, struktur, dan conto
     <span>{$item.title|escape}</span>
 {/foreach}
 ```
-
-## Petunjuk
-
-- **Kumpulkan variabel Smarty** — Aktifkan atau nonaktifkan pengumpulan variabel Smarty.
-- **Gunakan variabel Smarty yang dikumpulkan** — Aktifkan atau nonaktifkan penggunaan variabel Smarty yang dikumpulkan di editor halaman.
-- Variabel Smarty (PHP)
-- Smarty: PHP, metode objek, pemanggilan statis, dan nofilter tidak diizinkan.
-- Templat Smarty terlalu besar.
-- Smarty
-- Editor Smarty
-

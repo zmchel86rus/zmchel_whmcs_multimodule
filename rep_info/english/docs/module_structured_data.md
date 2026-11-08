@@ -28,14 +28,3 @@ After publication, inspect the rendered JSON-LD alongside the visible page. Navi
 ## ContactPoint.availableLanguage
 
 Contact languages come from WHMCS and appear in `ContactPoint.availableLanguage` as BCP 47 tags. The page language belongs on `WebPage` or `ContactPage`; do not add an invented `inLanguage` value to `Organization`.
-
-## Instructions
-
-- **Schema type** — When disabled, Schema.org JSON markup is not output for this page.
-- **Breadcrumbs** — Page name in breadcrumbs
-- **Canonical URL**
-- **Page title**
-- **Meta description**
-- **Open Graph title** — If empty, the page title is used.
-- **Open Graph description** — If empty, the meta description is used.
-- **Open Graph image** — If empty, the page image is used.

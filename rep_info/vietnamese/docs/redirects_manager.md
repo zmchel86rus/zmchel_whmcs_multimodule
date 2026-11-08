@@ -13,10 +13,3 @@ Nhập đường dẫn hợp lệ bắt đầu bằng / hoặc URL HTTP(S) đầ
 Quy tắc hỗ trợ mã HTTP `301`, `302`, `303`, `307`, `308` và chỉ áp dụng cho yêu cầu `GET`/`HEAD` đến được WHMCS. Nguồn được so khớp chính xác theo đường dẫn và, nếu có, tham số truy vấn; tham số của đích thay thế tham số cũ. Trình quản lý lưu quy tắc trong `zm_pb_redirects`, nhưng không tạo bảng trong lúc có yêu cầu: hãy dùng **Cơ sở dữ liệu mô-đun**. Các cột URL hiện có giới hạn 128 byte.
 
 Quy tắc thủ công được ưu tiên hơn quy tắc tự động. Đổi slug của trang đã xuất bản có thể tạo chuyển hướng `301` tự động cho từng ngôn ngữ đang hoạt động sau thời gian chờ đã đặt; xuất bản bản nháp không tạo chuyển hướng này. Các lần đổi tên tiếp theo cập nhật đích cũ. Quy tắc có tham số truy vấn được ưu tiên hơn quy tắc chỉ khớp đường dẫn. URL nguồn phải thuộc trang này và không chứa đoạn `#`.
-
-## Hướng dẫn
-
-- Nguồn
-- Đích
-- Đã bật
-- Đã tắt

@@ -13,12 +13,3 @@ Sau khi thêm hoặc xóa quy tắc, hãy nhấp vào “Thêm hoặc cập nh�
 ## .htaccess
 
 Mở trình quản lý và so sánh các quy tắc với tệp `.htaccess` chính của trang. Với quy tắc riêng, lưu mẫu URL, đích và cờ; sau đó chọn **Thêm hoặc cập nhật quy tắc** để ghi khối trước các quy tắc WHMCS. Kiểm tra lại trạng thái và mở một trang đã xuất bản bằng ngôn ngữ mặc định và ngôn ngữ khác. Mẫu quá rộng có thể ảnh hưởng trang khác. Trong cấu hình Nginx → Apache, quy tắc chỉ áp dụng cho yêu cầu được chuyển đến Apache.
-
-## Hướng dẫn
-
-- Kiểm tra quy tắc
-- Thêm hoặc cập nhật quy tắc
-- Xóa tất cả quy tắc khỏi .htaccess
-- Mẫu URL
-- Đích
-- Cờ

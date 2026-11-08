@@ -23,16 +23,3 @@ In **Meta data settings**, enter a title and description for each language. Revi
 ## Contact Form
 
 Add a **Contact Form** block. Choose a **WHMCS ticket** and support department, or an **email** and recipient; set the heading, description, subject, and button text. Give each field a name, type, required setting, and validation. Guest tickets need fields assigned the sender name and email roles. Put one dropdown option per line, such as `sales : Sales`. Add separate fields for separate consents, arrange their widths and line breaks, and use the CAPTCHA configured in WHMCS. Save the form and submit a real test as a guest: check the ticket or email delivery, errors, and form reset. A green editor status does not confirm delivery; configure WHMCS SMTP if PHP `mail()` fails.
-
-## Instructions
-
-- Nested flex layout container. Drag other blocks inside.
-- Nested CSS Grid container. Drag other blocks inside.
-- Nested Bootstrap carousel. Drag blocks inside; each becomes a slide.
-- All blocks below this block are shown only to signed-in users. Works only when the page access type is Mixed.
-- All blocks below this block are shown only to guests. Works only when the page access type is Mixed.
-- **Page title**
-- **Meta description**
-- **Canonical URL**
-- **Robots** — index, follow / noindex, nofollow. Controls indexing.
-- **Schema type** — When disabled, Schema.org JSON markup is not output for this page.

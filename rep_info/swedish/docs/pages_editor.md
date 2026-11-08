@@ -21,16 +21,3 @@ Ange titel och beskrivning för varje språk och kontrollera canonical, robots, 
 ## Kontaktformulär
 
 Lägg till blocket **Kontaktformulär**. Välj ett **WHMCS-ärende** med supportavdelning eller **e-post** med mottagare; fyll i rubrik, beskrivning, ämne och knapptext. Ge varje fält namn, typ, obligatorisk inställning och validering. Ett ärende från en gäst kräver fält med rollerna avsändarnamn och e-postadress. Skriv ett val per rad i rullistan, till exempel `sales : Försäljning`. Skapa ett separat fält för varje samtycke och använd CAPTCHA som ställts in i WHMCS. Spara och skicka ett verkligt test som gäst; kontrollera ärendet eller leveransen, fel och tömning av formuläret. Grön status i redigeraren bekräftar inte leverans; konfigurera SMTP i WHMCS om `mail()` misslyckas.
-
-## Instruktioner
-
-- Nästlad container med flexlayout. Dra in andra block i den.
-- Nästlad CSS Grid-container. Dra in andra block i den.
-- Nästlad Bootstrap-karusell. Dra in block i den; varje block blir en bildruta.
-- Alla block under det här blocket visas endast för inloggade användare. Fungerar bara när sidans åtkomsttyp är Blandad.
-- Alla block under det här blocket visas endast för gäster. Fungerar bara när sidans åtkomsttyp är Blandad.
-- **Sidtitel**
-- **Metabeskrivning**
-- **Kanonisk URL**
-- **Robots** — index, follow / noindex, nofollow. Styr indexeringen.
-- **Schematyp** — När funktionen är inaktiverad genereras ingen Schema.org-JSON-kod för den här sidan.

@@ -1,10 +1,14 @@
 # WHMCS uchun bepul multimodul
 
-**Ishlatishdan oldin noyob salt qiymatlarini `module_init.php` fayliga kiriting: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` va `ZM_PB_NONCE_SALT`.** Modul **WHMCS 8.13.1–8.13.7** da ishlab chiqilgan va sinovdan o‘tgan. **PHP 7.4–8.5** mosligi tekshirilgan. Apache to‘liq (100%) qo‘llab-quvvatlanadi; Nginx’da bosh sahifaning til marshruti qo‘shimcha sozlashni talab qilishi mumkin.
+**zmchel WHMCS Multimodule bepul.** WHMCS boshqaruv panelidan ko‘p tilli sahifalar, vizual muharrir, menyular, media kutubxonasi, SEO metama’lumotlari, XML sayt xaritasi, yo‘naltirishlar, rewrite qoidalari hamda import va eksportni boshqaring. Boshlash uchun [qo‘llanmani](instruction.md) o‘qing.
+
+## Birinchi foydalanishdan oldin
 
 **Birinchi foydalanishdan oldin Modul sozlamalari → Qo‘llab-quvvatlanadigan tillar bo‘limini ochib, kerakli tillarni yoqing.**
 
-**zmchel WHMCS Multimodule bepul.** WHMCS boshqaruv panelidan ko‘p tilli sahifalar, vizual muharrir, menyular, media kutubxonasi, SEO metama’lumotlari, XML sayt xaritasi, yo‘naltirishlar, rewrite qoidalari hamda import va eksportni boshqaring. Boshlash uchun [qo‘llanmani](instruction.md) o‘qing.
+Har bir faollashtirishda modul yangi salt qiymatlarini avtomatik yaratadi va ularni `module_init.php` fayliga yozadi (`ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT`, `ZM_PB_NONCE_SALT`). Uchala salt qiymati ham toʻldirilganini tekshiring.
+
+Modul **WHMCS 8.13.0–9.1.0** da ishlab chiqilgan va sinovdan o‘tgan. **PHP 7.4–8.5** mosligi tekshirilgan. Apache to‘liq (100%) qo‘llab-quvvatlanadi; Nginx’da bosh sahifaning til marshruti qo‘shimcha sozlashni talab qilishi mumkin.
 
 ## Kelajakdagi rejalar
 
@@ -12,9 +16,11 @@
 - Monolit kodni o‘zaro ishlaydigan qismlarga ajratish.
 - Admin ruxsatlari boshqaruvchisini yaratish va `supported_langs.php` dagi tillarni ko‘paytirish.
 - Modul `.tpl` fayllari hamda WHMCS mijoz mavzulari uchun kod muharririni yaratish; admin mavzusi bundan mustasno.
-- Modul va WHMCS til fayllari boshqaruvchisini rivojlantirish, media boshqaruvchisini yaxshilash.
+- ~~Modul va WHMCS til fayllari boshqaruvchisini rivojlantirish.~~
+- Media boshqaruvchisini yaxshilash.
 - Yoast SEO’dan ilhomlangan, yaxshiroq optimallashtirilgan keng qamrovli SEO boshqaruvchisini yaratish.
-- Ko‘p tilli sayt xaritasi va HTML xarita sahifasini qo‘shish.
+- ~~Ko‘p tilli sayt xaritasi va HTML xarita sahifasini qo‘shish.~~
+- HTML sayt xaritasi sahifasini qo‘shish.
 - Sahifa boshqaruvchisiga foydalanish statistikasini qo‘shish.
 - JS, CSS va HTML’ni ixchamlashtirish, to‘liq sahifa keshi va modul hamda WHMCS jadvallarini optimallashtirish vositasini yaratish.
 - Modul uchun to‘laqonli yangilash tizimini qo‘shish.

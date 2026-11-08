@@ -24,7 +24,3 @@ Lapas vienuma URL tiek pārrēķināts no pašreizējā slug un publicētā tulk
 ## zm_pb_menus
 
 Dati glabājas tabulās `zm_pb_menus`, `zm_pb_menu_items` un `zm_pb_menu_locations`. Izveidojiet vai salabojiet tās sadaļā Moduļa datubāze. Kokam var būt līdz 10 līmeņiem un 300 vienumiem; dzēšot vecāku, tā bērni pārvietojas vienu līmeni augstāk.
-
-## Norādījumi
-
-- Izveidojiet izvēlni, pievienojiet lapas vai savas saites un sakārtojiet vienumus velkot.

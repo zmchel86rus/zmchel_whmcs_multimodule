@@ -2,6 +2,7 @@
 if (!defined('ZM_PB_VER')) die('Direct access not allowed');
 use Illuminate\Database\Capsule\Manager as Capsule;
 require_once __DIR__ . '/page_urls.php';
+require_once __DIR__ . '/language_aliases.php';
 
 function zm_pb_menu_text()
 {
@@ -91,8 +92,9 @@ function zm_pb_menu_page_label($page, $settings = null)
 }
 
 /** Validate the complete tree before starting any database writes. */
-function zm_pb_menu_validate_items(array $items)
+function zm_pb_menu_validate_items(array $items, ?array $allowedLanguages = null)
 {
+    $allowedLanguages = $allowedLanguages ?? ZM_PB_LANGS;
     if (count($items) > 300) throw new InvalidArgumentException('too_many_items');
     if ($items && array_keys($items) !== range(0, count($items) - 1)) throw new InvalidArgumentException('invalid_items#1');
     $result = [];
@@ -127,7 +129,8 @@ function zm_pb_menu_validate_items(array $items)
         if (!in_array($visibility, ['mixed', 'auth', 'noauth'], true)) throw new InvalidArgumentException('invalid_items#11:item=' . ($position + 1) . ':field=visibility');
         $labels = [];
         foreach (is_array($item['labels'] ?? null) ? $item['labels'] : [] as $lang => $label) {
-            if (!isset(ZM_PB_LANGS[$lang])) throw new InvalidArgumentException('invalid_items#12:item=' . ($position + 1) . ':field=labels');
+            $lang = zm_pb_lm_supported_key((string) $lang);
+            if (!isset($allowedLanguages[$lang])) throw new InvalidArgumentException('invalid_items#12:item=' . ($position + 1) . ':field=labels');
             if (!is_string($label) || mb_strlen($label) > 255 || strip_tags($label) !== $label) throw new InvalidArgumentException('invalid_items#13:item=' . ($position + 1) . ':field=labels');
             if (trim($label) !== '') $labels[$lang] = trim($label);
         }
@@ -145,7 +148,7 @@ function zm_pb_menu_validate_items(array $items)
     return $result;
 }
 
-function zm_pb_menu_save(array $input)
+function zm_pb_menu_save(array $input, ?array $allowedLanguages = null)
 {
     $name = trim(is_string($input['name'] ?? null) ? $input['name'] : '');
     if ($name === '' || mb_strlen($name) > 128 || strip_tags($name) !== $name) throw new InvalidArgumentException('missing_name');
@@ -161,7 +164,7 @@ function zm_pb_menu_save(array $input)
     }
     $decoded = is_string($rawItems) ? json_decode($rawItems, true) : null;
     if (!is_array($decoded)) throw new InvalidArgumentException('invalid_items#17:field=items');
-    $items = zm_pb_menu_validate_items($decoded);
+    $items = zm_pb_menu_validate_items($decoded, $allowedLanguages);
     // Schema changes are only performed by activation/module_db, never here.
     if (!Capsule::schema()->hasColumn('zm_pb_menu_items', 'localize_url')) throw new InvalidArgumentException('outdated_schema');
     $locations = is_array($input['locations'] ?? null) ? $input['locations'] : [];
@@ -217,7 +220,14 @@ function zm_pb_menu_admin_data($id)
     if ($selected) {
         foreach (Capsule::table('zm_pb_menu_items')->where('menu_id', $id)->orderBy('position')->get() as $item) {
             $row = (array) $item; $row['key'] = (string) $item->id; $row['parent'] = $item->parent_id ? (string) $item->parent_id : '';
-            $row['labels'] = json_decode($item->labels ?? '{}', true) ?: []; $items[] = $row;
+            $labels = json_decode($item->labels ?? '{}', true) ?: [];
+            $row['labels'] = [];
+            foreach ($labels as $key => $value) {
+                $language = zm_pb_lm_supported_key($key);
+                if (isset(ZM_PB_LANGS[$language]) && (!isset($row['labels'][$language]) || $key === $language))
+                    $row['labels'][$language] = $value;
+            }
+            $items[] = $row;
         }
     }
     $overrideSources = zm_pb_menu_override_sources();

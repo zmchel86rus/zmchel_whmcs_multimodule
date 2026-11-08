@@ -24,18 +24,3 @@ L'URL di una voce collegata a una pagina viene ricalcolato dallo slug attuale e 
 ## zm_pb_menus
 
 I dati sono nelle tabelle `zm_pb_menus`, `zm_pb_menu_items` e `zm_pb_menu_locations`. Creale o riparale nella sezione Database del modulo. L'albero supporta fino a 10 livelli e 300 voci; eliminando una voce padre, le figlie salgono di un livello.
-
-## Istruzioni
-
-- Crea menu
-- Aggiungi pagine, articoli o link personalizzati.
-- Trascina gli elementi per riordinarli. Imposta i livelli di annidamento tramite il selettore della voce principale o i pulsanti di spostamento.
-- Usa la lingua della pagina corrente
-- Usa l’URL inserito senza modificarlo
-- Etichette in altre lingue
-- Visibile a
-- Dispositivi
-- Ogni posizione può avere un solo menu. Selezionando una posizione, la relativa assegnazione viene trasferita qui da un altro menu.
-- Gli elementi di primo livello diventano colonne e quelli annidati diventano link. Usa l’URL # per un’intestazione senza link.
-- Le tabelle dei menu non sono ancora state create. Aggiungile nel Database del modulo.
-

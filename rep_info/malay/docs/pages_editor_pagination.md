@@ -33,9 +33,3 @@ Penapis berfungsi pada senarai yang sama dengan penomboran halaman. Carian teks 
 ## Flex / Grid
 
 Pilih Flex atau Grid lalu tetapkan lebar dan lajur mengikut peranti. Menggunakan atau mengosongkan penapis mengembalikan senarai ke halaman pertama. Pemilih bilangan hasil boleh dialihkan tanpa kehilangan sambungan; panel pendua mengawal senarai yang sama.
-
-## Arahan
-
-- Jangan indeks halaman 2 dan seterusnya
-- Format pautan
-- Bilangan item lalai bagi setiap halaman

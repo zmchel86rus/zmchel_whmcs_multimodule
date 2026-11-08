@@ -17,19 +17,3 @@ Peleka funguo na tafsiri za lugha uliyochagua kabla ya kufanya mabadiliko mengi.
 ## Faili za lugha na lugha chaguo-msingi
 
 Faili ya lugha iliyozimwa bado inaweza kuhaririwa. Faili msingi ya Kiingereza na lugha ya sasa ya WHMCS ya chaguo-msingi zinalindwa. Ili kubadili lugha chaguo-msingi, washa kwanza mpya kwenye moduli, ibadilishe kwenye WHMCS, kisha zima ya zamani. Majina ya zamani ya faili yanaweza kusahihishwa katika **Sehemu**.
-
-## Maelekezo
-
-- Sehemu
-- Lugha
-- Tafsiri
-- Lugha hii imezimwa. Tafsiri zake bado zinaweza kuhaririwa.
-- Lugha ya rejea
-- Kila kitufe cha Hifadhi husasisha tafsiri moja.
-- Haijatafsiriwa
-- Onyesha asili
-- Onyesha zilizoongezwa
-- Funguo zifuatazo za tafsiri hazikuingizwa:
-- ufunguo usiotambulika
-- ufunguo unaojirudia
-

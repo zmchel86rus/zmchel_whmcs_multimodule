@@ -23,14 +23,3 @@ Kataloq yalnız səhifədə müşahidə edilmiş dəyişənlərə bələdçidir:
     <span>{$item.title|escape}</span>
 {/foreach}
 ```
-
-## Təlimatlar
-
-- **Smarty dəyişənlərini topla** — Smarty dəyişənlərinin toplanmasını aktivləşdirin və ya deaktiv edin.
-- **Toplanmış Smarty dəyişənlərindən istifadə et** — Səhifə redaktorunda toplanmış Smarty dəyişənlərindən istifadəni aktivləşdirin və ya deaktiv edin.
-- Smarty (PHP) dəyişəni
-- Smarty: PHP, obyekt metodları, statik çağırışlar və nofilter qadağandır.
-- Smarty şablonu çox böyükdür.
-- Smarty
-- Smarty redaktoru
-

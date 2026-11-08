@@ -21,16 +21,3 @@ Täida iga keele pealkiri ja kirjeldus ning kontrolli canonical, robots, Open Gr
 ## Kontaktvorm
 
 Lisa plokk **Kontaktvorm**. Vali **WHMCS-i tugipilet** ja tugiosakond või **e-kiri** ja saaja; täida pealkiri, kirjeldus, teema ja nupu tekst. Määra igale väljale nimi, tüüp, kohustuslikkus ja kontroll. Külalise piletil peavad olema saatja nime ja e-posti rolliga väljad. Rippmenüü valikud kirjuta ükshaaval ridadele, näiteks `sales : Müük`. Lisa iga nõusoleku jaoks eraldi väli ja kasuta WHMCS-is määratud CAPTCHA-t. Salvesta ja saada päris proovisõnum külalisena; kontrolli piletit või kohaletoimetamist, vigu ja vormi lähtestamist. Redaktori roheline olek ei tõenda kohaletoimetamist; kui `mail()` ebaõnnestub, seadista WHMCS-is SMTP.
-
-## Juhised
-
-- Pesastatud paindlik paigutuskonteiner. Lohistage teised plokid selle sisse.
-- Pesastatud CSS Gridi konteiner. Lohistage teised plokid selle sisse.
-- Pesastatud Bootstrapi karussell. Lohistage plokid selle sisse; igaühest saab slaid.
-- Kõik selle ploki all olevad plokid kuvatakse ainult sisseloginud kasutajatele. Toimib ainult juhul, kui lehe juurdepääsu tüüp on Segatud.
-- Kõik selle ploki all olevad plokid kuvatakse ainult külalistele. Toimib ainult juhul, kui lehe juurdepääsu tüüp on Segatud.
-- **Lehe pealkiri**
-- **Meta-kirjeldus**
-- **Kanooniline URL**
-- **Robotid** — index, follow / noindex, nofollow. Määrab indekseerimise.
-- **Schema tüüp** — Kui see on keelatud, ei väljastata selle lehe kohta Schema.org JSON-märgistust.

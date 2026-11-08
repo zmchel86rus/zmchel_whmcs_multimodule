@@ -1,10 +1,14 @@
 # Moduli nyingi za bure kwa WHMCS
 
-**Kabla ya kutumia moduli, tengeneza thamani za salt za kipekee ndani ya `module_init.php`: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` na `ZM_PB_NONCE_SALT`.** Moduli ilitengenezwa na kupimwa kwenye **WHMCS 8.13.1–8.13.7**. Uoanifu wa **PHP 7.4–8.5** umekaguliwa. Apache inaungwa mkono kikamilifu (100%); Nginx inaweza kuhitaji usanidi wa ziada kwa uelekezaji wa lugha kwenye ukurasa wa mwanzo.
+**zmchel WHMCS Multimodule ni ya bure.** Kutoka eneo la usimamizi la WHMCS, simamia kurasa za lugha nyingi kwa kihariri cha picha, menyu, maktaba ya media, taarifa za SEO, ramani za tovuti za XML, uelekezaji upya, sheria za rewrite, kuingiza na kuhamisha data. Soma [maelekezo](instruction.md) kabla ya kuanza.
+
+## Kabla ya matumizi ya kwanza
 
 **Kabla ya matumizi ya kwanza, fungua Mipangilio ya moduli → Lugha zinazoungwa mkono na uwashe lugha unazohitaji.**
 
-**zmchel WHMCS Multimodule ni ya bure.** Kutoka eneo la usimamizi la WHMCS, simamia kurasa za lugha nyingi kwa kihariri cha picha, menyu, maktaba ya media, taarifa za SEO, ramani za tovuti za XML, uelekezaji upya, sheria za rewrite, kuingiza na kuhamisha data. Soma [maelekezo](instruction.md) kabla ya kuanza.
+Kila moduli inapowashwa, hutengeneza thamani mpya za salt na kuziandika kwenye `module_init.php` (`ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT`, `ZM_PB_NONCE_SALT`). Hakikisha thamani zote tatu za salt zimejazwa.
+
+Moduli ilitengenezwa na kupimwa kwenye **WHMCS 8.13.0–9.1.0**. Uoanifu wa **PHP 7.4–8.5** umekaguliwa. Apache inaungwa mkono kikamilifu (100%); Nginx inaweza kuhitaji usanidi wa ziada kwa uelekezaji wa lugha kwenye ukurasa wa mwanzo.
 
 ## Mipango ya baadaye
 
@@ -12,9 +16,11 @@
 - Kugawa msimbo wa mfumo mmoja mkubwa katika vipengele vinavyoshirikiana.
 - Kutengeneza meneja wa ruhusa za wasimamizi na kuongeza lugha za msingi katika `supported_langs.php`.
 - Kutengeneza kihariri cha msimbo kwa faili za `.tpl` za moduli na mandhari ya wateja wa WHMCS, bila mandhari ya wasimamizi.
-- Kuendeleza meneja wa faili za lugha za moduli na WHMCS, na kuboresha meneja wa media.
+- ~~Kuendeleza meneja wa faili za lugha za moduli na WHMCS.~~
+- Kuboresha meneja wa media.
 - Kutengeneza meneja kamili wa SEO unaotokana na wazo la Yoast SEO lakini ulioboreshwa zaidi.
-- Kuongeza ramani za tovuti za lugha nyingi na ukurasa wa ramani ya HTML.
+- ~~Kuongeza ramani za tovuti za lugha nyingi na ukurasa wa ramani ya HTML.~~
+- Kuongeza ukurasa wa HTML wa ramani ya tovuti.
 - Kuongeza takwimu za matumizi katika meneja wa kurasa.
 - Kutengeneza meneja wa kupunguza ukubwa wa JS, CSS na HTML, akiba ya kurasa nzima, na uboreshaji wa majedwali ya moduli na WHMCS.
 - Kutengeneza mfumo kamili wa kusasisha moduli.

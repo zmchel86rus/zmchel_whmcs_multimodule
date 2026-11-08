@@ -21,6 +21,16 @@ const translate_texts = {
     <div class="panel-body">
     {if $alertHtml}{$alertHtml}{/if}
     {if !$alertHtml}
+        {if isset($directory_health_issues) && $directory_health_issues}
+            <div class="alert alert-warning" role="alert">
+                <strong>{$directory_health_title|escape}</strong>
+                <ul>
+                    {foreach from=$directory_health_issues item=issue}
+                        <li><code>{$issue.path|escape}</code>: {$issue.message|escape}</li>
+                    {/foreach}
+                </ul>
+            </div>
+        {/if}
         <ul class="nav nav-tabs" role="tablist">
             <li role="presentation">
                 <a href="#mod_ss_tab_transfer" aria-controls="mod_ss_tab_transfer" role="tab" data-toggle="tab">

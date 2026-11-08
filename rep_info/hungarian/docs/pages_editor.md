@@ -21,16 +21,3 @@ Nyelvenként adja meg a címet és leírást, majd ellenőrizze a canonical, rob
 ## Kapcsolatfelvételi űrlap
 
 Adjon hozzá **Kapcsolatfelvételi űrlap** blokkot. Válasszon **WHMCS-jegyet** és támogatási részleget, vagy **e-mailt** és címzettet; adja meg a címet, leírást, tárgyat és gombszöveget. Minden mezőhöz állítson nevet, típust, kötelezőséget és ellenőrzést. Vendég által küldött jegyhez a feladó nevének és e-mailjének szerepét viselő mezők szükségesek. Legördülő listában soronként egy lehetőség legyen, például `sales : Értékesítés`. Minden hozzájáruláshoz hozzon létre külön mezőt, és használja a WHMCS CAPTCHA-beállítását. Mentés után vendégként küldjön valódi próbaüzenetet; ellenőrizze a jegyet vagy kézbesítést, hibákat és űrlaptörlést. A szerkesztő zöld állapota nem bizonyít kézbesítést; ha a `mail()` hibázik, állítsa be a WHMCS SMTP-t.
-
-## Útmutató
-
-- Beágyazott flexelrendezésű konténer. Húzzon bele más blokkokat.
-- Beágyazott CSS Grid-konténer. Húzzon bele más blokkokat.
-- Beágyazott Bootstrap-körhinta. Húzzon bele blokkokat; mindegyik külön diává válik.
-- Az e blokk alatti összes blokk csak bejelentkezett felhasználóknak jelenik meg. Csak Vegyes hozzáférési típusú oldalon működik.
-- Az e blokk alatti összes blokk csak vendégeknek jelenik meg. Csak Vegyes hozzáférési típusú oldalon működik.
-- **Oldal címe**
-- **Metaleírás**
-- **Kanonikus URL**
-- **Robots** — index, follow / noindex, nofollow. A keresőmotoros indexelést szabályozza.
-- **Schema típusa** — Kikapcsolva az oldalhoz nem jelenik meg a Schema.org JSON-jelölés.

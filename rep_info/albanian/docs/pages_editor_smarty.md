@@ -23,14 +23,3 @@ Katalogu në `resources/available_vars/` ruan emrat, llojet, strukturën dhe she
     <span>{$item.title|escape}</span>
 {/foreach}
 ```
-
-## Udhëzime
-
-- **Mblidh variablat Smarty** — Aktivizoni ose çaktivizoni mbledhjen e variablave Smarty.
-- **Përdor variablat Smarty të mbledhura** — Aktivizoni ose çaktivizoni përdorimin e variablave Smarty të mbledhura në redaktorin e faqeve.
-- Variabël Smarty (PHP)
-- Smarty: PHP, metodat e objekteve, thirrjet statike dhe nofilter janë të ndaluara.
-- Shablloni Smarty është shumë i madh.
-- Smarty
-- Redaktori Smarty
-

@@ -21,16 +21,3 @@ Pro každý jazyk vyplňte titulek a popis a ověřte canonical, robots, Open Gr
 ## Kontaktní formulář
 
 Přidejte blok **Kontaktní formulář**. Vyberte **požadavek WHMCS** a oddělení podpory, nebo **e-mail** a příjemce; nastavte nadpis, popis, předmět a text tlačítka. Každému poli zadejte název, typ, povinnost a ověření. Požadavek od hosta potřebuje pole s rolemi jména a e-mailu odesílatele. Do rozbalovacího seznamu vložte jednu možnost na řádek, třeba `sales : Prodej`. Pro každý souhlas vytvořte samostatné pole a použijte CAPTCHA nastavenou ve WHMCS. Uložte a odešlete skutečný test jako host; zkontrolujte požadavek či doručení, chyby a vymazání formuláře. Zelený stav editoru doručení nepotvrzuje; při selhání `mail()` nastavte SMTP ve WHMCS.
-
-## Pokyny
-
-- Vnořený kontejner s rozvržením Flex. Přetáhněte dovnitř další bloky.
-- Vnořený kontejner s rozvržením CSS Grid. Přetáhněte dovnitř další bloky.
-- Vnořený karusel Bootstrap. Přetáhněte dovnitř bloky; každý vytvoří jeden snímek.
-- Všechny bloky pod tímto blokem se zobrazují pouze přihlášeným uživatelům. Funguje pouze při smíšeném typu přístupu ke stránce.
-- Všechny bloky pod tímto blokem se zobrazují pouze hostům. Funguje pouze při smíšeném typu přístupu ke stránce.
-- **Titulek stránky**
-- **Meta popis**
-- **Kanonická URL**
-- **Robots** — index, follow / noindex, nofollow. Určuje indexování.
-- **Typ schématu** — Je-li zakázáno, značkování Schema.org JSON se pro tuto stránku nevypisuje.

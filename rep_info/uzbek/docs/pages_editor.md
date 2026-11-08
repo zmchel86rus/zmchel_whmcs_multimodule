@@ -21,16 +21,3 @@ Har bir tilga sarlavha va tavsif yozing, so‘ng canonical, robots, Open Graph, 
 ## Aloqa formasi
 
 **Aloqa formasi** blokini qo‘shing. **WHMCS murojaati** va yordam bo‘limi yoki **email** va qabul qiluvchini tanlang; sarlavha, tavsif, mavzu va tugma matnini to‘ldiring. Har bir maydonga nom, tur, majburiylik va tekshiruv belgilang. Mehmon murojaati jo‘natuvchi ismi va email roli berilgan maydonlarni talab qiladi. Ochiladigan ro‘yxatda har qatorga bitta variant yozing, masalan `sales : Savdo`. Har bir rozilikka alohida maydon yarating va WHMCS dagi CAPTCHA dan foydalaning. Saqlab, mehmon sifatida haqiqiy sinov yuboring; murojaat yoki xat yetib borishini, xatolarni va formaning tozalanishini tekshiring. Muharrirning yashil holati yetkazishni tasdiqlamaydi; `mail()` ishlamasa WHMCS SMTP ni sozlang.
-
-## Yoʻriqnoma
-
-- Ichma-ich flex joylashuv konteyneri. Boshqa bloklarni ichiga sudrab joylashtiring.
-- Ichma-ich CSS Grid konteyneri. Boshqa bloklarni ichiga sudrab joylashtiring.
-- Ichma-ich Bootstrap karuseli. Bloklarni ichiga sudrang; har biri alohida slaydga aylanadi.
-- Ushbu blokdan pastdagi barcha bloklar faqat tizimga kirgan foydalanuvchilarga koʻrsatiladi. Faqat sahifaga kirish turi Aralash boʻlganda ishlaydi.
-- Ushbu blokdan pastdagi barcha bloklar faqat mehmonlarga koʻrsatiladi. Faqat sahifaga kirish turi Aralash boʻlganda ishlaydi.
-- **Sahifa sarlavhasi**
-- **Meta tavsif**
-- **Kanonik URL**
-- **Robots** — index, follow / noindex, nofollow. Indekslashni boshqaradi.
-- **Schema turi** — Oʻchirilganda, bu sahifa uchun Schema.org JSON belgilari chiqarilmaydi.

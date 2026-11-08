@@ -24,7 +24,3 @@ URL-ul unui element de pagină este recalculat din slug-ul curent și traducerea
 ## zm_pb_menus
 
 Datele se află în tabelele `zm_pb_menus`, `zm_pb_menu_items` și `zm_pb_menu_locations`. Creați sau reparați aceste tabele din Baza de date a modulului. Arborele admite cel mult 10 niveluri și 300 de elemente; când se șterge un părinte, copiii acestuia urcă un nivel.
-
-## Instrucțiuni
-
-- Creați un meniu, adăugați pagini sau linkuri personalizate și ordonați elementele prin tragere.

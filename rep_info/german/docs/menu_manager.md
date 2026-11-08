@@ -30,17 +30,3 @@ Entwürfe, gelöschte und für den Besucher gesperrte Seiten werden ausgeblendet
 ## Tabellen
 
 `zm_pb_menus` enthält Einstellungen, `zm_pb_menu_items` die Struktur und `zm_pb_menu_locations` die Positionen. Das Schema liegt in `inc/menu_schema.php`; Erstellung, Reparatur und Entfernung erfolgen über **Moduldatenbank**, nicht im Menüeditor. Beim Deaktivieren werden Tabellen nur mit aktiviertem `db_action` entfernt. Ausgabe: `lib/menu.php`; Helfer: `inc/menu_manager.php`; Hooks: `hooks/menu.php`. Für Tests mit WHMCS und PDO SQLite: `tests/menu.php`, auch mit `--plain`.
-
-## Anleitung
-
-- Menü erstellen
-- Fügen Sie Seiten, Beiträge oder eigene Links hinzu.
-- Elemente ziehen, um sie neu anzuordnen. Über die übergeordnete Ebene oder die Schaltflächen die Verschachtelung festlegen.
-- Sprache der aktuellen Seite verwenden
-- Eingegebene URL unverändert verwenden
-- Beschriftungen in anderen Sprachen
-- Sichtbar für
-- Geräte
-- Pro Position kann ein Menü zugewiesen werden. Die Auswahl verschiebt eine bestehende Zuweisung von einem anderen Menü hierher.
-- Elemente der obersten Ebene werden zu Spalten, untergeordnete Elemente zu Links. Für eine Überschrift ohne Link URL # verwenden.
-- Menütabellen wurden noch nicht erstellt. Erstellen Sie sie unter „Moduldatenbank“.

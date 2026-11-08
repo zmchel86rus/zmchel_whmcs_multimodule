@@ -23,14 +23,3 @@ Coinníonn an catalóg i `resources/available_vars/` ainmneacha, cineálacha, st
     <span>{$item.title|escape}</span>
 {/foreach}
 ```
-
-## Treoracha
-
-- **Bailigh athróga Smarty** — Cumasaigh nó díchumasaigh bailiú athróg Smarty.
-- **Úsáid athróga Smarty a bailíodh** — Cumasaigh nó díchumasaigh úsáid athróg Smarty a bailíodh san eagarthóir leathanach.
-- Athróg Smarty (PHP)
-- Smarty: tá cosc ar PHP, modhanna oibiachtaí, glaonna statacha agus nofilter.
-- Tá an teimpléad Smarty rómhór.
-- Smarty
-- Eagarthóir Smarty
-

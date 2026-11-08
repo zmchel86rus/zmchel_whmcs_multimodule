@@ -21,16 +21,3 @@ Fyll inn tittel og beskrivelse for hvert språk, og kontroller canonical, robots
 ## Kontaktskjema
 
 Legg til blokken **Kontaktskjema**. Velg en **WHMCS-støttesak** og avdeling eller **e-post** og mottaker; fyll inn tittel, beskrivelse, emne og knappetekst. Angi navn, type, obligatorisk status og validering for hvert felt. En sak fra en gjest krever felt med rollene avsendernavn og e-post. Skriv ett alternativ per linje i nedtrekkslisten, for eksempel `sales : Salg`. Lag et eget felt for hvert samtykke, og bruk CAPTCHA konfigurert i WHMCS. Lagre og send en ekte test som gjest; kontroller sak eller levering, feil og tømming av skjemaet. Grønn status i redigereren bekrefter ikke levering; sett opp SMTP i WHMCS hvis `mail()` feiler.
-
-## Instruksjoner
-
-- Nøstet beholder med flex-oppsett. Dra andre blokker inn i den.
-- Nøstet CSS Grid-beholder. Dra andre blokker inn i den.
-- Nøstet Bootstrap-karusell. Dra blokker inn i den; hver blokk blir et lysbilde.
-- Alle blokkene under denne blokken vises bare for innloggede brukere. Fungerer bare når sidens tilgangstype er Blandet.
-- Alle blokkene under denne blokken vises bare for gjester. Fungerer bare når sidens tilgangstype er Blandet.
-- **Sidetittel**
-- **Metabeskrivelse**
-- **Kanonisk URL**
-- **Robots** — index, follow / noindex, nofollow. Styrer indeksering.
-- **Schema-type** — Når dette er deaktivert, vises ikke Schema.org JSON-markup for denne siden.

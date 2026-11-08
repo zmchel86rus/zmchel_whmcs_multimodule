@@ -24,7 +24,3 @@ De URL van een pagina-item wordt opnieuw opgebouwd uit de huidige slug en de gep
 ## zm_pb_menus
 
 De gegevens staan in `zm_pb_menus`, `zm_pb_menu_items` en `zm_pb_menu_locations`. Maak of herstel deze tabellen via Moduledatabase. De boom ondersteunt maximaal 10 niveaus en 300 items; bij het verwijderen van een bovenliggend item schuiven de onderliggende items één niveau omhoog.
-
-## Instructies
-
-- Maak een menu, voeg pagina’s of eigen links toe en rangschik de onderdelen door ze te slepen.

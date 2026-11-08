@@ -1,10 +1,22 @@
 # Treoracha do zmchel WHMCS Multimodule
 
-**Sula n-úsáideann tú é, cruthaigh luachanna salt uathúla i `module_init.php`: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` agus `ZM_PB_NONCE_SALT`.** Forbraíodh agus tástáladh an modúl ar **WHMCS 8.13.1–8.13.7**. Seiceáladh comhoiriúnacht le **PHP 7.4–8.5**. Tacaítear go hiomlán le Apache (100%); d'fhéadfadh cumraíocht bhreise a bheith ag teastáil ó Nginx le haghaidh ródú teanga ar an leathanach baile.
+**Tá zmchel WHMCS Multimodule saor in aisce.** Ó riarachán WHMCS is féidir leathanaigh ilteangacha a bhainistiú le heagarthóir amhairc, roghchláir, leabharlann meán, meiteashonraí SEO, léarscáileanna XML, atreoruithe, rialacha rewrite agus iompórtáil/easpórtáil.
+
+## Roimh an gcéad úsáid
 
 **Sula n-úsáidtear an modúl den chéad uair, oscail Socruithe an Mhodúil → Teangacha Tacaithe agus cumasaigh na teangacha atá uait.**
 
-**Tá zmchel WHMCS Multimodule saor in aisce.** Ó riarachán WHMCS is féidir leathanaigh ilteangacha a bhainistiú le heagarthóir amhairc, roghchláir, leabharlann meán, meiteashonraí SEO, léarscáileanna XML, atreoruithe, rialacha rewrite agus iompórtáil/easpórtáil.
+Gach uair a ghníomhachtaítear an modúl, gineann sé luachanna salt nua agus scríobhann sé chuig `module_init.php` iad (`ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT`, `ZM_PB_NONCE_SALT`). Seiceáil go bhfuil luach ag gach ceann de na trí shalann.
+
+## Comhoiriúnacht agus feidhmiúlacht tástáilte
+
+- **PHP:** 7.4, 8.0, 8.1, 8.2, 8.3, 8.4, 8.5
+- **WHMCS:** 8.13.0–9.1.0
+- **Smarty:** 3, 4
+
+## Comhoiriúnacht le freastalaithe gréasáin
+
+Tacaítear go hiomlán le Apache (100%); d'fhéadfadh cumraíocht bhreise a bheith ag teastáil ó Nginx le haghaidh ródú teanga ar an leathanach baile.
 
 ## Socruithe an mhodúil
 

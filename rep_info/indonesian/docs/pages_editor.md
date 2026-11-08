@@ -21,16 +21,3 @@ Isi judul dan deskripsi untuk tiap bahasa, lalu periksa canonical, robots, Open 
 ## Formulir kontak
 
 Tambahkan blok **Formulir kontak**. Pilih **tiket WHMCS** dan departemen dukungan atau **email** dan penerima; isi judul, deskripsi, subjek, dan teks tombol. Beri setiap kolom nama, jenis, status wajib, dan validasi. Tiket tamu perlu kolom dengan peran nama dan email pengirim. Tulis satu pilihan per baris pada daftar tarik turun, misalnya `sales : Penjualan`. Buat kolom terpisah untuk setiap persetujuan dan gunakan CAPTCHA yang diatur di WHMCS. Simpan lalu kirim uji nyata sebagai tamu; periksa tiket atau pengiriman, kesalahan, dan pengosongan formulir. Status hijau di editor tidak memastikan pesan terkirim; atur SMTP di WHMCS jika `mail()` gagal.
-
-## Petunjuk
-
-- Kontainer tata letak Flex bertingkat. Seret blok lain ke dalamnya.
-- Kontainer CSS Grid bertingkat. Seret blok lain ke dalamnya.
-- Karusel Bootstrap bertingkat. Seret blok ke dalamnya; setiap blok menjadi satu slide.
-- Semua blok di bawah blok ini hanya ditampilkan kepada pengguna yang sudah masuk. Hanya berfungsi jika jenis akses halaman adalah Campuran.
-- Semua blok di bawah blok ini hanya ditampilkan kepada pengunjung. Hanya berfungsi jika jenis akses halaman adalah Campuran.
-- **Judul halaman**
-- **Deskripsi meta**
-- **URL kanonis**
-- **Robots** — index, follow / noindex, nofollow. Mengatur pengindeksan.
-- **Jenis skema** — Jika dinonaktifkan, markup JSON Schema.org tidak akan dihasilkan untuk halaman ini.

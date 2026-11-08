@@ -24,17 +24,3 @@ Slóð síðufærslu er reiknuð aftur út frá núverandi slug og birtri þýð
 ## zm_pb_menus
 
 Gögnin eru í töflunum `zm_pb_menus`, `zm_pb_menu_items` og `zm_pb_menu_locations`. Búðu til eða lagaðu töflurnar í gagnagrunnshluta einingarinnar. Tréð leyfir mest 10 stig og 300 atriði; þegar yfiratriði er eytt færast undiratriðin upp um eitt stig.
-
-## Leiðbeiningar
-
-- Búa til valmynd
-- Bættu við síðum, færslum eða sérsniðnum tenglum.
-- Dragðu atriði til að breyta röð þeirra. Stilltu stigskipan með vali á yfireiningu eða færsluhnöppunum.
-- Nota tungumál núverandi síðu
-- Nota skráðu vefslóðina óbreytta
-- Merkingar á öðrum tungumálum
-- Sýnilegt fyrir
-- Tæki
-- Á hverri staðsetningu getur aðeins verið ein valmynd. Ef staðsetning er valin færist úthlutun hennar hingað frá annarri valmynd.
-- Atriði á efsta stigi verða að dálkum og undiratriði að tenglum. Notaðu vefslóðina # fyrir fyrirsögn án tengils.
-- Valmyndatöflurnar hafa ekki verið búnar til. Bættu þeim við í Gagnagrunni einingarinnar.

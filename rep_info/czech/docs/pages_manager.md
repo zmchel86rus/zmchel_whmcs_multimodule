@@ -15,14 +15,3 @@ Seznam filtrujte podle názvu, přístupu, typu, stavu nebo jazyka. **Navštívi
 ## WHMCS
 
 Chcete-li nahradit stránku WHMCS, vyberte existující systémovou adresu a zveřejněnou stránku modulu. Zvolte úplnou náhradu, přidání před nebo za původní obsah, případně pouze meta/SEO. Uložte nastavení a vyzkoušejte původní URL WHMCS jako host i přihlášený klient.
-
-## Pokyny
-
-- Přidat stránku
-- **Název stránky** — Interní název stránky
-- **Slug stránky** — Jsou povolena pouze latinská písmena, pomlčky a číslice.
-- **Typ přístupu** — Přihlášení uživatelé: ke stránce mají přístup pouze přihlášení uživatelé; Hosté: přístup mají pouze hosté; Smíšený: přístup mají všichni, přičemž viditelnost určují bloky uvnitř stránky.
-- **Typ stránky** — Systémové stránky nejsou zahrnuty do mapy webu a nejsou dostupné běžným uživatelům.
-- **Jazyky stránky** — Výchozí jazyk je vždy zahrnut bez ohledu na váš výběr.
-- Úplné nahrazení nahradí zobrazený obsah i metadata.\ Přidat před vloží obsah před stávající obsah stránky.\ Přidat za vloží obsah za stávající obsah stránky.\ Pouze metadata/SEO nahradí metadata stránky.
-- Navigace seznamem stránek

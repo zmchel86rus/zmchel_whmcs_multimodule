@@ -16,9 +16,7 @@ require_once ZM_PB_INCDIR . 'menu_manager.php';
             ->first();
 
         if ($main && $main->langs) {
-            $main->langs = array_values(array_filter((array) json_decode($main->langs, true), function ($language) {
-                return is_string($language) && isset(ZM_PB_LANGS[$language]);
-            }));
+            $main->langs = zm_pb_lm_normalize_languages(json_decode($main->langs, true));
         }
 
 
@@ -28,8 +26,12 @@ require_once ZM_PB_INCDIR . 'menu_manager.php';
 
         $settings = [];
         foreach ($pre_settings as $pre_setting) {
-            $settings[$pre_setting->lang] = $pre_setting;
-            $settings[$pre_setting->lang]->settings = json_decode($settings[$pre_setting->lang]->settings,true);
+            $storedLanguage = $pre_setting->lang;
+            $language = zm_pb_lm_supported_key($storedLanguage);
+            if (!isset(ZM_PB_LANGS[$language])) continue;
+            $pre_setting->lang = $language;
+            $pre_setting->settings = json_decode($pre_setting->settings, true);
+            if (!isset($settings[$language]) || $storedLanguage === $language) $settings[$language] = $pre_setting;
         }
 
         $sitemap = Capsule::table('zm_pb_sitemap')
@@ -85,12 +87,16 @@ require_once ZM_PB_INCDIR . 'menu_manager.php';
         $smarty->assign('page_data', $page_data);
         $smarty->assign('mediamanager_modal', $smarty->fetch( ZM_PB_TEMPLATESPARTSDIR .'modal_mediamanager.tpl' ) );
 
+        $aliases = zm_pb_lm_filename_aliases();
         $grapesCandidate = ZM_PB_ADMINLANGNAME;
-        if (!is_file(ZM_PB_ASSETSDIR . 'grapesjs/langs/' . $grapesCandidate . '.json')) {
-            $legacyGrapesName = array_search($grapesCandidate, zm_pb_lm_filename_aliases(), true);
-            if ($legacyGrapesName !== false) $grapesCandidate = $legacyGrapesName;
+        $legacyGrapesName = array_search($grapesCandidate, $aliases, true);
+        $grapesLang = 'english';
+        foreach (array_unique([$grapesCandidate, $aliases[$grapesCandidate] ?? null, $legacyGrapesName ?: null]) as $candidate) {
+            if ($candidate !== null && is_file(ZM_PB_ASSETSDIR . 'grapesjs/langs/' . $candidate . '.json')) {
+                $grapesLang = $candidate;
+                break;
+            }
         }
-        $grapesLang = is_file(ZM_PB_ASSETSDIR . 'grapesjs/langs/' . $grapesCandidate . '.json') ? $grapesCandidate : 'english';
         $grapesClientLang = $grapesLang === 'english' ? 'english' : ZM_PB_ADMIN_CLIENT_LANGNAME;
         if (!isset(ZM_PB_LANGS[$grapesClientLang])) {
             $grapesClientLang = isset(ZM_PB_LANGS[ZM_PB_DEFLANG]) ? ZM_PB_DEFLANG : array_key_first(ZM_PB_LANGS);

@@ -21,16 +21,3 @@ Trong cài đặt cơ bản, kiểm tra tên, slug, loại, trạng thái, quy�
 ## Biểu mẫu liên hệ
 
 Thêm khối **Biểu mẫu liên hệ**. Chọn **phiếu hỗ trợ WHMCS** và bộ phận hỗ trợ hoặc **email** và người nhận; điền tiêu đề, mô tả, chủ đề và chữ trên nút. Đặt tên, loại, tính bắt buộc và quy tắc kiểm tra cho từng trường. Phiếu của khách cần các trường được gán vai trò tên và email người gửi. Với danh sách thả xuống, ghi một lựa chọn mỗi dòng, chẳng hạn `sales : Bán hàng`. Tạo trường riêng cho từng sự đồng ý và dùng CAPTCHA đã cấu hình trong WHMCS. Lưu rồi gửi thử thật với tư cách khách; kiểm tra phiếu hoặc thư, lỗi và việc đặt lại biểu mẫu. Trạng thái xanh của trình soạn thảo không xác nhận đã gửi; nếu `mail()` lỗi, cấu hình SMTP trong WHMCS.
-
-## Hướng dẫn
-
-- Vùng chứa bố cục Flex lồng nhau. Kéo các khối khác vào bên trong.
-- Vùng chứa CSS Grid lồng nhau. Kéo các khối khác vào bên trong.
-- Băng chuyền Bootstrap lồng nhau. Kéo các khối vào bên trong; mỗi khối sẽ trở thành một trang trình chiếu.
-- Tất cả các khối nằm dưới khối này chỉ hiển thị với người dùng đã đăng nhập. Chỉ hoạt động khi loại quyền truy cập của trang là Hỗn hợp.
-- Tất cả các khối nằm dưới khối này chỉ hiển thị với khách truy cập. Chỉ hoạt động khi loại quyền truy cập của trang là Hỗn hợp.
-- **Tiêu đề trang**
-- **Mô tả meta**
-- **URL chính tắc**
-- **Robots** — index, follow / noindex, nofollow. Kiểm soát việc lập chỉ mục.
-- **Loại Schema** — Khi tắt, mã đánh dấu JSON Schema.org sẽ không được xuất cho trang này.

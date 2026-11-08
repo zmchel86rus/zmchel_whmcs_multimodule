@@ -17,12 +17,3 @@ Active la generación de mapas y configure la frecuencia en **Ajustes del módul
 En **Gestor de redirecciones**, indique origen `/old-page/` y destino `/new-page/`, seleccione `301` si el cambio es permanente o `302` si es temporal, active, guarde y pruebe la URL antigua. La creación automática tras cambiar un slug tiene interruptor y antigüedad mínima propios. Más información: [redirecciones](redirects_manager.md).
 
 En **Gestor rewrite**, pulse **Comprobar reglas** y después **Añadir o actualizar reglas** para escribir `.htaccess`. En reglas personalizadas, indique patrón de URL, destino y flags, y vuelva a aplicar. Apache usa `.htaccess`; Nginx requiere reglas equivalentes del servidor. Una regla errónea puede afectar a todo el sitio.
-
-## Instrucciones
-
-- Comprobar reglas
-- Añadir o actualizar reglas
-- Eliminar todas las reglas de .htaccess
-- Patrón de URL
-- Destino
-- Indicadores

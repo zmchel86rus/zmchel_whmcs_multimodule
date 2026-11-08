@@ -31,10 +31,3 @@ Filter arbetar med samma lista som pagineringen. Textsökning kan kontrollera fl
 ## Flex / Grid
 
 Välj Flex eller Grid och ställ in bredder och kolumner per enhet. När ett filter används eller rensas återgår listan till första sidan. Antalsväljaren kan flyttas utan att kopplingen bryts; en dubblerad panel styr samma lista.
-
-## Instruktioner
-
-- Välj antal objekt: 10, 25, 50, 100, 250
-- Indexera inte sida 2 och följande sidor
-- Länkformat
-- Standardantal objekt

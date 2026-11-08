@@ -18,6 +18,7 @@ use Illuminate\Database\Capsule\Manager as Capsule;
             $savedContent = [];
 
             foreach ($content_data as $lang => $data) {
+                zm_pb_adopt_page_language($page_id, $lang);
                 $content = zm_pb_save_grapes_content($page_id, $lang, $data['content'] ?? '');
                 $savedContent[$lang] = $content;
                 

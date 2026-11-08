@@ -25,10 +25,6 @@ add_hook('AdminAreaFooterOutput', 10, function($vars) {
             $script = 'js/page-overrides.js';
             $output .= '<script src="' . ZM_PB_ASSETSURL . $script . '?v=' . filemtime(ZM_PB_ASSETSDIR . $script) . '"></script>';
         }
-        if ($module_subpage === 'rewrite_manager') {
-            $script = 'js/rewrite-manager.js';
-            $output .= '<script src="' . ZM_PB_ASSETSURL . $script . '?v=' . filemtime(ZM_PB_ASSETSDIR . $script) . '"></script>';
-        }
     }
     return $output;
 });

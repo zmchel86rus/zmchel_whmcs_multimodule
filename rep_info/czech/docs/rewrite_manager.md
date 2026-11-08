@@ -13,12 +13,3 @@ Po přidání nebo smazání pravidla klikněte na „Přidat nebo aktualizovat 
 ## .htaccess
 
 Otevřete správce a porovnejte pravidla s hlavním souborem `.htaccess`. Pro vlastní pravidlo uložte vzor URL, cíl a příznaky; potom použijte **Přidat nebo aktualizovat pravidla**, čímž se blok zapíše před pravidla WHMCS. Znovu ověřte stav a otevřete zveřejněnou stránku ve výchozím i dalším jazyce. Příliš široký vzor může zasáhnout jiné stránky. Při zapojení Nginx → Apache fungují pravidla jen pro požadavky předané Apache.
-
-## Pokyny
-
-- Zkontrolovat pravidla
-- Přidat nebo aktualizovat pravidla
-- Odstranit všechna pravidla z .htaccess
-- Vzor URL
-- Cíl
-- Příznaky

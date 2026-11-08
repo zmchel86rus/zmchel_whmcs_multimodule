@@ -25,14 +25,3 @@ Tras publicar, compare el JSON-LD generado con el contenido que realmente ve el 
 ## ContactPoint.availableLanguage
 
 Los idiomas de contacto proceden de WHMCS y se indican en `ContactPoint.availableLanguage` con etiquetas BCP 47. El idioma de la página corresponde a `WebPage` o `ContactPage`; no añada un valor `inLanguage` inventado a `Organization`.
-
-## Instrucciones
-
-- **Tipo de Schema** — Si se desactiva, no se genera marcado JSON de Schema.org para esta página.
-- **Migas de pan** — Nombre de la página en las migas de pan
-- **URL canónica**
-- **Título de la página**
-- **Metadescripción**
-- **Título de Open Graph** — Si se deja vacío, se usa el título de la página.
-- **Descripción de Open Graph** — Si se deja vacía, se usa la metadescripción.
-- **Imagen de Open Graph** — Si se deja vacía, se usa la imagen de la página.

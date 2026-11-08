@@ -69,8 +69,13 @@ function zm_pb_lm_is_filename_alias(string $file, string $old): bool
 
 function zm_pb_lm_name(array $section, string $supported): string
 {
-    $canonical = zm_pb_lm_filename_aliases()[$supported] ?? $supported;
-    $legacy = array_search($canonical, zm_pb_lm_filename_aliases(), true);
+    $aliases = zm_pb_lm_filename_aliases();
+    $canonical = $aliases[$supported] ?? $supported;
+    if ($canonical !== $supported) {
+        $legacyFile = $section['directory'] . '/' . $supported . '.php';
+        if (is_file($legacyFile) && !zm_pb_lm_is_filename_alias($legacyFile, $supported)) return $supported;
+    }
+    $legacy = array_search($canonical, $aliases, true);
     foreach (array_filter([$canonical, $legacy]) as $name) {
         if (is_file($section['directory'] . '/' . $name . '.php') ||
             is_file($section['directory'] . '/disabled/' . $name . '.php')) return $name;
@@ -392,8 +397,7 @@ function zm_pb_lm_set(&$catalog, array $path, string $value): void
 function zm_pb_lm_own(string $name, bool $allowDisabled = false, bool $withOverride = true)
 {
     if ($name !== 'english') {
-        $name = zm_pb_lm_name(['kind' => 'self', 'directory' => ZM_PB_ALANGDIR],
-            zm_pb_lm_supported_key($name));
+        $name = zm_pb_lm_name(['kind' => 'self', 'directory' => ZM_PB_ALANGDIR], $name);
     }
     $english = ZM_PB_ALANGDIR . 'english.php';
     $default = $name === 'english' ? require $english : zm_pb_lm_own('english', false, $withOverride);

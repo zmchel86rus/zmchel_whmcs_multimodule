@@ -24,18 +24,3 @@ URL-en til et sideelement beregnes på nytt fra gjeldende slug og publisert over
 ## zm_pb_menus
 
 Dataene ligger i tabellene `zm_pb_menus`, `zm_pb_menu_items` og `zm_pb_menu_locations`. Opprett eller reparer dem under Modulens database. Treet støtter høyst 10 nivåer og 300 elementer; når en overordnet oppføring slettes, flyttes barna ett nivå opp.
-
-## Instruksjoner
-
-- Opprett meny
-- Legg til sider, innlegg eller egendefinerte lenker.
-- Dra elementene for å endre rekkefølgen. Angi nesting med valg av overordnet element eller flytteknappene.
-- Bruk språket til den gjeldende siden
-- Bruk den angitte URL-en uendret
-- Etiketter på andre språk
-- Synlig for
-- Enheter
-- Hver plassering kan ha én meny. Når du velger en plassering, flyttes tilordningen hit fra en annen meny.
-- Elementer på øverste nivå blir kolonner, og nøstede elementer blir lenker. Bruk URL-en # for en overskrift uten lenke.
-- Menytabellene er ennå ikke opprettet. Legg dem til i Moduldatabase.
-

@@ -13,10 +13,3 @@ Ange en giltig sökväg som börjar med / eller en fullständig HTTP(S)-URL. Kä
 Reglerna stöder HTTP-koderna `301`, `302`, `303`, `307` och `308` och gäller bara `GET`/`HEAD`-begäranden som når WHMCS. Källan matchas exakt mot sökvägen och angivna frågeparametrar; målets parametrar ersätter de gamla. Hanteraren lagrar reglerna i `zm_pb_redirects`, men skapar inte tabellen under en begäran: använd **Moduldatabas**. Befintliga URL-kolumner är begränsade till 128 byte.
 
 Manuella regler går före automatiska. En ändring av slug för en publicerad sida kan efter angiven väntetid skapa en automatisk `301` för varje aktivt språk; publicering av ett utkast gör det inte. Senare namnändringar uppdaterar gamla mål. En regel med frågeparametrar går före en regel som bara gäller sökvägen. Käll-URL:en måste höra till denna webbplats och får inte ha något `#`-fragment.
-
-## Instruktioner
-
-- Källa
-- Mål
-- Aktiverad
-- Inaktiverad

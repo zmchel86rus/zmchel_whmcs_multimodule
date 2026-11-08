@@ -21,18 +21,3 @@ Under **Oversættelser** viser **Original** teksten fra det valgte sprogs oprind
 Du kan deaktivere og genaktivere en sprogfil; den kan stadig redigeres, mens den er deaktiveret. Den engelske basisfil og WHMCS' aktuelle standardsprog kan ikke deaktiveres. For klient- og administratorsprog oprettet i WHMCS gemmer modulet kopier, som kan gendannes efter en WHMCS-opdatering. Hvis **Områder** viser en rettelse af filnavn, skal du kontrollere det nye navn og vælge **Ret**; rettelsen gælder de fundne områder.
 
 Ved skift af standardsprog skal du først aktivere det nye sprog i modulindstillingerne, derefter ændre standardsproget i WHMCS og til sidst deaktivere det gamle. Kontrollér tekster i både administrationen og klientdelen.
-
-## Vejledning
-
-- Sektioner
-- Sprog
-- Oversættelser
-- Dette sprog er deaktiveret, men oversættelserne kan stadig redigeres.
-- Referencesprog
-- Hver Gem-knap gemmer kun én oversættelse.
-- Uden oversættelse
-- Vis originale
-- Vis tilføjede
-- Følgende oversættelsesnøgler blev ikke importeret:
-- ukendt nøgle
-- dubleret nøgle

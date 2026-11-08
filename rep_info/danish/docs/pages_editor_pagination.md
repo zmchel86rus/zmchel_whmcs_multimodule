@@ -23,15 +23,3 @@ Filtre arbejder på samme liste som sideinddelingen. Tekstsøgning kan kontrolle
 ## Flex / Grid
 
 Vælg Flex eller Grid, og tilpas bredder og kolonner til enheder. Anvendelse eller nulstilling af et filter sender listen tilbage til første side. Antalsvælgeren kan flyttes uden at miste forbindelsen; et duplikeret panel styrer den samme liste.
-
-## Vejledning
-
-- Klik på listeblokken. Esc annullerer. Placer sideinddelingen uden for den valgte blok.
-- Angiv variablen for hele listen til Smarty. Uden en variabel opdeles containerens HTML-elementer i sider; angiv eventuelt en klasse for rækkerne eller tagget tr. Links bevarer antal, sortering og filtre. Flere uafhængige lister understøttes.
-- Antal pr. side: 10, 25, 50, 100, 250
-- Træk vælgeren for antal elementer pr. side ind i sideinddelingen eller til andre blokke på siden. Den forbliver knyttet til denne sideinddeling.
-- Indeksér ikke side 2 og frem
-- Vælg Smarty-blokken med listen. Søgning og sideinddeling skal være knyttet til samme blok.
-- Angiv variablen for hele listen. Søgningen matcher et hvilket som helst af de valgte felter; filtrene kombineres. Betingelserne anvendes før beregningen af antal sider; anvendelse eller nulstilling vender tilbage til første side. Hvis der allerede er en tilknyttet sideinddeling, bruges dens variabel.
-- Linkformat
-- Standardantal elementer pr. side

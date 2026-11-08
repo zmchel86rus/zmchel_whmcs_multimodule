@@ -9,7 +9,7 @@ require_once ZM_PB_INCDIR . 'page_urls.php';
             if( empty($page_id) ) exit( json_encode(['status'=>'error', 'title'=> $GLOBALS['ZM_PB_ADMINLANG']->other->error,'message'=>$GLOBALS['ZM_PB_ADMINLANG']->pages_manager->content_errors->page_id_required]) );
 
             $name = trim($_POST['edit_main']['name'] ?? '');
-            $slug = trim($_POST['edit_main']['slug'] ?? '');
+            $slug = zm_pb_clean_page_slug($_POST['edit_main']['slug'] ?? '');
             $auth_type = trim($_POST['edit_main']['auth_type'] ?? '');
             $status = $_POST['edit_main']['status'] ?? 'draft';
             $type = $_POST['edit_main']['type'] ?? 'page';
@@ -45,7 +45,8 @@ require_once ZM_PB_INCDIR . 'page_urls.php';
             if (!$current_page) throw new RuntimeException($GLOBALS['ZM_PB_ADMINLANG']->pages_manager->page_sitemap_noshow->no_found);
             require_once ZM_PB_LIBDIR . 'redirects.php';
             zm_pb_redirect_page_change($current_page, $slug, $status);
-            $old_langs = json_decode($current_page->langs, true) ?: [];
+            $old_langs = zm_pb_lm_normalize_languages(json_decode($current_page->langs, true));
+            foreach ($langs as $lang) zm_pb_adopt_page_language($page_id, $lang);
             $was_publish = $current_page->status === 'publish';
             $is_system = $type === 'system';
             
@@ -80,9 +81,12 @@ require_once ZM_PB_INCDIR . 'page_urls.php';
             }
 
             if (!empty($removed_langs)) {
+                $removedKeys = [];
+                foreach ($removed_langs as $language)
+                    $removedKeys = array_merge($removedKeys, zm_pb_lm_language_keys($language));
                 Capsule::table('zm_pb_pages_settings')
                     ->where('page_id', $page_id)
-                    ->whereIn('lang', $removed_langs)
+                    ->whereIn('lang', array_values(array_unique($removedKeys)))
                     ->update([
                         'lang_active' => false,
                         'updated_at' => date('Y-m-d H:i:s'),

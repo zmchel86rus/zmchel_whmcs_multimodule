@@ -7,17 +7,3 @@ Valitse **Lataa mediatiedosto**, lisää kuva, ääni, video tai PDF ja täytä 
 ## Kuvien näyttäminen
 
 Medianhallinta luo kuvasta useita kokoja. Voit suorittaa ladatulle kuvalle toiminnon **Optimoi kuva** ja tarkistaa sen jälkeen laadun, etenkin jos kuvassa on tekstiä. Jos mukautuvat versiot eivät sovi, poista `srcset` käytöstä kyseisessä lohkossa. Tarkista lopullinen URL-osoite ja vaihtoehtoinen teksti julkisella sivulla.
-
-## Ohjeet
-
-- Lähetä mediatiedosto
-- **Nimi (sisäinen)**
-- **Otsikko (tarvittaessa)**
-- **Kuvaus (tarvittaessa)**
-- **Alt-attribuutti**
-- Hae nimellä
-- Tiedostotyyppi
-- Lataa lisää
-- Optimoi kuva
-- Alkuperäisen kuvan ja sen muunnelmien optimointi on valmis.
-- Valitse mediatiedosto

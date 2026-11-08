@@ -27,7 +27,8 @@ function zm_pb_maintenance_required()
 
 function zm_pb_maintenance_response()
 {
-    $language = strtolower((string) ($_SESSION['Language'] ?? ZM_PB_DEFLANG));
+    require_once ZM_PB_INCDIR . 'language_aliases.php';
+    $language = zm_pb_lm_supported_key(strtolower((string) ($_SESSION['Language'] ?? ZM_PB_DEFLANG)));
     $uri = $_SERVER['ZM_PB_ORIGINAL_REQUEST_URI'] ?? ($_SERVER['REQUEST_URI'] ?? '/');
     $path = parse_url($uri, PHP_URL_PATH) ?: '/';
     $base = rtrim(parse_url(ZM_PB_FULLHOST, PHP_URL_PATH) ?: '', '/');

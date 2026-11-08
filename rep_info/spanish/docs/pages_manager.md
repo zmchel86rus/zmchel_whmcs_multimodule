@@ -18,14 +18,3 @@ Filtre la lista por nombre, acceso, tipo, estado o idioma. **Visitar** abre la U
 Cree y publique primero la página del editor. En **Lista de páginas → Sustitución de páginas**, pulse **Añadir sustitución**, elija la página WHMCS y la página creada, seleccione el tipo y guarde. **Completa** sustituye contenido y metadatos; **Antes** o **Después** añade bloques al contenido original; **Solo metadatos** cambia SEO; las opciones combinadas añaden bloques y cambian metadatos. Una misma página del sistema no puede asignarse dos veces.
 
 Pruebe la **URL pública WHMCS**, como invitado y como cliente conectado. Si difieren, el slug interno redirige a la dirección pública. Para restringir solo partes de la página, use acceso Mixto con zonas para invitados y usuarios.
-
-## Instrucciones
-
-- Añadir página
-- **Nombre de la página** — Nombre interno de la página
-- **Slug de la página** — Solo se permiten letras latinas, guiones y cifras.
-- **Tipo de acceso** — Usuarios autenticados: solo pueden acceder quienes iniciaron sesión; Invitados: solo pueden acceder los invitados; Mixto: todos pueden acceder y cada bloque controla su propia visibilidad.
-- **Tipo de página** — Las páginas del sistema no aparecen en el sitemap y no están disponibles para usuarios normales.
-- **Idiomas de la página** — El idioma predeterminado siempre se incluye, independientemente de la selección.
-- La sustitución completa reemplaza el contenido y los metadatos. Añadir antes coloca contenido antes del existente. Añadir después lo coloca después. Solo metadatos/SEO reemplaza los metadatos de la página.
-- Paginación de la lista de páginas

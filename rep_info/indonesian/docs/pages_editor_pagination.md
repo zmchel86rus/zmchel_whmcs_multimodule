@@ -33,9 +33,3 @@ Filter bekerja pada daftar yang sama dengan penomoran halaman. Pencarian teks da
 ## Flex / Grid
 
 Pilih Flex atau Grid lalu atur lebar dan kolom menurut perangkat. Menerapkan atau menghapus filter mengembalikan daftar ke halaman pertama. Pemilih jumlah hasil dapat dipindah tanpa kehilangan kaitannya; panel duplikat mengendalikan daftar yang sama.
-
-## Petunjuk
-
-- Jangan indeks halaman 2 dan seterusnya
-- Format tautan
-- Jumlah item per halaman secara default

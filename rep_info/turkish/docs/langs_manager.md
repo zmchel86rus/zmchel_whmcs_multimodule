@@ -17,19 +17,3 @@ Toplu düzenleme öncesinde seçilen dilin anahtarlarını ve çevirilerini dı�
 ## Dil dosyaları ve varsayılan dil
 
 Devre dışı bırakılmış bir dil dosyası yine düzenlenebilir. Temel İngilizce dosyası ve WHMCS'nin mevcut varsayılan dili korunur. Varsayılan dili değiştirmek için önce yenisini modülde etkinleştirin, WHMCS'de değiştirin, ardından eskisini kapatın. Eski dosya adlarını **Bölümler** bölümünde düzeltebilirsiniz.
-
-## Talimatlar
-
-- Bölümler
-- Diller
-- Çeviriler
-- Bu dil devre dışı, ancak çevirileri düzenlenebilir.
-- Referans dili
-- Her Kaydet düğmesi yalnızca bir çeviriyi kaydeder.
-- Çevrilmedi
-- Özgün olanları göster
-- Eklenenleri göster
-- Aşağıdaki çeviri anahtarları içe aktarılmadı:
-- bilinmeyen anahtar
-- yinelenen anahtar
-

@@ -35,9 +35,3 @@ Filtrai veikia tą patį sąrašą kaip puslapiavimas. Teksto paieška gali tikr
 ## Flex / Grid
 
 Rinkitės Flex arba Grid ir nustatykite pločius bei stulpelius pagal įrenginį. Pritaikius arba išvalius filtrą grįžtama į pirmą puslapį. Rezultatų skaičiaus parinkiklį galima perkelti neprarandant ryšio; dubliuotas skydelis valdo tą patį sąrašą.
-
-## Instrukcijos
-
-- Neindeksuoti antro ir vėlesnių puslapių
-- Nuorodų formatas
-- Numatytasis elementų skaičius puslapyje

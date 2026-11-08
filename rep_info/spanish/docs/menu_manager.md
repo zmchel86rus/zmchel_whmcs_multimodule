@@ -30,17 +30,3 @@ No se muestran borradores, páginas eliminadas ni páginas sin acceso para el vi
 ## Tablas
 
 `zm_pb_menus` guarda la configuración, `zm_pb_menu_items` los elementos y `zm_pb_menu_locations` las ubicaciones. El esquema está en `inc/menu_schema.php`; creación, reparación y eliminación se hacen en **Base de datos del módulo**, no en el gestor de menús. Al desactivar el módulo las tablas solo se eliminan con `db_action` activado. Salida: `lib/menu.php`; funciones auxiliares: `inc/menu_manager.php`; hooks: `hooks/menu.php`. Pruebas con WHMCS y PDO SQLite: `tests/menu.php` y `tests/menu.php --plain`.
-
-## Instrucciones
-
-- Crear menú
-- Añada páginas, artículos o enlaces personalizados.
-- Arrastre los elementos para cambiar su orden. Use el selector de elemento principal o los botones para cambiar la jerarquía.
-- Usar el idioma de la página actual
-- Usar la URL indicada sin cambios
-- Etiquetas en otros idiomas
-- Visible para
-- Dispositivos
-- Cada ubicación admite un menú. Al elegirla, se traslada aquí la asignación de otro menú.
-- Los elementos de nivel superior serán columnas y los anidados, enlaces. Use URL # para un título sin enlace.
-- Aún no se han creado las tablas de menús. Añádalas en «Base de datos del módulo».

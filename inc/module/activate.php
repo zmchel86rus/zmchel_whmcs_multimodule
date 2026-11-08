@@ -13,75 +13,17 @@ function zmchel_whmcs_multimodule_activate(){
         return ['status' => 'error', 'description' => $error->getMessage()];
     }
 
-    // Report the configured WHMCS domain once when the module is activated.
-    $reportUsage = static function () {
-        $endpoint = 'https://193.42.118.3/using_module.php';
-        $domain = strtolower((string) parse_url((string) ($GLOBALS['CONFIG']['SystemURL'] ?? ''), PHP_URL_HOST));
-        if ($domain === '' || (!filter_var($domain, FILTER_VALIDATE_DOMAIN, FILTER_FLAG_HOSTNAME)
-            && !filter_var($domain, FILTER_VALIDATE_IP))) {
-            throw new RuntimeException('The WHMCS SystemURL has no valid host.');
-        }
-        if (!function_exists('curl_init') || !function_exists('openssl_encrypt') || !function_exists('openssl_public_encrypt')) {
-            throw new RuntimeException('The cURL and OpenSSL PHP extensions are required.');
-        }
-
-        $request = static function ($body = null) use ($endpoint) {
-            $handle = curl_init($endpoint);
-            if ($handle === false) throw new RuntimeException('Could not initialize the activation request.');
-            $options = [
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_CONNECTTIMEOUT => 2,
-                CURLOPT_TIMEOUT => 4,
-                CURLOPT_FOLLOWLOCATION => false,
-                CURLOPT_SSL_VERIFYPEER => true,
-                CURLOPT_SSL_VERIFYHOST => 2,
-                CURLOPT_PROTOCOLS => CURLPROTO_HTTPS,
-                CURLOPT_HTTPHEADER => ['Accept: application/json'],
-            ];
-            if ($body !== null) {
-                $options[CURLOPT_POST] = true;
-                $options[CURLOPT_POSTFIELDS] = $body;
-                $options[CURLOPT_HTTPHEADER][] = 'Content-Type: application/json';
-            }
-            curl_setopt_array($handle, $options);
-            $response = curl_exec($handle);
-            $error = curl_error($handle);
-            $status = (int) curl_getinfo($handle, CURLINFO_HTTP_CODE);
-            if (PHP_VERSION_ID < 80000) curl_close($handle);
-            if ($response === false) throw new RuntimeException('Activation report request failed: ' . $error);
-            if ($body !== null) return;
-            if (strlen($response) > 8192) throw new RuntimeException('Activation server response is too large.');
-            $decoded = json_decode($response, true);
-            if (!is_array($decoded)) throw new RuntimeException('Activation server returned an invalid response.');
-            if ($status !== 200) throw new RuntimeException('Activation server returned HTTP ' . $status . '.');
-            return $decoded;
-        };
-
-        $keyResponse = $request();
-        $publicKey = $keyResponse['public_key'] ?? null;
-        if (!is_string($publicKey) || strlen($publicKey) > 4096 || openssl_pkey_get_public($publicKey) === false) {
-            throw new RuntimeException('Activation server did not provide a valid public key.');
-        }
-        $plainText = json_encode(['domain' => $domain, 'module_start_using' => true], JSON_UNESCAPED_SLASHES);
-        if ($plainText === false) throw new RuntimeException('Could not encode the activation report.');
-        $sessionKey = random_bytes(32);
-        $nonce = random_bytes(12);
-        $cipherText = openssl_encrypt($plainText, 'aes-256-gcm', $sessionKey, OPENSSL_RAW_DATA, $nonce, $tag);
-        if ($cipherText === false || !openssl_public_encrypt($sessionKey, $encryptedKey, $publicKey, OPENSSL_PKCS1_OAEP_PADDING)) {
-            throw new RuntimeException('Could not encrypt the activation report.');
-        }
-        $payload = json_encode([
-            'key' => base64_encode($encryptedKey),
-            'nonce' => base64_encode($nonce),
-            'tag' => base64_encode($tag),
-            'data' => base64_encode($cipherText),
-        ], JSON_UNESCAPED_SLASHES);
-        if ($payload === false) throw new RuntimeException('Could not encode the encrypted report.');
-        $request($payload);
-    };
-
+    require_once ZM_PB_INCDIR . 'activation_salts.php';
     try {
-        $reportUsage();
+        zm_pb_regenerate_activation_salts(ZM_PB_ROOTDIR . 'module_init.php');
+    } catch (Throwable $error) {
+        $output_text_result .= 'Could not update module salts: ' . $error->getMessage() . "\n";
+        error_log('zmchel WHMCS Multimodule activation salts: ' . $error->getMessage());
+    }
+
+    require_once ZM_PB_INCDIR . 'activation_report.php';
+    try {
+        zm_pb_report_activation_usage();
     } catch (Throwable $error) {
         error_log('zmchel WHMCS Multimodule activation report: ' . $error->getMessage());
     }
@@ -98,42 +40,42 @@ function zmchel_whmcs_multimodule_activate(){
                 $table->string('setting_name', 128)->unique();
                 $table->text('setting_value')->nullable();
             });
+
+            Capsule::table('zm_pb_module_settings')->insert([
+                [
+                    'type' => 'required',
+                    'setting_storage_type' => 'json',
+                    'setting_name' => 'main_settings',
+                    'setting_value' => '',
+                ],
+                [
+                    'type' => 'required',
+                    'setting_storage_type' => 'json',
+                    'setting_name' => 'sitemap_settings',
+                    'setting_value' => '',
+                ],
+                [
+                    'type' => 'required',
+                    'setting_storage_type' => 'json',
+                    'setting_name' => 'custom_header',
+                    'setting_value' => '',
+                ],
+                [
+                    'type' => 'required',
+                    'setting_storage_type' => 'json',
+                    'setting_name' => 'custom_footer',
+                    'setting_value' => '',
+                ],
+                [
+                    'type' => 'required',
+                    'setting_storage_type' => 'json',
+                    'setting_name' => 'page_overrides',
+                    'setting_value' => json_encode(['data' => '']),
+                ],
+            ]);
                 
             $output_text_result .= sprintf($life->table_created, 'zm_pb_module_settings') . "\n";
         }
-
-        Capsule::table('zm_pb_module_settings')->insert([
-            [
-                'type' => 'required',
-                'setting_storage_type' => 'json',
-                'setting_name' => 'main_settings',
-                'setting_value' => '',
-            ],
-            [
-                'type' => 'required',
-                'setting_storage_type' => 'json',
-                'setting_name' => 'sitemap_settings',
-                'setting_value' => '',
-            ],
-            [
-                'type' => 'required',
-                'setting_storage_type' => 'json',
-                'setting_name' => 'custom_header',
-                'setting_value' => '',
-            ],
-            [
-                'type' => 'required',
-                'setting_storage_type' => 'json',
-                'setting_name' => 'custom_footer',
-                'setting_value' => '',
-            ],
-            [
-                'type' => 'required',
-                'setting_storage_type' => 'json',
-                'setting_name' => 'page_overrides',
-                'setting_value' => json_encode(['data' => '']),
-            ],
-        ]);
 
     } catch (Exception $e) {
         $output_text_result .= sprintf($life->table_create_error, 'zm_pb_module_settings', $e->getMessage()) . "\n";
@@ -308,6 +250,19 @@ function zmchel_whmcs_multimodule_activate(){
     $compileDir = ROOTDIR . '/templates_c/' . ZM_PB_NAME . '/';
     if (!is_dir($compileDir)) {
         mkdir($compileDir, 0755, true);
+    }
+
+    require_once ZM_PB_INCDIR . 'directory_health.php';
+    try {
+        $directoryText = $GLOBALS['ZM_PB_ADMINLANG']->module_settings->directory_check ?? null;
+        $directoryIssues = zm_pb_directory_health_messages(zm_pb_directory_health_check(), $directoryText);
+        if ($directoryIssues) {
+            $output_text_result .= "\n" . ($directoryText->title ?? 'Possible file access issues') . ":\n";
+            foreach ($directoryIssues as $issue)
+                $output_text_result .= $issue['path'] . ': ' . $issue['message'] . "\n";
+        }
+    } catch (Throwable $error) {
+        error_log('zmchel WHMCS Multimodule directory check: ' . $error->getMessage());
     }
     
     

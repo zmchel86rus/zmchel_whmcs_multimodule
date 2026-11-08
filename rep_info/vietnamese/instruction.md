@@ -1,10 +1,22 @@
 # Hướng dẫn sử dụng zmchel WHMCS Multimodule
 
-**Trước khi sử dụng, hãy tạo các salt riêng trong `module_init.php`: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` và `ZM_PB_NONCE_SALT`.** Mô-đun được phát triển và thử nghiệm trên **WHMCS 8.13.1–8.13.7**. Khả năng tương thích PHP đã được kiểm tra từ **7.4 đến 8.5**. Apache được hỗ trợ đầy đủ (100%); Nginx có thể cần cấu hình thêm để định tuyến ngôn ngữ ở trang chủ.
+**zmchel WHMCS Multimodule miễn phí.** Ngay trong khu vực quản trị WHMCS, bạn có thể quản lý trang đa ngôn ngữ bằng trình biên tập trực quan, menu, thư viện ảnh, siêu dữ liệu SEO, sơ đồ trang XML, chuyển hướng, quy tắc rewrite và nhập/xuất dữ liệu.
+
+## Trước khi sử dụng lần đầu
 
 **Trước lần sử dụng đầu tiên, hãy mở Cài đặt mô-đun → Ngôn ngữ được hỗ trợ và bật những ngôn ngữ bạn cần.**
 
-**zmchel WHMCS Multimodule miễn phí.** Ngay trong khu vực quản trị WHMCS, bạn có thể quản lý trang đa ngôn ngữ bằng trình biên tập trực quan, menu, thư viện ảnh, siêu dữ liệu SEO, sơ đồ trang XML, chuyển hướng, quy tắc rewrite và nhập/xuất dữ liệu.
+Mỗi lần kích hoạt, mô-đun tự động tạo giá trị salt mới và ghi vào `module_init.php` (`ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT`, `ZM_PB_NONCE_SALT`). Kiểm tra để bảo đảm cả ba giá trị salt đều đã được điền.
+
+## Khả năng tương thích và hoạt động đã kiểm thử
+
+- **PHP:** 7.4, 8.0, 8.1, 8.2, 8.3, 8.4, 8.5
+- **WHMCS:** 8.13.0–9.1.0
+- **Smarty:** 3, 4
+
+## Tương thích với máy chủ web
+
+Apache được hỗ trợ đầy đủ (100%); Nginx có thể cần cấu hình thêm để định tuyến ngôn ngữ ở trang chủ.
 
 ## Cài đặt mô-đun
 

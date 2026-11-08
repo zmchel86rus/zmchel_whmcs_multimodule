@@ -1,10 +1,22 @@
 # Udhëzime për zmchel WHMCS Multimodule
 
-**Para përdorimit, krijoni vlera salt unike në `module_init.php`: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` dhe `ZM_PB_NONCE_SALT`.** Moduli është zhvilluar dhe testuar në **WHMCS 8.13.1–8.13.7**. Përputhshmëria me **PHP 7.4–8.5** është kontrolluar. Apache mbështetet plotësisht (100%); Nginx mund të kërkojë konfigurim shtesë për rrugëzimin e gjuhës në faqen kryesore.
+**zmchel WHMCS Multimodule është falas.** Nga administrimi i WHMCS mund të menaxhoni faqe shumëgjuhëshe me redaktor pamor, meny, bibliotekë mediash, metadata SEO, harta XML, ridrejtime, rregulla rewrite dhe import/eksport.
+
+## Para përdorimit të parë
 
 **Para përdorimit të parë, hapni Cilësimet e modulit → Gjuhët e mbështetura dhe aktivizoni gjuhët që ju nevojiten.**
 
-**zmchel WHMCS Multimodule është falas.** Nga administrimi i WHMCS mund të menaxhoni faqe shumëgjuhëshe me redaktor pamor, meny, bibliotekë mediash, metadata SEO, harta XML, ridrejtime, rregulla rewrite dhe import/eksport.
+Në çdo aktivizim, moduli krijon automatikisht vlera të reja salt dhe i shkruan në `module_init.php` (`ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT`, `ZM_PB_NONCE_SALT`). Kontrolloni që të tre vlerat salt të jenë plotësuar.
+
+## Përputhshmëria dhe funksionimi i testuar
+
+- **PHP:** 7.4, 8.0, 8.1, 8.2, 8.3, 8.4, 8.5
+- **WHMCS:** 8.13.0–9.1.0
+- **Smarty:** 3, 4
+
+## Përputhshmëria me serverët web
+
+Apache mbështetet plotësisht (100%); Nginx mund të kërkojë konfigurim shtesë për rrugëzimin e gjuhës në faqen kryesore.
 
 ## Cilësimet e modulit
 

@@ -7,17 +7,3 @@ Klik på **Upload mediefil**, vælg et billede, en lydfil, en video eller en PDF
 ## Visning af billeder
 
 Mediehåndteringen opretter flere billedstørrelser. Du kan køre **Optimer billede** for et uploadet billede; kontrollér derefter kvaliteten, især hvis billedet indeholder tekst. Hvis de responsive varianter ikke passer, skal du slå `srcset` fra i den pågældende blok. Kontrollér den endelige URL og den alternative tekst på den offentlige side.
-
-## Vejledning
-
-- Upload mediefil
-- **Navn (internt)**
-- **Titel (hvis relevant)**
-- **Beskrivelse (hvis relevant)**
-- **Alt-attribut**
-- Søg efter navn
-- Filtype
-- Indlæs flere
-- Optimér billede
-- Optimeringen af det oprindelige billede og dets varianter er fuldført.
-- Vælg mediefil

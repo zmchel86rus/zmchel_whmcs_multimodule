@@ -1,12 +1,14 @@
 # Ingyenes multimodul WHMCS-hez
 
-**A modul használata előtt hozzon létre egyedi sókat, és helyezze el őket a `module_init.php` fájlban**: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` és `ZM_PB_NONCE_SALT`.
+**A zmchel WHMCS Multimodule ingyenes.** Vizuális oldalszerkesztőt, többnyelvű tartalmat, menüket, médiatárat, SEO-mezőket, XML-webhelytérképeket, átirányításokat, átírási szabályokat, valamint importálást és exportálást kínál. Olvassa el az [útmutatót](instruction.md).
+
+## Az első használat előtt
 
 **Az első használat előtt nyissa meg a Modulbeállítások → Támogatott nyelvek menüt, és kapcsolja be a szükséges nyelveket.**
 
-A modult a **WHMCS 8.13.1–8.13.7** verzióival fejlesztették és tesztelték. A PHP-kompatibilitást a **7.4–8.5** verziókon ellenőrizték. Az Apache teljes mértékben támogatott. A modul Nginx alatt is működhet, de a kezdőlap nyelvi útválasztása további beállítást igényelhet.
+A modul minden aktiváláskor új sóértékeket hoz létre, és beírja őket a `module_init.php` fájlba (`ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT`, `ZM_PB_NONCE_SALT`). Ellenőrizze, hogy mindhárom salt érték ki van-e töltve.
 
-**A zmchel WHMCS Multimodule ingyenes.** Vizuális oldalszerkesztőt, többnyelvű tartalmat, menüket, médiatárat, SEO-mezőket, XML-webhelytérképeket, átirányításokat, átírási szabályokat, valamint importálást és exportálást kínál. Olvassa el az [útmutatót](instruction.md).
+A modult a **WHMCS 8.13.0–9.1.0** verzióival fejlesztették és tesztelték. A PHP-kompatibilitást a **7.4–8.5** verziókon ellenőrizték. Az Apache teljes mértékben támogatott. A modul Nginx alatt is működhet, de a kezdőlap nyelvi útválasztása további beállítást igényelhet.
 
 ## További fejlesztési tervek
 
@@ -15,9 +17,10 @@ A modult a **WHMCS 8.13.1–8.13.7** verzióival fejlesztették és tesztelték.
 - Jogosultságkezelés hozzáadása az adminisztrációhoz.
 - A `supported_langs.php` alapértelmezett nyelveinek bővítése.
 - Kódszerkesztő készítése a modul `.tpl` fájljaihoz és a WHMCS ügyféloldali témáihoz.
-- Nyelvifájl-kezelő készítése a modulhoz, más modulokhoz és a WHMCS-hez.
+- ~~Nyelvifájl-kezelő készítése a modulhoz, más modulokhoz és a WHMCS-hez.~~
 - A médiakezelő fejlesztése és teljesebb SEO-kezelő készítése.
-- Többnyelvű webhelytérképek és HTML-webhelytérkép hozzáadása.
+- ~~Többnyelvű webhelytérképek és HTML-webhelytérkép hozzáadása.~~
+- HTML-webhelytérkép-oldal hozzáadása.
 - Használati statisztikák hozzáadása az oldalkezelőhöz.
 - JS/CSS/HTML-minimalizálás, teljes oldalas gyorsítótár és táblázatoptimalizálás hozzáadása.
 - Megfelelő modulfrissítési rendszer kialakítása.

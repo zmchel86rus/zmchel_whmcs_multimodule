@@ -33,9 +33,3 @@ Les filtres portent sur la même liste que la pagination. La recherche textuelle
 ## Flex / Grid
 
 Choisissez Flex ou Grid et réglez largeurs et colonnes selon l'appareil. Appliquer ou effacer un filtre revient à la première page. Le sélecteur du nombre de résultats peut être déplacé sans perdre son lien; un panneau dupliqué contrôle la même liste.
-
-## Instructions
-
-- Nombre d’éléments : 10, 25, 50, 100, 250
-- Format des liens
-- Nombre d’éléments par défaut

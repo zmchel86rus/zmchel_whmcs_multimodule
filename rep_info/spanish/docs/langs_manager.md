@@ -21,18 +21,3 @@ En **Traducciones**, **Original** muestra el texto del archivo original del idio
 Puede desactivar y volver a activar un archivo de idioma; incluso desactivado sigue siendo editable. El archivo base inglés y el idioma predeterminado actual de WHMCS están protegidos. Para los idiomas de clientes y administración de WHMCS añadidos por el gestor, se guardan copias que permiten restaurarlos tras una actualización. Si en **Secciones** aparece una corrección de nombre de archivo, compruebe el nombre nuevo y pulse **Corregir**; el cambio se aplica a las secciones detectadas.
 
 Para cambiar el idioma predeterminado, active primero el nuevo idioma en la configuración del módulo, cambie después el idioma predeterminado de WHMCS y solo entonces desactive el antiguo. Compruebe los textos tanto en administración como en el área de clientes.
-
-## Instrucciones
-
-- Secciones
-- Idiomas
-- Traducciones
-- Este idioma está desactivado, pero sus traducciones se pueden seguir editando.
-- Idioma de referencia
-- Cada botón Guardar guarda una sola traducción.
-- Sin traducir
-- Mostrar las originales
-- Mostrar las añadidas
-- No se importaron las siguientes claves de traducción:
-- clave desconocida
-- clave duplicada

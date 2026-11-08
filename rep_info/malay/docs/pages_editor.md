@@ -21,16 +21,3 @@ Isikan tajuk dan keterangan bagi setiap bahasa, kemudian semak canonical, robots
 ## Borang hubungan
 
 Tambah blok **Borang hubungan**. Pilih **tiket WHMCS** dan jabatan sokongan atau **e-mel** dan penerima; isi tajuk, penerangan, subjek dan teks butang. Tetapkan nama, jenis, kewajipan dan pengesahan bagi setiap medan. Tiket pelawat memerlukan medan dengan peranan nama dan e-mel pengirim. Tulis satu pilihan setiap baris dalam senarai juntai bawah, contohnya `sales : Jualan`. Cipta medan berasingan bagi setiap persetujuan dan gunakan CAPTCHA yang ditetapkan dalam WHMCS. Simpan dan hantar ujian sebenar sebagai pelawat; semak tiket atau penghantaran, ralat dan pengosongan borang. Status hijau editor tidak mengesahkan penghantaran; tetapkan SMTP dalam WHMCS jika `mail()` gagal.
-
-## Arahan
-
-- Bekas susun atur Flex bersarang. Seret blok lain ke dalamnya.
-- Bekas CSS Grid bersarang. Seret blok lain ke dalamnya.
-- Karusel Bootstrap bersarang. Seret blok ke dalamnya; setiap satu menjadi slaid.
-- Semua blok di bawah blok ini dipaparkan kepada pengguna yang telah log masuk sahaja. Berfungsi hanya apabila jenis akses halaman ialah Campuran.
-- Semua blok di bawah blok ini dipaparkan kepada tetamu sahaja. Berfungsi hanya apabila jenis akses halaman ialah Campuran.
-- **Tajuk halaman**
-- **Perihalan meta**
-- **URL kanonik**
-- **Robots** — index, follow / noindex, nofollow. Mengawal pengindeksan.
-- **Jenis skema** — Apabila dinyahaktifkan, penanda JSON Schema.org tidak dipaparkan bagi halaman ini.

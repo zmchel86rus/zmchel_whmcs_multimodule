@@ -25,13 +25,3 @@ Katalogs `resources/available_vars/` glabā nosaukumus, tipus, struktūru un mā
     <span>{$item.title|escape}</span>
 {/foreach}
 ```
-
-## Instrukcijas
-
-- **Apkopot Smarty mainīgos** — Iespējot vai atspējot Smarty mainīgo apkopošanu.
-- **Izmantot apkopotos Smarty mainīgos** — Iespējot vai atspējot apkopoto Smarty mainīgo izmantošanu lapu redaktorā.
-- Smarty (PHP) mainīgais
-- Smarty: PHP, objektu metodes, statiskie izsaukumi un nofilter ir aizliegti.
-- Smarty veidne ir pārāk liela.
-- Smarty
-- Smarty redaktors

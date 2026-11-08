@@ -19,16 +19,3 @@ Tarkista perusasetuksista nimi, slug, tyyppi, tila, käyttöoikeus ja kielet. WH
 ## Yhteydenottolomake
 
 Lisää **Yhteydenottolomake**-lohko. Valitse **WHMCS-tukipyyntö** ja tukiosasto tai **sähköposti** ja vastaanottaja; täytä otsikko, kuvaus, aihe ja painikkeen teksti. Määritä jokaiselle kentälle nimi, tyyppi, pakollisuus ja tarkistus. Vieraan tukipyyntö tarvitsee lähettäjän nimen ja sähköpostin roolit sisältävät kentät. Lisää pudotusvalikkoon yksi vaihtoehto riville, esimerkiksi `sales : Myynti`. Luo erillinen kenttä jokaiselle suostumukselle ja käytä WHMCS:n CAPTCHA-asetuksia. Tallenna ja lähetä oikea testiviesti vieraana; tarkista pyyntö tai toimitus, virheet ja lomakkeen tyhjentyminen. Editorin vihreä tila ei todista toimitusta; määritä WHMCS:n SMTP, jos `mail()` ei toimi.
-
-## Ohjeet
-
-- Sisäkkäinen joustavan asettelun säilö. Vedä muita lohkoja sen sisään.
-- Sisäkkäinen CSS Grid -säilö. Vedä muita lohkoja sen sisään.
-- Sisäkkäinen Bootstrap-karuselli. Vedä lohkoja sisään; jokaisesta tulee dia.
-- Kaikki tämän lohkon alapuoliset lohkot näkyvät vain kirjautuneille käyttäjille. Toimii vain, kun sivun käyttöoikeustyyppi on Kaikki käyttäjät.
-- Kaikki tämän lohkon alapuoliset lohkot näkyvät vain vierailijoille. Toimii vain, kun sivun käyttöoikeustyyppi on Kaikki käyttäjät.
-- **Sivun otsikko**
-- **Metakuvaus**
-- **Kanoninen URL-osoite**
-- **Robots** — index, follow / noindex, nofollow. Hallitsee indeksointia.
-- **Schema-tyyppi** — Kun asetus on pois käytöstä, sivulle ei tulosteta Schema.org JSON -merkintää.

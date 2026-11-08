@@ -1,12 +1,16 @@
 # Maksuton WHMCS-monimoduuli
 
-**Luo ennen käyttöä yksilölliset suolat ja lisää ZM_PB_ADMIN_SALT, ZM_PB_SECURE_SALT ja ZM_PB_NONCE_SALT tiedostoon module_init.php.** Moduuli on kehitetty ja testattu WHMCS-versioilla 8.13.1–8.13.7. Apachea tuetaan täysin. Nginx voi toimia, mutta etusivun kielireititys saattaa vaatia lisäasetuksia.
+**zmchel WHMCS Multimodule on maksuton.** Sillä voi hallita sivuja ja artikkeleita WHMCS:n hallintapaneelissa. Toimintoihin kuuluvat visuaalinen editori, käännökset, valikot, mediakirjasto, SEO-kentät, XML-sivustokartat, uudelleenohjaukset ja URL-uudelleenkirjoitussäännöt.
+
+## Ennen ensimmäistä käyttökertaa
 
 **Avaa ennen ensimmäistä käyttöä Moduulin asetukset → Tuetut kielet ja ota tarvitsemasi kielet käyttöön.**
 
-**Tarkistetut PHP-versiot:** 7.4, 8.0, 8.1, 8.2, 8.3, 8.4 ja 8.5.
+Moduuli luo jokaisella aktivointikerralla uudet suola-arvot ja kirjoittaa ne tiedostoon `module_init.php` (`ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT`, `ZM_PB_NONCE_SALT`). Tarkista, että kaikilla kolmella suola-arvolla on arvo.
 
-**zmchel WHMCS Multimodule on maksuton.** Sillä voi hallita sivuja ja artikkeleita WHMCS:n hallintapaneelissa. Toimintoihin kuuluvat visuaalinen editori, käännökset, valikot, mediakirjasto, SEO-kentät, XML-sivustokartat, uudelleenohjaukset ja URL-uudelleenkirjoitussäännöt.
+php.** Moduuli on kehitetty ja testattu WHMCS-versioilla 8.13.0–9.1.0. Apachea tuetaan täysin. Nginx voi toimia, mutta etusivun kielireititys saattaa vaatia lisäasetuksia.
+
+**Tarkistetut PHP-versiot:** 7.4, 8.0, 8.1, 8.2, 8.3, 8.4 ja 8.5.
 
 ## Tuleva kehitys
 
@@ -15,10 +19,11 @@
 - Lisätä hallintapaneeliin moduulin käyttöoikeuksien hallinta.
 - Laajentaa tiedoston supported_langs.php oletuskielivalikoimaa.
 - Lisätä koodieditori moduulin mallipohjille ja asiakasteemoille, mutta ei hallintateemalle.
-- Luoda kielitiedostojen hallinta WHMCS:lle ja muille moduuleille.
+- ~~Luoda kielitiedostojen hallinta WHMCS:lle ja muille moduuleille.~~
 - Parantaa median hallintaa.
 - Rakentaa kattava ja tehokas SEO-hallinta Yoast SEO:n hengessä.
-- Lisätä monikieliset XML-sivustokartat ja HTML-sivustokarttasivu.
+- ~~Lisätä monikieliset XML-sivustokartat ja HTML-sivustokarttasivu.~~
+- Lisätä HTML-sivustokarttasivu.
 - Lisätä käyttötietoja sivujen hallintaan.
 - Minimoida JS-, CSS- ja HTML-koodi, lisätä kokonaisten sivujen välimuisti ja optimoida moduulin sekä WHMCS:n tietokantataulut.
 - Lisätä toimiva moduulin päivitysjärjestelmä.

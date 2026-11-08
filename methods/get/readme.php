@@ -5,7 +5,11 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 
     $smarty->assign('readme_html', '');
     $doc = isset($_GET['doc']) && is_string($_GET['doc']) ? $_GET['doc'] : '';
-    $readmeLanguage = array_key_exists(ZM_PB_ADMIN_CLIENT_LANGNAME, ZM_PB_LANGS) ? ZM_PB_ADMIN_CLIENT_LANGNAME : 'english';
+    $aliases = zm_pb_lm_filename_aliases();
+    $requestedLanguage = ZM_PB_ADMIN_CLIENT_LANGNAME;
+    $canonicalLanguage = $aliases[$requestedLanguage] ?? $requestedLanguage;
+    $readmeLanguage = isset(ZM_PB_LANGS[$canonicalLanguage]) ? $canonicalLanguage
+        : (isset(ZM_PB_LANGS[$requestedLanguage]) ? $requestedLanguage : 'english');
     $availableDocs = [
         'pages_manager', 'pages_editor', 'pages_editor_pagination', 'pages_editor_smarty',
         'media_manager', 'menu_manager', 'redirects_manager', 'langs_manager',
@@ -14,10 +18,13 @@ use Illuminate\Database\Capsule\Manager as Capsule;
     ];
     $isAdditionalDoc = in_array($doc, $availableDocs, true);
     $relativePath = $isAdditionalDoc ? 'docs/' . $doc . '.md' : 'instruction.md';
-    $aliases = zm_pb_lm_filename_aliases();
     $legacyName = array_search($readmeLanguage, $aliases, true);
+    $preferredName = defined('ZM_PB_ADMINLANGNAME') ? ZM_PB_ADMINLANGNAME : $requestedLanguage;
+    if (!is_string($preferredName) || !preg_match('/^[a-z0-9_-]+$/D', $preferredName))
+        $preferredName = $readmeLanguage;
     $readmePath = null;
-    foreach (array_unique([$readmeLanguage, $aliases[$readmeLanguage] ?? null, $legacyName ?: null, 'english']) as $name) {
+    foreach (array_unique([$preferredName, $readmeLanguage, $aliases[$readmeLanguage] ?? null,
+        $legacyName ?: null, 'english']) as $name) {
         if ($name === null) continue;
         $candidate = ZM_PB_ROOTDIR . 'rep_info/' . $name . '/' . $relativePath;
         if (is_readable($candidate)) {

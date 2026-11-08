@@ -21,16 +21,3 @@ Za svaki jezik ispunite naslov i opis te provjerite canonical, robots, Open Grap
 ## Kontaktni obrazac
 
 Dodajte blok **Kontaktni obrazac**. Odaberite **WHMCS tiket** i odjel podrške ili **e-poštu** i primatelja; upišite naslov, opis, predmet i tekst gumba. Svakom polju zadajte naziv, vrstu, obveznost i provjeru. Tiket gosta treba polja s ulogama imena i e-pošte pošiljatelja. U padajući popis upišite jednu opciju po retku, primjerice `sales : Prodaja`. Za svaki pristanak dodajte zasebno polje i koristite CAPTCHA postavljenu u WHMCS-u. Spremite i pošaljite stvarnu probu kao gost; provjerite tiket ili dostavu, pogreške i čišćenje obrasca. Zeleni status uređivača ne potvrđuje isporuku; ako `mail()` ne radi, postavite SMTP u WHMCS-u.
-
-## Upute
-
-- Ugniježđeni spremnik s fleksibilnim rasporedom. Povucite druge blokove u njega.
-- Ugniježđeni CSS Grid spremnik. Povucite druge blokove u njega.
-- Ugniježđeni Bootstrap karusel. Povucite blokove u njega; svaki postaje slajd.
-- Svi blokovi ispod ovoga prikazuju se samo prijavljenim korisnicima. Radi samo kada je vrsta pristupa stranici Mješovito.
-- Svi blokovi ispod ovoga prikazuju se samo gostima. Radi samo kada je vrsta pristupa stranici Mješovito.
-- **Naslov stranice**
-- **Metaopis**
-- **Kanonski URL**
-- **Robots** — index, follow / noindex, nofollow. Upravlja indeksiranjem.
-- **Vrsta sheme** — Kada je onemogućeno, JSON oznake Schema.org neće se ispisivati za ovu stranicu.

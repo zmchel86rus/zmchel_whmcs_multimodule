@@ -7,18 +7,3 @@ Kattintson a **Médiafájl feltöltése** gombra, válasszon képet, hangot, vid
 ## Képek megjelenítése
 
 A médiakezelő több képméretet hoz létre. A feltöltött képen futtathatja a **Kép optimalizálása** műveletet; utána ellenőrizze a minőséget, különösen a szöveget tartalmazó képeknél. Ha a reszponzív változatok nem megfelelőek, kapcsolja ki a `srcset` értékét az adott blokkban. Ellenőrizze a végleges URL-t és az alternatív szöveget a nyilvános oldalon.
-
-## Útmutató
-
-- Médiafájl feltöltése
-- **Név (belső)**
-- **Cím (ha alkalmazható)**
-- **Leírás (ha alkalmazható)**
-- **Alt attribútum**
-- Keresés név alapján
-- Fájltípus
-- Továbbiak betöltése
-- Kép optimalizálása
-- Az eredeti kép és változatai optimalizálása befejeződött.
-- Médiafájl kiválasztása
-

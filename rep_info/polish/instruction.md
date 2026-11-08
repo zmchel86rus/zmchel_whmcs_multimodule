@@ -1,12 +1,22 @@
 # Instrukcja zmchel WHMCS Multimodule
 
-**Przed użyciem wygeneruj unikalne sole i wpisz ZM_PB_ADMIN_SALT, ZM_PB_SECURE_SALT oraz ZM_PB_NONCE_SALT w module_init.php.** Moduł opracowano i przetestowano z WHMCS 8.13.1–8.13.7. Apache jest w pełni obsługiwany. Nginx może działać, lecz routing językowy strony głównej może wymagać dodatkowej konfiguracji.
+**zmchel WHMCS Multimodule jest darmowy.** Pozwala zarządzać stronami i artykułami z panelu WHMCS. Zawiera edytor wizualny, tłumaczenia, menu, bibliotekę multimediów, pola SEO, mapy witryny XML, przekierowania i reguły przepisywania adresów.
+
+## Przed pierwszym użyciem
 
 **Przed pierwszym użyciem otwórz Ustawienia modułu → Obsługiwane języki i włącz potrzebne języki.**
 
-**Sprawdzone wersje PHP:** 7.4, 8.0, 8.1, 8.2, 8.3, 8.4 i 8.5.
+Przy każdej aktywacji moduł automatycznie tworzy nowe sole i zapisuje je w `module_init.php` (`ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT`, `ZM_PB_NONCE_SALT`). Sprawdź, czy wszystkie trzy wartości salt są uzupełnione.
 
-**zmchel WHMCS Multimodule jest darmowy.** Pozwala zarządzać stronami i artykułami z panelu WHMCS. Zawiera edytor wizualny, tłumaczenia, menu, bibliotekę multimediów, pola SEO, mapy witryny XML, przekierowania i reguły przepisywania adresów.
+## Sprawdzona zgodność i działanie
+
+- **PHP:** 7.4, 8.0, 8.1, 8.2, 8.3, 8.4, 8.5
+- **WHMCS:** 8.13.0–9.1.0
+- **Smarty:** 3, 4
+
+## Zgodność z serwerami WWW
+
+Apache jest w pełni obsługiwany. Nginx może działać, lecz routing językowy strony głównej może wymagać dodatkowej konfiguracji.
 
 ## Ustawienia modułu
 

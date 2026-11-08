@@ -21,18 +21,3 @@ Ota ensin tarvittavat kielet käyttöön kohdassa **Moduulin asetukset → Tuetu
 Kielitiedoston voi poistaa käytöstä ja ottaa takaisin käyttöön; sitä voi muokata myös käytöstä poistettuna. Englannin perustiedostoa ja WHMCS:n nykyistä oletuskieltä ei voi poistaa käytöstä. Hallinnassa lisätyistä WHMCS:n asiakas- ja ylläpitokielistä säilytetään palautuskopiot päivityksiä varten. Jos **Osiot** näyttää tiedostonimen korjauksen, tarkista uusi nimi ja valitse **Korjaa**; korjaus koskee löydettyjä osioita.
 
 Kun vaihdat oletuskieltä, ota uusi kieli ensin käyttöön moduulin asetuksissa, vaihda sitten WHMCS:n oletuskieli ja poista vasta sen jälkeen vanha kieli käytöstä. Tarkista tekstit sekä ylläpidossa että asiakaspuolella.
-
-## Ohjeet
-
-- Osiot
-- Kielet
-- Käännökset
-- Tämä kieli on pois käytöstä, mutta sen käännöksiä voi edelleen muokata.
-- Vertailukieli
-- Jokainen Tallenna-painike tallentaa vain yhden käännöksen.
-- Kääntämättä
-- Näytä alkuperäiset
-- Näytä lisätyt
-- Seuraavia käännösavaimia ei tuotu:
-- tuntematon avain
-- päällekkäinen avain

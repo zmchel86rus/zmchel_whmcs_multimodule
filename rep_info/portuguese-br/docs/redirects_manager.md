@@ -13,10 +13,3 @@ Insira um caminho válido que comece com / ou uma URL HTTP(S) completa. A origem
 As regras aceitam os códigos HTTP `301`, `302`, `303`, `307` e `308` e só se aplicam a requisições `GET`/`HEAD` que chegam ao WHMCS. A origem é comparada exatamente pelo caminho e pelos parâmetros de consulta, se informados; os parâmetros do destino substituem os antigos. O gerenciador grava regras em `zm_pb_redirects`, mas não cria a tabela durante uma requisição: use **Banco de dados do módulo**. As colunas de URL existentes têm limite de 128 bytes.
 
 Regras manuais têm prioridade sobre as automáticas. Alterar o slug de uma página publicada pode criar um `301` automático para cada idioma ativo após o atraso configurado; publicar um rascunho não cria. Renomeações posteriores atualizam os destinos antigos. Uma regra com parâmetros de consulta tem prioridade sobre uma regra só para o caminho. A URL de origem deve pertencer a este site e não conter fragmento `#`.
-
-## Instruções
-
-- Origem
-- Destino
-- Ativado
-- Desativado

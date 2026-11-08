@@ -13,14 +13,3 @@ Use the list filters to search by name, access, type, status, and language. **Vi
 ## Page overrides
 
 In **Page overrides**, select an existing WHMCS page and the published builder page that should supply its content. The override type controls whether builder content replaces native content, appears before or after it, changes metadata only, or combines these effects. Save, then visit the original WHMCS URL as a guest and as a signed-in client. The builder slug can redirect to the original URL when they differ.
-
-## Instructions
-
-- Add page
-- **Page name** — Internal page name
-- **Page slug** — Only Latin letters, hyphens and digits are allowed.
-- **Access type** — Signed-in users: only signed-in users can access the page; Guests: only guests can access it; Mixed: everyone can access it, with visibility controlled by blocks inside the page.
-- **Page type** — System pages are excluded from the sitemap and are not available to regular users.
-- **Page languages** — The default language is always included regardless of your selection.
-- Full override replaces the displayed content and metadata. Add before places content before the existing page content. Add after places content after the existing page content. Metadata/SEO only replaces the page metadata.
-- Page list navigation

@@ -2,11 +2,12 @@
 if (!defined('ZM_PB_VER')) die('Direct access not allowed');
 
 use Illuminate\Database\Capsule\Manager as Capsule;
+require_once ZM_PB_INCDIR . 'page_urls.php';
 
     if ($method_action === 'create_page') {
         // Read the page fields.
         $name = trim($_POST['name'] ?? '');
-        $slug = trim($_POST['slug'] ?? '');
+        $slug = zm_pb_clean_page_slug($_POST['slug'] ?? '');
         $auth_type = trim($_POST['auth_type'] ?? '');
         $status = $_POST['status'] ?? 'draft';
         $type = $_POST['type'] ?? 'page';
@@ -25,6 +26,10 @@ use Illuminate\Database\Capsule\Manager as Capsule;
             }
         }
         if (!in_array($default_sys_lang, $langs, true)) $langs[] = $default_sys_lang;
+        if ($name === '' || $slug === '') {
+            exit(json_encode(['status'=>'error', 'title'=>$GLOBALS['ZM_PB_ADMINLANG']->other->error,
+                'message'=>$GLOBALS['ZM_PB_ADMINLANG']->pages_manager->content_errors->name_slug_required]));
+        }
 
         // Keep slugs unique within each access type.
         $exists = Capsule::table('zm_pb_pages')
@@ -77,7 +82,7 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 
         try {
             $page_overrides = ['from' => [], 'to' => [], 'type' => []];
-            $allowed_targets = Capsule::table('zm_pb_pages')->where('status', '!=', 'canceled')->pluck('slug')->all();
+            $allowed_targets = Capsule::table('zm_pb_pages')->where('status', 'publish')->pluck('slug')->all();
             $allowed_types = ['full', 'partial_before', 'partial_after', 'meta_only', 'partial_before_meta', 'partial_after_meta'];
             $used_sources = [];
             $sources = is_array($submitted['from'] ?? null) ? $submitted['from'] : [];

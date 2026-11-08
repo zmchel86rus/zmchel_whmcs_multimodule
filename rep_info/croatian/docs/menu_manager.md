@@ -24,18 +24,3 @@ URL stavke stranice ponovno se izračunava iz trenutačnog sluga i objavljenog p
 ## zm_pb_menus
 
 Podaci su u tablicama `zm_pb_menus`, `zm_pb_menu_items` i `zm_pb_menu_locations`. Tablice izradite ili popravite u odjeljku Baza podataka modula. Stablo ima najviše 10 razina i 300 stavki; brisanjem roditeljske stavke njezina djeca prelaze razinu više.
-
-## Upute
-
-- Stvori izbornik
-- Dodajte stranice, objave ili prilagođene poveznice.
-- Povucite stavke kako biste promijenili njihov redoslijed. Ugniježđivanje postavite odabirom nadređene stavke ili gumbima za pomicanje.
-- Koristi jezik trenutačne stranice
-- Koristi uneseni URL bez promjena
-- Oznake na drugim jezicima
-- Vidljivo za
-- Uređaji
-- Svaka lokacija može imati jedan izbornik. Odabirom lokacije njezina se dodjela premješta ovamo s drugog izbornika.
-- Stavke najviše razine postaju stupci, a ugniježđene stavke postaju poveznice. Koristite URL # za naslov bez poveznice.
-- Tablice izbornika još nisu stvorene. Dodajte ih u Bazi podataka modula.
-

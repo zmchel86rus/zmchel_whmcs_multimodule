@@ -29,18 +29,3 @@ On **Languages**, you can disable or re-enable a section's language file. A disa
 If an old filename is found, **Sections** shows a shared filename correction selector. Check the displayed new filename and click **Fix**. The correction covers the detected sections and the module's language lists; compatible old names remain supported.
 
 To change the default language, first enable the replacement in **Module settings → Supported languages**, then change the WHMCS default. You can disable the old language afterward. An empty catalog still displays its reference strings, so check both the admin and client areas before using the new language.
-
-## Instructions
-
-- Sections
-- Languages
-- Translations
-- This language is disabled. Its translations are still editable.
-- Reference language
-- Each Save button updates one translation.
-- Untranslated
-- Show original
-- Show added
-- The following translation keys were not imported:
-- unknown key
-- duplicate key

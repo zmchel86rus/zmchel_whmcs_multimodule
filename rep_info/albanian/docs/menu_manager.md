@@ -24,17 +24,3 @@ Për lidhjet e faqeve moduli rindërton URL-në nga slug-u aktual dhe përkthimi
 ## zm_pb_menus
 
 Të dhënat ruhen në tabelat `zm_pb_menus`, `zm_pb_menu_items` dhe `zm_pb_menu_locations`. Krijoni ose riparoni tabelat te Baza e të dhënave e modulit. Pema lejon deri në 10 nivele dhe 300 elemente; fshirja e një prindi i ngre fëmijët e tij një nivel më sipër.
-
-## Udhëzime
-
-- Krijo meny
-- Shtoni faqe, postime ose lidhje të personalizuara.
-- Tërhiqni elementet për të ndryshuar renditjen e tyre. Vendosni hierarkinë me përzgjedhësin e elementit prind ose me butonat e lëvizjes.
-- Përdor gjuhën e faqes aktuale
-- Përdor URL-në e dhënë pa ndryshime
-- Etiketat në gjuhë të tjera
-- I dukshëm për
-- Pajisjet
-- Çdo pozicion mund të ketë një meny. Përzgjedhja e një pozicioni e zhvendos caktimin e tij këtu nga një meny tjetër.
-- Elementet e nivelit kryesor bëhen kolona, ndërsa elementet e futura bëhen lidhje. Përdorni URL-në # për një titull pa lidhje.
-- Tabelat e menyve nuk janë krijuar ende. Shtojini te Baza e të dhënave e modulit.

@@ -24,18 +24,3 @@ Lehelingi URL arvutatakse uuesti kehtiva slug'i ja avaldatud tõlke järgi. Kui 
 ## zm_pb_menus
 
 Andmed asuvad tabelites `zm_pb_menus`, `zm_pb_menu_items` ja `zm_pb_menu_locations`. Loo või paranda tabelid mooduli andmebaasi jaotises. Puu võib sisaldada kuni 10 taset ja 300 kirjet; vanemkirje kustutamisel tõstetakse selle alamkirjed ühe taseme võrra üles.
-
-## Juhised
-
-- Loo menüü
-- Lisage lehti, postitusi või kohandatud linke.
-- Järjestuse muutmiseks lohistage elemente. Pesastuse määramiseks kasutage ülemelemendi valikut või teisaldusnuppe.
-- Kasuta praeguse lehe keelt
-- Kasuta sisestatud URL-i muutmata kujul
-- Sildid teistes keeltes
-- Nähtav järgmistele kasutajatele
-- Seadmed
-- Igas asukohas saab olla üks menüü. Asukoha valimine teisaldab sellele määrangu teisest menüüst.
-- Ülemise taseme elemendid muutuvad veergudeks ja pesastatud elemendid linkideks. Ilma lingita pealkirja jaoks kasutage URL-i #.
-- Menüütabeleid pole veel loodud. Lisage need mooduli andmebaasis.
-

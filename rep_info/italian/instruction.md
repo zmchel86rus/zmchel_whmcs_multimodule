@@ -1,12 +1,22 @@
 # zmchel WHMCS Multimodule: istruzioni
 
-**Prima di utilizzare il modulo, genera salt univoci e inseriscili in `module_init.php`**: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` e `ZM_PB_NONCE_SALT`.
+**zmchel WHMCS Multimodule è gratuito.** Offre un editor visuale di pagine, contenuti multilingue, menu, libreria multimediale, campi SEO, sitemap XML, reindirizzamenti, regole di riscrittura e importazione/esportazione.
+
+## Prima del primo utilizzo
 
 **Prima del primo utilizzo, apri Impostazioni del modulo → Lingue supportate e attiva le lingue necessarie.**
 
-Il modulo è stato sviluppato e testato con **WHMCS dalla versione 8.13.1 alla 8.13.7**. La compatibilità con PHP è stata verificata dalla versione **7.4 alla 8.5**. Apache è pienamente supportato. Il modulo può funzionare anche con Nginx, ma l’instradamento delle lingue nella pagina iniziale potrebbe richiedere una configurazione aggiuntiva.
+A ogni attivazione, il modulo genera automaticamente nuovi salt e li scrive in `module_init.php` (`ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT`, `ZM_PB_NONCE_SALT`). Verifica che tutti e tre i valori salt siano compilati.
 
-**zmchel WHMCS Multimodule è gratuito.** Offre un editor visuale di pagine, contenuti multilingue, menu, libreria multimediale, campi SEO, sitemap XML, reindirizzamenti, regole di riscrittura e importazione/esportazione.
+## Compatibilità e funzionalità verificate
+
+- **PHP:** 7.4, 8.0, 8.1, 8.2, 8.3, 8.4, 8.5
+- **WHMCS:** 8.13.0–9.1.0
+- **Smarty:** 3, 4
+
+## Compatibilità con i server web
+
+Apache è pienamente supportato. Il modulo può funzionare anche con Nginx, ma l’instradamento delle lingue nella pagina iniziale potrebbe richiedere una configurazione aggiuntiva.
 
 ## Impostazioni del modulo
 

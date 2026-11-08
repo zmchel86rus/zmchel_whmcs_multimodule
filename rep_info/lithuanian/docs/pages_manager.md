@@ -11,14 +11,3 @@ Filtruokite sąrašą pagal pavadinimą, prieigą, tipą, būseną ar kalbą. **
 ## WHMCS
 
 Norėdami pakeisti WHMCS puslapį, pasirinkite esamą sistemos adresą ir paskelbtą modulio puslapį. Galite visiškai pakeisti turinį, pridėti jį prieš ar po įprasto turinio arba keisti tik meta/SEO. Išsaugokite ir patikrinkite pradinį WHMCS URL kaip svečias ir kaip prisijungęs klientas.
-
-## Instrukcijos
-
-- Pridėti puslapį
-- **Puslapio pavadinimas** — Vidinis puslapio pavadinimas
-- **Puslapio URL identifikatorius (slug)** — Leidžiamos tik lotyniškos raidės, brūkšneliai ir skaitmenys.
-- **Prieigos tipas** — Prisijungę naudotojai: puslapį gali pasiekti tik prisijungę naudotojai; Svečiai: puslapį gali pasiekti tik neprisijungę lankytojai; Mišri: puslapį gali pasiekti visi, o matomumą valdo puslapio blokai.
-- **Puslapio tipas** — Sisteminiai puslapiai neįtraukiami į svetainės schemą ir neprieinami įprastiems naudotojams.
-- **Puslapio kalbos** — Numatytoji kalba visada įtraukiama, nepriklausomai nuo jūsų pasirinkimo.
-- Visiškas perrašymas pakeičia rodomą turinį ir metaduomenis. Pridėjimas prieš įterpia turinį prieš esamą puslapio turinį. Pridėjimas po įterpia turinį po esamo puslapio turinio. Tik metaduomenys / SEO pakeičia puslapio metaduomenis.
-- Puslapių sąrašo naršymas
