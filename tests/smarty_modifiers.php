@@ -27,12 +27,12 @@ try {
     if ($rounded !== '2.33') throw new RuntimeException('Round modifier failed: ' . $rounded);
     $computed = ZM_PB_SmartyBlocks::render('{assign var="ratio" value=$tf/$cf}{$ratio|round:2}', ['tf' => 7, 'cf' => 3]);
     if ($computed !== '2.33') throw new RuntimeException('Computed ratio failed: ' . $computed);
-    $lookup = '{if $v.domain_name|array_key_exists:$side}found{else}missing{/if}';
+    $lookup = '{if $v.title|array_key_exists:$index}found{else}missing{/if}';
     ZM_PB_SmartyBlocks::validate($lookup);
-    if (ZM_PB_SmartyBlocks::render($lookup, ['v' => ['domain_name' => 'example.com'], 'side' => ['example.com' => 0]]) !== 'found') {
+    if (ZM_PB_SmartyBlocks::render($lookup, ['v' => ['title' => 'First'], 'index' => ['First' => 0]]) !== 'found') {
         throw new RuntimeException('Existing array key was not found');
     }
-    if (ZM_PB_SmartyBlocks::render($lookup, ['v' => ['domain_name' => 'other.com'], 'side' => ['example.com' => 0]]) !== 'missing') {
+    if (ZM_PB_SmartyBlocks::render($lookup, ['v' => ['title' => 'Second'], 'index' => ['First' => 0]]) !== 'missing') {
         throw new RuntimeException('Missing array key was accepted');
     }
     $translation = ZM_PB_SmartyBlocks::render("{lang key='filters.date.from'}", [

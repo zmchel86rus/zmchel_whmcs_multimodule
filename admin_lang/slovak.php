@@ -222,6 +222,8 @@ return (object)[
             'unreadable'=>'Túto cestu nemožno čítať.',
             'unwritable'=>'Do tohto adresára nemožno zapisovať.',
             'htaccess_denied'=>'.htaccess môže v Apache blokovať verejný prístup.',
+            'htaccess_not_denied'=>'.htaccess neblokuje verejný prístup v Apache.',
+            'salt_empty'=>'Hodnota soli je prázdna alebo ju nemožno overiť.',
         ],
         'language_rewrite_note'=>'Ak používate pekné URL na Apache, po zmene jazykov aktualizujte pravidlá v správcovi prepisovania.',
         'languages'=>(object)['description'=>'Vyberte jazyky, ktoré môže modul používať. Vypnutie jazyka nevymaže jeho obsah.','enabled'=>'Zapnuté','disabled'=>'Vypnuté','default_language'=>'Predvolený jazyk'],

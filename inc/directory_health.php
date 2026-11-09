@@ -16,7 +16,7 @@ function zm_pb_directory_health_paths(): array
         ['path' => ZM_PB_ALANGDIR, 'public' => false],
         ['path' => ZM_PB_ROOTDIR . 'rep_info/', 'public' => false],
         ['path' => ZM_PB_RESOURCESDIR, 'public' => false],
-        ['path' => ZM_PB_ASSETSDIR . 'generated/', 'public' => true],
+        ['path' => ZM_PB_ASSETSDIR . 'generated/', 'deny' => true],
         ['path' => ZM_PB_MAINSYSTEM_ATTACHMENTS_DIR, 'public' => true],
         ['path' => ROOTDIR . '/lang/', 'public' => false],
         ['path' => $adminDir . '/lang/', 'public' => false],
@@ -50,8 +50,27 @@ function zm_pb_directory_health_has_broad_deny(string $rules): bool
     return false;
 }
 
+/** Inspect the saved definitions because activation can replace them after PHP has loaded the constants. */
+function zm_pb_directory_health_salt_issues(string $file): array
+{
+    $contents = @file_get_contents($file);
+    if ($contents === false) return [['path' => $file, 'code' => 'unreadable']];
+
+    $issues = [];
+    foreach (['ZM_PB_ADMIN_SALT', 'ZM_PB_SECURE_SALT', 'ZM_PB_NONCE_SALT'] as $name) {
+        $quoted = preg_quote($name, '/');
+        $pattern = '/^\s*if\s*\(!defined\([\'\"]' . $quoted
+            . '[\'\"]\)\)\s*define\([\'\"]' . $quoted
+            . '[\'\"]\s*,\s*([\'\"])(.*)\1\);\s*$/m';
+        if (preg_match_all($pattern, $contents, $matches) !== 1 || trim($matches[2][0]) === '') {
+            $issues[] = ['path' => $name, 'code' => 'salt_empty'];
+        }
+    }
+    return $issues;
+}
+
 /** Return path and issue codes so activation and the settings page share one read-only check. */
-function zm_pb_directory_health_check(?array $paths = null): array
+function zm_pb_directory_health_check(?array $paths = null, ?string $saltFile = null): array
 {
     $issues = [];
     foreach ($paths ?? zm_pb_directory_health_paths() as $entry) {
@@ -65,15 +84,25 @@ function zm_pb_directory_health_check(?array $paths = null): array
         if (!@is_readable($path)) $issues[] = ['path' => $path, 'code' => 'unreadable'];
         if (!@is_writable($path)) $issues[] = ['path' => $path, 'code' => 'unwritable'];
 
-        if (empty($entry['public'])) continue;
+        if (empty($entry['public']) && empty($entry['deny'])) continue;
         $rules = $path . DIRECTORY_SEPARATOR . '.htaccess';
-        if (!@file_exists($rules)) continue;
+        if (!@file_exists($rules)) {
+            if (!empty($entry['deny'])) $issues[] = ['path' => $rules, 'code' => 'htaccess_not_denied'];
+            continue;
+        }
         $contents = @file_get_contents($rules);
         if ($contents === false) {
             $issues[] = ['path' => $rules, 'code' => 'unreadable'];
-        } elseif (zm_pb_directory_health_has_broad_deny($contents)) {
+        } elseif (!empty($entry['deny']) && !zm_pb_directory_health_has_broad_deny($contents)) {
+            $issues[] = ['path' => $rules, 'code' => 'htaccess_not_denied'];
+        } elseif (!empty($entry['public']) && zm_pb_directory_health_has_broad_deny($contents)) {
             $issues[] = ['path' => $rules, 'code' => 'htaccess_denied'];
         }
+    }
+    if ($saltFile !== null || $paths === null) {
+        $issues = array_merge($issues, zm_pb_directory_health_salt_issues(
+            $saltFile ?? ZM_PB_ROOTDIR . 'module_init.php'
+        ));
     }
     return $issues;
 }
@@ -86,6 +115,8 @@ function zm_pb_directory_health_messages(array $issues, $translations): array
         'unreadable' => 'Cannot read this path.',
         'unwritable' => 'Cannot write to this directory.',
         'htaccess_denied' => '.htaccess may block public access on Apache.',
+        'htaccess_not_denied' => '.htaccess does not block public access on Apache.',
+        'salt_empty' => 'Salt is empty or its definition cannot be verified.',
     ];
     foreach ($issues as &$issue) {
         $code = $issue['code'];

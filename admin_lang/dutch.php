@@ -222,6 +222,8 @@ return (object)[
             'unreadable'=>'Dit pad kan niet worden gelezen.',
             'unwritable'=>'Er kan niet naar deze map worden geschreven.',
             'htaccess_denied'=>'.htaccess kan openbare toegang in Apache blokkeren.',
+            'htaccess_not_denied'=>'.htaccess blokkeert openbare toegang via Apache niet.',
+            'salt_empty'=>'De saltwaarde is leeg of kan niet worden gecontroleerd.',
         ],
         'language_rewrite_note'=>'Werk bij mooie URL\'s op Apache na een taalwijziging de regels in Rewrite Manager bij.',
         'languages'=>(object)['description'=>'Kies welke talen de module kan gebruiken. Uitschakelen verwijdert de inhoud niet.','enabled'=>'Ingeschakeld','disabled'=>'Uitgeschakeld','default_language'=>'Standaardtaal'],

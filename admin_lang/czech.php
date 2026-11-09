@@ -221,6 +221,8 @@ return (object)[
             'unreadable'=>'Tuto cestu nelze číst.',
             'unwritable'=>'Do tohoto adresáře nelze zapisovat.',
             'htaccess_denied'=>'.htaccess může v Apache blokovat veřejný přístup.',
+            'htaccess_not_denied'=>'.htaccess neblokuje veřejný přístup na Apache.',
+            'salt_empty'=>'Hodnota soli je prázdná nebo ji nelze ověřit.',
         ],
         'language_rewrite_note'=>'Pokud používáte přívětivé URL na Apache, po změně jazyků aktualizujte pravidla ve správci přepisování.',
         'languages'=>(object)['description'=>'Vyberte jazyky, které může modul používat. Vypnutí jazyka nesmaže jeho obsah.','enabled'=>'Zapnuté','disabled'=>'Vypnuté','default_language'=>'Výchozí jazyk'],

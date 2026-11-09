@@ -13,7 +13,7 @@ class ZM_PB_ListControls
         $key = 'zq_' . substr(hash('sha256', $target . ':' . $block->getAttribute('id')), 0, 12);
         $definitions = [];
         if ($block->getAttribute('data-zm-pb-list-control') === 'search') {
-            $fields = preg_split('/[\s,]+/', (string) ($settings['searchFields'] ?? 'domain_name'), -1, PREG_SPLIT_NO_EMPTY);
+            $fields = preg_split('/[\s,]+/', (string) ($settings['searchFields'] ?? ''), -1, PREG_SPLIT_NO_EMPTY);
             $fields = array_values(array_filter(array_unique($fields), [self::class, 'validField']));
             if ($fields) $definitions[] = ['name' => $key, 'fields' => array_slice($fields, 0, 20), 'type' => 'text',
                 'label' => (string) ($settings['label'] ?? 'Search'), 'options' => []];
@@ -21,16 +21,17 @@ class ZM_PB_ListControls
             foreach (array_slice(is_array($settings['fields'] ?? null) ? $settings['fields'] : [], 0, 30) as $index => $field) {
                 if (!is_array($field)) continue;
                 $type = in_array($field['type'] ?? '', ['text', 'select', 'range', 'date', 'checkbox'], true) ? $field['type'] : 'text';
+                $arrayKey = (string) ($field['arrayKey'] ?? '') === '1';
                 $fields = $type === 'text' ? preg_split('/[\s,]+/', (string) ($field['field'] ?? ''), -1, PREG_SPLIT_NO_EMPTY) : [$field['field'] ?? ''];
                 $fields = array_values(array_filter($fields, [self::class, 'validField']));
-                if (!$fields) continue;
+                if (!$fields && !$arrayKey) continue;
                 $options = [];
                 foreach (explode("\n", (string) ($field['options'] ?? '')) as $line) {
                     $parts = explode(':', trim($line), 2);
                     if ($parts[0] !== '') $options[trim($parts[0])] = trim($parts[1] ?? $parts[0]);
                 }
-                $definitions[] = ['name' => $key . '_' . $index, 'fields' => array_slice($fields, 0, 20), 'type' => $type,
-                    'label' => (string) ($field['label'] ?? $field['field']), 'options' => $options,
+                $definitions[] = ['name' => $key . '_' . $index, 'fields' => array_slice($fields, 0, 20), 'arrayKey' => $arrayKey, 'type' => $type,
+                    'label' => (string) ($field['label'] ?? ($arrayKey ? 'Array key' : ($field['field'] ?? ''))), 'options' => $options,
                     'placeholder' => (string) ($field['placeholder'] ?? ''), 'span' => max(1, min(4, (int) ($field['span'] ?? 1))),
                     'width' => in_array((string) ($field['width'] ?? ''), ['25','33','50','75','100'], true) ? $field['width'] . '%' : 'auto'];
             }
@@ -78,7 +79,10 @@ class ZM_PB_ListControls
 
     public static function canQuery($target, array $columns)
     {
-        foreach (self::active($target) as $rule) foreach ($rule['fields'] as $field) if (!isset($columns[$field])) return false;
+        foreach (self::active($target) as $rule) {
+            if (!empty($rule['arrayKey'])) return false;
+            foreach ($rule['fields'] as $field) if (!isset($columns[$field])) return false;
+        }
         return true;
     }
     private static function date($value)
@@ -110,7 +114,7 @@ class ZM_PB_ListControls
         return $query;
     }
 
-    private static function value($row, $field)
+    public static function value($row, $field)
     {
         foreach (explode('.', $field) as $part) {
             if (is_object($row)) $row = get_object_vars($row);
@@ -124,11 +128,12 @@ class ZM_PB_ListControls
     {
         $rules = self::active($target);
         if (!$rules) return $items;
-        return array_filter($items, function ($item) use ($rules) {
+        return array_filter($items, function ($item, $key) use ($rules) {
             foreach ($rules as $rule) {
                 $matches = false;
-                foreach ($rule['fields'] as $field) {
-                    $value = self::value($item, $field);
+                $useArrayKey = !empty($rule['arrayKey']);
+                foreach ($useArrayKey ? [null] : $rule['fields'] as $field) {
+                    $value = $useArrayKey ? $key : self::value($item, $field);
                     if ($value === null) continue;
                     if ($rule['type'] === 'text') $matches = mb_stripos((string) $value, $rule['value'], 0, 'UTF-8') !== false;
                     elseif ($rule['type'] === 'date') {
@@ -143,7 +148,7 @@ class ZM_PB_ListControls
                 if (!$matches) return false;
             }
             return true;
-        });
+        }, ARRAY_FILTER_USE_BOTH);
     }
 
     private static function esc($value) { return htmlspecialchars((string) $value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); }

@@ -148,12 +148,17 @@ class ZM_PB_Pagination
         $query = clone $query;
         $sort = ltrim($result['sort'], '-');
         if (isset($sorts[$sort])) {
+            $originalOrders = is_array($query->orders ?? null) ? $query->orders : [];
+            $bindings = method_exists($query, 'getRawBindings') ? $query->getRawBindings() : [];
+            $originalOrderBindings = $bindings['order'] ?? [];
             $query->orders = null;
             $query->setBindings([], 'order');
             $query->orderBy($sorts[$sort], substr($result['sort'], 0, 1) === '-' ? 'desc' : 'asc');
+            // The provider's existing order makes equal sort values deterministic.
+            $query->orders = array_merge($query->orders ?? [], $originalOrders);
+            if ($originalOrderBindings && method_exists($query, 'addBinding'))
+                $query->addBinding($originalOrderBindings, 'order');
         }
-        // Stable tie breaker prevents records jumping between pages with equal prices/dates.
-        $query->orderBy('domain_name', 'asc');
         return $query->offset($result['offset'])->limit($result['count'])->get();
     }
 
@@ -174,16 +179,25 @@ class ZM_PB_Pagination
         $items = ZM_PB_ListControls::filter($id, $items);
         $request = self::request($id);
         $field = ltrim($request['sort'], '-');
-        if (in_array($field, ['domain_name', 'base_price', 'highest_bid', 'expiry_date', 'domain_rank'], true)) {
+        if (ZM_PB_ListControls::validField($field)) {
             $direction = substr($request['sort'], 0, 1) === '-' ? -1 : 1;
-            // Never invoke object getters/lazy database relations while sorting a template variable.
-            $value = function ($row, $key) {
-                $fields = is_array($row) ? $row : (is_object($row) ? get_object_vars($row) : []);
-                return is_scalar($fields[$key] ?? null) ? $fields[$key] : '';
-            };
-            uasort($items, function ($a, $b) use ($field, $direction, $value) {
-                return (($value($a, $field) <=> $value($b, $field)) ?: ($value($a, 'domain_name') <=> $value($b, 'domain_name'))) * $direction;
-            });
+            $sorted = [];
+            $position = 0;
+            $hasValue = false;
+            foreach ($items as $key => $item) {
+                // Read public fields only; object getters and database relations stay untouched.
+                $value = ZM_PB_ListControls::value($item, $field);
+                if ($value !== null) $hasValue = true;
+                $sorted[] = ['key' => $key, 'item' => $item, 'value' => $value, 'position' => $position++];
+            }
+            if ($hasValue) {
+                usort($sorted, function ($a, $b) use ($direction) {
+                    $comparison = ($a['value'] <=> $b['value']) * $direction;
+                    return $comparison ?: ($a['position'] <=> $b['position']);
+                });
+                $items = [];
+                foreach ($sorted as $entry) $items[$entry['key']] = $entry['item'];
+            }
         }
         $result = self::window($id, count($items), $provider);
         return array_slice($items, $result['offset'], $result['count'], true);

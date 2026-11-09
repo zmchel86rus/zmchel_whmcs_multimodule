@@ -222,6 +222,8 @@ return (object)[
             'unreadable'=>'Ní féidir an chonair seo a léamh.',
             'unwritable'=>'Ní féidir scríobh san eolaire seo.',
             'htaccess_denied'=>'D’fhéadfadh .htaccess rochtain phoiblí a bhac in Apache.',
+            'htaccess_not_denied'=>'Ní chuireann .htaccess bac ar rochtain phoiblí ar Apache.',
+            'salt_empty'=>'Tá luach an tsalainn folamh nó ní féidir é a fhíorú.',
         ],
         'language_rewrite_note'=>'Má úsáideann tú URLanna so-léite ar Apache, nuashonraigh na rialacha sa Bhainisteoir Athscríofa tar éis teangacha a athrú.',
         'languages'=>(object)['description'=>'Roghnaigh na teangacha is féidir leis an modúl a úsáid. Ní scriosann díchumasú teanga a hábhar.','enabled'=>'Cumasaithe','disabled'=>'Díchumasaithe','default_language'=>'Teanga réamhshocraithe'],

@@ -222,6 +222,8 @@ return (object)[
             'unreadable'=>'Ekki er hægt að lesa þessa slóð.',
             'unwritable'=>'Ekki er hægt að skrifa í þessa möppu.',
             'htaccess_denied'=>'.htaccess gæti lokað fyrir opinberan aðgang í Apache.',
+            'htaccess_not_denied'=>'.htaccess lokar ekki fyrir almennan aðgang í Apache.',
+            'salt_empty'=>'Salt-gildið er tómt eða ekki er hægt að sannreyna það.',
         ],
         'language_rewrite_note'=>'Ef þú notar snyrtilegar vefslóðir á Apache skaltu uppfæra reglurnar í Umsjón með endurskrifunarreglum eftir að tungumálum er breytt.',
         'languages'=>(object)['description'=>'Veldu hvaða tungumál einingin má nota. Ef tungumál er gert óvirkt eyðist efni þess ekki.','enabled'=>'Virkt','disabled'=>'Óvirkt','default_language'=>'Sjálfgefið tungumál'],

@@ -221,6 +221,8 @@ return (object)[
             'unreadable'=>'Denne banen kan ikke leses.',
             'unwritable'=>'Det kan ikke skrives til denne katalogen.',
             'htaccess_denied'=>'.htaccess kan blokkere offentlig tilgang i Apache.',
+            'htaccess_not_denied'=>'.htaccess blokkerer ikke offentlig tilgang i Apache.',
+            'salt_empty'=>'Saltverdien er tom eller kan ikke kontrolleres.',
         ],
         'language_rewrite_note'=>'Hvis du bruker pene URL-er på Apache, oppdater reglene i Rewrite Manager etter at språkene er endret.',
         'languages'=>(object)['description'=>'Velg språkene modulen kan bruke. Deaktivering sletter ikke innholdet.','enabled'=>'Aktiverte','disabled'=>'Deaktiverte','default_language'=>'Standardspråk'],

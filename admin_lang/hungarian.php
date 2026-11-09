@@ -221,6 +221,8 @@ return (object)[
             'unreadable'=>'Ez az útvonal nem olvasható.',
             'unwritable'=>'Ebbe a könyvtárba nem lehet írni.',
             'htaccess_denied'=>'.htaccess blokkolhatja a nyilvános hozzáférést Apache alatt.',
+            'htaccess_not_denied'=>'.htaccess nem tiltja a nyilvános hozzáférést Apache alatt.',
+            'salt_empty'=>'A salt értéke üres, vagy nem ellenőrizhető.',
         ],
         'language_rewrite_note'=>'Ha Apache alatt szép URL-eket használ, a nyelvek módosítása után frissítse a szabályokat a Rewrite Managerben.',
         'languages'=>(object)['description'=>'Válassza ki a modul által használható nyelveket. A kikapcsolás nem törli a tartalmat.','enabled'=>'Engedélyezve','disabled'=>'Letiltva','default_language'=>'Alapértelmezett nyelv'],

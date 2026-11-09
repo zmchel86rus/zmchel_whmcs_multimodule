@@ -90,19 +90,8 @@ class ZM_PB_NavigationLanguage
         ];
         foreach ($items as $name => $keys) self::translate($account->getChild($name), $keys, $target, $sources);
 
-        // The auction module adds this item using its own catalog.
         $home = $account->getChild('Client Area Home');
         if (!$home) return;
-        $auction = ZM_PB_LanguageCatalog::auction($language);
-        $auctionSources = [];
-        foreach ($sourceLanguages as $sourceLanguage) {
-            $catalog = ZM_PB_LanguageCatalog::auction($sourceLanguage);
-            if ($catalog !== null) $auctionSources[] = $catalog;
-        }
-        if (isset($auction['my_account'])) {
-            self::translate($home, ['my_account'], $auction, $auctionSources);
-        } else {
-            self::translate($home, ['myaccount', 'clientareanavhome'], $target, $sources);
-        }
+        self::translate($home, ['myaccount', 'clientareanavhome'], $target, $sources);
     }
 }

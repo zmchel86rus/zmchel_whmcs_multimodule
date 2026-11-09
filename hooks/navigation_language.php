@@ -13,10 +13,6 @@ $nativeLanguage = function ($vars) {
     if ($catalog === null) return [];
     $result = ['language' => $language, 'LANG' => $catalog];
     $GLOBALS['_LANG'] = $catalog;
-    if (isset($vars['Lang']) && is_array($vars['Lang'])) {
-        $auction = ZM_PB_LanguageCatalog::auction($language);
-        if ($auction !== null) $result['Lang'] = $auction;
-    }
     return $result;
 };
 add_hook('ClientAreaPage', 1, $nativeLanguage);

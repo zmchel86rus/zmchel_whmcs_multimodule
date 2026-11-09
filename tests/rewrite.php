@@ -20,7 +20,7 @@ require dirname(__DIR__) . '/inc/url_redirects.php';
 
 try {
     if (zm_pb_slash_redirect_target('//billing/contact.php?count=25') !== '/billing/contact.php?count=25'
-        || zm_pb_slash_redirect_target('//billing//example.org/') !== '/billing/example.org/'
+        || zm_pb_slash_redirect_target('//billing//guide/') !== '/billing/guide/'
         || zm_pb_slash_redirect_target('/billing//contact.php?count=25') !== '/billing/contact.php?count=25'
         || zm_pb_slash_redirect_target('/billing/ru///contact.php?next=https%3A%2F%2Fexample.test%2Fa%2Fb')
             !== '/billing/ru/contact.php?next=https%3A%2F%2Fexample.test%2Fa%2Fb'
@@ -86,12 +86,10 @@ try {
             || zm_pb_language_switch_target('/billing/ru/login?language=spanish', ['language' => 'spanish']) !== '/billing/login'
             || zm_pb_language_switch_target('/billing/register?language=spanish', ['language' => 'spanish']) !== '/billing/register'
             || zm_pb_language_switch_target('/billing/password/reset?language=german', ['language' => 'german']) !== '/billing/password/reset'
-            || zm_pb_language_switch_target('/billing/store/domains?language=russian', ['language' => 'russian']) !== '/billing/store/domains'
-            || zm_pb_language_switch_target('/billing/lecafe.com/?language=russian', ['language' => 'russian']) !== '/billing/ru/lecafe.com/'
-            || zm_pb_language_switch_target('/billing/ru/lecafe.com/?language=spanish', ['language' => 'spanish']) !== '/billing/es/lecafe.com/'
-            || zm_pb_language_switch_target('/billing/uk/lecafe.com/?language=german', ['language' => 'german']) !== '/billing/de/lecafe.com/'
-            || zm_pb_language_switch_target('/billing/ru/lecafe.com/?language=ukranian', ['language' => 'ukranian']) !== '/billing/uk/lecafe.com/'
-            || zm_pb_route_uses_user_language(['slug' => 'lecafe.com', 'lang' => 'ru'])
+            || zm_pb_language_switch_target('/billing/store/products?language=russian', ['language' => 'russian']) !== '/billing/store/products'
+            || zm_pb_language_switch_target('/billing/guide/?language=russian', ['language' => 'russian']) !== '/billing/ru/guide/'
+            || zm_pb_language_switch_target('/billing/ru/guide/?language=spanish', ['language' => 'spanish']) !== '/billing/es/guide/'
+            || zm_pb_language_switch_target('/billing/robots.txt?language=russian', ['language' => 'russian']) !== '/billing/robots.txt'
             || !zm_pb_route_uses_user_language(['slug' => 'robots.txt', 'lang' => 'ru'])
             || zm_pb_language_switch_target('/billing/clientarea.php?language=russian', ['language' => 'russian']) !== '/billing/clientarea.php') {
             throw new RuntimeException('Default language canonical target is wrong');

@@ -26,7 +26,7 @@
                                     <div class="form-group">
                                         <label for="edit_content[{$lang_name}][content]">{$pages_editor_translates->page_headers->sub_content}:</label>
                                         <div class="block-editor-container" id="block_editor_{$lang_name}">
-                                            <div class="zm-pb-grapes-toolbar">
+                                            {if count($page_data->main->langs) > 1}<div class="zm-pb-grapes-toolbar">
                                                 <button type="button" class="btn btn-default btn-sm zm-pb-grapes-transfer" data-mode="copy-content">{$grapes_translates.copy_content_to|escape:'html'}</button>
                                                 <button type="button" class="btn btn-default btn-sm zm-pb-grapes-transfer" data-mode="copy-structure">{$grapes_translates.copy_structure_to|escape:'html'}</button>
                                                 <button type="button" class="btn btn-default btn-sm zm-pb-grapes-transfer" data-mode="clone">{$grapes_translates.clone_to|escape:'html'}</button>
@@ -39,7 +39,7 @@
                                                 </select>
                                                 <button type="button" class="btn btn-default btn-sm zm-pb-grapes-action" data-action="image" style="display:none">{$grapes_translates.choose_image|escape:'html'}</button>
                                                 <button type="button" class="btn btn-default btn-sm zm-pb-grapes-action" data-action="slide" style="display:none">{$grapes_translates.add_slide|escape:'html'}</button>
-                                            </div>
+                                            </div>{/if}
                                             <div class="block-editor-content" id="block_content_{$lang_name}" data-lang="{$lang_name}">
                                                 {$grapes_translates.empty|escape:'html'}
                                             </div>

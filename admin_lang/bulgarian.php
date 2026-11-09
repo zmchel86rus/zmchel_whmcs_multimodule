@@ -222,6 +222,8 @@ return (object)[
             'unreadable'=>'Този път не може да се прочете.',
             'unwritable'=>'В тази директория не може да се записва.',
             'htaccess_denied'=>'.htaccess може да блокира публичния достъп в Apache.',
+            'htaccess_not_denied'=>'.htaccess не блокира публичния достъп в Apache.',
+            'salt_empty'=>'Стойността на солта е празна или не може да бъде проверена.',
         ],
         'language_rewrite_note'=>'При красиви URL адреси на Apache обновете правилата в Rewrite Manager след промяна на езиците.',
         'languages'=>(object)['description'=>'Изберете езиците, които модулът може да използва. Изключването не изтрива съдържанието.','enabled'=>'Включени','disabled'=>'Изключени','default_language'=>'Език по подразбиране'],

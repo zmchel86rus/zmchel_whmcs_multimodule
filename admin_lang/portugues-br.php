@@ -221,6 +221,8 @@ return (object)[
             'unreadable'=>'Não é possível ler este caminho.',
             'unwritable'=>'Não é possível gravar neste diretório.',
             'htaccess_denied'=>'.htaccess pode bloquear o acesso público no Apache.',
+            'htaccess_not_denied'=>'.htaccess não bloqueia o acesso público no Apache.',
+            'salt_empty'=>'O valor do salt está vazio ou não pode ser verificado.',
         ],
         'language_rewrite_note'=>'Se você usa URLs amigáveis no Apache, atualize as regras no gerenciador de reescrita após alterar os idiomas.',
         'languages'=>(object)['description'=>'Escolha os idiomas que o módulo pode usar. Desativar um idioma não exclui seu conteúdo.','enabled'=>'Ativos','disabled'=>'Desativados','default_language'=>'Idioma padrão'],

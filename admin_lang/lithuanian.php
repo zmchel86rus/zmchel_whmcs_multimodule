@@ -222,6 +222,8 @@ return (object)[
             'unreadable'=>'Šio kelio negalima skaityti.',
             'unwritable'=>'Į šį katalogą negalima rašyti.',
             'htaccess_denied'=>'.htaccess gali blokuoti viešą prieigą naudojant Apache.',
+            'htaccess_not_denied'=>'.htaccess neblokuoja viešosios prieigos Apache serveryje.',
+            'salt_empty'=>'Druskos reikšmė tuščia arba jos negalima patikrinti.',
         ],
         'language_rewrite_note'=>'Jei naudojate patogius URL su Apache, pakeitę kalbas atnaujinkite taisykles perrašymo tvarkytuvėje.',
         'languages'=>(object)['description'=>'Pasirinkite kalbas, kurias modulis gali naudoti. Išjungus kalbą jos turinys neištrinamas.','enabled'=>'Įjungtos','disabled'=>'Išjungtos','default_language'=>'Numatytoji kalba'],

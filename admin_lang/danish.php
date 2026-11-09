@@ -222,6 +222,8 @@ return (object)[
             'unreadable'=>'Denne sti kan ikke læses.',
             'unwritable'=>'Der kan ikke skrives til denne mappe.',
             'htaccess_denied'=>'.htaccess kan blokere offentlig adgang i Apache.',
+            'htaccess_not_denied'=>'.htaccess blokerer ikke offentlig adgang på Apache.',
+            'salt_empty'=>'Saltværdien er tom eller kan ikke kontrolleres.',
         ],
         'language_rewrite_note'=>'Hvis du bruger pæne URL-adresser på Apache, skal du opdatere reglerne i Rewrite Manager efter sprogændringer.',
         'languages'=>(object)['description'=>'Vælg de sprog, modulet kan bruge. Deaktivering sletter ikke indholdet.','enabled'=>'Aktiverede','disabled'=>'Deaktiverede','default_language'=>'Standardsprog'],

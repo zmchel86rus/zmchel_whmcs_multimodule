@@ -30,7 +30,7 @@ $GLOBALS['testRequest']['slug'] = 'clientarea.php';
 check(ZM_PB_NavigationLanguage::responseLanguage() === 'english', 'Native PHP URL ignored saved language');
 $_SESSION['Language'] = 'russian';
 define('USER_LANG', 'english'); // Simulate another addon's stale early constant.
-foreach (['clientarea.php', 'clientarea', 'password/reset', 'account/security', 'cart.php', 'store/domains'] as $slug) {
+foreach (['clientarea.php', 'clientarea', 'password/reset', 'account/security', 'cart.php', 'store/products'] as $slug) {
     $GLOBALS['testRequest'] = ['lang' => '', 'slug' => $slug];
     check(ZM_PB_NavigationLanguage::responseLanguage() === 'russian', 'Native route lost Russian preference: ' . $slug);
     check(ZM_PB_Menu::language() === 'russian', 'Menu URLs/labels ignored preference: ' . $slug);

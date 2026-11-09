@@ -222,6 +222,8 @@ return (object)[
             'unreadable'=>'Laluan ini tidak boleh dibaca.',
             'unwritable'=>'Direktori ini tidak boleh ditulis.',
             'htaccess_denied'=>'.htaccess mungkin menyekat akses awam pada Apache.',
+            'htaccess_not_denied'=>'.htaccess tidak menyekat akses awam pada Apache.',
+            'salt_empty'=>'Nilai salt kosong atau tidak dapat disahkan.',
         ],
         'language_rewrite_note'=>'Jika anda menggunakan URL mesra pengguna pada Apache, kemas kini peraturan melalui Pengurus Tulis Semula selepas menukar bahasa.',
         'languages'=>(object)['description'=>'Pilih bahasa yang boleh digunakan oleh modul. Menyahaktifkan bahasa tidak akan memadam kandungannya.','enabled'=>'Aktif','disabled'=>'Tidak aktif','default_language'=>'Bahasa lalai'],

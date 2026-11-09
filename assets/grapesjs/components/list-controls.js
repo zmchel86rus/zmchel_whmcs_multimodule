@@ -9,17 +9,17 @@
             editor.DomComponents.addType('zm-' + kind, {
                 isComponent: function(el) { return el.getAttribute && el.getAttribute('data-zm-pb-list-control') === kind; },
                 model: { defaults: { tagName: 'div', name: t('list_' + kind), droppable: false, editable: false, components: [],
-                    attributes: { 'data-zm-pb-list-control': kind, 'data-zm-pb-page-target': '', 'data-zm-pb-page-variable': 'auction_sites',
+                    attributes: { 'data-zm-pb-list-control': kind, 'data-zm-pb-page-target': '', 'data-zm-pb-page-variable': '',
                         'data-zm-pb-list-settings': JSON.stringify({ label: t('list_search'), submit: t(kind === 'search' ? 'list_search' : 'list_apply'),
-                            reset: t('list_reset'), all: t('list_all'), min: t('list_min'), max: t('list_max'), searchFields: 'domain_name',
+                            reset: t('list_reset'), all: t('list_all'), min: t('list_min'), max: t('list_max'), searchFields: '',
                             desktop: '3', tablet: '2', mobile: '1', size: 'standard', appearance: 'outline', autoApply: '0',
                             layout: 'flex', direction: 'row', wrap: 'wrap', justify: 'flex-start', align: 'stretch', gap: '18', buttons: 'end',
-                            fields: [{ field: 'domain_name', label: t('list_search'), type: 'text', options: '' }] }) } },
+                            fields: [{ field: '', label: t('list_search'), type: 'text', options: '' }] }) } },
                     init: function() {
                         // Opening an old search block converts it to a text filter.
                         if (kind !== 'search') return;
                         var s = settings(this);
-                        s.fields = [{field:s.searchFields || 'domain_name', label:s.label || t('list_search'), type:'text', options:''}];
+                        s.fields = [{field:s.searchFields || '', label:s.label || t('list_search'), type:'text', options:''}];
                         this.set('type', 'zm-filters');
                         this.addAttributes({'data-zm-pb-list-control':'filters', 'data-zm-pb-list-settings':JSON.stringify(s)});
                     },
@@ -52,7 +52,7 @@
         panel.querySelectorAll('[data-zm-list-attribute]').forEach(function(input) { attrs[input.dataset.zmListAttribute] = input.value; });
         panel.querySelectorAll('[data-zm-list-field]').forEach(function(input) {
             var index = Number(input.dataset.zmListIndex);
-            if (s.fields && s.fields[index]) s.fields[index][input.dataset.zmListField] = input.value;
+            if (s.fields && s.fields[index]) s.fields[index][input.dataset.zmListField] = input.type === 'checkbox' ? (input.checked ? '1' : '0') : input.value;
         });
         attrs['data-zm-pb-list-settings'] = JSON.stringify(s);
         component.addAttributes(attrs);
@@ -98,8 +98,11 @@
         } else {
             (s.fields || []).forEach(function(field, index) {
                 var data = 'data-zm-list-index="' + index + '" ';
+                var useArrayKey = String(field.arrayKey) === '1' || field.arrayKey === true;
                 html += '<fieldset class="zm-pb-field-wide"><legend>' + esc(t('list_field_label')) + ' ' + (index + 1) + '</legend>';
-                html += input('list_field_path', field.field, data + 'data-zm-list-field="field"') + input('list_field_label', field.label, data + 'data-zm-list-field="label"');
+                html += '<label class="zm-pb-field zm-pb-list-key-option"><span>' + esc(t('list_array_key')) + '</span><input type="checkbox" data-zm-control="list" ' + data + 'data-zm-list-field="arrayKey" value="1"' + (useArrayKey ? ' checked' : '') + '></label>';
+                if (!useArrayKey) html += input('list_field_path', field.field, data + 'data-zm-list-field="field"');
+                html += input('list_field_label', field.label, data + 'data-zm-list-field="label"');
                 html += '<label class="zm-pb-field"><span>' + esc(t('list_field_type')) + '</span><select data-zm-control="list" ' + data + 'data-zm-list-field="type">';
                 ['text','select','range','date','checkbox'].forEach(function(type) { html += '<option value="' + type + '"' + (type === field.type ? ' selected' : '') + '>' + esc(t('list_type_' + type)) + '</option>'; });
                 html += '</select></label>';

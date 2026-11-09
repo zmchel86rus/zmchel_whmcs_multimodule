@@ -222,6 +222,8 @@ return (object)[
             'unreadable'=>'Šo ceļu nevar nolasīt.',
             'unwritable'=>'Šajā direktorijā nevar rakstīt.',
             'htaccess_denied'=>'.htaccess var bloķēt publisku piekļuvi Apache serverī.',
+            'htaccess_not_denied'=>'.htaccess nebloķē publisku piekļuvi Apache serverī.',
+            'salt_empty'=>'Sāls vērtība ir tukša vai to nevar pārbaudīt.',
         ],
         'language_rewrite_note'=>'Ja Apache izmantojat saprotamus URL, pēc valodu maiņas atjauniniet noteikumus pārrakstīšanas pārvaldniekā.',
         'languages'=>(object)['description'=>'Izvēlieties valodas, ko modulis var izmantot. Valodas izslēgšana neizdzēš tās saturu.','enabled'=>'Ieslēgtas','disabled'=>'Izslēgtas','default_language'=>'Noklusējuma valoda'],

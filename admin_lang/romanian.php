@@ -222,6 +222,8 @@ return (object)[
             'unreadable'=>'Această cale nu poate fi citită.',
             'unwritable'=>'Nu se poate scrie în acest director.',
             'htaccess_denied'=>'.htaccess poate bloca accesul public în Apache.',
+            'htaccess_not_denied'=>'.htaccess nu blochează accesul public în Apache.',
+            'salt_empty'=>'Valoarea salt este goală sau nu poate fi verificată.',
         ],
         'language_rewrite_note'=>'Dacă folosiți URL-uri prietenoase pe Apache, actualizați regulile din Rewrite Manager după modificarea limbilor.',
         'languages'=>(object)['description'=>'Alegeți limbile pe care le poate folosi modulul. Dezactivarea unei limbi nu îi șterge conținutul.','enabled'=>'Activate','disabled'=>'Dezactivate','default_language'=>'Limba implicită'],

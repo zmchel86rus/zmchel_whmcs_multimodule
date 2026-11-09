@@ -222,6 +222,8 @@ return (object)[
             'unreadable'=>'Te poti ni mogoče brati.',
             'unwritable'=>'V ta imenik ni mogoče pisati.',
             'htaccess_denied'=>'.htaccess lahko v Apache blokira javni dostop.',
+            'htaccess_not_denied'=>'.htaccess ne preprečuje javnega dostopa v Apache.',
+            'salt_empty'=>'Vrednost soli je prazna ali je ni mogoče preveriti.',
         ],
         'language_rewrite_note'=>'Če uporabljate lepe URL-je na Apache, po spremembi jezikov posodobite pravila v upravljalniku prepisovanja.',
         'languages'=>(object)['description'=>'Izberite jezike, ki jih modul lahko uporablja. Izklop jezika ne izbriše njegove vsebine.','enabled'=>'Vključeni','disabled'=>'Izključeni','default_language'=>'Privzeti jezik'],

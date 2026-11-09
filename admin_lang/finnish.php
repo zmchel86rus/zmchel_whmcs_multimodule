@@ -222,6 +222,8 @@ return (object)[
             'unreadable'=>'Tätä polkua ei voi lukea.',
             'unwritable'=>'Tähän hakemistoon ei voi kirjoittaa.',
             'htaccess_denied'=>'.htaccess voi estää julkisen käytön Apachessa.',
+            'htaccess_not_denied'=>'.htaccess ei estä julkista pääsyä Apachessa.',
+            'salt_empty'=>'Suolan arvo on tyhjä tai sitä ei voida tarkistaa.',
         ],
         'language_rewrite_note'=>'Jos käytät Apachella selkokielisiä URL-osoitteita, päivitä uudelleenkirjoitussäännöt kielimuutosten jälkeen.',
         'languages'=>(object)['description'=>'Valitse moduulin käyttämät kielet. Kielen poistaminen käytöstä ei poista sen sisältöä.','enabled'=>'Käytössä','disabled'=>'Pois käytöstä','default_language'=>'Oletuskieli'],

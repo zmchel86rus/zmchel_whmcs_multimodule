@@ -223,6 +223,8 @@ return (object)[
             'unreadable'=>'Cannot read this path.',
             'unwritable'=>'Cannot write to this directory.',
             'htaccess_denied'=>'.htaccess may block public access on Apache.',
+            'htaccess_not_denied'=>'.htaccess does not block public access on Apache.',
+            'salt_empty'=>'Salt is empty or its definition cannot be verified.',
         ],
         'language_rewrite_note'=>'If you use pretty URLs on Apache, update the rules in Rewrite Manager after changing languages.',
         'languages'=>(object)['description'=>'Choose which languages the module can use. Disabling a language does not delete its content.','enabled'=>'Enabled','disabled'=>'Disabled','default_language'=>'Default language'],

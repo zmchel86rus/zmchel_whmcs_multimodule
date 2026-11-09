@@ -222,6 +222,8 @@ return (object)[
             'unreadable'=>'Không thể đọc đường dẫn này.',
             'unwritable'=>'Không thể ghi vào thư mục này.',
             'htaccess_denied'=>'.htaccess có thể chặn truy cập công khai trên Apache.',
+            'htaccess_not_denied'=>'.htaccess không chặn quyền truy cập công khai trên Apache.',
+            'salt_empty'=>'Giá trị salt đang trống hoặc không thể xác minh.',
         ],
         'language_rewrite_note'=>'Nếu sử dụng URL thân thiện trên Apache, hãy cập nhật các quy tắc trong Trình quản lý quy tắc viết lại URL sau khi thay đổi ngôn ngữ.',
         'languages'=>(object)['description'=>'Chọn những ngôn ngữ mà mô-đun được phép sử dụng. Tắt một ngôn ngữ sẽ không xóa nội dung của ngôn ngữ đó.','enabled'=>'Đã bật','disabled'=>'Đã tắt','default_language'=>'Ngôn ngữ mặc định'],

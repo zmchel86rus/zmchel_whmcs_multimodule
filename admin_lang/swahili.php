@@ -222,6 +222,8 @@ return (object)[
             'unreadable'=>'Njia hii haiwezi kusomwa.',
             'unwritable'=>'Haiwezekani kuandika kwenye saraka hii.',
             'htaccess_denied'=>'.htaccess inaweza kuzuia ufikiaji wa umma kwenye Apache.',
+            'htaccess_not_denied'=>'.htaccess haizuii ufikiaji wa umma kwenye Apache.',
+            'salt_empty'=>'Thamani ya salt iko tupu au haiwezi kuthibitishwa.',
         ],
         'language_rewrite_note'=>'Ikiwa unatumia URL rafiki kwenye Apache, sasisha kanuni katika Kidhibiti cha Kanuni za Kuandika Upya baada ya kubadilisha lugha.',
         'languages'=>(object)['description'=>'Chagua lugha ambazo moduli inaweza kutumia. Kuzima lugha hakufuti maudhui yake.','enabled'=>'Imewashwa','disabled'=>'Imezimwa','default_language'=>'Lugha chaguo-msingi'],

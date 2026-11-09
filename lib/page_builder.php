@@ -131,16 +131,11 @@ $pageContext = ['page_id' => (int) $page->id, 'page_type' => $page->type, 'lang'
     'schema_type' => $schemaType, 'schema' => $schemaValues, 'schema_enabled' => $schemaType !== 'turn_off'];
 require_once ZM_PB_LIBDIR . 'language_catalog.php';
 $pageLanguage = $page_settings_data->lang;
-$isAuctionHomepage = $public_slug === 'index';
 // Other addons can prepare their template strings from the profile language.
-add_hook('ClientAreaPage', 9999, function($vars) use ($pageLanguage, $isAuctionHomepage) {
+add_hook('ClientAreaPage', 9999, function($vars) use ($pageLanguage) {
     $catalogs = [];
     $core = ZM_PB_LanguageCatalog::core($pageLanguage);
     if ($core !== null) $catalogs['LANG'] = $core;
-    if ($isAuctionHomepage || (isset($vars['Lang']) && is_array($vars['Lang']))) {
-        $auction = ZM_PB_LanguageCatalog::auction($pageLanguage);
-        if ($auction !== null) $catalogs['Lang'] = $auction;
-    }
     $smarty = $GLOBALS['smarty'] ?? null;
     if ($smarty instanceof Smarty) {
         foreach ($catalogs as $name => $catalog) $smarty->assign($name, $catalog);

@@ -200,26 +200,11 @@ function zm_pb_language_switch_target($uri, array $query)
         return $target . ($extras ? (strpos($target, '?') === false ? '?' : '&') . implode('&', $extras) : '');
     }
     if (ZM_PB_MAINSYSTEM_PRETTY_URLS && preg_match('~(?:^|/)index\.php$~iD', $path)) $path = substr($path, 0, -strlen('index.php'));
-    // A domain name is a public lot route, although its dot looks like a file extension.
-    $lotRoute = zm_pb_is_public_lot_route($path);
     // Native WHMCS routes keep their URLs; module pages use the configured language prefix.
     $prefix = zm_pb_language_route_code($language);
     $prefix = $prefix === '' ? '' : $prefix . '/';
-    // An old direct lot link should switch to the same public lot URL as a pretty link.
-    if (strcasecmp($path, 'domainmarket.php') === 0 && ($query['a'] ?? '') === 'search') {
-        $lot = strtolower(trim((string) ($query['domain_name'] ?? $query['domain'] ?? '')));
-        if (zm_pb_is_public_lot_route($lot)) {
-            $extras = [];
-            foreach ($parameters as $parameter) {
-                $name = strtolower(urldecode(explode('=', $parameter, 2)[0]));
-                if (!in_array($name, ['a', 'domain_name', 'domain', 'lang'], true)) $extras[] = $parameter;
-            }
-            $lotTarget = $base . '/' . $prefix . rawurlencode($lot) . '/';
-            return $lotTarget . ($extras ? '?' . implode('&', $extras) : '');
-        }
-    }
     $nativeRoute = preg_match('~\.php(?:/|$)~i', $path)
-        || ($path !== '' && !$lotRoute && zm_pb_route_uses_user_language(['slug' => $path, 'lang' => '']));
+        || ($path !== '' && zm_pb_route_uses_user_language(['slug' => $path, 'lang' => '']));
     $target = $base . '/' . ($nativeRoute ? $path : $prefix . $path);
     return $target . ($parameters ? '?' . implode('&', $parameters) : '');
 }

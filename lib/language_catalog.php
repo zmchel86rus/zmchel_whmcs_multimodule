@@ -6,7 +6,6 @@ require_once __DIR__ . '/../inc/language_aliases.php';
 class ZM_PB_LanguageCatalog
 {
     private static $core = [];
-    private static $auction = [];
 
     private static function supported($language)
     {
@@ -31,20 +30,4 @@ class ZM_PB_LanguageCatalog
         return self::$core[$language] = is_array($_LANG) ? $_LANG : null;
     }
 
-    public static function auction($language)
-    {
-        $language = zm_pb_lm_supported_key((string) $language);
-        if (!self::supported($language) || !defined('AUCTION_LANGDIR')) return null;
-        if (array_key_exists($language, self::$auction)) return self::$auction[$language];
-        $directory = rtrim(AUCTION_LANGDIR, '/\\') . '/';
-        $file = '';
-        foreach (zm_pb_lm_language_keys($language) as $candidate) {
-            if (is_file($directory . $candidate . '.php')) { $file = $directory . $candidate . '.php'; break; }
-        }
-        if (!is_file($file)) $file = $directory . 'english.php';
-        if (!is_file($file)) return self::$auction[$language] = null;
-        $_ADDONLANG = [];
-        require $file;
-        return self::$auction[$language] = is_array($_ADDONLANG) ? $_ADDONLANG : null;
-    }
 }

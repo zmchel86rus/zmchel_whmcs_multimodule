@@ -39,6 +39,7 @@ jobs:
           php tests/rewrite.php
           php tests/rewrite.php --default-route
           php tests/rewrite.php --routes-off
+          php tests/pagination_generic.php
           php tests/smarty_admin_guard.php
           php tests/activation_salts.php
           php tests/directory_health.php

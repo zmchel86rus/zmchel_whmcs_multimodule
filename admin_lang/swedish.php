@@ -221,6 +221,8 @@ return (object)[
             'unreadable'=>'Den här sökvägen kan inte läsas.',
             'unwritable'=>'Det går inte att skriva till den här katalogen.',
             'htaccess_denied'=>'.htaccess kan blockera offentlig åtkomst i Apache.',
+            'htaccess_not_denied'=>'.htaccess blockerar inte offentlig åtkomst i Apache.',
+            'salt_empty'=>'Saltvärdet är tomt eller kan inte kontrolleras.',
         ],
         'language_rewrite_note'=>'Om du använder snygga URL:er med Apache, uppdatera reglerna i Rewrite Manager när du ändrar språk.',
         'languages'=>(object)['description'=>'Välj vilka språk modulen kan använda. Att stänga av ett språk raderar inte innehållet.','enabled'=>'Aktiverade','disabled'=>'Inaktiverade','default_language'=>'Standardspråk'],

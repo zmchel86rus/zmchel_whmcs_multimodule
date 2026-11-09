@@ -222,6 +222,8 @@ return (object)[
             'unreadable'=>'Nuk mund të lexohet kjo rrugë.',
             'unwritable'=>'Nuk mund të shkruhet në këtë drejtori.',
             'htaccess_denied'=>'.htaccess mund të bllokojë qasjen publike në Apache.',
+            'htaccess_not_denied'=>'.htaccess nuk bllokon qasjen publike në Apache.',
+            'salt_empty'=>'Vlera e salt-it është bosh ose nuk mund të verifikohet.',
         ],
         'language_rewrite_note'=>'Nëse përdorni URL të lexueshme në Apache, përditësoni rregullat te Menaxheri i rishkrimit pasi të ndryshoni gjuhët.',
         'languages'=>(object)['description'=>'Zgjidhni gjuhët që mund të përdorë moduli. Çaktivizimi i një gjuhe nuk e fshin përmbajtjen e saj.','enabled'=>'Aktivizuar','disabled'=>'Çaktivizuar','default_language'=>'Gjuha e parazgjedhur'],

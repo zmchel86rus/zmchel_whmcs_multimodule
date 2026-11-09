@@ -222,6 +222,8 @@ return (object)[
             'unreadable'=>'No es pot llegir aquesta ruta.',
             'unwritable'=>'No es pot escriure en aquest directori.',
             'htaccess_denied'=>'.htaccess pot bloquejar l\'accés públic a Apache.',
+            'htaccess_not_denied'=>'.htaccess no bloqueja l\'accés públic a Apache.',
+            'salt_empty'=>'La sal és buida o no se\'n pot verificar el valor.',
         ],
         'language_rewrite_note'=>'Si feu servir URL amigables amb Apache, actualitzeu les regles al gestor de reescriptura després de canviar els idiomes.',
         'languages'=>(object)['description'=>'Trieu els idiomes que pot utilitzar el mòdul. Desactivar-ne un no elimina el contingut.','enabled'=>'Activats','disabled'=>'Desactivats','default_language'=>'Idioma predeterminat'],

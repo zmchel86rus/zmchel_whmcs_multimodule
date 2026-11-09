@@ -221,6 +221,8 @@ return (object)[
             'unreadable'=>'Seda asukohta ei saa lugeda.',
             'unwritable'=>'Sellesse kataloogi ei saa kirjutada.',
             'htaccess_denied'=>'.htaccess võib Apache avaliku juurdepääsu blokeerida.',
+            'htaccess_not_denied'=>'.htaccess ei blokeeri Apache avalikku juurdepääsu.',
+            'salt_empty'=>'Soola väärtus on tühi või seda ei saa kontrollida.',
         ],
         'language_rewrite_note'=>'Kui kasutate Apache\'is ilusaid URL-e, uuendage pärast keelte muutmist reegleid Rewrite Manageris.',
         'languages'=>(object)['description'=>'Valige keeled, mida moodul saab kasutada. Keele väljalülitamine ei kustuta selle sisu.','enabled'=>'Lubatud','disabled'=>'Keelatud','default_language'=>'Vaikimisi keel'],

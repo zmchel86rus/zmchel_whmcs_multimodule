@@ -222,6 +222,8 @@ return (object)[
             'unreadable'=>'Nie można odczytać tej ścieżki.',
             'unwritable'=>'Nie można zapisywać w tym katalogu.',
             'htaccess_denied'=>'.htaccess może blokować publiczny dostęp w Apache.',
+            'htaccess_not_denied'=>'.htaccess nie blokuje publicznego dostępu w Apache.',
+            'salt_empty'=>'Wartość soli jest pusta lub nie można jej zweryfikować.',
         ],
         'language_rewrite_note'=>'Jeśli używasz przyjaznych adresów URL na Apache, po zmianie języków zaktualizuj reguły w menedżerze przepisywania.',
         'languages'=>(object)['description'=>'Wybierz języki dostępne w module. Wyłączenie języka nie usuwa jego treści.','enabled'=>'Włączone','disabled'=>'Wyłączone','default_language'=>'Język domyślny'],

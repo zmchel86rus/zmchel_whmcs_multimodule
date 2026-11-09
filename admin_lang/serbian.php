@@ -222,6 +222,8 @@ return (object)[
             'unreadable'=>'Ова путања не може да се прочита.',
             'unwritable'=>'У овај директоријум не може да се пише.',
             'htaccess_denied'=>'.htaccess може да блокира јавни приступ на Apache серверу.',
+            'htaccess_not_denied'=>'.htaccess не блокира јавни приступ на Apache серверу.',
+            'salt_empty'=>'Вредност соли је празна или не може да се провери.',
         ],
         'language_rewrite_note'=>'Ако користите лепе URL адресе на Apache серверу, ажурирајте правила у Rewrite Manager-у после промене језика.',
         'languages'=>(object)['description'=>'Изаберите језике које модул може да користи. Искључивање језика не брише његов садржај.','enabled'=>'Укључени','disabled'=>'Искључени','default_language'=>'Подразумевани језик'],

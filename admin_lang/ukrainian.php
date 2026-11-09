@@ -222,6 +222,8 @@ return (object)[
             'unreadable'=>'Неможливо прочитати цей шлях.',
             'unwritable'=>'Неможливо записати в цей каталог.',
             'htaccess_denied'=>'.htaccess може блокувати публічний доступ на Apache.',
+            'htaccess_not_denied'=>'.htaccess не закриває публічний доступ в Apache.',
+            'salt_empty'=>'Сіль порожня або її значення не вдалося перевірити.',
         ],
         'language_rewrite_note'=>'Якщо на Apache ввімкнено красиві URL, після зміни мов оновіть правила в менеджері rewrite.',
         'languages'=>(object)['description'=>'Виберіть мови, які може використовувати модуль. Вимкнення мови не видаляє її вміст.','enabled'=>'Увімкнені','disabled'=>'Вимкнені','default_language'=>'Мова за замовчуванням'],

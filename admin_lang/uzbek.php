@@ -222,6 +222,8 @@ return (object)[
             'unreadable'=>'Bu yo‘lni o‘qib bo‘lmaydi.',
             'unwritable'=>'Bu katalogga yozib bo‘lmaydi.',
             'htaccess_denied'=>'.htaccess Apache orqali ommaviy kirishni bloklashi mumkin.',
+            'htaccess_not_denied'=>'.htaccess Apache’da ommaviy kirishni bloklamaydi.',
+            'salt_empty'=>'Salt qiymati bo‘sh yoki uni tekshirib bo‘lmaydi.',
         ],
         'language_rewrite_note'=>'Agar Apache da chiroyli URL manzillaridan foydalansangiz, tillarni oʻzgartirgandan soʻng Qayta yozish qoidalari menejeridagi qoidalarni yangilang.',
         'languages'=>(object)['description'=>'Modul foydalanishi mumkin boʻlgan tillarni tanlang. Tilni oʻchirish uning kontentini oʻchirmaydi.','enabled'=>'Yoqilgan','disabled'=>'Oʻchirilgan','default_language'=>'Standart til'],

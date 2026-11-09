@@ -222,6 +222,8 @@ return (object)[
             'unreadable'=>'Bu yolu oxumaq mümkün deyil.',
             'unwritable'=>'Bu qovluğa yazmaq mümkün deyil.',
             'htaccess_denied'=>'.htaccess Apache-də ictimai girişi bloklaya bilər.',
+            'htaccess_not_denied'=>'.htaccess Apache-də ictimai girişi bloklamır.',
+            'salt_empty'=>'Salt dəyəri boşdur və ya yoxlanıla bilmir.',
         ],
         'language_rewrite_note'=>'Apache-də qısa və oxunaqlı URL-lərdən istifadə edirsinizsə, dilləri dəyişdikdən sonra Yenidənyazma qaydaları menecerində qaydaları yeniləyin.',
         'languages'=>(object)['description'=>'Modulun istifadə edə biləcəyi dilləri seçin. Dili deaktiv etmək onun məzmununu silmir.','enabled'=>'Aktivdir','disabled'=>'Deaktivdir','default_language'=>'Standart dil'],

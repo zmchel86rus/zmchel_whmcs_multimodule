@@ -221,6 +221,8 @@ return (object)[
             'unreadable'=>'Bu yol okunamıyor.',
             'unwritable'=>'Bu dizine yazılamıyor.',
             'htaccess_denied'=>'.htaccess Apache üzerinde genel erişimi engelleyebilir.',
+            'htaccess_not_denied'=>'.htaccess Apache üzerinde herkese açık erişimi engellemiyor.',
+            'salt_empty'=>'Salt değeri boş veya doğrulanamıyor.',
         ],
         'language_rewrite_note'=>'Apache üzerinde güzel URL kullanıyorsanız dilleri değiştirdikten sonra Rewrite Manager kurallarını güncelleyin.',
         'languages'=>(object)['description'=>'Modülün kullanabileceği dilleri seçin. Bir dili kapatmak içeriğini silmez.','enabled'=>'Etkin','disabled'=>'Devre dışı','default_language'=>'Varsayılan dil'],

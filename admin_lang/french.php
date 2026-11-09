@@ -221,6 +221,8 @@ return (object)[
             'unreadable'=>'Impossible de lire ce chemin.',
             'unwritable'=>'Impossible d\'écrire dans ce répertoire.',
             'htaccess_denied'=>'.htaccess peut bloquer l\'accès public sous Apache.',
+            'htaccess_not_denied'=>'.htaccess ne bloque pas l\'accès public sur Apache.',
+            'salt_empty'=>'La valeur du sel est vide ou ne peut pas être vérifiée.',
         ],
         'language_rewrite_note'=>'Si vous utilisez des URL conviviales sur Apache, mettez à jour les règles dans Rewrite Manager après toute modification des langues.',
         'languages'=>(object)['description'=>'Choisissez les langues utilisables par le module. Désactiver une langue ne supprime pas son contenu.','enabled'=>'Activées','disabled'=>'Désactivées','default_language'=>'Langue par défaut'],

@@ -112,10 +112,6 @@ class ZM_PB_SmartyBlocks
         if (is_string($language) && defined('ZM_PB_LANGS') && isset(ZM_PB_LANGS[$language])) {
             $catalog = ZM_PB_LanguageCatalog::core($language);
             if ($catalog !== null) $template->assign('LANG', $catalog);
-            if (array_key_exists('Lang', $variables)) {
-                $addonCatalog = ZM_PB_LanguageCatalog::auction($language);
-                if ($addonCatalog !== null) $template->assign('Lang', $addonCatalog);
-            }
         }
         // Template warnings must not become response output or contaminate the page HTML.
         set_error_handler(function ($severity, $message, $file, $line) {
