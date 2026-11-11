@@ -98,6 +98,13 @@ try {
         ml_check(strpos($error->getMessage(), 'default language') !== false,
             'The aliased default language was rejected for the wrong reason.');
     }
+    try {
+        zm_pb_module_languages_toggle($directory, 'portuguese-pt', false, 'portuguese');
+        throw new RuntimeException('The renamed WHMCS default language was disabled.');
+    } catch (InvalidArgumentException $error) {
+        ml_check(strpos($error->getMessage(), 'default language') !== false,
+            'The renamed default language was rejected for the wrong reason.');
+    }
 
     try {
         zm_pb_module_languages_toggle($directory, 'english', false, 'english');

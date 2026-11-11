@@ -1,6 +1,7 @@
 body.iris:has(#zm-pagebuilder) #contentarea .nav.nav-tabs{margin-bottom:1rem}
 body.iris.zm-pb-hide-whmcs-sidebar .navigation{display:none}
 body.iris.zm-pb-hide-whmcs-sidebar .contentarea>div{max-width:95vw}
+body.iris #zm-pagebuilder select.input-sm{line-height: normal;}
 
 #zm-pagebuilder.modal{z-index: 99999999;}
 #zm-pagebuilder.modal.zm_pb_media_manager_image .modal-dialog{

@@ -2,7 +2,7 @@
 
 - **Razdelki → Jeziki → Prevodi.** Vsak gumb Shrani shrani samo en prevod.
 
-Upravitelj jezikov omogoča urejanje jezikovnih besedil WHMCS in modulov v skrbniškem vmesniku. Funkcija je še v razvoju. Uporablja jo lahko superadministrator modula, PHP pa mora imeti dovoljenje za pisanje v ustrezne jezikovne imenike.
+Upravitelj jezikov omogoča urejanje jezikovnih besedil WHMCS in modulov v skrbniškem vmesniku. Uporablja jo lahko superadministrator modula, PHP pa mora imeti dovoljenje za pisanje v ustrezne jezikovne imenike.
 
 ## Izbira razdelka in jezika
 

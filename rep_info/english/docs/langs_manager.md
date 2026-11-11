@@ -2,7 +2,7 @@
 
 - **Sections → Languages → Translations.** Each Save button updates one translation.
 
-Language Manager lets you edit WHMCS and module language strings in the admin area. This feature is still in development. The module's super administrator can use it; PHP also needs write access to the relevant language directories.
+Language Manager lets you edit WHMCS and module language strings in the admin area. The module's super administrator can use it; PHP also needs write access to the relevant language directories.
 
 ## Getting started
 

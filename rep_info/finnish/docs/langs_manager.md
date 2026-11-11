@@ -2,7 +2,7 @@
 
 - **Osiot → Kielet → Käännökset.** Jokainen Tallenna-painike tallentaa vain yhden käännöksen.
 
-Kielten hallinnassa voi muokata WHMCS:n ja moduulien kielitekstejä ylläpidosta. Toimintoa kehitetään edelleen. Käyttöoikeus on moduulin pääkäyttäjällä, ja PHP tarvitsee kirjoitusoikeuden asianomaisiin kielihakemistoihin.
+Kielten hallinnassa voi muokata WHMCS:n ja moduulien kielitekstejä ylläpidosta. Käyttöoikeus on moduulin pääkäyttäjällä, ja PHP tarvitsee kirjoitusoikeuden asianomaisiin kielihakemistoihin.
 
 ## Osion ja kielen valinta
 

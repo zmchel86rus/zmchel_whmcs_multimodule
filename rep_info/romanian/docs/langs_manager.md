@@ -2,7 +2,7 @@
 
 - **Secțiuni → Limbi → Traduceri.** Fiecare buton Salvează salvează o singură traducere.
 
-Managerul de limbi permite editarea textelor WHMCS și ale modulelor din zona de administrare. Funcția este încă în dezvoltare. Accesul aparține superadministratorului modulului, iar PHP trebuie să poată scrie în directoarele de limbi corespunzătoare.
+Managerul de limbi permite editarea textelor WHMCS și ale modulelor din zona de administrare. Accesul aparține superadministratorului modulului, iar PHP trebuie să poată scrie în directoarele de limbi corespunzătoare.
 
 ## Alegerea secțiunii și a limbii
 

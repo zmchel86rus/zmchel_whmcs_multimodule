@@ -2,7 +2,7 @@
 
 - **Bereiche → Sprachen → Übersetzungen.** Jede Speichern-Schaltfläche speichert nur eine Übersetzung.
 
-Die Sprachverwaltung bearbeitet WHMCS- und Modultexte im Administrationsbereich. Die Funktion befindet sich noch in Entwicklung. Zugriff hat der Superadministrator des Moduls; PHP benötigt Schreibrechte für die betroffenen Sprachverzeichnisse.
+Die Sprachverwaltung bearbeitet WHMCS- und Modultexte im Administrationsbereich. Zugriff hat der Superadministrator des Moduls; PHP benötigt Schreibrechte für die betroffenen Sprachverzeichnisse.
 
 ## Bereich und Sprache auswählen
 

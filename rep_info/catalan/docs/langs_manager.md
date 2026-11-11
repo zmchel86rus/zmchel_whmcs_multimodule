@@ -2,7 +2,7 @@
 
 - **Seccions → Idiomes → Traduccions.** Cada botó «Desa» desa una sola traducció.
 
-El Gestor d'idiomes permet editar els textos d'idioma de WHMCS i dels mòduls des de l'administració. Aquesta funció encara està en desenvolupament. Només hi pot treballar el superadministrador del mòdul, i PHP necessita permís d'escriptura als directoris corresponents.
+El Gestor d'idiomes permet editar els textos d'idioma de WHMCS i dels mòduls des de l'administració. Només hi pot treballar el superadministrador del mòdul, i PHP necessita permís d'escriptura als directoris corresponents.
 
 ## Triar una secció i un idioma
 

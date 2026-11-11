@@ -2,7 +2,7 @@
 
 - **Sekcje → Języki → Tłumaczenia.** Każdy przycisk Zapisz zapisuje tylko jedno tłumaczenie.
 
-Menedżer języków umożliwia edycję tekstów językowych WHMCS i modułów z poziomu panelu administracyjnego. Funkcja jest nadal rozwijana. Dostęp ma superadministrator modułu, a PHP musi mieć prawo zapisu w odpowiednich katalogach językowych.
+Menedżer języków umożliwia edycję tekstów językowych WHMCS i modułów z poziomu panelu administracyjnego. Dostęp ma superadministrator modułu, a PHP musi mieć prawo zapisu w odpowiednich katalogach językowych.
 
 ## Wybór sekcji i języka
 

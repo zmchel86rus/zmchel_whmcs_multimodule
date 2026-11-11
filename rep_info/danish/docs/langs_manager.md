@@ -2,7 +2,7 @@
 
 - **Sektioner → Sprog → Oversættelser.** Hver Gem-knap gemmer kun én oversættelse.
 
-Sprogstyring lader dig redigere WHMCS' og modulernes sproglige tekster i administrationen. Funktionen er stadig under udvikling. Kun modulets superadministrator har adgang, og PHP skal kunne skrive i de relevante sprogmapper.
+Sprogstyring lader dig redigere WHMCS' og modulernes sproglige tekster i administrationen. Kun modulets superadministrator har adgang, og PHP skal kunne skrive i de relevante sprogmapper.
 
 ## Vælg område og sprog
 

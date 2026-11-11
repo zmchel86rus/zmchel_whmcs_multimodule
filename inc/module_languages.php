@@ -4,6 +4,7 @@ if (!defined('ZM_PB_VER')) die('Direct access not allowed');
 function zm_pb_module_languages_default(string $language): string
 {
     return [
+        'portuguese' => 'portuguese-pt',
         'portugues' => 'portuguese-pt',
         'portugues-br' => 'portuguese-br',
         'ukranian' => 'ukrainian',
@@ -186,10 +187,13 @@ function zm_pb_module_languages_enable_default(string $directory, string $defaul
     $default = strtolower($defaultLanguage);
     $canonical = zm_pb_module_languages_default($default);
     $aliases = ['ukranian' => 'ukrainian', 'portugues' => 'portuguese-pt',
+        'portuguese' => 'portuguese-pt',
         'portugues-br' => 'portuguese-br'];
-    $legacy = array_search($canonical, $aliases, true);
     $lists = zm_pb_module_languages_state($directory);
-    $names = array_unique(array_filter([$default, $canonical, $legacy]));
+    $names = [$default, $canonical];
+    foreach ($aliases as $legacy => $target)
+        if ($target === $canonical) $names[] = $legacy;
+    $names = array_unique($names);
     foreach ($names as $name) if (isset($lists['enabled'][$name])) return $name;
     foreach ($names as $name) {
         if (isset($lists['disabled'][$name])) {

@@ -31,7 +31,7 @@ var _default = exports.default = {
       text: 'Текст',
       comment: 'Комментарий',
       image: 'Изображение',
-      video: 'Визео',
+      video: 'Видео',
       label: 'Ярлык',
       link: 'Ссылка',
       map: 'Карта',
@@ -49,7 +49,7 @@ var _default = exports.default = {
       desktop: 'Десктоп',
       tablet: 'Планшет',
       mobileLandscape: 'Мобильный горизонтально',
-      mobilePortrait: 'Мобильный верикально'
+      mobilePortrait: 'Мобильный вертикально'
     }
   },
   panels: {
@@ -62,7 +62,7 @@ var _default = exports.default = {
         'open-sm': 'Открыть диспетчер стилей',
         'open-tm': 'Настройки',
         'open-layers': 'Открыть диспетчер слоев',
-        'open-blocks': 'Открытые блоки'
+        'open-blocks': 'Открыть блоки'
       }
     }
   },

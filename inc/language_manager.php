@@ -62,21 +62,29 @@ function zm_pb_lm_alias_source(string $new): string
 
 function zm_pb_lm_is_filename_alias(string $file, string $old): bool
 {
-    $new = zm_pb_lm_filename_aliases()[$old] ?? null;
-    return $new !== null && is_file(dirname($file) . '/' . $new . '.php') &&
-        file_get_contents($file) === zm_pb_lm_alias_source($new);
+    $targets = [$old === 'portugues' ? 'portuguese' : null,
+        zm_pb_lm_filename_aliases()[$old] ?? null];
+    foreach (array_unique(array_filter($targets)) as $new) {
+        if (is_file(dirname($file) . '/' . $new . '.php') &&
+            file_get_contents($file) === zm_pb_lm_alias_source($new)) return true;
+    }
+    return false;
 }
 
 function zm_pb_lm_name(array $section, string $supported): string
 {
-    $aliases = zm_pb_lm_filename_aliases();
+    $aliases = zm_pb_lm_filename_aliases_for_section($section);
     $canonical = $aliases[$supported] ?? $supported;
+    if ($canonical === 'portuguese-pt' &&
+        is_file($section['directory'] . '/portuguese-pt.php')) return $canonical;
     if ($canonical !== $supported) {
         $legacyFile = $section['directory'] . '/' . $supported . '.php';
         if (is_file($legacyFile) && !zm_pb_lm_is_filename_alias($legacyFile, $supported)) return $supported;
     }
-    $legacy = array_search($canonical, $aliases, true);
-    foreach (array_filter([$canonical, $legacy]) as $name) {
+    $legacyNames = array_keys($aliases, $canonical, true);
+    if ($canonical === 'portuguese-pt')
+        $legacyNames = ['portuguese', 'portugues'];
+    foreach (array_merge([$canonical], $legacyNames) as $name) {
         if (is_file($section['directory'] . '/' . $name . '.php') ||
             is_file($section['directory'] . '/disabled/' . $name . '.php')) return $name;
     }
@@ -93,7 +101,7 @@ function zm_pb_lm_filename_candidates(array $section): array
 {
     $files = zm_pb_lm_files($section);
     $candidates = [];
-    foreach (zm_pb_lm_filename_aliases() as $old => $new) {
+    foreach (zm_pb_lm_filename_aliases_for_section($section) as $old => $new) {
         if (isset($files[$old]) && !isset($files[$new]) &&
             file_get_contents($files[$old]['file']) !== zm_pb_lm_alias_source($new))
             $candidates[] = ['old' => $old, 'new' => $new];
@@ -192,7 +200,10 @@ function zm_pb_lm_fix_filename_all(array $sections, string $old): string
     $available = array_column(zm_pb_lm_global_filename_candidates($sections), 'new', 'old');
     if (!isset($available[$old])) throw new InvalidArgumentException('Language filename not found.');
     $new = $aliases[$old];
-    foreach ($sections as $section) zm_pb_lm_check_filename_target($section, $old, $new);
+    foreach ($sections as $section) {
+        $sectionNew = zm_pb_lm_filename_aliases_for_section($section)[$old] ?? $new;
+        zm_pb_lm_check_filename_target($section, $old, $sectionNew);
+    }
     $directory = rtrim(ZM_PB_ROOTDIR, '/\\');
     $docsRoot = $directory . '/rep_info';
     $oldDocs = $docsRoot . '/' . $old;
@@ -238,7 +249,7 @@ function zm_pb_lm_fix_filename_all(array $sections, string $old): string
 
 function zm_pb_lm_fix_filename(array $section, string $old): string
 {
-    $new = zm_pb_lm_filename_aliases()[$old] ?? null;
+    $new = zm_pb_lm_filename_aliases_for_section($section)[$old] ?? null;
     if ($new === null) throw new InvalidArgumentException('This language filename is already correct.');
     $files = zm_pb_lm_files($section);
     if (!isset($files[$old])) throw new InvalidArgumentException('Language file not found.');
@@ -413,8 +424,19 @@ function zm_pb_lm_own(string $name, bool $allowDisabled = false, bool $withOverr
             } else $default = zm_pb_lm_merge($default, $result);
         }
     }
-    foreach ($withOverride ? [ZM_PB_ALANGDIR . 'overrides/' . $name . '.php',
-        ZM_PB_ALANGDIR . 'overrides/managed/' . $name . '.php'] : [] as $override) {
+    $overrides = [];
+    if ($withOverride) {
+        $aliases = zm_pb_lm_filename_aliases_for_section(['kind' => 'self',
+            'directory' => ZM_PB_ALANGDIR]);
+        $legacy = array_search($name, $aliases, true);
+        $overrideNames = $name === 'portuguese-pt'
+            ? ['portugues', 'portuguese', 'portuguese-pt'] : array_filter([$legacy, $name]);
+        foreach ($overrideNames as $overrideName) {
+            $overrides[] = ZM_PB_ALANGDIR . 'overrides/' . $overrideName . '.php';
+            $overrides[] = ZM_PB_ALANGDIR . 'overrides/managed/' . $overrideName . '.php';
+        }
+    }
+    foreach ($overrides as $override) {
         if (!is_file($override)) continue;
         try {
             $entries = require $override;
@@ -995,17 +1017,21 @@ function zm_pb_lm_toggle(array $section, string $name, bool $enable): void
         throw new InvalidArgumentException('The default language cannot be disabled.');
     $enabled = $section['directory'] . '/' . $name . '.php';
     $disabled = $section['directory'] . '/disabled/' . $name . '.php';
-    $legacyName = array_search($name, zm_pb_lm_filename_aliases(), true);
-    $aliasSource = $legacyName ? dirname($files[$name]['file']) . '/' . $legacyName . '.php' : null;
-    $aliasTarget = $legacyName ? dirname($enable ? $enabled : $disabled) . '/' . $legacyName . '.php' : null;
-    if ($aliasSource !== null && is_link($aliasSource)) throw new RuntimeException('Symbolic links cannot be edited.');
-    $moveAlias = $aliasSource !== null && is_file($aliasSource) &&
-        zm_pb_lm_is_filename_alias($aliasSource, $legacyName);
+    $aliasMoves = [];
+    foreach (array_keys(zm_pb_lm_filename_aliases_for_section($section), $name, true) as $legacyName) {
+        $aliasSource = dirname($files[$name]['file']) . '/' . $legacyName . '.php';
+        if (is_link($aliasSource)) throw new RuntimeException('Symbolic links cannot be edited.');
+        if (is_file($aliasSource) && zm_pb_lm_is_filename_alias($aliasSource, $legacyName))
+            $aliasMoves[] = [$aliasSource,
+                dirname($enable ? $enabled : $disabled) . '/' . $legacyName . '.php'];
+    }
     if (is_file($enabled) && is_file($disabled))
         throw new RuntimeException('Both enabled and disabled language files already exist.');
     if ($files[$name]['state'] === ($enable ? 'enabled' : 'disabled')) return;
-    if ($moveAlias && (is_file($aliasTarget) || is_link($aliasTarget)))
-        throw new RuntimeException('Target language alias already exists.');
+    foreach ($aliasMoves as $move) {
+        if (is_file($move[1]) || is_link($move[1]))
+            throw new RuntimeException('Target language alias already exists.');
+    }
     $target = $section['directory'] . ($enable ? '' : '/disabled') . '/' . $name . '.php';
     if (is_file($target)) throw new RuntimeException('Target language file already exists.');
     if (!is_dir(dirname($target)) && !mkdir(dirname($target), 0750, true)) throw new RuntimeException('Cannot create the disabled directory.');
@@ -1022,10 +1048,19 @@ function zm_pb_lm_toggle(array $section, string $name, bool $enable): void
         if ($preparedBackup !== null && !$backupExisted) unlink($preparedBackup);
         throw new RuntimeException('Cannot move the language file.');
     }
-    if ($moveAlias && !rename($aliasSource, $aliasTarget)) {
-        rename($target, $files[$name]['file']);
-        if ($preparedBackup !== null && !$backupExisted) unlink($preparedBackup);
-        throw new RuntimeException('Cannot move the language alias.');
+    $movedAliases = [];
+    foreach ($aliasMoves as $move) {
+        if (!rename($move[0], $move[1])) {
+            foreach (array_reverse($movedAliases) as $completed) rename($completed[1], $completed[0]);
+            rename($target, $files[$name]['file']);
+            if ($preparedBackup !== null && !$backupExisted) unlink($preparedBackup);
+            throw new RuntimeException('Cannot move the language alias.');
+        }
+        $movedAliases[] = $move;
+        if (function_exists('opcache_invalidate')) {
+            @opcache_invalidate($move[0], true);
+            @opcache_invalidate($move[1], true);
+        }
     }
     if (function_exists('opcache_invalidate')) @opcache_invalidate($target, true);
     zm_pb_lm_sync_added_backup($section, $name, $enable ? 'enabled' : 'disabled', $target);

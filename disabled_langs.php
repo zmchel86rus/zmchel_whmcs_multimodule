@@ -24,11 +24,10 @@ $langs = [
     'romanian' => ['code'=>'RO','name'=>'Română','locale'=>'ro_RO','locale_BCP47'=>'ro-RO','code_ISO639_1'=>'ro'],
     'catalan' => ['code'=>'ES','name'=>'Català','locale'=>'ca_ES','locale_BCP47'=>'ca-ES','code_ISO639_1'=>'ca'],
 
-    // Not yet supported by WHMCS itself ( пока что :) )
     'finnish' => ['code'=>'FI','name'=>'Suomi','locale'=>'fi_FI','locale_BCP47'=>'fi-FI','code_ISO639_1'=>'fi'],
     'polish' => ['code'=>'PL','name'=>'Polski','locale'=>'pl_PL','locale_BCP47'=>'pl-PL','code_ISO639_1'=>'pl'],
     'bulgarian' => ['code'=>'BG','name'=>'Български','locale'=>'bg_BG','locale_BCP47'=>'bg-BG','code_ISO639_1'=>'bg'],
-    'serbian' => ['code'=>'RS','name'=>'Српски','locale'=>'sr_RS','locale_BCP47'=>'sr-Cyrl-RS','code_ISO639_1'=>'sr'],
+    'serbian' => ['code'=>'RS','name'=>'Српски','locale'=>'sr_RS','locale_BCP47'=>'sr-RS','code_ISO639_1'=>'sr'],
     'lithuanian' => ['code'=>'LT','name'=>'Lietuvių','locale'=>'lt_LT','locale_BCP47'=>'lt-LT','code_ISO639_1'=>'lt'],
     'latvian' => ['code'=>'LV','name'=>'Latviešu','locale'=>'lv_LV','locale_BCP47'=>'lv-LV','code_ISO639_1'=>'lv'],
     'slovenian' => ['code'=>'SI','name'=>'Slovenščina','locale'=>'sl_SI','locale_BCP47'=>'sl-SI','code_ISO639_1'=>'sl'],
@@ -45,6 +44,15 @@ $langs = [
     'belarusian' => ['code'=>'BY','name'=>'Беларуская','locale'=>'be_BY','locale_BCP47'=>'be-BY','code_ISO639_1'=>'be'],
     'albanian' => ['code'=>'AL','name'=>'Shqip','locale'=>'sq_AL','locale_BCP47'=>'sq-AL','code_ISO639_1'=>'sq'],
     'irish' => ['code'=>'IE','name'=>'Gaeilge','locale'=>'ga_IE','locale_BCP47'=>'ga-IE','code_ISO639_1'=>'ga'],
+
+    'greek' => ['code'=>'GR','name'=>'Ελληνικά','locale'=>'el_GR','locale_BCP47'=>'el-GR','code_ISO639_1'=>'el'],
+    'mongolian' => ['code'=>'MN','name'=>'Монгол','locale'=>'mn_MN','locale_BCP47'=>'mn-MN','code_ISO639_1'=>'mn'],
+    'tagalog' => ['code'=>'PH','name'=>'Tagalog','locale'=>'tl_PH','locale_BCP47'=>'tl-PH','code_ISO639_1'=>'tl'],
+    'afrikaans' => ['code'=>'ZA','name'=>'Afrikaans','locale'=>'af_ZA','locale_BCP47'=>'af-ZA','code_ISO639_1'=>'af'],
+    'korean' => ['code'=>'KR','name'=>'한국어','locale'=>'ko_KR','locale_BCP47'=>'ko-KR','code_ISO639_1'=>'ko'],
+    'georgian' => ['code'=>'GE','name'=>'ქართული','locale'=>'ka_GE','locale_BCP47'=>'ka-GE','code_ISO639_1'=>'ka'],
+    'chinese' => ['code'=>'TW','name'=>'繁體中文','locale'=>'zh_TW','locale_BCP47'=>'zh-TW','code_ISO639_1'=>'zh'],
+    'japanese' => ['code'=>'JP','name'=>'日本語','locale'=>'ja_JP','locale_BCP47'=>'ja-JP','code_ISO639_1'=>'ja'],
 ];
 
 // Keep the primary language on its ISO route; use the locale for regional variants.

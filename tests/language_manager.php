@@ -327,7 +327,9 @@ try {
     lm_check(zm_pb_lm_name($own, 'ukranian') === 'ukranian', 'Legacy module filename was not found.');
     lm_check(count(zm_pb_lm_filename_candidates($own)) === 1 &&
         zm_pb_lm_filename_candidates($own)[0]['new'] === 'ukrainian' &&
-        zm_pb_lm_supported_key('portugues-br') === 'portuguese-br',
+        zm_pb_lm_supported_key('portugues-br') === 'portuguese-br' &&
+        zm_pb_lm_supported_key('portugues') === 'portuguese-pt' &&
+        zm_pb_lm_supported_key('portuguese') === 'portuguese-pt',
         'Filename corrections or language aliases are wrong.');
     zm_pb_lm_fix_filename($own, 'ukranian');
     lm_check(zm_pb_lm_name($own, 'ukranian') === 'ukrainian' &&
@@ -344,6 +346,58 @@ try {
         !is_file(ZM_PB_ALANGDIR . 'disabled/portugues-br.php') &&
         zm_pb_lm_catalog($own, 'portuguese-br')->section->title === 'Brazilian',
         'A disabled module catalog could not be renamed or read.');
+    file_put_contents(ZM_PB_ALANGDIR . 'portugues.php',
+        "<?php return (object)['section' => (object)['title' => 'Portuguese']];\n");
+    lm_check(zm_pb_lm_name($own, 'portuguese-pt') === 'portugues' &&
+        zm_pb_lm_own('portuguese')->section->title === 'Portuguese',
+        'The old Portuguese module catalog cannot be read.');
+    mkdir($root . '/legacy_admin_lang');
+    file_put_contents($root . '/legacy_admin_lang/portuguese.php',
+        "<?php \$_ADMINLANG['name'] = 'Portuguese';\n");
+    $legacyAdmin = ['kind' => 'admin', 'directory' => $root . '/legacy_admin_lang',
+        'variable' => '$_ADMINLANG', 'title' => 'Legacy admin'];
+    lm_check(zm_pb_lm_name($legacyAdmin, 'portuguese-pt') === 'portuguese',
+        'The former Portuguese filename is not found as a fallback.');
+    zm_pb_lm_fix_filename($legacyAdmin, 'portuguese');
+    lm_check(zm_pb_lm_name($legacyAdmin, 'portuguese-pt') === 'portuguese-pt' &&
+        zm_pb_lm_load_php($root . '/legacy_admin_lang/portuguese.php',
+            '$_ADMINLANG')['name'] === 'Portuguese',
+        'The former Portuguese filename was not corrected or kept compatible.');
+    zm_pb_lm_fix_filename($own, 'portugues');
+    lm_check(is_file(ZM_PB_ALANGDIR . 'portuguese-pt.php') &&
+        !is_file(ZM_PB_ALANGDIR . 'portugues.php') &&
+        zm_pb_lm_name($own, 'portuguese-pt') === 'portuguese-pt' &&
+        zm_pb_lm_own('portugues')->section->title === 'Portuguese',
+        'The Portuguese module catalog was not renamed or kept compatible.');
+    file_put_contents(ZM_PB_ALANGDIR . 'overrides/portugues.php',
+        "<?php return (object)['section' => (object)['title' => 'Saved legacy override']];\n");
+    lm_check(zm_pb_lm_own('portuguese-pt')->section->title === 'Saved legacy override',
+        'The renamed Portuguese catalog ignored an existing legacy override.');
+    file_put_contents(ZM_PB_ALANGDIR . 'overrides/portuguese.php',
+        "<?php return (object)['section' => (object)['title' => 'Saved former canonical override']];\n");
+    lm_check(zm_pb_lm_own('portuguese-pt')->section->title === 'Saved former canonical override',
+        'The renamed Portuguese catalog ignored a portuguese override.');
+    zm_pb_lm_add($admin, 'portugues');
+    zm_pb_lm_fix_filename($admin, 'portugues');
+    lm_check(zm_pb_lm_name($admin, 'portuguese-pt') === 'portuguese-pt' &&
+        isset(zm_pb_lm_files($admin)['portuguese-pt']) &&
+        !isset(zm_pb_lm_files($admin)['portugues']) &&
+        is_file($root . '/admin/lang/portugues.php'),
+        'WHMCS admin Portuguese filename correction lost its alias.');
+    file_put_contents($root . '/admin/lang/portuguese.php',
+        zm_pb_lm_alias_source('portuguese-pt'));
+    zm_pb_lm_toggle($admin, 'portuguese-pt', false);
+    lm_check(is_file($root . '/admin/lang/disabled/portuguese-pt.php') &&
+        is_file($root . '/admin/lang/disabled/portugues.php') &&
+        is_file($root . '/admin/lang/disabled/portuguese.php') &&
+        !is_file($root . '/admin/lang/portugues.php') &&
+        !is_file($root . '/admin/lang/portuguese.php'),
+        'Disabling Portuguese left a legacy admin filename enabled.');
+    zm_pb_lm_toggle($admin, 'portuguese-pt', true);
+    lm_check(is_file($root . '/admin/lang/portuguese-pt.php') &&
+        is_file($root . '/admin/lang/portugues.php') &&
+        is_file($root . '/admin/lang/portuguese.php'),
+        'Enabling Portuguese did not restore both compatibility aliases.');
     zm_pb_lm_add($admin, 'portugues-br');
     lm_check(is_file(zm_pb_lm_added_backup($admin, 'portugues-br', 'enabled')),
         'Legacy WHMCS admin backup was not created.');
@@ -453,6 +507,17 @@ try {
         is_file($root . '/modules/addons/sample/lang/portugues-br.php') &&
         is_file($root . '/modules/addons/sample/admin_lang/portugues-br.php'),
         'A global correction missed a module section or its compatibility alias.');
+    file_put_contents($root . '/modules/addons/sample/admin_lang/portugues.php',
+        "<?php \$_ADDONLANG['name'] = 'Portuguese admin';\n");
+    $candidates = array_column(zm_pb_lm_global_filename_candidates($sections), 'new', 'old');
+    lm_check(($candidates['portugues'] ?? null) === 'portuguese-pt',
+        'The admin Portuguese correction does not target the standard filename.');
+    zm_pb_lm_fix_filename_all($sections, 'portugues');
+    lm_check(is_file($root . '/modules/addons/sample/admin_lang/portuguese-pt.php') &&
+        is_file($root . '/modules/addons/sample/admin_lang/portugues.php') &&
+        zm_pb_lm_load_php($root . '/modules/addons/sample/admin_lang/portugues.php',
+            '$_ADDONLANG')['name'] === 'Portuguese admin',
+        'The global Portuguese correction lost the legacy admin filename.');
     try {
         zm_pb_lm_fix_filename_all($sections, 'ukranian');
         throw new RuntimeException('Global correction ignored a filename collision.');

@@ -2,7 +2,7 @@
 
 - **Sadaļas → Valodas → Tulkojumi.** Katra poga Saglabāt saglabā tikai vienu tulkojumu.
 
-Valodu pārvaldniekā var rediģēt WHMCS un moduļu valodu tekstus administrācijas vidē. Funkcija vēl tiek izstrādāta. To var izmantot moduļa superadministrators; PHP nepieciešamas rakstīšanas tiesības attiecīgajās valodu mapēs.
+Valodu pārvaldniekā var rediģēt WHMCS un moduļu valodu tekstus administrācijas vidē. To var izmantot moduļa superadministrators; PHP nepieciešamas rakstīšanas tiesības attiecīgajās valodu mapēs.
 
 ## Sadaļas un valodas izvēle
 

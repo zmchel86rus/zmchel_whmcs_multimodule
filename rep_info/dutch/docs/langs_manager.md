@@ -2,7 +2,7 @@
 
 - **Secties → Talen → Vertalingen.** Elke knop Opslaan slaat één vertaling op.
 
-Met Talenbeheer bewerk je vertaalteksten van WHMCS en modules vanuit het beheerpaneel. De functie is nog in ontwikkeling. Alleen de superbeheerder van de module heeft toegang; PHP moet bovendien in de betreffende taalmappen kunnen schrijven.
+Met Talenbeheer bewerk je vertaalteksten van WHMCS en modules vanuit het beheerpaneel. Alleen de superbeheerder van de module heeft toegang; PHP moet bovendien in de betreffende taalmappen kunnen schrijven.
 
 ## Een onderdeel en taal kiezen
 

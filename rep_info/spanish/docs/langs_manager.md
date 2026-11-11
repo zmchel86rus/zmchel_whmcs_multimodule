@@ -2,7 +2,7 @@
 
 - **Secciones → Idiomas → Traducciones.** Cada botón Guardar guarda una sola traducción.
 
-El Gestor de idiomas permite editar los textos de WHMCS y de los módulos desde el área de administración. La función sigue en desarrollo. Puede usarla el superadministrador del módulo; PHP también necesita permisos de escritura en los directorios de idiomas correspondientes.
+El Gestor de idiomas permite editar los textos de WHMCS y de los módulos desde el área de administración. Puede usarla el superadministrador del módulo; PHP también necesita permisos de escritura en los directorios de idiomas correspondientes.
 
 ## Elegir una sección y un idioma
 

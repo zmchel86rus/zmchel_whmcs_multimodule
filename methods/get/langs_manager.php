@@ -36,18 +36,25 @@ try {
     $files = is_dir($section['directory']) ? zm_pb_lm_files($section) : [];
     $requestedLanguage = isset($_GET['language']) && is_string($_GET['language']) ? $_GET['language'] : '';
     if (!isset($files[$requestedLanguage])) {
-        $correctedName = zm_pb_lm_filename_aliases()[$requestedLanguage] ?? '';
+        $correctedName = zm_pb_lm_filename_aliases_for_section($section)[$requestedLanguage] ?? '';
         if (isset($files[$correctedName])) $requestedLanguage = $correctedName;
     }
     $language = isset($files[$requestedLanguage]) ? $requestedLanguage : (array_key_first($files) ?? '');
     $baseUrl = 'addonmodules.php?' . http_build_query(['module' => ZM_PB_NAME, 'subpage' => 'langs_manager',
         'section' => $selectedId], '', '&', PHP_QUERY_RFC3986);
     $languageLabels = (array) ($GLOBALS['ZM_PB_ADMINLANG']->module->supported_langs->translate ?? []);
+    $languageLists = zm_pb_module_languages_state(ZM_PB_ROOTDIR);
+    $availableLanguages = $languageLists['enabled'] + $languageLists['disabled'];
+    $languageTitle = static function (string $name) use ($languageLabels, $availableLanguages): string {
+        foreach (zm_pb_lm_language_keys($name) as $key) {
+            if (isset($availableLanguages[$key]))
+                return $languageLabels[$key] ?? $availableLanguages[$key]['name'];
+        }
+        return $name;
+    };
     $languageRows = [];
     foreach ($files as $name => $file) {
-        $supported = zm_pb_lm_supported_name($section, $name);
-        $languageRows[] = ['name' => $name, 'title' => $supported
-            ? ($languageLabels[$supported] ?? ZM_PB_LANGS[$supported]['name']) : $name,
+        $languageRows[] = ['name' => $name, 'title' => $languageTitle($name),
             'state' => $file['state'], 'untranslated' => zm_pb_lm_language_untranslated($section, $name),
             'url' => $baseUrl . '&language=' . rawurlencode($name)];
     }
@@ -68,9 +75,7 @@ try {
     $smarty->assign('lm_missing', $missingLanguages);
     $smarty->assign('lm_section', $selectedId);
     $smarty->assign('lm_language', $language);
-    $selectedSupported = $language !== '' ? zm_pb_lm_supported_name($section, $language) : null;
-    $smarty->assign('lm_language_title', $selectedSupported
-        ? ($languageLabels[$selectedSupported] ?? ZM_PB_LANGS[$selectedSupported]['name']) : $language);
+    $smarty->assign('lm_language_title', $languageTitle($language));
     $smarty->assign('lm_base_url', $baseUrl);
     $smarty->assign('lm_edit_url', $editUrl);
     $viewUrl = $editUrl . ($view !== 'all' ? '&view=' . $view : '');
@@ -97,9 +102,7 @@ try {
         $smarty->assign('lm_pages', $pages);
         $smarty->assign('lm_total', count($all));
         $smarty->assign('lm_reference', $reference);
-        $referenceSupported = zm_pb_lm_supported_name($section, $reference);
-        $smarty->assign('lm_reference_title', $referenceSupported
-            ? ($languageLabels[$referenceSupported] ?? ZM_PB_LANGS[$referenceSupported]['name']) : $reference);
+        $smarty->assign('lm_reference_title', $languageTitle($reference));
         $pagination = [1, $pages];
         for ($number = max(1, $page - 2); $number <= min($pages, $page + 2); $number++)
             $pagination[] = $number;

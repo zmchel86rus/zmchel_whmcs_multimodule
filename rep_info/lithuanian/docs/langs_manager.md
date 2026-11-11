@@ -2,7 +2,7 @@
 
 - **Skyriai → Kalbos → Vertimai.** Kiekvienas mygtukas Išsaugoti išsaugo tik vieną vertimą.
 
-Kalbų tvarkytuvė leidžia administravimo srityje redaguoti WHMCS ir modulių kalbinius tekstus. Ši funkcija dar kuriama. Ja gali naudotis modulio superadministratorius; PHP taip pat turi turėti rašymo teises atitinkamuose kalbų kataloguose.
+Kalbų tvarkytuvė leidžia administravimo srityje redaguoti WHMCS ir modulių kalbinius tekstus. Ja gali naudotis modulio superadministratorius; PHP taip pat turi turėti rašymo teises atitinkamuose kalbų kataloguose.
 
 ## Skyriaus ir kalbos pasirinkimas
 

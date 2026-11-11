@@ -21,7 +21,8 @@ if (!defined('ZM_PB_NONCE_SALT')) define('ZM_PB_NONCE_SALT', '');
 ### SALTS CONSTS ###
 
 $moduleSupportedLanguages = require __DIR__ . '/supported_langs.php';
-$defaultAliases = ['ukranian' => 'ukrainian', 'portugues' => 'portuguese-pt','portugues-br' => 'portuguese-br'];
+$defaultAliases = ['ukranian' => 'ukrainian', 'portugues' => 'portuguese-pt',
+    'portuguese' => 'portuguese-pt', 'portugues-br' => 'portuguese-br'];
 foreach ($defaultAliases as $old => $new) {
     if ($old !== $new && isset($moduleSupportedLanguages[$old], $moduleSupportedLanguages[$new]))
         unset($moduleSupportedLanguages[$old]);
@@ -29,11 +30,19 @@ foreach ($defaultAliases as $old => $new) {
 $moduleAvailableLanguages = $moduleSupportedLanguages + (require __DIR__ . '/disabled_langs.php');
 $cmsDefaultLanguage = strtolower((string) ($CONFIG['Language'] ?? 'english'));
 $canonicalDefault = $defaultAliases[$cmsDefaultLanguage] ?? $cmsDefaultLanguage;
-$legacyDefault = array_search($canonicalDefault, $defaultAliases, true);
+$legacyDefaults = array_keys($defaultAliases, $canonicalDefault, true);
 if (isset($moduleSupportedLanguages[$canonicalDefault])) $cmsDefaultLanguage = $canonicalDefault;
 elseif (!isset($moduleSupportedLanguages[$cmsDefaultLanguage])) {
-    if ($legacyDefault !== false && isset($moduleSupportedLanguages[$legacyDefault])) $cmsDefaultLanguage = $legacyDefault;
-    elseif (isset($moduleAvailableLanguages[$canonicalDefault])) $cmsDefaultLanguage = $canonicalDefault;
+    $matchedLegacyDefault = false;
+    foreach ($legacyDefaults as $legacyDefault) {
+        if (isset($moduleSupportedLanguages[$legacyDefault])) {
+            $cmsDefaultLanguage = $legacyDefault;
+            $matchedLegacyDefault = true;
+            break;
+        }
+    }
+    if (!$matchedLegacyDefault && isset($moduleAvailableLanguages[$canonicalDefault]))
+        $cmsDefaultLanguage = $canonicalDefault;
 }
 if (!defined('ZM_PB_DEFLANG')) define('ZM_PB_DEFLANG', $cmsDefaultLanguage);
 if (!defined('ZM_PB_ALLOWED_CONSTS_CHANGE')) define('ZM_PB_ALLOWED_CONSTS_CHANGE', [

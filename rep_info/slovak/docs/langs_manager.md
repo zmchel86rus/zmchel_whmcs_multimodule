@@ -2,7 +2,7 @@
 
 - **Sekcie → Jazyky → Preklady.** Každé tlačidlo Uložiť uloží iba jeden preklad.
 
-Správca jazykov umožňuje upravovať jazykové texty WHMCS a modulov v administrácii. Funkcia je stále vo vývoji. Prístup má superadministrátor modulu a PHP potrebuje oprávnenie zapisovať do príslušných jazykových adresárov.
+Správca jazykov umožňuje upravovať jazykové texty WHMCS a modulov v administrácii. Prístup má superadministrátor modulu a PHP potrebuje oprávnenie zapisovať do príslušných jazykových adresárov.
 
 ## Výber sekcie a jazyka
 

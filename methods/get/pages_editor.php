@@ -87,11 +87,16 @@ require_once ZM_PB_INCDIR . 'menu_manager.php';
         $smarty->assign('page_data', $page_data);
         $smarty->assign('mediamanager_modal', $smarty->fetch( ZM_PB_TEMPLATESPARTSDIR .'modal_mediamanager.tpl' ) );
 
-        $aliases = zm_pb_lm_filename_aliases();
+        $aliases = zm_pb_lm_filename_aliases_for_section(['kind' => 'self',
+            'directory' => ZM_PB_ALANGDIR]);
         $grapesCandidate = ZM_PB_ADMINLANGNAME;
-        $legacyGrapesName = array_search($grapesCandidate, $aliases, true);
         $grapesLang = 'english';
-        foreach (array_unique([$grapesCandidate, $aliases[$grapesCandidate] ?? null, $legacyGrapesName ?: null]) as $candidate) {
+        $grapesCanonical = $aliases[$grapesCandidate] ?? $grapesCandidate;
+        $grapesNames = $grapesCanonical === 'portuguese-pt'
+            ? ['portuguese', 'portuguese-pt', 'portugues']
+            : array_merge([$grapesCanonical, $grapesCandidate],
+                array_keys($aliases, $grapesCanonical, true));
+        foreach (array_unique($grapesNames) as $candidate) {
             if ($candidate !== null && is_file(ZM_PB_ASSETSDIR . 'grapesjs/langs/' . $candidate . '.json')) {
                 $grapesLang = $candidate;
                 break;
