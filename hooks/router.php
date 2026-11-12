@@ -4,8 +4,6 @@ if (php_sapi_name() === 'cli' || defined('ADMINAREA')
     || !in_array($_SERVER['REQUEST_METHOD'] ?? '', ['GET', 'HEAD'], true)) return;
 use Illuminate\Database\Capsule\Manager as Capsule;
 
-//perf301Mark('PB_route_S');
-
 $request = zm_pb_parse_request();
 // Installed Apache rules may still exist after the feature is disabled.
 if (!ZM_PB_ENABLE_LANG_ROUTE && !empty($request['lang'])) return;
@@ -44,9 +42,9 @@ if (defined('ZMPB_LANGUAGE_SWITCH_PENDING')) return;
 // Apply the public URL language to this response without changing the client profile.
 require_once ZM_PB_INCDIR . 'route_guard.php';
 if (ZM_PB_ENABLE_LANG_ROUTE && !zm_pb_route_uses_user_language($request)) {
-    $routeLanguage = $request['lang'] ?: (ZM_PB_LANGS[ZM_PB_DEFLANG]['code_ISO639_1'] ?? '');
+    $routeLanguage = $request['lang'] ?: (ZM_PB_LANGS[ZM_PB_DEFLANG]['route_code'] ?? '');
     foreach (ZM_PB_LANGS as $languageName => $languageInfo) {
-        if ($languageInfo['code_ISO639_1'] !== $routeLanguage) continue;
+        if ($languageInfo['route_code'] !== $routeLanguage) continue;
         if (!defined('USER_LANG')) define('USER_LANG', $languageName);
         $languageFile = ROOTDIR . '/lang/' . $languageName . '.php';
         if (is_file($languageFile)) {
@@ -113,6 +111,18 @@ if ($system_page === null) {
     if (!zm_pb_has_table('zm_pb_pages') || !Capsule::table('zm_pb_pages')->where('slug', $request['slug'])->exists()) return;
 }
 
+if (!$hasLanguageSelection && empty($request['lang']) && $system_page !== 'index'
+    && ($system_page === null || $override_target !== '')
+    && (ZM_PB_PRETTY_URLS || $system_page === null || $override_type === 'full')) {
+    require_once ZM_PB_INCDIR . 'page_urls.php';
+    $canonicalSlug = $system_page === null ? $request['slug'] : $override_target;
+    $target = zm_pb_default_language_page_redirect_target($publicUri, $canonicalSlug, $request['page'] ?? null);
+    if ($target !== null) {
+        header('Location: ' . $target, true, 301);
+        exit;
+    }
+}
+
 // Keep module pages on query URLs when their pretty URLs are disabled.
 if (!ZM_PB_PRETTY_URLS && !isset($_GET['m']) && !$hasLanguageSelection
     && ($system_page === null || ($system_page !== 'index' && $override_type === 'full'))) {
@@ -121,7 +131,7 @@ if (!ZM_PB_PRETTY_URLS && !isset($_GET['m']) && !$hasLanguageSelection
         require_once ZM_PB_INCDIR . 'page_urls.php';
         $language = ZM_PB_DEFLANG;
         foreach (ZM_PB_LANGS as $languageName => $languageInfo) {
-            if ($languageInfo['code_ISO639_1'] === ($request['lang'] ?? '')) $language = $languageName;
+            if ($languageInfo['route_code'] === ($request['lang'] ?? '')) $language = $languageName;
         }
         $target = zm_pb_module_page_url($canonicalSlug, $language);
         $query = $_GET;

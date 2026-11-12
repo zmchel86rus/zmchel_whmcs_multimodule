@@ -22,11 +22,11 @@ function registerPager($target, array $attrs = []) {
     return ZM_PB_Pagination::register($nav);
 }
 
-$_SERVER['REQUEST_URI'] = '/ru/articles/?sort=-domain_rank&filter=foo%26bar';
-$_GET = ['page' => '2', 'count' => '100', 'sort' => '-domain_rank'];
+$_SERVER['REQUEST_URI'] = '/ru/articles/?sort=-score&filter=foo%26bar';
+$_GET = ['page' => '2', 'count' => '100', 'sort' => '-score'];
 $id = registerPager('archive', ['variable' => '$article_rows', 'duplicate' => '1']);
 $rows = [];
-for ($i = 0; $i < 15001; $i++) $rows[] = (object) ['domain_name' => sprintf('domain-%05d.test', $i), 'domain_rank' => $i];
+for ($i = 0; $i < 15001; $i++) $rows[] = (object) ['title' => sprintf('Item %05d', $i), 'score' => $i];
 
 // A query double checks count/window/order independently of a live database.
 class PageQuery {
@@ -37,7 +37,10 @@ class PageQuery {
         check($this->limit === null && $this->offset === null && $this->orders === null, 'COUNT inherited a limit or ordering');
         $this->log->count = count($this->rows); return count($this->rows);
     }
-    public function orderBy($column, $direction) { $this->orders[] = [$column, $direction]; return $this; }
+    public function orderBy($column, $direction) {
+        check($column === 'score', 'Unexpected sort column: ' . $column);
+        $this->orders[] = [$column, $direction]; return $this;
+    }
     public function offset($value) { $this->offset = $value; return $this; }
     public function limit($value) { $this->limit = $value; return $this; }
     public function get() {
@@ -46,15 +49,24 @@ class PageQuery {
     }
 }
 $query = new PageQuery($rows);
-$page = ZM_PB_Pagination::query('article_rows', $query, ['domain_rank' => 'domain_rank']);
+$page = ZM_PB_Pagination::query('article_rows', $query, ['score' => 'score']);
 check($query->log->count === 15001 && $query->log->window === [100, 100], 'SQL page/total incorrect');
 check($query->limit === 20 && $query->offset === 7, 'Provider mutated the original query');
-check($query->log->orders === [['domain_rank', 'desc'], ['domain_name', 'asc']], 'Sort or stable tie breaker missing');
+check($query->log->orders === [['score', 'desc'], ['legacy', 'desc']], 'Provider ordering was not retained as a tie breaker');
 $context = ZM_PB_Pagination::variables($id, ['article_rows' => $page]);
 check(count($context['article_rows']) === 100 && $context['zm_pagination']['pages'] === 151, 'Provider results paginated twice');
 $url = ZM_PB_Pagination::url($id, 3);
 check(strpos($url, ZM_PB_PRETTY_URLS ? '/page/3/' : 'page=3') !== false, 'Automatic URL format incorrect');
-check(strpos($url, 'sort=-domain_rank') !== false && strpos($url, 'filter=foo%26bar') !== false, 'Query filters lost or double encoded');
+check(strpos($url, 'sort=-score') !== false && strpos($url, 'filter=foo%26bar') !== false, 'Query filters lost or double encoded');
+unset($_GET['sort']);
+$unsorted = new PageQuery($rows);
+ZM_PB_Pagination::query('article_rows', $unsorted, ['score' => 'score']);
+check($unsorted->log->orders === [['legacy', 'desc']], 'Provider ordering was replaced without a requested sort');
+$_GET['page'] = '1'; $_GET['sort'] = '-score';
+$sample = [['title' => 'First', 'score' => 5], ['title' => 'Second', 'score' => 5], ['title' => 'Third', 'score' => 8]];
+$sorted = ZM_PB_Pagination::collection('article_rows', $sample);
+check(array_column($sorted, 'title') === ['Third', 'First', 'Second'], 'Collection sort is not generic or stable');
+$_GET['page'] = '2';
 $nav = ZM_PB_Pagination::render($id);
 check(strpos($nav, 'data-total="15001"') !== false && strpos($nav, 'aria-current="page">2') !== false, 'Total/current page incorrect');
 check(strpos($nav, 'pagination-mobile') !== false && strpos($nav, 'pagination-desktop') !== false, 'Responsive variants missing');
@@ -73,7 +85,7 @@ $_GET['count'] = '100';
 foreach (['configs', 'results'] as $name) {
     $property = new ReflectionProperty(ZM_PB_Pagination::class, $name); $property->setAccessible(true); $property->setValue(null, []);
 }
-$code = '{foreach from=$article_rows item=v}<div class="record">{$v.domain_name}</div>{/foreach}';
+$code = '{foreach from=$article_rows item=v}<div class="record">{$v.title}</div>{/foreach}';
 $navHtml = '<nav data-zm-pb-pagination="1" data-zm-pb-page-target="archive" data-zm-pb-page-variable="article_rows" data-zm-pb-page-count="100" data-zm-pb-page-duplicate="1"></nav>';
 $smartyHtml = '<div id="archive" data-zm-pb-smarty="' . htmlspecialchars($code, ENT_QUOTES) . '"></div>';
 $built = ZM_PB_ContentBuilder::build(json_encode(['format' => 'grapesjs', 'html' => $navHtml . $smartyHtml]), 'mixed', ['schema_enabled' => false]);
@@ -110,7 +122,7 @@ foreach (['query', 'path'] as $mode) {
         $property = new ReflectionProperty(ZM_PB_Pagination::class, $name); $property->setAccessible(true); $property->setValue(null, []);
     }
     $id = registerPager('switch', ['url-mode' => $mode]);
-    $_SERVER['REQUEST_URI'] = '/ru/articles/page/2/?sort=domain_name&page=8';
+    $_SERVER['REQUEST_URI'] = '/ru/articles/page/2/?sort=title&page=8';
     $url = ZM_PB_Pagination::url($id, 3);
     check($mode === 'query' ? strpos($url, '/page/') === false && strpos($url, 'page=3') !== false
         : strpos($url, '/page/3/') !== false && strpos($url, 'page=') === false, 'Block URL override failed: ' . $mode);

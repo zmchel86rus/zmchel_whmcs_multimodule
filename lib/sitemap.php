@@ -1,6 +1,7 @@
 <?php
 if (!defined('ZM_PB_VER')) die('Direct access not allowed');
 require_once ZM_PB_INCDIR . 'sitemap_manager.php';
+require_once __DIR__ . '/../inc/language_aliases.php';
 use Illuminate\Database\Capsule\Manager as Capsule;
 
 /** Creates public sitemap documents; never creates or repairs database tables. */
@@ -34,13 +35,19 @@ class ZM_PB_Sitemap
         // Match zm_pb_load_page_by_slug: publication belongs to the page, while
         // language availability uses lang_active. The editor leaves lang_status at draft.
         $translations = Capsule::table('zm_pb_pages_settings')->whereIn('page_id', $rows->pluck('page_id')->all())
-            ->where('lang_active', true)->whereIn('lang', array_keys(ZM_PB_LANGS))
+            ->where('lang_active', true)
             ->orderBy('id')->get()->groupBy('page_id');
         $groups = ['pages' => [], 'posts' => []];
         $seen = [];
         foreach ($rows as $row) {
             $localized = [];
-            foreach ($translations[$row->page_id] ?? [] as $translation) $localized[$translation->lang] = $translation;
+            foreach ($translations[$row->page_id] ?? [] as $translation) {
+                $storedLanguage = $translation->lang;
+                $language = zm_pb_lm_supported_key($storedLanguage);
+                if (!isset(ZM_PB_LANGS[$language])) continue;
+                $translation->lang = $language;
+                if (!isset($localized[$language]) || $storedLanguage === $language) $localized[$language] = $translation;
+            }
             if (!$localized || !is_string($row->slug) || $row->slug === '') continue;
             $versions = [ZM_PB_DEFLANG => $localized[ZM_PB_DEFLANG] ?? reset($localized)];
             $sources = $overrides[$row->slug] ?? [null];
@@ -60,7 +67,8 @@ class ZM_PB_Sitemap
                     if ($language === ZM_PB_DEFLANG) $defaultUrl = $url;
                     // A fallback translation is not an English version just because its URL has no prefix.
                     $contentLanguage = $translation->lang;
-                    $code = ZM_PB_LANGS[$contentLanguage]['code_ISO639_1'] ?? '';
+                    $code = ZM_PB_LANGS[$contentLanguage]['locale_BCP47']
+                        ?? (ZM_PB_LANGS[$contentLanguage]['code_ISO639_1'] ?? '');
                     if ($code !== '') $alternates[$code] = $url;
                     $last = max(zm_pb_sitemap_timestamp($row->page_updated_at), zm_pb_sitemap_timestamp($row->page_created_at),
                         zm_pb_sitemap_timestamp($translation->updated_at ?? null), zm_pb_sitemap_timestamp($translation->created_at ?? null));

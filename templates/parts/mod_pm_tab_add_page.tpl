@@ -39,6 +39,23 @@
                         <div>
                             <label>{$pages_manager_translates->page_langs->title}:</label>
                             <div class="form-group">
+                            {if $module_langs|@count > 5}
+                                <label>
+                                    <text data-turn_on="{$other_translates->turn_on} {$pages_manager_translates->list_filters->all|lower}" data-turn_off="{$other_translates->turn_off} {$pages_manager_translates->list_filters->all|lower}">
+                                        {$other_translates->turn_on} {$pages_manager_translates->list_filters->all|lower}
+                                    </text>
+                                    <input type="checkbox" class="toggle_all_langs" style="display:none">
+                                </label>
+                                <script>
+                                    $('[type="checkbox"].toggle_all_langs').on('change',function(){
+                                        const text = $(this).prop('checked') ? $(this).siblings('text').data('turn_off') : $(this).siblings('text').data('turn_on');
+                                        $('.form-group.langs_checkboxes').find('[type="checkbox"]').prop('checked', $(this).prop('checked') );
+                                        $(this).siblings('text').text(text);
+                                    });
+                                </script>
+                            {/if}
+                            </div>
+                            <div class="form-group">
                             {foreach from=$module_langs key=lang_name item=lang_data}
                                 {if $lang_name !== $main_default_lang}
                                 <label for="langs[{$lang_name}]">

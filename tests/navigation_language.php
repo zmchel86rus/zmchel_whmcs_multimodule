@@ -6,7 +6,8 @@ define('ROOTDIR', dirname(__DIR__, 4));
 define('ZM_PB_DEFLANG', 'english');
 define('ZM_PB_MAINSYSTEM_DEFAULT_PAGES', ['index', 'contact', 'login', 'register']);
 define('ZM_PB_ENABLE_LANG_ROUTE', !in_array('--disabled', $argv, true));
-define('ZM_PB_LANGS', require dirname(__DIR__) . '/supported_langs.php');
+define('ZM_PB_LANGS', (require dirname(__DIR__) . '/supported_langs.php') +
+    (require dirname(__DIR__) . '/disabled_langs.php'));
 if (in_array('--switch', $argv, true)) define('ZMPB_LANGUAGE_SWITCH_PENDING', true);
 require ROOTDIR . '/vendor/autoload.php';
 require dirname(__DIR__) . '/lib/navigation_language.php';
@@ -29,7 +30,7 @@ $GLOBALS['testRequest']['slug'] = 'clientarea.php';
 check(ZM_PB_NavigationLanguage::responseLanguage() === 'english', 'Native PHP URL ignored saved language');
 $_SESSION['Language'] = 'russian';
 define('USER_LANG', 'english'); // Simulate another addon's stale early constant.
-foreach (['clientarea.php', 'clientarea', 'password/reset', 'account/security', 'cart.php', 'store/domains'] as $slug) {
+foreach (['clientarea.php', 'clientarea', 'password/reset', 'account/security', 'cart.php', 'store/products'] as $slug) {
     $GLOBALS['testRequest'] = ['lang' => '', 'slug' => $slug];
     check(ZM_PB_NavigationLanguage::responseLanguage() === 'russian', 'Native route lost Russian preference: ' . $slug);
     check(ZM_PB_Menu::language() === 'russian', 'Menu URLs/labels ignored preference: ' . $slug);

@@ -5,15 +5,18 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 $module = dirname(__DIR__) . '/';
 require dirname(__DIR__, 4) . '/vendor/autoload.php';
 $root = sys_get_temp_dir() . '/zmpb-transfer-' . bin2hex(random_bytes(6));
-foreach (['inc', 'assets/generated', 'attachments', 'templates/test'] as $dir) mkdir($root . '/' . $dir, 0755, true);
+foreach (['inc', 'assets/generated', 'attachments', 'templates/test', 'resources'] as $dir) mkdir($root . '/' . $dir, 0755, true);
 foreach (['transfer.php', 'menu_manager.php', 'sitemap_manager.php', 'redirects_manager.php', 'footer_menu.php'] as $file) copy($module . 'inc/' . $file, $root . '/inc/' . $file);
 define('ZM_PB_VER', 'test'); define('ROOTDIR', $root); define('ZM_PB_NAME', 'zmchel_whmcs_multimodule');
+define('ZM_PB_ROOTDIR', $module);
 define('ZM_PB_INCDIR', $root . '/inc/'); define('ZM_PB_LIBDIR', $module . 'lib/'); define('ZM_PB_ALANGDIR', $module . 'admin_lang/');
 define('ZM_PB_ASSETSDIR', $root . '/assets/'); define('ZM_PB_FULLHOST', 'https://target.test/');
+define('ZM_PB_RESOURCESDIR', $root . '/resources/');
 define('ZM_PB_ASSETSURL', ZM_PB_FULLHOST . 'modules/addons/zmchel_whmcs_multimodule/assets/');
 define('ZM_PB_MAINSYSTEM_ATTACHMENTS_DIR', $root . '/attachments/'); define('ZM_PB_MAINSYSTEM_ATTACHMENTS_URL', ZM_PB_FULLHOST . 'attachments/');
 define('ZM_PB_MEDIA_MANAGER_FILE', $module . 'lib/media_manager.php');
-define('ZM_PB_LANGS', require $module . 'supported_langs.php'); define('ZM_PB_DEFLANG', 'english');
+$availableLanguages = (require $module . 'supported_langs.php') + (require $module . 'disabled_langs.php');
+define('ZM_PB_LANGS', ['english' => $availableLanguages['english']]); define('ZM_PB_DEFLANG', 'english');
 $GLOBALS['ZM_PB_ADMINLANG'] = require ZM_PB_ALANGDIR . 'russian.php';
 define('ZM_PB_ENABLE_LANG_ROUTE', true); define('ZM_PB_PRETTY_URLS', true); define('ZM_PB_MAINSYSTEM_PRETTY_URLS', true);
 define('ZM_PB_ENABLE_PAGE_OVERRIDES', true); define('ZM_PB_ENABLE_REDIRECTS_MANAGER', true); define('ZM_PB_ENABLE_FOOTERMENU', true);
@@ -61,7 +64,36 @@ try {
             ['key' => 'child', 'parent' => 'root', 'type' => 'custom', 'label' => 'External', 'url' => 'https://external.test/']])]);
     Capsule::table('zm_pb_redirects')->insert(['from' => '/old', 'to' => ZM_PB_FULLHOST . 'test/', 'active' => 1, 'status_code' => 301, 'type' => 'system', 'method' => 'GET', 'conditions' => jsonData(['page_id' => 3, 'language' => 'english'])]);
     $sections = ['pages', 'menus', 'settings', 'redirects', 'rewrites', 'media'];
+    if (class_exists('ZipArchive')) {
+        $cssPath = ZM_PB_ASSETSDIR . 'generated/page_3_english_styles.css';
+        unlink($cssPath);
+        $missingWarnings = [];
+        $missingZip = ZM_PB_Transfer::exportArchive(['pages'], $missingWarnings);
+        $missingArchive = new ZipArchive();
+        check($missingArchive->open($missingZip) === true, 'ZIP with missing CSS could not be opened');
+        $missingManifest = json_decode($missingArchive->getFromName('manifest.json'), true, 512, JSON_THROW_ON_ERROR);
+        $missingContent = json_decode($missingManifest['sections']['pages'][0]['translations'][0]['content'], true, 512, JSON_THROW_ON_ERROR);
+        check(($missingWarnings['page_3_english_styles.css']['reason'] ?? null) === 'missing'
+            && ($missingManifest['warnings'][0]['file'] ?? null) === 'page_3_english_styles.css'
+            && $missingContent['cssFile'] === null && $missingContent['css'] === ''
+            && $missingArchive->getFromName($missingContent['code'][0]['file']) === 'window.test=1;',
+            'Missing CSS aborted export or left a broken archive reference');
+        $missingArchive->close();
+        unlink($missingZip);
+        file_put_contents($cssPath, 'p{color:red}');
+    }
     $archive = ZM_PB_Transfer::export($sections);
+    if (class_exists('ZipArchive')) {
+        $zipPath = ZM_PB_Transfer::exportArchive($sections);
+        $zip = new ZipArchive();
+        check($zip->open($zipPath) === true, 'ZIP export could not be opened');
+        $manifest = json_decode($zip->getFromName('manifest.json'), true, 512, JSON_THROW_ON_ERROR);
+        $zipContent = json_decode($manifest['sections']['pages'][0]['translations'][0]['content'], true, 512, JSON_THROW_ON_ERROR);
+        check($manifest['version'] === 2 && !isset($zipContent['css'])
+            && $zip->getFromName($zipContent['cssFile']) === 'p{color:red}'
+            && $zip->getFromName($zipContent['code'][0]['file']) === 'window.test=1;', 'ZIP CSS/JS asset payload is missing');
+        $zip->close();
+    }
     $decoded = json_decode($archive, true, 512, JSON_THROW_ON_ERROR);
     $portable = json_decode($decoded['sections']['pages'][0]['translations'][0]['content'], true);
     check($portable['css'] === 'p{color:red}' && $portable['code'][0]['code'] === 'window.test=1;', 'Generated code omitted');
@@ -79,6 +111,39 @@ try {
     $imported = json_decode(Capsule::table('zm_pb_pages_settings')->where('page_id', $newId)->value('content'), true);
     check(strpos($imported['html'], 'https://target.test/attachments/test.png') !== false, 'Media URL not localized');
     check(strpos($imported['cssUrl'], 'page_' . $newId . '_english_styles.css') !== false, 'CSS still uses source page ID');
+    if (isset($zipPath)) {
+        ZM_PB_Transfer::importFile($zipPath, ['pages']);
+        check(file_get_contents(ZM_PB_ASSETSDIR . 'generated/page_' . $newId . '_english_styles.css') === 'p{color:red}', 'ZIP import did not recreate CSS');
+
+        check(isset($availableLanguages['albanian']) && !isset(ZM_PB_LANGS['albanian']), 'Disabled language fixture is missing');
+        $disabledZipPath = $root . '/disabled-language.zip';
+        check(copy($zipPath, $disabledZipPath), 'Could not copy ZIP fixture');
+        $disabledZip = new ZipArchive();
+        check($disabledZip->open($disabledZipPath) === true, 'Could not open ZIP fixture');
+        $disabledManifest = json_decode($disabledZip->getFromName('manifest.json'), true, 512, JSON_THROW_ON_ERROR);
+        $disabledPage = &$disabledManifest['sections']['pages'][0];
+        $disabledPage['langs'] = jsonData(['english', 'albanian']);
+        $disabledTranslation = $disabledPage['translations'][0];
+        $disabledTranslation['lang'] = 'albanian';
+        $disabledPage['translations'][] = $disabledTranslation;
+        unset($disabledPage);
+        $disabledItems = $disabledManifest['sections']['menus'][0]['items'];
+        $disabledItems[1]['labels']['albanian'] = 'Disabled language label';
+        $disabledManifest['sections']['menus'][0]['items'] = $disabledItems;
+        $disabledZip->deleteName('manifest.json');
+        check($disabledZip->addFromString('manifest.json', jsonData($disabledManifest)), 'Could not update ZIP manifest');
+        $disabledZip->close();
+        ZM_PB_Transfer::importFile($disabledZipPath, ['pages', 'menus']);
+        check(in_array('albanian', json_decode(Capsule::table('zm_pb_pages')->where('id', $newId)->value('langs'), true), true)
+            && Capsule::table('zm_pb_pages_settings')->where('page_id', $newId)->where('lang', 'albanian')->exists()
+            && file_get_contents(ZM_PB_ASSETSDIR . 'generated/page_' . $newId . '_albanian_styles.css') === 'p{color:red}',
+            'Import dropped a disabled page language or its generated styles');
+        $storedLabels = Capsule::table('zm_pb_menu_items')->where('type', 'custom')->value('labels');
+        check((json_decode($storedLabels, true)['albanian'] ?? null) === 'Disabled language label',
+            'Import dropped a disabled menu language');
+        check(!isset(ZM_PB_LANGS['albanian']) && isset((require $module . 'disabled_langs.php')['albanian']),
+            'Import enabled a disabled language');
+    }
     check(Capsule::table('zm_pb_attachments')->count() === 1, 'Same media duplicated');
     ZM_PB_Transfer::import($archive, $sections);
     check(Capsule::table('zm_pb_pages')->count() === 2 && Capsule::table('zm_pb_menus')->count() === 1, 'Repeated import duplicated entities');
@@ -86,7 +151,7 @@ try {
     $bad = json_decode($archive, true);
     $project = json_decode($bad['sections']['pages'][0]['translations'][0]['content'], true); $project['css'] = 'p{color:blue}';
     $bad['sections']['pages'][0]['translations'][0]['content'] = jsonData($project);
-    $bad['sections']['menus'][0]['items'][0]['page_id'] = 9999;
+    $bad['sections']['menus'][0]['items'][0]['target'] = 'invalid-target';
     $failed = false;
     try { ZM_PB_Transfer::import(jsonData($bad), ['pages', 'menus']); } catch (RuntimeException $error) { $failed = true; }
     check($failed && file_get_contents(ZM_PB_ASSETSDIR . 'generated/page_' . $newId . '_english_styles.css') === $beforeCss, 'Failed import did not roll back asset overwrite');
@@ -97,6 +162,14 @@ try {
     check($failed, 'Media path traversal accepted');
     $partial = json_decode(ZM_PB_Transfer::export(['pages']), true);
     check(array_keys(ZM_PB_Transfer::import(jsonData($partial), $sections)) === ['pages'], 'Absent sections not skipped');
+    $orphan = json_decode($archive, true);
+    $orphan['sections']['menus'][0]['items'][0]['page_id'] = 9999;
+    $importWarnings = [];
+    ZM_PB_Transfer::import(jsonData($orphan), ['pages', 'menus'], null, $importWarnings);
+    check(count($importWarnings) === 1
+        && Capsule::table('zm_pb_menu_items')->where('type', 'page')->count() === 0
+        && Capsule::table('zm_pb_menu_items')->where('type', 'custom')->where('label', 'test')->exists(),
+        'Import did not preserve an orphaned page item as a custom link');
     $settingsPath = ZM_PB_INCDIR . 'editable_consts.php';
     $settingsBefore = file_get_contents($settingsPath);
     $result = zm_pb_update_consts_in_file(['ZM_PB_ENABLE_PAGE_OVERRIDES' => false, 'ZM_PB_UNDECLARED' => true], true);
@@ -106,6 +179,7 @@ try {
     check($failed, 'Non-HTTP source URL accepted');
     echo "PASS transfer selection, assets, URL/ID remapping, media, repeated import, rollback and traversal rejection\n";
 } finally {
+    if (isset($zipPath) && is_file($zipPath)) unlink($zipPath);
     $real = realpath($root); $temp = realpath(sys_get_temp_dir());
     if (!$real || !$temp || strpos($real, $temp . DIRECTORY_SEPARATOR . 'zmpb-transfer-') !== 0) throw new RuntimeException('Unsafe cleanup path');
     foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator($root, FilesystemIterator::SKIP_DOTS), RecursiveIteratorIterator::CHILD_FIRST) as $file) {

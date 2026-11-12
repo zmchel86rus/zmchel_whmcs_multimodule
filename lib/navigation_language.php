@@ -13,7 +13,7 @@ class ZM_PB_NavigationLanguage
         $request = zm_pb_parse_request();
         if (zm_pb_route_uses_user_language($request)) return zm_pb_preferred_language();
         foreach (ZM_PB_LANGS as $language => $info) {
-            if ($info['code_ISO639_1'] === ($request['lang'] ?? '')) return $language;
+            if ($info['route_code'] === ($request['lang'] ?? '')) return $language;
         }
         // Unprefixed pretty URLs use the default language. Native PHP URLs
         // without a language prefix continue to use WHMCS's own preference.
@@ -56,7 +56,8 @@ class ZM_PB_NavigationLanguage
             if ($account) break;
         }
         if (!$account) return;
-        $sourceLanguages = array_unique(['english', $language, strtolower((string) ($_SESSION['Language'] ?? ZM_PB_DEFLANG))]);
+        $sourceLanguages = array_unique(['english', $language,
+            zm_pb_lm_supported_key(strtolower((string) ($_SESSION['Language'] ?? ZM_PB_DEFLANG)))]);
         $sources = [];
         foreach ($sourceLanguages as $sourceLanguage) {
             $catalog = ZM_PB_LanguageCatalog::core($sourceLanguage);
@@ -89,19 +90,8 @@ class ZM_PB_NavigationLanguage
         ];
         foreach ($items as $name => $keys) self::translate($account->getChild($name), $keys, $target, $sources);
 
-        // The auction module adds this item using its own catalog.
         $home = $account->getChild('Client Area Home');
         if (!$home) return;
-        $auction = ZM_PB_LanguageCatalog::auction($language);
-        $auctionSources = [];
-        foreach ($sourceLanguages as $sourceLanguage) {
-            $catalog = ZM_PB_LanguageCatalog::auction($sourceLanguage);
-            if ($catalog !== null) $auctionSources[] = $catalog;
-        }
-        if (isset($auction['my_account'])) {
-            self::translate($home, ['my_account'], $auction, $auctionSources);
-        } else {
-            self::translate($home, ['myaccount', 'clientareanavhome'], $target, $sources);
-        }
+        self::translate($home, ['myaccount', 'clientareanavhome'], $target, $sources);
     }
 }

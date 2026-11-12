@@ -6,7 +6,7 @@ function zm_pb_transfer_text() {
 }
 
 function zm_pb_transfer_error($key, ...$details) {
-    $template = zm_pb_transfer_text()->errors->$key ?? $key;
+    $template = zm_pb_transfer_text()->errors->$key ?? (require ZM_PB_ALANGDIR . 'english.php')->transfer->errors->$key ?? $key;
     return $details ? sprintf($template, ...$details) : $template;
 }
 

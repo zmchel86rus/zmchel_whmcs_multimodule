@@ -1,35 +1,67 @@
+[![Seguidores](https://img.shields.io/github/watchers/zmchel86rus/zmchel_whmcs_multimodule?label=Seguidores)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/watchers)
+[![Estrelas](https://img.shields.io/github/stars/zmchel86rus/zmchel_whmcs_multimodule?label=Estrelas)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/stargazers)
+[![Forks](https://img.shields.io/github/forks/zmchel86rus/zmchel_whmcs_multimodule?label=Forks)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/network/members)
+[![Questões](https://img.shields.io/github/issues/zmchel86rus/zmchel_whmcs_multimodule?label=Quest%C3%B5es)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/issues)
+
 # zmchel WHMCS Multimodule: instruções
 
-**Antes de utilizar o módulo, gere salts exclusivos e coloque-os em `module_init.php`**: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` e `ZM_PB_NONCE_SALT`.
+**O zmchel WHMCS Multimodule é gratuito.** Inclui um editor visual de páginas, conteúdos multilingues, menus, gestor de multimédia, campos SEO, mapas do site XML, redirecionamentos, regras de reescrita e importação/exportação.
 
-Desenvolvido e testado com **WHMCS 8.13.1–8.13.7**; compatibilidade PHP verificada nas versões **7.4–8.5**. O suporte para Apache é completo. Nginx também pode funcionar, mas o encaminhamento de idiomas na página inicial poderá exigir configuração adicional. **O módulo é gratuito.**
+## Antes da primeira utilização
 
-## Acesso e páginas
+**Antes da primeira utilização, abra Definições do módulo → Idiomas suportados e ative os idiomas necessários.**
 
-Na administração do WHMCS, abra **Addons → zmchel WHMCS Multimodule**. A lista de páginas permite criar, procurar, editar e eliminar páginas. Um *slug* é a parte do endereço a seguir ao domínio, por exemplo `contact` em `/contact/`. Exporte as definições antes de alterar URLs, redirecionamentos ou regras do servidor.
+Em cada ativação, o módulo gera automaticamente novos valores salt e grava-os em `module_init.php` (`ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT`, `ZM_PB_NONCE_SALT`). Verifique se os três valores salt estão preenchidos.
 
-Ao criar uma página, indique um nome interno e um slug com letras latinas, algarismos e hífenes, sem domínio nem `.php`. Escolha o acesso: visitantes, clientes autenticados ou misto. Selecione o estado (rascunho, publicado, adiado ou lixo), o tipo (página, artigo ou página do sistema) e os idiomas. O idioma predefinido do WHMCS tem de existir em `supported_langs.php`; é acrescentado automaticamente.
+## Compatibilidade e funcionamento testados
 
-Depois de guardar, abra a página e edite as **definições principais**, o **conteúdo**, os **metadados** e as definições do **mapa do site**. Cada formulário tem o seu botão Guardar; «Guardar tudo» processa todos. Confirme as mensagens de sucesso e visite a página pública. Eliminar coloca primeiro a página no lixo; a eliminação definitiva faz-se a partir daí.
+- **PHP:** 7.4, 8.0, 8.1, 8.2, 8.3, 8.4, 8.5
+- **WHMCS:** 8.13.0–9.1.0
+- **Smarty:** 3, 4
 
-## Conteúdo e idiomas
+## Compatibilidade com servidores web
 
-No separador Conteúdo, escolha um idioma e arraste blocos GrapesJS para a área de edição. Edite texto, imagens e opções do bloco selecionado e guarde esse idioma. Existem secções, colunas, tabelas, FAQ, acordeões, formulários de contacto, listas, paginação, áreas para visitantes/clientes e código personalizado. Copie a estrutura ou o conteúdo para outro idioma e traduza o texto antes de publicar.
+O suporte para Apache é completo. Também pode funcionar com Nginx, mas o encaminhamento por idioma na página inicial poderá exigir configuração adicional.
 
-Com URLs amigáveis e encaminhamento por idioma, o idioma predefinido usa `/contact/`; os restantes usam um prefixo, como `/pt/contact/`. Nos blocos Ligação e Botão, ative a inclusão do idioma atual apenas para páginas traduzidas do site. Desative-a para endereços externos, ficheiros, `mailto:`, `tel:` e rotas WHMCS sem versões traduzidas. Verifique as ligações em vários idiomas.
+## Definições do módulo
 
-## SEO, multimédia e menus
+Escolha os idiomas que o módulo pode utilizar. Desativar um idioma não elimina o seu conteúdo.
 
-Em cada idioma, preencha o título, a descrição, a imagem social, o URL canónico, as regras de robots e o tipo Schema no separador Metadados. Uma página publicada que não seja de sistema pode constar do mapa do site XML. No Gestor de multimédia, carregue imagens, indique texto alternativo útil e verifique a qualidade após a otimização.
+- **Definições do módulo → Idiomas suportados → Ativar**
+- **Base de dados do módulo → Corrigir Itens selecionados**
+- **Regras de reescrita → Verificar regras → Adicionar ou atualizar regras**
 
-No Gestor de menus, crie um menu, adicione páginas ou ligações personalizadas, ordene os itens e defina a localização e visibilidade. Cada localização admite um único menu. Para substituir uma página WHMCS, publique primeiro a nova página, configure a substituição na lista e teste o URL original do WHMCS como visitante e como cliente autenticado.
+O Nginx não lê .htaccess, pelo que estas regras não funcionam nesse servidor. Configure regras equivalentes no nginx.
 
-## Ferramentas do site
+## Gestor de páginas
 
-No Gestor de redirecionamentos, defina origem e destino: `301` para alterações permanentes, `302` para temporárias. O Gestor de reescrita controla as regras das URLs amigáveis. Gere mapas do site no separador Mapa do site e verifique `sitemap_index.xml`. As definições do módulo também controlam menus, Smarty, manutenção e importação/exportação. Um ficheiro JSON exportado não substitui uma cópia de segurança completa do WHMCS.
+- **Adicionar página → Nome da página → Slug da página → Guardar**
+- **Editor de páginas → Definições de conteúdo → Definições de metadados → Definições do sitemap da página → Guardar tudo**
+- **Gestor de páginas → Visitar**
+- **Sitemap → Gerar sitemaps**
 
-O formulário de contacto pode enviar um ticket WHMCS ou uma mensagem de correio. Configure campos, destinatário ou departamento de suporte, consentimentos e CAPTCHA, e faça um envio real de teste. Se faltarem tabelas do módulo, use o separador Base de dados do módulo.
+Só são permitidas letras latinas, hífenes e algarismos.
 
-## Documentação adicional (English)
+Utilizadores autenticados: só os utilizadores autenticados podem aceder à página; Visitantes: só os visitantes podem aceder; Misto: todos podem aceder, sendo a visibilidade controlada pelos blocos dentro da página.
 
-[Menus](../english/docs/menus.md) · [Smarty](../english/docs/smarty.md) · [Paginação](../english/docs/pagination.md) · [Mapas do site](../english/docs/sitemaps.md) · [Redirecionamentos](../english/docs/redirects.md) · [Dados estruturados](../english/docs/structured-data.md) · [Importação e exportação](../english/docs/transfer.md).
+A geração automática é executada após o cron do WHMCS quando é necessária uma atualização. A geração manual começa imediatamente.
+
+## Guias por secção
+
+- [Gestor de páginas](docs/pages_manager.md)
+- [Editor de páginas](docs/pages_editor.md)
+- [Gestor Multimédia](docs/media_manager.md)
+- [Menus](docs/menu_manager.md)
+- [Gestor de idiomas](docs/langs_manager.md)
+- [Redirecionamentos](docs/redirects_manager.md)
+- [Mapas do site](docs/sitemap_manager.md)
+- [Regras de reescrita](docs/rewrite_manager.md)
+- [Definições do módulo](docs/module_settings.md)
+- [Base de dados do módulo](docs/module_db.md)
+
+## Materiais adicionais
+
+- [Paginação](docs/pages_editor_pagination.md)
+- [Smarty](docs/pages_editor_smarty.md)
+- [Dados estruturados](docs/module_structured_data.md)
+- [Importação e exportação](docs/module_settings_transfer.md)

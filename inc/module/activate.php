@@ -6,6 +6,28 @@ function zmchel_whmcs_multimodule_activate(){
     $life = $GLOBALS['ZM_PB_ADMINLANG']->module->lifecycle;
     $output_text_result = $GLOBALS['ZM_PB_ADMINLANG']->module->main->title . ' ' . $GLOBALS['ZM_PB_ADMINLANG']->module->act . ":\n";
 
+    require_once ZM_PB_INCDIR . 'module_languages.php';
+    try {
+        zm_pb_module_languages_enable_default(ZM_PB_ROOTDIR, ZM_PB_DEFLANG);
+    } catch (Throwable $error) {
+        return ['status' => 'error', 'description' => $error->getMessage()];
+    }
+
+    require_once ZM_PB_INCDIR . 'activation_salts.php';
+    try {
+        zm_pb_regenerate_activation_salts(ZM_PB_ROOTDIR . 'module_init.php');
+    } catch (Throwable $error) {
+        $output_text_result .= 'Could not update module salts: ' . $error->getMessage() . "\n";
+        error_log('zmchel WHMCS Multimodule activation salts: ' . $error->getMessage());
+    }
+
+    require_once ZM_PB_INCDIR . 'activation_report.php';
+    try {
+        zm_pb_report_activation_usage();
+    } catch (Throwable $error) {
+        error_log('zmchel WHMCS Multimodule activation report: ' . $error->getMessage());
+    }
+
     try {
         if ( zm_pb_has_table('zm_pb_module_settings') ) {
             $output_text_result .= sprintf($life->table_exists, 'zm_pb_module_settings') . "\n";
@@ -18,42 +40,42 @@ function zmchel_whmcs_multimodule_activate(){
                 $table->string('setting_name', 128)->unique();
                 $table->text('setting_value')->nullable();
             });
+
+            Capsule::table('zm_pb_module_settings')->insert([
+                [
+                    'type' => 'required',
+                    'setting_storage_type' => 'json',
+                    'setting_name' => 'main_settings',
+                    'setting_value' => '',
+                ],
+                [
+                    'type' => 'required',
+                    'setting_storage_type' => 'json',
+                    'setting_name' => 'sitemap_settings',
+                    'setting_value' => '',
+                ],
+                [
+                    'type' => 'required',
+                    'setting_storage_type' => 'json',
+                    'setting_name' => 'custom_header',
+                    'setting_value' => '',
+                ],
+                [
+                    'type' => 'required',
+                    'setting_storage_type' => 'json',
+                    'setting_name' => 'custom_footer',
+                    'setting_value' => '',
+                ],
+                [
+                    'type' => 'required',
+                    'setting_storage_type' => 'json',
+                    'setting_name' => 'page_overrides',
+                    'setting_value' => json_encode(['data' => '']),
+                ],
+            ]);
                 
             $output_text_result .= sprintf($life->table_created, 'zm_pb_module_settings') . "\n";
         }
-
-        Capsule::table('zm_pb_module_settings')->insert([
-            [
-                'type' => 'required',
-                'setting_storage_type' => 'json',
-                'setting_name' => 'main_settings',
-                'setting_value' => '',
-            ],
-            [
-                'type' => 'required',
-                'setting_storage_type' => 'json',
-                'setting_name' => 'sitemap_settings',
-                'setting_value' => '',
-            ],
-            [
-                'type' => 'required',
-                'setting_storage_type' => 'json',
-                'setting_name' => 'custom_header',
-                'setting_value' => '',
-            ],
-            [
-                'type' => 'required',
-                'setting_storage_type' => 'json',
-                'setting_name' => 'custom_footer',
-                'setting_value' => '',
-            ],
-            [
-                'type' => 'required',
-                'setting_storage_type' => 'json',
-                'setting_name' => 'page_overrides',
-                'setting_value' => json_encode(['data' => '']),
-            ],
-        ]);
 
     } catch (Exception $e) {
         $output_text_result .= sprintf($life->table_create_error, 'zm_pb_module_settings', $e->getMessage()) . "\n";
@@ -228,6 +250,19 @@ function zmchel_whmcs_multimodule_activate(){
     $compileDir = ROOTDIR . '/templates_c/' . ZM_PB_NAME . '/';
     if (!is_dir($compileDir)) {
         mkdir($compileDir, 0755, true);
+    }
+
+    require_once ZM_PB_INCDIR . 'directory_health.php';
+    try {
+        $directoryText = $GLOBALS['ZM_PB_ADMINLANG']->module_settings->directory_check ?? null;
+        $directoryIssues = zm_pb_directory_health_messages(zm_pb_directory_health_check(), $directoryText);
+        if ($directoryIssues) {
+            $output_text_result .= "\n" . ($directoryText->title ?? 'Possible file access issues') . ":\n";
+            foreach ($directoryIssues as $issue)
+                $output_text_result .= $issue['path'] . ': ' . $issue['message'] . "\n";
+        }
+    } catch (Throwable $error) {
+        error_log('zmchel WHMCS Multimodule directory check: ' . $error->getMessage());
     }
     
     

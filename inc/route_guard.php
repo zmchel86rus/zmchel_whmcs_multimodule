@@ -1,14 +1,6 @@
 <?php
 if (!defined('ZM_PB_VER')) die('Direct access not allowed');
 
-/** Domain auction lot paths have dots but are public pages, not WHMCS files. */
-function zm_pb_is_public_lot_route($slug)
-{
-    $slug = trim((string) $slug, '/');
-    return preg_match('~^(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z]{2,63}$~iD', $slug)
-        && !preg_match('~\.(?:php|html?|asp|aspx|jsp|cgi|xml|txt|json|css|js|ico|pdf|svg|png|jpe?g|webp|gif|woff2?|ttf|eot)$~iD', $slug);
-}
-
 /** A public page can share its slug with a PHP entry point without using the profile language. */
 function zm_pb_is_public_page_route($slug)
 {
@@ -35,7 +27,6 @@ function zm_pb_route_uses_user_language(array $request)
     }
     $page = preg_replace('/\.php$/i', '', $slug);
     if ($page === '' || $page === 'index') return false;
-    if (zm_pb_is_public_lot_route($slug)) return false;
     if (defined('ZM_PB_MAINSYSTEM_DEFAULT_PAGES') && in_array($page, ZM_PB_MAINSYSTEM_DEFAULT_PAGES, true)) return false;
     if (zm_pb_is_native_route($slug)) return true;
     // Include routed storefront pages and children of native PHP entry points.

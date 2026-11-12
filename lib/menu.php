@@ -2,6 +2,8 @@
 if (!defined('ZM_PB_VER')) die('Direct access not allowed');
 use Illuminate\Database\Capsule\Manager as Capsule;
 require_once ZM_PB_INCDIR . 'menu_manager.php';
+require_once ZM_PB_INCDIR . 'route_guard.php';
+require_once __DIR__ . '/../inc/language_aliases.php';
 
 class ZM_PB_Menu
 {
@@ -31,7 +33,12 @@ class ZM_PB_Menu
         foreach ($query->get() as $page) self::$data['pages'][$page->id] = $page;
         foreach (Capsule::table('zm_pb_pages_settings')->whereIn('page_id', array_keys(self::$data['pages']))
             ->where('lang_active', true)->get(['page_id', 'lang', 'settings']) as $settings) {
-            self::$data['settings'][$settings->page_id][$settings->lang] = $settings;
+            $storedLanguage = $settings->lang;
+            $language = zm_pb_lm_supported_key($storedLanguage);
+            if (!isset(ZM_PB_LANGS[$language])) continue;
+            $settings->lang = $language;
+            if (!isset(self::$data['settings'][$settings->page_id][$language]) || $storedLanguage === $language)
+                self::$data['settings'][$settings->page_id][$language] = $settings;
         }
         return self::$data;
     }
@@ -41,11 +48,14 @@ class ZM_PB_Menu
         require_once __DIR__ . '/navigation_language.php';
         $responseLanguage = ZM_PB_NavigationLanguage::responseLanguage();
         if ($responseLanguage !== null) return $responseLanguage;
-        if (defined('USER_LANG') && isset(ZM_PB_LANGS[strtolower(USER_LANG)])) return strtolower(USER_LANG);
+        if (defined('USER_LANG')) {
+            $userLanguage = zm_pb_lm_supported_key(strtolower(USER_LANG));
+            if (isset(ZM_PB_LANGS[$userLanguage])) return $userLanguage;
+        }
         $request = zm_pb_parse_request();
-        foreach (ZM_PB_LANGS as $name => $info) if ($info['code_ISO639_1'] === ($request['lang'] ?? '')) return $name;
+        foreach (ZM_PB_LANGS as $name => $info) if ($info['route_code'] === ($request['lang'] ?? '')) return $name;
         if (!ZM_PB_ENABLE_LANG_ROUTE) {
-            $lang = strtolower((string) ($_SESSION['Language'] ?? ZM_PB_DEFLANG));
+            $lang = zm_pb_lm_supported_key(strtolower((string) ($_SESSION['Language'] ?? ZM_PB_DEFLANG)));
             if (isset(ZM_PB_LANGS[$lang])) return $lang;
         }
         return ZM_PB_DEFLANG;
@@ -71,12 +81,13 @@ class ZM_PB_Menu
         }
         $path = ltrim($path, '/');
         foreach (ZM_PB_LANGS as $info) {
-            $code = $info['code_ISO639_1'];
+            $code = $info['route_code'];
             if ($path === $code || strpos($path, $code . '/') === 0) { $path = ltrim(substr($path, strlen($code)), '/'); break; }
         }
         // Assets, callbacks and control endpoints are not language routes.
         if (preg_match('~^(?:modules|assets|includes|vendor|api|oauth|crons)(?:/|$)~i', $path)) return $url;
-        $prefix = $language !== ZM_PB_DEFLANG ? (ZM_PB_LANGS[$language]['code_ISO639_1'] ?? '') : '';
+        if ($path !== '' && zm_pb_route_uses_user_language(['slug' => $path, 'lang' => ''])) return $url;
+        $prefix = zm_pb_language_route_code($language);
         $result = rtrim(ZM_PB_FULLHOST, '/') . '/' . ($prefix !== '' ? $prefix . '/' : '') . $path;
         if (isset($parts['query'])) $result .= '?' . $parts['query'];
         if (isset($parts['fragment'])) $result .= '#' . $parts['fragment'];
@@ -113,7 +124,10 @@ class ZM_PB_Menu
                 $visibility = $item['visibility'] ?? 'mixed';
                 if (($visibility === 'auth' && !$loggedIn) || ($visibility === 'noauth' && $loggedIn)) continue;
                 $labels = is_string($item['labels'] ?? null) ? json_decode($item['labels'], true) : ($item['labels'] ?? []);
-                $label = $labels[$language] ?? ($item['label'] ?? '');
+                $label = $item['label'] ?? '';
+                foreach (zm_pb_lm_language_keys($language) as $key) {
+                    if (isset($labels[$key])) { $label = $labels[$key]; break; }
+                }
                 if (($item['type'] ?? '') === 'page') {
                     $page = $pages[$item['page_id']] ?? null;
                     if (!$page || $page->status !== 'publish' || ($page->auth_type === 'auth' && !$loggedIn) || ($page->auth_type === 'noauth' && $loggedIn)) continue;

@@ -1,35 +1,67 @@
+[![Jälgijad](https://img.shields.io/github/watchers/zmchel86rus/zmchel_whmcs_multimodule?label=J%C3%A4lgijad)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/watchers)
+[![Tähed](https://img.shields.io/github/stars/zmchel86rus/zmchel_whmcs_multimodule?label=T%C3%A4hed)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/stargazers)
+[![Forkid](https://img.shields.io/github/forks/zmchel86rus/zmchel_whmcs_multimodule?label=Forkid)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/network/members)
+[![Teated](https://img.shields.io/github/issues/zmchel86rus/zmchel_whmcs_multimodule?label=Teated)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/issues)
+
 # zmchel WHMCS Multimodule: juhend
 
-**Enne mooduli kasutamist genereeri unikaalsed soolad ja lisa need faili `module_init.php`**: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` ja `ZM_PB_NONCE_SALT`.
+**zmchel WHMCS Multimodule on tasuta.** See sisaldab visuaalset leheredaktorit, mitmekeelset sisu, menüüsid, meediakogu, SEO välju, XML-saidikaarte, ümbersuunamisi, ümberkirjutusreegleid ning importi ja eksporti.
 
-Moodul on loodud ja testitud **WHMCS-i versioonidel 8.13.1–8.13.7**; PHP ühilduvus on kontrollitud versioonidel **7.4–8.5**. Apache on täielikult toetatud. Nginx võib samuti töötada, kuid keelte suunamine avalehel võib vajada lisaseadistust. **Moodul on tasuta.**
+## Enne esimest kasutamist
 
-## Juurdepääs ja lehed
+**Enne esimest kasutuskorda ava Mooduli seaded → Toetatud keeled ja lülita vajalikud keeled sisse.**
 
-Ava WHMCS-i halduses **Addons → zmchel WHMCS Multimodule**. Lehtede loendis saab lehti luua, otsida, muuta ja kustutada. *Slug* on aadressi osa pärast domeeni, näiteks `contact` aadressis `/contact/`. Enne URL-ide, ümbersuunamiste või serverireeglite muutmist ekspordi mooduli seaded.
+Igal aktiveerimisel loob moodul automaatselt uued soolad ja kirjutab need faili `module_init.php` (`ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT`, `ZM_PB_NONCE_SALT`). Kontrollige, et kõik kolm soola väärtust oleksid täidetud.
 
-Uue lehe jaoks sisesta sisemine nimi ja slug, milles on ladina tähed, numbrid ja sidekriipsud, kuid mitte domeen ega `.php`. Vali ligipääs külalistele, sisseloginud klientidele või kõigile. Seejärel vali olek (mustand, avaldatud, edasi lükatud või prügikast), tüüp (leht, artikkel või süsteemileht) ja keeled. WHMCS-i vaikekeel peab olema failis `supported_langs.php`; moodul lisab selle automaatselt.
+## Kontrollitud ühilduvus ja toimivus
 
-Pärast salvestamist ava leht ning muuda **põhiseadeid**, **sisu**, **metaandmeid** ja **saidikaardi** seadeid. Igal vormil on oma Salvestamise nupp; „Salvesta kõik” töötleb kõiki vorme. Kontrolli õnnestumisteateid ja avalikku vaadet. Kustutamine viib lehe esmalt prügikasti; lõplik kustutamine toimub sealt.
+- **PHP:** 7.4, 8.0, 8.1, 8.2, 8.3, 8.4, 8.5
+- **WHMCS:** 8.13.0–9.1.0
+- **Smarty:** 3, 4
 
-## Sisu ja keeled
+## Ühilduvus veebiserveritega
 
-Vahekaardil Sisu vali keel ja lohista GrapesJS-i plokid tööalale. Muuda valitud ploki teksti, pilte ja seadeid ning salvesta see keel. Saad kasutada jaotisi, veerge, tabeleid, KKK-plokke, akordione, kontaktivorme, loendeid, lehitsemist, külaliste/klientide alasid ja kohandatud koodi. Kopeeri paigutus või sisu teise keelde ning tõlgi tekst enne avaldamist.
+Apache on täielikult toetatud. Moodul võib töötada ka Nginxiga, kuid keelte suunamine avalehel võib vajada lisaseadistust.
 
-Ilusate URL-ide ja keelesuunamise korral kasutab vaikekeel `/contact/`, teised keeled eesliidet nagu `/et/contact/`. Lingi ja nupu plokis lülita praeguse keele lisamine sisse ainult tõlgitud saidilehtede jaoks. Jäta see välja väliste linkide, failide, `mailto:`, `tel:` ja tõlketa WHMCS-i aadresside puhul. Kontrolli linke mitmes keeles.
+## Mooduli seaded
 
-## SEO, meedia ja menüüd
+Valige keeled, mida moodul saab kasutada. Keele väljalülitamine ei kustuta selle sisu.
 
-Täida iga keele jaoks Metaandmete vahekaardil pealkiri, kirjeldus, suhtlusvõrgustiku pilt, kanooniline URL, robots-seaded ja Schema tüüp. Avaldatud mittesüsteemne leht võib kuuluda XML-saidikaardile. Laadi meediahalduris pildid üles, lisa sisukas asendustekst ja kontrolli pärast optimeerimist kvaliteeti.
+- **Mooduli seaded → Toetatud keeled → Lülita sisse**
+- **Mooduli andmebaas → Paranda Valitud elemendid**
+- **Ümberkirjutamise reeglid → Kontrolli reegleid → Lisa või uuenda reegleid**
 
-Loo menüühalduris menüü, lisa lehti või kohandatud linke, järjesta üksused ning määra asukoht ja nähtavus. Igas asukohas saab olla üks menüü. WHMCS-i lehe asendamiseks avalda uus leht, seadista asendus lehtede loendis ja testi WHMCS-i algset URL-i nii külalise kui ka sisseloginud kliendina.
+Nginx ei loe faili .htaccess, seega need reeglid seal ei tööta. Seadistage vastavad reeglid nginxis.
 
-## Saidi tööriistad
+## Lehtede haldur
 
-Ümbersuunamiste halduris määra lähte- ja sihtaadress: `301` püsiva, `302` ajutise muudatuse jaoks. Ümberkirjutusreeglite haldur juhib ilusaid URL-e. Genereeri saidikaardid ja kontrolli faili `sitemap_index.xml`. Mooduli seaded juhivad ka menüüsid, Smartyt, hooldusrežiimi ning importi/eksporti. JSON-eksport ei asenda WHMCS-i täielikku varukoopiat.
+- **Lisa leht → Lehe nimi → Lehe püsiviide → Salvesta**
+- **Leheredaktor → Sisu seaded → Metaandmete seaded → Lehe saidikaardi seaded → Salvesta kõik**
+- **Lehtede haldur → Külasta**
+- **Saidikaart → Genereeri saidikaardid**
 
-Kontaktivorm saab saata WHMCS-i tugipileti või e-kirja. Määra väljad, adressaat või tugiosakond, nõusolekud ja CAPTCHA ning tee tegelik proovisaatmine. Puuduvate moodulitabelite jaoks kasuta Mooduli andmebaasi jaotist.
+Lubatud on ainult ladina tähed, sidekriipsud ja numbrid.
 
-## Lisadokumentatsioon (English)
+Sisseloginud kasutajad: lehele pääsevad ligi ainult sisseloginud kasutajad; külalised: lehele pääsevad ligi ainult külalised; segatud: lehele pääsevad ligi kõik, kuid nähtavust juhitakse lehe plokkide kaudu.
 
-[Menüüd](../english/docs/menus.md) · [Smarty](../english/docs/smarty.md) · [Lehitsemine](../english/docs/pagination.md) · [Saidikaardid](../english/docs/sitemaps.md) · [Ümbersuunamised](../english/docs/redirects.md) · [Struktureeritud andmed](../english/docs/structured-data.md) · [Import ja eksport](../english/docs/transfer.md).
+Automaatne genereerimine käivitub pärast WHMCS-i croni, kui uuendamise aeg on käes. Käsitsi genereerimine algab kohe.
+
+## Jaotiste juhendid
+
+- [Lehtede haldur](docs/pages_manager.md)
+- [Leheredaktor](docs/pages_editor.md)
+- [Meediahaldur](docs/media_manager.md)
+- [Menüüd](docs/menu_manager.md)
+- [Keelehaldur](docs/langs_manager.md)
+- [Ümbersuunamised](docs/redirects_manager.md)
+- [Saidikaardid](docs/sitemap_manager.md)
+- [Ümberkirjutamise reeglid](docs/rewrite_manager.md)
+- [Mooduli seaded](docs/module_settings.md)
+- [Mooduli andmebaas](docs/module_db.md)
+
+## Lisamaterjalid
+
+- [Lehitsemine](docs/pages_editor_pagination.md)
+- [Smarty](docs/pages_editor_smarty.md)
+- [Struktureeritud andmed](docs/module_structured_data.md)
+- [Import ja eksport](docs/module_settings_transfer.md)

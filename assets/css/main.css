@@ -1,3 +1,8 @@
+body.iris:has(#zm-pagebuilder) #contentarea .nav.nav-tabs{margin-bottom:1rem}
+body.iris.zm-pb-hide-whmcs-sidebar .navigation{display:none}
+body.iris.zm-pb-hide-whmcs-sidebar .contentarea>div{max-width:95vw}
+body.iris #zm-pagebuilder select.input-sm{line-height: normal;}
+
 #zm-pagebuilder.modal{z-index: 99999999;}
 #zm-pagebuilder.modal.zm_pb_media_manager_image .modal-dialog{
     width:100%;
@@ -7,6 +12,14 @@
 #zm-pagebuilder tr:has(.hover-div) .hover-div > div{opacity:0}
 #zm-pagebuilder tr:has(.hover-div):hover .hover-div > div{opacity:1}
 #zm-pagebuilder .btn-link.btn-delete:hover,#zm-pagebuilder .btn-delete:hover{color:#c9302c}
+
+#zm-pagebuilder input-with-button i.copyvalue{
+    background: #ffffff;
+    color: #cccccc;
+    cursor: pointer;
+    border-radius: 8px;
+}
+#zm-pagebuilder input-with-button i.copyvalue:hover{color: #008eff;}
 
 #zm-pagebuilder .w-min{width:min-content}
 #zm-pagebuilder .w-max{width:max-content}
@@ -43,6 +56,158 @@
 #zm-pagebuilder .flex-w-90{flex:90%!important}
 
 
+#zm-pagebuilder .pos-sta {
+    position: static!important;
+}
+#zm-pagebuilder .pos-rel {
+    position: relative!important;
+}
+#zm-pagebuilder .pos-abs {
+    position: absolute!important;
+}
+#zm-pagebuilder .pos-sti {
+    position: sticky!important;
+}
+#zm-pagebuilder .pos-fix {
+    position: fixed!important;
+}
+
+#zm-pagebuilder .pos-t-1 {
+    top: .5em;
+}
+#zm-pagebuilder .pos-t-2 {
+    top: 1em;
+}
+#zm-pagebuilder .pos-t-3 {
+    top: 1.5em;
+}
+#zm-pagebuilder .pos-t-4 {
+    top: 2em;
+}
+#zm-pagebuilder .pos-t-5 {
+    top: 2.5em;
+}
+#zm-pagebuilder .pos-t-6 {
+    top: 3em;
+}
+
+#zm-pagebuilder .pos-b-1 {
+    bottom: .5em;
+}
+#zm-pagebuilder .pos-b-2 {
+    bottom: 1em;
+}
+#zm-pagebuilder .pos-b-3 {
+    bottom: 1.5em;
+}
+#zm-pagebuilder .pos-b-4 {
+    bottom: 2em;
+}
+#zm-pagebuilder .pos-b-5 {
+    bottom: 2.5em;
+}
+#zm-pagebuilder .pos-b-6 {
+    bottom: 3em;
+}
+
+#zm-pagebuilder .pos-l-1 {
+    left: .5em;
+}
+#zm-pagebuilder .pos-l-2 {
+    left: 1em;
+}
+#zm-pagebuilder .pos-l-3 {
+    left: 1.5em;
+}
+#zm-pagebuilder .pos-l-4 {
+    left: 2em;
+}
+#zm-pagebuilder .pos-l-5 {
+    left: 2.5em;
+}
+#zm-pagebuilder .pos-l-6 {
+    left: 3em;
+}
+
+#zm-pagebuilder .pos-r-1 {
+    right: .5em;
+}
+#zm-pagebuilder .pos-r-2 {
+    right: 1em;
+}
+#zm-pagebuilder .pos-r-3 {
+    right: 1.5em;
+}
+#zm-pagebuilder .pos-r-4 {
+    right: 2em;
+}
+#zm-pagebuilder .pos-r-5 {
+    right: 2.5em;
+}
+#zm-pagebuilder .pos-r-6 {
+    right: 3em;
+}
+
+#zm-pagebuilder .pos-y-auto {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#zm-pagebuilder .pos-y-1 {
+    top: .5em;
+    bottom: .5em;
+}
+#zm-pagebuilder .pos-y-2 {
+    top: 1em;
+    bottom: 1em;
+}
+#zm-pagebuilder .pos-y-3 {
+    top: 1.5em;
+    bottom: 1.5em;
+}
+#zm-pagebuilder .pos-y-4 {
+    top: 2em;
+    bottom: 2em;
+}
+#zm-pagebuilder .pos-y-5 {
+    top: 2.5em;
+    bottom: 2.5em;
+}
+#zm-pagebuilder .pos-y-6 {
+    top: 3em;
+    bottom: 3em;
+}
+
+#zm-pagebuilder .pos-x-auto {
+    left: 50%;
+    right: 50%;
+}
+
+#zm-pagebuilder .pos-x-1 {
+    left: .5em;
+    right: .5em;
+}
+#zm-pagebuilder .pos-x-2 {
+    left: 1em;
+    right: 1em;
+}
+#zm-pagebuilder .pos-x-3 {
+    left: 1.5em;
+    right: 1.5em;
+}
+#zm-pagebuilder .pos-x-4 {
+    left: 2em;
+    right: 2em;
+}
+#zm-pagebuilder .pos-x-5 {
+    left: 2.5em;
+    right: 2.5em;
+}
+#zm-pagebuilder .pos-x-6 {
+    left: 3em;
+    right: 3em;
+}
+
 #zm-pagebuilder .d-none {
     display: none!important;
 }
@@ -63,6 +228,19 @@
 }
 #zm-pagebuilder .d-grid {
     display: grid!important; 
+}
+
+#zm-pagebuilder .flex-dir-col {
+    flex-direction: column!important;
+}
+#zm-pagebuilder .flex-dir-colrev {
+    flex-direction: column-reverse!important;
+}
+#zm-pagebuilder .flex-dir-row {
+    flex-direction: row!important;
+}
+#zm-pagebuilder .flex-dir-rowrev {
+    flex-direction: row-reverse!important;
 }
 
 #zm-pagebuilder .gap-01{
@@ -1071,3 +1249,54 @@
 }
 
 #growls{z-index:9999999999999}
+
+#zm-pagebuilder .extra-langs > span:before{content:var(--show-text);padding-right:2px;cursor:pointer}
+#zm-pagebuilder .extra-langs > span.collapsed:before{content:var(--hide-text);}
+
+#zm-pagebuilder.langs-manager .lm-language-grid {
+    display: flex;
+    flex-wrap: wrap;
+}
+#zm-pagebuilder.langs-manager .lm-language-grid > [class*="col-"] {
+    display: flex;
+    margin-bottom: 10px;
+}
+#zm-pagebuilder.langs-manager .lm-language-grid .list-group-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    width: 100%;
+}
+#zm-pagebuilder.langs-manager .lm-language-grid .lm-language-untranslated {
+    border-left: 3px solid #e6ad32;
+    background: #fffdf5;
+}
+#zm-pagebuilder.langs-manager .lm-language-grid .lm-language-name {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+#zm-pagebuilder.langs-manager .lm-language-grid .lm-action-form {
+    flex: none;
+}
+#zm-pagebuilder.langs-manager td.lang_translates.key > code{
+    white-space:normal;
+    word-break:break-all
+}
+#zm-pagebuilder.langs-manager td.lang_translates.source{
+    white-space:pre-wrap;
+    word-break:break-word
+}
+
+#zm-pagebuilder.langs-manager form.lm-action-form label{display:inline-flex;flex-direction: column;width: 100%;}
+#zm-pagebuilder.langs-manager form.lm-action-form label input{width:100%}
+#zm-pagebuilder.langs-manager .lm-filename-form{display:flex;align-items:center;flex-wrap:wrap;gap:6px;min-width:260px}
+#zm-pagebuilder.langs-manager .lm-filename-select{width:auto;max-width:180px}
+#zm-pagebuilder.langs-manager .lm-filename-target{white-space:nowrap}
+
+#zm-pagebuilder .module-language-grid > [class*="col-"] { margin-bottom: 10px; }
+#zm-pagebuilder .module-language-item { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 48px; margin-bottom: 0; }
+#zm-pagebuilder .module-language-item > span:first-child { min-width: 0; overflow-wrap: anywhere; }
+#zm-pagebuilder .module-language-choice { display: flex; align-items: center; gap: 8px; min-width: 0; margin: 0; font-weight: normal; cursor: pointer; }
+#zm-pagebuilder .module-language-choice input { flex: none; margin: 0; }
+#zm-pagebuilder .module-language-choice span { overflow-wrap: anywhere; }

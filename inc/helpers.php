@@ -1,45 +1,46 @@
 <?php
 if (!defined('ZM_PB_VER')) die('Direct access not allowed');
 use Illuminate\Database\Capsule\Manager as Capsule;
+require_once __DIR__ . '/language_aliases.php';
 
-if (!function_exists('perf301Mark')) {
+if (!function_exists('perfZMMark')) {
 
-    $GLOBALS['perf301_enabled'] = true;
-    $GLOBALS['perf301_start'] = microtime(true);
-    $GLOBALS['perf301_last'] = $GLOBALS['perf301_start'];
-    $GLOBALS['perf301_data'] = [];
+    $GLOBALS['perf_zm_enabled'] = true;
+    $GLOBALS['perf_zm_start'] = microtime(true);
+    $GLOBALS['perf_zm_last'] = $GLOBALS['perf_zm_start'];
+    $GLOBALS['perf_zm_data'] = [];
 
-    function perf301Mark($name)
+    function perfZMMark($name)
     {
-        if (empty($GLOBALS['perf301_enabled'])) {
+        if (empty($GLOBALS['perf_zm_enabled'])) {
             return;
         }
 
         $now = microtime(true);
 
-        $GLOBALS['perf301_data'][$name] =
-            round(($now - $GLOBALS['perf301_last']) * 1000, 2);
+        $GLOBALS['perf_zm_data'][$name] =
+            round(($now - $GLOBALS['perf_zm_last']) * 1000, 2);
 
-        $GLOBALS['perf301_last'] = $now;
+        $GLOBALS['perf_zm_last'] = $now;
     }
 
-    function perf301Flush()
+    function perfZMFlush()
     {
-        if (empty($GLOBALS['perf301_enabled'])) {
+        if (empty($GLOBALS['perf_zm_enabled'])) {
             return;
         }
 
         $total = round(
-            (microtime(true) - $GLOBALS['perf301_start']) * 1000,
+            (microtime(true) - $GLOBALS['perf_zm_start']) * 1000,
             2
         );
 
         header(
-            'X-301-PERF: ' .
+            'X-ZM-PERF: ' .
             implode(', ', array_map(
                 fn($k, $v) => $k . '=' . $v,
-                array_keys($GLOBALS['perf301_data']),
-                $GLOBALS['perf301_data']
+                array_keys($GLOBALS['perf_zm_data']),
+                $GLOBALS['perf_zm_data']
             )) .
             ', total=' . $total
         );
@@ -206,51 +207,31 @@ if (!function_exists('zm_pb_load_page_by_slug')) {
         $page = Capsule::table('zm_pb_pages')->where('slug', $slug)->first();
         if (!$page) return null;
 
+        $pageLanguages = json_decode((string) $page->langs, true);
+        if (is_array($pageLanguages)) $page->langs = json_encode(zm_pb_lm_normalize_languages($pageLanguages), JSON_UNESCAPED_UNICODE);
         $settingsByLang = [];
-        // Load all language versions at once (to avoid multiple queries)
-        if( ZM_PB_ENABLE_LANG_ROUTE ){
-            $page_settings = Capsule::table('zm_pb_pages_settings')
-                ->where('page_id', $page->id)
-                ->where('lang_active', true)
-                ->get();
-
-            foreach ($page_settings as $page_setting) {
-                if( !is_null($page_setting->settings) ) {
-                    $decoded = json_decode($page_setting->settings,true);
-                    if (is_array($decoded)) $page_setting->settings = (object) $decoded;
-                }
-                $settingsByLang[$page_setting->lang] = $page_setting;
+        foreach (Capsule::table('zm_pb_pages_settings')->where('page_id', $page->id)
+            ->where('lang_active', true)->get() as $page_setting) {
+            $storedLanguage = $page_setting->lang;
+            $language = zm_pb_lm_supported_key(strtolower((string) $storedLanguage));
+            if (!isset(ZM_PB_LANGS[$language])) continue;
+            if (!is_null($page_setting->settings)) {
+                $decoded = json_decode($page_setting->settings, true);
+                if (is_array($decoded)) $page_setting->settings = (object) $decoded;
             }
-        } else {
-
+            $page_setting->lang = $language;
+            if (!isset($settingsByLang[$language]) || $storedLanguage === $language)
+                $settingsByLang[$language] = $page_setting;
+        }
+        if (!ZM_PB_ENABLE_LANG_ROUTE) {
             $lang = '';
             if( isset($_SESSION['Language'])) $lang = $_SESSION['Language'];
             elseif( isset($_SESSION['uid']) ) $lang = Capsule::table('tblclients')->where('id', $_SESSION['uid'])->value('language');
             else $lang = ZM_PB_DEFLANG;
-
-            $page_settings = Capsule::table('zm_pb_pages_settings')
-                ->where('page_id', $page->id)
-                ->where('lang', $lang)
-                ->where('lang_active', true)
-                ->first();
-            if (!$page_settings && $lang !== ZM_PB_DEFLANG) {
-                $page_settings = Capsule::table('zm_pb_pages_settings')
-                    ->where('page_id', $page->id)
-                    ->where('lang', ZM_PB_DEFLANG)
-                    ->where('lang_active', true)
-                    ->first();
-            }
-            if (!$page_settings) {
-                $page_settings = Capsule::table('zm_pb_pages_settings')
-                    ->where('page_id', $page->id)
-                    ->where('lang_active', true)
-                    ->first();
-            }
-            if( $page_settings && !is_null($page_settings->settings) ) {
-                $decoded = json_decode($page_settings->settings,true);
-                if (is_array($decoded)) $page_settings->settings = (object) $decoded;
-            }
-            if ($page_settings) $settingsByLang[$page_settings->lang] = $page_settings;
+            $lang = zm_pb_lm_supported_key(strtolower((string) $lang));
+            $chosen = $settingsByLang[$lang] ?? $settingsByLang[ZM_PB_DEFLANG] ??
+                ($settingsByLang ? reset($settingsByLang) : null);
+            $settingsByLang = $chosen ? [$chosen->lang => $chosen] : [];
         }
         
 
@@ -261,11 +242,27 @@ if (!function_exists('zm_pb_load_page_by_slug')) {
     }
 }
 
+/** Keep a saved translation when an editor starts using its corrected language key. */
+if (!function_exists('zm_pb_adopt_page_language')) {
+    function zm_pb_adopt_page_language(int $pageId, string $language): void {
+        $target = Capsule::table('zm_pb_pages_settings')->where('page_id', $pageId)->where('lang', $language);
+        if ($target->exists()) return;
+        foreach (zm_pb_lm_language_keys($language) as $old) {
+            if ($old === $language) continue;
+            $source = Capsule::table('zm_pb_pages_settings')->where('page_id', $pageId)->where('lang', $old);
+            if ($source->exists()) {
+                $source->update(['lang' => $language]);
+                return;
+            }
+        }
+    }
+}
+
 /**
  * Resolves the settings (language version) for the request.
  *  - If a specific lang prefix was requested and that version exists  -> use it
- *  - If a specific lang prefix was requested but version is missing   -> redirect to default lang URL (no prefix)
- *  - No prefix requested (default lang URL)                            -> use ZM_PB_DEFLANG version,
+ *  - If a non-default lang prefix has no version                       -> redirect to the default language URL
+ *  - Default language URL                                               -> use ZM_PB_DEFLANG version,
  *    fallback to any existing version if default is missing
  */
 if (!function_exists('zm_pb_resolve_page_settings')) {
@@ -277,12 +274,12 @@ if (!function_exists('zm_pb_resolve_page_settings')) {
         // Map of url lang codes => internal lang names
         $langCodes = [];
         foreach (ZM_PB_LANGS as $langName => $langInfo) {
-            $langCodes[$langInfo['code_ISO639_1']] = $langName;
+            $langCodes[$langInfo['route_code']] = $langName;
         }
 
         $allSettings = $pageData['settings'];
 
-        if ($urlLang !== '') {
+        if ($urlLang !== '' && isset($langCodes[$urlLang])) {
             $langName = $langCodes[$urlLang];
 
             // Requested language version exists -> use it
@@ -290,7 +287,12 @@ if (!function_exists('zm_pb_resolve_page_settings')) {
                 return $allSettings[$langName];
             }
 
-            // Requested language version missing -> redirect to default lang version (URL without prefix)
+            // The default language may have a prefix; keep the usual fallback.
+            if ($langName === $defaultLang) {
+                return $allSettings ? reset($allSettings) : null;
+            }
+
+            // Requested language version missing -> redirect to the default language URL.
             require_once __DIR__ . '/page_urls.php';
             $targetUrl = zm_pb_module_page_url($pageData['page']->slug);
             header('Location: ' . $targetUrl, true, 302);
@@ -374,6 +376,12 @@ if (!function_exists('zm_pb_parse_request')) {
         }
         if (($_GET['m'] ?? null) === ZM_PB_NAME && is_string($moduleLang)) {
             $result['lang'] = preg_replace('/[^a-z0-9\-]/i', '', $moduleLang);
+            foreach (ZM_PB_LANGS as $info) {
+                if (strcasecmp($result['lang'], $info['route_code']) === 0) {
+                    $result['lang'] = $info['route_code'];
+                    break;
+                }
+            }
         }
         if (($_GET['m'] ?? null) === ZM_PB_NAME && is_string($moduleSlug)) {
             $parsed = $result;
@@ -387,12 +395,12 @@ if (!function_exists('zm_pb_parse_request')) {
             // Map of url lang codes => internal lang names
             $langCodes = [];
             foreach (ZM_PB_LANGS as $langName => $langInfo) {
-                $langCodes[$langInfo['code_ISO639_1']] = $langName;
+                $langCodes[strtolower($langInfo['route_code'])] = $langName;
             }
 
             // First segment might be a language code
             if (!empty($segments) && isset($langCodes[zm_pb_stlc($segments[0])])) {
-                $result['lang'] = zm_pb_stlc($segments[0]);
+                $result['lang'] = ZM_PB_LANGS[$langCodes[zm_pb_stlc($segments[0])]]['route_code'];
                 array_shift($segments);
             }
 
@@ -473,8 +481,8 @@ if (!function_exists('zm_pb_content_error')) {
 }
 
 if (!function_exists('zm_pb_save_grapes_content')) {
-    function zm_pb_save_grapes_content($pageId, $lang, $rawContent, $writeAsset = null) {
-        if (!isset(ZM_PB_LANGS[$lang])) throw new InvalidArgumentException(zm_pb_content_error('unsupported_language'));
+    function zm_pb_save_grapes_content($pageId, $lang, $rawContent, $writeAsset = null, ?array $allowedLanguages = null) {
+        if (!isset(($allowedLanguages ?? ZM_PB_LANGS)[$lang])) throw new InvalidArgumentException(zm_pb_content_error('unsupported_language'));
         if (!is_string($rawContent) || trim($rawContent) === '') return '';
 
         if (strncmp($rawContent, 'zm_pb_b64:', 10) === 0) {

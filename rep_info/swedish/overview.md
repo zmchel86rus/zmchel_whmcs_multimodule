@@ -1,10 +1,14 @@
 # Gratis multimodul för WHMCS
 
-**Innan du använder modulen måste du skapa unika salts och lägga dem i `module_init.php`**: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` och `ZM_PB_NONCE_SALT`.
-
-Modulen utvecklades och testades med **WHMCS 8.13.1–8.13.7**. PHP-kompatibilitet kontrollerades för **7.4–8.5**. Apache stöds fullt ut. Modulen kan även fungera med Nginx, men språkstyrningen på startsidan kan kräva ytterligare inställningar.
-
 **zmchel WHMCS Multimodule är gratis.** Den innehåller en visuell sidredigerare, flerspråkigt innehåll, menyer, mediebibliotek, SEO-fält, XML-webbplatskartor, omdirigeringar, omskrivningsregler samt import och export. Läs [instruktionerna](instruction.md).
+
+## Före första användningen
+
+**Öppna Modulinställningar → Språk som stöds och aktivera de språk du behöver innan du börjar använda modulen.**
+
+Vid varje aktivering skapar modulen automatiskt nya saltvärden och skriver dem till `module_init.php` (`ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT`, `ZM_PB_NONCE_SALT`). Kontrollera att alla tre saltvärden är ifyllda.
+
+Modulen utvecklades och testades med **WHMCS 8.13.0–9.1.0**. PHP-kompatibilitet kontrollerades för **7.4–8.5**. Apache stöds fullt ut. Modulen kan även fungera med Nginx, men språkstyrningen på startsidan kan kräva ytterligare inställningar.
 
 ## Framtida utveckling
 
@@ -13,9 +17,10 @@ Modulen utvecklades och testades med **WHMCS 8.13.1–8.13.7**. PHP-kompatibilit
 - Lägga till behörighetshantering i administrationen.
 - Utöka standardspråken i `supported_langs.php`.
 - Skapa en kodredigerare för modulens `.tpl`-filer och WHMCS klientteman.
-- Skapa en språkfilshanterare för modulen, andra moduler och WHMCS.
+- ~~Skapa en språkfilshanterare för modulen, andra moduler och WHMCS.~~
 - Förbättra mediehanteraren och bygga en mer komplett SEO-hanterare.
-- Lägga till flerspråkiga webbplatskartor och en HTML-sida med webbplatskarta.
+- ~~Lägga till flerspråkiga webbplatskartor och en HTML-sida med webbplatskarta.~~
+- Lägga till en HTML-sida för webbplatskartan.
 - Lägga till användningsstatistik i sidhanteraren.
 - Lägga till minifiering av JS/CSS/HTML, sidcache och tabelloptimering.
 - Skapa ett ordentligt uppdateringssystem.

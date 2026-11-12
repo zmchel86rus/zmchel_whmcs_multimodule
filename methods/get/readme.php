@@ -5,15 +5,34 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 
     $smarty->assign('readme_html', '');
     $doc = isset($_GET['doc']) && is_string($_GET['doc']) ? $_GET['doc'] : '';
-    $readmeLanguage = array_key_exists(ZM_PB_ADMINLANGNAME, ZM_PB_LANGS) ? ZM_PB_ADMINLANGNAME : 'english';
-    $availableDocs = ['menus', 'pagination', 'redirects', 'sitemaps', 'smarty', 'structured-data', 'transfer'];
+    $aliases = zm_pb_lm_filename_aliases();
+    $requestedLanguage = ZM_PB_ADMIN_CLIENT_LANGNAME;
+    $canonicalLanguage = $aliases[$requestedLanguage] ?? $requestedLanguage;
+    $readmeLanguage = isset(ZM_PB_LANGS[$canonicalLanguage]) ? $canonicalLanguage
+        : (isset(ZM_PB_LANGS[$requestedLanguage]) ? $requestedLanguage : 'english');
+    $availableDocs = [
+        'pages_manager', 'pages_editor', 'pages_editor_pagination', 'pages_editor_smarty',
+        'media_manager', 'menu_manager', 'redirects_manager', 'langs_manager',
+        'sitemap_manager', 'module_db', 'module_settings', 'module_settings_transfer',
+        'rewrite_manager', 'module_structured_data',
+    ];
     $isAdditionalDoc = in_array($doc, $availableDocs, true);
     $relativePath = $isAdditionalDoc ? 'docs/' . $doc . '.md' : 'instruction.md';
-    $readmePath = ZM_PB_ROOTDIR . 'rep_info/' . $readmeLanguage . '/' . $relativePath;
-    if (!is_readable($readmePath)) {
-        $readmePath = ZM_PB_ROOTDIR . 'rep_info/english/' . $relativePath;
+    $legacyName = array_search($readmeLanguage, $aliases, true);
+    $preferredName = defined('ZM_PB_ADMINLANGNAME') ? ZM_PB_ADMINLANGNAME : $requestedLanguage;
+    if (!is_string($preferredName) || !preg_match('/^[a-z0-9_-]+$/D', $preferredName))
+        $preferredName = $readmeLanguage;
+    $readmePath = null;
+    foreach (array_unique([$preferredName, $readmeLanguage, $aliases[$readmeLanguage] ?? null,
+        $legacyName ?: null, 'english']) as $name) {
+        if ($name === null) continue;
+        $candidate = ZM_PB_ROOTDIR . 'rep_info/' . $name . '/' . $relativePath;
+        if (is_readable($candidate)) {
+            $readmePath = $candidate;
+            break;
+        }
     }
-    $markdown = is_readable($readmePath) ? file_get_contents($readmePath) : false;
+    $markdown = $readmePath !== null ? file_get_contents($readmePath) : false;
     if ($markdown === false) {
         $smarty->assign('alertType', 'danger');
         $smarty->assign('alertMessage', ($GLOBALS['ZM_PB_ADMINLANG'])->module->instruction_error);
@@ -30,8 +49,11 @@ use Illuminate\Database\Capsule\Manager as Capsule;
             $slug = preg_replace('/[^\p{L}\p{N}\s-]/u', '', $slug);
             return trim(preg_replace('/[\s-]+/u', '-', $slug), '-');
         };
-        $parser->url_filter_func = static function ($url) {
-            if (preg_match('~^(?:\.\./english/)?docs/([a-z0-9-]+)\.md$~D', $url, $matches)) {
+        $parser->url_filter_func = static function ($url) use ($availableDocs, $isAdditionalDoc) {
+            $pattern = $isAdditionalDoc
+                ? '~^([a-z0-9_]+)\.md$~D'
+                : '~^(?:\.\./english/)?docs/([a-z0-9_]+)\.md$~D';
+            if (preg_match($pattern, $url, $matches) && in_array($matches[1], $availableDocs, true)) {
                 return 'addonmodules.php?module=' . rawurlencode(ZM_PB_NAME) . '&subpage=README.md&doc=' . rawurlencode($matches[1]);
             }
             return preg_match('~^(?:#[^\s]*|https?://[^\s]+)$~iD', $url) ? $url : '#';

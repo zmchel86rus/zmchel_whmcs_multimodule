@@ -11,15 +11,40 @@ global $CONFIG;
  * Numbers from '0' to '9'
  * Letters from 'a' to 'Z'
  * Special chars @ | { } - _ [ ] ( ) * ! + , . & ` = : ; / < >
- * 
+ *
  * Salt Length >= 64
+ * Activation replaces these salts with new random values.
  */
 if (!defined('ZM_PB_ADMIN_SALT')) define('ZM_PB_ADMIN_SALT', '');
 if (!defined('ZM_PB_SECURE_SALT')) define('ZM_PB_SECURE_SALT', '');
 if (!defined('ZM_PB_NONCE_SALT')) define('ZM_PB_NONCE_SALT', '');
 ### SALTS CONSTS ###
 
-if (!defined('ZM_PB_DEFLANG')) define('ZM_PB_DEFLANG', strtolower($CONFIG['Language'] ?? 'english') );
+$moduleSupportedLanguages = require __DIR__ . '/supported_langs.php';
+$defaultAliases = ['ukranian' => 'ukrainian', 'portugues' => 'portuguese-pt',
+    'portuguese' => 'portuguese-pt', 'portugues-br' => 'portuguese-br'];
+foreach ($defaultAliases as $old => $new) {
+    if ($old !== $new && isset($moduleSupportedLanguages[$old], $moduleSupportedLanguages[$new]))
+        unset($moduleSupportedLanguages[$old]);
+}
+$moduleAvailableLanguages = $moduleSupportedLanguages + (require __DIR__ . '/disabled_langs.php');
+$cmsDefaultLanguage = strtolower((string) ($CONFIG['Language'] ?? 'english'));
+$canonicalDefault = $defaultAliases[$cmsDefaultLanguage] ?? $cmsDefaultLanguage;
+$legacyDefaults = array_keys($defaultAliases, $canonicalDefault, true);
+if (isset($moduleSupportedLanguages[$canonicalDefault])) $cmsDefaultLanguage = $canonicalDefault;
+elseif (!isset($moduleSupportedLanguages[$cmsDefaultLanguage])) {
+    $matchedLegacyDefault = false;
+    foreach ($legacyDefaults as $legacyDefault) {
+        if (isset($moduleSupportedLanguages[$legacyDefault])) {
+            $cmsDefaultLanguage = $legacyDefault;
+            $matchedLegacyDefault = true;
+            break;
+        }
+    }
+    if (!$matchedLegacyDefault && isset($moduleAvailableLanguages[$canonicalDefault]))
+        $cmsDefaultLanguage = $canonicalDefault;
+}
+if (!defined('ZM_PB_DEFLANG')) define('ZM_PB_DEFLANG', $cmsDefaultLanguage);
 if (!defined('ZM_PB_ALLOWED_CONSTS_CHANGE')) define('ZM_PB_ALLOWED_CONSTS_CHANGE', [
     'ZM_PB_CHECK_SUPERADM',
     'ZM_PB_PRETTY_URLS',
@@ -36,6 +61,7 @@ if (!defined('ZM_PB_ALLOWED_CONSTS_CHANGE')) define('ZM_PB_ALLOWED_CONSTS_CHANGE
 
     'ZM_PB_ENABLE_PAGE_OVERRIDES',
     'ZM_PB_ENABLE_LANG_ROUTE',
+    'ZM_PB_ENABLE_DEFAULT_LANG_ROUTE',
     'ZM_PB_ENABLE_SITEMAP',
     'ZM_PB_ENABLE_REDIRECTS_MANAGER',
     'ZM_PB_ENABLE_MAINNAV',
@@ -53,7 +79,7 @@ if (!defined('ZM_PB_ALLOWED_CONSTS_CHANGE')) define('ZM_PB_ALLOWED_CONSTS_CHANGE
 ### INFO CONSTS ###
 if (!defined('ZM_PB_SUPERADM_ID')) define('ZM_PB_SUPERADM_ID', 1 );
 if (!defined('ZM_PB_FREFIX')) define('ZM_PB_FREFIX', 'ZM_PB_' );
-if (!defined('ZM_PB_VER')) define('ZM_PB_VER', '1.0.0' );
+if (!defined('ZM_PB_VER')) define('ZM_PB_VER', '1.1.1' );
 if (!defined('ZM_PB_NAME')) define('ZM_PB_NAME', basename(__DIR__) );
 ### INFO CONSTS ###
 
@@ -70,11 +96,22 @@ if (!defined('ZM_PB_INCMODULEDIR')) define('ZM_PB_INCMODULEDIR', ZM_PB_INCDIR . 
 if (!defined('ZM_PB_LIBDIR')) define('ZM_PB_LIBDIR', ZM_PB_ROOTDIR . 'lib/' );
 if (!defined('ZM_PB_RESOURCESDIR')) define('ZM_PB_RESOURCESDIR', ZM_PB_ROOTDIR . 'resources/' );
 if (!defined('ZM_PB_ASSETSDIR')) define('ZM_PB_ASSETSDIR', ZM_PB_ROOTDIR . 'assets/' );
-if (!defined('ZM_PB_ALANGDIR')) define('ZM_PB_ALANGDIR', ZM_PB_ROOTDIR . 'admin_lang/' ); // saved as object
+if (!defined('ZM_PB_ALANGDIR')) define('ZM_PB_ALANGDIR', ZM_PB_ROOTDIR . 'admin_lang/' );
 if (!defined('ZM_PB_CLIENTSIDE_DIR')) define('ZM_PB_CLIENTSIDE_DIR', 'client_side/' );
 if (!defined('ZM_PB_CRUTCH_CLIENTSIDE_DIR')) define('ZM_PB_CRUTCH_CLIENTSIDE_DIR', '../../'.ZM_PB_ROOTDIR_INNER. 'templates/'.ZM_PB_CLIENTSIDE_DIR );
 if (!defined('ZM_PB_SCHEMAS_DIR')) define('ZM_PB_SCHEMAS_DIR', ZM_PB_ASSETSDIR.'schemas/' );
 ### DIRS CONSTS ###
+
+// Restore the WHMCS default language when an existing installation receives the new disabled-by-default lists.
+if (!$moduleSupportedLanguages) {
+    require_once ZM_PB_INCDIR . 'module_languages.php';
+    try {
+        zm_pb_module_languages_enable_default(ZM_PB_ROOTDIR, ZM_PB_DEFLANG);
+        $moduleSupportedLanguages = require __DIR__ . '/supported_langs.php';
+    } catch (Throwable $error) {
+        error_log('zmchel WHMCS Multimodule: cannot enable the default language: ' . $error->getMessage());
+    }
+}
 
 require_once ZM_PB_INCDIR.'editable_consts.php';
 
@@ -123,7 +160,7 @@ if (!defined('ZM_PB_FULLHOST')) define('ZM_PB_FULLHOST', rtrim(strtolower($CONFI
 ### SUP MODULE CONSTS ###
 if (!defined('ZM_PB_ACCEPTED_METHODS')) define('ZM_PB_ACCEPTED_METHODS', ['GET','POST','DELETE'] );
 if (!defined('ZM_PB_ACCEPTED_OVERRIDES')) define('ZM_PB_ACCEPTED_OVERRIDES', ['full','partial_before','partial_after','meta_only','partial_before_meta','partial_after_meta'] );
-if (!defined('ZM_PB_SUBPAGES')) define('ZM_PB_SUBPAGES', ['pages_manager','pages_editor','sitemap_manager','media_manager','menu_manager','rewrite_manager','redirects_manager','module_db','module_settings',/*'module_logs','code_editor','langs_editor',*/] );
+if (!defined('ZM_PB_SUBPAGES')) define('ZM_PB_SUBPAGES', ['pages_manager','pages_editor','media_manager','menu_manager','redirects_manager','langs_manager','sitemap_manager','module_db','module_settings','rewrite_manager',/*'module_logs','code_editor',*/] );
 if (!defined('ZM_PB_PAGE_BLOCK_EDITOR_TOOLS')) define('ZM_PB_PAGE_BLOCK_EDITOR_TOOLS', ['auth_zone', 'not_auth_zone', 'mixed_auth_zone', 'tinymce', 'paragraph', 'image', 'video', 'link', 'button', 'map', 'divider', 'spacer', 'flex', 'grid', 'carousel', 'custom_js', 'custom_css', 'smarty_variable']);
 ### SUP MODULE CONSTS ###
 
@@ -159,10 +196,12 @@ if ($adminId) {
     $adminlang = $admin->language ?? ZM_PB_DEFLANG ?? 'english';
 }
 $adminlang = strtolower((string) $adminlang);
-if ($adminlang === 'ukrainian') $adminlang = 'ukranian'; // Existing language file and supported_langs.php key.
-
+if (!preg_match('/^[a-z0-9_-]+$/D', $adminlang)) $adminlang = 'english';
 ### SUP MODULE LANGS CONSTS ###
-if (!defined('ZM_PB_LANGS')) define('ZM_PB_LANGS', ( require_once ZM_PB_ROOTDIR.'supported_langs.php') );
+if (!defined('ZM_PB_LANGS')) define('ZM_PB_LANGS', $moduleSupportedLanguages);
+require_once ZM_PB_INCDIR . 'language_manager.php';
+$adminClientLanguage = zm_pb_lm_supported_key($adminlang);
+$adminlang = zm_pb_lm_name(['kind' => 'self', 'directory' => ZM_PB_ALANGDIR], $adminlang);
 if (!isset($GLOBALS['ZM_PB_ADMINLANG']) && defined('ZM_PB_ALANGDIR')){
     $admin_lang_file = ZM_PB_ALANGDIR . $adminlang.'.php';
     if( !file_exists($admin_lang_file) ){
@@ -171,16 +210,23 @@ if (!isset($GLOBALS['ZM_PB_ADMINLANG']) && defined('ZM_PB_ALANGDIR')){
     } elseif (filesize($admin_lang_file) === 0) {
         $admin_lang_file = ZM_PB_ALANGDIR . 'english.php';
     }
-    $admin_lang_data = require $admin_lang_file;
+    $admin_lang_data = zm_pb_lm_own($adminlang);
+    zm_pb_lm_apply_runtime_tokens($admin_lang_data);
     foreach (ZM_PB_LANGS as $languageKey => $languageInfo) {
         if (!isset($admin_lang_data->module->supported_langs->translate->$languageKey)) {
-            $admin_lang_data->module->supported_langs->translate->$languageKey = $languageInfo['name'];
+            $aliases = zm_pb_lm_filename_aliases();
+            $legacyKey = $aliases[$languageKey] ?? array_search($languageKey, $aliases, true);
+            $admin_lang_data->module->supported_langs->translate->$languageKey =
+                $legacyKey !== false && isset($admin_lang_data->module->supported_langs->translate->$legacyKey)
+                    ? $admin_lang_data->module->supported_langs->translate->$legacyKey : $languageInfo['name'];
         }
     }
     $GLOBALS['ZM_PB_ADMINLANG'] = $admin_lang_data;
     if (PHP_VERSION_ID >= 80000 && !defined('ZM_PB_ADMINLANG')) define('ZM_PB_ADMINLANG', $admin_lang_data);
 }
 if (!defined('ZM_PB_ADMINLANGNAME')) define('ZM_PB_ADMINLANGNAME', $adminlang );
+$adminClientLanguage = zm_pb_lm_supported_key($adminlang);
+if (!defined('ZM_PB_ADMIN_CLIENT_LANGNAME')) define('ZM_PB_ADMIN_CLIENT_LANGNAME', $adminClientLanguage);
 ### SUP MODULE LANGS CONSTS ###
 unset($adminId);
 

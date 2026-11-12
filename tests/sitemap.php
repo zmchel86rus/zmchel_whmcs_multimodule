@@ -28,10 +28,10 @@ define('ZM_PB_ENABLE_PAGE_OVERRIDES', !in_array('--overrides-off', $argv, true))
 define('ZM_PB_MAINSYSTEM_DEFAULT_PAGES', ['index', 'contact', 'announcements', 'knowledgebase']);
 define('ZM_PB_ACCEPTED_OVERRIDES', ['full', 'partial_before', 'partial_after', 'meta_only', 'partial_before_meta', 'partial_after_meta']);
 define('ZM_PB_LANGS', [
-    'english' => ['code_lower' => 'en', 'code_ISO639_1' => 'en'],
-    'russian' => ['code_lower' => 'ru', 'code_ISO639_1' => 'ru'],
-    'german' => ['code_lower' => 'de', 'code_ISO639_1' => 'de'],
-    'ukranian' => ['code_lower' => 'uk', 'code_ISO639_1' => 'uk'],
+    'english' => ['code_lower' => 'en', 'route_code' => 'en', 'code_ISO639_1' => 'en'],
+    'russian' => ['code_lower' => 'ru', 'route_code' => 'ru', 'code_ISO639_1' => 'ru'],
+    'german' => ['code_lower' => 'de', 'route_code' => 'de', 'code_ISO639_1' => 'de'],
+    'ukranian' => ['code_lower' => 'uk', 'route_code' => 'uk', 'code_ISO639_1' => 'uk'],
 ]);
 $GLOBALS['ZM_PB_ADMINLANG'] = require $module . 'admin_lang/russian.php';
 require $module . 'inc/helpers.php';

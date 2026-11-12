@@ -19,6 +19,30 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 
     } else {
         if( empty($method_action) ){
+            require_once ZM_PB_INCDIR . 'directory_health.php';
+            $directoryText = $GLOBALS['ZM_PB_ADMINLANG']->module_settings->directory_check ?? null;
+            $smarty->assign('directory_health_title', $directoryText->title ?? 'Possible file access issues');
+            $smarty->assign('directory_health_issues', zm_pb_directory_health_messages(
+                zm_pb_directory_health_check(), $directoryText
+            ));
+            require_once ZM_PB_INCDIR . 'module_languages.php';
+            $languageLists = zm_pb_module_languages_state(ZM_PB_ROOTDIR);
+            $languageLabels = (array) ($GLOBALS['ZM_PB_ADMINLANG']->module->supported_langs->translate ?? []);
+            $defaultLanguage = strtolower(ZM_PB_DEFLANG);
+            $languageText = $GLOBALS['ZM_PB_ADMINLANG']->module_settings->languages;
+            $languageGroups = [];
+            foreach (['enabled', 'disabled'] as $state) {
+                $rows = [];
+                foreach ($languageLists[$state] as $key => $info) {
+                    $rows[] = ['key' => $key, 'title' => $languageLabels[$key] ?? $info['name'],
+                        'default' => $key === $defaultLanguage];
+                }
+                $languageGroups[] = ['state' => $state, 'title' => $languageText->$state,
+                    'operation' => $state === 'enabled' ? 'disable' : 'enable',
+                    'count' => count($rows), 'rows' => $rows];
+            }
+            $smarty->assign('module_language_groups', $languageGroups);
+            $smarty->assign('module_languages_can_edit', $isSuperAdmin);
         
             $editable_consts_main = [];
             $editable_consts_sitemap = [];

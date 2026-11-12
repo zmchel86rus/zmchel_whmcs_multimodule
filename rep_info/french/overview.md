@@ -1,10 +1,14 @@
 # Multimodule gratuit pour WHMCS
 
-**Avant toute utilisation, générez des sels uniques et placez-les dans `module_init.php`** : `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` et `ZM_PB_NONCE_SALT`.
-
-Le module a été développé et testé avec **WHMCS 8.13.1 à 8.13.7**. Sa compatibilité PHP a été vérifiée de **7.4 à 8.5**. Il prend entièrement en charge Apache. Il peut aussi fonctionner avec Nginx, mais le routage des langues sur la page d’accueil peut nécessiter une configuration supplémentaire.
-
 **zmchel WHMCS Multimodule est gratuit.** Il réunit un éditeur visuel de pages, des contenus multilingues, des menus, une médiathèque, des champs SEO, des plans de site XML, des redirections, des règles de réécriture et l’importation/exportation. Consultez les [instructions](instruction.md).
+
+## Avant la première utilisation
+
+**Avant la première utilisation, ouvrez Paramètres du module → Langues prises en charge et activez les langues nécessaires.**
+
+À chaque activation, le module génère automatiquement de nouveaux sels et les écrit dans `module_init.php` (`ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT`, `ZM_PB_NONCE_SALT`). Vérifiez que les trois valeurs de sel sont renseignées.
+
+Le module a été développé et testé avec **WHMCS 8.13.0 à 9.1.0**. Sa compatibilité PHP a été vérifiée de **7.4 à 8.5**. Il prend entièrement en charge Apache. Il peut aussi fonctionner avec Nginx, mais le routage des langues sur la page d’accueil peut nécessiter une configuration supplémentaire.
 
 ## Évolutions envisagées
 
@@ -13,9 +17,10 @@ Le module a été développé et testé avec **WHMCS 8.13.1 à 8.13.7**. Sa comp
 - Ajouter une gestion des droits d’accès dans l’administration.
 - Étendre les langues proposées par défaut dans `supported_langs.php`.
 - Ajouter un éditeur de code pour les fichiers `.tpl` du module et les thèmes clients de WHMCS.
-- Ajouter un gestionnaire des fichiers de langue du module, des autres modules et de WHMCS.
+- ~~Ajouter un gestionnaire des fichiers de langue du module, des autres modules et de WHMCS.~~
 - Améliorer la médiathèque et créer un gestionnaire SEO plus complet.
-- Rendre la génération de plans de site multilingue et proposer un plan de site HTML.
+- ~~Rendre la génération de plans de site multilingue et proposer un plan de site HTML.~~
+- Ajouter une page HTML du sitemap.
 - Ajouter des statistiques d’utilisation au gestionnaire de pages.
 - Ajouter la minification JS/CSS/HTML, un cache de pages et l’optimisation des tables.
 - Mettre en place un véritable système de mises à jour.

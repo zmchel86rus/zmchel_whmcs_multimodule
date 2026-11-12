@@ -1,10 +1,14 @@
 # Bezplatný multimodul pro WHMCS
 
-**Před použitím modulu vygenerujte jedinečné soli a vložte je do `module_init.php`**: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` a `ZM_PB_NONCE_SALT`.
-
-Modul byl vyvinut a testován na **WHMCS 8.13.1–8.13.7**. Kompatibilita s PHP byla ověřena pro verze **7.4–8.5**. Apache je plně podporován. Modul může fungovat také na Nginxu, ale směrování jazyků na úvodní stránce může vyžadovat další nastavení.
-
 **zmchel WHMCS Multimodule je zdarma.** Obsahuje vizuální editor stránek, vícejazyčný obsah, nabídky, knihovnu médií, pole SEO, XML mapy webu, přesměrování, pravidla přepisování a import/export. Přečtěte si [návod](instruction.md).
+
+## Před prvním použitím
+
+**Před prvním použitím otevřete Nastavení modulu → Podporované jazyky a zapněte jazyky, které potřebujete.**
+
+Při každé aktivaci modul automaticky vytvoří nové soli a zapíše je do `module_init.php` (`ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT`, `ZM_PB_NONCE_SALT`). Ověřte, že jsou vyplněny všechny tři soli.
+
+Modul byl vyvinut a testován na **WHMCS 8.13.0–9.1.0**. Kompatibilita s PHP byla ověřena pro verze **7.4–8.5**. Apache je plně podporován. Modul může fungovat také na Nginxu, ale směrování jazyků na úvodní stránce může vyžadovat další nastavení.
 
 ## Plány do budoucna
 
@@ -13,9 +17,10 @@ Modul byl vyvinut a testován na **WHMCS 8.13.1–8.13.7**. Kompatibilita s PHP 
 - Přidat správu přístupových práv v administraci.
 - Rozšířit výchozí jazyky v `supported_langs.php`.
 - Vytvořit editor kódu pro soubory `.tpl` modulu a klientské šablony WHMCS.
-- Vytvořit správce jazykových souborů modulu, dalších modulů a WHMCS.
+- ~~Vytvořit správce jazykových souborů modulu, dalších modulů a WHMCS.~~
 - Vylepšit správce médií a vytvořit úplnějšího správce SEO.
-- Přidat vícejazyčné mapy webu a HTML stránku s mapou webu.
+- ~~Přidat vícejazyčné mapy webu a HTML stránku s mapou webu.~~
+- Přidat HTML stránku s mapou webu.
 - Přidat statistiky používání správce stránek.
 - Přidat minifikaci JS/CSS/HTML, mezipaměť celých stránek a optimalizaci tabulek.
 - Vytvořit řádný systém aktualizací.

@@ -21,12 +21,12 @@ $hooks = [];
 function add_hook($name, $priority, $callback) { $GLOBALS['hooks'][$name][$priority][] = $callback; }
 function check($value, $message) { if (!$value) throw new RuntimeException($message); }
 
-class LoadedDomains extends Illuminate\Support\Collection
+class LoadedRecords extends Illuminate\Support\Collection
 {
     public function toArray() { throw new RuntimeException('Serialization is forbidden'); }
     public function jsonSerialize() { throw new RuntimeException('Serialization is forbidden'); }
 }
-class LoadedDomain extends Illuminate\Database\Eloquent\Model
+class LoadedRecord extends Illuminate\Database\Eloquent\Model
 {
     public function getAttribute($key) { throw new RuntimeException('Lazy attribute access is forbidden'); }
     public function toArray() { throw new RuntimeException('Serialization is forbidden'); }
@@ -38,12 +38,12 @@ class DatabaseTrap
 }
 
 try {
-    $model = (new ReflectionClass(LoadedDomain::class))->newInstanceWithoutConstructor();
-    $property = new ReflectionProperty(LoadedDomain::class, 'attributes');
+    $model = (new ReflectionClass(LoadedRecord::class))->newInstanceWithoutConstructor();
+    $property = new ReflectionProperty(LoadedRecord::class, 'attributes');
     $property->setAccessible(true);
-    $property->setValue($model, ['domain' => 'LEAK_DOMAIN', 'email' => 'LEAK_EMAIL', 'password' => 'LEAK_PASSWORD']);
-    $domains = new LoadedDomains([$model, ['domain' => 'second.example']]);
-    $variables = ['template' => 'zmchel', 'templatefile' => 'homepage', 'registered_domains' => $domains,
+    $property->setValue($model, ['title' => 'LEAK_TITLE', 'email' => 'LEAK_EMAIL', 'password' => 'LEAK_PASSWORD']);
+    $records = new LoadedRecords([$model, ['title' => 'Second item']]);
+    $variables = ['template' => 'zmchel', 'templatefile' => 'homepage', 'catalog_items' => $records,
         'password' => 'LEAK_PASSWORD', 'content' => '<p>LEAK_HTML</p>', 'database' => new DatabaseTrap(),
         'nested' => ['phone' => 'LEAK_PHONE', 'data' => 'LEAK_NESTED']];
     mkdir($testDir . 'available_vars/legacy', 0750, true);
@@ -58,15 +58,15 @@ try {
     check(strpos($json, 'LEAK_') === false, 'Actual values leaked into the catalog');
     $catalog = $catalogs[0];
     check($catalog['variables']['password']['redacted'], 'Sensitive variable not marked');
-    check(isset($catalog['variables']['registered_domains']['children']['[]']['children']['domain']), 'Loaded collection/model structure missing');
-    check(count($catalog['variables']['registered_domains']['stages']) === 2, 'Stages were not merged');
+    check(isset($catalog['variables']['catalog_items']['children']['[]']['children']['title']), 'Loaded collection/model structure missing');
+    check(count($catalog['variables']['catalog_items']['stages']) === 2, 'Stages were not merged');
     check(is_file($testDir . 'available_vars/zmchel__homepage_smarty_vars.json'), 'Source/theme filename incorrect');
     check(is_file($testDir . 'available_vars/.htaccess'), 'Catalog directory unprotected');
 
-    $code = '{foreach $registered_domains as $item}<p>{$item.domain|escape}</p>{foreachelse}none{/foreach}';
+    $code = '{foreach $catalog_items as $item}<p>{$item.title|escape}</p>{foreachelse}none{/foreach}';
     ZM_PB_SmartyBlocks::validate($code);
     ZM_PB_SmartyBlocks::validate('<!-- ordinary HTML comment -->{* documented $obj->method() *}{literal}/* :: */{/literal}{$companyname}');
-    check(ZM_PB_SmartyBlocks::render($code, $variables) === '<p>LEAK_DOMAIN</p><p>second.example</p>', 'Loaded data cannot be rendered without lazy calls');
+    check(ZM_PB_SmartyBlocks::render($code, $variables) === '<p>LEAK_TITLE</p><p>Second item</p>', 'Loaded data cannot be rendered without lazy calls');
     $GLOBALS['smarty'] = new Smarty();
     $GLOBALS['smarty']->assignGlobal('global_object', new DatabaseTrap());
     check(ZM_PB_SmartyBlocks::render('{$global_object}', []) === '', 'Global live object was not shadowed');
@@ -105,21 +105,21 @@ try {
     // a few hundred rows, and could also starve every variable following it.
     $archiveRow = (object) array_merge(array_fill_keys(array_map(function ($i) {
         return 'metric_' . $i;
-    }, range(1, 60)), 123), ['domain_name' => 'middle.example', 'email' => 'DO_NOT_EXPOSE']);
+    }, range(1, 60)), 123), ['title' => 'Middle item', 'email' => 'DO_NOT_EXPOSE']);
     $archiveRows = array_fill(0, 15001, $archiveRow);
     $archiveRows[0] = clone $archiveRow;
-    $archiveRows[0]->domain_name = 'first.example';
+    $archiveRows[0]->title = 'First item';
     $archiveRows[15000] = clone $archiveRow;
-    $archiveRows[15000]->domain_name = 'last.example';
-    $archiveCode = '{$archive_rows|count}|{foreach $archive_rows as $record}{$record.domain_name};{/foreach}|{$after_archive}';
+    $archiveRows[15000]->title = 'Last item';
+    $archiveCode = '{$archive_rows|count}|{foreach $archive_rows as $record}{$record.title};{/foreach}|{$after_archive}';
     $archiveOutput = ZM_PB_SmartyBlocks::render($archiveCode, [
         'unrelated_list' => array_fill(0, 21000, 'unrelated'),
-        'archive_rows' => new LoadedDomains($archiveRows),
+        'archive_rows' => new LoadedRecords($archiveRows),
         'after_archive' => 'tail',
     ]);
-    check($archiveOutput === '15001|first.example;' . str_repeat('middle.example;', 14999) . 'last.example;|tail',
+    check($archiveOutput === '15001|First item;' . str_repeat('Middle item;', 14999) . 'Last item;|tail',
         'Large collection lost rows/fields or consumed another variable');
-    check(ZM_PB_SmartyBlocks::render('{$lot.email|default:"hidden"}', ['lot' => $archiveRow]) === 'hidden',
+    check(ZM_PB_SmartyBlocks::render('{$record.email|default:"hidden"}', ['record' => $archiveRow]) === 'hidden',
         'Complete runtime snapshots must still redact private data');
     $limit = 2;
     $limited = false;
@@ -130,7 +130,7 @@ try {
     $messages[] = 'PASS 15001 wide archive rows, variable independence and runtime redaction';
 
     // Build before native variables exist; resolve only after WHMCS footer hooks have populated them.
-    $expression = '{foreach $registered_domains as $item}<p>{$item.domain}</p>{/foreach}';
+    $expression = '{foreach $catalog_items as $item}<p>{$item.title}</p>{/foreach}';
     $html = '<section><h2>Before</h2><div data-zm-pb-smarty="' . htmlspecialchars($expression, ENT_QUOTES) . '"></div><h2>After</h2></section>';
     $html .= '<div data-zm-pb-auth="auth"><div data-zm-pb-smarty="{$secret}"></div></div>';
     $html .= '<div data-zm-pb-smarty="{lang key=&quot;account&quot;}"></div>';
@@ -143,14 +143,14 @@ try {
     // ClientArea can create its own engine after the builder has queued its blocks.
     $GLOBALS['smarty'] = new Smarty();
     foreach ($hooks['ClientAreaPage'] as $callbacks) foreach ($callbacks as $callback) check($callback([]) === [], 'Page hook must not output content');
-    $GLOBALS['smarty']->assign('registered_domains', new LoadedDomains([['domain' => '<late.example>']]));
+    $GLOBALS['smarty']->assign('catalog_items', new LoadedRecords([['title' => '<late item>']]));
     $GLOBALS['smarty']->assign('LANG', $englishCatalog);
     ksort($hooks['ClientAreaFooterOutput']);
     foreach ($hooks['ClientAreaFooterOutput'] as $callbacks) foreach ($callbacks as $callback) $callback([]);
     $GLOBALS['smarty']->assign('builder_content', $built);
     $rendered = $GLOBALS['smarty']->fetch('eval:{$builder_content}');
     check(ob_get_level() === $bufferLevel && ob_get_length() === 0, 'Template rendering emitted output before Laminas');
-    check(strpos($rendered, '<h2>Before</h2><p>&lt;late.example&gt;</p><h2>After</h2>') !== false, 'Late block rendered at the wrong place or without late data');
+    check(strpos($rendered, '<h2>Before</h2><p>&lt;late item&gt;</p><h2>After</h2>') !== false, 'Late block rendered at the wrong place or without late data');
     check(strpos($rendered, 'ZM_PB_SMARTY_') === false, 'Deferred placeholder leaked');
     check(strpos($rendered, 'data-zm-pb-auth') === false, 'Denied authorization block survived');
     check(strpos($rendered, $russianAccount) !== false, 'Queued Smarty lang used the profile language');
@@ -179,7 +179,7 @@ try {
         $handler = function () { throw new RuntimeException('Previous error handler was not replaced locally'); };
         set_error_handler($handler);
         try {
-            $badBlock = ZM_PB_SmartyBlocks::queue('{$registered_domains|escape}') . ZM_PB_SmartyBlocks::queue('{$undefined_variable}');
+            $badBlock = ZM_PB_SmartyBlocks::queue('{$catalog_items|escape}') . ZM_PB_SmartyBlocks::queue('{$undefined_variable}');
             $GLOBALS['smarty']->assign('bad_block', $badBlock);
             ob_start();
             $failed = $GLOBALS['smarty']->fetch('eval:<section>{$bad_block}</section>');

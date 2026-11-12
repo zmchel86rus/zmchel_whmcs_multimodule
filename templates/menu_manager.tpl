@@ -1,6 +1,6 @@
 {include file="./menus.tpl"}
 <div id="zm-pagebuilder" class="panel panel-default zm-pb-menu-manager">
-    <div class="panel-heading"><h3 class="panel-title">{$module_translates->menu_manager->title|escape}</h3></div>
+    <div class="panel-heading"><h3 class="panel-title">{$module_translates->{$subpage}->title|escape}</h3></div>
     <div class="panel-body">
         {if $alertHtml}{$alertHtml}{/if}
         {if !$menu_ready}
@@ -14,7 +14,7 @@
                 <option value="{$menu->id}"{if $menu_data.selected && $menu_data.selected->id == $menu->id} selected{/if}>{$menu->name|escape}</option>
                 {/foreach}
             </select>
-            <a href="addonmodules.php?module={$addonName|escape}&amp;subpage=menu_manager&amp;menu_id=0" class="btn btn-default">{$menu_manager_translates->new|escape}</a>
+            <a href="addonmodules.php?module={$addonName|escape}&amp;subpage={$subpage}&amp;menu_id=0" class="btn btn-default">{$menu_manager_translates->new|escape}</a>
         </div>
         <div class="zm-pb-menu-layout">
             <aside class="zm-pb-menu-sources">
@@ -44,7 +44,7 @@
             </aside>
             <form method="post" action="addonmodules.php" id="zm-pb-menu-editor" class="zm-pb-menu-form zm-pb-menu-edit">
                 <input type="hidden" name="module" value="{$addonName|escape}">
-                <input type="hidden" name="subpage" value="menu_manager">
+                <input type="hidden" name="subpage" value="{$subpage}">
                 <input type="hidden" name="action" value="save_menu">
                 <input type="hidden" name="menu_id" value="{if $menu_data.selected}{$menu_data.selected->id}{else}0{/if}">
                 <input type="hidden" name="zm_pb_forms_nonce" value="{$zm_pb_forms_nonce}">
@@ -90,5 +90,7 @@
         <script type="application/json" id="zm-pb-menu-editor-data">{$menu_editor_json nofilter}</script>
         {/if}
     </div>
+    <hr>
+    <a class="d-block pd-2" href="{$main_host_url}admin/addonmodules.php?module={$addonName|escape}&amp;subpage=README.md&amp;doc={$subpage}" target="_blank">{$module_translates->instruction|escape} - {$module_translates->{$subpage}->title|escape}</a>
 </div>
 {$page_assets}

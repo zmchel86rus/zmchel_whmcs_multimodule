@@ -1,13 +1,16 @@
 <?php
 /** Isolated rewrite-manager persistence test; writes only to a temporary directory. */
 define('ZM_PB_VER', 'test');
+define('ZM_PB_NAME', 'zmchel_whmcs_multimodule');
 $directory = sys_get_temp_dir() . '/zm-pb-rewrite-test-' . bin2hex(random_bytes(6));
 if (!mkdir($directory, 0700)) throw new RuntimeException('Unable to create test directory');
 define('ROOTDIR', $directory);
 define('ZM_PB_INCDIR', $directory . '/');
 $GLOBALS['ZM_PB_ADMINLANG'] = (object) ['rewrite_manager' => (object) ['custom' => 'Custom']];
 define('ZM_PB_ENABLE_LANG_ROUTE', !in_array('--routes-off', $argv, true));
-define('ZM_PB_LANGS', require dirname(__DIR__) . '/supported_langs.php');
+define('ZM_PB_ENABLE_DEFAULT_LANG_ROUTE', in_array('--default-route', $argv, true));
+define('ZM_PB_LANGS', (require dirname(__DIR__) . '/supported_langs.php') +
+    (require dirname(__DIR__) . '/disabled_langs.php'));
 define('ZM_PB_DEFLANG', 'english');
 define('ZM_PB_FULLHOST', 'https://example.test/billing/');
 define('ZM_PB_PRETTY_URLS', true);
@@ -17,7 +20,7 @@ require dirname(__DIR__) . '/inc/url_redirects.php';
 
 try {
     if (zm_pb_slash_redirect_target('//billing/contact.php?count=25') !== '/billing/contact.php?count=25'
-        || zm_pb_slash_redirect_target('//billing//example.org/') !== '/billing/example.org/'
+        || zm_pb_slash_redirect_target('//billing//guide/') !== '/billing/guide/'
         || zm_pb_slash_redirect_target('/billing//contact.php?count=25') !== '/billing/contact.php?count=25'
         || zm_pb_slash_redirect_target('/billing/ru///contact.php?next=https%3A%2F%2Fexample.test%2Fa%2Fb')
             !== '/billing/ru/contact.php?next=https%3A%2F%2Fexample.test%2Fa%2Fb'
@@ -43,28 +46,50 @@ try {
         throw new RuntimeException('PHP page canonical target is wrong');
     }
     if (ZM_PB_ENABLE_LANG_ROUTE) {
+        if (ZM_PB_ENABLE_DEFAULT_LANG_ROUTE) {
+            if (zm_pb_default_language_redirect_target('/billing/en/contact/') !== null
+                || zm_pb_language_switch_target('/billing/contact/?language=english', ['language' => 'english']) !== '/billing/en/contact/'
+                || zm_pb_language_switch_target('/billing/?m=' . ZM_PB_NAME . '&slug=samplepage&language=english&sort=new',
+                    ['m' => ZM_PB_NAME, 'slug' => 'samplepage', 'language' => 'english'])
+                    !== 'https://example.test/billing/en/samplepage/?sort=new'
+                || zm_pb_language_home_target('/billing/', []) !== '/billing/en/'
+                || zm_pb_language_home_target('/billing/?m=' . ZM_PB_NAME . '&slug=samplepage', ['m' => ZM_PB_NAME, 'slug' => 'samplepage']) !== null) {
+                throw new RuntimeException('Prefixed default language target is wrong');
+            }
+        } elseif (zm_pb_default_language_redirect_target('/billing/en/contact/?count=25') !== '/billing/contact/?count=25'
+            || zm_pb_default_language_redirect_target('/billing/en/') !== '/billing/'
+            || zm_pb_default_language_redirect_target('/billing/en') !== '/billing/'
+            || zm_pb_language_switch_target('/billing/en/contact/?language=english&count=25', ['language' => 'english']) !== '/billing/contact/?count=25') {
+            throw new RuntimeException('Unprefixed default language target is wrong');
+        }
         if (zm_pb_language_query_repair_target('/billing/ru/samplepage/?count=50&amp;language=german') !== '/billing/ru/samplepage/?count=50&language=german'
             || zm_pb_language_query_repair_target('/billing/ru/samplepage/?count=50&language=german') !== null
             || zm_pb_language_switch_target('/billing/ru/samplepage/?count=50&amp;amp%3Blanguage=german&amp;language=russian', ['language' => 'russian']) !== '/billing/ru/samplepage/?count=50'
-            || zm_pb_default_language_redirect_target('/billing/en/contact/?count=25') !== '/billing/contact/?count=25'
-            || zm_pb_default_language_redirect_target('/billing/en/') !== '/billing/'
-            || zm_pb_default_language_redirect_target('/billing/en') !== '/billing/'
             || zm_pb_default_language_redirect_target('/billing/en/contact/', ['language' => 'German']) !== null
             || zm_pb_default_language_redirect_target('/billing/enough/') !== null
             || zm_pb_default_language_redirect_target('/elsewhere/en/contact/') !== null
-            || zm_pb_language_switch_target('/billing/en/contact/?language=english&count=25', ['language' => 'english']) !== '/billing/contact/?count=25'
             || zm_pb_language_switch_target('/billing/en/contact/?language=russian', ['language' => 'russian']) !== '/billing/ru/contact/'
+            || zm_pb_language_switch_target('/billing/pt/contact/?language=portuguese-br', ['language' => 'portuguese-br']) !== '/billing/pt-BR/contact/'
+            || zm_pb_language_switch_target('/billing/pt-BR/contact/?language=portuguese-pt', ['language' => 'portuguese-pt']) !== '/billing/pt/contact/'
+            || zm_pb_language_route_case_target('/billing/Pt-BR/contact/?page=2') !== '/billing/pt-BR/contact/?page=2'
+            || zm_pb_language_route_case_target('/billing/pt-br/contact/') !== '/billing/pt-BR/contact/'
+            || zm_pb_language_route_case_target('/billing/PT-br/contact/') !== '/billing/pt-BR/contact/'
+            || zm_pb_language_route_case_target('/billing/RU/contact/') !== '/billing/ru/contact/'
+            || zm_pb_language_route_case_target('/billing/pt-BR/contact/') !== null
+            || zm_pb_language_route_case_target('/billing/pt-br/contact/?language=portuguese-pt') !== null
+            || zm_pb_language_route_case_target('/billing/?m=zmchel_whmcs_multimodule&slug=samplepage&lang=pt-br&sort=new')
+                !== '/billing/?m=zmchel_whmcs_multimodule&slug=samplepage&lang=pt-BR&sort=new'
+            || zm_pb_language_route_case_target('/billing/?m=zmchel_whmcs_multimodule&slug=samplepage&lang=pt-BR') !== null
+            || zm_pb_language_route_case_target('/billing/clientarea.php?lang=pt-br') !== null
             || zm_pb_language_switch_target('/billing/login?language=russian', ['language' => 'russian']) !== '/billing/login'
             || zm_pb_language_switch_target('/billing/login?returnto=clientarea&language=german', ['language' => 'german']) !== '/billing/login?returnto=clientarea'
             || zm_pb_language_switch_target('/billing/ru/login?language=spanish', ['language' => 'spanish']) !== '/billing/login'
             || zm_pb_language_switch_target('/billing/register?language=spanish', ['language' => 'spanish']) !== '/billing/register'
             || zm_pb_language_switch_target('/billing/password/reset?language=german', ['language' => 'german']) !== '/billing/password/reset'
-            || zm_pb_language_switch_target('/billing/store/domains?language=russian', ['language' => 'russian']) !== '/billing/store/domains'
-            || zm_pb_language_switch_target('/billing/lecafe.com/?language=russian', ['language' => 'russian']) !== '/billing/ru/lecafe.com/'
-            || zm_pb_language_switch_target('/billing/ru/lecafe.com/?language=spanish', ['language' => 'spanish']) !== '/billing/es/lecafe.com/'
-            || zm_pb_language_switch_target('/billing/uk/lecafe.com/?language=german', ['language' => 'german']) !== '/billing/de/lecafe.com/'
-            || zm_pb_language_switch_target('/billing/ru/lecafe.com/?language=ukranian', ['language' => 'ukranian']) !== '/billing/uk/lecafe.com/'
-            || zm_pb_route_uses_user_language(['slug' => 'lecafe.com', 'lang' => 'ru'])
+            || zm_pb_language_switch_target('/billing/store/products?language=russian', ['language' => 'russian']) !== '/billing/store/products'
+            || zm_pb_language_switch_target('/billing/guide/?language=russian', ['language' => 'russian']) !== '/billing/ru/guide/'
+            || zm_pb_language_switch_target('/billing/ru/guide/?language=spanish', ['language' => 'spanish']) !== '/billing/es/guide/'
+            || zm_pb_language_switch_target('/billing/robots.txt?language=russian', ['language' => 'russian']) !== '/billing/robots.txt'
             || !zm_pb_route_uses_user_language(['slug' => 'robots.txt', 'lang' => 'ru'])
             || zm_pb_language_switch_target('/billing/clientarea.php?language=russian', ['language' => 'russian']) !== '/billing/clientarea.php') {
             throw new RuntimeException('Default language canonical target is wrong');
@@ -79,11 +104,23 @@ try {
     $defaults = require $directory . '/rewrite_rules.php';
     $defaultCount = count($defaults);
     if (ZM_PB_ENABLE_LANG_ROUTE) {
-        if ($defaults[0]['directives'] !== [
+        if (ZM_PB_ENABLE_DEFAULT_LANG_ROUTE) {
+            $defaultRewrite = array_filter($defaults, function ($rule) {
+                return ($rule['directives'][0] ?? '') === 'RewriteRule ^en/?$ index.php?rp=/ [NC,QSA,L]';
+            });
+            if (count($defaultRewrite) !== 1) throw new RuntimeException('Default language rewrite rule is missing');
+        } elseif ($defaults[0]['directives'] !== [
             'RewriteCond %{REQUEST_METHOD} ^(?:GET|HEAD)$',
             'RewriteCond %{QUERY_STRING} !(^|&)language= [NC]',
             'RewriteRule ^en(?:/(.*))?$ /billing/$1 [NC,R=301,L]',
         ]) throw new RuntimeException('Default language Apache redirect is wrong');
+        $portugueseRules = array_values(array_filter($defaults, function ($rule) {
+            return in_array($rule['directives'][0] ?? '', [
+                'RewriteRule ^pt/?$ index.php?rp=/ [NC,QSA,L]',
+                'RewriteRule ^pt-BR/?$ index.php?rp=/ [NC,QSA,L]',
+            ], true);
+        }));
+        if (count($portugueseRules) !== 2) throw new RuntimeException('Portuguese rewrite rules are missing');
     }
 
     // Emulate another request writing the data file after this worker loaded it.

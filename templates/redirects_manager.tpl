@@ -68,4 +68,6 @@
         {if $redirect_page < $redirect_last_page}<a class="btn btn-default" href="addonmodules.php?module={$addonName|escape:'url'}&amp;subpage=redirects_manager&amp;page={$redirect_page+1}">{$redirects_text->next|escape}</a>{/if}
         {/if}
     </div>
+    <hr>
+    <a class="d-block pd-2" href="{$main_host_url}admin/addonmodules.php?module={$addonName|escape}&amp;subpage=README.md&amp;doc={$subpage}" target="_blank">{$module_translates->instruction|escape} - {$module_translates->{$subpage}->title|escape}</a>
 </div>

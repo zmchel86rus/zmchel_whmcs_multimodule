@@ -1,10 +1,14 @@
 # Multimódulo gratuito para WHMCS
 
-**Antes de utilizar o módulo, gere salts exclusivos e coloque-os em `module_init.php`**: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` e `ZM_PB_NONCE_SALT`.
-
-O módulo foi desenvolvido e testado com **WHMCS 8.13.1 a 8.13.7**. A compatibilidade com PHP foi verificada da versão **7.4 à 8.5**. O suporte para Apache é completo. Também pode funcionar com Nginx, mas o encaminhamento por idioma na página inicial poderá exigir configuração adicional.
-
 **O zmchel WHMCS Multimodule é gratuito.** Inclui um editor visual de páginas, conteúdos multilingues, menus, gestor de multimédia, campos SEO, mapas do site XML, redirecionamentos, regras de reescrita e importação/exportação. Consulte as [instruções](instruction.md).
+
+## Antes da primeira utilização
+
+**Antes da primeira utilização, abra Definições do módulo → Idiomas suportados e ative os idiomas necessários.**
+
+Em cada ativação, o módulo gera automaticamente novos valores salt e grava-os em `module_init.php` (`ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT`, `ZM_PB_NONCE_SALT`). Verifique se os três valores salt estão preenchidos.
+
+O módulo foi desenvolvido e testado com **WHMCS 8.13.0 a 9.1.0**. A compatibilidade com PHP foi verificada da versão **7.4 à 8.5**. O suporte para Apache é completo. Também pode funcionar com Nginx, mas o encaminhamento por idioma na página inicial poderá exigir configuração adicional.
 
 ## Desenvolvimento futuro
 
@@ -13,9 +17,10 @@ O módulo foi desenvolvido e testado com **WHMCS 8.13.1 a 8.13.7**. A compatibil
 - Criar um gestor de permissões para a administração.
 - Aumentar os idiomas predefinidos em `supported_langs.php`.
 - Criar um editor de código para os ficheiros `.tpl` do módulo e os temas de cliente do WHMCS.
-- Criar um gestor de ficheiros de idioma do módulo, de outros módulos e do WHMCS.
+- ~~Criar um gestor de ficheiros de idioma do módulo, de outros módulos e do WHMCS.~~
 - Melhorar o gestor de multimédia e criar um gestor SEO mais completo.
-- Gerar mapas do site multilingues e uma página de mapa do site HTML.
+- ~~Gerar mapas do site multilingues e uma página de mapa do site HTML.~~
+- Adicionar uma página HTML do sitemap.
 - Adicionar estatísticas de utilização ao gestor de páginas.
 - Adicionar minificação de JS/CSS/HTML, cache de páginas e otimização de tabelas.
 - Criar um sistema de atualizações adequado.

@@ -33,7 +33,10 @@ require_once ZM_PB_INCDIR . 'menu_manager.php';
             if ($filters['auth'] !== '') $query->where('auth_type', $filters['auth']);
             if ($filters['type'] !== '') $query->where('type', $filters['type']);
             if (!$viewTrash && $filters['status'] !== '') $query->where('status', $filters['status']);
-            if ($filters['lang'] !== '') $query->where('langs', 'like', '%"' . $filters['lang'] . '"%');
+            if ($filters['lang'] !== '') $query->where(function ($languages) use ($filters) {
+                foreach (zm_pb_lm_language_keys($filters['lang']) as $key)
+                    $languages->orWhere('langs', 'like', '%"' . $key . '"%');
+            });
             if ($filters['name'] !== '') $query->where('name', 'like', '%' . $filters['name'] . '%');
 
             $perPage = 25;
@@ -43,7 +46,7 @@ require_once ZM_PB_INCDIR . 'menu_manager.php';
             $overrideSources = ZM_PB_ENABLE_PAGE_OVERRIDES ? zm_pb_menu_override_sources() : [];
             $pages = $query->orderByDesc('id')->offset(($pageNumber - 1) * $perPage)->limit($perPage)->get()
                 ->map(function ($page) use ($overrideSources) {
-                    $page->langs = $page->langs ? (json_decode($page->langs, true) ?: []) : [];
+                    $page->langs = zm_pb_lm_normalize_languages(json_decode((string) $page->langs, true));
                     $page->visit_url = zm_pb_menu_page_url($page, ZM_PB_DEFLANG, $overrideSources);
                     return $page;
                 });
@@ -73,7 +76,7 @@ require_once ZM_PB_INCDIR . 'menu_manager.php';
 
             if (!$viewTrash && ZM_PB_ENABLE_PAGE_OVERRIDES) {
                 $smarty->assign('pages_name_slug_array', Capsule::table('zm_pb_pages')
-                    ->where('status', '!=', 'canceled')->orderBy('name')->pluck('name', 'slug')->all());
+                    ->where('status', 'publish')->orderBy('name')->pluck('name', 'slug')->all());
                 $settings = Capsule::table('zm_pb_module_settings')
                     ->where('setting_name', 'page_overrides')
                     ->first();

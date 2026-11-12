@@ -1,10 +1,14 @@
 # Besplatan multimodul za WHMCS
 
-**Prije uporabe modula obavezno generirajte jedinstvene soli i upišite ih u `module_init.php`**: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` i `ZM_PB_NONCE_SALT`.
-
-Modul je razvijen i testiran na **WHMCS-u 8.13.1–8.13.7**. Kompatibilnost s PHP-om provjerena je za verzije **7.4–8.5**. Apache je u potpunosti podržan. Modul može raditi i na Nginxu, ali usmjeravanje jezika na početnoj stranici može zahtijevati dodatnu konfiguraciju.
-
 **zmchel WHMCS Multimodule je besplatan.** Obuhvaća vizualni uređivač stranica, višejezični sadržaj, izbornike, medijsku zbirku, SEO polja, XML karte web-mjesta, preusmjeravanja, pravila prepisivanja te uvoz i izvoz. Pročitajte [upute](instruction.md).
+
+## Prije prve uporabe
+
+**Prije prve uporabe otvorite Postavke modula → Podržani jezici i uključite jezike koji su vam potrebni.**
+
+Pri svakoj aktivaciji modul automatski stvara nove soli i zapisuje ih u `module_init.php` (`ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT`, `ZM_PB_NONCE_SALT`). Provjerite jesu li sve tri soli popunjene.
+
+Modul je razvijen i testiran na **WHMCS-u 8.13.0–9.1.0**. Kompatibilnost s PHP-om provjerena je za verzije **7.4–8.5**. Apache je u potpunosti podržan. Modul može raditi i na Nginxu, ali usmjeravanje jezika na početnoj stranici može zahtijevati dodatnu konfiguraciju.
 
 ## Planirani razvoj
 
@@ -13,9 +17,10 @@ Modul je razvijen i testiran na **WHMCS-u 8.13.1–8.13.7**. Kompatibilnost s PH
 - Dodati upravljanje pravima pristupa u administraciji.
 - Proširiti zadani popis jezika u `supported_langs.php`.
 - Dodati uređivač koda za `.tpl` datoteke modula i korisničke teme WHMCS-a.
-- Dodati upravitelj jezičnih datoteka modula, drugih modula i WHMCS-a.
+- ~~Dodati upravitelj jezičnih datoteka modula, drugih modula i WHMCS-a.~~
 - Poboljšati medijsku zbirku i izraditi potpuniji SEO upravitelj.
-- Dodati višejezične karte web-mjesta i HTML stranicu karte.
+- ~~Dodati višejezične karte web-mjesta i HTML stranicu karte.~~
+- Dodati HTML stranicu karte web-mjesta.
 - Dodati statistiku uporabe upravitelju stranica.
 - Dodati minifikaciju JS/CSS/HTML-a, predmemoriju stranica i optimizaciju tablica.
 - Izraditi sustav ažuriranja modula.

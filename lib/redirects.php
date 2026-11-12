@@ -3,6 +3,7 @@ if (!defined('ZM_PB_VER')) die('Direct access not allowed');
 use Illuminate\Database\Capsule\Manager as Capsule;
 require_once ZM_PB_INCDIR . 'redirects_manager.php';
 require_once ZM_PB_INCDIR . 'sitemap_manager.php';
+require_once __DIR__ . '/../inc/language_aliases.php';
 function zm_pb_redirect_overrides() {
     if (!ZM_PB_ENABLE_PAGE_OVERRIDES || !zm_pb_has_table('zm_pb_module_settings')) return [];
     return zm_pb_sitemap_overrides(json_decode(Capsule::table('zm_pb_module_settings')
@@ -17,7 +18,7 @@ function zm_pb_redirect_override_target($url, array $overrides) {
     // A matching native slug is already a public destination, not an alias.
     if (in_array($request['slug'], $sources, true)) return null;
     $language = ZM_PB_DEFLANG;
-    foreach (ZM_PB_LANGS as $name => $info) if ($info['code_ISO639_1'] === $request['lang']) $language = $name;
+    foreach (ZM_PB_LANGS as $name => $info) if ($info['route_code'] === $request['lang']) $language = $name;
     $target = zm_pb_sitemap_url($request['slug'], $language, $sources[0]);
     return zm_pb_redirect_url($target) === zm_pb_redirect_url($url) ? null : $target;
 }
@@ -109,13 +110,16 @@ function zm_pb_redirect_page_change($page, $newSlug, $newStatus) {
         return;
     }
     $versions = [ZM_PB_DEFLANG];
-    if (ZM_PB_ENABLE_LANG_ROUTE) foreach ($languages as $version) if (isset(ZM_PB_LANGS[$version->lang])) $versions[] = $version->lang;
+    if (ZM_PB_ENABLE_LANG_ROUTE) foreach ($languages as $version) {
+        $language = zm_pb_lm_supported_key($version->lang);
+        if (isset(ZM_PB_LANGS[$language])) $versions[] = $language;
+    }
     $targetFor = function ($language) use ($newSlug, $sources) { return zm_pb_sitemap_url($newSlug, $language, $sources[0] ?? null); };
     // Repoint older automatic rules even if the latest rename happens before the age threshold.
     foreach (Capsule::table('zm_pb_redirects')->where('type', 'system')->get() as $rule) {
         $meta = json_decode($rule->conditions ?? '[]', true);
         if (($meta['page_id'] ?? null) !== (int) $page->id) continue;
-        $to = $targetFor($meta['language'] ?? ZM_PB_DEFLANG);
+        $to = $targetFor(zm_pb_lm_supported_key($meta['language'] ?? ZM_PB_DEFLANG));
         if (strlen($to) > 128) throw new InvalidArgumentException('url_too_long');
         if (zm_pb_redirect_url($rule->from) === zm_pb_redirect_url($to)) Capsule::table('zm_pb_redirects')->where('id', $rule->id)->delete();
         else Capsule::table('zm_pb_redirects')->where('id', $rule->id)->update(['to' => $to, 'updated_at' => date('Y-m-d H:i:s')]);

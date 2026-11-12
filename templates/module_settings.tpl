@@ -1,5 +1,6 @@
 <script>
 const formsNonce = '{$zm_pb_forms_nonce}';
+const secNonce = '{$zm_pb_secure_nonce}';
 const addonName = '{$addonName}';
 const subpage = '{$subpage}';
 const translate_texts = {
@@ -20,6 +21,16 @@ const translate_texts = {
     <div class="panel-body">
     {if $alertHtml}{$alertHtml}{/if}
     {if !$alertHtml}
+        {if isset($directory_health_issues) && $directory_health_issues}
+            <div class="alert alert-warning" role="alert">
+                <strong>{$directory_health_title|escape}</strong>
+                <ul>
+                    {foreach from=$directory_health_issues item=issue}
+                        <li><code>{$issue.path|escape}</code>: {$issue.message|escape}</li>
+                    {/foreach}
+                </ul>
+            </div>
+        {/if}
         <ul class="nav nav-tabs" role="tablist">
             <li role="presentation">
                 <a href="#mod_ss_tab_transfer" aria-controls="mod_ss_tab_transfer" role="tab" data-toggle="tab">
@@ -32,7 +43,14 @@ const translate_texts = {
                 </a>
             </li>
             <li role="presentation">
-                <a href="#mod_ss_tab_redirects" aria-controls="mod_ss_tab_redirects" role="tab" data-toggle="tab">{$redirects_text->settings|escape}</a>
+                <a href="#mod_ss_tab_languages" aria-controls="mod_ss_tab_languages" role="tab" data-toggle="tab">
+                    {$module_translates->supported_langs->title|escape}
+                </a>
+            </li>
+            <li role="presentation">
+                <a href="#mod_ss_tab_redirects" aria-controls="mod_ss_tab_redirects" role="tab" data-toggle="tab">
+                    {$redirects_text->settings|escape}
+                </a>
             </li>
             <li role="presentation">
                 <a href="#mod_ss_tab_sitemap" aria-controls="mod_ss_tab_sitemap" role="tab" data-toggle="tab">
@@ -62,6 +80,9 @@ const translate_texts = {
             <div role="tabpanel" class="tab-pane active" id="mod_ss_tab_consts">
                 {include file="./parts/mod_ss_tab_consts.tpl"}
             </div>
+            <div role="tabpanel" class="tab-pane" id="mod_ss_tab_languages">
+                {include file="./parts/mod_ss_tab_languages.tpl"}
+            </div>
 
             <div role="tabpanel" class="tab-pane" id="mod_ss_tab_redirects">
                 {include file="./parts/mod_ss_tab_redirects.tpl"}
@@ -84,6 +105,8 @@ const translate_texts = {
         </div>
     {/if}
     </div>
+    <hr>
+    <a class="d-block pd-2" href="{$main_host_url}admin/addonmodules.php?module={$addonName|escape}&amp;subpage=README.md&amp;doc={$subpage}" target="_blank">{$module_translates->instruction|escape} - {$module_translates->{$subpage}->title|escape}</a>
 </div>
 
 {$mediamanager_modal}

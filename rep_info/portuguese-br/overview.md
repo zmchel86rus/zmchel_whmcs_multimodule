@@ -1,10 +1,14 @@
 # Multimódulo gratuito para WHMCS
 
-**Antes de usar o módulo, gere salts exclusivos e coloque-os em `module_init.php`**: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` e `ZM_PB_NONCE_SALT`.
-
-O módulo foi desenvolvido e testado no **WHMCS 8.13.1 a 8.13.7**. A compatibilidade com PHP foi verificada nas versões **7.4 a 8.5**. O suporte ao Apache é completo. Ele também pode funcionar com Nginx, mas o roteamento de idiomas na página inicial pode exigir configuração adicional.
-
 **O zmchel WHMCS Multimodule é gratuito.** Reúne um editor visual de páginas, conteúdo multilíngue, menus, gerenciador de mídia, campos de SEO, sitemaps XML, redirecionamentos, regras de reescrita e importação/exportação. Consulte as [instruções](instruction.md).
+
+## Antes do primeiro uso
+
+**Antes do primeiro uso, abra Configurações do módulo → Idiomas suportados e ative os idiomas necessários.**
+
+A cada ativação, o módulo gera automaticamente novos salts e os grava em `module_init.php` (`ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT`, `ZM_PB_NONCE_SALT`). Confira se os três valores salt estão preenchidos.
+
+O módulo foi desenvolvido e testado no **WHMCS 8.13.0 a 9.1.0**. A compatibilidade com PHP foi verificada nas versões **7.4 a 8.5**. O suporte ao Apache é completo. Ele também pode funcionar com Nginx, mas o roteamento de idiomas na página inicial pode exigir configuração adicional.
 
 ## Planos para o futuro
 
@@ -13,9 +17,10 @@ O módulo foi desenvolvido e testado no **WHMCS 8.13.1 a 8.13.7**. A compatibili
 - Criar um gerenciador de permissões para a administração.
 - Ampliar os idiomas padrão em `supported_langs.php`.
 - Criar um editor de código para os arquivos `.tpl` do módulo e os temas da área do cliente do WHMCS.
-- Criar um gerenciador dos arquivos de idioma do módulo, de outros módulos e do WHMCS.
+- ~~Criar um gerenciador dos arquivos de idioma do módulo, de outros módulos e do WHMCS.~~
 - Melhorar o gerenciador de mídia e criar um gerenciador de SEO mais completo.
-- Gerar sitemaps multilíngues e uma página de sitemap HTML.
+- ~~Gerar sitemaps multilíngues e uma página de sitemap HTML.~~
+- Adicionar uma página HTML do sitemap.
 - Adicionar estatísticas de uso ao gerenciador de páginas.
 - Adicionar minificação de JS/CSS/HTML, cache de página inteira e otimização de tabelas.
 - Criar um sistema de atualizações adequado.

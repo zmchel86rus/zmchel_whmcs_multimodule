@@ -52,7 +52,7 @@ function zm_pb_redirect_request($url) {
     $segments = explode('/', trim(substr($path, strlen($basePath)), '/'));
     $language = '';
     foreach (ZM_PB_LANGS as $info) {
-        if (($segments[0] ?? '') === $info['code_ISO639_1']) { $language = array_shift($segments); break; }
+        if (($segments[0] ?? '') === $info['route_code']) { $language = array_shift($segments); break; }
     }
     return ['slug' => rawurldecode(implode('/', $segments)), 'lang' => $language];
 }

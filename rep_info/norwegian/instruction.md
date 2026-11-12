@@ -1,35 +1,67 @@
+[![Følgere](https://img.shields.io/github/watchers/zmchel86rus/zmchel_whmcs_multimodule?label=F%C3%B8lgere)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/watchers)
+[![Stjerner](https://img.shields.io/github/stars/zmchel86rus/zmchel_whmcs_multimodule?label=Stjerner)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/stargazers)
+[![Forker](https://img.shields.io/github/forks/zmchel86rus/zmchel_whmcs_multimodule?label=Forker)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/network/members)
+[![Saker](https://img.shields.io/github/issues/zmchel86rus/zmchel_whmcs_multimodule?label=Saker)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/issues)
+
 # zmchel WHMCS Multimodule: bruksanvisning
 
-**Før du bruker modulen, må du generere unike salter og legge dem inn i `module_init.php`**: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` og `ZM_PB_NONCE_SALT`.
+**zmchel WHMCS Multimodule er gratis.** Den inneholder en visuell sideredigerer, flerspråklig innhold, menyer, mediebibliotek, SEO-felt, XML-nettstedskart, viderekoblinger, omskrivingsregler og import/eksport.
 
-Modulen er utviklet og testet med **WHMCS 8.13.1–8.13.7**; PHP-kompatibilitet er kontrollert for **7.4–8.5**. Apache støttes fullt ut. Nginx kan også fungere, men språkruting på forsiden kan kreve ekstra oppsett. **Modulen er gratis.**
+## Før første bruk
 
-## Tilgang og sider
+**Før første bruk åpner du Modulinnstillinger → Støttede språk og aktiverer språkene du trenger.**
 
-Åpne **Addons → zmchel WHMCS Multimodule** i WHMCS-administrasjonen. Sidelisten lar deg opprette, finne, redigere og slette sider. En *slug* er adressedelen etter domenet, for eksempel `contact` i `/contact/`. Eksporter modulinnstillingene før du endrer URL-er, viderekoblinger eller serverregler.
+Ved hver aktivering genererer modulen automatisk nye salter og skriver dem til `module_init.php` (`ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT`, `ZM_PB_NONCE_SALT`). Kontroller at alle de tre saltverdiene er fylt ut.
 
-Når du oppretter en side, skriver du inn et internt navn og en slug med latinske bokstaver, tall og bindestreker, uten domene eller `.php`. Velg tilgang for gjester, innloggede kunder eller alle. Velg deretter status (utkast, publisert, utsatt eller papirkurv), type (side, artikkel eller systemside) og språk. WHMCS-standardspråket må finnes i `supported_langs.php`; modulen legger det til automatisk.
+## Testet kompatibilitet og funksjon
 
-Etter lagring åpner du siden og redigerer **hovedinnstillinger**, **innhold**, **metadata** og **nettstedskart**. Hvert skjema har sin egen Lagre-knapp; «Lagre alle» behandler dem samlet. Kontroller bekreftelsen og den offentlige siden. Sletting flytter først siden til papirkurven; permanent sletting skjer derfra.
+- **PHP:** 7.4, 8.0, 8.1, 8.2, 8.3, 8.4, 8.5
+- **WHMCS:** 8.13.0–9.1.0
+- **Smarty:** 3, 4
 
-## Innhold og språk
+## Kompatibilitet med webservere
 
-Velg et språk i Innhold-fanen og dra GrapesJS-blokker inn på arbeidsflaten. Rediger tekst, bilder og innstillingene til valgt blokk, og lagre språket. Du kan bruke seksjoner, kolonner, tabeller, FAQ, trekkspill, kontaktskjemaer, lister, paginering, gjeste-/kundeområder og egendefinert kode. Kopier oppsett eller innhold til et annet språk, og oversett teksten før publisering.
+Apache støttes fullt ut. Modulen kan også fungere med Nginx, men språkruting på forsiden kan kreve ekstra oppsett.
 
-Med pene URL-er og språkruting bruker standardspråket `/contact/`, mens andre språk har prefiks som `/nb/contact/`. Slå på gjeldende språk i Lenke- og Knapp-blokker bare for oversatte sider på nettstedet. La det være av for eksterne adresser, filer, `mailto:`, `tel:` og WHMCS-ruter uten oversettelse. Test lenkene på flere språk.
+## Modulinnstillinger
 
-## SEO, medier og menyer
+Velg språkene modulen kan bruke. Deaktivering sletter ikke innholdet.
 
-Fyll inn tittel, beskrivelse, sosialt bilde, kanonisk URL, robots-innstillinger og Schema-type for hvert språk under Metadata. En publisert side som ikke er en systemside, kan være med i XML-nettstedskartet. Last opp bilder i mediebehandleren, gi dem nyttig alternativ tekst og sjekk kvaliteten etter optimalisering.
+- **Modulinnstillinger → Støttede språk → Aktiver**
+- **Moduldatabase → Rett opp Valgte elementer**
+- **Omskrivingsregler → Kontroller regler → Legg til eller oppdater regler**
 
-I menybehandleren oppretter du en meny, legger til sider eller egne lenker, sorterer elementene og velger plassering og synlighet. Hver plassering kan ha én meny. For å erstatte en WHMCS-side må du først publisere den nye siden, angi overstyringen i sidelistene og teste den opprinnelige WHMCS-URL-en som gjest og innlogget kunde.
+Nginx leser ikke .htaccess, så disse reglene fungerer ikke der. Konfigurer tilsvarende regler i nginx.
 
-## Nettstedets verktøy
+## Sideadministrator
 
-I viderekoblingsbehandleren angir du kilde og mål: `301` for permanent flytting, `302` for midlertidig. Omskrivingsbehandleren styrer reglene for pene URL-er. Generer nettstedskart og sjekk `sitemap_index.xml`. Modulinnstillingene styrer også menyer, Smarty, vedlikehold og import/eksport. En JSON-eksport erstatter ikke en fullstendig WHMCS-sikkerhetskopi.
+- **Legg til side → Sidenavn → Sideslug → Lagre**
+- **Sideredigerer → Innholdsinnstillinger → Metadatainnstillinger → Innstillinger for sidens nettstedskart → Lagre alle**
+- **Sideadministrator → Besøk**
+- **Nettstedskart → Generer nettstedskart**
 
-Kontaktskjemaet kan sende en WHMCS-støttesak eller e-post. Sett opp felter, mottaker eller støtteavdeling, samtykker og CAPTCHA, og send en ekte testmelding. Bruk Moduldatabase hvis modultabeller mangler.
+Bare latinske bokstaver, bindestreker og sifre er tillatt.
 
-## Mer dokumentasjon (English)
+Innloggede brukere: bare innloggede brukere har tilgang til siden; Gjester: bare gjester har tilgang; Blandet: alle har tilgang, men synligheten styres av blokker på siden.
 
-[Menyer](../english/docs/menus.md) · [Smarty](../english/docs/smarty.md) · [Paginering](../english/docs/pagination.md) · [Nettstedskart](../english/docs/sitemaps.md) · [Viderekoblinger](../english/docs/redirects.md) · [Strukturerte data](../english/docs/structured-data.md) · [Import og eksport](../english/docs/transfer.md).
+Automatisk generering kjøres etter WHMCS cron når det er tid for en oppdatering. Manuell generering starter umiddelbart.
+
+## Veiledninger for hver seksjon
+
+- [Sideadministrator](docs/pages_manager.md)
+- [Sideredigerer](docs/pages_editor.md)
+- [Mediebehandling](docs/media_manager.md)
+- [Menyer](docs/menu_manager.md)
+- [Språkbehandling](docs/langs_manager.md)
+- [Viderekoblinger](docs/redirects_manager.md)
+- [Nettstedskart](docs/sitemap_manager.md)
+- [Omskrivingsregler](docs/rewrite_manager.md)
+- [Modulinnstillinger](docs/module_settings.md)
+- [Moduldatabase](docs/module_db.md)
+
+## Tilleggsmateriale
+
+- [Paginering](docs/pages_editor_pagination.md)
+- [Smarty](docs/pages_editor_smarty.md)
+- [Strukturerte data](docs/module_structured_data.md)
+- [Import og eksport](docs/module_settings_transfer.md)

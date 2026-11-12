@@ -1,0 +1,67 @@
+[![Urmăritori](https://img.shields.io/github/watchers/zmchel86rus/zmchel_whmcs_multimodule?label=Urm%C4%83ritori)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/watchers)
+[![Stele](https://img.shields.io/github/stars/zmchel86rus/zmchel_whmcs_multimodule?label=Stele)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/stargazers)
+[![Forkuri](https://img.shields.io/github/forks/zmchel86rus/zmchel_whmcs_multimodule?label=Forkuri)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/network/members)
+[![Sesizări](https://img.shields.io/github/issues/zmchel86rus/zmchel_whmcs_multimodule?label=Sesiz%C4%83ri)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/issues)
+
+# Instrucțiuni pentru zmchel WHMCS Multimodule
+
+**zmchel WHMCS Multimodule este gratuit.** Permite administrarea paginilor și articolelor din panoul WHMCS, cu editor vizual, traduceri, meniuri, fișiere media, câmpuri SEO, sitemap-uri XML, redirecționări și reguli de rescriere.
+
+## Înainte de prima utilizare
+
+**Înainte de prima utilizare, deschideți Setările modulului → Limbi acceptate și activați limbile necesare.**
+
+La fiecare activare, modulul generează automat valori salt noi și le scrie în `module_init.php` (`ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT`, `ZM_PB_NONCE_SALT`). Verificați dacă toate cele trei valori salt sunt completate.
+
+## Compatibilitate și funcționare testate
+
+- **PHP:** 7.4, 8.0, 8.1, 8.2, 8.3, 8.4, 8.5
+- **WHMCS:** 8.13.0–9.1.0
+- **Smarty:** 3, 4
+
+## Compatibilitate cu serverele web
+
+Apache este acceptat integral. Nginx poate funcționa, dar rutarea limbilor pe pagina principală poate necesita configurare suplimentară.
+
+## Setările modulului
+
+Alegeți limbile pe care le poate folosi modulul. Dezactivarea unei limbi nu îi șterge conținutul.
+
+- **Setările modulului → Limbi acceptate → Activează**
+- **Baza de date a modulului → Remediază Elemente selectate**
+- **Reguli de rescriere → Verifică regulile → Adaugă sau actualizează regulile**
+
+Nginx nu citește .htaccess, astfel încât aceste reguli nu funcționează în Nginx. Configurați reguli echivalente în nginx.
+
+## Manager de pagini
+
+- **Adaugă pagină → Numele paginii → Slug-ul paginii → Salvează**
+- **Editor de pagini → Setări de conținut → Setări pentru metadate → Setările hărții site-ului pentru pagină → Salvează tot**
+- **Manager de pagini → Vizitează**
+- **Hartă a site-ului → Generează hărțile site-ului**
+
+Sunt permise numai litere latine, cratime și cifre.
+
+Utilizatori autentificați: numai cei autentificați pot accesa pagina; Vizitatori: numai vizitatorii neautentificați o pot accesa; Mixt: toți o pot accesa, iar vizibilitatea este controlată de blocurile din pagină.
+
+Generarea automată rulează după cron-ul WHMCS când este necesară o actualizare. Generarea manuală începe imediat.
+
+## Ghiduri pe secțiuni
+
+- [Manager de pagini](docs/pages_manager.md)
+- [Editor de pagini](docs/pages_editor.md)
+- [Manager media](docs/media_manager.md)
+- [Meniuri](docs/menu_manager.md)
+- [Managerul de limbi](docs/langs_manager.md)
+- [Redirecționări](docs/redirects_manager.md)
+- [Sitemap-uri](docs/sitemap_manager.md)
+- [Reguli de rescriere](docs/rewrite_manager.md)
+- [Setările modulului](docs/module_settings.md)
+- [Baza de date a modulului](docs/module_db.md)
+
+## Materiale suplimentare
+
+- [Paginare și filtre](docs/pages_editor_pagination.md)
+- [Smarty și variabile](docs/pages_editor_smarty.md)
+- [Date structurate](docs/module_structured_data.md)
+- [Import și export](docs/module_settings_transfer.md)

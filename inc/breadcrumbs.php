@@ -1,6 +1,7 @@
 <?php
 if (!defined('ZM_PB_VER')) die('Direct access not allowed');
 require_once __DIR__ . '/route_guard.php';
+require_once __DIR__ . '/page_urls.php';
 
 function zm_pb_breadcrumb_label($settings)
 {
@@ -23,7 +24,7 @@ function zm_pb_breadcrumb_source($link)
     $path = trim($path, '/');
     if (ZM_PB_ENABLE_LANG_ROUTE) {
         $segments = explode('/', $path, 2);
-        foreach (ZM_PB_LANGS as $info) if ($segments[0] === $info['code_ISO639_1']) { $path = $segments[1] ?? ''; break; }
+        foreach (ZM_PB_LANGS as $info) if ($segments[0] === $info['route_code']) { $path = $segments[1] ?? ''; break; }
     }
     $path = preg_replace('/\.php$/i', '', $path);
     if ($path === '' || $path === 'index') {
@@ -36,8 +37,9 @@ function zm_pb_breadcrumb_source($link)
 
 function zm_pb_breadcrumb_home_url($language)
 {
-    if (ZM_PB_ENABLE_LANG_ROUTE && $language !== ZM_PB_DEFLANG && isset(ZM_PB_LANGS[$language])) {
-        return ZM_PB_FULLHOST . ZM_PB_LANGS[$language]['code_ISO639_1'] . '/';
+    $code = zm_pb_language_route_code($language);
+    if ($code !== '') {
+        return ZM_PB_FULLHOST . $code . '/';
     }
     return ZM_PB_FULLHOST . (ZM_PB_MAINSYSTEM_PRETTY_URLS ? '' : 'index.php');
 }
@@ -98,11 +100,12 @@ function zm_pb_client_breadcrumbs(array $vars)
 {
     if (!is_array($vars['breadcrumb'] ?? null) || !$vars['breadcrumb']) return [];
     $context = $GLOBALS['zm_pb_breadcrumb_context'] ?? [];
-    $language = strtolower((string) ($context['lang'] ?? $vars['language'] ?? $_SESSION['Language'] ?? ZM_PB_DEFLANG));
+    $language = zm_pb_lm_supported_key(strtolower((string)
+        ($context['lang'] ?? $vars['language'] ?? $_SESSION['Language'] ?? ZM_PB_DEFLANG)));
     $request = zm_pb_parse_request();
     if (ZM_PB_ENABLE_LANG_ROUTE && !zm_pb_route_uses_user_language($request)) {
         $language = ZM_PB_DEFLANG;
-        foreach (ZM_PB_LANGS as $name => $info) if ($info['code_ISO639_1'] === ($request['lang'] ?? '')) { $language = $name; break; }
+        foreach (ZM_PB_LANGS as $name => $info) if ($info['route_code'] === ($request['lang'] ?? '')) { $language = $name; break; }
     }
     if (!isset(ZM_PB_LANGS[$language])) $language = ZM_PB_DEFLANG;
     $breadcrumbs = zm_pb_update_breadcrumbs($vars['breadcrumb'], zm_pb_breadcrumb_overrides($language), $language, $context);

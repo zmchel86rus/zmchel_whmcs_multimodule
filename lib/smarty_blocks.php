@@ -15,7 +15,10 @@ class ZM_PB_SmartyBlocks
     {
         $smarty = new Smarty();
         $security = new Smarty_Security($smarty);
-        $security->php_handling = Smarty::PHP_REMOVE;
+        // Smarty 4 removed PHP handling modes; only older versions need this setting.
+        if (version_compare(Smarty::SMARTY_VERSION, '4.0', '<') && defined('Smarty::PHP_REMOVE')) {
+            $security->php_handling = Smarty::PHP_REMOVE;
+        }
         $security->php_functions = ['isset', 'empty', 'count', 'in_array', 'is_array', 'array_key_exists'];
         $security->php_modifiers = ['count', 'nl2br', 'array_key_exists', 'round'];
         $security->allowed_tags = ['if', 'ifclose', 'else', 'elseif', 'foreach', 'foreachclose', 'foreachelse', 'section', 'sectionclose', 'sectionelse', 'assign', 'capture', 'captureclose', 'literal', 'literalclose', 'strip', 'stripclose', 'break', 'continue', 'lang'];
@@ -109,10 +112,6 @@ class ZM_PB_SmartyBlocks
         if (is_string($language) && defined('ZM_PB_LANGS') && isset(ZM_PB_LANGS[$language])) {
             $catalog = ZM_PB_LanguageCatalog::core($language);
             if ($catalog !== null) $template->assign('LANG', $catalog);
-            if (array_key_exists('Lang', $variables)) {
-                $addonCatalog = ZM_PB_LanguageCatalog::auction($language);
-                if ($addonCatalog !== null) $template->assign('Lang', $addonCatalog);
-            }
         }
         // Template warnings must not become response output or contaminate the page HTML.
         set_error_handler(function ($severity, $message, $file, $line) {

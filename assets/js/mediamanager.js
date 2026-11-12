@@ -10,6 +10,7 @@ var MediaManager = {
             formData.append('subpage', subpage);
             formData.append('action', action);
             formData.append('zm_pb_forms_nonce', formsNonce);
+            if (subpage === 'module_settings') formData.append('zm_pb_secure_nonce', secNonce);
 
             if( formData.get('delete') || action === 'media_manager_image_optimize' ) formData.append('zm_pb_admin_nonce', formsAdminNonce);
 
@@ -293,6 +294,7 @@ $('#zm_pb_admin_media_files').on('click', '.media-manager-element', function() {
     $form.find('input#title').val(file.title);
     $form.find('input#alt').val(file.alt);
     $form.find('textarea#description').val(file.description);
+    $form.find('input.mediaurl').val(file.url);
     $modal.find('#zm_pb_optimize_image').toggleClass('d-none', !file.is_image);
     $modal.find('#zm_pb_optimization_status').text(file.is_image && file.optimization_attempted ? translate_texts.image_optimized : '');
     $modal.modal('show');

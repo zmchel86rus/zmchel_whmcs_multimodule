@@ -1,0 +1,67 @@
+[![Fylgjendur](https://img.shields.io/github/watchers/zmchel86rus/zmchel_whmcs_multimodule?label=Fylgjendur)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/watchers)
+[![Stjörnur](https://img.shields.io/github/stars/zmchel86rus/zmchel_whmcs_multimodule?label=Stj%C3%B6rnur)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/stargazers)
+[![Kvíslir](https://img.shields.io/github/forks/zmchel86rus/zmchel_whmcs_multimodule?label=Kv%C3%ADslir)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/network/members)
+[![Mál](https://img.shields.io/github/issues/zmchel86rus/zmchel_whmcs_multimodule?label=M%C3%A1l)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/issues)
+
+# Leiðbeiningar fyrir zmchel WHMCS Multimodule
+
+**zmchel WHMCS Multimodule er ókeypis.** Í stjórnborði WHMCS geturðu stjórnað fjöltyngdum síðum með sjónrænum ritli, valmyndum, miðlasafni, SEO-lýsigögnum, XML-vefkortum, áframsendingum, rewrite-reglum og inn- og útflutningi.
+
+## Fyrir fyrstu notkun
+
+**Áður en einingin er notuð skaltu opna Stillingar einingar → Studd tungumál og virkja þau tungumál sem þú þarft.**
+
+Við hverja virkjun býr einingin sjálfkrafa til ný saltgildi og skrifar þau í `module_init.php` (`ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT`, `ZM_PB_NONCE_SALT`). Gakktu úr skugga um að öll þrjú saltgildin séu útfyllt.
+
+## Prófuð samhæfni og virkni
+
+- **PHP:** 7.4, 8.0, 8.1, 8.2, 8.3, 8.4, 8.5
+- **WHMCS:** 8.13.0–9.1.0
+- **Smarty:** 3, 4
+
+## Samhæfni við vefþjóna
+
+Apache er studdur að fullu (100%); Nginx gæti þurft viðbótarstillingar fyrir tungumálaleiðir á forsíðu.
+
+## Stillingar einingar
+
+Veldu hvaða tungumál einingin má nota. Ef tungumál er gert óvirkt eyðist efni þess ekki.
+
+- **Stillingar einingar → Studd tungumál → Virkja**
+- **Gagnagrunnur einingar → Lagfæra Valin atriði**
+- **Endurskrifunarreglur → Athuga reglur → Bæta við eða uppfæra reglur**
+
+Nginx les ekki .htaccess og því virka þessar reglur ekki þar. Settu samsvarandi reglur upp í nginx.
+
+## Umsjón með síðum
+
+- **Bæta við síðu → Heiti síðu → Vefslóðarheiti síðu → Vista**
+- **Síðaritill → Efnisstillingar → Stillingar lýsigagna → Vefkortsstillingar síðu → Vista allt**
+- **Umsjón með síðum → Heimsækja**
+- **Vefkort → Búa til vefkort**
+
+Aðeins latneskir bókstafir, bandstrik og tölustafir eru leyfð.
+
+Innskráðir notendur: aðeins innskráðir notendur hafa aðgang að síðunni; Gestir: aðeins gestir hafa aðgang að henni; Blandað: allir hafa aðgang, en sýnileika er stýrt með blokkum innan síðunnar.
+
+Sjálfvirk myndun fer fram eftir WHMCS-cron þegar komið er að uppfærslu. Handvirk myndun hefst samstundis.
+
+## Leiðbeiningar eftir hlutum
+
+- [Umsjón með síðum](docs/pages_manager.md)
+- [Síðaritill](docs/pages_editor.md)
+- [Umsjón með miðlum](docs/media_manager.md)
+- [valmyndir](docs/menu_manager.md)
+- [Tungumálastýring](docs/langs_manager.md)
+- [áframsendingar](docs/redirects_manager.md)
+- [vefkort](docs/sitemap_manager.md)
+- [Endurskrifunarreglur](docs/rewrite_manager.md)
+- [Stillingar einingar](docs/module_settings.md)
+- [Gagnagrunnur einingar](docs/module_db.md)
+
+## Viðbótarefni
+
+- [síðuskipting](docs/pages_editor_pagination.md)
+- [Smarty](docs/pages_editor_smarty.md)
+- [skipulögð gögn](docs/module_structured_data.md)
+- [gagnaflutningur](docs/module_settings_transfer.md)

@@ -6,9 +6,9 @@ define('ZM_PB_PRETTY_URLS', true);
 define('ZM_PB_DEFLANG', 'english');
 define('ZM_PB_FULLHOST', 'https://example.test/');
 define('ZM_PB_LANGS', [
-    'english' => ['code_ISO639_1' => 'en'],
-    'russian' => ['code_ISO639_1' => 'ru'],
-    'german' => ['code_ISO639_1' => 'de'],
+    'english' => ['route_code' => 'en'],
+    'russian' => ['route_code' => 'ru'],
+    'german' => ['route_code' => 'de'],
 ]);
 define('ZM_PB_MAINSYSTEM_DEFAULT_PAGES', ['index', 'contact']);
 require dirname(__DIR__) . '/lib/content_links.php';

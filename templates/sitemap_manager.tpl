@@ -13,7 +13,7 @@
         <p class="help-block">{$sitemap_manager_translates->cron_hint|escape}</p>
         <form method="POST" action="addonmodules.php" id="zm-pb-sitemap-generate">
             <input type="hidden" name="module" value="{$addonName}">
-            <input type="hidden" name="subpage" value="sitemap_manager">
+            <input type="hidden" name="subpage" value="{$subpage}">
             <input type="hidden" name="action" value="generate_sitemaps">
             <input type="hidden" name="zm_pb_forms_nonce" value="{$zm_pb_forms_nonce}">
             <input type="hidden" name="zm_pb_admin_nonce" value="{$zm_pb_admin_nonce}">
@@ -56,7 +56,7 @@
                     <td>{$element.priority|escape}</td>
                     <td>{$element.lastmod|escape}</td>
                     <td>
-                        <a class="btn btn-primary" href="addonmodules.php?module={$addonName|escape}&amp;subpage=pages_editor&amp;page_id={$element.page_id}" target="_blank" rel="noopener">
+                        <a class="btn btn-primary mar-b-1 mar-r-1" href="addonmodules.php?module={$addonName|escape}&amp;subpage=pages_editor&amp;page_id={$element.page_id}" target="_blank" rel="noopener">
                             <i class="fas fa-edit"></i> {$other_translates->edit}
                         </a>
                         <a class="btn btn-primary" href="{$element.url|escape}" target="_blank" rel="noopener">
@@ -73,4 +73,6 @@
         </div>
     {/if}
     </div>
+    <hr>
+    <a class="d-block pd-2" href="{$main_host_url}admin/addonmodules.php?module={$addonName|escape}&amp;subpage=README.md&amp;doc={$subpage}" target="_blank">{$module_translates->instruction|escape} - {$module_translates->{$subpage}->title|escape}</a>
 </div>

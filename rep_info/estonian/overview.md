@@ -1,10 +1,14 @@
 # Tasuta multimoodul WHMCS-i jaoks
 
-**Enne mooduli kasutamist genereeri unikaalsed soolad ja lisa need faili `module_init.php`**: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` ja `ZM_PB_NONCE_SALT`.
-
-Moodul on loodud ja testitud **WHMCS-i versioonidel 8.13.1–8.13.7**. PHP ühilduvust on kontrollitud versioonidel **7.4–8.5**. Apache on täielikult toetatud. Moodul võib töötada ka Nginxiga, kuid keelte suunamine avalehel võib vajada lisaseadistust.
-
 **zmchel WHMCS Multimodule on tasuta.** See sisaldab visuaalset leheredaktorit, mitmekeelset sisu, menüüsid, meediakogu, SEO välju, XML-saidikaarte, ümbersuunamisi, ümberkirjutusreegleid ning importi ja eksporti. Loe [juhendit](instruction.md).
+
+## Enne esimest kasutamist
+
+**Enne esimest kasutuskorda ava Mooduli seaded → Toetatud keeled ja lülita vajalikud keeled sisse.**
+
+Igal aktiveerimisel loob moodul automaatselt uued soolad ja kirjutab need faili `module_init.php` (`ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT`, `ZM_PB_NONCE_SALT`). Kontrollige, et kõik kolm soola väärtust oleksid täidetud.
+
+Moodul on loodud ja testitud **WHMCS-i versioonidel 8.13.0–9.1.0**. PHP ühilduvust on kontrollitud versioonidel **7.4–8.5**. Apache on täielikult toetatud. Moodul võib töötada ka Nginxiga, kuid keelte suunamine avalehel võib vajada lisaseadistust.
 
 ## Edasised plaanid
 
@@ -13,9 +17,10 @@ Moodul on loodud ja testitud **WHMCS-i versioonidel 8.13.1–8.13.7**. PHP ühil
 - Lisada administraatori kasutusõiguste haldus.
 - Laiendada faili `supported_langs.php` vaikimisi keelte loendit.
 - Lisada koodiredaktor mooduli `.tpl` failide ja WHMCS-i klienditeemade jaoks.
-- Lisada mooduli, teiste moodulite ja WHMCS-i keelefailide haldur.
+- ~~Lisada mooduli, teiste moodulite ja WHMCS-i keelefailide haldur.~~
 - Täiendada meediahaldurit ja luua põhjalikum SEO haldur.
-- Lisada mitmekeelsed saidikaardid ja HTML-saidikaardi leht.
+- ~~Lisada mitmekeelsed saidikaardid ja HTML-saidikaardi leht.~~
+- Lisada HTML-saidikaardi leht.
 - Lisada lehehaldurile kasutusstatistika.
 - Lisada JS/CSS/HTML-i minimeerimine, lehtede vahemälu ja tabelite optimeerimine.
 - Luua korralik mooduli uuendussüsteem.

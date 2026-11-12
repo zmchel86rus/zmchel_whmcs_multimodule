@@ -1,35 +1,67 @@
+[![Pratitelji](https://img.shields.io/github/watchers/zmchel86rus/zmchel_whmcs_multimodule?label=Pratitelji)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/watchers)
+[![Zvjezdice](https://img.shields.io/github/stars/zmchel86rus/zmchel_whmcs_multimodule?label=Zvjezdice)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/stargazers)
+[![Račvanja](https://img.shields.io/github/forks/zmchel86rus/zmchel_whmcs_multimodule?label=Ra%C4%8Dvanja)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/network/members)
+[![Prijave](https://img.shields.io/github/issues/zmchel86rus/zmchel_whmcs_multimodule?label=Prijave)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/issues)
+
 # zmchel WHMCS Multimodule: upute
 
-**Prije uporabe modula obavezno generirajte jedinstvene soli i upišite ih u `module_init.php`**: `ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT` i `ZM_PB_NONCE_SALT`.
+**zmchel WHMCS Multimodule je besplatan.** Obuhvaća vizualni uređivač stranica, višejezični sadržaj, izbornike, medijsku zbirku, SEO polja, XML karte web-mjesta, preusmjeravanja, pravila prepisivanja te uvoz i izvoz.
 
-Modul je razvijen i testiran na **WHMCS-u 8.13.1–8.13.7**; PHP kompatibilnost provjerena je za **7.4–8.5**. Apache je potpuno podržan. Nginx također može raditi, ali usmjeravanje jezika na početnoj stranici može trebati dodatne postavke. **Modul je besplatan.**
+## Prije prve uporabe
 
-## Pristup i stranice
+**Prije prve uporabe otvorite Postavke modula → Podržani jezici i uključite jezike koji su vam potrebni.**
 
-U administraciji WHMCS-a otvorite **Addons → zmchel WHMCS Multimodule**. Popis stranica omogućuje stvaranje, pretraživanje, uređivanje i brisanje stranica. *Slug* je dio adrese nakon domene, primjerice `contact` u `/contact/`. Prije promjene URL-ova, preusmjeravanja ili pravila poslužitelja izvezite postavke modula.
+Pri svakoj aktivaciji modul automatski stvara nove soli i zapisuje ih u `module_init.php` (`ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT`, `ZM_PB_NONCE_SALT`). Provjerite jesu li sve tri soli popunjene.
 
-Za novu stranicu unesite interni naziv i slug od latiničnih slova, znamenaka i crtica, bez domene ili `.php`. Odaberite pristup za goste, prijavljene korisnike ili sve. Zatim odaberite status (skica, objavljeno, odgođeno ili koš), vrstu (stranica, članak ili sistemska stranica) i jezike. Zadani jezik WHMCS-a mora biti u `supported_langs.php`; modul ga dodaje automatski.
+## Provjerena kompatibilnost i funkcionalnost
 
-Nakon spremanja otvorite stranicu i uredite **glavne postavke**, **sadržaj**, **metapodatke** i postavke **karte web-mjesta**. Svaki obrazac ima gumb Spremi; „Spremi sve” obrađuje sve obrasce. Provjerite poruke o uspjehu i javni prikaz. Brisanje prvo premješta stranicu u koš; trajno brisanje obavlja se ondje.
+- **PHP:** 7.4, 8.0, 8.1, 8.2, 8.3, 8.4, 8.5
+- **WHMCS:** 8.13.0–9.1.0
+- **Smarty:** 3, 4
 
-## Sadržaj i jezici
+## Kompatibilnost s web-poslužiteljima
 
-U kartici Sadržaj odaberite jezik i povucite GrapesJS blokove na radnu površinu. Uredite tekst, slike i opcije odabranog bloka te spremite taj jezik. Dostupni su odjeljci, stupci, tablice, FAQ, harmonike, kontaktni obrasci, popisi, paginacija, zone za goste i članove te prilagođeni kod. Kopirajte strukturu ili sadržaj na drugi jezik i prevedite tekst prije objave.
+Apache je u potpunosti podržan. Modul može raditi i na Nginxu, ali usmjeravanje jezika na početnoj stranici može zahtijevati dodatnu konfiguraciju.
 
-Uz lijepe URL-ove i jezično usmjeravanje zadani jezik koristi `/contact/`, a ostali prefiks kao `/hr/contact/`. U blokovima poveznice i gumba uključite trenutni jezik samo za prevedene stranice web-mjesta. Isključite ga za vanjske adrese, datoteke, `mailto:`, `tel:` i WHMCS rute bez prijevoda. Provjerite poveznice na više jezika.
+## Postavke modula
 
-## SEO, mediji i izbornici
+Odaberite jezike koje modul može koristiti. Isključivanje jezika ne briše sadržaj.
 
-Za svaki jezik u Metapodacima unesite naslov, opis, sliku za društvene mreže, kanonski URL, robots postavke i Schema vrstu. Objavljena stranica koja nije sistemska može biti u XML karti web-mjesta. U Upravitelju medija učitajte slike, dodajte smislen alternativni tekst i nakon optimizacije provjerite kvalitetu.
+- **Postavke modula → Podržani jezici → Omogući**
+- **Baza podataka modula → Popravi Odabrane stavke**
+- **Pravila prepisivanja URL-ova → Provjeri pravila → Dodaj ili ažuriraj pravila**
 
-U Upravitelju izbornika stvorite izbornik, dodajte stranice ili prilagođene poveznice, poredajte stavke i postavite mjesto i vidljivost. Jedno mjesto može imati samo jedan izbornik. Za zamjenu WHMCS stranice najprije objavite novu stranicu, zatim postavite zamjenu u popisu i testirajte izvorni WHMCS URL kao gost i prijavljeni korisnik.
+Nginx ne čita .htaccess pa ova pravila ondje ne rade. Konfigurirajte odgovarajuća pravila u nginxu.
 
-## Alati web-mjesta
+## Upravitelj stranica
 
-U Upravitelju preusmjeravanja unesite izvor i cilj: `301` za trajnu promjenu, `302` za privremenu. Upravitelj prepisivanja kontrolira pravila lijepih URL-ova. Generirajte karte web-mjesta i provjerite `sitemap_index.xml`. Postavke modula upravljaju i izbornicima, Smartyjem, održavanjem te uvozom i izvozom. JSON izvoz nije zamjena za potpunu sigurnosnu kopiju WHMCS-a.
+- **Dodaj stranicu → Naziv stranice → Slug stranice → Spremi**
+- **Uređivač stranica → Postavke sadržaja → Postavke metapodataka → Postavke karte web-mjesta za stranicu → Spremi sve**
+- **Upravitelj stranica → Posjeti**
+- **Karta web-mjesta → Generiraj karte web-mjesta**
 
-Kontaktni obrazac može poslati WHMCS zahtjev za podršku ili e-poštu. Postavite polja, primatelja ili odjel podrške, privole i CAPTCHA-u, a zatim izvršite probno slanje. Ako nedostaju tablice modula, otvorite Bazu podataka modula.
+Dopuštena su samo latinična slova, crtice i znamenke.
 
-## Dodatna dokumentacija (English)
+Prijavljeni korisnici: stranici mogu pristupiti samo prijavljeni korisnici; Gosti: mogu joj pristupiti samo gosti; Mješovito: mogu joj pristupiti svi, a vidljivost se kontrolira blokovima unutar stranice.
 
-[Izbornici](../english/docs/menus.md) · [Smarty](../english/docs/smarty.md) · [Paginacija](../english/docs/pagination.md) · [Karte web-mjesta](../english/docs/sitemaps.md) · [Preusmjeravanja](../english/docs/redirects.md) · [Strukturirani podaci](../english/docs/structured-data.md) · [Uvoz i izvoz](../english/docs/transfer.md).
+Automatsko generiranje pokreće se nakon WHMCS crona kada dođe vrijeme za ažuriranje. Ručno generiranje počinje odmah.
+
+## Vodiči po odjeljcima
+
+- [Upravitelj stranica](docs/pages_manager.md)
+- [Uređivač stranica](docs/pages_editor.md)
+- [Upravitelj medijskih datoteka](docs/media_manager.md)
+- [Izbornici](docs/menu_manager.md)
+- [Upravitelj jezika](docs/langs_manager.md)
+- [Preusmjeravanja](docs/redirects_manager.md)
+- [Karte web-mjesta](docs/sitemap_manager.md)
+- [Pravila prepisivanja URL-ova](docs/rewrite_manager.md)
+- [Postavke modula](docs/module_settings.md)
+- [Baza podataka modula](docs/module_db.md)
+
+## Dodatni materijali
+
+- [Paginacija](docs/pages_editor_pagination.md)
+- [Smarty](docs/pages_editor_smarty.md)
+- [Strukturirani podaci](docs/module_structured_data.md)
+- [Uvoz i izvoz](docs/module_settings_transfer.md)

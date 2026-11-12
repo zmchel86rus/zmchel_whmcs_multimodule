@@ -25,18 +25,15 @@ add_hook('AdminAreaFooterOutput', 10, function($vars) {
             $script = 'js/page-overrides.js';
             $output .= '<script src="' . ZM_PB_ASSETSURL . $script . '?v=' . filemtime(ZM_PB_ASSETSDIR . $script) . '"></script>';
         }
-        if ($module_subpage === 'rewrite_manager') {
-            $script = 'js/rewrite-manager.js';
-            $output .= '<script src="' . ZM_PB_ASSETSURL . $script . '?v=' . filemtime(ZM_PB_ASSETSDIR . $script) . '"></script>';
-        }
     }
     return $output;
 });
 
-if (ZM_PB_COLLECT_VARS) {
+if (ZM_PB_COLLECT_VARS && !defined('ADMINAREA')) {
     require_once ZM_PB_LIBDIR . 'smarty_variables.php';
     foreach (['ClientAreaPage' => 9999, 'ClientAreaHeadOutput' => 9999, 'ClientAreaFooterOutput' => 9999] as $stage => $priority) {
         add_hook($stage, $priority, function ($vars) use ($stage, $priority) {
+            if (defined('ADMINAREA')) return;
             try {
                 $native = $GLOBALS['smarty'] ?? null;
                 $variables = $native instanceof Smarty ? $native->getTemplateVars() : [];

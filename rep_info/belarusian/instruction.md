@@ -1,0 +1,67 @@
+[![Назіральнікі](https://img.shields.io/github/watchers/zmchel86rus/zmchel_whmcs_multimodule?label=%D0%9D%D0%B0%D0%B7%D1%96%D1%80%D0%B0%D0%BB%D1%8C%D0%BD%D1%96%D0%BA%D1%96)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/watchers)
+[![Зоркі](https://img.shields.io/github/stars/zmchel86rus/zmchel_whmcs_multimodule?label=%D0%97%D0%BE%D1%80%D0%BA%D1%96)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/stargazers)
+[![Форкі](https://img.shields.io/github/forks/zmchel86rus/zmchel_whmcs_multimodule?label=%D0%A4%D0%BE%D1%80%D0%BA%D1%96)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/network/members)
+[![Пытанні](https://img.shields.io/github/issues/zmchel86rus/zmchel_whmcs_multimodule?label=%D0%9F%D1%8B%D1%82%D0%B0%D0%BD%D0%BD%D1%96)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/issues)
+
+# Інструкцыя да zmchel WHMCS Multimodule
+
+**zmchel WHMCS Multimodule бясплатны.** З панэлі адміністратара WHMCS можна кіраваць шматмоўнымі старонкамі праз візуальны рэдактар, меню, медыятэкай, SEO-метаданымі, XML-картамі сайта, перанакіраваннямі, rewrite-правіламі, імпартам і экспартам.
+
+## Перад першым выкарыстаннем
+
+**Перад першым выкарыстаннем адкрыйце Налады модуля → Падтрымоўваныя мовы і ўключыце патрэбныя вам мовы.**
+
+Пры кожнай актывацыі модуль аўтаматычна стварае новыя солі і запісвае іх у `module_init.php` (`ZM_PB_ADMIN_SALT`, `ZM_PB_SECURE_SALT`, `ZM_PB_NONCE_SALT`). Праверце, што ўсе тры солі запоўнены.
+
+## Правераная сумяшчальнасць і праца
+
+- **PHP:** 7.4, 8.0, 8.1, 8.2, 8.3, 8.4, 8.5
+- **WHMCS:** 8.13.0–9.1.0
+- **Smarty:** 3, 4
+
+## Сумяшчальнасць з вэб-серверамі
+
+Apache падтрымліваецца цалкам (100%); Nginx можа патрабаваць дадатковай наладкі моўных маршрутаў на галоўнай старонцы.
+
+## Налады модуля
+
+Выберыце мовы, якія можа выкарыстоўваць модуль. Выключэнне мовы не выдаляе яе змесціва.
+
+- **Налады модуля → Мовы, якія падтрымліваюцца → Уключыць**
+- **База даных модуля → Выправіць Выбраныя элементы**
+- **Правілы перазапісу URL → Праверыць правілы → Дадаць або абнавіць правілы**
+
+Nginx не чытае .htaccess, таму гэтыя правілы там не працуюць. Наладзьце адпаведныя правілы ў nginx.
+
+## Менеджар старонак
+
+- **Дадаць старонку → Назва старонкі → Slug старонкі → Захаваць**
+- **Рэдактар старонак → Налады змесціва → Налады метаданых → Налады карты сайта для старонкі → Захаваць усё**
+- **Менеджар старонак → Наведаць**
+- **Карта сайта → Стварыць карты сайта**
+
+Дазволены толькі лацінскія літары, злучкі і лічбы.
+
+Аўтарызаваныя карыстальнікі: старонка даступная толькі тым, хто ўвайшоў у сістэму; Госці: толькі гасцям; Змешаны: старонка даступная ўсім, а бачнасць вызначаецца блокамі ўнутры старонкі.
+
+Аўтаматычнае стварэнне запускаецца пасля cron WHMCS, калі настаў час абнаўлення. Стварэнне ўручную пачынаецца адразу.
+
+## Кіраўніцтвы па раздзелах
+
+- [Менеджар старонак](docs/pages_manager.md)
+- [Рэдактар старонак](docs/pages_editor.md)
+- [Менеджар медыяфайлаў](docs/media_manager.md)
+- [меню](docs/menu_manager.md)
+- [Менеджар моў](docs/langs_manager.md)
+- [перанакіраванні](docs/redirects_manager.md)
+- [карта сайта](docs/sitemap_manager.md)
+- [Правілы перазапісу URL](docs/rewrite_manager.md)
+- [Налады модуля](docs/module_settings.md)
+- [База даных модуля](docs/module_db.md)
+
+## Дадатковыя матэрыялы
+
+- [разбіўка на старонкі](docs/pages_editor_pagination.md)
+- [Smarty](docs/pages_editor_smarty.md)
+- [структураваныя даныя](docs/module_structured_data.md)
+- [перанос даных](docs/module_settings_transfer.md)

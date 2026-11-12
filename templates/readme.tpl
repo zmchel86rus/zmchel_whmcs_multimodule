@@ -1,6 +1,7 @@
 {include file="./menus.tpl"}
 
 <style>
+body.iris #contentarea .nav.nav-tabs{margin-bottom: 1rem;}
 .zm-pb-doc { max-width: 1100px; line-height: 1.65; overflow-wrap: anywhere; }
 .zm-pb-doc h1, .zm-pb-doc h2, .zm-pb-doc h3, .zm-pb-doc h4 { margin-top: 1.4em; scroll-margin-top: 20px; }
 .zm-pb-doc h1 { margin-top: 0; }
