@@ -1,3 +1,8 @@
+[![Seuraajat](https://img.shields.io/github/watchers/zmchel86rus/zmchel_whmcs_multimodule?label=Seuraajat)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/watchers)
+[![Tähdet](https://img.shields.io/github/stars/zmchel86rus/zmchel_whmcs_multimodule?label=T%C3%A4hdet)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/stargazers)
+[![Haarat](https://img.shields.io/github/forks/zmchel86rus/zmchel_whmcs_multimodule?label=Haarat)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/network/members)
+[![Ilmoitukset](https://img.shields.io/github/issues/zmchel86rus/zmchel_whmcs_multimodule?label=Ilmoitukset)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/issues)
+
 # zmchel WHMCS Multimodule -käyttöohje
 
 **zmchel WHMCS Multimodule on maksuton.** Sillä voi hallita sivuja ja artikkeleita WHMCS:n hallintapaneelissa. Toimintoihin kuuluvat visuaalinen editori, käännökset, valikot, mediakirjasto, SEO-kentät, XML-sivustokartat, uudelleenohjaukset ja URL-uudelleenkirjoitussäännöt.

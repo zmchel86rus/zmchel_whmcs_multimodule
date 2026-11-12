@@ -1,3 +1,8 @@
+[![Pengikut](https://img.shields.io/github/watchers/zmchel86rus/zmchel_whmcs_multimodule?label=Pengikut)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/watchers)
+[![Bintang](https://img.shields.io/github/stars/zmchel86rus/zmchel_whmcs_multimodule?label=Bintang)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/stargazers)
+[![Fork](https://img.shields.io/github/forks/zmchel86rus/zmchel_whmcs_multimodule?label=Fork)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/network/members)
+[![Isu](https://img.shields.io/github/issues/zmchel86rus/zmchel_whmcs_multimodule?label=Isu)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/issues)
+
 # Panduan zmchel WHMCS Multimodule
 
 **zmchel WHMCS Multimodule ialah modul percuma.** Ia membolehkan anda mengurus halaman berbilang bahasa melalui penyunting visual, menu, pustaka media, metadata SEO, peta laman XML, pengalihan, peraturan rewrite serta import dan eksport dari pentadbiran WHMCS.

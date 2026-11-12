@@ -1,3 +1,8 @@
+[![Назіральнікі](https://img.shields.io/github/watchers/zmchel86rus/zmchel_whmcs_multimodule?label=%D0%9D%D0%B0%D0%B7%D1%96%D1%80%D0%B0%D0%BB%D1%8C%D0%BD%D1%96%D0%BA%D1%96)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/watchers)
+[![Зоркі](https://img.shields.io/github/stars/zmchel86rus/zmchel_whmcs_multimodule?label=%D0%97%D0%BE%D1%80%D0%BA%D1%96)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/stargazers)
+[![Форкі](https://img.shields.io/github/forks/zmchel86rus/zmchel_whmcs_multimodule?label=%D0%A4%D0%BE%D1%80%D0%BA%D1%96)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/network/members)
+[![Пытанні](https://img.shields.io/github/issues/zmchel86rus/zmchel_whmcs_multimodule?label=%D0%9F%D1%8B%D1%82%D0%B0%D0%BD%D0%BD%D1%96)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/issues)
+
 # Інструкцыя да zmchel WHMCS Multimodule
 
 **zmchel WHMCS Multimodule бясплатны.** З панэлі адміністратара WHMCS можна кіраваць шматмоўнымі старонкамі праз візуальны рэдактар, меню, медыятэкай, SEO-метаданымі, XML-картамі сайта, перанакіраваннямі, rewrite-правіламі, імпартам і экспартам.

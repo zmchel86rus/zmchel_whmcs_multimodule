@@ -1,3 +1,8 @@
+[![Följare](https://img.shields.io/github/watchers/zmchel86rus/zmchel_whmcs_multimodule?label=F%C3%B6ljare)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/watchers)
+[![Stjärnor](https://img.shields.io/github/stars/zmchel86rus/zmchel_whmcs_multimodule?label=Stj%C3%A4rnor)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/stargazers)
+[![Förgreningar](https://img.shields.io/github/forks/zmchel86rus/zmchel_whmcs_multimodule?label=F%C3%B6rgreningar)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/network/members)
+[![Ärenden](https://img.shields.io/github/issues/zmchel86rus/zmchel_whmcs_multimodule?label=%C3%84renden)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/issues)
+
 # zmchel WHMCS Multimodule: instruktioner
 
 **zmchel WHMCS Multimodule är gratis.** Den innehåller en visuell sidredigerare, flerspråkigt innehåll, menyer, mediebibliotek, SEO-fält, XML-webbplatskartor, omdirigeringar, omskrivningsregler samt import och export.

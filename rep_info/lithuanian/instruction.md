@@ -1,3 +1,8 @@
+[![Stebėtojai](https://img.shields.io/github/watchers/zmchel86rus/zmchel_whmcs_multimodule?label=Steb%C4%97tojai)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/watchers)
+[![Žvaigždės](https://img.shields.io/github/stars/zmchel86rus/zmchel_whmcs_multimodule?label=%C5%BDvaig%C5%BEd%C4%97s)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/stargazers)
+[![Atšakos](https://img.shields.io/github/forks/zmchel86rus/zmchel_whmcs_multimodule?label=At%C5%A1akos)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/network/members)
+[![Pranešimai](https://img.shields.io/github/issues/zmchel86rus/zmchel_whmcs_multimodule?label=Prane%C5%A1imai)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/issues)
+
 # zmchel WHMCS Multimodule instrukcija
 
 **zmchel WHMCS Multimodule yra nemokamas.** WHMCS administravimo srityje galima tvarkyti puslapius ir straipsnius naudojant vaizdinę rengyklę, vertimus, meniu, medijos biblioteką, SEO laukus, XML svetainės schemas, peradresavimus ir URL perrašymo taisykles.

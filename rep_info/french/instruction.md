@@ -1,3 +1,8 @@
+[![Abonnés](https://img.shields.io/github/watchers/zmchel86rus/zmchel_whmcs_multimodule?label=Abonn%C3%A9s)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/watchers)
+[![Étoiles](https://img.shields.io/github/stars/zmchel86rus/zmchel_whmcs_multimodule?label=%C3%89toiles)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/stargazers)
+[![Forks](https://img.shields.io/github/forks/zmchel86rus/zmchel_whmcs_multimodule?label=Forks)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/network/members)
+[![Signalements](https://img.shields.io/github/issues/zmchel86rus/zmchel_whmcs_multimodule?label=Signalements)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/issues)
+
 # zmchel WHMCS Multimodule : instructions
 
 **zmchel WHMCS Multimodule est gratuit.** Il réunit un éditeur visuel de pages, des contenus multilingues, des menus, une médiathèque, des champs SEO, des plans de site XML, des redirections, des règles de réécriture et l’importation/exportation.

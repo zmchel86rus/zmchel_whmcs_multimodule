@@ -1,3 +1,8 @@
+[![Sledující](https://img.shields.io/github/watchers/zmchel86rus/zmchel_whmcs_multimodule?label=Sleduj%C3%ADc%C3%AD)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/watchers)
+[![Hvězdy](https://img.shields.io/github/stars/zmchel86rus/zmchel_whmcs_multimodule?label=Hv%C4%9Bzdy)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/stargazers)
+[![Forky](https://img.shields.io/github/forks/zmchel86rus/zmchel_whmcs_multimodule?label=Forky)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/network/members)
+[![Úkoly](https://img.shields.io/github/issues/zmchel86rus/zmchel_whmcs_multimodule?label=%C3%9Akoly)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/issues)
+
 # zmchel WHMCS Multimodule: návod
 
 **zmchel WHMCS Multimodule je zdarma.** Obsahuje vizuální editor stránek, vícejazyčný obsah, nabídky, knihovnu médií, pole SEO, XML mapy webu, přesměrování, pravidla přepisování a import/export.

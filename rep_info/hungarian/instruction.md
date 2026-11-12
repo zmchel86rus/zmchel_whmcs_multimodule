@@ -1,3 +1,8 @@
+[![Követők](https://img.shields.io/github/watchers/zmchel86rus/zmchel_whmcs_multimodule?label=K%C3%B6vet%C5%91k)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/watchers)
+[![Csillagok](https://img.shields.io/github/stars/zmchel86rus/zmchel_whmcs_multimodule?label=Csillagok)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/stargazers)
+[![Forkok](https://img.shields.io/github/forks/zmchel86rus/zmchel_whmcs_multimodule?label=Forkok)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/network/members)
+[![Hibajegyek](https://img.shields.io/github/issues/zmchel86rus/zmchel_whmcs_multimodule?label=Hibajegyek)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/issues)
+
 # zmchel WHMCS Multimodule: útmutató
 
 **A zmchel WHMCS Multimodule ingyenes.** Vizuális oldalszerkesztőt, többnyelvű tartalmat, menüket, médiatárat, SEO-mezőket, XML-webhelytérképeket, átirányításokat, átírási szabályokat, valamint importálást és exportálást kínál.

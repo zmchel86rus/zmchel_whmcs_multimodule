@@ -1,3 +1,8 @@
+[![Watching](https://img.shields.io/github/watchers/zmchel86rus/zmchel_whmcs_multimodule?label=Watching)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/watchers)
+[![Stars](https://img.shields.io/github/stars/zmchel86rus/zmchel_whmcs_multimodule?label=Stars)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/stargazers)
+[![Forks](https://img.shields.io/github/forks/zmchel86rus/zmchel_whmcs_multimodule?label=Forks)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/network/members)
+[![Issues](https://img.shields.io/github/issues/zmchel86rus/zmchel_whmcs_multimodule?label=Issues)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/issues)
+
 # ZMChel WHMCS Multimodule: user instructions
 
 **ZMChel WHMCS Multimodule is free.** It lets you manage site content from the WHMCS admin area. Its tools include a visual page and block editor, multilingual content, menus, a media library, SEO metadata, XML sitemaps, redirects, rewrite rules, and import/export.

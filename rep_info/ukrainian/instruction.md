@@ -1,3 +1,8 @@
+[![Спостерігачі](https://img.shields.io/github/watchers/zmchel86rus/zmchel_whmcs_multimodule?label=%D0%A1%D0%BF%D0%BE%D1%81%D1%82%D0%B5%D1%80%D1%96%D0%B3%D0%B0%D1%87%D1%96)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/watchers)
+[![Зірки](https://img.shields.io/github/stars/zmchel86rus/zmchel_whmcs_multimodule?label=%D0%97%D1%96%D1%80%D0%BA%D0%B8)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/stargazers)
+[![Форки](https://img.shields.io/github/forks/zmchel86rus/zmchel_whmcs_multimodule?label=%D0%A4%D0%BE%D1%80%D0%BA%D0%B8)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/network/members)
+[![Задачі](https://img.shields.io/github/issues/zmchel86rus/zmchel_whmcs_multimodule?label=%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D1%96)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/issues)
+
 # Інструкція з використання ZMChel WHMCS Multimodule
 
 **ZMChel WHMCS Multimodule — безкоштовний модуль.** Він дає змогу керувати вмістом сайту з адмінпанелі WHMCS: візуальний редактор сторінок і блоків, багатомовний вміст, меню, медіатека, SEO-метадані, XML-мапи сайту, перенаправлення, rewrite-правила та імпорт/експорт.

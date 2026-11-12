@@ -1,3 +1,8 @@
+[![Pengikut](https://img.shields.io/github/watchers/zmchel86rus/zmchel_whmcs_multimodule?label=Pengikut)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/watchers)
+[![Bintang](https://img.shields.io/github/stars/zmchel86rus/zmchel_whmcs_multimodule?label=Bintang)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/stargazers)
+[![Fork](https://img.shields.io/github/forks/zmchel86rus/zmchel_whmcs_multimodule?label=Fork)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/network/members)
+[![Isu](https://img.shields.io/github/issues/zmchel86rus/zmchel_whmcs_multimodule?label=Isu)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/issues)
+
 # Petunjuk zmchel WHMCS Multimodule
 
 **zmchel WHMCS Multimodule gratis.** Dari admin WHMCS, Anda dapat mengelola halaman multibahasa dengan editor visual, menu, pustaka media, metadata SEO, peta situs XML, pengalihan, aturan rewrite, serta impor dan ekspor.

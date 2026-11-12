@@ -1,3 +1,8 @@
+[![Theo dõi](https://img.shields.io/github/watchers/zmchel86rus/zmchel_whmcs_multimodule?label=Theo%20d%C3%B5i)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/watchers)
+[![Sao](https://img.shields.io/github/stars/zmchel86rus/zmchel_whmcs_multimodule?label=Sao)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/stargazers)
+[![Fork](https://img.shields.io/github/forks/zmchel86rus/zmchel_whmcs_multimodule?label=Fork)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/network/members)
+[![Vấn đề](https://img.shields.io/github/issues/zmchel86rus/zmchel_whmcs_multimodule?label=V%E1%BA%A5n%20%C4%91%E1%BB%81)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/issues)
+
 # Hướng dẫn sử dụng zmchel WHMCS Multimodule
 
 **zmchel WHMCS Multimodule miễn phí.** Ngay trong khu vực quản trị WHMCS, bạn có thể quản lý trang đa ngôn ngữ bằng trình biên tập trực quan, menu, thư viện ảnh, siêu dữ liệu SEO, sơ đồ trang XML, chuyển hướng, quy tắc rewrite và nhập/xuất dữ liệu.

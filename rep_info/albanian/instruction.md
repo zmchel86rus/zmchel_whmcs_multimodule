@@ -1,3 +1,8 @@
+[![Ndjekës](https://img.shields.io/github/watchers/zmchel86rus/zmchel_whmcs_multimodule?label=Ndjek%C3%ABs)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/watchers)
+[![Yje](https://img.shields.io/github/stars/zmchel86rus/zmchel_whmcs_multimodule?label=Yje)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/stargazers)
+[![Degëzime](https://img.shields.io/github/forks/zmchel86rus/zmchel_whmcs_multimodule?label=Deg%C3%ABzime)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/network/members)
+[![Çështje](https://img.shields.io/github/issues/zmchel86rus/zmchel_whmcs_multimodule?label=%C3%87%C3%ABshtje)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/issues)
+
 # Udhëzime për zmchel WHMCS Multimodule
 
 **zmchel WHMCS Multimodule është falas.** Nga administrimi i WHMCS mund të menaxhoni faqe shumëgjuhëshe me redaktor pamor, meny, bibliotekë mediash, metadata SEO, harta XML, ridrejtime, rregulla rewrite dhe import/eksport.

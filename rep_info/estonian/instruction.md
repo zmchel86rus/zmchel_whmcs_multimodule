@@ -1,3 +1,8 @@
+[![Jälgijad](https://img.shields.io/github/watchers/zmchel86rus/zmchel_whmcs_multimodule?label=J%C3%A4lgijad)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/watchers)
+[![Tähed](https://img.shields.io/github/stars/zmchel86rus/zmchel_whmcs_multimodule?label=T%C3%A4hed)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/stargazers)
+[![Forkid](https://img.shields.io/github/forks/zmchel86rus/zmchel_whmcs_multimodule?label=Forkid)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/network/members)
+[![Teated](https://img.shields.io/github/issues/zmchel86rus/zmchel_whmcs_multimodule?label=Teated)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/issues)
+
 # zmchel WHMCS Multimodule: juhend
 
 **zmchel WHMCS Multimodule on tasuta.** See sisaldab visuaalset leheredaktorit, mitmekeelset sisu, menüüsid, meediakogu, SEO välju, XML-saidikaarte, ümbersuunamisi, ümberkirjutusreegleid ning importi ja eksporti.

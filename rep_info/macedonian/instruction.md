@@ -1,3 +1,8 @@
+[![Следачи](https://img.shields.io/github/watchers/zmchel86rus/zmchel_whmcs_multimodule?label=%D0%A1%D0%BB%D0%B5%D0%B4%D0%B0%D1%87%D0%B8)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/watchers)
+[![Ѕвезди](https://img.shields.io/github/stars/zmchel86rus/zmchel_whmcs_multimodule?label=%D0%85%D0%B2%D0%B5%D0%B7%D0%B4%D0%B8)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/stargazers)
+[![Форкови](https://img.shields.io/github/forks/zmchel86rus/zmchel_whmcs_multimodule?label=%D0%A4%D0%BE%D1%80%D0%BA%D0%BE%D0%B2%D0%B8)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/network/members)
+[![Прашања](https://img.shields.io/github/issues/zmchel86rus/zmchel_whmcs_multimodule?label=%D0%9F%D1%80%D0%B0%D1%88%D0%B0%D1%9A%D0%B0)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/issues)
+
 # Упатство за zmchel WHMCS Multimodule
 
 **zmchel WHMCS Multimodule е бесплатен.** Од администрацијата на WHMCS можете да управувате со страници и статии преку визуелен уредувач, преводи, менија, медијатека, SEO-полиња, XML-мапи на сајтот, пренасочувања и правила за препишување.

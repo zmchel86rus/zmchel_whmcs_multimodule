@@ -1,3 +1,8 @@
+[![Sekotāji](https://img.shields.io/github/watchers/zmchel86rus/zmchel_whmcs_multimodule?label=Sekot%C4%81ji)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/watchers)
+[![Zvaigznes](https://img.shields.io/github/stars/zmchel86rus/zmchel_whmcs_multimodule?label=Zvaigznes)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/stargazers)
+[![Atzari](https://img.shields.io/github/forks/zmchel86rus/zmchel_whmcs_multimodule?label=Atzari)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/network/members)
+[![Pieteikumi](https://img.shields.io/github/issues/zmchel86rus/zmchel_whmcs_multimodule?label=Pieteikumi)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/issues)
+
 # zmchel WHMCS Multimodule instrukcija
 
 **zmchel WHMCS Multimodule ir bezmaksas.** Tas ļauj pārvaldīt lapas un rakstus WHMCS administrācijā, izmantojot vizuālo redaktoru, tulkojumus, izvēlnes, mediju bibliotēku, SEO laukus, XML vietnes kartes, pāradresācijas un URL pārrakstīšanas noteikumus.

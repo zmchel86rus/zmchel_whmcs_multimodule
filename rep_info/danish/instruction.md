@@ -1,3 +1,8 @@
+[![Følgere](https://img.shields.io/github/watchers/zmchel86rus/zmchel_whmcs_multimodule?label=F%C3%B8lgere)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/watchers)
+[![Stjerner](https://img.shields.io/github/stars/zmchel86rus/zmchel_whmcs_multimodule?label=Stjerner)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/stargazers)
+[![Forks](https://img.shields.io/github/forks/zmchel86rus/zmchel_whmcs_multimodule?label=Forks)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/network/members)
+[![Sager](https://img.shields.io/github/issues/zmchel86rus/zmchel_whmcs_multimodule?label=Sager)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/issues)
+
 # Vejledning til zmchel WHMCS Multimodule
 
 **zmchel WHMCS Multimodule er gratis.** Administrér sider og artikler fra WHMCS-administrationen med visuel editor, oversættelser, menuer, mediefiler, SEO-felter, XML-sitemaps, viderestillinger og omskrivningsregler.

@@ -1,3 +1,8 @@
+[![Leantóirí](https://img.shields.io/github/watchers/zmchel86rus/zmchel_whmcs_multimodule?label=Leant%C3%B3ir%C3%AD)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/watchers)
+[![Réaltaí](https://img.shields.io/github/stars/zmchel86rus/zmchel_whmcs_multimodule?label=R%C3%A9alta%C3%AD)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/stargazers)
+[![Forcanna](https://img.shields.io/github/forks/zmchel86rus/zmchel_whmcs_multimodule?label=Forcanna)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/network/members)
+[![Saincheisteanna](https://img.shields.io/github/issues/zmchel86rus/zmchel_whmcs_multimodule?label=Saincheisteanna)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/issues)
+
 # Treoracha do zmchel WHMCS Multimodule
 
 **Tá zmchel WHMCS Multimodule saor in aisce.** Ó riarachán WHMCS is féidir leathanaigh ilteangacha a bhainistiú le heagarthóir amhairc, roghchláir, leabharlann meán, meiteashonraí SEO, léarscáileanna XML, atreoruithe, rialacha rewrite agus iompórtáil/easpórtáil.

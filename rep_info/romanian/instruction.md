@@ -1,3 +1,8 @@
+[![Urmăritori](https://img.shields.io/github/watchers/zmchel86rus/zmchel_whmcs_multimodule?label=Urm%C4%83ritori)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/watchers)
+[![Stele](https://img.shields.io/github/stars/zmchel86rus/zmchel_whmcs_multimodule?label=Stele)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/stargazers)
+[![Forkuri](https://img.shields.io/github/forks/zmchel86rus/zmchel_whmcs_multimodule?label=Forkuri)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/network/members)
+[![Sesizări](https://img.shields.io/github/issues/zmchel86rus/zmchel_whmcs_multimodule?label=Sesiz%C4%83ri)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/issues)
+
 # Instrucțiuni pentru zmchel WHMCS Multimodule
 
 **zmchel WHMCS Multimodule este gratuit.** Permite administrarea paginilor și articolelor din panoul WHMCS, cu editor vizual, traduceri, meniuri, fișiere media, câmpuri SEO, sitemap-uri XML, redirecționări și reguli de rescriere.

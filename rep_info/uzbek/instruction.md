@@ -1,3 +1,8 @@
+[![Kuzatuvchilar](https://img.shields.io/github/watchers/zmchel86rus/zmchel_whmcs_multimodule?label=Kuzatuvchilar)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/watchers)
+[![Yulduzlar](https://img.shields.io/github/stars/zmchel86rus/zmchel_whmcs_multimodule?label=Yulduzlar)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/stargazers)
+[![Forklar](https://img.shields.io/github/forks/zmchel86rus/zmchel_whmcs_multimodule?label=Forklar)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/network/members)
+[![Muammolar](https://img.shields.io/github/issues/zmchel86rus/zmchel_whmcs_multimodule?label=Muammolar)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/issues)
+
 # zmchel WHMCS Multimodule qo‘llanmasi
 
 **zmchel WHMCS Multimodule bepul.** WHMCS boshqaruv panelidan ko‘p tilli sahifalar, vizual muharrir, menyular, media kutubxonasi, SEO metama’lumotlari, XML sayt xaritasi, yo‘naltirishlar, rewrite qoidalari hamda import va eksportni boshqaring.

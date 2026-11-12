@@ -1,3 +1,8 @@
+[![Volgers](https://img.shields.io/github/watchers/zmchel86rus/zmchel_whmcs_multimodule?label=Volgers)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/watchers)
+[![Sterren](https://img.shields.io/github/stars/zmchel86rus/zmchel_whmcs_multimodule?label=Sterren)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/stargazers)
+[![Forks](https://img.shields.io/github/forks/zmchel86rus/zmchel_whmcs_multimodule?label=Forks)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/network/members)
+[![Meldingen](https://img.shields.io/github/issues/zmchel86rus/zmchel_whmcs_multimodule?label=Meldingen)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/issues)
+
 # Handleiding voor zmchel WHMCS Multimodule
 
 **zmchel WHMCS Multimodule is gratis.** Beheer pagina's en artikelen vanuit de WHMCS-administratie, met een visuele editor, vertalingen, menu's, mediabestanden, SEO-velden, XML-sitemaps, omleidingen en herschrijfregels.

@@ -1,3 +1,8 @@
+[![Wafuatiliaji](https://img.shields.io/github/watchers/zmchel86rus/zmchel_whmcs_multimodule?label=Wafuatiliaji)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/watchers)
+[![Nyota](https://img.shields.io/github/stars/zmchel86rus/zmchel_whmcs_multimodule?label=Nyota)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/stargazers)
+[![Matawi](https://img.shields.io/github/forks/zmchel86rus/zmchel_whmcs_multimodule?label=Matawi)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/network/members)
+[![Masuala](https://img.shields.io/github/issues/zmchel86rus/zmchel_whmcs_multimodule?label=Masuala)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/issues)
+
 # Maelekezo ya zmchel WHMCS Multimodule
 
 **zmchel WHMCS Multimodule ni ya bure.** Kutoka eneo la usimamizi la WHMCS, simamia kurasa za lugha nyingi kwa kihariri cha picha, menyu, maktaba ya media, taarifa za SEO, ramani za tovuti za XML, uelekezaji upya, sheria za rewrite, kuingiza na kuhamisha data.

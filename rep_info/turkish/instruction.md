@@ -1,3 +1,8 @@
+[![İzleyenler](https://img.shields.io/github/watchers/zmchel86rus/zmchel_whmcs_multimodule?label=%C4%B0zleyenler)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/watchers)
+[![Yıldızlar](https://img.shields.io/github/stars/zmchel86rus/zmchel_whmcs_multimodule?label=Y%C4%B1ld%C4%B1zlar)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/stargazers)
+[![Forklar](https://img.shields.io/github/forks/zmchel86rus/zmchel_whmcs_multimodule?label=Forklar)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/network/members)
+[![Sorunlar](https://img.shields.io/github/issues/zmchel86rus/zmchel_whmcs_multimodule?label=Sorunlar)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/issues)
+
 # zmchel WHMCS Multimodule: talimatlar
 
 **zmchel WHMCS Multimodule ücretsizdir.** Görsel sayfa düzenleyicisi, çok dilli içerik, menüler, medya kütüphanesi, SEO alanları, XML site haritaları, yönlendirmeler, yeniden yazma kuralları ve içe/dışa aktarma araçları sunar.

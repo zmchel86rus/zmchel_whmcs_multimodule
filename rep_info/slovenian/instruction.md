@@ -1,3 +1,8 @@
+[![Sledilci](https://img.shields.io/github/watchers/zmchel86rus/zmchel_whmcs_multimodule?label=Sledilci)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/watchers)
+[![Zvezdice](https://img.shields.io/github/stars/zmchel86rus/zmchel_whmcs_multimodule?label=Zvezdice)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/stargazers)
+[![Forki](https://img.shields.io/github/forks/zmchel86rus/zmchel_whmcs_multimodule?label=Forki)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/network/members)
+[![Prijave](https://img.shields.io/github/issues/zmchel86rus/zmchel_whmcs_multimodule?label=Prijave)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/issues)
+
 # Navodila za zmchel WHMCS Multimodule
 
 **zmchel WHMCS Multimodule je brezplačen.** V skrbništvu WHMCS omogoča upravljanje strani in člankov z vizualnim urejevalnikom, prevodi, meniji, medijsko knjižnico, polji SEO, zemljevidi spletnega mesta XML, preusmeritvami in pravili za prepisovanje URL-jev.

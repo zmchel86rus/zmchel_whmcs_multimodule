@@ -1,3 +1,8 @@
+[![Seguidors](https://img.shields.io/github/watchers/zmchel86rus/zmchel_whmcs_multimodule?label=Seguidors)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/watchers)
+[![Estrelles](https://img.shields.io/github/stars/zmchel86rus/zmchel_whmcs_multimodule?label=Estrelles)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/stargazers)
+[![Bifurcacions](https://img.shields.io/github/forks/zmchel86rus/zmchel_whmcs_multimodule?label=Bifurcacions)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/network/members)
+[![Incidències](https://img.shields.io/github/issues/zmchel86rus/zmchel_whmcs_multimodule?label=Incid%C3%A8ncies)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/issues)
+
 # Instruccions de zmchel WHMCS Multimodule
 
 **zmchel WHMCS Multimodule és gratuït.** Permet gestionar pàgines i articles des de l'administració de WHMCS amb un editor visual, traduccions, menús, fitxers multimèdia, camps SEO, mapes del lloc XML, redireccions i regles de reescriptura.

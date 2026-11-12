@@ -1,3 +1,8 @@
+[![İzləyənlər](https://img.shields.io/github/watchers/zmchel86rus/zmchel_whmcs_multimodule?label=%C4%B0zl%C9%99y%C9%99nl%C9%99r)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/watchers)
+[![Ulduzlar](https://img.shields.io/github/stars/zmchel86rus/zmchel_whmcs_multimodule?label=Ulduzlar)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/stargazers)
+[![Forklar](https://img.shields.io/github/forks/zmchel86rus/zmchel_whmcs_multimodule?label=Forklar)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/network/members)
+[![Məsələlər](https://img.shields.io/github/issues/zmchel86rus/zmchel_whmcs_multimodule?label=M%C9%99s%C9%99l%C9%99l%C9%99r)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/issues)
+
 # zmchel WHMCS Multimodule təlimatı
 
 **zmchel WHMCS Multimodule pulsuzdur.** WHMCS idarəetmə panelindən vizual redaktorla çoxdilli səhifələri, menyuları, media kitabxanasını, SEO metadatasını, XML sayt xəritələrini, yönləndirmələri, rewrite qaydalarını, idxal və ixracı idarə edin.

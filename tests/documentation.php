@@ -36,7 +36,13 @@ $topics = [
 ];
 $loader = file_get_contents($root . '/methods/get/readme.php');
 $locales = glob($root . '/rep_info/*', GLOB_ONLYDIR);
-if (count($locales) !== 40) throw new RuntimeException('Unexpected number of documentation languages.');
+$knownLanguages = (require $root . '/supported_langs.php') + (require $root . '/disabled_langs.php');
+$documentedLanguages = array_map('basename', $locales);
+sort($documentedLanguages);
+$expectedLanguages = array_keys($knownLanguages);
+sort($expectedLanguages);
+if ($documentedLanguages !== $expectedLanguages)
+    throw new RuntimeException('Documentation languages do not match the module language list.');
 
 foreach ($locales as $locale) {
     $language = basename($locale);
@@ -103,7 +109,9 @@ foreach ($locales as $locale) {
             if ($paragraph === '' || preg_match('/^[#\-|>]/u', $paragraph)) {
                 continue;
             }
-            if (count(preg_split('/\s+/u', $paragraph)) >= 20) {
+            if (count(preg_split('/\s+/u', $paragraph)) >= 20 ||
+                (in_array($language, ['chinese', 'japanese', 'korean'], true) &&
+                 preg_match_all('/\p{L}/u', $paragraph) >= 80)) {
                 $hasProse = true;
                 break;
             }
@@ -115,7 +123,9 @@ foreach ($locales as $locale) {
             'module_settings' => 70, 'pages_manager' => 100,
             'rewrite_manager' => 90, 'media_manager' => 80, 'module_db' => 80,
         ][$id] ?? 120;
-        if (count(preg_split('/\s+/u', trim($text))) < $minimumWords) {
+        if (count(preg_split('/\s+/u', trim($text))) < $minimumWords &&
+            !(in_array($language, ['chinese', 'japanese', 'korean'], true) &&
+              preg_match_all('/\p{L}/u', $text) >= $minimumWords * 2)) {
             throw new RuntimeException("Guide is incomplete or truncated: $language/$id.");
         }
         foreach ($topics[$id] ?? [] as $topic) {
@@ -124,7 +134,9 @@ foreach ($locales as $locale) {
             }
         }
         if ($id === 'menu_manager' &&
-            count(preg_split('/\s+/u', $text)) < 180) {
+            count(preg_split('/\s+/u', $text)) < 180 &&
+            !(in_array($language, ['chinese', 'japanese', 'korean'], true) &&
+              preg_match_all('/\p{L}/u', $text) >= 360)) {
             throw new RuntimeException("Menu guide was truncated: $language.");
         }
         if (preg_match_all('/^## /m', $text) !== $sectionCounts[$id]) {
@@ -160,4 +172,5 @@ foreach ($locales as $locale) {
     }
 }
 
-echo 'PASS 40 main guides, 560 substantive guides, handler IDs, and local links', PHP_EOL;
+echo 'PASS ', count($locales), ' main guides, ', count($locales) * count($expected),
+    ' substantive guides, handler IDs, and local links', PHP_EOL;

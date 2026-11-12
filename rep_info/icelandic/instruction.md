@@ -1,3 +1,8 @@
+[![Fylgjendur](https://img.shields.io/github/watchers/zmchel86rus/zmchel_whmcs_multimodule?label=Fylgjendur)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/watchers)
+[![Stjörnur](https://img.shields.io/github/stars/zmchel86rus/zmchel_whmcs_multimodule?label=Stj%C3%B6rnur)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/stargazers)
+[![Kvíslir](https://img.shields.io/github/forks/zmchel86rus/zmchel_whmcs_multimodule?label=Kv%C3%ADslir)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/network/members)
+[![Mál](https://img.shields.io/github/issues/zmchel86rus/zmchel_whmcs_multimodule?label=M%C3%A1l)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/issues)
+
 # Leiðbeiningar fyrir zmchel WHMCS Multimodule
 
 **zmchel WHMCS Multimodule er ókeypis.** Í stjórnborði WHMCS geturðu stjórnað fjöltyngdum síðum með sjónrænum ritli, valmyndum, miðlasafni, SEO-lýsigögnum, XML-vefkortum, áframsendingum, rewrite-reglum og inn- og útflutningi.
