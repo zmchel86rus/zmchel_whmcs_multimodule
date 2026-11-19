@@ -17,7 +17,7 @@ function zm_pb_directory_health_paths(): array
         ['path' => ZM_PB_ROOTDIR . 'rep_info/', 'public' => false],
         ['path' => ZM_PB_RESOURCESDIR, 'public' => false],
         ['path' => ZM_PB_ASSETSDIR . 'generated/', 'deny' => true],
-        ['path' => ZM_PB_MAINSYSTEM_ATTACHMENTS_DIR, 'public' => true],
+        ['path' => ZM_PB_MAINSYSTEM_ASSETS_DIR, 'public' => true],
         ['path' => ROOTDIR . '/lang/', 'public' => false],
         ['path' => $adminDir . '/lang/', 'public' => false],
         ['path' => ROOTDIR . '/templates_c/' . ZM_PB_NAME . '/', 'public' => false],

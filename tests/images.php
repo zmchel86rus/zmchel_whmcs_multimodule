@@ -4,6 +4,7 @@ define('ZM_PB_VER', 'test');
 define('ZM_PB_LIBDIR', dirname(__DIR__) . '/lib/');
 define('ZM_PB_ASSETSDIR', dirname(__DIR__) . '/assets/');
 define('ZM_PB_ASSETSURL', 'https://example.test/modules/addons/zmchel_whmcs_multimodule/assets/');
+define('ZM_PB_MAINSYSTEM_ASSETS_URL', 'https://example.test/assets/zmchel_whmcs_multimodule/');
 define('ZM_PB_SCHEMAS_DIR', ZM_PB_ASSETSDIR . 'schemas/');
 $hooks = [];
 function add_hook($name, $priority, $callback) {
@@ -29,11 +30,11 @@ function image_xpath($html) {
 
 require ZM_PB_LIBDIR . 'content_builder.php';
 $variants = [
-    'thumbnail' => ['url' => 'https://example.test/attachments/banner_thumbnail.png', 'width' => 128, 'height' => 51],
-    'large' => ['url' => 'https://example.test/attachments/banner_large.png', 'width' => 1024, 'height' => 409],
-    'full' => ['url' => 'https://example.test/attachments/banner.png', 'width' => 1983, 'height' => 792],
+    'thumbnail' => ['url' => 'https://example.test/assets/zmchel_whmcs_multimodule/banner_thumbnail.png', 'width' => 128, 'height' => 51],
+    'large' => ['url' => 'https://example.test/assets/zmchel_whmcs_multimodule/banner_large.png', 'width' => 1024, 'height' => 409],
+    'full' => ['url' => 'https://example.test/assets/zmchel_whmcs_multimodule/banner.png', 'width' => 1983, 'height' => 792],
 ];
-$attributes = ' src="https://example.test/attachments/banner_large.png" width="1024" height="409" loading="lazy" alt="Banner"'
+$attributes = ' src="https://example.test/assets/zmchel_whmcs_multimodule/banner_large.png" width="1024" height="409" loading="lazy" alt="Banner"'
     . ' data-zm-pb-image-variants="' . htmlspecialchars(json_encode($variants), ENT_QUOTES, 'UTF-8') . '"';
 $html = render_image_test('<div>Intro</div><img' . $attributes . '>');
 $xpath = image_xpath($html);

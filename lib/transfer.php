@@ -198,7 +198,7 @@ class ZM_PB_Transfer {
                     $row['files'] = [];
                     $names = [$row['filename']];
                     foreach (json_decode($row['sizes'] ?? '{}', true) ?: [] as $size) if (isset($size['filename'])) $names[] = $size['filename'];
-                    foreach (array_unique($names) as $name) $row['files'][$name] = base64_encode(self::read(ZM_PB_MAINSYSTEM_ATTACHMENTS_DIR . self::mediaName($name)));
+                    foreach (array_unique($names) as $name) $row['files'][$name] = base64_encode(self::read(ZM_PB_MAINSYSTEM_ASSETS_DIR . self::mediaName($name)));
                     $data[] = $row;
                     if (strlen(json_encode($data, JSON_THROW_ON_ERROR)) > self::MAX_BYTES) throw new RuntimeException(zm_pb_transfer_error('export_too_large'));
                 }
@@ -246,13 +246,15 @@ class ZM_PB_Transfer {
 
     private static function importMedia(array $rows, $source, ZM_PB_TransferFiles $files) {
         $map = [];
-        if (!is_dir(ZM_PB_MAINSYSTEM_ATTACHMENTS_DIR) && !mkdir(ZM_PB_MAINSYSTEM_ATTACHMENTS_DIR, 0755, true)) throw new RuntimeException(zm_pb_transfer_error('create_media_dir'));
+        if (!is_dir(ZM_PB_MAINSYSTEM_ASSETS_DIR) || !is_writable(ZM_PB_MAINSYSTEM_ASSETS_DIR)) throw new RuntimeException(zm_pb_transfer_error('create_media_dir'));
         foreach ($rows as $row) {
             $sizes = json_decode($row['sizes'] ?? '{}', true, 512, JSON_THROW_ON_ERROR) ?: [];
             $names = [self::mediaName($row['filename'] ?? '')];
             $existing = Capsule::table('zm_pb_attachments')->where('filename', $row['filename'])->first();
-            $owned = $existing ? [$existing->filename] : [];
-            foreach (json_decode($existing->sizes ?? '{}', true) ?: [] as $size) if (isset($size['filename'])) $owned[] = $size['filename'];
+            $owned = $existing && strpos((string) $existing->url, ZM_PB_MAINSYSTEM_ASSETS_URL) === 0
+                ? [$existing->filename] : [];
+            if ($owned) foreach (json_decode($existing->sizes ?? '{}', true) ?: [] as $size)
+                if (isset($size['filename'])) $owned[] = $size['filename'];
             foreach ($sizes as $size) $names[] = self::mediaName($size['filename'] ?? '');
             $renamed = [];
             foreach (array_unique($names) as $name) {
@@ -265,24 +267,29 @@ class ZM_PB_Transfer {
                     'ogg' => ['audio/ogg', 'video/ogg', 'application/ogg'], 'mp4' => ['video/mp4', 'application/mp4'], 'webm' => ['video/webm', 'audio/webm']];
                 if (!in_array($mime, $allowedMime[$extension] ?? [], true)) throw new RuntimeException(zm_pb_transfer_error('mime_mismatch', $name));
                 if (in_array($extension, ['jpg', 'jpeg', 'png', 'gif', 'webp'], true) && !@getimagesizefromstring($bytes)) throw new RuntimeException(zm_pb_transfer_error('invalid_image', $name));
-                // Update module-owned files; a collision with another WHMCS attachment gets a new name.
-                $path = ZM_PB_MAINSYSTEM_ATTACHMENTS_DIR . $name;
+                // Preserve any existing file with the same name but different content.
+                $path = ZM_PB_MAINSYSTEM_ASSETS_DIR . $name;
                 $newName = (!file_exists($path) || in_array($name, $owned, true))
                     ? $name : 'pb_' . hash('sha256', $bytes) . '.' . $extension;
-                $files->write(ZM_PB_MAINSYSTEM_ATTACHMENTS_DIR . $newName, $bytes);
+                $files->write(ZM_PB_MAINSYSTEM_ASSETS_DIR . $newName, $bytes);
                 $renamed[$name] = $newName;
-                $oldUrl = rtrim($source, '/') . '/attachments/' . rawurlencode($name);
-                $map[$oldUrl] = ZM_PB_MAINSYSTEM_ATTACHMENTS_URL . rawurlencode($newName);
+                $url = ZM_PB_MAINSYSTEM_ASSETS_URL . rawurlencode($newName);
+                $map[rtrim($source, '/') . '/attachments/' . rawurlencode($name)] = $url;
+                $map[rtrim($source, '/') . '/modules/addons/' . ZM_PB_NAME . '/assets/media/' . rawurlencode($name)] = $url;
+                $map[rtrim($source, '/') . '/assets/' . ZM_PB_NAME . '/' . rawurlencode($name)] = $url;
+                $map[rtrim($source, '/') . '/assets/' . rawurlencode($name)] = $url;
             }
             foreach ($sizes as &$size) {
+                $oldSizeUrl = $size['url'] ?? null;
                 $size['filename'] = $renamed[$size['filename']];
-                $size['url'] = ZM_PB_MAINSYSTEM_ATTACHMENTS_URL . rawurlencode($size['filename']);
+                $size['url'] = ZM_PB_MAINSYSTEM_ASSETS_URL . rawurlencode($size['filename']);
+                if (is_string($oldSizeUrl)) $map[$oldSizeUrl] = $size['url'];
             }
             unset($size);
             $record = self::fields($row, 'name alt title description created_at updated_at');
             $record['filename'] = $renamed[$row['filename']];
-            $record['url'] = ZM_PB_MAINSYSTEM_ATTACHMENTS_URL . rawurlencode($record['filename']);
-            $record['mime_type'] = (new finfo(FILEINFO_MIME_TYPE))->file(ZM_PB_MAINSYSTEM_ATTACHMENTS_DIR . $record['filename']);
+            $record['url'] = ZM_PB_MAINSYSTEM_ASSETS_URL . rawurlencode($record['filename']);
+            $record['mime_type'] = (new finfo(FILEINFO_MIME_TYPE))->file(ZM_PB_MAINSYSTEM_ASSETS_DIR . $record['filename']);
             $record['sizes'] = json_encode($sizes, JSON_THROW_ON_ERROR);
             Capsule::table('zm_pb_attachments')->updateOrInsert(['filename' => $record['filename']], $record);
             if (is_string($row['url'] ?? null)) $map[$row['url']] = $record['url'];

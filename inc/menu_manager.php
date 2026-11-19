@@ -233,7 +233,8 @@ function zm_pb_menu_admin_data($id)
     $overrideSources = zm_pb_menu_override_sources();
     //$settings = Capsule::table('zm_pb_pages_settings')->where('lang', ZM_PB_DEFLANG)->get(['page_id', 'settings'])->keyBy('page_id');
     $pages = ['page' => [], 'post' => []];
-    foreach (Capsule::table('zm_pb_pages')->whereIn('type', ['page', 'post'])->orderBy('name')->get() as $page) {
+    foreach (Capsule::table('zm_pb_pages')->whereIn('type', ['page', 'post'])
+        ->where('status', '!=', 'canceled')->orderBy('name')->get() as $page) {
         $pages[$page->type][] = [
             'id' => $page->id, 
             //'name' => zm_pb_menu_page_label($page, $settings[$page->id] ?? null),

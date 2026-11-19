@@ -139,13 +139,13 @@ class ZM_PB_ContentBuilder
 
     private function mediaImageSrcset($id, $src)
     {
-        if (!defined('ZM_PB_MAINSYSTEM_ATTACHMENTS_URL')
+        if (!defined('ZM_PB_MAINSYSTEM_ASSETS_URL')
             || !class_exists('Illuminate\\Database\\Capsule\\Manager')) return '';
         static $cache = [];
         $srcPath = (string) parse_url($src, PHP_URL_PATH);
-        $basePath = (string) parse_url(ZM_PB_MAINSYSTEM_ATTACHMENTS_URL, PHP_URL_PATH);
+        $basePath = (string) parse_url(ZM_PB_MAINSYSTEM_ASSETS_URL, PHP_URL_PATH);
         $srcHost = (string) parse_url($src, PHP_URL_HOST);
-        $baseHost = (string) parse_url(ZM_PB_MAINSYSTEM_ATTACHMENTS_URL, PHP_URL_HOST);
+        $baseHost = (string) parse_url(ZM_PB_MAINSYSTEM_ASSETS_URL, PHP_URL_HOST);
         if ($srcHost && $baseHost && strcasecmp($srcHost, $baseHost) !== 0) return '';
         if ($basePath === '' || strpos($srcPath, $basePath) !== 0) return '';
         $selectedFile = rawurldecode(substr($srcPath, strlen($basePath)));
@@ -165,10 +165,10 @@ class ZM_PB_ContentBuilder
                 $sizes = $record ? json_decode((string) $record->sizes, true) : [];
                 if (!is_array($sizes)) $sizes = [];
                 if ($record && empty($sizes['full']['width'])
-                    && defined('ZM_PB_MAINSYSTEM_ATTACHMENTS_DIR')) {
+                    && defined('ZM_PB_MAINSYSTEM_ASSETS_DIR')) {
                     $fullFile = (string) $record->filename;
                     if ($fullFile === basename($fullFile) && preg_match('/^[a-zA-Z0-9_.-]+$/D', $fullFile)) {
-                        $path = rtrim(ZM_PB_MAINSYSTEM_ATTACHMENTS_DIR, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . $fullFile;
+                        $path = rtrim(ZM_PB_MAINSYSTEM_ASSETS_DIR, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . $fullFile;
                         $dimensions = is_file($path) ? @getimagesize($path) : false;
                         if ($dimensions) $sizes['full'] = ['filename' => $fullFile, 'width' => (int) $dimensions[0]];
                     }
@@ -180,7 +180,7 @@ class ZM_PB_ContentBuilder
         }
         if (!is_array($cache[$key])) return '';
         $variants = [];
-        $urlBase = ZM_PB_MAINSYSTEM_ATTACHMENTS_URL;
+        $urlBase = ZM_PB_MAINSYSTEM_ASSETS_URL;
         $srcScheme = (string) parse_url($src, PHP_URL_SCHEME);
         if ($srcHost && in_array($srcScheme, ['http', 'https'], true)) {
             $urlBase = preg_replace('~^https?://~i', $srcScheme . '://', $urlBase);
@@ -201,14 +201,14 @@ class ZM_PB_ContentBuilder
     {
         $src = $image->getAttribute('src');
         if (((int) $image->getAttribute('width') < 1 || (int) $image->getAttribute('height') < 1)
-            && defined('ZM_PB_MAINSYSTEM_ATTACHMENTS_URL') && defined('ZM_PB_MAINSYSTEM_ATTACHMENTS_DIR')
-            && ZM_PB_MAINSYSTEM_ATTACHMENTS_URL !== ''
-            && strpos($src, ZM_PB_MAINSYSTEM_ATTACHMENTS_URL) === 0) {
-            $file = rawurldecode(explode('?', substr($src, strlen(ZM_PB_MAINSYSTEM_ATTACHMENTS_URL)), 2)[0]);
+            && defined('ZM_PB_MAINSYSTEM_ASSETS_URL') && defined('ZM_PB_MAINSYSTEM_ASSETS_DIR')
+            && ZM_PB_MAINSYSTEM_ASSETS_URL !== ''
+            && strpos($src, ZM_PB_MAINSYSTEM_ASSETS_URL) === 0) {
+            $file = rawurldecode(explode('?', substr($src, strlen(ZM_PB_MAINSYSTEM_ASSETS_URL)), 2)[0]);
             if ($file === basename($file) && preg_match('/^[a-zA-Z0-9_.-]+$/D', $file)) {
                 static $sizeCache = [];
                 if (!array_key_exists($file, $sizeCache)) {
-                    $path = rtrim(ZM_PB_MAINSYSTEM_ATTACHMENTS_DIR, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . $file;
+                    $path = rtrim(ZM_PB_MAINSYSTEM_ASSETS_DIR, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . $file;
                     $sizeCache[$file] = is_file($path) ? @getimagesize($path) : false;
                 }
                 if ($sizeCache[$file]) {

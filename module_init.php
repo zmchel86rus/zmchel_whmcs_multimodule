@@ -146,12 +146,10 @@ if (!defined('ZM_PB_MAINSYSTEM_DEFAULT_PAGES')) define('ZM_PB_MAINSYSTEM_DEFAULT
 ]);
 
 # SUP MODULE MAINSYSTEM DIRS CONSTS
-if (!defined('ZM_PB_MAINSYSTEM_ATTACHMENTS_DIR')) define('ZM_PB_MAINSYSTEM_ATTACHMENTS_DIR', ROOTDIR . '/attachments/' );
-if (!defined('ZM_PB_MAINSYSTEM_ASSETS_DIR')) define('ZM_PB_MAINSYSTEM_ASSETS_DIR', ROOTDIR . '/assets/');
+if (!defined('ZM_PB_MAINSYSTEM_ASSETS_DIR')) define('ZM_PB_MAINSYSTEM_ASSETS_DIR', ROOTDIR . '/assets/' . ZM_PB_NAME . '/');
 
 # SUP MODULE MAINSYSTEM URLS CONSTS
-if (!defined('ZM_PB_MAINSYSTEM_ATTACHMENTS_URL')) define('ZM_PB_MAINSYSTEM_ATTACHMENTS_URL', $CONFIG['SystemURL'] . '/attachments/' );
-if (!defined('ZM_PB_MAINSYSTEM_ASSETS_URL')) define('ZM_PB_MAINSYSTEM_ASSETS_URL', $CONFIG['SystemURL'] . '/assets/');
+if (!defined('ZM_PB_MAINSYSTEM_ASSETS_URL')) define('ZM_PB_MAINSYSTEM_ASSETS_URL', rtrim($CONFIG['SystemURL'], '/') . '/assets/' . ZM_PB_NAME . '/');
 if (!defined('ZM_PB_FULLHOST')) define('ZM_PB_FULLHOST', rtrim(strtolower($CONFIG['SystemURL']), '/') . '/' );
 
 ### SUP MODULE MAINSYSTEM CONSTS ###
@@ -239,3 +237,9 @@ if (!defined('ZM_PB_CLIENTSIDE_DEFAULT_TEMPLATE')) define('ZM_PB_CLIENTSIDE_DEFA
 
 
 require_once ZM_PB_HELPERS_FILE;
+require_once ZM_PB_INCDIR . 'media_storage.php';
+try {
+    zm_pb_media_migrate_legacy();
+} catch (Throwable $error) {
+    error_log('zmchel WHMCS Multimodule: media migration failed: ' . $error->getMessage());
+}

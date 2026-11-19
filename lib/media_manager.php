@@ -33,12 +33,12 @@ if (!function_exists('zm_pb_media_manager_images_sizes')) {
 
 if (!function_exists('zm_pb_media_manager_size_data')) {
     function zm_pb_media_manager_size_data($fileName) {
-        $path = rtrim(ZM_PB_MAINSYSTEM_ATTACHMENTS_DIR, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . $fileName;
+        $path = rtrim(ZM_PB_MAINSYSTEM_ASSETS_DIR, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . $fileName;
         $imageSize = @getimagesize($path);
 
         return [
             'filename' => $fileName,
-            'url' => ZM_PB_MAINSYSTEM_ATTACHMENTS_URL . rawurlencode($fileName),
+            'url' => ZM_PB_MAINSYSTEM_ASSETS_URL . rawurlencode($fileName),
             'width' => $imageSize[0] ?? null,
             'height' => $imageSize[1] ?? null,
             'bytes' => file_exists($path) ? filesize($path) : null,
@@ -56,7 +56,7 @@ if (!function_exists('zm_pb_media_manager_file_data')) {
         if (is_array($sizes)) {
             foreach ($sizes as $sizeName => $sizeData) {
                 if (is_array($sizeData) && !empty($sizeData['filename'])) {
-                    $url = ZM_PB_MAINSYSTEM_ATTACHMENTS_URL . rawurlencode($sizeData['filename']);
+                    $url = ZM_PB_MAINSYSTEM_ASSETS_URL . rawurlencode($sizeData['filename']);
                     $sized[$sizeName] = $url;
                     $variants[$sizeName] = [
                         'url' => $url,
@@ -106,7 +106,7 @@ if (!function_exists('zm_pb_media_manager_list')) {
             ->limit(100)
             ->get()
             ->filter(function($attachment) {
-                $path = rtrim(ZM_PB_MAINSYSTEM_ATTACHMENTS_DIR, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . $attachment->filename;
+                $path = rtrim(ZM_PB_MAINSYSTEM_ASSETS_DIR, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . $attachment->filename;
                 return file_exists($path);
             })
             ->map(function($attachment) {
@@ -153,7 +153,7 @@ if (!function_exists('zm_pb_media_manager_page')) {
             $batch = $query->limit(48)->get();
             foreach ($batch as $attachment) {
                 $scanId = (int) $attachment->id;
-                $path = rtrim(ZM_PB_MAINSYSTEM_ATTACHMENTS_DIR, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . $attachment->filename;
+                $path = rtrim(ZM_PB_MAINSYSTEM_ASSETS_DIR, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . $attachment->filename;
                 if (!is_file($path)) continue;
                 if (count($files) === $limit) {
                     $hasMore = true;
@@ -219,7 +219,7 @@ if (!function_exists('zm_pb_media_manager_action')) {
                 if (!$attachment) return ['status'=>'error','title'=> ($GLOBALS['ZM_PB_ADMINLANG'])->other->error ,'message' => ($GLOBALS['ZM_PB_ADMINLANG'])->other->no_found ];
                 
 
-                $baseDir = rtrim(ZM_PB_MAINSYSTEM_ATTACHMENTS_DIR, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR;
+                $baseDir = rtrim(ZM_PB_MAINSYSTEM_ASSETS_DIR, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR;
 
                 if (!empty($attachment->filename)) {
                     $mainPath = $baseDir . $attachment->filename;
@@ -353,7 +353,7 @@ if (!function_exists('zm_pb_media_manager_optimize_attachment')) {
         if ($filename !== basename($filename) || !preg_match('/^[a-zA-Z0-9_.-]+$/D', $filename)) {
             return $error($text->optimization_failed);
         }
-        $directory = rtrim(ZM_PB_MAINSYSTEM_ATTACHMENTS_DIR, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR;
+        $directory = rtrim(ZM_PB_MAINSYSTEM_ASSETS_DIR, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR;
         $fullPath = $directory . $filename;
         if (!is_file($fullPath) || !is_writable($fullPath)) return $error($text->optimization_failed);
         $check = zm_pb_media_manager_open_image($fullPath, $extension);
@@ -521,10 +521,10 @@ if (!function_exists('zm_pb_media_manager_upload')) {
                 return zm_pb_media_manager_error('#ERROR-MEDIA #5');
             }
         }
-        if (!is_dir(ZM_PB_MAINSYSTEM_ATTACHMENTS_DIR) && !mkdir(ZM_PB_MAINSYSTEM_ATTACHMENTS_DIR, 0755, true) && !is_dir(ZM_PB_MAINSYSTEM_ATTACHMENTS_DIR)) {
+        if (!is_dir(ZM_PB_MAINSYSTEM_ASSETS_DIR)) {
             return zm_pb_media_manager_error('#ERROR-MEDIA #6');
         }
-        if (!is_writable(ZM_PB_MAINSYSTEM_ATTACHMENTS_DIR)) {
+        if (!is_writable(ZM_PB_MAINSYSTEM_ASSETS_DIR)) {
             return zm_pb_media_manager_error('#ERROR-MEDIA #7');
         }
 
@@ -538,19 +538,27 @@ if (!function_exists('zm_pb_media_manager_upload')) {
         $baseName = zm_pb_transtaliteration(pathinfo($originalName, PATHINFO_FILENAME));
         if ($baseName === '') $baseName = 'file';
         $baseName = substr($baseName, 0, 110);
-        $fileName = $baseName . '.' . $extension;
-        $fileNumber = 1;
-        while (
-            Capsule::table('zm_pb_attachments')->where('filename', $fileName)->exists()
-            || file_exists(rtrim(ZM_PB_MAINSYSTEM_ATTACHMENTS_DIR, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . $fileName)
-        ) {
-            $fileName = $baseName . '_' . $fileNumber . '.' . $extension;
+        $fileNumber = 0;
+        do {
+            $fileBase = $baseName . ($fileNumber ? '_' . $fileNumber : '');
+            $fileName = $fileBase . '.' . $extension;
+            $conflict = Capsule::table('zm_pb_attachments')->where('filename', $fileName)->exists()
+                || file_exists(rtrim(ZM_PB_MAINSYSTEM_ASSETS_DIR, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . $fileName);
+            if (!$conflict && in_array($extension, zm_pb_media_manager_image_extensions(), true)) {
+                foreach (array_keys(zm_pb_media_manager_images_sizes()) as $sizeName) {
+                    if (file_exists(rtrim(ZM_PB_MAINSYSTEM_ASSETS_DIR, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR
+                        . $fileBase . '_' . $sizeName . '.' . $extension)) {
+                        $conflict = true;
+                        break;
+                    }
+                }
+            }
             $fileNumber++;
-        }
+        } while ($conflict);
 
-        $path = rtrim(ZM_PB_MAINSYSTEM_ATTACHMENTS_DIR, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . $fileName;
+        $path = rtrim(ZM_PB_MAINSYSTEM_ASSETS_DIR, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . $fileName;
         if (!move_uploaded_file($file['tmp_name'], $path)) {
-            error_log('zmchel WHMCS Multimodule: unable to move uploaded media file to ' . ZM_PB_MAINSYSTEM_ATTACHMENTS_DIR);
+            error_log('zmchel WHMCS Multimodule: unable to move uploaded media file to ' . ZM_PB_MAINSYSTEM_ASSETS_DIR);
             return zm_pb_media_manager_error('#ERROR-MEDIA #8');
         }
 
@@ -565,7 +573,7 @@ if (!function_exists('zm_pb_media_manager_upload')) {
             $baseName = pathinfo($fileName, PATHINFO_FILENAME);
             foreach ( zm_pb_media_manager_images_sizes() as $sizeName => $maxSide) {
                 $variantName = $baseName . '_' . $sizeName . '.' . $extension;
-                $variantPath = rtrim(ZM_PB_MAINSYSTEM_ATTACHMENTS_DIR, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . $variantName;
+                $variantPath = rtrim(ZM_PB_MAINSYSTEM_ASSETS_DIR, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . $variantName;
                 if (zm_pb_media_manager_resize_image($path, $variantPath, $maxSide, $extension)) {
                     $sizes[$sizeName] = zm_pb_media_manager_size_data($variantName);
                     $savedFiles[] = $variantName;
@@ -573,7 +581,7 @@ if (!function_exists('zm_pb_media_manager_upload')) {
             }
             $fullBytes = filesize($path);
             foreach ($sizes as $sizeName => $sizeData) {
-                $variantPath = rtrim(ZM_PB_MAINSYSTEM_ATTACHMENTS_DIR, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . $sizeData['filename'];
+                $variantPath = rtrim(ZM_PB_MAINSYSTEM_ASSETS_DIR, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . $sizeData['filename'];
                 if (is_file($variantPath) && filesize($variantPath) >= $fullBytes) {
                     @unlink($variantPath);
                     unset($sizes[$sizeName]);
@@ -590,7 +598,7 @@ if (!function_exists('zm_pb_media_manager_upload')) {
                 'alt' => $alt,
                 'title' => $title,
                 'description' => $description,
-                'url' => ZM_PB_MAINSYSTEM_ATTACHMENTS_URL . rawurlencode($fileName),
+                'url' => ZM_PB_MAINSYSTEM_ASSETS_URL . rawurlencode($fileName),
                 'sizes' => json_encode($sizes),
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -601,7 +609,7 @@ if (!function_exists('zm_pb_media_manager_upload')) {
             $attachmentId = Capsule::table('zm_pb_attachments')->insertGetId($record);
         } catch (Exception $e) {
             foreach (array_unique($savedFiles) as $savedFile) {
-                $savedPath = rtrim(ZM_PB_MAINSYSTEM_ATTACHMENTS_DIR, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . $savedFile;
+                $savedPath = rtrim(ZM_PB_MAINSYSTEM_ASSETS_DIR, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . $savedFile;
                 if (file_exists($savedPath)) unlink($savedPath);
             }
             return zm_pb_media_manager_error('#ERROR-MEDIA #9');

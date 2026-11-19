@@ -20,6 +20,7 @@
             <aside class="zm-pb-menu-sources">
                 <input type="search" id="zm-pb-menu-search" class="form-control" placeholder="{$menu_manager_translates->search|escape}" aria-label="{$menu_manager_translates->search|escape}">
                 {foreach ['page','post'] as $type}
+                {if $menu_data.pages[$type]|@count}
                 <details open class="zm-pb-menu-source">
                     <summary>{if $type == 'page'}{$menu_manager_translates->pages|escape}{else}{$menu_manager_translates->posts|escape}{/if}</summary>
                     <div class="zm-pb-menu-page-list">
@@ -32,6 +33,7 @@
                     </div>
                     {if $menu_data.pages[$type]}<button type="button" class="btn btn-default zm-pb-menu-add-pages">{$menu_manager_translates->add|escape}</button>{/if}
                 </details>
+                {/if}
                 {/foreach}
                 <details open class="zm-pb-menu-source">
                     <summary>{$menu_manager_translates->custom|escape}</summary>

@@ -48,6 +48,8 @@ foreach (zm_pb_menu_table_definitions() as $create) $create();
 foreach (zm_pb_menu_columns() as $name => $columns) foreach (array_keys($columns) as $column) check(Capsule::schema()->hasColumn($name, $column), 'Missing schema column');
 $pageId = Capsule::table('zm_pb_pages')->insertGetId(['name' => 'Test', 'slug' => 'test', 'status' => 'publish', 'auth_type' => 'mixed', 'type' => 'page', 'created_at' => '2026-01-01']);
 $secondPageId = Capsule::table('zm_pb_pages')->insertGetId(['name' => 'Contact', 'slug' => 'contact', 'status' => 'publish', 'auth_type' => 'mixed', 'type' => 'page', 'created_at' => '2026-01-01']);
+$trashedPageId = Capsule::table('zm_pb_pages')->insertGetId(['name' => 'Trashed page', 'slug' => 'trashed-page', 'status' => 'canceled', 'auth_type' => 'mixed', 'type' => 'page', 'created_at' => '2026-01-01']);
+$trashedPostId = Capsule::table('zm_pb_pages')->insertGetId(['name' => 'Trashed post', 'slug' => 'trashed-post', 'status' => 'canceled', 'auth_type' => 'mixed', 'type' => 'post', 'created_at' => '2026-01-01']);
 foreach (['english' => 'English title', 'russian' => 'Russian title'] as $lang => $title) Capsule::table('zm_pb_pages_settings')->insert(['page_id' => $pageId, 'lang' => $lang, 'lang_active' => true, 'lang_status' => 'publish', 'settings' => json_encode(['breadcrumb' => $title])]);
 Capsule::table('zm_pb_pages_settings')->insert(['page_id' => $secondPageId, 'lang' => 'english', 'lang_active' => true,
     'lang_status' => 'draft', 'settings' => json_encode(['breadcrumb' => 'Overridden home'])]);
@@ -71,6 +73,8 @@ check(zm_pb_menu_page_url((object) ['slug' => 'contact'], 'russian') === $russia
 $reportedAdmin = zm_pb_menu_admin_data($reportedMenuId);
 check($reportedAdmin['items'][1]['url'] === $homeUrl && $reportedAdmin['pages']['page'][0]['url'] === $homeUrl,
     'Override URL missing from saved item or admin page list');
+check(count($reportedAdmin['pages']['page']) === 2 && count($reportedAdmin['pages']['post']) === 0,
+    'Trashed pages or posts appeared in the menu source list');
 $reportedRows = Capsule::table('zm_pb_menu_items')->where('menu_id', $reportedMenuId)->orderBy('position')->get()->map(function ($i) { return (array) $i; })->all();
 $reportedPages = Capsule::table('zm_pb_pages')->whereIn('id', [$pageId, $secondPageId])->get()->keyBy('id')->all();
 $reportedSettings = [$pageId => [], $secondPageId => []];
