@@ -5,7 +5,7 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 $module = dirname(__DIR__) . '/';
 require dirname(__DIR__, 4) . '/vendor/autoload.php';
 $root = sys_get_temp_dir() . '/zmpb-transfer-' . bin2hex(random_bytes(6));
-foreach (['inc', 'assets/generated', 'attachments', 'templates/test', 'resources'] as $dir) mkdir($root . '/' . $dir, 0755, true);
+foreach (['inc', 'assets/generated', 'assets/media', 'templates/test', 'resources'] as $dir) mkdir($root . '/' . $dir, 0755, true);
 foreach (['transfer.php', 'menu_manager.php', 'sitemap_manager.php', 'redirects_manager.php', 'footer_menu.php'] as $file) copy($module . 'inc/' . $file, $root . '/inc/' . $file);
 define('ZM_PB_VER', 'test'); define('ROOTDIR', $root); define('ZM_PB_NAME', 'zmchel_whmcs_multimodule');
 define('ZM_PB_ROOTDIR', $module);
@@ -13,7 +13,7 @@ define('ZM_PB_INCDIR', $root . '/inc/'); define('ZM_PB_LIBDIR', $module . 'lib/'
 define('ZM_PB_ASSETSDIR', $root . '/assets/'); define('ZM_PB_FULLHOST', 'https://target.test/');
 define('ZM_PB_RESOURCESDIR', $root . '/resources/');
 define('ZM_PB_ASSETSURL', ZM_PB_FULLHOST . 'modules/addons/zmchel_whmcs_multimodule/assets/');
-define('ZM_PB_MAINSYSTEM_ATTACHMENTS_DIR', $root . '/attachments/'); define('ZM_PB_MAINSYSTEM_ATTACHMENTS_URL', ZM_PB_FULLHOST . 'attachments/');
+define('ZM_PB_MEDIA_DIR', $root . '/assets/media/'); define('ZM_PB_MEDIA_URL', ZM_PB_ASSETSURL . 'media/');
 define('ZM_PB_MEDIA_MANAGER_FILE', $module . 'lib/media_manager.php');
 $availableLanguages = (require $module . 'supported_langs.php') + (require $module . 'disabled_langs.php');
 define('ZM_PB_LANGS', ['english' => $availableLanguages['english']]); define('ZM_PB_DEFLANG', 'english');
@@ -45,13 +45,36 @@ try {
     foreach ($fields as $table => $columns) Capsule::schema()->create($table, function ($t) use ($columns) {
         $t->increments('id'); foreach (explode(' ', $columns) as $column) $t->text($column)->nullable();
     });
+    mkdir($root . '/attachments');
+    $legacyFile = 'legacy.png';
+    $legacyUrl = ZM_PB_FULLHOST . 'attachments/' . $legacyFile;
+    $legacyBytes = base64_decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+jRZkAAAAASUVORK5CYII=');
+    file_put_contents($root . '/attachments/' . $legacyFile, $legacyBytes);
+    $legacyId = Capsule::table('zm_pb_attachments')->insertGetId([
+        'filename' => $legacyFile, 'name' => 'Legacy image', 'url' => $legacyUrl, 'sizes' => '{}']);
+    Capsule::table('zm_pb_pages_settings')->insert(['page_id' => 998, 'content' => '<img src="' . $legacyUrl . '">']);
+    Capsule::table('zm_pb_pages_settings')->insert(['page_id' => 999, 'content' => json_encode(['src' => $legacyUrl])]);
+    require $module . 'inc/media_storage.php';
+    zm_pb_media_migrate_legacy();
+    check(is_file(ZM_PB_MEDIA_DIR . $legacyFile) && is_file($root . '/attachments/' . $legacyFile),
+        'Legacy media was not copied safely');
+    check(Capsule::table('zm_pb_attachments')->where('id', $legacyId)->value('url') === ZM_PB_MEDIA_URL . $legacyFile
+        && strpos(Capsule::table('zm_pb_pages_settings')->where('page_id', 998)->value('content'), ZM_PB_MEDIA_URL . $legacyFile) !== false,
+        'Legacy media URLs were not updated');
+    check(json_decode(Capsule::table('zm_pb_pages_settings')->where('page_id', 999)->value('content'), true)['src'] === ZM_PB_MEDIA_URL . $legacyFile,
+        'Escaped legacy media URLs were not updated');
+    Capsule::table('zm_pb_attachments')->where('id', $legacyId)->delete();
+    Capsule::table('zm_pb_pages_settings')->where('page_id', 998)->delete();
+    Capsule::table('zm_pb_pages_settings')->where('page_id', 999)->delete();
+    unlink(ZM_PB_MEDIA_DIR . $legacyFile);
+    unlink($root . '/attachments/' . $legacyFile);
     foreach (zm_pb_menu_table_definitions() as $create) $create();
     $page = ['id' => 3, 'name' => 'Test', 'slug' => 'test', 'auth_type' => 'mixed', 'status' => 'publish', 'type' => 'page', 'langs' => '["english"]'];
     Capsule::table('zm_pb_pages')->insert($page);
     $png = base64_decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+jRZkAAAAASUVORK5CYII=');
-    file_put_contents(ZM_PB_MAINSYSTEM_ATTACHMENTS_DIR . 'test.png', $png);
-    Capsule::table('zm_pb_attachments')->insert(['filename' => 'test.png', 'name' => 'Test image', 'url' => ZM_PB_MAINSYSTEM_ATTACHMENTS_URL . 'test.png', 'sizes' => '{}']);
-    $content = jsonData(['format' => 'grapesjs', 'html' => '<img src="https://target.test/attachments/test.png">',
+    file_put_contents(ZM_PB_MEDIA_DIR . 'test.png', $png);
+    Capsule::table('zm_pb_attachments')->insert(['filename' => 'test.png', 'name' => 'Test image', 'url' => ZM_PB_MEDIA_URL . 'test.png', 'sizes' => '{}']);
+    $content = jsonData(['format' => 'grapesjs', 'html' => '<img src="' . ZM_PB_MEDIA_URL . 'test.png">',
         'project' => ['pages' => []], 'css' => 'p{color:red}', 'code' => [['id' => 'code_test', 'type' => 'js', 'code' => 'window.test=1;']]]);
     $saved = zm_pb_save_grapes_content(3, 'english', $content);
     Capsule::table('zm_pb_pages_settings')->insert(['page_id' => 3, 'lang' => 'english', 'lang_status' => 'draft', 'lang_active' => 1, 'content' => $saved]);
@@ -109,7 +132,7 @@ try {
     check((int) Capsule::table('zm_pb_menu_items')->where('type', 'page')->value('page_id') === (int) $newId, 'Menu page reference broken');
     check((int) Capsule::table('zm_pb_menu_items')->where('type', 'custom')->value('parent_id') === (int) Capsule::table('zm_pb_menu_items')->where('type', 'page')->value('id'), 'Menu tree broken');
     $imported = json_decode(Capsule::table('zm_pb_pages_settings')->where('page_id', $newId)->value('content'), true);
-    check(strpos($imported['html'], 'https://target.test/attachments/test.png') !== false, 'Media URL not localized');
+    check(strpos($imported['html'], ZM_PB_MEDIA_URL . 'test.png') !== false, 'Media URL not localized');
     check(strpos($imported['cssUrl'], 'page_' . $newId . '_english_styles.css') !== false, 'CSS still uses source page ID');
     if (isset($zipPath)) {
         ZM_PB_Transfer::importFile($zipPath, ['pages']);

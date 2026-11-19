@@ -38,8 +38,8 @@
 
                         <div>
                             <label>{$pages_manager_translates->page_langs->title}:</label>
-                            <div class="form-group">
                             {if $module_langs|@count > 5}
+                            <div class="form-group">
                                 <label>
                                     <text data-turn_on="{$other_translates->turn_on} {$pages_manager_translates->list_filters->all|lower}" data-turn_off="{$other_translates->turn_off} {$pages_manager_translates->list_filters->all|lower}">
                                         {$other_translates->turn_on} {$pages_manager_translates->list_filters->all|lower}
@@ -53,9 +53,9 @@
                                         $(this).siblings('text').text(text);
                                     });
                                 </script>
-                            {/if}
                             </div>
-                            <div class="form-group">
+                            {/if}
+                            <div class="form-group langs_checkboxes">
                             {foreach from=$module_langs key=lang_name item=lang_data}
                                 {if $lang_name !== $main_default_lang}
                                 <label for="langs[{$lang_name}]">

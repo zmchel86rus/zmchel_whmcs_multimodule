@@ -79,7 +79,7 @@ if (!defined('ZM_PB_ALLOWED_CONSTS_CHANGE')) define('ZM_PB_ALLOWED_CONSTS_CHANGE
 ### INFO CONSTS ###
 if (!defined('ZM_PB_SUPERADM_ID')) define('ZM_PB_SUPERADM_ID', 1 );
 if (!defined('ZM_PB_FREFIX')) define('ZM_PB_FREFIX', 'ZM_PB_' );
-if (!defined('ZM_PB_VER')) define('ZM_PB_VER', '1.1.1' );
+if (!defined('ZM_PB_VER')) define('ZM_PB_VER', '1.1.1f' );
 if (!defined('ZM_PB_NAME')) define('ZM_PB_NAME', basename(__DIR__) );
 ### INFO CONSTS ###
 
@@ -118,6 +118,8 @@ require_once ZM_PB_INCDIR.'editable_consts.php';
 ### MODULE URLS CONSTS ###
 if (!defined('ZM_PB_ROOTURL')) define('ZM_PB_ROOTURL', $CONFIG['SystemURL'].'/modules/addons/'.basename(__DIR__).'/' );
 if (!defined('ZM_PB_ASSETSURL')) define('ZM_PB_ASSETSURL', ZM_PB_ROOTURL . 'assets/' );
+if (!defined('ZM_PB_MEDIA_DIR')) define('ZM_PB_MEDIA_DIR', ZM_PB_ASSETSDIR . 'media/');
+if (!defined('ZM_PB_MEDIA_URL')) define('ZM_PB_MEDIA_URL', ZM_PB_ASSETSURL . 'media/');
 ### MODULE URLS CONSTS ###
 
 
@@ -146,11 +148,9 @@ if (!defined('ZM_PB_MAINSYSTEM_DEFAULT_PAGES')) define('ZM_PB_MAINSYSTEM_DEFAULT
 ]);
 
 # SUP MODULE MAINSYSTEM DIRS CONSTS
-if (!defined('ZM_PB_MAINSYSTEM_ATTACHMENTS_DIR')) define('ZM_PB_MAINSYSTEM_ATTACHMENTS_DIR', ROOTDIR . '/attachments/' );
 if (!defined('ZM_PB_MAINSYSTEM_ASSETS_DIR')) define('ZM_PB_MAINSYSTEM_ASSETS_DIR', ROOTDIR . '/assets/');
 
 # SUP MODULE MAINSYSTEM URLS CONSTS
-if (!defined('ZM_PB_MAINSYSTEM_ATTACHMENTS_URL')) define('ZM_PB_MAINSYSTEM_ATTACHMENTS_URL', $CONFIG['SystemURL'] . '/attachments/' );
 if (!defined('ZM_PB_MAINSYSTEM_ASSETS_URL')) define('ZM_PB_MAINSYSTEM_ASSETS_URL', $CONFIG['SystemURL'] . '/assets/');
 if (!defined('ZM_PB_FULLHOST')) define('ZM_PB_FULLHOST', rtrim(strtolower($CONFIG['SystemURL']), '/') . '/' );
 
@@ -239,3 +239,9 @@ if (!defined('ZM_PB_CLIENTSIDE_DEFAULT_TEMPLATE')) define('ZM_PB_CLIENTSIDE_DEFA
 
 
 require_once ZM_PB_HELPERS_FILE;
+require_once ZM_PB_INCDIR . 'media_storage.php';
+try {
+    zm_pb_media_migrate_legacy();
+} catch (Throwable $error) {
+    error_log('zmchel WHMCS Multimodule: media migration failed: ' . $error->getMessage());
+}
