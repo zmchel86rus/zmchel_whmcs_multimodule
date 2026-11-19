@@ -1,4 +1,4 @@
-[![Release](https://img.shields.io/badge/Release-v1.1.1-brightgreen.svg?style=for-the-badge)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/releases/latest)
+[![Release](https://img.shields.io/badge/Release-v1.1.2-brightgreen.svg?style=for-the-badge)](https://github.com/zmchel86rus/zmchel_whmcs_multimodule/releases/latest)
 [![License: GPL v2](https://img.shields.io/badge/License-GPL_v2-lightgreen.svg?style=for-the-badge)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
 [![WHMCS](https://img.shields.io/badge/WHMCS-8.13%2B-blue.svg?style=for-the-badge)](https://www.whmcs.com/)
 [![PHP](https://img.shields.io/badge/PHP-7.4%2B-purple.svg?style=for-the-badge)](https://www.php.net/)
